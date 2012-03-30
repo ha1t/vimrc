@@ -1,0 +1,16 @@
+oci_close -- Oracleとの接続を閉じる
+
+  bool oci_close(resource connection)~
+
+Oracle との接続 {connection} を閉じます。
+
+{connection} Oracle 接続 ID。 |oci_connect| によって返される。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 1.1 から |oci_close| は正確に Oracle
+接続を閉じます。この関数の古い動作をさせる場合は
+oci8.old_oci_close_semantics オプションを使用してください。
+
+vim:ft=help:

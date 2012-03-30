@@ -1,0 +1,35 @@
+curl_close -- cURL セッションを閉じる
+
+  void curl_close(resource ch)~
+
+cURL セッションを閉じ、全てのリソースを開放します。
+cURL ハンドル {ch} も削除されます。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+値を返しません。
+
+新しい cURL セッションの初期化とウェブページの取得
+
+<?php >
+  // 新しい cURL リソースを作成します
+  $ch = curl_init();
+  
+  // URL とその他のオプションを設定します
+  curl_setopt($ch, CURLOPT_URL, "http://www.example.com/");
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+  
+  // URL を取得し、それをブラウザに渡します
+  curl_exec($ch);
+  
+  // cURL リソースを閉じ、システムリソースを解放します
+  curl_close($ch);
+?>
+
+
+
+
+
+|curl_init| |curl_multi_close|
+
+vim:ft=help:

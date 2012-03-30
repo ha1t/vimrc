@@ -1,0 +1,22 @@
+SQLiteUnbuffered->next -- 次のレコード番号へシークする
+
+  bool sqlite_next(resource result)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  bool next(resource result)~
+
+  bool next(resource result)~
+
+|sqlite_next|は、結果ハンドル
+{result}を次のレコードへ進めます。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+成功時は TRUE、もしレコードがない場合は FALSE
+を返します。
+
+|sqlite_seek| |sqlite_current| |sqlite_rewind|
+
+vim:ft=help:

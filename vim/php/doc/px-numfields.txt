@@ -1,0 +1,13 @@
+px_numfields -- データベース内のフィールドの数を返す
+
+  int px_numfields(resource pxdoc)~
+
+データベースファイル内のフィールドの数を返します。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+データベースファイル内のフィールドの数を返します。この関数の返す値は、
+|px_get_info| が返す配列における要素 numfields
+の値と等しくなります。
+
+vim:ft=help:

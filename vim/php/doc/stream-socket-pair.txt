@@ -1,0 +1,65 @@
+stream_socket_pair --
+接続された、区別できないソケットストリームの組を作成する
+
+  array stream_socket_pair(int domain, int type, int protocol)~
+
+|stream_socket_pair| は、互いに接続されており区別できない
+ソケットストリームの組を作成します。この関数は、一般に
+IPC （Inter-Process Communication:
+プロセス間通信）で使用します。
+
+{domain} 使用するプロトコルファミリー。STREAM_PF_INET、
+STREAM_PF_INET6 あるいは STREAM_PF_UNIX
+
+{type} 使用する接続の型。 STREAM_SOCK_DGRAM、 STREAM_SOCK_RAW、
+STREAM_SOCK_RDM、 STREAM_SOCK_SEQPACKET あるいは STREAM_SOCK_STREAM
+
+{protocol} 使用するプロトコル。STREAM_IPPROTO_ICMP、
+STREAM_IPPROTO_IP、 STREAM_IPPROTO_RAW、 STREAM_IPPROTO_TCP あるいは
+STREAM_IPPROTO_UDP
+
+各定数についての詳細な情報は ストリーム定数の一覧
+を参照ください。
+
+成功した場合に 2
+つのソケットリソースの配列、失敗した場合に FALSE
+を返します。
+
+|stream_socket_pair| の例 この例では、プロセス間通信に
+|stream_socket_pair| を使用する基本的な方法を示します。
+
+<?php >
+  $sockets = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, STREAM_IPPROTO_IP);
+  $pid     = pcntl_fork();
+  
+  if ($pid == -1) {
+       die('フォークできません');
+  
+  } else if ($pid) {
+       /* 親プロセス */
+      fclose($sockets[0]);
+  
+      fwrite($sockets[1], "子プロセスの PID: $pid\n");
+      echo fgets($sockets[1]);
+  
+      fclose($sockets[1]);
+  
+  } else {
+      /* 子プロセス */
+      fclose($sockets[1]);
+  
+      fwrite($sockets[0], "子プロセスからのメッセージ\n");
+      echo fgets($sockets[0]);
+  
+      fclose($sockets[0]);
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  子プロセスの PID: 1378
+  子プロセスからのメッセージ
+
+
+
+vim:ft=help:

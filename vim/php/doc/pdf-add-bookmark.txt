@@ -1,0 +1,8 @@
+PDF_add_bookmark -- ブックマークを現在のページに追加する
+[古い関数]
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに |PDF_create_bookmark|
+を使用してください。
+
+vim:ft=help:

@@ -1,0 +1,55 @@
+timezone_abbreviations_list --
+夏時間、オフセットおよびタイムゾーン名を含む連想配列を返す
+
+  array timezone_abbreviations_list()~
+
+  array DateTimeZone::listAbbreviations()~
+
+成功した場合に配列、失敗した場合に FALSE を返します。
+
+|timezone_abbreviations_list| の例
+
+<?php >
+  $timezone_abbreviations = DateTimeZone::listAbbreviations();
+  print_r($timezone_abbreviations["acst"]);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => Array
+          (
+              [dst] => 1
+              [offset] => -14400
+              [timezone_id] => America/Porto_Acre
+          )
+  
+      [1] => Array
+          (
+              [dst] => 1
+              [offset] => -14400
+              [timezone_id] => America/Eirunepe
+          )
+  
+      [2] => Array
+          (
+              [dst] => 1
+              [offset] => -14400
+              [timezone_id] => America/Rio_Branco
+          )
+  
+      [3] => Array
+          (
+              [dst] => 1
+              [offset] => -14400
+              [timezone_id] => Brazil/Acre
+          )
+  
+  )
+
+
+
+|timezone_identifiers_list|
+
+vim:ft=help:

@@ -1,0 +1,40 @@
+socket_set_nonblock --
+ソケットリソースを非ブロックモードに設定する
+
+  bool socket_set_nonblock(resource socket)~
+
+|socket_set_nonblock| 関数は、 {socket}
+パラメータで指定したソケットに O_NONBLOCK
+フラグを設定します。
+
+受信や送信、接続、待機といった操作を非ブロックモードのソケットに対して行うと、
+その処理が完了するか何らかのシグナルを受信するまではスクリプトは停止しません。
+また、その操作がブロックされると、呼び出し元の関数は失敗します。
+
+{socket} |socket_create| あるいは |socket_accept|
+で作成したソケットリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|socket_set_nonblock| の例
+
+<?php >
+  $socket = socket_create_listen(1223);
+  socket_set_nonblock($socket);
+  
+  socket_accept($socket);
+?>
+
+この例は、すべてのインターフェイス上でポート 1223
+を待ち受けるソケットを作成し、それを O_NONBLOCK
+モードに設定します。 |socket_accept| は、
+その時点で待機中の接続がない場合はすぐに失敗します。
+
+
+
+
+
+|socket_set_block| |socket_set_option|
+
+vim:ft=help:

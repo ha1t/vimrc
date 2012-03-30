@@ -1,0 +1,48 @@
+domxml_open_mem -- XML 文章から DOM オブジェクトを作成する
+
+  DomDocument domxml_open_mem(string str [, int mode [, array error]])~
+
+この関数は、文字列で与えられた XML
+文章をパースします。
+
+{str} XML ファイルの内容
+
+{mode}
+このオプションパラメータにより、この関数の動作を変更する事が可能です。
+
+以下の定数の 1 つを使用することが可能です:
+DOMXML_LOAD_PARSING (デフォルト), DOMXML_LOAD_VALIDATING もしくは
+DOMXML_LOAD_RECOVERING 。 ビット OR により
+DOMXML_LOAD_DONT_KEEP_BLANKS, DOMXML_LOAD_SUBSTITUTE_ENTITIES と
+DOMXML_LOAD_COMPLETE_ATTRS も追加することが可能です。
+
+{error}
+指定された場合、エラーメッセージが代入されます。
+{error} は リファレンス として渡す必要があります。
+
+与えられた XML コンテンツの DomDocument
+インスタンスを返します。
+
+バージョン 説明 4.3.0 パラメータ {mode} および {error}
+が追加されました。
+
+文字列での XML 文章をオープンする
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+    echo "Error while parsing the document\n";
+    exit;
+  }
+  
+  $root = $dom->document_element();
+?>
+
+
+
+
+
+|domxml_open_file| |domxml_new_doc|
+
+vim:ft=help:

@@ -1,0 +1,28 @@
+openssl_public_encrypt -- 公開鍵でデータを暗号化する
+
+  bool openssl_public_encrypt(string data, string crypted, mixed key [, int padding])~
+
+|openssl_public_encrypt| は、{data} を公開鍵 {key}
+で暗号化し、それを {crypted}
+に格納します。暗号化されたデータは |openssl_private_decrypt|
+を用いて復号可能です。
+
+この関数を使用するのは、例えば秘密鍵の所有者にのみ読めるようにメッセージを暗号化する場合です。
+また、データベースに格納するデータを安全な形式にするためにも使用されます。
+
+{data}
+
+{crypted} 暗号化した結果がここに格納されます。
+
+{key} 公開鍵。
+
+{padding} {padding} のデフォルトは OPENSSL_PKCS1_PADDING
+ですが、これ以外に OPENSSL_SSLV23_PADDING、
+OPENSSL_PKCS1_OAEP_PADDING、 OPENSSL_NO_PADDING が指定可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openssl_private_encrypt| |openssl_private_decrypt|
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+hw_dummy -- Hyperwave ダミー関数
+
+  string hw_dummy(int link, int id, int msgid)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

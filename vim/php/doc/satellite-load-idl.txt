@@ -1,0 +1,8 @@
+satellite_load_idl -- タイプマネージャに IDL
+ファイルのロードを指示する
+
+  bool satellite_load_idl(string file)~
+
+IDL ファイルを Satellite にロードします。
+
+vim:ft=help:

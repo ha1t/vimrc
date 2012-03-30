@@ -1,0 +1,14 @@
+JDToJulian -- ユリウス積算日をユリウス暦に変換する
+
+  string jdtojulian(int julianday)~
+
+ユリウス積算日を "月/日/年"
+の形式でユリウス暦を含む文字列に変換します。
+
+{julianday} ユリウス積算日を表す整数値。
+
+ユリウス暦の日付を "月/日/年" 形式の文字列で返します。
+
+|juliantojd| |cal_from_jd|
+
+vim:ft=help:

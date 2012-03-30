@@ -1,0 +1,11 @@
+SDO_DAS_XML_Document::getRootDataObject -- ルート SDO_DataObject を返す
+
+  SDO_DataObject SDO_DAS_XML_Document::getRootDataObject()~
+
+ルート SDO_DataObject を返します。
+
+
+
+ルート SDO_DataObject を返します。
+
+vim:ft=help:

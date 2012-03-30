@@ -1,0 +1,27 @@
+odbc_autocommit --
+自動コミットの動作をオンまたはオフにする
+
+  mixed odbc_autocommit(resource connection_id [, bool OnOff])~
+
+自動コミットの挙動を切り替えます。
+
+デフォルトで接続の自動コミットはオンとなっています。自動コミットを
+使用不可にするのは、トランザクションを開始することと等価です。
+
+{connection_id} 接続 ID。
+
+{OnOff} {OnOff} が TRUE の場合は自動コミットが可能であり、
+FALSE の場合は自動コミットが使用不可となっています。
+
+{OnOff} パラメータを指定しない場合、
+この関数は、{connection_id} に関する
+自動コミットの状態を返します。自動コミットがオンの場合に
+非ゼロ、オフの場合にゼロ、エラーを生じた場合に FALSE
+を返します。
+
+{OnOff} が設定されている場合は、 この関数は成功時に
+TRUE、失敗したときに FALSE を返します。
+
+|odbc_commit| |odbc_rollback|
+
+vim:ft=help:

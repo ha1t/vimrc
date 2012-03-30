@@ -1,0 +1,57 @@
+odbc_tables --
+指定したデータソースに保存されたテーブルの名前のリストを取得する
+
+  resource odbc_tables(resource connection_id [, string qualifier [, string owner [, string name [, string types]]]])~
+
+指定した範囲の全てのテーブルリストを得ます。情報を含んでいる
+ODBC 結果 ID または失敗した際に FALSE を返します。
+
+結果は以下のカラムを有します。 TABLE_QUALIFIER
+
+TABLE_OWNER
+
+TABLE_NAME
+
+TABLE_TYPE
+
+REMARKS
+
+結果セットは TABLE_TYPE、TABLE_QUALIFIER、TABLE_OWNER、TABLE_NAME
+の順番になります。
+
+引数 {owner} および {name} には、検索パターン
+(ゼロ以上の文字にマッチする '%'
+や単一の文字にマッチする '_') を指定可能です。
+
+限定子、所有者、テーブル名を数えるために、
+{qualifier}、{owner}、 {name}、{table_type}
+について以下のような特別な記号が使用可能です。
+{qualifier} がパーセント記号 (%) のみで、 {owner} および {name}
+が空文字列であった場合、結果にはそのデータソースに関する
+有効な限定子のリスト (NULL を有する TABLE_QUALIFIER
+カラム以外の 全てのカラム)が含まれます。
+
+{owner} がパーセント記号 (%) のみで、 {qualifier} および {name}
+が空文字列の場合、結果にはその
+データソースに関する有効な所有者のリスト (NULL
+を有する TABLE_OWNER カラム以外の全てのカラム)
+が含まれます。
+
+{table_type} がパーセント記号 (%) のみで、
+{qualifier}、{owner}、 {name}
+が空文字列の場合、結果にはそのデータソースに
+関する有効なテーブル型のリスト (NULL を有する TABLE_TYPE
+カラム以外の全てのカラム) が含まれます。
+
+{table_type} が空の文字列ではない場合、検索する型に
+ついてカンマで区切った値のリストを指定する必要があります。
+各値は、シングルクオート(')で括るかまたは括らない形で指定可能です。
+例えば、"'TABLE','VIEW'" または "TABLE, VIEW"
+となります。データソースが
+が指定したテーブル型をサポートしていない場合、
+|odbc_tables| はその型についていかなる結果も 返しません。
+
+関連する権限の取得については、 |odbc_tableprivileges|
+も参照ください。
+
+vim:ft=help:

@@ -1,0 +1,18 @@
+cpdf_set_leading -- テキスト行の間隔を設定する
+
+  bool cpdf_set_leading(int pdf_document, float distance)~
+
+テキストの行間 {distance} を設定します。これは
+|cpdf_continue_text|
+でテキストを出力する場合に使用されます。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{distance} テキストの行間隔を表す float 値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_continue_text|
+
+vim:ft=help:

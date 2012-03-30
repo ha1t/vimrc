@@ -1,0 +1,13 @@
+PDF_attach_file -- 現在のページに添付ファイルを追加する
+[古い関数]
+
+  bool PDF_attach_file(resource pdfdoc, float llx, float lly, float urx, float ury, string filename, string description, string author, string mimetype, string icon)~
+
+添付ファイル注記を追加します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに {type=FileAttachment} とともに
+|PDF_create_annotation| を使用してください。
+
+vim:ft=help:

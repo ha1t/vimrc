@@ -1,0 +1,23 @@
+newt_reflow_text --
+
+  string newt_reflow_text(string text, int width, int flex_down, int flex_up, int actual_width, int actual_height)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{text}
+
+{width}
+
+{flex_down}
+
+{flex_up}
+
+{actual_width}
+
+{actual_height}
+
+
+
+vim:ft=help:

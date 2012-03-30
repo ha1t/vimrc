@@ -1,0 +1,16 @@
+swf_getbitmapinfo -- ビットマップに関する情報を得る
+
+  array swf_getbitmapinfo(int bitmapid)~
+
+ビットマップに関する情報を返します。
+
+{bitmapid} ビットマップ ID。
+
+以下の要素からなる配列を返します。 "size" -
+ビットマップのバイト単位の大きさ。
+
+"width" - ビットマップのピクセル単位の幅。
+
+"height" - ビットマップのピクセル単位の高さ。
+
+vim:ft=help:

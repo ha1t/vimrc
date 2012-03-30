@@ -1,0 +1,39 @@
+maxdb_connect_error --
+直近の接続エラーについての説明を文字列で返す
+
+  string maxdb_connect_error()~
+
+|maxdb_connect_error| 関数は、対応する |maxdb_connect_errno|
+関数とほぼ同じですが、 直近の |maxdb_connect| call
+で発生したエラーについて、
+エラーコードの代わりに文字列を返します。エラーが発生しなかった場合は、
+この関数は空の文字列を返します。
+
+エラーについての文字列を返します。
+エラーが発生しなかった場合は空の文字列を返します。
+
+maxdb_connect_error の例
+
+<?php >
+  $link = maxdb_connect("localhost", "nonexisting_user", "");
+  
+  if (!$link) {
+     printf("localhost に接続できません。エラー: %s\n", maxdb_connect_error());
+  }
+?>
+
+
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  PHP Warning:  maxdb_connect(): -4008 POS(1) Unknown user name/password combination <...>
+  localhost に接続できません。エラー: POS(1) Unknown user name/password combination
+
+|maxdb_connect| |maxdb_connect_errno| |maxdb_errno| |maxdb_error|
+|maxdb_sqlstate|
+
+vim:ft=help:

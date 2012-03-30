@@ -1,0 +1,14 @@
+ifx_get_blob -- BLOB オブジェクトの内容を返す
+
+  string ifx_get_blob(int bid)~
+
+BLOB オブジェクトの内容を返します。
+
+{bid} BLOB オブジェクト ID。
+
+BLOB の内容を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+|ifx_get_char|
+
+vim:ft=help:

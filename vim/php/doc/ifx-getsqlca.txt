@@ -1,0 +1,45 @@
+ifx_getsqlca -- クエリ実行後、sqlca.sqlerrd[0..5] の値を得る
+
+  array ifx_getsqlca(resource result_id)~
+
+{result_id} に関連するクエリを実行した後の sqlca.sqlerrd[0]
+から sqlca.sqlerrd[5] に関する擬似レコードを返します。
+
+insert、update、delete
+の場合、クエリが実行された後、サーバにより
+設定される場合と同様にレコードの値が返されます。
+これにより、作用を受けた行の数および連番の挿入値にアクセスすることが
+可能となります。 SELECT の場合、この値は PREPARE
+文の後で保存された値となります。
+この値から作用を受けた行の数の"推測"値が分かります。
+ifx
+ドライバにより適当な時に保存された値が取得されるため、
+この関数を使用することにより、 SELECT dbinfo('sqlca.sqlerrdx')
+クエリを実行するオーバーヘッドを防止することができます。
+
+{result_id} {result_id} は、 |ifx_query| または |ifx_prepare| (select
+型のクエリのみ!) により返された有効な結果 ID です。
+
+連想配列を返します。含まれるエントリは
+sqlerrd0、sqlerrd1、 sqlerrd2、sqlerrd3、 sqlerrd4 および sqlerrd5
+です。
+
+Informix sqlca.sqlerrd[x] の値を取得する
+
+<?php >
+  /* 'sometable' の最初のカラムは連番であると仮定する */
+  $qid = ifx_query("insert into sometable
+                    values (0, '2nd column', 'another column') ", $connid);
+  if (!$qid) {
+      /* ... error ... */
+  }
+  $sqlca = ifx_getsqlca($qid);
+  $serial_value = $sqlca["sqlerrd1"];
+  echo "挿入された行の続き番号は : " . "$serial_value<br>\n";       
+?>
+
+
+
+
+
+vim:ft=help:

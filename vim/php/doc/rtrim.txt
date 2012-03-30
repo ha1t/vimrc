@@ -1,0 +1,76 @@
+rtrim -- 文字列の最後から空白 (もしくは他の文字)
+を削除する
+
+  string rtrim(string str [, string charlist])~
+
+この関数は文字列 {str} の最後から空白文字を取り除き、
+取り除かれた文字列を返します。
+
+2 番目のパラメータを指定しない場合、 |rtrim|
+は以下の文字を削除します。 " " (ASCII 32 (0x20)),
+通常の空白。
+
+"\t" (ASCII 9 (0x09)), タブ。
+
+"\n" (ASCII 10 (0x0A)), 改行。
+
+"\r" (ASCII 13 (0x0D)), 復帰。
+
+"\0" (ASCII 0 (0x00)), NUL バイト。
+
+"\x0B" (ASCII 11 (0x0B)), 垂直タブ。
+
+{str} 入力文字列。
+
+{charlist} {charlist} パラメータにより、
+削除する文字を指定することも可能です。
+削除したい全ての文字をリストにしてください。..
+を文字の範囲を指定する際に使用可能です。
+
+変更後の文字列を返します。
+
+バージョン 説明 4.1.0 {charlist}
+パラメータが追加されました。
+
+|rtrim| の使用例
+
+<?php >
+  $text = "\t\tThese are a few words :) ...  ";
+  $binary = "\x09Example string\x0A";
+  $hello  = "Hello World";
+  var_dump($text, $binary, $hello);
+  
+  print "\n";
+  
+  $trimmed = rtrim($text);
+  var_dump($trimmed);
+  
+  $trimmed = rtrim($text, " \t.");
+  var_dump($trimmed);
+  
+  $trimmed = rtrim($hello, "Hdle");
+  var_dump($trimmed);
+  
+  // ASCII 制御文字 (0 から 31 まで) を
+  // $binary の末尾から取り除きます
+  $clean = rtrim($binary, "\x00..\x1F");
+  var_dump($clean);
+?>
+
+上の例の出力は以下となります。
+
+  string(32) "        These are a few words :) ...  "
+  string(16) "    Example string
+  "
+  string(11) "Hello World"
+  
+  string(30) "        These are a few words :) ..."
+  string(26) "        These are a few words :)"
+  string(9) "Hello Wor"
+  string(15) "    Example string"
+
+
+
+|trim| |ltrim|
+
+vim:ft=help:

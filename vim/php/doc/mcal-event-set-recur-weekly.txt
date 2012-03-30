@@ -1,0 +1,24 @@
+mcal_event_set_recur_weekly --
+グローバルイベント構造体ストリームの繰り返しを設定する
+
+  void mcal_event_set_recur_weekly(int stream, int year, int month, int day, int interval, int weekdays)~
+
+グローバルイベント構造体ストリームが次に発生する日を
+指定した値に設定します。イベントが、
+指定した日まで毎週指定曜日に発生するものとして設定します。
+
+{stream} MCAL ストリーム。
+
+{year} 年。
+
+{month} 月。
+
+{day} 日。
+
+{interval} 間隔。
+
+{weekdays}
+
+値を返しません。
+
+vim:ft=help:

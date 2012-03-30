@@ -1,0 +1,19 @@
+swf_shapefillsolid --
+現在の塗りつぶし色を指定した色に設定する
+
+  void swf_shapefillsolid(float r, float g, float b, float a)~
+
+現在の塗りつぶし形式をソリッド(塗りつぶし有)にし、
+塗りつぶし色を指定した値にします。
+
+{r} 赤の値。
+
+{g} 緑の値。
+
+{b} 青の値。
+
+{a} アルファ値。
+
+値を返しません。
+
+vim:ft=help:

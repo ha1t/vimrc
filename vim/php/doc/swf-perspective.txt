@@ -1,0 +1,22 @@
+swf_perspective -- 遠近法による投影変換を定義する
+
+  void swf_perspective(float fovy, float aspect, float near, float far)~
+
+遠近法による投影変換を定義します。
+
+遠近法による投影を行う際には、様々な歪み効果が現れる可能性があります。
+これは、Flash
+プレイヤーが有しているのは二次元行列のみだからです。
+きれいに投影されないケースもあります。
+
+{fovy} y 方向の視野角。
+
+{aspect} 描画領域のビューポートのアスペクト比。
+
+{near} 近いクリッピング面。
+
+{far} 遠いクリッピング面。
+
+値を返しません。
+
+vim:ft=help:

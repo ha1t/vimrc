@@ -1,0 +1,34 @@
+is_array -- 変数が配列かどうかを検査する
+
+  bool is_array(mixed var)~
+
+与えられた変数が配列かどうかを検査します。
+
+{var} 評価する変数
+
+{var} が 配列型 の場合 TRUE、 そうでない場合 FALSE
+を返します。
+
+変数が配列かどうか検査する
+
+<?php >
+  $yes = array('this', 'is', 'an array');
+  
+  echo is_array($yes) ? 'Array' : 'not an Array';
+  echo "\n";
+  
+  $no = 'this is a string';
+  
+  echo is_array($no) ? 'Array' : 'not an Array';
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  not an Array
+
+
+
+|is_float| |is_int| |is_string| |is_object|
+
+vim:ft=help:

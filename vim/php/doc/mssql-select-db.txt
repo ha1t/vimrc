@@ -1,0 +1,43 @@
+mssql_select_db -- MS SQL データベースを選択する
+
+  bool mssql_select_db(string database_name [, resource link_identifier])~
+
+|mssql_select_db| は、指定したリンク ID が指すサーバの
+現在アクティブなデータベースを設定します。
+
+以降の |mssql_query| のコールは
+アクティブなデータベースに対して行われます。
+
+{database_name} The database name.
+
+スペースやハイフン（"-"）、あるいはその他の例外文字を含むデータベース名を
+エスケープするには、下の例で示すようにデータベース名をブラケットで囲む
+必要があります。この手法は、データベースの名前に予約語（たとえば
+primary）が含まれている場合にも同様に使用する必要があります。
+
+{link_identifier} |mssql_connect| あるいは |mssql_pconnect| が返す MS
+SQL リンク ID。
+
+リンク ID
+が指定されない場合、最後にオープンされたリンクが仮定されます。
+リンクがオープンされない場合、関数は |mssql_connect|
+がコールされた場合と同様に
+リンクを確立し、これを使用しようとします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mssql_select_db| の例
+
+<?php >
+  $conn = mssql_connect('MYSQLSERVER', 'sa', 'password');
+  mssql_select_db('[my data-base]', $conn);
+?>
+
+
+
+
+
+|mssql_connect| |mssql_pconnect| |mssql_query|
+
+vim:ft=help:

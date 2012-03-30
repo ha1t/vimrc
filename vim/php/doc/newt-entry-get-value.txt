@@ -1,0 +1,13 @@
+newt_entry_get_value --
+
+  string newt_entry_get_value(resource entry)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{entry}
+
+
+
+vim:ft=help:

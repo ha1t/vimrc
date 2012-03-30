@@ -1,0 +1,41 @@
+pg_lo_read -- ラージオブジェクトを読み込む
+
+  string pg_lo_read(resource large_object [, int len])~
+
+|pg_lo_read|は、ラージオブジェクトから最大 {len}
+バイト分読み込み、文字列として返します。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+この関数は、以前は |pg_loread| と呼ばれていました。
+
+{large_object} |pg_lo_open| によって返された PostgreSQL
+ラージオブジェクト (LOB) リソース。
+
+{len}
+返すデータの最大バイト数（オプション）。デフォルトは
+8192 です。
+
+ラージオブジェクトから {len} バイトのデータを
+文字列で返します。エラー時には FALSE を返します。
+
+|pg_lo_read| の例
+
+<?php >
+     $doc_oid = 189762345;
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     $handle = pg_lo_open($database, $doc_oid, "r");
+     $data = pg_lo_read($handle, 50000);
+     pg_query($database, "commit");
+     echo $data;
+?>
+
+
+
+
+
+|pg_lo_read_all|
+
+vim:ft=help:

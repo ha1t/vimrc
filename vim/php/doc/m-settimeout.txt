@@ -1,0 +1,16 @@
+m_settimeout -- (トランザクション単位の)
+最大の時間を設定する
+
+  int m_settimeout(resource conn, int seconds)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{seconds}
+
+
+
+vim:ft=help:

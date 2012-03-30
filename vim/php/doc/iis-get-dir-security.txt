@@ -1,0 +1,9 @@
+iis_get_dir_security -- ディレクトリのセキュリティを取得する
+
+  int iis_get_dir_security(int server_instance, string virtual_path)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

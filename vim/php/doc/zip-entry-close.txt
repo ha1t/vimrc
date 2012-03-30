@@ -1,0 +1,16 @@
+zip_entry_close -- ディレクトリエントリを閉じる
+
+  bool zip_entry_close(resource zip_entry)~
+
+指定されたディレクトリエントリを閉じます。
+
+{zip_entry}
+|zip_entry_open|によりオープンされたディレクトリの
+エントリ
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|zip_entry_open| |zip_entry_read|
+
+vim:ft=help:

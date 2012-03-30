@@ -1,0 +1,42 @@
+kadm5_modify_principal -- kerberos
+プリンシパルを、指定したパラメータで変更する
+
+  bool kadm5_modify_principal(resource handle, string principal, array options)~
+
+指定した {options} に基づいて {principal} を変更します。
+
+{handle} KADM5 ハンドル。
+
+{principal} プリンシパル。
+
+{options} オプションのパラメータを、配列 {options}
+で指定することができます。指定できるオプションは以下のとおりです。
+KADM5_PRINC_EXPIRE_TIME, KADM5_PW_EXPIRATION, KADM5_ATTRIBUTES,
+KADM5_MAX_LIFE, KADM5_KVNO, KADM5_POLICY, KADM5_CLEARPOLICY, KADM5_MAX_RLIFE.
+KADM5_FAIL_AUTH_COUNT.
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+プリンシパルの変更の例
+
+<?php >
+  $handle = kadm5_init_with_password("afs-1", "GONICUS.LOCAL", "admin/admin", "password");
+  
+  $attributes = KRB5_KDB_REQUIRES_PRE_AUTH;
+  $options = array(KADM5_PRINC_EXPIRE_TIME => 3451234,
+                   KADM5_POLICY => "gonicus",
+                   KADM5_ATTRIBUTES => $attributes);
+  
+  kadm5_modify_principal($handle, "burbach@GONICUS.LOCAL", $options);
+  
+  kadm5_destroy($handle);
+?>
+
+
+
+
+
+|kadm5_create_principal| |kadm5_delete_principal|
+
+vim:ft=help:

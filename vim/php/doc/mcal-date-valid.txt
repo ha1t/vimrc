@@ -1,0 +1,16 @@
+mcal_date_valid -- 日付を検証する
+
+  bool mcal_date_valid(int year, int month, int day)~
+
+日付を検証します。
+
+{year} 年。
+
+{month} 月。
+
+{day} 日。
+
+指定した年月日が有効な日付である場合に TRUE
+を、そうでない場合に FALSE を返します。
+
+vim:ft=help:

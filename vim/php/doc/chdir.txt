@@ -1,0 +1,37 @@
+chdir -- ディレクトリを変更する
+
+  bool chdir(string directory)~
+
+PHP のカレントディレクトリを {directory} に変更します。
+
+{directory} 新しいカレントディレクトリ
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|chdir| の例
+
+<?php >
+  // カレントディレクトリ
+  echo getcwd() . "\n";
+  
+  chdir('public_html');
+  
+  // カレントディレクトリ
+  echo getcwd() . "\n";
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  /home/vincent
+  /home/vincent/public_html
+
+
+
+セーフモード が有効の場合、PHP は、
+操作を行うディレクトリが、実行するスクリプトと同じ
+UID (所有者)を有しているか どうかを確認します。
+
+|getcwd|
+
+vim:ft=help:

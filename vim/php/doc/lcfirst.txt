@@ -1,0 +1,33 @@
+lcfirst -- 文字列の最初の文字を小文字にする
+
+  string lcfirst(string str)~
+
+{str} の最初の文字がアルファベットであれば、
+それを小文字にします。
+
+「アルファベット」かどうかというのは現在のロケールにより決定されます。
+たとえば、デフォルトの "C" ロケールでは、a ウムラウト
+(&auml;) は変換されません。
+
+{str} 入力文字列。
+
+変換後の文字列を返します。
+
+|lcfirst| の例
+
+<?php >
+  $foo = 'HelloWorld';
+  $foo = lcfirst($foo);             // helloWorld
+  
+  $bar = 'HELLO WORLD!';
+  $bar = lcfirst($bar);             // hELLO WORLD!
+  $bar = lcfirst(strtoupper($bar)); // hELLO WORLD!
+?>
+
+
+
+
+
+|ucfirst| |strtolower| |strtoupper| |ucwords|
+
+vim:ft=help:

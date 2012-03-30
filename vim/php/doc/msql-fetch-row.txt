@@ -1,0 +1,54 @@
+msql_fetch_row -- 結果の行を数値配列として取得する
+
+  array msql_fetch_row(resource result)~
+
+|msql_fetch_row| は、指定したリンク ID が指す 結果から 1
+行分のデータを得ます。行は、配列として返されます。
+各結果のカラムは、0
+から始まる配列オフセットに保存されます。
+
+連続して |msql_fetch_row| をコールした場合、
+次の行を結果として返します。もう行がない場合には FALSE
+を返します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+結果の行に対応する配列を返します。もう行がない場合には
+FALSE を返します。
+
+|msql_fetch_row| の例
+
+<?php >
+  $con = msql_connect();
+  if (!$con) {
+      die('Server connection problem: ' . msql_error());
+  }
+  
+  if (!msql_select_db('test', $con)) {
+      die('Database connection problem: ' . msql_error());
+  }
+  
+  $result = msql_query('SELECT id, name FROM people', $con);
+  if (!$result) {
+      die('Query execution problem: ' . msql_error());
+  }
+  
+  while ($row = msql_fetch_row($result)) {
+      echo $row[0] . ': ' . $row[1] . "\n";
+  }
+  
+  msql_free_result($result);
+?>
+
+
+
+
+
+バージョン 説明 4.3.11 および 5.0.4 NULL
+値を含むカラムからデータを取得する際のバグが修正されました。
+そのようなカラムは結果の配列に含まれていませんでした。
+
+|msql_fetch_array| |msql_fetch_object| |msql_data_seek| |msql_result|
+
+vim:ft=help:

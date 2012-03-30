@@ -1,0 +1,75 @@
+ftp_nb_put -- FTP
+サーバにファイルを保存する（非ブロッキング）
+
+  int ftp_nb_put(resource ftp_stream, string remote_file, string local_file, int mode [, int startpos])~
+
+|ftp_nb_put| はローカルファイルを FTP サーバに保存します。
+
+|ftp_put| との違いは、この関数が
+非同期処理でファイルをアップロードするということです。そのため、
+ファイルをアップロードしている最中に別の処理を行うことができます。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{remote_file} リモートファイルのパス。
+
+{local_file} ローカルファイルのパス。
+
+{mode} 転送モード。FTP_ASCII または FTP_BINARY
+のどちらかを指定する必要があります。
+
+{startpos}
+
+FTP_FAILED、FTP_FINISHED あるいは FTP_MOREDATA を返します。
+
+|ftp_nb_put| の例
+
+<?php >
+  // アップロードを開始する
+  $ret = ftp_nb_put($my_connection, "test.remote", "test.local", FTP_BINARY);
+  while ($ret == FTP_MOREDATA) {
+     
+     // 何かお好みの動作を
+     echo ".";
+  
+     // アップロードを継続する…
+     $ret = ftp_nb_continue($my_connection);
+  }
+  if ($ret != FTP_FINISHED) {
+     echo "There was an error uploading the file...";
+     exit(1);
+  }
+?>
+
+
+
+|ftp_nb_put| でアップロードを再開する
+
+<?php >
+  // 開始
+  $ret = ftp_nb_put($my_connection, "test.remote", "test.local", 
+                        FTP_BINARY, ftp_size("test.remote"));
+  // あるいは: $ret = ftp_nb_put($my_connection, "test.remote", "test.local", 
+  //                             FTP_BINARY, FTP_AUTORESUME);
+  
+  while ($ret == FTP_MOREDATA) {
+     
+     // 何かお好みの動作を
+     echo ".";
+  
+     // アップロードを継続する…
+     $ret = ftp_nb_continue($my_connection);
+  }
+  if ($ret != FTP_FINISHED) {
+     echo "There was an error uploading the file...";
+     exit(1);
+  }
+?>
+
+
+
+
+
+|ftp_nb_fput| |ftp_nb_continue| |ftp_put| |ftp_fput|
+
+vim:ft=help:

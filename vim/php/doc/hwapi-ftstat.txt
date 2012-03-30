@@ -1,0 +1,11 @@
+hw_api->ftstat -- フルテキストサーバの統計情報を返す
+
+  hw_api_object ftstat(array parameter)~
+
+フルテキストサーバの統計情報を返します。
+
+{parameter}
+
+
+
+vim:ft=help:

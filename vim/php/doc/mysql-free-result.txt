@@ -1,0 +1,52 @@
+mysql_free_result -- 結果保持用メモリを開放する
+
+  bool mysql_free_result(resource result)~
+
+|mysql_free_result| は、結果 ID {result}
+に関するすべてのメモリを開放します。
+
+|mysql_free_result| は、
+スクリプト実行のメモリの使用量が多すぎると懸念される場合にのみ
+必要になります。指定した結果 ID
+に関する全ての結果保持用メモリは、
+スクリプトの実行後に自動的に開放されます。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+{result} がリソースではなかった場合、 E_WARNING
+レベルのエラーが発生します。 |mysql_query| が resource
+を返すのは SELECT, SHOW, EXPLAIN, そして DESCRIBE
+の場合だけであることに注意しましょう。
+
+|mysql_free_result| の例
+
+<?php >
+  $result = mysql_query("SELECT id,email FROM people WHERE id = '42'");
+  if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
+      exit;
+  }
+  /* 結果を利用する。ここでは、その後結果を利用したものと仮定する */
+  $row = mysql_fetch_assoc($result);
+  
+  /* 結果を開放し、さらにスクリプトの処理を進める */
+  mysql_free_result($result);
+  
+  echo $row['id'];
+  echo $row['email'];
+?>
+
+
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_freeresult|
+
+|mysql_query| |is_resource|
+
+vim:ft=help:

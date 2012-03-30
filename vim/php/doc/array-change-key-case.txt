@@ -1,0 +1,39 @@
+array_change_key_case -- 配列のすべてのキーを変更する
+
+  array array_change_key_case(array input [, int case])~
+
+{input}
+のすべてのキーを小文字あるいは大文字にした配列を返します。
+数値添字はそのままとなります。
+
+{input} 処理を行う配列。
+
+{case} CASE_UPPER あるいは CASE_LOWER (デフォルト)。
+
+すべてのキーを小文字あるいは大文字にした配列を返します。
+{input} が配列でない場合は false を返します。
+
+{input} が配列でない場合は E_WARNING が発生します。
+
+|array_change_key_case| の例
+
+<?php >
+  $input_array = array("FirSt" => 1, "SecOnd" => 4);
+  print_r(array_change_key_case($input_array, CASE_UPPER));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [FIRST] => 1
+      [SECOND] => 4
+  )
+
+
+
+配列の添字に、この関数を使うことによって同じになってしまうものがある場合
+(例:"keY" と
+"kEY")、配列の後のほうにある値が他の値を上書きします。
+
+vim:ft=help:

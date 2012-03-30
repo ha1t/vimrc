@@ -1,0 +1,7 @@
+PDF_delete_table -- テーブルオブジェクトを削除する
+
+  bool PDF_delete_table(resource pdfdoc, int table, string optlist)~
+
+テーブルおよびそれに関連付けられたすべてのデータ構造を削除します。
+
+vim:ft=help:

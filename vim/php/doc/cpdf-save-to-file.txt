@@ -1,0 +1,20 @@
+cpdf_save_to_file -- pdf ドキュメントをファイルに書きこむ
+
+  bool cpdf_save_to_file(int pdf_document, string filename)~
+
+メモリ上に作成された pdf
+ドキュメントをファイルに出力します。
+
+この関数は、|cpdf_open| のパラメータとして filename
+を指定してオープンした場合にはコールする必要はありません。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{filename} PDF ドキュメントを保存するパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_output_buffer| |cpdf_open|
+
+vim:ft=help:

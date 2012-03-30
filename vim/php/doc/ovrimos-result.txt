@@ -1,0 +1,16 @@
+ovrimos_result -- 出力カラムを取得する
+
+  string ovrimos_result(int result_id, mixed field)~
+
+{field} で指定した出力カラムを取得します。
+
+{result_id} |ovrimos_execute| あるいは |ovrimos_exec| が返す結果
+ID。
+
+{field} フィールド名を表す文字列、あるいは 1
+から始まるインデックスとなります。
+
+カラムを表す文字列、あるいは失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

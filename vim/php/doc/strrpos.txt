@@ -1,0 +1,50 @@
+strrpos -- 文字列中に、ある文字が最後に現れる場所を探す
+
+  int strrpos(string haystack, string needle [, int offset])~
+
+文字列 {haystack} の中で、 {needle}
+が最後に現れた位置を数字で返します。 この場合、{needle}
+は単一文字でなければならないことに
+注意してください。{needle}
+に文字列が指定された場合、その文字列の最初の文字だけが使われます。
+
+{needle} が見つからない場合、FALSE を返します。
+
+"位置 0 に文字が見つかった" と "文字が見つからなかった"
+場合の返り値は混同しやすいです。この違いを見分ける方法を以下に示します。
+
+<?php >
+  // PHP 4.0.0 以降の場合:
+  $pos = strrpos($mystring, "b");
+  if ($pos === false) { // 注意: 等号が 3 つ
+      // 見つからない...
+  }
+  
+  // 4.0.0 より古いバージョンの場合:
+  $pos = strrpos($mystring, "b");
+  if (is_bool($pos) && !$pos) {
+      // 見つからない...
+  }
+?>
+
+{needle} が文字列でない場合は数値に変換されて、
+その結果が検索対象の文字として適用されます。
+
+PHP 5.0.0 以降、 {offset}
+により文字列中の任意の文字位置から検索を開始することができます。
+負の値を指定すると、文字の終端より前の任意の位置で検索を終了します。
+
+PHP 5.0.0 以降、{needle} は 1
+文字以上の文字列を指定可能です。
+
+{haystack}
+
+{needle}
+
+{offset}
+
+
+
+|strpos| |strripos| |strrchr| |substr| |stristr| |strstr|
+
+vim:ft=help:

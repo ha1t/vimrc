@@ -1,0 +1,39 @@
+openssl_x509_checkpurpose --
+証明書が特定の目的に使用可能かどうか確認する
+
+  int openssl_x509_checkpurpose(mixed x509cert, int purpose [, array cainfo [, string untrustedfile]])~
+
+|openssl_x509_checkpurpose| は証明書を調べ、 {purpose}
+で指定した目的に使用可能であるかどうかを確認します。
+
+{x509cert} 調べたい証明書。
+
+{purpose} |openssl_x509_checkpurpose| の目的 定数 説明
+X509_PURPOSE_SSL_CLIENT この証明書を SSL
+接続のクライアント側で使用できるか? X509_PURPOSE_SSL_SERVER
+この証明書を SSL 接続のサーバ側で使用できるか?
+X509_PURPOSE_NS_SSL_SERVER この証明書を Netscape SSL
+サーバで使用できるか? X509_PURPOSE_SMIME_SIGN この証明書を
+S/MIME email で使用できるか? X509_PURPOSE_SMIME_ENCRYPT
+この証明書を S/MIME email の暗号化で使用できるか?
+X509_PURPOSE_CRL_SIGN
+この証明書を証明書取消リスト(CRL)にサインをする際に使用できるか?
+X509_PURPOSE_ANY この証明書をあらゆる用途に使用できるか?
+これらのオプションはビットフィールドではありません。
+指定できるのは一つだけです!
+
+{cainfo} {cainfo} は、証明書の認証
+で説明したような信頼できる CA
+ファイル/ディレクトリの配列です。
+デフォルトは空の配列です。
+
+{untrustedfile}
+指定した場合は、これが証明書を含むPEMエンコードされたファイルの名前になります。
+この証明書は、検証と証明を簡単化するために使用されます。
+そのファイル内にある証明書は、信頼されない(untrusted)証明書とみなされます。
+
+証明書が意図した目的に使用可能である場合に
+TRUE、使用できない場合に FALSE 、エラーの場合に -1
+を返します。
+
+vim:ft=help:

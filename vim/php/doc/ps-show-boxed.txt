@@ -1,0 +1,123 @@
+ps_show_boxed -- テキストをボックス内に出力する
+
+  int ps_show_boxed(resource psdoc, string text, float left, float bottom, float width, float height, string hmode [, string feature])~
+
+与えられたボックスの中にテキストを出力します。ボックスの左下の座標が
+({left}, {bottom}) となります。
+必要に応じて改行が挿入されます。連続する空白文字は、ひとつとして扱われ、
+タブ文字は空白文字として扱われます。
+
+パラメータ {hyphenation} が true
+に設定されており、またパラメータ {hyphendict}
+に有効なハイフネーションファイルが設定されている場合に、
+テキストのハイフネーションが行われます。
+行間隔の設定は、値 leading で行います。 TeX
+と同様に、段落と段落の間には空行が挿入されます。 値
+parindent が 0.0 より大きく設定されている場合、 最初の n
+行は字下げされます。n の行数は、値 numindentlines
+で設定します。 最初の m
+段落を字下げしないようにするには、 値 parindentskip
+に正の数値を設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{text} 指定したボックスの中に出力するテキスト。
+
+{left} ボックスの左下角の x 座標。
+
+{bottom} ボックスの左下角の y 座標。
+
+{width} ボックスの幅。
+
+{height} ボックスの高さ。
+
+{hmode} パラメータ {hmode} は "justify"（均等割付）・
+"fulljustify"（完全な均等割付）・"right"（右寄せ）・"left"（左寄せ）・
+"center"（センタリング）のどれかの値を設定します。
+"justify" と "fulljustify"
+の違いは、ボックスの最終行の処理です。 fulljustify
+モードでは、
+段落の最後の行である場合を除いて最終行も均等割付をします。
+justify モードでは、最終行は常に左寄せとなります。
+
+{feature}
+
+|ps_show_boxed| の出力は、パラメータや値 (それぞれ
+|ps_set_parameter| や |ps_set_value| で設定されたもの)
+で設定できます。
+テキスト出力に影響するパラメータや値のうち、以下のものが評価されます。
+leading (value) 連続する 2 つの行の間隔です。
+
+linebreak (parameter)
+キャリッジリターンを、空白ではなく改行として扱いたい場合は
+"true" に設定します。デフォルトは "false" です。
+
+parbreak (parameter)
+単一行のデータ中のキャリッジリターンを、空白ではなく段落区切りとして
+扱いたい場合は "true" に設定します。デフォルトは "true"
+です。
+
+hyphenation (parameter) ハイフネーションを有効にする場合は
+"true" に設定します。 その際、パラメータ "hyphendict"
+に辞書を設定しておく必要があります。 デフォルトは
+"false" です。
+
+hyphendict (parameter)
+ハイフネーションパターンの辞書ファイル名です（以下を参照）。
+
+hyphenminchar (value)
+ハイフンの前後に最低限必要な文字数です。つまり、少なくともこの値の
+2
+倍以上の文字数の単語でないとハイフネーションされないということです。
+デフォルトは 3
+です。値をゼロに設定すると、デフォルトの値が使われます。
+
+parindent (value) 段落の最初の m
+行に対する字下げの量をピクセル単位で設定します。 m
+は、値 "numindentlines" で設定します。
+
+parskip (value)
+段落間の空白の追加量をピクセル単位で設定します。デフォルトは
+0 で、 通常の行間設定をそのまま利用します。
+
+numindentlines (value)
+段落の最初の部分で字下げ対象となる行数です。デフォルトは
+1 です。
+
+parindentskip (value)
+字下げ処理を行わない段落数を設定します。デフォルトは
+0 です。
+この設定が便利に使えるのは、章の始めの段落・2
+つのボックスにまたがる
+テキストなどです。このような場合には値を 1
+に設定します。
+
+linenumbermode (parameter) 行番号のつけ方を設定します。"box"
+を設定するとボックス全体に 番号をつけ、"paragraph"
+を設定するとその中の段落単位で番号をつけます。
+
+linenumberspace (value)
+行番号を表示するための、左側のスペースの幅です。行番号は、
+このスペースに右詰めで表示されます。デフォルトは 20
+です。
+
+linenumbersep (value)
+行番号欄と行本文欄の間の空白です。デフォルトは 5
+です。
+
+パラメータ hyphenation が true に設定され、かつ
+有効なハイフネーション辞書が設定されている場合に、テキストが
+ハイフネーションされます。pslib
+は独自のハイフネーション辞書を持っておらず、 openoffice
+または scribus, koffice の辞書のうちひとつを利用します。
+これらのソフトウェアがインストールされている環境では、さまざまな言語の辞書が
+以下のディレクトリで見つけられます。
+/usr/share/apps/koffice/hyphdicts/ /usr/lib/scribus/dicts/
+/usr/lib/openoffice/share/dict/ooo/ 現時点では、scribus
+が最も完璧なハイフネーション辞書を持っているようです。
+
+書くことができなかった文字数を返します。
+
+|ps_continue_text|
+
+vim:ft=help:

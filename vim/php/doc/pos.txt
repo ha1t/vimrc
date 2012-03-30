@@ -1,0 +1,5 @@
+pos -- current のエイリアス
+
+この関数は次の関数のエイリアスです。 |current|
+
+vim:ft=help:

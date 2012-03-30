@@ -1,0 +1,5 @@
+imap_header -- imap_headerinfo のエイリアス
+
+この関数は次の関数のエイリアスです。 |imap_headerinfo|.
+
+vim:ft=help:

@@ -1,0 +1,31 @@
+strcasecmp --
+大文字小文字を区別しないバイナリセーフな文字列比較を行う
+
+  int strcasecmp(string str1, string str2)~
+
+大文字小文字を区別しないバイナリセーフな文字列比較を行います。
+
+{str1} 最初の文字列。
+
+{str2} 次の文字列。
+
+{str1} が {str2} より小さい場合は負、{str1} が {str2}
+より大きい場合は正、等しい場合は 0 を返します。
+
+|strcasecmp| の例
+
+<?php >
+  $var1 = "Hello";
+  $var2 = "hello";
+  if (strcasecmp($var1, $var2) == 0) {
+      echo '$var1 is equal to $var2 in a case-insensitive string comparison';
+  }
+?>
+
+
+
+
+
+|preg_match| |strcmp| |substr| |stristr| |strncasecmp| |strstr|
+
+vim:ft=help:

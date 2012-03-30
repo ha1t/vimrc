@@ -1,0 +1,16 @@
+cpdf_set_word_spacing -- 単語間の間隔を設定する
+
+  bool cpdf_set_word_spacing(int pdf_document, float space)~
+
+単語間の間隔を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{space} 間隔を表す float 値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_char_spacing| |cpdf_set_leading|
+
+vim:ft=help:

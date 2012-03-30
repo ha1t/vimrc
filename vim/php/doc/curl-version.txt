@@ -1,0 +1,19 @@
+curl_version -- cURL のバージョンを返す
+
+  array curl_version([int age])~
+
+cURL のバージョンについての情報を返します。
+
+{age}
+
+以下の要素からなる連想配列を返します。 version_number cURL
+の 24 ビットのバージョン番号 version cURL
+バージョン番号を表す文字列 ssl_version_number OpenSSL の 24
+ビットのバージョン番号 ssl_version OpenSSL
+バージョン番号を表す文字列 libz_version zlib
+バージョンを表す文字列 host cURL
+をビルドしたホストについての情報 age features 定数
+CURL_VERSION_XXX のビットマスク protocols cURL
+がサポートするプロトコル名の配列
+
+vim:ft=help:

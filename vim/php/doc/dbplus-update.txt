@@ -1,0 +1,22 @@
+dbplus_update -- リレーション内の指定したタプルを更新する
+
+  int dbplus_update(resource relation, array old, array new)~
+
+|dbplus_update| は、{old} で指定したタプル {new}
+からのデータで置換します。 置換が行われるのは、{old}
+が {relation} の中のタプルに完全に一致する場合のみです。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+{old} 古いタプルの内容。
+
+{new} 新しいタプルの内容。
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

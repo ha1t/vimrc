@@ -1,0 +1,63 @@
+stream_socket_enable_crypto --
+接続済みのソケットについて暗号化の on/off を切り替える
+
+  mixed stream_socket_enable_crypto(resource stream, bool enable [, int crypto_type [, resource session_stream]])~
+
+{crypto_type} パラメータを指定してコールすると、
+|stream_socket_enable_crypto| は
+指定した方法でストリームの暗号化を設定します。
+
+{crypto_type} に使用可能な値 STREAM_CRYPTO_METHOD_SSLv2_CLIENT
+
+STREAM_CRYPTO_METHOD_SSLv3_CLIENT
+
+STREAM_CRYPTO_METHOD_SSLv23_CLIENT
+
+STREAM_CRYPTO_METHOD_TLS_CLIENT
+
+STREAM_CRYPTO_METHOD_SSLv2_SERVER
+
+STREAM_CRYPTO_METHOD_SSLv3_SERVER
+
+STREAM_CRYPTO_METHOD_SSLv23_SERVER
+
+STREAM_CRYPTO_METHOD_TLS_SERVER
+
+暗号化設定が確立されると、それ以降は {enable}
+パラメータに TRUE あるいは FALSE
+を指定することで暗号化の on/off
+を動的に切り替えられます。
+
+既に確立されている暗号化ストリームの設定をもとにする場合は、
+ストリームのリソース変数を 4
+番目のパラメータに指定します。
+
+成功した場合に TRUE、ネゴシエーションに失敗した場合に
+FALSE、
+十分なデータがないために再試行が必要な場合（非ブロックモード時のみ）
+に 0 を返します。
+
+|stream_socket_enable_crypto| の例
+
+<?php >
+  $fp = stream_socket_client("tcp://myproto.example.com:31337", $errno, $errstr, 30);
+  if (!$fp) {
+    die("接続できません: $errstr ($errno)");
+  }
+  /* ログイン時の暗号化を有効にします */
+  stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_SSLv23_CLIENT);
+  fwrite($fp, "USER god\r\n");
+  fwrite($fp, "PASS secret\r\n");
+  /* それ以外では暗号化を無効にします */
+  stream_socket_enable_crypto($fp, false);
+  while ($motd = fgets($fp)) {
+    echo $motd;
+  }
+  fclose($fp);
+?>
+
+
+
+および
+
+vim:ft=help:

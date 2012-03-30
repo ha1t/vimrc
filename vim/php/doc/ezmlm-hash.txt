@@ -1,0 +1,25 @@
+ezmlm_hash -- EZMLM で必要なハッシュ値を計算する
+
+  int ezmlm_hash(string addr)~
+
+|ezmlm_hash| は、EZMLM メイリングリストを MySQL
+データベースで管理する際に必要なハッシュ値を計算します。
+
+{addr} ハッシュ値を計算する email アドレス。
+
+{addr} のハッシュ値を返します。
+
+ハッシュ値を計算し、ユーザを登録する
+
+<?php >
+  $user = "joecool@example.com";
+  $hash = ezmlm_hash($user);
+  $query = sprintf("INSERT INTO sample VALUES (%s, '%s')", $hash, $user);
+  $db->query($query); // PHPLIB dbインターフェースを使用します
+?>
+
+
+
+
+
+vim:ft=help:

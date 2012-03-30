@@ -1,0 +1,36 @@
+array_count_values -- 配列の値の数を数える
+
+  array array_count_values(array input)~
+
+|array_count_values| は、 配列 {input} の値をキーとし、 {input}
+におけるその値の出現回数を値とした配列を返します。
+
+{input} 値を数える配列。
+
+{input}
+のキーとその登場回数を組み合わせた連想配列を返します。
+
+string あるいは integer 以外の型の要素が登場するたびに
+E_WARNING が発生します。
+
+|array_count_values| の例
+
+<?php >
+  $array = array(1, "hello", 1, "world", "hello");
+  print_r(array_count_values($array));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [1] => 2
+      [hello] => 2
+      [world] => 1
+  )
+
+
+
+|count| |array_unique| |array_values| |count_chars|
+
+vim:ft=help:

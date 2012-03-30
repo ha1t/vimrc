@@ -1,0 +1,22 @@
+dbplus_getunique -- あるリレーションのユニークな ID
+番号を取得する
+
+  int dbplus_getunique(resource relation, int uniqueid)~
+
+指定した {relation} に関してユニークであることが保証
+された数を取得し、{uniqueid}
+で指定した変数にその数を代入します。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+{uniqueid}
+
+成功した場合に DBPLUS_ERR_NOERR、 失敗した場合に db++
+エラーコードを返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

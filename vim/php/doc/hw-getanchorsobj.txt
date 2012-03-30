@@ -1,0 +1,15 @@
+hw_GetAnchorsObj --
+ドキュメントのアンカーのオブジェクトレコード
+
+  array hw_getanchorsobj(int connection, int objectID)~
+
+オブジェクト ID {objectID} を有するドキュメントの
+アンカーのオブジェクトレコードの配列を返します。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+オブジェクトレコードの配列を返します。
+
+vim:ft=help:

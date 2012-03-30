@@ -1,0 +1,101 @@
+mysql_query -- MySQL クエリを送信する
+
+  resource mysql_query(string query [, resource link_identifier])~
+
+|mysql_query| は、 ひとつのクエリを送信します
+(複数クエリの送信はサポートしません)。
+送信先は、{link_identifier}
+で指定したサーバ上にある、現在アクティブなデータベースです。
+
+{query} SQL クエリ。
+
+クエリ文字列は、セミコロンで終えてはいけません。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+SELECT, SHOW, DESCRIBE や EXPLAIN
+文、その他結果セットを返す文では、 |mysql_query|
+は成功した場合に resource を返します。エラー時には FALSE
+を返します。
+
+それ以外の SQL 文 UPDATE, DELETE, DROP などでは、 |mysql_query|
+は成功した場合に TRUE 、エラー時に FALSE を返します。
+
+返された結果にアクセスするためには、結果リソースを
+|mysql_fetch_array| やその他の関数に渡します。
+
+SELECT 文によって返された行の数を知るには |mysql_num_rows|
+を用います。また DELETE, INSERT, REPLACE, または UPDATE
+文で変更された行の数を 知るには |mysql_affected_rows|
+を用います。
+
+クエリが参照するテーブルにアクセスする権限がない場合も
+|mysql_query|は失敗し、FALSE が返されます。
+
+間違ったクエリ
+次のクエリは文法的に間違っているので、
+|mysql_query|は失敗し FALSEを返します。
+
+<?php >
+  $result = mysql_query('SELECT * WHERE 1=1');
+  if (!$result) {
+      die('Invalid query: ' . mysql_error());
+  }
+?>
+
+
+
+正しいクエリ 次のクエリは正しいので、|mysql_query| は
+resource を返します。
+
+<?php >
+  // これはユーザが指定する。たとえば
+  $firstname = 'fred';
+  $lastname  = 'fox';
+  
+  // クエリの作成
+  // これは SQL クエリを実行する最良の方法です。
+  // さらなる例は、mysql_real_escape_string() を参照ください。
+  $query = sprintf("SELECT firstname, lastname, address, age FROM friends WHERE firstname='%s' AND lastname='%s'",
+      mysql_real_escape_string($firstname),
+      mysql_real_escape_string($lastname));
+  
+  // クエリの実行
+  $result = mysql_query($query);
+  
+  // 結果のチェック
+  // MySQL に送られたクエリと返ってきたエラーをそのまま表示します。デバッグに便利です。
+  if (!$result) {
+      $message  = 'Invalid query: ' . mysql_error() . "\n";
+      $message .= 'Whole query: ' . $query;
+      die($message);
+  }
+  
+  // 結果の利用
+  // $result をそのまま出力してもリソースの内部の情報にはアクセスできません。
+  // 結果にたいして MySQL の関数を適用する必要があります。
+  // mysql_result(), mysql_fetch_array(), mysql_fetch_row() なども参照ください。
+  while ($row = mysql_fetch_assoc($result)) {
+      echo $row['firstname'];
+      echo $row['lastname'];
+      echo $row['address'];
+      echo $row['age'];
+  }
+  
+  // 結果セットに関連付けられているリソースの開放
+  // これは、スクリプトが終了する際に自動的に実行されます。
+  mysql_free_result($result);
+?>
+
+
+
+|mysql_connect| |mysql_error| |mysql_real_escape_string| |mysql_result|
+|mysql_fetch_assoc| |mysql_unbuffered_query|
+
+vim:ft=help:

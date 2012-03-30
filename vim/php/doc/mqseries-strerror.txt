@@ -1,0 +1,28 @@
+mqseries_strerror -- 結果コード (MQRC)
+に対応するエラーメッセージを返す
+
+  string mqseries_strerror(int reason)~
+
+|mqseries_strerror|
+は、結果コードに対応するメッセージを返します。
+
+{reason} compCode の原因を表すコード。
+
+原因コードのメッセージを文字列で返します。
+
+|mqseries_strerror| の例
+
+<?php >
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("open CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+          exit;
+      }
+?>
+
+上の例の出力は以下となります。
+
+  Connx CompCode:2 Reason:2059 Text:Queue manager not available for connection.
+
+
+
+vim:ft=help:

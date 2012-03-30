@@ -1,0 +1,33 @@
+ldap_first_attribute -- 最初の属性を返す
+
+  string ldap_first_attribute(resource link_identifier, resource result_entry_identifier)~
+
+指定したエントリの最初の属性を取得します。残りの属性は、
+|ldap_next_attribute| を逐次コールして取得します。
+
+エントリの読み込みと同様、
+エントリからの属性の読み込みもひとつづつ行われます。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{result_entry_identifier}
+
+{ber_identifier} {ber_identifier}
+は内部メモリにおける位置ポインタの ID です。この ID は
+参照渡しされます。同じ {ber_identifier} が |ldap_next_attribute|
+関数に渡された場合、 そのポインタは修正されます。
+
+このパラメータは使用されなくなりました。現在は PHP
+が自動的にこれを処理します。
+後方互換性を保持するため、もしこのパラメータが渡されても
+PHP はエラーを発生させません。
+
+成功した場合にエントリの最初の属性、エラーの場合に
+FALSE を返します。
+
+バージョン 説明 5.2.4 {ber_identifier} が削除されました。
+これは PHP が自動的に処理するようになりました。
+
+|ldap_next_attribute| |ldap_get_attributes|
+
+vim:ft=help:

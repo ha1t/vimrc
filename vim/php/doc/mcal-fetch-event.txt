@@ -1,0 +1,74 @@
+mcal_fetch_event --
+カレンダーストリームからイベントを取得する
+
+  object mcal_fetch_event(int mcal_stream, int event_id [, int options])~
+
+|mcal_fetch_event| は、 {id}
+で指定されたカレンダーストリームから
+イベントを取得します。
+
+{mcal_stream} MCAL ストリーム。
+
+{event_id}
+
+{options}
+
+以下の要素からなるイベントオブジェクトを返します。
+int id - イベント ID
+
+int public - イベントが public な場合は TRUE、private な場合は
+FALSE
+
+string category - イベントのカテゴリを表す文字列
+
+string title - イベントのタイトルを表す文字列
+
+string description - イベントの内容を表す文字列
+
+int alarm -
+アラーム・リマインダイベントが送られるまでの分単位の時間
+
+object start - datetime エントリを有するオブジェクト
+
+object end - datetime エントリを有するオブジェクト
+
+int recur_type - 繰り返しの型
+
+int recur_interval - 繰り返し周期
+
+datetime recur_enddate - 繰り返しが終わる日
+
+int recur_data - 繰り返しデータ
+
+全ての datetime
+エントリは、次の要素を有するオブジェクトから構成されます。
+int year - 年
+
+int month - 月
+
+int mday - 日
+
+int hour - 時間
+
+int min - 分
+
+int sec - 秒
+
+int alarm - アラームを送るイベントまでの分単位の時間
+
+recur_type で使用可能な値を以下に示します。 0 -
+このイベントが繰り返さないことを示す
+
+1 - このイベントが一日毎に繰り返す
+
+2 - このイベントが1週間毎に繰り返す
+
+3 - このイベントは指定した日に毎月発生する (例
+毎月十日)
+
+4 - このイベントは月単位の週の曜日に発生する (例
+第３土曜日)
+
+5 - このイベントは年単位で発生する
+
+vim:ft=help:

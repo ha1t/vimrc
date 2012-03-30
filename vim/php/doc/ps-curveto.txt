@@ -1,0 +1,27 @@
+ps_curveto -- 曲線を描く
+
+  bool ps_curveto(resource psdoc, float x1, float y1, float x2, float y2, float x3, float y3)~
+
+現在のパスに対して、3 つの制御点を指定して 3
+次ベジエ曲線を追加します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{x1} 最初の制御点の x 座標。
+
+{y1} 最初の制御点の y 座標。
+
+{x2} 2 番目の制御点の x 座標。
+
+{y2} 2 番目の制御点の y 座標。
+
+{x3} 3 番目の制御点の x 座標。
+
+{y3} 3 番目の制御点の y 座標。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_lineto|
+
+vim:ft=help:

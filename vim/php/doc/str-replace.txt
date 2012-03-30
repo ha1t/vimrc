@@ -1,0 +1,99 @@
+str_replace --
+検索文字列に一致したすべての文字列を置換する
+
+  mixed str_replace(mixed search, mixed replace, mixed subject [, int count])~
+
+この関数は、{subject} の中の {search} を全て {replace}
+に置換します。
+
+(正規表現のような)
+技巧的な置換ルールを必要としない場合、 |ereg_replace|
+または |preg_replace|
+の代わりにこの関数を常用するべきです。
+
+{search} と {replace} が配列の場合、|str_replace|
+は各配列から値をひとつ取り出し、 {subject}
+上で検索と置換を行うために使用します。 {replace} の値が
+{search} よりも少ない場合、
+置換される値の残りの部分には空の文字列が使用されます。
+{search} が配列で {replace}
+が文字列の場合、この置換文字列が {search}
+の各値について使用されます。しかし、
+逆は意味がありません。
+
+{search} あるいは {replace}
+が配列の場合は、配列の最初の要素から順に処理されます。
+
+{search}
+
+{replace}
+
+{subject} {subject} が配列の場合、 {subject}
+の各エントリについて検索と置換が行われ、
+返り値は同様に配列となります。
+
+{count}
+指定した場合は、マッチして置換が行われた箇所の個数がここに格納されます。
+
+この関数は、置換後の文字列あるいは配列を返します。
+
+バージョン 説明 5.0.0 {count}
+パラメータが追加されました。 4.3.3
+この関数の挙動がかわりました。以前のバージョンにはバグがあり、
+{search} と {replace} の両方に配列を指定した場合に、 空の
+{search} 添字をスキップしても {replace}
+配列上の内部ポインタが進みませんでした。 このバグは
+PHP 4.3.3
+で修正されたので、このバグを前提としたスクリプトは、
+この関数をコールする前に空の検索値を削除しておく必要があります。
+4.0.5
+ほとんどのパラメータに配列を渡せるようになりました。
+
+|str_replace| の例
+
+<?php >
+  // <body text='black'> となります
+  $bodytag = str_replace("%body%", "black", "<body text='%body%'>");
+  
+  // Hll Wrld f PHP となります
+  $vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
+  $onlyconsonants = str_replace($vowels, "", "Hello World of PHP");
+  
+  // You should eat pizza, beer, and ice cream every day となります
+  $phrase  = "You should eat fruits, vegetables, and fiber every day.";
+  $healthy = array("fruits", "vegetables", "fiber");
+  $yummy   = array("pizza", "beer", "ice cream");
+  
+  $newphrase = str_replace($healthy, $yummy, $phrase);
+  
+  // パラメータ count は PHP 5.0.0 で使用可能になりました
+  $str = str_replace("ll", "", "good golly miss molly!", $count);
+  echo $count; // 2
+  
+  // 置換の順番を指定します
+  $str     = "Line 1\nLine 2\rLine 3\r\nLine 4\n";
+  $order   = array("\r\n", "\n", "\r");
+  $replace = '<br />';
+  // まず \r\n を最初に置換するので、二重に変換されることはありません
+  $newstr = str_replace($order, $replace, $str);
+  
+  // 出力は apearpearle pear となります
+  $letters = array('a', 'p');
+  $fruit   = array('apple', 'pear');
+  $text    = 'a p';
+  $output  = str_replace($letters, $fruit, $text);
+  echo $output;
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+この関数は大文字小文字を区別します。区別せずに置換するには
+|str_ireplace| を使用します。
+
+|str_ireplace| |substr_replace| |preg_replace| |strtr|
+
+vim:ft=help:

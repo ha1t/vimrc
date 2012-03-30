@@ -1,0 +1,41 @@
+ssh2_shell -- 対話式のシェルを要求する
+
+  resource ssh2_shell(resource session [, string term_type [, array env [, int width [, int height [, int width_height_type]]]]])~
+
+リモートエンド上のシェルをオープンし、そのためのストリームを割り当てます。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{term_type} {term_type} は対象システムの /etc/termcap
+に記載されたエントリの一つに相当し、 デフォルトは
+vanilla です。
+
+{env} {env} には、
+対象の環境に設定する名前/値の組の連想配列を渡すことができます。
+
+{width} 仮想端末の幅。
+
+{height} 仮想端末の高さ。
+
+{width_height_type} {width_height_type} は SSH2_TERM_UNIT_CHARS あるいは
+SSH2_TERM_UNIT_PIXELS のいずれかです。
+
+
+
+コマンドの実行
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  
+  $stream = ssh2_shell($connection, 'vt102', null, 80, 24, SSH2_TERM_UNIT_CHARS);
+?>
+
+
+
+
+
+|ssh2_exec| |ssh2_tunnel| |ssh2_fetch_stream|
+
+vim:ft=help:

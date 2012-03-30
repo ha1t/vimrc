@@ -1,0 +1,53 @@
+yaz_es -- 拡張サービスのリクエストを準備する
+
+  void yaz_es(resource id, string type, array args)~
+
+この関数は、拡張サービスのリクエストを準備します。
+拡張サービスとは、レコードの更新や蔵書の注文、データベースの管理などの
+Z39.50 のさまざまな機能のことです。
+
+Z39.50
+サーバの多くは、拡張サービスをサポートしていません。
+
+|yaz_es|
+は、拡張サービスリクエストのパッケージを作成し、
+それを操作キューに配置します。リクエストをサーバに送信するには
+|yaz_wait| を使用します。 |yaz_wait|
+の処理が完了すると、拡張サービス操作の結果が
+|yaz_es_result| で取得できるようになります。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{type} 拡張サービスの形式を表す文字列。 itemorder
+(蔵書の注文)、 create (データベースの作成)、 drop
+(データベースの削除)、 commit (操作のコミット)、 update
+(レコードの更新)、 xmlupdate (XMLの更新) のいずれかです。
+個々の形式については、以下の節で指定されます。
+
+{args}
+拡張サービスのオプションに加えてパッケージ固有のオプションを指定する配列。
+オプションの形式は、ZOOM C の C API
+で提供されているものと同じです。 ZOOM Extended Services
+を参照ください。
+
+値を返しません。
+
+レコードの更新
+
+<?php >
+  $con = yaz_connect("myhost/database");
+  $args = array (
+      "record" => "<gils><title>some title</title></gils>",
+      "syntax" => "xml",
+      "action" => "specialUpdate"
+  );
+  yaz_es($con, "update", $args);
+  yaz_wait();
+  $result = yaz_es_result($id);
+?>
+
+
+
+|yaz_es_result|
+
+vim:ft=help:

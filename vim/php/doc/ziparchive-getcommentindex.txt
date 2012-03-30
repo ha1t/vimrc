@@ -1,0 +1,30 @@
+ZipArchive::getCommentIndex --
+エントリのインデックスを使用して、エントリのコメントを返す
+
+  string ZipArchive::getCommentIndex(int index [, int flags])~
+
+エントリのインデックスを使用して、エントリのコメントを返します。
+
+{index} エントリのインデックス。
+
+{flags} ZIPARCHIVE::FL_UNCHANGED を指定すると、
+元の変化していないコメントが返されます。
+
+成功した場合にコメント、失敗した場合に FALSE
+を返します。
+
+エントリのコメントの出力
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test1.zip')
+  if ($res === TRUE) {
+      var_dump($zip->getCommentIndex(1));
+  } else {
+      echo '失敗、コード:' . $res;
+  }
+?>
+
+
+
+vim:ft=help:

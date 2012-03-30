@@ -1,0 +1,13 @@
+newt_form_get_current --
+
+  resource newt_form_get_current(resource form)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{form}
+
+
+
+vim:ft=help:

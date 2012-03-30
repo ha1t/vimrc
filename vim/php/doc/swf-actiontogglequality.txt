@@ -1,0 +1,10 @@
+swf_actiontogglequality -- 低品質/高品質を切り替える
+
+  void swf_actiontogglequality()~
+
+flash
+ムービーのクオリティの低品質/高品質を切り替えます。
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,44 @@
+SAMConnection->peek() --
+メッセージをキューから読み込み、それをキューに残したままにする
+
+  SAMMessage peek(string target [, array properties])~
+
+{target} メッセージを取得するキューの識別子。
+
+{properties}
+オプションの連想配列で、読み込み操作を制御するパラメータを指定します。
+プロパティ名 とりうる値 SAM_CORRELID
+これは、取得するメッセージの相関 ID 文字列です。
+典型的な例は、"send" リクエストが返す相関 ID
+文字列となります。 SAM_MESSAGEID
+これは、取得するメッセージのメッセージ ID です。
+
+このメソッドは SAMMessage オブジェクトを返します。
+エラーが発生した場合は FALSE を返します。
+
+キューから次のメッセージを取得し、そのままメッセージをキューに残す
+
+<?php >
+  $msg = $conn->peek('queue://receive/test');
+  
+  if (!$msg) {
+    // 取得に失敗しました!
+    echo "Peek failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+キューから指定したメッセージを取得し、そのままメッセージをキューに残す
+
+<?php >
+  $msg = $conn->peek('queue://receive/test', array(SAM_MESSAGEID => $messageId));
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+hw_api->userlist -- ログイン中の全ユーザの一覧を返す
+
+  array userlist(array parameter)~
+
+ログイン中の全ユーザの一覧を返します。
+
+{parameter}
+
+
+
+vim:ft=help:

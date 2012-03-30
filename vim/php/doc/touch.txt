@@ -1,0 +1,41 @@
+touch --
+ファイルの最終アクセス時刻および最終更新日をセットする
+
+  bool touch(string filename [, int time [, int atime]])~
+
+{filename} で指定されたファイルの最終更新日を、 {time}
+で指定された値に セットしようと試みます。
+パラメータの数にかかわらず、アクセス時刻は
+常に変更されることに注意しましょう。
+
+ファイルが存在しない場合、ファイルが生成されます。
+
+{filename} 処理したいファイルの名前。
+
+{time} 設定する時刻。 {time} を省略した場合は、
+現在時刻を使用します。
+
+{atime} 指定されたファイルの最終アクセス時刻が {atime}
+にセットされます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|touch| の例
+
+<?php >
+  if (touch($FileName)) {
+      echo "$FileName modification time has been changed to present time";
+  } else {
+      echo "Sorry, could not change modification time of $FileName";
+  }
+?>
+
+
+
+
+
+現在は、Windows 環境のもとでは
+この関数によってディレクトリの最終更新日を変更することはできません。
+
+vim:ft=help:

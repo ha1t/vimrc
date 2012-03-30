@@ -1,0 +1,18 @@
+stats_cdf_t -- T
+分布のパラメータのいずれかを、その他のパラメータの値から計算する
+
+  float stats_cdf_t(float par1, float par2, int which)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{par1}
+
+{par2}
+
+{which}
+
+
+
+vim:ft=help:

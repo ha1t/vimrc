@@ -1,0 +1,55 @@
+ldap_get_attributes -- 検索結果エントリから属性を得る
+
+  array ldap_get_attributes(resource link_identifier, resource result_entry_identifier)~
+
+検索結果エントリから属性と値を読み込みます。
+
+ディレクトリに特定のエントリを置いている場合、この関数をコールする
+ことにより、そのエントリに関して保持されている情報得ることができます。
+ディレクトリエントリを "ブラウズ"
+するか、ディレクトリエントリの
+構造が未知であるアプリケーションにおいてこの関数を使用します。
+多くのアプリケーションにおいては、電子メールアドレスや姓のような
+特定の属性を検索するため、保持されている他のデータにどんなものがあるか
+ということは問題にならないと思われます。
+
+  return_value["count"] = そのエントリの属性の数
+  return_value[0] = 最初の属性
+  return_value[n] = n 番目の属性
+  
+  return_value["attribute"]["count"] = その属性に関する値の数
+  return_value["attribute"][0] = その属性に関する最初の値
+  return_value["attribute"][i] = その属性に関する (i+1) 番目の値
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{result_entry_identifier}
+
+成功時に完全なエントリ情報を多次元配列で返します。エラーの場合、
+FALSE を返します。
+
+特定のディレクトリエントリに関して保持されている属性のリストを表示
+
+<?php >
+  // $ds はディレクトリのリンク ID
+  
+  // $sr は事前の LDAP のディレクトリ検索コールの有効な結果
+  
+  $entry = ldap_first_entry($ds, $sr);
+  
+  $attrs = ldap_get_attributes($ds, $entry);
+  
+  echo $attrs["count"] . " attributes held for this entry:<p>";
+  
+  for ($i=0; $i < $attrs["count"]; $i++) {
+      echo $attrs[$i] . "<br />";
+  }
+?>
+
+
+
+
+
+|ldap_first_attribute| |ldap_next_attribute|
+
+vim:ft=help:

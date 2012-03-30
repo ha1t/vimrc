@@ -1,0 +1,38 @@
+mqseries_close -- MQSeries MQCLOSE
+
+   mqseries_close(resource hconn, resource hobj, resourceref compCode, resourceref reason)~
+
+|mqseries_close| (MQCLOSE)
+をコールするとオブジェクトへのアクセスを破棄します。これは
+|mqseries_open| (MQOPEN) コールの逆の意味です。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{hObj} オブジェクトハンドル。
+
+このハンドルは、使用するオブジェクトを表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_close| の例
+
+<?php >
+      mqseries_close($conn, $obj, MQSERIES_MQCO_NONE, $comp_code, $reason);
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("close CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+      }
+?>
+
+
+
+
+
+|mqseries_open| |mqseries_conn| |mqseries_connx|
+
+vim:ft=help:

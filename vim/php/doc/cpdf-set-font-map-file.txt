@@ -1,0 +1,12 @@
+cpdf_set_font_map_file --
+外部フォントを使用している場合、フォント名をファイル名変換マップに設定する
+
+  bool cpdf_set_font_map_file(int pdfdoc, string filename)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

@@ -1,0 +1,47 @@
+apc_sma_info -- APC
+の共有メモリ割り当てに関する情報を取得する
+
+  array apc_sma_info([bool limited])~
+
+APC の共有メモリ割り当てに関する情報を取得します。
+
+{limited} FALSE (デフォルト) を設定すると、|apc_sma_info|
+は各セグメントの詳細な情報を返します。
+
+共有メモリ割り当てデータの配列を返します。失敗した場合は
+FALSE を返します。
+
+|apc_sma_info| の例
+
+<?php >
+  print_r(apc_sma_info());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [num_seg] => 1
+      [seg_size] => 31457280
+      [avail_mem] => 31448408
+      [block_lists] => Array
+          (
+              [0] => Array
+                  (
+                      [0] => Array
+                          (
+                              [size] => 31448408
+                              [offset] => 8864
+                          )
+  
+                  )
+  
+          )
+  
+  )
+
+
+
+APC 設定ディレクティブ
+
+vim:ft=help:

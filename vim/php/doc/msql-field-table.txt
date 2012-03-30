@@ -1,0 +1,16 @@
+msql_field_table -- フィールドのテーブル名を取得する
+
+  int msql_field_table(resource result, int field_offset)~
+
+指定したフィールドが含まれるテーブルの名前を返します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset}
+は、1から始まります。
+
+成功した場合はテーブルの名前、失敗した場合は FALSE
+を返します。
+
+vim:ft=help:

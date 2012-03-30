@@ -1,0 +1,42 @@
+pg_field_type -- フィールド番号に対応する型名を返す
+
+  string pg_field_type(resource result, int field_number)~
+
+|pg_field_type| は、指定した PostgreSQL の {result}
+リソースにおいて、指定した {field_number}
+の型名を保持する文字列を 返します。
+
+フィールドが（基本型ではなく）PostgreSQL
+ドメインを使用している場合は、
+ドメインそのものの名前ではなくドメインの元となっている型の名前を返します。
+
+この関数は、以前は |pg_fieldtype| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{field_number} フィールド番号。0 から始まります。
+
+フィールド型の名前を文字列で返します。エラー時には
+FALSE を返します。
+
+フィールドの情報を取得する
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    // 'title' は varchar 型と仮定する
+    $res = pg_query($dbconn, "select title from authors where author = 'Orwell'");
+  
+    echo "Title field type: ", pg_field_type($res, 0);
+?>
+
+上の例の出力は以下となります。
+
+  Title field type: varchar
+
+
+
+|pg_field_prtlen| |pg_field_name| |pg_field_type_oid|
+
+vim:ft=help:

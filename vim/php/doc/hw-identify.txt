@@ -1,0 +1,19 @@
+hw_Identify -- ユーザとして認証する
+
+  string hw_identify(int link, string username, string password)~
+
+ユーザを {username} および {password} で認証します。
+認証は、カレントのセッションでのみ有効です。
+この関数が頻繁に必要とされるとは考えられません。
+多くの場合、接続をオープンする際に認証を行う方がより
+簡単でしょう。
+
+{link} 接続 ID。
+
+{username} ユーザ名。
+
+{password} パスワード。
+
+|hw_connect|
+
+vim:ft=help:

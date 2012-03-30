@@ -1,0 +1,12 @@
+timezone_name_get -- タイムゾーンの名前を返す
+
+  string timezone_name_get(DateTimeZone object)~
+
+  string DateTimeZone::getName(DateTimeZone object)~
+
+{object} DateTimeZone オブジェクト。
+
+成功した場合にタイムゾーン名、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

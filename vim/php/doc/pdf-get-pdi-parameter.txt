@@ -1,0 +1,12 @@
+PDF_get_pdi_parameter -- PDI 文字列パラメータを取得する
+[古い関数]
+
+  string PDF_get_pdi_parameter(resource p, string key, int doc, int page, int reserved)~
+
+文字列型の PDI
+ドキュメントパラメータの内容を取得します。
+
+この関数は PDFlib バージョン 7 で廃止されました。
+かわりに |PDF_pcos_get_string| を使用してください。
+
+vim:ft=help:

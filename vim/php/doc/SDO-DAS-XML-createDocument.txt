@@ -1,0 +1,45 @@
+SDO_DAS_XML::createDocument --
+ファイルや文字列から読み込まずに、 XML
+ドキュメントオブジェクトをスクラッチから作成する
+
+  SDO_DAS_XML_Document SDO_DAS_XML::createDocument([string document_element_name])~
+
+  SDO_DAS_XML_Document SDO_DAS_XML::createDocument([string document_element_name, string document_element_namespace_URI, string document_element_name [, SDO_DataObject dataobject]])~
+
+XML Document
+オブジェクトを返します。空のルート要素がひとつだけ含まれ、
+プロパティは何も設定されていません。このメソッドの目的は、
+ファイルや文字列からドキュメントを読み込むのではなく
+スクラッチから XML ドキュメントを作成することです。
+作成されたドキュメントは、まるで何の要素も属性も持たない
+空のドキュメント要素がひとつだけあるようなドキュメントが読み込まれたかのようになります。
+
+|createDocument| は、
+ドキュメント要素が何であるかを知っている必要があります。
+単純な場合はこれは必須ではありません。
+省略しても名前を特定できる場合には、メソッドに渡すパラメータを省略することができます。
+しかし同一 XML DAS
+に複数のスキーマファイルを読み込むことも可能であり、
+この場合には複数のドキュメント要素が定義される可能性があります。
+さらに、名前空間が違うだけで同じ名前のドキュメント要素が存在する可能性もあります。
+これらの場合にうまく対応するため、ドキュメント要素の名前を指定したり
+要素名と名前空間を指定することができます。
+
+{document_element_name}
+ドキュメント要素の名前。複数の値をとる可能性がある場合にのみ必要となります。
+
+{document_element_namespace_URI}
+ドキュメント要素名のうち、名前空間の部分。
+同じ名前のドキュメント要素が複数存在する場合にのみ必要となります。
+
+{dataobject}
+
+成功した場合に SDO_XML_DAS_Document
+オブジェクトを返します。
+
+{SDO_UnsupportedOperationException}
+要素名、あるいは要素名と名前空間 URI
+が渡されたものの、
+それがモデルで見つからなかった場合にスローされます。
+
+vim:ft=help:

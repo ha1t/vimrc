@@ -1,0 +1,66 @@
+mysql_pconnect -- MySQL サーバへの持続的な接続をオープンする
+
+  resource mysql_pconnect([string server [, string username [, string password [, int client_flags]]]])~
+
+MySQL サーバとの持続的な接続を確立します。
+
+|mysql_pconnect|は、 |mysql_connect|とよく似た動作をしますが、
+2 つの大きな違いがあります。
+
+1 番目の違いとして、この関数は接続時にまず
+同じホスト、ユーザ名、パスワードを有する(持続的)リンクが
+すでにオープンされていないかどうかを調べます。
+それがみつかった場合、新規の接続をオープンする代わりに
+そのリンクの ID が返されます。
+
+2 番目の違いは、スクリプトの実行が終了しても SQL
+サーバとの接続が
+閉じられないということです。そのかわりに、将来再利用されるために
+リンクがオープンされたままとなります（|mysql_close|
+は、|mysql_pconnect| によって確立されたリンクを
+閉じません）。
+
+このため、この型のリンクは、'持続的(persistent)'であると言われます。
+
+{server} MySQL サーバ。"hostname:port" のようにポート番号を
+指定することが可能で、localhost では ":/path/to/socket"
+のようにソケットへのパスを指定することも可能です。
+
+PHP ディレクティブ mysql.default_host
+が指定されない場合（デフォルト）、 'localhost:3306'
+が使用されます。
+
+{username}
+ユーザ名。デフォルト値はサーバプロセスの所有ユーザ名です。
+
+{password}
+パスワード。デフォルト値は空のパスワードです。
+
+{client_flags} パラメータ {client_flags} は、
+以下の定数の組み合わせです： 128 (LOAD DATA LOCAL
+の処理を有効にする)、 MYSQL_CLIENT_SSL、 MYSQL_CLIENT_COMPRESS、
+MYSQL_CLIENT_IGNORE_SPACE または MYSQL_CLIENT_INTERACTIVE
+
+成功した場合に MySQL 持続的リンク ID を、失敗した場合に
+FALSE を返します。
+
+バージョン 説明 4.3.0 パラメータ {client_flags}
+が追加されました。 3.0.10 {server} に、":/path/to/socket"
+のサポートが追加されました。 3.0.0 {server} に、":port"
+のサポートが追加されました。
+
+この接続方法は、モジュールバージョンの PHP
+でのみ使用可能であることに
+注意しましょう。詳しい情報は 持続的 データベース接続
+を参照ください。
+
+持続的接続を利用する場合、MySQL
+の同時接続数の制限をこえないように Apache や MySQL
+の設定を多少変更する必要があるかも知れません。
+
+関数名の前に @
+を追加すると、失敗した場合のエラーメッセージを抑制できます。
+
+|mysql_connect| Persistent Database Connections
+
+vim:ft=help:

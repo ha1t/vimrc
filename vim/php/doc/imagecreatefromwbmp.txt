@@ -1,0 +1,54 @@
+imagecreatefromwbmp -- ファイルまたは URL
+から新規イメージを作成する
+
+  resource imagecreatefromwbmp(string filename)~
+
+|imagecreatefromwbmp| は、指定したファイル名から
+得られたイメージを表すイメージ ID を返します。
+
+|ImageCreateFromWBMP| は、エラー時に空の文字列を
+返します。エラーメッセージも出力しますが、不幸にしてブラウザに
+壊れたリンクとして表示されてしまいます。デバッグを容易にするために
+次の例ではエラーを表示する WBMP を作成しています。
+作成時のエラーを処理する例
+
+<?php >
+  function LoadWBMP($imgname)
+  {
+      $im = @imagecreatefromwbmp($imgname); /* オープンします */
+      if (!$im) { /* 失敗したかどうかを調べます */
+          $im  = imagecreatetruecolor (20, 20); /* 空の画像を作成します */
+          $bgc = imagecolorallocate($im, 255, 255, 255);
+          $tc  = imagecolorallocate($im, 0, 0, 0);
+          imagefilledrectangle($im, 0, 0, 10, 10, $bgc);
+          /* エラーメッセージを出力します */
+          imagestring($im, 1, 5, 5, "Error loading $imgname", $tc);
+      }
+      return $im;
+  }
+?>
+
+
+
+
+
+fopen wrappers が有効の場合、この関数のファイル名として
+URL
+を使用することができます。ファイル名の指定方法に関する詳細は
+|fopen|、サポートされる URL プロトコルの種類
+については、(例えば) を参照してください。
+
+{filename} WBMP 画像へのパス。
+
+成功した場合に画像リソース ID、エラー時に FALSE
+を返します。
+
+WBMP サポートは、 PHP が GD-1.8
+以降と共にコンパイルされている場合のみ利用可能です。
+
+PHP 4.3.0 より前のバージョンの Windows 版 PHP
+は、現在この関数に関してリモートファイルアクセス機能を
+サポートしていません。これは、allow_url_fopen を
+有効にした場合でも同様です。
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+PDF_pcos_get_string -- name、string あるいは boolean 型の pCOS
+パスの値を取得する
+
+  string PDF_pcos_get_string(resource p, int doc, string path)~
+
+name, string あるいは boolean 型の pCOS
+パスの値を取得します。
+
+vim:ft=help:

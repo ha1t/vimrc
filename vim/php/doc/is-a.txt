@@ -1,0 +1,53 @@
+is_a --
+オブジェクトがこのクラスのものであるか、このクラスをその親クラスのひとつとしているかどうかを調べる
+
+  bool is_a(object object, string class_name)~
+
+指定した {object} がこのクラスのものであるか、
+あるいはこのクラスをその親クラスのひとつとしているかどうかを調べます。
+
+|is_a| 関数は PHP 5 では非推奨となりました。かわりに
+instanceof 演算子を使用してください。
+
+{object} 調べたいオブジェクト。
+
+{class_name} クラス名。
+
+オブジェクトがこのクラスのものであるか、
+あるいはこのクラスをその親クラスのひとつとしている場合に
+TRUE、それ以外の場合に FALSE を返します。
+
+|is_a| の例
+
+<?php >
+  // クラス定義
+  class WidgetFactory
+  {
+    var $oink = 'moo';
+  }
+  
+  // オブジェクトを作成します
+  $WF = new WidgetFactory();
+  
+  if (is_a($WF, 'WidgetFactory')) {
+    echo "はい、\$WF は WidgetFactory です\n";
+  }
+?>
+
+
+
+PHP 5 での instanceof 演算子の使用
+
+<?php >
+  if ($WF instanceof WidgetFactory) {
+      echo 'はい、$WF は WidgetFactory です';
+  }
+?>
+
+
+
+
+
+|get_class| |get_parent_class| |is_subclass_of|
+
+vim:ft=help:

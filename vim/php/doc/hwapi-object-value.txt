@@ -1,0 +1,12 @@
+hw_api_object->value -- 属性の値を返す
+
+  string value(string name)~
+
+指定した名前の属性の値を返します。
+
+{name} 属性の名前。
+
+指定した名前の属性の値を返します。
+エラーが発生した場合には FALSE を返します。
+
+vim:ft=help:

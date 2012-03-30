@@ -1,0 +1,21 @@
+openal_source_get -- OpenAL ソースのプロパティを取得する
+
+  mixed openal_source_get(resource source, int property)~
+
+Open AL (ソース) リソース (事前に |openal_source_create|
+で作成したもの)。
+
+取得するプロパティ。 AL_SOURCE_RELATIVE (int)、 AL_SOURCE_STATE
+(int)、 AL_PITCH (float)、 AL_GAIN (float)、 AL_MIN_GAIN (float)、
+AL_MAX_GAIN (float)、 AL_MAX_DISTANCE (float)、 AL_ROLLOFF_FACTOR (float)、
+AL_CONE_OUTER_GAIN (float)、 AL_CONE_INNER_ANGLE (float)、
+AL_CONE_OUTER_ANGLE (float)、 AL_REFERENCE_DISTANCE (float)、 AL_POSITION
+(array(float,float,float))、 AL_VELOCITY (array(float,float,float))、
+AL_DIRECTION (array(float,float,float)) のいずれか。
+
+取得したプロパティに関連付けられた型、あるいは失敗した場合に
+FALSE を返します。
+
+|openal_source_create| |openal_source_set| |openal_source_play|
+
+vim:ft=help:

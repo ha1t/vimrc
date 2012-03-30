@@ -1,0 +1,23 @@
+oci_set_prefetch -- プリフェッチする行数を設定する
+
+  bool oci_set_prefetch(resource statement, int rows)~
+
+|oci_execute|
+のコールが成功した後にプリフェッチする行数を設定します。
+
+{statement}
+
+{rows}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+PHP バージョン 5.0.0 以前では、代わりに |ocisetprefetch|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_set_prefetch| への別名として残されていますが、
+推奨されません。
+
+oci8_.default_prefetch ini オプション
+
+vim:ft=help:

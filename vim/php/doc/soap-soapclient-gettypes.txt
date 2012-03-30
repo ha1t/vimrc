@@ -1,0 +1,20 @@
+SoapClient->__getTypes() -- SOAP 型の一覧を返す
+
+  array __getTypes()~
+
+Tこの関数は、WSDL モードでのみ動作します。
+
+SOAP 型の一覧
+
+SoapClient->__getTypes() の例
+
+<?php >
+  $client = new SoapClient("some.wsdl");
+  var_dump($client->__getTypes());
+?>
+
+
+
+
+
+vim:ft=help:

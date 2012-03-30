@@ -1,0 +1,24 @@
+unlink -- ファイルを削除する
+
+  bool unlink(string filename [, resource context])~
+
+{filename} を削除します。 Unix C 言語の関数 unlink()
+と動作は同じです。
+
+{filename} ファイルへのパス。
+
+{context} コンテキストのサポートは、 PHP 5.0.0
+で追加されました。contexts の説明に関しては、
+を参照してください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.0.0 PHP 5.0.0 以降、|unlink|は いくつかのURL
+ラッパと共に使用することもできます。
+|unlink|をサポートするラッパのリストについては
+をご覧ください。
+
+ディレクトリを削除する場合は |rmdir|
+
+vim:ft=help:

@@ -1,0 +1,18 @@
+win32_get_last_control_message --
+サービスに送信された直近の制御メッセージを返す
+
+  int win32_get_last_control_message()~
+
+サービスプロセスに送信された、直近の制御コードを返します。
+サービスの実行中は、サービスを停止させる必要がないかを調べるために
+定期的にこれをチェックすべきです。
+
+制御コード定数を返します。以下のうちのひとつです。
+WIN32_SERVICE_CONTROL_CONTINUE、 WIN32_SERVICE_CONTROL_INTERROGATE、
+WIN32_SERVICE_CONTROL_PAUSE、 WIN32_SERVICE_CONTROL_STOP、
+WIN32_SERVICE_CONTROL_HARDWAREPROFILECHANGE、
+WIN32_SERVICE_CONTROL_POWEREVENT、 WIN32_SERVICE_CONTROL_SESSIONCHANGE。
+
+|win32_start_service_ctrl_dispatcher|
+
+vim:ft=help:

@@ -1,0 +1,60 @@
+pg_convert -- 連想配列の値を、SQL
+文として実行可能な形式に変換する
+
+  array pg_convert(resource connection, string table_name, array assoc_array [, int options])~
+
+|pg_convert| は、{assoc_array} の中の値をチェックし、SQL
+文の中で使用可能な形式に変換します。 少なくとも
+{assoc_array} の要素数以上のカラムを持つ テーブル
+{table_name} が存在することが前提条件と
+なります。{assoc_array} の要素名が {table_name}
+のフィールド名と一致し、また
+要素に対応する値はフィールドのデータ型と互換性がなければなりません。
+成功した場合に変換後の値の配列、それ以外の場合に FALSE
+を返します。
+
+論理型のフィールドが {table_name} にあった場合、 対応する
+{assoc_array} では定数 TRUE を使用
+しないでください。これは文字列 'TRUE'
+に変換されてしまい、PostgreSQL
+では論理型として無効な形式になります。代わりに
+t、true、1、y、yes のうちのひとつを用いてください。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{table_name} 変換対象となるテーブルの名前。
+
+{assoc_array} 変換されるデータ。
+
+{options} PGSQL_CONV_IGNORE_DEFAULT, PGSQL_CONV_FORCE_NULL あるいは
+PGSQL_CONV_IGNORE_NOT_NULL の組み合わせ。
+
+変換された値の配列を返します。エラー時には FALSE
+を返します。
+
+|pg_convert| の例
+
+<?php >
+    $dbconn = pg_connect('dbname=foo');
+    
+    $tmp = array(
+        'author' => 'Joe Thackery',
+        'year' => 2005,
+        'title' => 'My Life, by Joe Thackery'
+    );
+    
+    $vals = pg_convert($dbconn, 'authors', $tmp);
+?>
+
+
+
+
+
+|pg_meta_data|
+
+vim:ft=help:

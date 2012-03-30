@@ -1,0 +1,5 @@
+aggregation_info -- aggregate_info のエイリアス
+
+この関数は次の関数のエイリアスです。 |aggregate_info|.
+
+vim:ft=help:

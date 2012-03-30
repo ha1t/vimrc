@@ -1,0 +1,15 @@
+PDF_add_weblink -- 現在のページに Web リンクを追加する
+[古い関数]
+
+  bool PDF_add_weblink(resource pdfdoc, float lowerleftx, float lowerlefty, float upperrightx, float upperrighty, string url)~
+
+Web 上のターゲット {url} への Web リンクを追加します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに {type=URI} とともに
+|PDF_create_action|、 および {type=Link} とともに
+|PDF_create_annotation| を使用してください。
+
+vim:ft=help:

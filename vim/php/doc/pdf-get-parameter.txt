@@ -1,0 +1,8 @@
+PDF_get_parameter -- 文字列パラメータを取得する
+
+  string PDF_get_parameter(resource p, string key, float modifier)~
+
+いくつかの PDFlib
+パラメータの内容を文字列として取得します。
+
+vim:ft=help:

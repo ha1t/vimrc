@@ -1,0 +1,17 @@
+apc_clear_cache -- APC キャッシュをクリアする
+
+  bool apc_clear_cache([string cache_type])~
+
+ユーザ/システム キャッシュをクリアします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+{cache_type} {cache_type} が "user"
+の場合はユーザキャッシュがクリアされます。
+それ以外の場合はシステムキャッシュ
+(キャッシュされたファイル) がクリアされます。
+
+|apc_cache_info|
+
+vim:ft=help:

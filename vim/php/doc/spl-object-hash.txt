@@ -1,0 +1,25 @@
+spl_object_hash -- 指定したオブジェクトのハッシュ ID を返す
+
+  string spl_object_hash(object obj)~
+
+この関数は、オブジェクトの一意な識別子を返します。この
+ID は、
+オブジェクトを保存する際のハッシュのキーとして使用できますし、
+オブジェクトを識別するための値として使用することもできます。
+
+{object} 何らかのオブジェクト。
+
+各オブジェクトに固有で、同一オブジェクトに対しては常に同じ値となる文字列を返します。
+
+|spl_object_hash| の例
+
+<?php >
+  $id = spl_object_hash($object);
+  $storage[$id] = $object;
+?>
+
+
+
+
+
+vim:ft=help:

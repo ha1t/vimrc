@@ -1,0 +1,13 @@
+timezone_open -- 新しい DateTimeZone オブジェクトを返す
+
+  DateTimeZone timezone_open(string timezone)~
+
+  DateTimeZone DateTimeZone::__construct(string timezone, string timezone)~
+
+{timezone} タイムゾーンを表す正式名 (例: Europe/Prague)
+あるいは略称 (例: CET)。
+
+成功した場合に DateTimeZone オブジェクト、失敗した場合に
+FALSE を返します。
+
+vim:ft=help:

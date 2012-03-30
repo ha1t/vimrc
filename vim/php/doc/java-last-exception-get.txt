@@ -1,0 +1,44 @@
+java_last_exception_get -- 直近の Java 例外を取得する
+
+  object java_last_exception_get()~
+
+直近の Java の例外を取得します。
+
+例外オブジェクトを返します。
+
+以下の例は、Java
+例外ハンドラをPHPから使用する方法を示すものです。 Java
+例外ハンドラ
+
+<?php >
+  $stack = new Java('java.util.Stack');
+  $stack->push(1);
+  
+  // 以下のコードは実行に成功します
+  $result = $stack->pop();
+  $ex = java_last_exception_get();
+  if (!$ex) {
+    echo "$result\n";
+  }
+  
+  // 以下のコードは失敗します (エラー出力は、@により抑制されています)
+  $result = @$stack->pop();
+  $ex = java_last_exception_get();
+  if ($ex) {
+    echo $ex->toString();
+  }
+  
+  // 直近の例外をクリア
+  java_last_exception_clear();
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

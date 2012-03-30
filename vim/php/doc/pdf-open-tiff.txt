@@ -1,0 +1,7 @@
+PDF_open_tiff -- TIFF イメージをオープンする [古い関数]
+
+この関数は PDFlib バージョン 3
+で廃止されました。かわりに |PDF_load_image|
+を使用してください。
+
+vim:ft=help:

@@ -1,0 +1,8 @@
+PDF_info_textline --
+テキストの行のフォーマットを行い、メトリクスを問い合わせる
+
+  float PDF_info_textline(resource pdfdoc, string text, string keyword, string optlist)~
+
+テキストの行のフォーマットを行い、その結果のメトリクスを問い合わせます。
+
+vim:ft=help:

@@ -1,0 +1,21 @@
+XMLWriter::endDTDElement -- 現在の DTD 要素を終了する
+
+オブジェクト指向型
+
+  bool endDTDElement()~
+
+手続き型
+
+  bool xmlwriter_end_dtd_element(resource xmlwriter)~
+
+現在の DTD 要素を終了します。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

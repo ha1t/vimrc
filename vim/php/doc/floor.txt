@@ -1,0 +1,28 @@
+floor -- 端数の切り捨て
+
+  float floor(float value)~
+
+必要に応じて {value} を丸めることにより、 {value}
+をこえない最大の整数の値を返します。
+
+{number} 丸める数値。
+
+{value} をこえない最大の整数の値を返します。 |floor|
+の返り値は float 型のままとなります。これは、 float
+の範囲が int よりも広いためです。
+
+|floor| の例
+
+<?php >
+  echo floor(4.3);   // 4
+  echo floor(9.999); // 9
+  echo floor(-3.14); // -4
+?>
+
+
+
+
+
+|ceil| |round|
+
+vim:ft=help:

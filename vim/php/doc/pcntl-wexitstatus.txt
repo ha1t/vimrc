@@ -1,0 +1,16 @@
+pcntl_wexitstatus --
+終了した子プロセスのリターンコードを返す
+
+  int pcntl_wexitstatus(int status)~
+
+終了した子プロセスのリターンコードを返します。この関数は、
+|pcntl_wifexited| が TRUE を返す場合のみ 有用です。
+
+{status} パラメータ {status} は、 |pcntl_waitpid|
+が正常にコールされた際に得られます。
+
+リターンコードを表す整数値を返します。
+
+|pcntl_waitpid| |pcntl_wifexited|
+
+vim:ft=help:

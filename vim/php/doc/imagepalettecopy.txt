@@ -1,0 +1,15 @@
+imagepalettecopy --
+あるイメージから他のイメージにパレットをコピーする
+
+  void imagepalettecopy(resource destination, resource source)~
+
+|imagepalettecopy| は、パレットを {source} から {destination}
+にコピーします。
+
+{destination} コピー先の画像リソース。
+
+{source} コピー元の画像リソース。
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,126 @@
+imagecopyresampled --
+再サンプリングを行いイメージの一部をコピー、伸縮する
+
+  bool imagecopyresampled(resource dst_image, resource src_image, int dst_x, int dst_y, int src_x, int src_y, int dst_w, int dst_h, int src_w, int src_h)~
+
+|imagecopyresampled| は、イメージの矩形の部分
+を別のイメージにコピーします。同時にピクセル値を滑らかに補間を行い、
+このため、特にサイズを小さくした場合には鮮明さが維持されます。
+
+言い換えると、|imagecopyresampled| は {src_image} の座標
+({src_x},{src_y}) にある 幅 {src_w}、高さ {src_h}
+の矩形領域を受け取って、それを {dst_image} の座標
+({dst_x},{dst_y}) にある幅 {dst_w}、高さ {dst_h}
+の矩形領域に配置します。
+
+コピー元とコピー先の座標、幅、高さが異なる場合には、
+適当なイメージ伸縮が行われます。座標は、左上を基準とします。
+この関数は、同じイメージ内の領域にコピーする場合にも使用可能です
+({dst_image} が {src_image} と同じ場合)
+が、領域が重なる場合の結果は予測できません。
+
+{dst_im} コピー先の画像リンクリソース。
+
+{src_im} コピー元の画像リンクリソース。
+
+{dst_x} コピー先の x 座標。
+
+{dst_y} コピー先の y 座標。
+
+{src_x} コピー元の x 座標。
+
+{src_y} コピー元の y 座標。
+
+{dst_w} コピー先の幅。
+
+{dst_h} コピー先の高さ。
+
+{src_w} コピー元の幅。
+
+{src_h} コピー元の高さ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+単純な例
+この例は、イメージをオリジナルの半分のサイズに再サンプルします。
+
+<?php >
+  // ファイル
+  $filename = 'test.jpg';
+  $percent = 0.5;
+  
+  // コンテントタイプ
+  header('Content-type: image/jpeg');
+  
+  // 新規サイズを取得します
+  list($width, $height) = getimagesize($filename);
+  $new_width = $width * $percent;
+  $new_height = $height * $percent;
+  
+  // 再サンプル
+  $image_p = imagecreatetruecolor($new_width, $new_height);
+  $image = imagecreatefromjpeg($filename);
+  imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+  
+  // 出力
+  imagejpeg($image_p, null, 100);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+イメージを均等に再サンプルする
+この例は最大の幅もしくは高さが 200
+ピクセルのイメージを表示します。
+
+<?php >
+  // ファイル
+  $filename = 'test.jpg';
+  
+  // 最大の高さ・幅を設定します
+  $width = 200;
+  $height = 200;
+  
+  // コンテントタイプ
+  header('Content-type: image/jpeg');
+  
+  // 新規サイズを取得します
+  list($width_orig, $height_orig) = getimagesize($filename);
+  
+  $ratio_orig = $width_orig/$height_orig;
+  
+  if ($width/$height > $ratio_orig) {
+     $width = $height*$ratio_orig;
+  } else {
+     $height = $width/$ratio_orig;
+  }
+  
+  // 再サンプル
+  $image_p = imagecreatetruecolor($width, $height);
+  $image = imagecreatefromjpeg($filename);
+  imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+  
+  // 出力
+  imagejpeg($image_p, null, 100);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+パレットイメージの制限(255+1色)による問題があります。
+カラーの再サンプリングやフィルタリングには通常は255色以上の色が
+必要となります。再サンプルするピクセルとその色を計算するために
+ある種の近似計算が使用されます。パレットに新しい色を割り当てよう
+として失敗すると、(理論的に)最も近い色が選択されます。
+それは必ずしも常に可視色とは限りません。そのため、
+空白(あるいは不可視な)といった不可思議な結果がもたらされます。
+この問題を回避するには、|imagecreatetruecolor|で
+生成されるようなTrueカラーイメージを目的のイメージとして
+使用してください。
+
+|imagecopyresized|
+
+vim:ft=help:

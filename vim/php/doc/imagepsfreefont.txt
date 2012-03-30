@@ -1,0 +1,18 @@
+imagepsfreefont -- PostScript Type 1 フォント用メモリを解放する
+
+  bool imagepsfreefont(resource fontindex)~
+
+|imagepsfreefont| は PostScript Type 1
+フォントが使用したメモリを解放します。
+
+{fontindex}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、PHP が --with-t1lib
+を指定してコンパイルされている場合のみ使用可能です。
+
+|imagepsloadfont|
+
+vim:ft=help:

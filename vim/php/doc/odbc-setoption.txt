@@ -1,0 +1,64 @@
+odbc_setoption -- ODBC の設定を変更する
+
+  bool odbc_setoption(resource id, int function, int option, int param)~
+
+この関数により特定の接続またはクエリー結果に関する
+ODBC
+オプションを変更することが可能となります。この関数は、気まぐれな
+ODBC
+ドライバの問題に対処する際の道具として作成されたものです。自分が
+ODBC
+プログラマであり、様々なオプションが有する効果を理解している場合にのみ
+この関数を使用するべきでしょう。
+使用可能な全てのオプションおよび値を理解するためには、良い
+ODBC
+リファレンスが必要です。ドライバーのバージョンが違うと、
+サポートされるオプションも異なります。
+
+この関数の効果は ODBC
+ドライバに依存する可能性があるので、
+この関数を一般に公開するスクリプトで使用することは、
+必ず避けるべきです。 また、いくつかの ODBC
+オプションはこの関数では利用できません。
+それは、これらを接続の確立またはクエリの準備の前に設定する必要があるからです。
+しかし、特定の業務において自分の上司が商用製品の使用を指示しなかった
+ために PHP
+を使用する場合、このことは実際的な問題となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+{id} は設定を変更する接続 ID または 結果 ID
+です。SQLSetConnectOption() の場合、これは接続 ID です。
+SQLSetStmtOption() の場合、これは結果 ID です。
+
+{Function} は使用する ODBC 関数です。 値は SQLSetConnectOption()
+の場合 1、 SQLSetStmtOption() の場合 2
+である必要があります。
+
+パラメータ {option} は設定するオプションです。
+
+パラメータ {param} は指定した {option} の値です。 ODBC
+Setoption の例
+
+<?php >
+  // 1. SQLSetConnectOption() のオプション 102 は SQL_AUTOCOMMIT です。
+  //    SQL_AUTOCOMMIT の値 1 は SQL_AUTOCOMMIT_ON です。
+  //    この例は odbc_autocommit($conn, true); と同じ結果
+  //    となります。
+  
+  odbc_setoption($conn, 1, 102, 1);
+  
+  // 2. SQLSetStmtOption() のオプション 0 は SQL_QUERY_TIMEOUT です。
+  //    この例は 30 秒後に時間切れとなるクエリーを設定します。
+  
+  $result = odbc_prepare($conn, $sql);
+  odbc_setoption($result, 2, 0, 30);
+  odbc_execute($result);
+?>
+
+
+
+
+
+vim:ft=help:

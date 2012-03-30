@@ -1,0 +1,36 @@
+mssql_fetch_field -- フィールド情報を取得する
+
+  object mssql_fetch_field(resource result [, int field_offset])~
+
+|mssql_fetch_field|
+は、あるクエリー結果のフィールドに関して情報を得るために使用します。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+{field_offset}
+フィールドオフセット。フィールドオフセットが指定されない場合、
+|mssql_fetch_field|
+によりまだ取得されていない次のフィールドが取得されます。
+{field_offset} は 0 から始まります。
+
+フィールド情報を含むオブジェクトを返します。
+
+オブジェクトのプロパティは次のようになります。
+
+name -
+カラム名。カラムが関数の結果である場合、このプロパティは
+computed#N に設定されます。ただし、#N
+はシリアル番号です。
+
+column_source - そのカラムが取得されたテーブル
+
+max_length - カラムの最大長
+
+numeric - そのカラムが数字である場合に 1
+
+type - カラムの型
+
+|mssql_field_seek|
+
+vim:ft=help:

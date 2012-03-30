@@ -1,0 +1,54 @@
+session_cache_limiter --
+現在のキャッシュリミッタを取得または設定する
+
+  string session_cache_limiter([string cache_limiter])~
+
+|session_cache_limiter| は、
+現在のキャッシュリミッタの名前を返します。
+
+キャッシュリミッタは、クライアントに送信されるキャッシュ制御用の
+HTTPヘッダを制御します。これらのヘッダは、ページの内容をクライアントやプロキシがキャッシュ
+する規則を定義します。例えば、キャッシュリミッタを
+nocacheに設定した場合、クライアント/プロキシのキャッ
+シュは無効になります。しかし、publicの場合は、
+キャッシュを許可します。privateと設定すること
+も可能で、この場合、プロキシがキャッシュすることは許可しませんが
+クライアントがキャッシュすることは許可されます。
+
+privateモードにおいて、Expireヘッダがクライア
+ントに送信されます。これは、Mozillaのようないくつかのブラウザを混
+乱させます。これを避けるには、
+private_no_expireモードを使用してください。
+このモードでは、Expireヘッダはクライアントに送信されません。
+
+キャッシュリミッタは、リクエスト開始時に
+session.cache_limiterに保存されたデフォルト値
+にリセットされます。つまり、各リクエスト毎に(アウトプットバッファ
+が無効な場合は、|session_start|がコールされる 前に)
+|session_cache_limiter|をコールする必要 があります。
+
+{cache_limiter} {cache_limiter}
+が指定された場合、現在のキャッシュリミッタは新しい値に変更されます。
+
+現在のキャッシュリミッタの名前を返します。
+
+バージョン 説明 4.2.0 private_no_expire が追加されました。
+
+|session_cache_limiter| の例
+
+<?php >
+  /* キャッシュリミッタを'private'に設定する */
+  
+  session_cache_limiter('private');
+  $cache_limiter = session_cache_limiter();
+  
+  echo "The cache limiter is now set to $cache_limiter<br />";
+?>
+
+
+
+
+
+session.cache_limiter
+
+vim:ft=help:

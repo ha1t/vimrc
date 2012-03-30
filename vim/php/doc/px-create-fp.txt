@@ -1,0 +1,73 @@
+px_create_fp -- 新しい paradox データベースを作成する
+
+  bool px_create_fp(resource pxdoc, resource file, array fielddesc)~
+
+新しい paradox データベースファイルを作成します。
+実際のファイルは、事前に |fopen|
+でオープンしておく必要があります。
+ファイルが書き込み可能であることを確認してください。
+
+この関数をコールすると「テーブル名が空である」という警告が発生しますが、
+これは無視できます。単に、|px_set_parameter|
+を使用して後からテーブル名を設定すればよいのです。
+
+paradox
+のファイルフォーマットについての資料が不足しているため、
+この関数は、きわめて実験的なものです。
+この関数で作成したデータベースファイルは |px_open_fp| や
+Paradox ソフトウェアでオープンできます。
+しかしそこから先の道のりは大変でしょう。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+{file} |fopen| が返すファイルハンドル。
+
+{fielddesc} fielddesc
+は、各フィールドの設定を保持する配列です。
+それぞれのフィールド設定は、2 つあるいは 3
+つの要素を含む配列です。
+最初の要素は常に文字列で、フィールドの名前を表します。
+10 文字より長くなってはいけません。2
+番目の要素にはフィールドの型を指定します。 これは、
+フィールド型の定数
+の表の中のどれかになります。文字列フィールドや bcd
+フィールドでは、 3
+番目の要素でその要素の精度を指定します。
+フィールド定義の中に blob
+フィールドが含まれている場合は、
+確実にすべての値を格納できるだけのフィールドサイズを確保するか、
+あるいは blob を保存する際に |px_set_blob_file|
+でファイルを指定しなければなりません。さもないと、
+フィールドのデータが切り詰められてしまいます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+2 つのフィールドを持つ Paradox データベースを作成する
+
+<?php >
+  if(!$pxdoc = px_new()) {
+    /* エラー処理 */
+  }
+  $fp = fopen("test.db", "w+");
+  $fields = array(array("col1", "S"), array("col2", "I"));
+  if(!px_create_fp($pxdoc, $fp, $fields)) {
+    /* エラー処理 */
+  }
+  px_set_parameter($pxdoc, "tablename", "testtable");
+  for($i=-50; $i<50; $i++) {
+    $rec = array($i, -$i);
+    px_put_record($pxdoc, $rec);
+  }   
+  px_close($pxdoc);
+  px_delete($pxdoc);
+  fclose($fp);
+?>
+
+
+
+
+
+|px_new| |px_put_record| |fopen|
+
+vim:ft=help:

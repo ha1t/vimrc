@@ -1,0 +1,49 @@
+swf_oncondition --
+アクションリストのトリガとして使用されるトランジションを定義する
+
+  void swf_oncondition(int transition)~
+
+関数 |swf_onCondition| は、
+アクションリストのトリガとなるトランジションを定義します。
+
+{transition} 使用可能なトランジションの型は複数あり、
+TYPE_MENUBUTTON
+として定義されたボタンについては次のものがあります。
+IdletoOverUp
+
+OverUptoIdle
+
+OverUptoOverDown
+
+OverDowntoOverUp
+
+IdletoOverDown
+
+OutDowntoIdle
+
+MenuEnter (IdletoOverUp|IdletoOverDown)
+
+MenuExit (OverUptoIdle|OverDowntoIdle)
+
+TYPE_PUSHBUTTON 用としては、次のオプションがあります。
+IdletoOverUp
+
+OverUptoIdle
+
+OverUptoOverDown
+
+OverDowntoOverUp
+
+OverDowntoOutDown
+
+OutDowntoOverDown
+
+OutDowntoIdle
+
+ButtonEnter (IdletoOverUp|OutDowntoOverDown)
+
+ButtonExit (OverUptoIdle|OverDowntoOutDown)
+
+値を返しません。
+
+vim:ft=help:

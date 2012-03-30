@@ -1,0 +1,27 @@
+ora_parse -- Oracle の SQL ステートメントをパースする
+
+  bool ora_parse(resource cursor, string sql_statement [, int defer])~
+
+SQL 文または PL/SQL ブロックをパースし、
+指定したカーソル {cursor} に関連付けます。
+
+{cursor} |ora_open| でオープンした Oracle カーソル。
+
+{sql_statement} SQL 文あるいは PL/SQL ブロック。
+
+{defer}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_parse|
+
+|ora_exec| |ora_fetch| |ora_do|
+
+vim:ft=help:

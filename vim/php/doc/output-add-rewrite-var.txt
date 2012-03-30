@@ -1,0 +1,63 @@
+output_add_rewrite_var -- URL リライタの値を追加する
+
+  bool output_add_rewrite_var(string name, string value)~
+
+この関数は、URL
+リライト機構に新しい名前/値の組を追加します。
+名前および値は、URL (GET パラメータとして)
+およびフォーム (hidden フィールドとして)
+で追加されます。これは、session.use_trans_sid で透過的 URL
+リライティングが有効になっている場合に セッション ID
+が渡される方法と同じです。 絶対 URL (http://example.com/..)
+はリライトされないことに注意しましょう。
+
+この関数の挙動は、php.ini パラメータ url_rewriter.tags
+によって制御されます。
+
+もし出力バッファリングが有効になっていない場合、この関数を
+コールすると出力バッファリングが暗黙的に開始されます。
+
+{name} 変数名。
+
+{value} 変数の値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|output_add_rewrite_var| の例
+
+<?php >
+  output_add_rewrite_var('var', 'value');
+  
+  // リンク
+  echo '<a href="file.php">リンク</a>
+  <a href="http://example.com">リンク2</a>';
+  
+  // フォーム
+  echo '<form action="script.php" method="post">
+  <input type="text" name="var2" />
+  </form>';
+  
+  print_r(ob_list_handlers());
+?>
+
+上の例の出力は以下となります。
+
+  <a href="file.php?var=value">リンク</a>
+  <a href="http://example.com">リンク2</a>
+  
+  <form action="script.php" method="post">
+  <input type="hidden" name="var" value="value" />
+  <input type="text" name="var2" />
+  </form>
+  
+  Array
+  (
+      [0] => URL-Rewriter
+  )
+
+
+
+|output_reset_rewrite_vars| |ob_flush| |ob_list_handlers|
+
+vim:ft=help:

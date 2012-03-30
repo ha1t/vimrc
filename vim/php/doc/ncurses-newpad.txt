@@ -1,0 +1,13 @@
+ncurses_newpad -- 新しいパッド (window) を作成する
+
+  resource ncurses_newpad(int rows, int cols)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{rows}
+
+{cols}
+
+vim:ft=help:

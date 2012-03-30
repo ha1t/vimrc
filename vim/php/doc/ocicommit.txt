@@ -1,0 +1,5 @@
+ocicommit -- oci_commit のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_commit|.
+
+vim:ft=help:

@@ -1,0 +1,18 @@
+gzdecode -- gzip 圧縮された文字列をデコードする
+
+  string gzdecode(string data [, int length])~
+
+この関数は、入力された {data}
+をデコードしたものを返します。
+
+{data} デコードするデータ。これは |gzencode|
+でエンコードされたものです。
+
+{length} デコードするデータの最大長。
+
+デコードされた文字列、あるいはエラーが発生した場合に
+FALSE を返します。
+
+|gzencode|
+
+vim:ft=help:

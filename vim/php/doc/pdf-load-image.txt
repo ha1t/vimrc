@@ -1,0 +1,8 @@
+PDF_load_image -- 画像ファイルをオープンする
+
+  int PDF_load_image(resource pdfdoc, string imagetype, string filename, string optlist)~
+
+さまざまなオプションをもとに、
+ディスク上の画像ファイルや仮想画像ファイルをオープンします。
+
+vim:ft=help:

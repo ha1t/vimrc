@@ -1,0 +1,22 @@
+msql_close -- mSQL 接続を閉じる
+
+  bool msql_close([resource link_identifier])~
+
+|msql_close| は、指定したリンク ID に関連付けられた mSQL
+サーバとの持続的でない接続を閉じます。
+
+通常は |msql_close| を使用する必要はありません。
+なぜなら、持続的でないリンクはスクリプトの実行終了時に自動的に
+閉じられるからです。 リソースの開放 も参照ください。
+
+{ link_identifier}mSQL 接続。 指定されない場合、|msql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、この関数は、
+|msql_connect|をコールした時と同様にリンクを確立し、使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msql_connect| |msql_pconnect|
+
+vim:ft=help:

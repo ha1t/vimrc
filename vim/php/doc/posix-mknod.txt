@@ -1,0 +1,45 @@
+posix_mknod --
+スペシャルファイルあるいは通常のファイルを作成する
+(POSIX.1)
+
+  bool posix_mknod(string pathname, int mode [, int major [, int minor]])~
+
+スペシャルファイルあるいは通常のファイルを作成します。
+
+{pathname} 作成するファイル。
+
+{mode} このパラメータは、ファイル型(以下の定数
+POSIX_S_IFREG、 POSIX_S_IFCHR、POSIX_S_IFBLK、 POSIX_S_IFIFO あるいは
+POSIX_S_IFSOCK のうちのひとつ)
+およびパーミッションの論理和で構成されます。
+
+{major} メジャーデバイスカーネル ID (S_IFCHR あるいは S_IFBLK
+を使用している場合に渡す必要があります)。
+
+{minor} マイナーデバイスカーネル ID (デフォルトは 0
+です)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|posix_mknod| の例
+
+<?php >
+  $file = '/tmp/tmpfile';  // ファイル名
+  $type = POSIX_S_IFBLK;   // ファイル型
+  $permissions = 0777;     // 8 進数
+  $major = 1;
+  $minor = 8;              // /dev/random
+  
+  if (!posix_mknod($file, $type | $permissions, $major, $minor)) {
+      die('Error ' . posix_get_last_error() . ': ' . posix_strerror(posix_get_last_error()));
+  }
+?>
+
+
+
+
+
+|posix_mkfifo|
+
+vim:ft=help:

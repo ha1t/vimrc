@@ -1,0 +1,42 @@
+gzgetss --
+gzファイルへのポインタから1行を得て、HTMLタグを取り除く
+
+  string gzgetss(resource zp, int length [, string allowable_tags])~
+
+|gzgetss|は読み込んだテキストから HTML および PHP
+タグを全て取り除こうとすることを除いて、
+|gzgets|と同じです。
+
+{zp} gz ファイルポインタを指定します。
+これは有効なファイルポインタであり、かつ、 |gzopen|
+によりオープンできたファイルを指している必要があります。
+
+{length} 取得するデータ長を指定します。
+
+{allowable_tags} このオプションパラメータにより、
+取り除かないタグを指定することができます。
+
+非圧縮かつタグが取り除かれた文字列、もしくはエラー時に
+FALSE
+
+バージョン 説明 3.0.13 と 4.0.0 {allowable_tags}
+が追加されました。
+
+|gzgetss| の例
+
+<?php >
+  $handle = gzopen('somefile.gz', 'r');
+  while (!gzeof($handle)) {
+     $buffer = gzgetss($handle, 4096);
+     echo $buffer;
+  }
+  gzclose($handle);
+?>
+
+
+
+
+
+|gzopen| |gzgets| |strip_tags|
+
+vim:ft=help:

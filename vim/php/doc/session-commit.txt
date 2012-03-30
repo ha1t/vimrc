@@ -1,0 +1,5 @@
+session_commit -- session_write_close のエイリアス
+
+この関数は次の関数のエイリアスです。 |session_write_close|.
+
+vim:ft=help:

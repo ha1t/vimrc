@@ -1,0 +1,21 @@
+ibase_blob_open -- データの一部を取得するために blob
+をオープンする
+
+  resource ibase_blob_open(resource link_identifier, string blob_id)~
+
+  resource ibase_blob_open(resource link_identifier, string blob_id, string blob_id)~
+
+既存の BLOB を読み込み用にオープンします。
+
+{link_identifier} InterBase リンク ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+{blob_id} BLOB の ID。
+
+後で |ibase_blob_get| とともに使用する BLOB
+ハンドルを返します。失敗した場合には FALSE
+を返します。
+
+|ibase_blob_close| |ibase_blob_echo| |ibase_blob_get|
+
+vim:ft=help:

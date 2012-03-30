@@ -1,0 +1,10 @@
+ibase_restore --
+サービスマネージャのリストアタスクを起動し、すぐに結果を返す
+
+  mixed ibase_restore(resource service_handle, string source_file, string dest_db [, int options [, bool verbose]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

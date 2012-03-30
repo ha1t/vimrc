@@ -1,0 +1,26 @@
+ora_commit -- Oracle トランザクションをコミットする
+
+  bool ora_commit(resource connection)~
+
+Oracle のトランザクションをコミットします。
+
+トランザクションは、直近のコミット/ロールバック、またはオートコミットがオフになった時点、
+または接続が確立された時点から指定した接続に加えられた全ての変更として定義されます。
+
+{connection} |ora_logon| でオープンした接続 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 エラーについての詳細は、|ora_error| および
+|ora_errorcode | 関数を用いて調べられます。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_commit|
+
+|ora_commiton| |ora_commitoff|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+JDToFrench --
+ユリウス積算日をフランス革命暦(共和暦)に変換する
+
+  string jdtofrench(int juliandaycount)~
+
+ユリウス積算日をフランス革命暦に変換します。
+
+{julianday} ユリウス積算日を表す整数値。
+
+フランス革命暦の日付を "月/日/年"
+形式の文字列で返します。
+
+|frenchtojd| |cal_from_jd|
+
+vim:ft=help:

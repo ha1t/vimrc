@@ -1,0 +1,47 @@
+xdiff_string_patch -- 文字列に unified diff
+形式のパッチを適用する
+
+  string xdiff_string_patch(string str, string patch [, int flags [, string error]])~
+
+ある文字列に、unified 形式のパッチ文字列 {patch}
+を適用します。
+
+{str} 元の文字列。
+
+{patch} unified 形式のパッチ文字列。
+
+{flags} {flags} は XDIFF_PATCH_NORMAL (デフォルト。通常のパッチ)
+あるいは XDIFF_PATCH_REVERSE (逆パッチ) のいずれかです。
+
+{error}
+これを指定すると、パッチを拒否された部分がここに保存されます。
+
+パッチ適用後の文字列、あるいはエラー時に FALSE
+を返します。
+
+|xdiff_string_patch| の例
+以下のコードは、ある記事に対して変更を適用します。
+
+<?php >
+  $old_article = file_get_contents('./old_article.txt');
+  $diff = $_SERVER['patch']; /* だれかが html フォームからパッチを投稿したとしましょう */
+  
+  $errors = '';
+  
+  $new_article = xdiff_string_patch($old_article, $diff, XDIFF_PATCH_NORMAL, $errors);
+  if (is_string($new_article)) {
+      echo "新しい記事:\n";
+      echo $new_article;
+  }
+  
+  if (strlen($errors)) {
+      echo "Rejects: \n";
+      echo $errors;
+  }
+?>
+
+
+
+|xdiff_file_patch|
+
+vim:ft=help:

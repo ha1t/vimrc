@@ -1,0 +1,91 @@
+unserialize -- 保存用表現から PHP の値を生成する
+
+  mixed unserialize(string str)~
+
+|unserialize| は、シリアル化された変数を PHP
+変数値に戻す変換を行います。
+
+{str} シリアル化された文字列。
+
+もしアンシリアライズする変数がオブジェクトの場合、
+オブジェクトが無事再作成された後、PHP
+は自動的にメンバ関数 |__wakeup| (存在していれば)
+をコールしようとします。
+
+unserialize_callback_func ディレクティブ
+コールバック関数を設定することが可能です。(不完全な
+object "__PHP_Incomplete_Class"を得ることを防ぐため)
+コールバック関数は、非シリアル化する際に未定義のクラスをインスタ
+ンス化する必要がある場合にコールされます。
+'unserialize_callback_func'を定義するためには、 php.ini, |ini_set|,
+.htaccess を使用し
+てください。未定義のクラスをインスタンス化する度に、コールバック関
+数がコールされます。この機能を無効とするには、
+単純にこの設定を空にしてください。
+
+変換された値が返されます。その値は、 boolean, integer,
+float, string, array, object のいずれかとなります。
+
+渡された文字列が復元できなかった場合、FALSE を返して
+E_NOTICE を発生します。
+
+バージョン 説明 4.2.0 unserialize_callback_func
+ディレクティブが追加されました。 4.0.0
+オブジェクトをシリアル化しても、メソッドが失われなくなりました。
+詳細は オブジェクトのシリアル化 を参照ください。
+
+|unserialize| の例
+
+<?php >
+  // ここで、データベースから $session_data にセッションデータをロード
+  // するために unserialize() を使用します。
+  // この例は、serialize() で記述された例を補足するものです。
+  
+  $conn = odbc_connect("webdb", "php", "chicken");
+  $stmt = odbc_prepare($conn, "SELECT data FROM sessions WHERE id = ?");
+  $sqldata = array($_SERVER['PHP_AUTH_USER']);
+  if (!odbc_execute($stmt, &amp;$sqldata) || !odbc_fetch_into($stmt, &$tmp)) {
+      // 実行または取得が失敗した場合、空の配列で初期化します
+      $session_data = array();
+  } else {
+      // tmp[0] にシリアル化されたデータを保持している必要があります。
+      $session_data = unserialize($tmp[0]);
+      if (!is_array($session_data)) {
+          // 何か問題があったため、空の配列で初期化します。
+          $session_data = array();
+      }
+  }
+?>
+
+
+
+
+
+unserialize_callback_func の例
+
+<?php >
+  $serialized_object='O:1:"a":1:{s:5:"value";s:3:"100";}';
+  
+  // unserialize_callback_func ディレクティブは PHP 4.2.0 以降で利用可能
+  ini_set('unserialize_callback_func', 'mycallback'); // 独自のコールバック関数を設定する
+  
+  function mycallback($classname) 
+  {
+      // クラスが定義されているファイルをインクルードするだけです。
+      // どのクラス定義が必要になるのかを $classname で判断します。
+  }
+?>
+
+
+
+
+
+エラーやシリアライズされた FALSE
+値をアンシリアライズする場合、 FALSE
+が返されます。この特殊なケースは {str} を serialize(false)
+で比較する、もしくは E_NOTICE
+をキャッチすることで区別することができます。
+
+|serialize|
+
+vim:ft=help:

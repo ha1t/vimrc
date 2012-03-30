@@ -1,0 +1,42 @@
+kadm5_get_principal -- Kerberos
+データベースから、プリンシパルのエントリを取得する
+
+  array kadm5_get_principal(resource handle, string principal)~
+
+Kerberos
+データベースから、プリンシパルのエントリを取得します。
+
+{handle} KADM5 ハンドル。
+
+{principal} プリンシパル。
+
+成功した場合は、以下のキーを含む連想配列を返します。
+KADM5_PRINCIPAL、KADM5_PRINC_EXPIRE_TIME、
+KADM5_PW_EXPIRATION、KADM5_ATTRIBUTES、KADM5_MAX_LIFE、KADM5_MOD_NAME、
+KADM5_MOD_TIME、KADM5_KVNO、KADM5_POLICY、KADM5_MAX_RLIFE、
+KADM5_LAST_SUCCESS、KADM5_LAST_FAILED、KADM5_FAIL_AUTH_COUNT
+失敗した場合は FALSE を返します。
+
+|kadm5_get_principal| の例
+
+<?php >
+  $handle = kadm5_init_with_password("afs-1", "GONICUS.LOCAL", "admin/admin", "password");
+  
+  print "<h1>get_principal burbach@GONICUS.LOCAL</h1>\n";
+  
+  $options = kadm5_get_principal($handle, "burbach@GONICUS.LOCAL" );
+  
+  foreach ($options as $key => $value) {
+      echo "$key: $value<br />\n";
+  }
+  
+  kadm5_destroy($handle);
+?>
+
+
+
+
+
+|kadm5_get_principals|
+
+vim:ft=help:

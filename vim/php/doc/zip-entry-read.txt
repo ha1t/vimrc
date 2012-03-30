@@ -1,0 +1,20 @@
+zip_entry_read --
+オープンされたディレクトリエントリから読み込む
+
+  string zip_entry_read(resource zip_entry [, int length])~
+
+オープンされたディレクトリエントリから読み込みます。
+
+{zip_entry} |zip_read|により返されたディレクトリエントリ
+
+{length}
+返すバイト数。指定されない場合、この関数は1024バイトを読み込みます。
+
+これは、読み込むデータの非圧縮時の長さとなります。
+
+読み込んだデータ、または、ファイルの終端に達した時に
+FALSE を返します。 reached.
+
+|zip_entry_open| |zip_entry_close| |zip_entry_filesize|
+
+vim:ft=help:

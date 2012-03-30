@@ -1,0 +1,48 @@
+realpath -- 絶対パス名を返す
+
+  string realpath(string path)~
+
+|realpath| は、 入力 {path}
+のシンボリックリンクをすべて展開し、
+「/./」「/../」「/」などの参照をすべて解決することにより、正規化した絶対パスを返します。
+
+{path} 調べたいパス。
+
+成功した場合は正規化した絶対パス名を返します。
+返されるパスはシンボリックリンクや「/./」「/../」要素を含みません。
+
+|realpath| は、
+たとえばファイルが存在しないなどの失敗時に FALSE
+を返します。 BSD システムでは |realpath| は最後の {path}
+コンポーネントのみが存在しない場合には
+失敗となりません。一方、他のシステムではそのような場合にも
+FALSE を返します。
+
+|realpath| の例
+
+<?php >
+  chdir('/var/www/');
+  echo realpath('./../../etc/passwd');
+?>
+
+上の例の出力は以下となります。
+
+  /etc/passwd
+
+Windows 上での |realpath| Windows 上で |realpath|
+を実行すると、Unix 形式のパスを Windows
+形式に変更します。
+
+<?php >
+  echo realpath('/windows/system32');
+?>
+
+上の例の出力は以下となります。
+
+  C:\WINDOWS\System32
+
+
+
+|basename| |dirname| |pathinfo|
+
+vim:ft=help:

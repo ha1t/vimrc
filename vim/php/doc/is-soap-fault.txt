@@ -1,0 +1,51 @@
+is_soap_fault -- SOAP コールが失敗したかどうかを調べる
+
+  bool is_soap_fault(mixed obj)~
+
+この関数は、SOAP
+コールが失敗したかどうかを調べたいが、例外を使用したくない
+場合に有用です。 この関数を使用するには、オプション
+exceptions に ゼロまたは FALSE を指定して SoapClient
+オブジェクトを作成する必要があります。 この場合、SOAP
+メソッドは、特別な SoapFault オブジェクトを返します。
+このオブジェクトには、フォルトの詳細 (faultcode,
+faultstring, faultactor および faultdetails) が含まれています。
+
+exceptions が設定されていない場合、
+SOAPコールは、エラー時に例外を投げます。 |is_soap_fault|
+は指定したパラメータ SoapFault
+オブジェクトであるかどうかを調べます。
+
+{obj} 検査するオブジェクト
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|is_soap_fault| の例
+
+<?php >
+  $client = new SoapClient("some.wsdl", array('exceptions' => 0));
+  $result = $client->SomeFunction();
+  if (is_soap_fault($result)) {
+      trigger_error("SOAP Fault: (faultcode: {$result->faultcode}, faultstring: {$result->faultstring})", E_USER_ERROR);
+  }
+?>
+
+
+
+SOAP の標準的なエラーレポートメソッドは例外となる
+
+<?php >
+  try {
+      $client = new SoapClient("some.wsdl");
+      $result = $client->SomeFunction(/* ... */);
+  } catch (SoapFault $fault) {
+      trigger_error("SOAP Fault: (faultcode: {$fault->faultcode}, faultstring: {$fault->faultstring})", E_USER_ERROR);
+  }
+?>
+
+
+
+
+
+vim:ft=help:

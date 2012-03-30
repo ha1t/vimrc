@@ -1,0 +1,39 @@
+ctype_space -- 空白文字かどうか調べる
+
+  bool ctype_space(string text)~
+
+与えられた文字列 {text} のすべての文字が
+空白文字であるかどうかを調べます。
+
+{text} 調べる文字列。
+
+{text} のすべての文字がなんらかの空白文字を
+生成する場合に TRUE 、そうでない場合に FALSE
+を返します。
+空白文字には、タブ・垂直タブ・改行・復帰・フォームフィード文字も
+含まれます。
+
+|ctype_space| の例
+
+<?php >
+  $strings = array('string1' => "\n\r\t", 'string2' => "\narf12", 'string3' => '\n\r\t');
+  foreach ($strings as $name => $testcase) {
+      if (ctype_space($testcase)) {
+          echo "The string '$name' consists of all whitespace characters.\n";
+      } else {
+          echo "The string '$name' does not consist of all whitespace characters.\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  The string 'string1' consists of all whitespace characters.
+  The string 'string2' does not consist of all whitespace characters.
+  The string 'string3' does not consist of all whitespace characters.
+
+
+
+|ctype_cntrl| |ctype_graph| |ctype_punct|
+
+vim:ft=help:

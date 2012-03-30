@@ -1,0 +1,37 @@
+mysql_get_server_info -- MySQL サーバ情報を取得する
+
+  string mysql_get_server_info([resource link_identifier])~
+
+MySQL サーバのバージョンを取得します。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に MySQL
+サーバのバージョン、失敗した場合に FALSE を返します。
+
+|mysql_get_server_info| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('Could not connect: ' . mysql_error());
+  }
+  printf("MySQL server version: %s\n", mysql_get_server_info());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  MySQL server version: 4.0.1-alpha
+
+
+
+|mysql_get_client_info| |mysql_get_host_info| |mysql_get_proto_info|
+|phpversion|
+
+vim:ft=help:

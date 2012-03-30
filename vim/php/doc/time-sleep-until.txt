@@ -1,0 +1,36 @@
+time_sleep_until -- 指定した時刻まで実行を遅延する
+
+  bool time_sleep_until(float timestamp)~
+
+指定した {timestamp}
+までスクリプトの実行を遅延させます。
+
+{timestamp} スクリプトが再開する時刻。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+過去の {timestamp} を指定した場合、この関数は E_WARNING
+を発生させます。
+
+|time_sleep_until| の例
+
+<?php >
+  // false を返し、警告を発生します
+  var_dump(time_sleep_until(time()-1));
+  
+  // 高速なコンピュータ上でのみ動作します。実行を 0.2 秒遅延します。
+  var_dump(time_sleep_until(time()+0.2));
+?>
+
+
+
+
+
+すべてのシグナルは、スクリプトが再開した後で送信されます。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|sleep| |usleep| |time_nanosleep|
+
+vim:ft=help:

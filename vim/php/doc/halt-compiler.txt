@@ -1,0 +1,38 @@
+__halt_compiler -- コンパイラの実行を中止する
+
+  void __halt_compiler()~
+
+コンパイラの実行を中止します。
+これは、インストール用ファイルのようなデータを PHP
+スクリプトに埋め込んでいる場合に便利です。
+
+データの開始位置（バイト値）は、定数
+__COMPILER_HALT_OFFSET__ で定義されています。
+これはファイル内で |__halt_compiler|
+が使用されている場合にのみ存在します。
+
+値を返しません。
+
+|__halt_compiler| の例
+
+<?php >
+  // このファイルをオープンします
+  $fp = fopen(__FILE__, 'r');
+  
+  // データのある位置までファイルポインタを移動します
+  fseek($fp, __COMPILER_HALT_OFFSET__);
+  
+  // それを出力します
+  var_dump(stream_get_contents($fp));
+  
+  // ここでスクリプトの実行を終了します
+  __halt_compiler();インストールデータ（例: tar, gz, PHP など..）
+
+
+
+
+
+|__halt_compiler|
+は、いちばん外側のスコープでのみ使用可能です。
+
+vim:ft=help:

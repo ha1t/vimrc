@@ -1,0 +1,41 @@
+sybase_pconnect -- Sybase の持続的な接続をオープンする
+
+  resource sybase_pconnect([string servername [, string username [, string password [, string charset [, string appname]]]]])~
+
+|sybase_pconnect| は、2 つの違いを除いて |sybase_connect|
+と全く同様に動作します。
+
+まず、接続時にこの関数は最初同じホスト、ユーザ名、パスワードで
+オープンされた（持続的）リンクを見つけようとします。
+見つかった場合、新しい接続をオープンする代わりにこれに関する
+ID が返されます。
+
+第二に、SQL
+サーバーへの接続はスクリプト実行終了時にクローズされません。
+代わりに、このリンクは将来的に使用するためにオープンされたままに
+なります（|sybase_close| は、 |sybase_pconnect|
+により確立されたリンクを 閉じません）。
+
+このため、この型のリンクは'持続的'と呼ばれます。
+
+{servername} 引数 servername は、'interfaces'
+ファイル中で定義された
+有効なサーバ名である必要があります。
+
+{username} Sybase のユーザ名。
+
+{password} {username} のパスワード。
+
+{charset} 接続に使用する文字セットを指定します。
+
+{appname}
+
+成功時に正の Sybase 持続リンク ID を、エラー時に FALSE
+を返します。
+
+バージョン 説明 4.0.2 {charset}
+パラメータが追加されました。
+
+|sybase_connect|
+
+vim:ft=help:

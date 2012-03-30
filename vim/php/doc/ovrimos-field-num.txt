@@ -1,0 +1,19 @@
+ovrimos_field_num -- 出力カラムの (1 から始まる)
+インデックスを返す
+
+  int ovrimos_field_num(int result_id, string field_name)~
+
+指定した出力カラムの、1
+からはじまるインデックスを返します。
+
+{result_id} |ovrimos_execute| あるいは |ovrimos_exec| が返す結果
+ID。
+
+{field_name} フィールド名。
+
+1 からはじまるインデックス、あるいはエラー時に FALSE
+を返します。
+
+|ovrimos_field_len| |ovrimos_field_name| |ovrimos_field_type|
+
+vim:ft=help:

@@ -1,0 +1,40 @@
+cpdf_import_jpeg -- JPEG 画像をオープンする
+
+  bool cpdf_import_jpeg(int pdf_document, string file_name, float x_coor, float y_coor, float angle, float width, float height, float x_scale, float y_scale, int gsave [, int mode])~
+
+JPEG 画像をオープンします。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{file_name} 画像ファイルへのパス。画像の形式は JPEG
+でなければなりません。
+
+{x_coor} 画像の x 座標。
+
+{y_coor} 画像の y 座標。
+
+{angle} 画像の回転角度。
+
+{width} 画像の幅。
+
+{height} 画像の高さ。
+
+{x_scale}
+
+{y_scale}
+
+{gsave}
+この関数を正しく動作させるには、非ゼロを指定しなければなりません。
+
+{ mode}オプションのパラメータ {mode}
+は単位長さを定義します。この値が 0
+または値が省略された場合、
+このページで指定されたデフォルト値が使用されます。それ以外の場合、
+現在の単位を無視してポストスクリプトのポイントで座標が計測されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_place_inline_image|
+
+vim:ft=help:

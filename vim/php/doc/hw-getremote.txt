@@ -1,0 +1,33 @@
+hw_GetRemote -- リモートドキュメントを得る
+
+  int hw_getremote(int connection, int objectID)~
+
+リモートドキュメントを取得します。
+
+Hyperwave 表記のリモートドキュメントは、
+外部ソースから取得されたドキュメントです。一般的なリモートドキュメントは、
+例えば外部 Web ページまたはデータベースのクエリです。
+
+外部ソースをアクセス可能とするために、Hyperwave では CGI
+に似た HGI(Hyperwave Gateway Interface)を導入しています。現在、
+ftp,http サーバといくつかのデータベースのみが HGI
+によりアクセス可能です。
+
+|hw_GetRemote| をコールすることにより
+外部ソースからのドキュメントが返されます。この関数を使用したい場合、
+HGI
+を熟知している必要があります。外部ソースをアクセスするために
+Hyperwave のかわりに PHP
+を使用することも考慮する必要があります。 Hyperwave
+ゲートウエイにデータベースのサポートを付加するのは、PHP
+において同じことを行うよりもより困難です。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+リモートドキュメントを返します。
+
+|hw_getremotechildren|
+
+vim:ft=help:

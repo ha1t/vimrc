@@ -1,0 +1,110 @@
+svn_diff -- ふたつのパスの差分を再帰的に取得する
+
+  array svn_diff(string path1, int rev1, string path2, int rev2)~
+
+ふたつのパス {path1} および {path2}
+の差分を再帰的に取得します。
+
+汎用的な diff ツールとは異なり、
+バージョン管理の対象になっているローカルファイルしか差分取得の対象となりません。
+その他のファイルの差分は取得できません。
+
+{path1} 最初のパス。SVN
+リポジトリのファイル/ディレクトリを指す URL、
+あるいはローカルのファイル/ディレクトリのパスのいずれかとなります。
+
+相対パスは、PHP
+バイナリが存在するディレクトリを基準として解決されます。呼び出しもとのスクリプトの作業ディレクトリを基準とするには、|realpath|
+あるいは dirname(__FILE__) を使用してください。
+
+ローカルファイルのパスを指定する際に、
+バックスラッシュのみを使用して通常のスラッシュが存在しない場合は、
+パスの検出に失敗してしまいます。この関数を使う際には、
+バックスラッシュをすべてスラッシュに置き換えるようにしましょう。
+
+{rev1}
+最初のパスのリビジョン番号。最新のリビジョンを指定したい場合は
+SVN_REVISON_HEAD を使用します。
+
+{path2} もうひとつのパス。詳細は {path1}
+の説明を参照ください。
+
+{rev2} もうひとつのパスのリビジョン番号。詳細は {rev2}
+の説明を参照ください。
+
+ふたつのストリームの内容を含む配列のリストを返します。
+最初のストリームが diff
+の出力で、もうひとつはエラー出力です。
+このストリームを読み込むには |fread|
+を使用します。エラーが発生した場合は FALSE あるいは NULL
+を返します。
+
+デフォルトでは、diff の出力は Subversion 版の unified diff
+形式となります。しかし、Subversion の設定によっては
+外部の diff エンジン を使うこともできます。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+基本的な例
+ここでは、この関数の基本的な使用法と結果の取得法を示します。
+
+<?php >
+  list($diff, $errors) = svn_diff(
+      'http://www.example.com/svnroot/trunk/foo', SVN_REVISION_HEAD,
+      'http://www.example.com/svnroot/branches/dev/foo', SVN_REVISION_HEAD
+  );
+  if (!$diff) exit;
+  $contents = '';
+  while (!feof($diff)) {
+    $contents .= fread($diff, 8192);
+  }
+  fclose($diff);
+  fclose($errors);
+  var_dump($contents);
+?>
+
+上の例の出力は以下となります。
+
+  Index: http://www.example.com/svnroot/trunk/foo
+  ===================================================================
+  --- http://www.example.com/svnroot/trunk/foo        (.../foo) (revision 23)
+  +++ http://www.example.com/svnroot/branches/dev/foo (.../foo) (revision 27)
+   // この後に diff の内容が続きます
+
+
+
+あるパスのふたつのリビジョンの差分の取得
+この例では、外部リポジトリ上の同じパスのアイテムについて、
+ふたつのリビジョン間の差分を簡単に取得できるようにしたラッパー関数を実装します
+(デフォルトの構文だと少々冗長なので)。
+
+<?php >
+  function svn_diff_same_item($path, $rev1, $rev2) {
+      return svn_diff($path, $rev1, $path, $rev2);
+  }
+?>
+
+
+
+ローカルファイルの差分の取得
+この例では、ふたつのローカルファイルの差分を
+簡単に取得できるようなラッパー関数を実装します。
+|realpath| による補正と、
+バックスラッシュに関するバグの対応を含めています。
+
+<?php >
+  function svn_diff_local($path1, $rev1, $path2, $rev2) {
+      $path1 = str_replace('\\', '/', realpath($path1));
+      $path2 = str_replace('\\', '/', realpath($path2));
+      return svn_diff($path1, $rev1, $path2, $rev2);
+  }
+?>
+
+
+
+SVN ドキュメントの svn diff
+
+vim:ft=help:

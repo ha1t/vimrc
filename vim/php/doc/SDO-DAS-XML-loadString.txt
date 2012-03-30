@@ -1,0 +1,27 @@
+SDO_DAS_XML::loadString -- xml インスタンス文字列を指定し、
+SDO_DAS_XML_Document オブジェクトを返す
+
+  SDO_DAS_XML_Document SDO_DAS_XML::loadString(string xml_string)~
+
+指定した xml インスタンス文字列から SDO_DataObjects
+のツリーを作成します。 SDO_DAS_XML_Document
+オブジェクトを返します。
+ルートデータオブジェクトを取得するには
+SDO_DAS_XML_Document::getRootDataObject メソッドを使用します。
+
+{xml_string} xml 文字列。
+
+成功した場合は SDO_DAS_XML_Document
+オブジェクトを返します。
+それ以外の場合は以下に示す例外がスローされます。
+
+{SDO_TypeNotFoundException}
+もとになるモデルで型が定義されていない場合にスローされます。
+
+{SDO_PropertyNotFoundException}
+もとになるモデルで型のプロパティが定義されていない場合にスローされます。
+
+{SDO_DAS_XML_ParserException} XSD
+ファイルのパース時に何らかの問題が発生した場合にスローされます。
+
+vim:ft=help:

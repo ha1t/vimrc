@@ -1,0 +1,24 @@
+Rar::getVersion --
+エントリを追加するのに用いたアーカイバのバージョンを取得する
+
+  int getVersion()~
+
+アーカイブエントリを追加するのに用いたアーカイバのバージョンを取得します。
+
+バージョン、あるいはエラー時に FALSE を返します。
+
+|Rar::getVersion| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entry = rar_entry_get($rar_file, 'Dir/file.txt') or die("そのようなエントリは見つかりませんでした");
+  
+  echo "使用した Rar (WinRAR) のバージョン: " . $entry->getVersion();
+?>
+
+
+
+
+
+vim:ft=help:

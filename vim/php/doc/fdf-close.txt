@@ -1,0 +1,14 @@
+fdf_close -- FDF ドキュメントを閉じる
+
+  void fdf_close(resource fdf_document)~
+
+FDF ドキュメントを閉じます。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+値を返しません。
+
+|fdf_open|
+
+vim:ft=help:

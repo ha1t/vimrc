@@ -1,0 +1,32 @@
+tidy_warning_count -- 指定したドキュメントについて発生した
+Tidy 警告の数を返す
+
+  int tidy_warning_count(tidy object)~
+
+|tidy_warning_count| は、
+指定したドキュメントについて発生した Tidy
+警告の数を返します。
+
+{object} Tidy オブジェクト。
+
+警告の数を返します。
+
+|tidy_warning_count| の例
+
+<?php >
+  $html = '<p>test</i>
+  <bogustag>bogus</bogustag>';
+  
+  $tidy = tidy_parse_string($html);
+  
+  echo tidy_error_count($tidy) . "\n"; //1
+  echo tidy_warning_count($tidy) . "\n"; //5
+?>
+
+
+
+
+
+|tidy_error_count| |tidy_access_count|
+
+vim:ft=help:

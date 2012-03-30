@@ -1,0 +1,29 @@
+mcal_list_events -- 日付または日付の範囲に関して ID
+のリストを返す
+
+  array mcal_list_events(int mcal_stream [, int begin_year [, int begin_month [, int begin_day [, int end_year [, int end_month [, int end_day]]]]]])~
+
+開始日および終了日の間のイベントのIDの配列を返します。ストリームだけを
+指定した場合、グローバルイベント構造体の開始日および終了日を使用します。
+
+|mcal_list_events| は、カレンダーストリームの
+開始日およびオプションで終了日をとります。
+
+{mcal_stream} MCAL ストリーム。
+
+{begin_year} 最初の日付の年。
+
+{begin_month} 最初の日付の月。
+
+{begin_day} 最初の日付の日。
+
+{end_year} 2 番目の日付の年。
+
+{end_month} 2 番目の日付の月。
+
+{end_day} 2 番目の日付の日。
+
+指定した日または内部イベントの間にあるイベントの ID
+の配列が返されます。
+
+vim:ft=help:

@@ -1,0 +1,22 @@
+mssql_close -- MS SQL Server への接続を閉じる
+
+  bool mssql_close([resource link_identifier])~
+
+指定したリンク ID が指す MS SQL Server
+データベースへのリンクを閉じます。 リンク ID
+が指定されない場合、最後にオープンされたリンクが指定されたと仮定します。
+
+持続的でないリンクはスクリプト実行終了時に自動的に閉じられるので
+この関数は通常は必要ではありません。
+
+{link_identifier} |mssql_connect| が返す MS SQL リンク ID。
+
+この関数は、 |mssql_pconnect|
+が作成した持続的リンクを閉じません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mssql_connect| |mssql_pconnect|
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+hw_api_content->read -- コンテンツを読み込む
+
+  string read(string buffer, int len)~
+
+コンテンツを {len} バイト分読み込み、
+指定したバッファに保存します。
+
+{buffer}
+
+{len} 読み込むバイト数。
+
+
+
+vim:ft=help:

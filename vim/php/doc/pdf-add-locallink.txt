@@ -1,0 +1,16 @@
+PDF_add_locallink -- 現在のページにリンク注記を追加する
+[古い関数]
+
+  bool PDF_add_locallink(resource pdfdoc, float lowerleftx, float lowerlefty, float upperrightx, float upperrighty, int page, string dest)~
+
+現在の PDF
+ファイルの中にターゲットへのリンク注記を追加します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに {type=GoTo} として
+|PDF_create_action|、 そして {type=Link} として |PDF_create_annotation|
+を使用してください。
+
+vim:ft=help:

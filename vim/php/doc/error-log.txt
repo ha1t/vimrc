@@ -1,0 +1,64 @@
+error_log -- エラーメッセージを送信する
+
+  bool error_log(string message [, int message_type [, string destination [, string extra_headers]]])~
+
+エラーメッセージを Web サーバのエラーログ、 TCP
+ポート、あるいはファイルに送ります。
+
+{message} ログに記録されるエラーメッセージ。
+
+{message_type}
+メッセージをどこに送るのかを指定します。以下の中から指定できます。
+
+|error_log| ログタイプ 0 {message}
+は、オペレーティング・システム
+のシステムログのメカニズムまたはファイルのいずれかを使って
+PHP
+のシステム・ロガーに送られます。どちらが使われるかは、
+設定ディレクティブ error_log
+の内容により決定されます。これはデフォルトのオプションです。
+1 {message} は、{destination }
+パラメータで指定されたアドレスに、電子メール
+により送られます。このメッセージタイプの場合にのみ、
+4 番目のパラメータである {extra_headers} が使われます。 2
+このオプションは存在しません。 3 {message} は {destination }
+で指定されたファイルに追加されます。
+明示的に指定しない限り、{message} の
+最後には改行文字は追加されません。
+
+{destination}
+メッセージの送信先。その設定は、上で説明している
+{message_type} パラメータの値によります。
+
+{extra_headers} 追加のヘッダ。{message_type} パラメータが 1
+に設定される場合に利用されます。
+このメッセージタイプは、|mail| と同様に
+内部関数を利用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|error_log| の例
+
+<?php >
+  // データベースに接続できない場合、
+  // サーバログを通してエラーを通知する。
+  if (!Ora_Logon($username, $password)) {
+      error_log("オラクルのデータベースが使用できません!", 0);
+  }
+  
+  // FOO に失敗したら、管理者に email で通知する
+  if (!($foo = allocate_new_foo())) {
+      error_log("大変です。FOO に失敗しました!", 1,
+                 "operator@example.com");
+  }
+  
+  // これ以外の error_log() のコール方法：
+  error_log("大変だ!", 3, "/var/tmp/my-errors.log");
+?>
+
+
+
+
+
+vim:ft=help:

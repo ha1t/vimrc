@@ -1,0 +1,12 @@
+hw_api_object->remove -- 属性を削除する
+
+  bool remove(string name)~
+
+指定した名前の属性を削除します。
+
+{name} 属性の名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

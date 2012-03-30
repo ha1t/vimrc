@@ -1,0 +1,19 @@
+win32_set_service_status -- サービスの状態を更新する
+
+  bool win32_set_service_status(int status)~
+
+SCM に、実行中のサービスの現在の状態を通知します。
+この関数のコールは、現在実行中のサービスについてのみ有効です。
+
+{status} 以下のステータスコードのうちのひとつ。
+WIN32_SERVICE_RUNNING、 WIN32_SERVICE_STOPPED、
+WIN32_SERVICE_STOP_PENDING、 WIN32_SERVICE_START_PENDING、
+WIN32_SERVICE_CONTINUE_PENDING、 WIN32_SERVICE_PAUSE_PENDING、
+WIN32_SERVICE_PAUSED。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|win32_start_service_ctrl_dispatcher|
+
+vim:ft=help:

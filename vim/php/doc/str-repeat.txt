@@ -1,0 +1,30 @@
+str_repeat -- 文字列を反復する
+
+  string str_repeat(string input, int multiplier)~
+
+{input} を {multiplier} 回を繰り返した文字列を返します。
+
+{input} 繰り返す文字列。
+
+{multiplier} {input} を繰り返す回数。
+
+{multiplier} は 0 以上でなければなりません。 {multiplier} が 0
+に設定された場合、この関数は空文字を返します。
+
+繰り返した文字列を返します。
+
+|str_repeat| の例
+
+<?php >
+  echo str_repeat("-=", 10);
+?>
+
+上の例の出力は以下となります。
+
+  -=-=-=-=-=-=-=-=-=-=
+
+
+
+for |str_pad| |substr_count|
+
+vim:ft=help:

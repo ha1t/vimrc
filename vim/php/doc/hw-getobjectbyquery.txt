@@ -1,0 +1,20 @@
+hw_GetObjectByQuery -- オブジェクトを検索する
+
+  array hw_getobjectbyquery(int connection, string query, int max_hits)~
+
+サーバ全体のオブジェクトを検索し、オブジェクト ID
+の配列を返します。
+
+{connection} 接続 ID。
+
+{query} クエリはインデックス付き属性でのみ動作します。
+
+{max_hits} 最大マッチ数は、{max_hits} で制限されます。
+{max_hits} が -1 にセットされた場合、
+最大マッチ数は無制限となります。
+
+オブジェクト ID の配列を返します。
+
+|hw_getobjectbyqueryobj|
+
+vim:ft=help:

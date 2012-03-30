@@ -1,0 +1,32 @@
+yp_first -- 指定したマップから最初のキー/値の組を返す
+
+  array yp_first(string domain, string map)~
+
+ドメイン {domain} のマップ {map}
+から、最初のキー/値の組を取得します。
+
+{domain} NIS ドメイン名。
+
+{map} NIS マップ。
+
+最初のキー/値 の組を表す配列、あるいはエラー時に FALSE
+を返します。
+
+NIS の最初のエントリを取得する例
+
+<?php >
+  $entry = yp_first($domain, "passwd.byname");
+  
+  $key = key($entry);
+  $value = $entry[$key];
+  
+  echo "このマップの最初のエントリのキーは " . $key . "、そして値は " . $value;
+?>
+
+
+
+
+
+|yp_next| |yp_get_default_domain|
+
+vim:ft=help:

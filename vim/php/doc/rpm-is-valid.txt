@@ -1,0 +1,33 @@
+rpm_is_valid -- filename が RPM
+ファイルであるかどうかを確かめる
+
+  bool rpm_is_valid(string filename)~
+
+|rpm_is_valid| は、ファイルが RPM
+ファイルとして有効な形式であるかどうかを調べます。これは
+|rpm_open| とは違って単にファイルを調べるだけであり、
+他の関数で使用するためのファイルポインタは返しません。
+
+{filename} 調べたい RPM ファイル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|rpm_is_valid| の例
+
+<?php >
+  $file = "/path/to/file.rpm";
+  
+  if (rpm_is_valid($file)) {
+      echo "ファイルは RPM 形式です。<br>\n";
+  }
+  else {
+      echo "ファイルは RPM 形式ではありません。<br>\n";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

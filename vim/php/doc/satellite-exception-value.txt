@@ -1,0 +1,14 @@
+satellite_exception_value --
+直近の例外に関する例外構造体を得る
+
+  OrbitStruct satellite_exception_value()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+例外構造体を返します。例については、
+|satellite_caught_exception|の使用例を参照下さ い。
+
+vim:ft=help:

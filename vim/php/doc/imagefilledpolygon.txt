@@ -1,0 +1,53 @@
+imagefilledpolygon -- 塗りつぶした多角形を描画する
+
+  bool imagefilledpolygon(resource image, array points, int num_points, int color)~
+
+|imagefilledpolygon| は画像 {image}
+上に塗りつぶした多角形を生成します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{points} 多角形の頂点の座標 x および y を含む配列。
+
+{num_points} 頂点の総数。 3 以上である必要があります。
+
+{color} |imagecolorallocate| で作成した色 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imagefilledpolygon| の例
+
+<?php >
+  // 多角形の点の配列を準備します
+  $values = array(
+              40,  50,  // Point 1 (x, y)
+              20,  240, // Point 2 (x, y)
+              60,  60,  // Point 3 (x, y)
+              240, 20,  // Point 4 (x, y)
+              50,  40,  // Point 5 (x, y)
+              10,  10   // Point 6 (x, y)
+              );
+  
+  // 画像を生成します
+  $image = imagecreatetruecolor(250, 250);
+  
+  // いくつかの色
+  $bg   = imagecolorallocate($image, 200, 200, 200);
+  $blue = imagecolorallocate($image, 0, 0, 255);
+  
+  // 多角形を描画します
+  imagefilledpolygon($image, $values, 6, $blue);
+  
+  // 画像を出力します
+  header('Content-type: image/png');
+  imagepng($image);
+  imagedestroy($image);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+vim:ft=help:

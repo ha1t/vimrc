@@ -1,0 +1,85 @@
+px_insert_record -- paradox データベースにレコードを挿入する
+
+  int px_insert_record(resource pxdoc, array data)~
+
+データベースに新しいレコードを挿入します。新しいレコードは、
+必ずデータベースの最後に格納されるとは限りません。
+最初に見つかった空きスロットの位置に格納されることになります。
+
+レコードのデータは、フィールド値の配列として渡します。
+配列の要素がデータベースのフィールドに対応していなければなりません。
+配列の要素数がデータベースのフィールド数より少ない場合は、
+それ以降のフィールドには null が設定されます。
+
+ほとんどのフィールドは、その型に対応する PHP
+の型でデータを渡します。 例えば PX_FIELD_LONG、PX_FIELD_SHORT
+および PX_FIELD_AUTOINC の場合は long 型、PX_FIELD_CURRENCy および
+PX_FIELD_NUMBER の場合は double 型が使用されます。blob 型や
+alpha 型のフィールドには、文字列を使用します。
+
+PX_FIELD_TIME および PX_FIELD_DATE については long
+型を指定します。 前者は深夜 0
+時からの経過ミリ秒数、後者は 0000 年 1 月 1 日からの
+経過日数を指定します。以下に、現在の日付および時刻を
+paradox のフィールドで使用できる値に変換する例を 2
+種類示します。
+
+この関数は、pxlib >= 0.6.0
+が使用されている場合にのみ有効です。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+{data} |px_retrieve_record| などが返す、
+フィールド値を含む連想配列あるいは数値添字配列。
+
+失敗した場合には
+FALSE、成功した場合にはレコード数を返します。
+
+paradox
+データベースの日付/時刻フィールドに、現在の日付/時刻を設定する
+
+<?php >
+  $px = px_new();
+  $fp = fopen("test.db", "w+");
+  px_create_fp($px, $fp, array(array("timestamp", "@"), array("time", "T"), array("date", "D")));
+  
+  $curdate = getdate();
+  $jd = gregoriantojd($curdate["mon"], $curdate["mday"], $curdate["year"]);
+  $days = $jd - 1721425; /* 紀元前 4714 年 1 月 1 日と 0000 年 1 月 1 日の差 */
+  $secs = $curdate["hours"]*3600 + $curdate["minutes"]*60 + $curdate["seconds"];
+  px_insert_record($px, array($days*86400000.0 + $secs*1000.0, $secs*1000.0, $days));
+  
+  $curtimestamp = microtime(true);
+  $days = (int) ($curtimestamp/86400);
+  $secs = $curtimestamp - ($days * 86400.0);
+  $days += 2440588; /* 紀元前 4714 年 1 月 1 日と 1970 年 1 月 1 日の差 */
+  $days -= 1721425; /* 紀元前 4714 年 1 月 1 日と 0000 年 1 月 1 日の差 */
+  px_insert_record($px, array($days*86400000.0 + $secs*1000.0, $secs*1000.0, $days));
+  for($i=0; $i<2; $i++) {
+      $rec = px_retrieve_record($px, $i);
+      echo px_timestamp2string($px, $rec["timestamp"], "n/d/Y H:i:s")."\n";
+      echo px_date2string($px, $rec["date"], "n/d/Y")."\n";
+  }
+  px_close($px);
+  px_delete($px);
+?>
+
+上の例の出力は以下となります。
+
+  2/21/2006 21:42:30
+  2/21/2006
+  2/21/2006 20:42:30
+  2/21/2006
+
+
+
+|jdtogregorian| に渡すユリウス日は、 紀元前 4714 年 1 月 1
+日を基準としており、paradox
+ファイルで使用している値に変換するには 1721425
+日ぶん加算しなければなりません。
+日数をタイムスタンプに変換するのは簡単で、 日数に
+86400000.0 を掛ければミリ秒数になります。
+
+|px_update_record|
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+posix_kill -- プロセスにシグナルを送信する
+
+  bool posix_kill(int pid, int sig)~
+
+シグナル {sig} をプロセス ID {pid}
+のプロセスに送信します。
+
+{pid} プロセス ID。
+
+{sig} PCNTL シグナル定数 のいずれか。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+POSIX システムの kill(2) マニュアルページも参照ください。
+そこには、負のプロセスID、特別プロセスID
+0、特別プロセスID -1、 シグナル番号 0
+に関する追加情報があります。
+
+vim:ft=help:

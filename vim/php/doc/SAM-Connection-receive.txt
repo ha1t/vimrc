@@ -1,0 +1,72 @@
+SAMConnection->receive() --
+メッセージをキューあるいは購読から取得する
+
+  SAMMessage receive(string target [, array properties])~
+
+{target}
+メッセージを取得するキュー、トピックあるいは購読の識別子。
+
+{properties}
+オプションの連想配列で、受信操作を制御するパラメータを指定します。
+プロパティ名 とりうる値 SAM_CORRELID メッセージの相関 ID
+文字列にもとづいて、
+受信するメッセージを選択するために使用します。
+SAM_MESSAGEID メッセージのメッセージ ID
+文字列にもとづいて、
+受信するメッセージを選択するために使用します。 SAM_WAIT
+タイムアウトをミリ秒で指定します。この時間までメッセージの受信を待ち続け、
+キューやトピックにメッセージがなかった場合に失敗とします。デフォルト値は
+0
+で、永遠に待ち続けます。この使用には注意が必要です。
+メッセージが存在しない場合、PHP
+スクリプト自体が期限切れになるまで実行し続けます。
+
+このメソッドは SAMMessage オブジェクトを返します。
+エラーが発生した場合は FALSE を返します。
+
+キューからのメッセージの取得
+
+<?php >
+  $msg = $conn->receive('queue://receive/test');
+  
+  if (!$msg) {
+    // 受信に失敗しました!
+    echo "Receive failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+オプションを指定して、キューからのメッセージの取得
+この例では SAM_CORRELID オプションを使用して、
+受信するメッセージを表すための相関 ID を指定します。
+また、タイムアウトを 10 秒に指定します。
+
+<?php >
+  $msg = $conn->receive('queue://receive/test', array(SAM_CORRELID => $token, SAM_WAIT => 10000));
+?>
+
+
+
+購読からのメッセージの取得 この例では、購読 ID
+からメッセージを受信する方法を示します。
+
+<?php >
+  $msg = $conn->receive($subscriptionName);
+  
+  if (!$msg) {
+    // 受信に失敗しました!
+    echo "Receive failed ($conn->errno) $conn->error";
+  }
+?>
+
+$subscriptionName は、事前のコールで取得した購読 ID
+であることに注意しましょう。
+
+
+
+
+
+vim:ft=help:

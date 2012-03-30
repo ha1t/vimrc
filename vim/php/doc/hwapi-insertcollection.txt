@@ -1,0 +1,17 @@
+hw_api->insertcollection --
+コレクション型の新しいオブジェクトを挿入する
+
+  hw_api_object insertcollection(array parameter)~
+
+この関数は |hwapi_insert| の短縮版です。
+コレクション型のオブジェクトを挿入し、必要な属性を設定します。
+
+{parameter} パラメータの配列には、必須要素 'object' および
+'parentIdentifier'、そしてオプションの要素 'parameter' および
+'attributeSelector' が含まれます。
+個々の要素の意味については |hwapi_insert|
+を参照ください。
+
+
+
+vim:ft=help:

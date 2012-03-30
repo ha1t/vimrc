@@ -1,0 +1,23 @@
+call_user_method --
+指定したオブジェクトのユーザーメソッドをコールする
+[古い関数]
+
+  mixed call_user_method(string method_name, object obj [, mixed parameter [, mixed ...]])~
+
+PHP 4.1.0 以降、|call_user_method|
+関数は非推奨となっています。
+
+|call_user_method| の代替策
+
+<?php >
+  call_user_func(array($obj, $method_name), $parameter /* , ... */);
+  call_user_func(array(&amp;$obj, $method_name), $parameter /* , ... */); // PHP 4
+?>
+
+
+
+
+
+|call_user_func_array| |call_user_func|
+
+vim:ft=help:

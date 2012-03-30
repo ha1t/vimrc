@@ -1,0 +1,16 @@
+curl_error --
+現在のセッションに関する直近のエラー文字列を返す
+
+  string curl_error(resource ch)~
+
+直近の cURL
+操作に関するエラーメッセージをクリアテキストで返します。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+エラー番号、あるいはエラーが発生しなかった場合は ''
+(空文字) を返します。
+
+|curl_errno| Curl エラーコード
+
+vim:ft=help:

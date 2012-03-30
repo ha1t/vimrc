@@ -1,0 +1,28 @@
+cpdf_page_init -- 新規ページを開始する
+
+  bool cpdf_page_init(int pdf_document, int page_number, int orientation, float height, float width [, float unit])~
+
+新しいページを開始します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{page_number} ページ番号。
+
+{orientation} 0 は縦長、1 は横長。
+
+{height} ページの高さ。
+
+{width} ページの幅。
+
+{unit} 座標系の単位。この値は、
+単位当たりのポストスクリプトのポイント数とする必要があります。
+1 インチは 72 ポイントに等しいので、72
+という値は、単位をインチに
+設定します。デフォルト値も 72 です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_current_page|
+
+vim:ft=help:

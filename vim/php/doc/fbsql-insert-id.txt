@@ -1,0 +1,30 @@
+fbsql_insert_id -- 直近の INSERT 処理により生成された ID
+を得る
+
+  int fbsql_insert_id([resource link_identifier])~
+
+直近の INSERT クエリにおいて、DEFAULT UNIQUE
+定義されているカラムで生成された ID を返します。
+
+FrontBase SQL関数 |fbsql_insert_id| の値は 直近に生成された
+DEFAULT UNIQUE の値を常に含み、
+クエリ間でリセットすることはありません。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+直近の INSERT クエリが生成した ID を返します。
+直近のクエリが DEFAULT UNIQUE 値を生成していない場合は 0
+を返します。
+
+後のために値を保存する必要がある場合、値を生成するクエリの
+直後にこの関数をコールするようにしてください。
+
+|fbsql_affected_rows|
+
+vim:ft=help:

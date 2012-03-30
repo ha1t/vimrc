@@ -1,0 +1,34 @@
+geoip_db_avail -- GeoIP
+データベースが使用可能かどうかを調べる
+
+  bool geoip_db_avail(int database)~
+
+|geoip_db_avail| 関数は、対応する GeoIP
+データベースが存在し、ディスク上にオープンできるかどうかを調べます。
+
+これは、そのファイルが適切なデータベース形式かどうかを調べるものではありません。
+単にそのファイルが読み込み可能かどうかを調べるだけです。
+
+{database}
+データベースの形式を表す整数値。この拡張モジュールで定義している
+さまざまな定数 (GEOIP_*_EDITION)
+を使用することができます。
+
+データベースが存在する場合に TRUE、存在しない場合に
+FALSE、 エラー時に NULL を返します。
+
+|geoip_db_avail| の例
+これは、現在のデータベースのバージョンを文字列で出力します。
+
+<?php >
+  if (geoip_db_avail(GEOIP_COUNTRY_EDITION))
+      print geoip_database_info(GEOIP_COUNTRY_EDITION);
+?>
+
+上の例の出力は以下となります。
+
+  GEO-106FREE 20080801 Build 1 Copyright (c) 2006 MaxMind LLC All Rights Reserved
+
+
+
+vim:ft=help:

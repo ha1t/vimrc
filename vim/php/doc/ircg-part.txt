@@ -1,0 +1,15 @@
+ircg_part -- サーバ上のチャンネルから離脱する
+
+  bool ircg_part(resource connection, string channel)~
+
+{connection} で接続したサーバ上のチャンネル {channel}
+から離脱します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{channel} #name 形式のチャンネル名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

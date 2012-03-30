@@ -1,0 +1,18 @@
+swf_startbutton -- ボタンの定義を開始する
+
+  void swf_startbutton(int objid, int type)~
+
+ボタンの定義を開始します。
+
+{objid} オブジェクト ID。
+
+{type} TYPE_MENUBUTTON あるいは TYPE_PUSHBUTTON のいずれかです。
+定数 TYPE_MENUBUTTON
+はマウスを押したときにボタンからフォーカスを移すことを可能とし、
+定数 TYPE_PUSHBUTTON は可能としません。
+
+値を返しません。
+
+|swf_endbutton|
+
+vim:ft=help:

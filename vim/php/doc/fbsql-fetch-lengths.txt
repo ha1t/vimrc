@@ -1,0 +1,18 @@
+fbsql_fetch_lengths -- 結果の各出力の長さを得る
+
+  array fbsql_fetch_lengths(resource result)~
+
+|fbsql_fetch_row|、 |fbsql_fetch_array| および |fbsql_fetch_object|
+によって返された直近の行について
+各カラムの長さを格納した配列を返します。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+オフセット 0 から始まる配列を返します。各要素は、
+|fbsql_fetch_row|
+で取得した行の各フィールドの長さを表します。
+エラー時には FALSE を返します。
+
+|fbsql_fetch_row|
+
+vim:ft=help:

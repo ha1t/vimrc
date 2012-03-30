@@ -1,0 +1,43 @@
+ifx_connect -- Informix サーバへの接続をオープンする
+
+  resource ifx_connect([string database [, string userid [, string password]]])~
+
+|ifx_connect| は、Informix サーバへの接続を確立します。
+
+同じ引数で |ifx_connect| を 2 回目にコールした際には、
+新規のリンクは確立されず、代わりに既にオープンされたリンクの
+リンク ID が返されます。
+
+サーバへのリンクは、|ifx_close| のコールに
+より明示的に事前に閉じない限り、スクリプトの実行終了直後に閉じられます。
+
+全ての引数はオプションであり、指定されない場合には、
+設定ファイルにて指定された値
+がデフォルト値として設定されます。 (ホストに関して
+ifx.default_host (定義されていない場合、Informix
+ライブラリは、環境変数INFORMIXSERVERを参照します) ,
+ユーザーに関して ifx.default_user, パスワードに関して
+ifx.default_password (定義されていない場合は無し)
+となります。
+
+{database} データベース名を表す文字列。
+
+{userid} ユーザ名を表す文字列。
+
+{password} パスワードを表す文字列。
+
+成功時に接続 ID を、エラー時に FALSE を返します。
+
+Informix データベースへの接続
+
+<?php >
+  $conn_id = ifx_connect ("mydb@ol_srv1", "imyself", "mypassword");
+?>
+
+
+
+
+
+|ifx_pconnect| |ifx_close|
+
+vim:ft=help:

@@ -1,0 +1,54 @@
+tidy_diagnose --
+パース、修正されたマークアップの診断を行う
+
+手続き型:
+
+  bool tidy_diagnose(tidy object)~
+
+オブジェクト指向型:
+
+  bool tidy->diagnose(tidy object)~
+
+|tidy_diagnose| は、 与えられた Tidy オブジェクト {object}
+に対して診断テストを実行し、
+エラーバッファにドキュメントについての情報を追加します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|tidy_diagnose| の例
+
+<?php >
+  $html = <<< HTML
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  
+  <p>paragraph</p>
+  HTML;
+  
+  $tidy = tidy_parse_string($html);
+  $tidy->CleanRepair();
+  
+  // 2 つの出力の違いに注意
+  echo tidy_get_error_buffer($tidy) . "\n";
+  
+  $tidy->diagnose();
+  echo tidy_get_error_buffer($tidy);
+?>
+
+上の例の出力は以下となります。
+
+  line 5 column 1 - Warning: <p> isn't allowed in <head> elements
+  line 5 column 1 - Warning: inserting missing 'title' element
+  
+  line 5 column 1 - Warning: <p> isn't allowed in <head> elements
+  line 5 column 1 - Warning: inserting missing 'title' element
+  Info: Doctype given is "-//W3C//DTD XHTML 1.0 Strict//EN"
+  Info: Document content looks like XHTML 1.0 Strict
+  2 warnings, 0 errors were found!
+
+
+
+|tidy_get_error_buffer| も参照ください。
+
+vim:ft=help:

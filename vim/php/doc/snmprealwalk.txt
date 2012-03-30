@@ -1,0 +1,10 @@
+snmprealwalk -- 指定したオブジェクトに関するオブジェクト
+ID を含むすべてのオブジェクトを返す
+
+  array snmprealwalk(string host, string community, string object_id [, int timeout [, int retries]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

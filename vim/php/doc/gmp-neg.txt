@@ -1,0 +1,28 @@
+gmp_neg -- 符号を反転する
+
+  resource gmp_neg(resource a)~
+
+ある数の符号を反転したものを返します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+-{a} を GMP 数で返します。
+
+|gmp_neg| の例
+
+<?php >
+  $neg1 = gmp_neg("1");
+  echo gmp_strval($neg1) . "\n";
+  $neg2 = gmp_neg("-1");
+  echo gmp_strval($neg2) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  -1
+  1
+
+
+
+vim:ft=help:

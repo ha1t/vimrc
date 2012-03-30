@@ -1,0 +1,51 @@
+pg_get_result -- 非同期クエリの結果を取得する
+
+  resource pg_get_result([resource connection])~
+
+|pg_get_result| は、 |pg_send_query|・|pg_send_query_params| あるいは
+|pg_send_execute|
+で実行した非同期クエリから結果リソースを取得します。
+
+|pg_send_query| およびその他の非同期クエリ関数は、
+複数のクエリを PostgreSQL
+サーバに送信することが可能です。クエリの結果を
+ひとつずつ取得するには、|pg_get_result| を使用します。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+結果 resource を返します。結果がもうない場合に FALSE
+を返します。
+
+|pg_get_result| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    if (!pg_connection_busy($dbconn)) {
+        pg_send_query($dbconn, "select * from authors; select count(*) from authors;");
+    }
+    
+    $res1 = pg_get_result($dbconn);
+    echo "First call to pg_get_result(): $res1\n";
+    $rows1 = pg_num_rows($res1);
+    echo "$res1 has $rows1 records\n\n";
+    
+    $res2 = pg_get_result($dbconn);
+    echo "Second call to pg_get_result(): $res2\n";
+    $rows2 = pg_num_rows($res2);
+    echo "$res2 has $rows2 records\n";
+?>
+
+上の例の出力は以下となります。
+
+  First call to pg_get_result(): Resource id #3
+  Resource id #3 has 3 records
+  
+  Second call to pg_get_result(): Resource id #4
+  Resource id #4 has 1 records
+
+
+
+|pg_send_query|
+
+vim:ft=help:

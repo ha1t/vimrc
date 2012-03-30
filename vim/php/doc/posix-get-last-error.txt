@@ -1,0 +1,28 @@
+posix_get_last_error -- 直近で失敗した posix
+関数が設定したエラー番号を取得する
+
+  int posix_get_last_error()~
+
+直近で失敗した posix
+関数が設定したエラー番号を取得します。
+エラー番号に対応するエラーメッセージを取得するには
+|posix_strerror| を使用します。
+
+直近で失敗した posix 関数が設定した errno (エラー番号)
+を返します。 エラーが発生していない場合は 0
+が返されます。
+
+|posix_get_last_error| の例 この例では、存在しないプロセス ID
+のプロセスを殺そうとしています。
+その結果として発生したエラーの番号を表示します。
+
+<?php >
+  posix_kill(999459,SIGKILL);
+  echo 'エラーが返されました。エラー番号: '.posix_get_last_error(); //Your error was ___
+?>
+
+
+
+|posix_strerror|
+
+vim:ft=help:

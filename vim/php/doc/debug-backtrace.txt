@@ -1,0 +1,75 @@
+debug_backtrace -- バックトレースを生成する
+
+  array debug_backtrace()~
+
+|debug_backtrace| は PHP バックトレースを生成します。
+
+連想配列を返します。連想配列の要素として返される可能性があるものは以下のとおりです。
+
+|debug_backtrace| から返される可能性がある要素 名前 型 説明
+function string カレントの関数名。 __FUNCTION__
+も参照してください。 line integer カレントの行番号。
+__LINE__ も参照してください。 file string
+カレントのファイル名。 __FILE__ も参照してください。
+class string カレントのクラス名。 __CLASS__
+も参照してください。 object object
+カレントのオブジェクト。 type string
+カレントのコール方式。メソッド呼び出しの場合は "->"、
+静的なメソッド呼び出しの場合は "::" が返されます。
+関数呼び出しの場合は何も返されません。 args array
+関数の内部の場合、関数の引数のリストとなります。
+インクルードされたファイル内では、
+読み込まれたファイルの名前となります。
+
+バージョン 説明 5.1.1
+カレントのオブジェクトを返せるようになりました。
+
+|debug_backtrace| の例
+
+<?php >
+  // ファイル名: a.php
+  
+  function a_test($str)
+  {
+      echo "\nHi: $str";
+      var_dump(debug_backtrace());
+  }
+  
+  a_test('friend');
+?>
+<?php >
+  // ファイル名: b.php
+  include_once '/tmp/a.php';
+?>
+
+/tmp/b.php を実行した際の結果は以下のようになります。
+
+  Hi: friend
+  array(2) {
+  [0]=>
+  array(4) {
+      ["file"] => string(10) "/tmp/a.php"
+      ["line"] => int(10)
+      ["function"] => string(6) "a_test"
+      ["args"]=>
+      array(1) {
+        [0] => &string(6) "friend"
+      }
+  }
+  [1]=>
+  array(4) {
+      ["file"] => string(10) "/tmp/b.php"
+      ["line"] => int(2)
+      ["args"] =>
+      array(1) {
+        [0] => string(10) "/tmp/a.php"
+      }
+      ["function"] => string(12) "include_once"
+    }
+  }
+
+
+
+|trigger_error| |debug_print_backtrace|
+
+vim:ft=help:

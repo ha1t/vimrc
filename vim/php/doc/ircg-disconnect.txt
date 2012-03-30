@@ -1,0 +1,17 @@
+ircg_disconnect -- サーバへの接続を閉じる
+
+  bool ircg_disconnect(resource connection, string reason)~
+
+|ircg_disconnect| は、事前に |ircg_pconnect|
+で確立しているサーバへの接続 {connection} を閉じます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{reason} 切断時のメッセージ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ircg_pconnect|
+
+vim:ft=help:

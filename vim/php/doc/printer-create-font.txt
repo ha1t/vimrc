@@ -1,0 +1,55 @@
+printer_create_font -- 新規フォントを作成する
+
+  resource printer_create_font(string face, int height, int width, int font_weight, bool italic, bool underline, bool strikeout, int orientation)~
+
+この関数は、新しいフォントを作成してそのハンドルを返します。作成したフォントは
+テキストの描画に使用されます。使用例は
+|printer_select_font| を参照ください。
+
+{face} {face}
+はフォントフェースを指定する文字列である必要があります。
+
+{height} {height} でフォントの高さを指定します。
+
+{width} {width} でフォントの幅を指定します。
+
+{font_weight} {font_weight} ではフォントのウェイト (通常は
+400)を指定し、以下の定数のうちのいずれかを使用することが可能です。
+PRINTER_FW_THIN: フォントウェイトを thin (100) に設定します。
+
+PRINTER_FW_ULTRALIGHT: フォントウェイトを ultra light (200)
+に設定します。
+
+PRINTER_FW_LIGHT: フォントウェイトを light (300)
+に設定します。
+
+PRINTER_FW_NORMAL: フォントウェイトを normal (400)
+に設定します。
+
+PRINTER_FW_MEDIUM: フォントウェイトを medium (500)
+に設定します。
+
+PRINTER_FW_BOLD: フォントウェイトを bold (700) に設定します。
+
+PRINTER_FW_ULTRABOLD: フォントウェイトを ultra bold (800)
+に設定します。
+
+PRINTER_FW_HEAVY: フォントウェイトをheavy (900) に設定します。
+
+{italic} {italic} には、 フォントを斜体にするかどうかを TRUE
+あるいは FALSE で指定します。
+
+{underline} {underline} には、
+フォントに下線を引くかどうかを TRUE あるいは FALSE
+で指定します。
+
+{strikeout} {strikeout} には、
+フォントに打ち消し線を引くかどうかを TRUE あるいは FALSE
+で指定します。
+
+{orientaton} {orientation} ではフォントの回転を指定します。
+
+成功した場合にフォントのハンドル、エラー時に FALSE
+を返します。
+
+vim:ft=help:

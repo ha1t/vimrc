@@ -1,0 +1,26 @@
+imagetypes -- この PHP がサポートしている画像形式を返す
+
+  int imagetypes()~
+
+現在使用している PHP
+がサポートする画像形式を返します。
+
+画像形式に対応するビットフィールドで、 PHP
+に組み込まれている GD
+がサポートする画像形式を返します。
+返されるビットは次のとおりです。 IMG_GIF | IMG_JPG | IMG_PNG |
+IMG_WBMP | IMG_XPM。
+
+PNG をサポートしているかどうかの確認
+
+<?php >
+  if (imagetypes() &amp; IMG_PNG) {
+      echo "PNG をサポートしています";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

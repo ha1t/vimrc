@@ -1,0 +1,13 @@
+hw_api->dstanchors -- すべての対象アンカーの一覧を返す
+
+  array dstanchors(array parameter)~
+
+オブジェクトのすべての対象アンカーを取得します。
+
+{parameter} パラメータ配列には、必須要素
+'objectIdentifier'、オプションの要素 'attributeSelector' および
+'objectQuery' が含まれます。
+
+
+
+vim:ft=help:

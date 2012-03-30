@@ -1,0 +1,32 @@
+recode_string --
+コード変換指令に基づき文字列のコードを変換する
+
+  string recode_string(string request, string string)~
+
+コード変換指令 {request} に基づき文字列 {string}
+のコードを変換します。
+
+{request} 変換指令の型。
+
+{string} 変換する文字列。
+
+変換後の文字列、または変換指令を実行できない場合に
+FALSE を返します。
+
+基本的な |recode_string| の例
+
+<?php >
+  echo recode_string("us..flat", "The following character has a diacritical mark: &amp;aacute;");
+?>
+
+
+
+
+
+簡単なコード変換指令は、"lat1..iso646-de"
+のようになります。
+
+コード変換指令に関する詳細な手順に関しては、インストールされている
+GNU Recode のドキュメントも参照ください。
+
+vim:ft=help:

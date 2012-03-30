@@ -1,0 +1,8 @@
+PDF_encoding_set_char -- グリフ名や Unicode 値を追加する
+
+  bool PDF_encoding_set_char(resource pdfdoc, string encoding, int slot, string glyphname, int uv)~
+
+グリフ名や Unicode
+値を、カスタムエンコーディングに追加します。
+
+vim:ft=help:

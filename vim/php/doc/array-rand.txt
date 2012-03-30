@@ -1,0 +1,39 @@
+array_rand -- 配列から一つ以上の要素をランダムに取得する
+
+  mixed array_rand(array input [, int num_req])~
+
+|array_rand| は、
+配列から一つ以上のランダムなエントリを取得しようとする場合に有用です。
+
+{input} 入力の配列。
+
+{num_req} 取得するエントリの数を指定します。
+指定されない場合は、デフォルトの 1 になります。
+
+エントリを一つだけ取得する場合、 |array_rand|
+はランダムなエントリのキーを返します。
+その他の場合は、ランダムなエントリのキーの配列を返します。
+これにより、ランダムなキーを取得し、
+配列から値を取得することが可能になります。
+
+|array_rand| の例
+
+<?php >
+  srand((float) microtime() * 10000000);
+  $input = array("ネオ", "モーフィアス", "トリニティ", "サイファー", "タンク");
+  $rand_keys = array_rand($input, 2);
+  echo $input[$rand_keys[0]] . "\n";
+  echo $input[$rand_keys[1]] . "\n";
+?>
+
+
+
+
+
+PHP 4.2.0 以降、 |srand| または |mt_srand|
+によりランダム数生成器にシードを与える必要はありません。
+これは、この処理が自動的に行われるためです。
+
+|shuffle|
+
+vim:ft=help:

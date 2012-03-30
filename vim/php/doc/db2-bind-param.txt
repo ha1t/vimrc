@@ -1,0 +1,171 @@
+db2_bind_param -- PHP 変数を SQL 文のパラメータにバインドする
+
+  bool db2_bind_param(resource stmt, int parameter-number, string variable-name [, int parameter-type [, int data-type [, int precision [, int scale]]]])~
+
+|db2_prepare| が返したステートメントリソース内の SQL
+文のパラメータに PHP 変数をバインドします。 |db2_execute|
+へのオプション配列の一部として
+変数を渡すのに比べ、この関数を使用すると
+パラメータの型、データの型、精度、位取りなどの詳細を制御できるようになります。
+
+{stmt} |db2_prepare| が返すプリペアドステートメント。
+
+{parameter-number}
+プリペアドステートメントのパラメータの位置。 1
+から始まります。
+
+{variable-name} {parameter-number} で指定したパラメータに
+バインドする PHP 変数の名前を表す文字列。
+
+{parameter-type} A constant specifying whether the PHP variable should be
+bound to the PHP 変数を SQL パラメータにバインドする際に
+入力パラメータとするのか (DB2_PARAM_IN)
+出力パラメータとするのか (DB2_PARAM_OUT)
+あるいは入出力両方を許可するのか (DB2_PARAM_INOUT)
+を指定する定数。
+メモリのオーバーヘッドを避けるため、DB2_PARAM_FILE
+を指定して PHP 変数をファイルにバインドし、
+ファイルからラージオブジェクト (BLOB、CLOB あるいは
+DBCLOB) データを読み込むようにするすることも可能です。
+
+{data-type} PHP 変数をどの SQL
+データ型にバインドするのかを指定する定数。 DB2_BINARY、
+DB2_CHAR、DB2_DOUBLE あるいは DB2_LONG のうちのいずれか。
+
+{precision}
+変数をデータベースにバインドする際の精度を指定します。
+
+{scale}
+変数をデータベースにバインドする際の位取りを指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+PHP 変数をプリペアドステートメントにバインドする
+以下の例の SQL 文では、WHERE 句の中で 2
+つの入力パラメータを使用しています。 この 2
+つのパラメータに PHP 変数をバインドするために
+|db2_bind_param| をコールします。 |db2_bind_param|
+をコールする前に PHP
+変数を宣言したり代入したりする必要がないことに注意しましょう。
+この例では、$lower_limit については |db2_bind_param|
+がコールされる前に 値が代入されていますが、$upper_limit
+については |db2_bind_param|
+をコールした後で代入されています。 |db2_execute|
+をコールする前には、
+必ず変数をバインドしなければなりません。また、入力パラメータについては
+何らかの値を代入しておく必要があります。
+
+<?php >
+  $sql = 'SELECT name, breed, weight FROM animals
+      WHERE weight > ? AND weight < ?';
+  $conn = db2_connect($database, $user, $password);
+  $stmt = db2_prepare($conn, $sql);
+  
+  // db2_bind_param() のコール前に変数を宣言できます
+  $lower_limit = 1;
+  
+  db2_bind_param($stmt, 1, "lower_limit", DB2_PARAM_IN);
+  db2_bind_param($stmt, 2, "upper_limit", DB2_PARAM_IN);
+  
+  // また、db2_bind_param() をコールした後で変数を宣言することも可能です
+  $upper_limit = 15.0;
+  
+  if (db2_execute($stmt)) {
+      while ($row = db2_fetch_array($stmt)) {
+          print "{$row[0]}, {$row[1]}, {$row[2]}\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Pook, cat, 3.2
+  Rickety Ride, goat, 9.7
+  Peaches, dog, 12.3
+
+IN および OUT
+パラメータを使用したストアドプロシージャのコール
+以下の例のストアドプロシージャ match_animal は、 3
+つのさまざまなパラメータを受け取ります。
+最初の動物の名前を入力として受け取る 入力 (IN)
+パラメータ。
+
+2
+番目の動物の名前を入力として受け取り、その名前に一致する動物が
+データベースに存在する場合に文字列 TRUE を返す、入出力
+(INOUT) パラメータ。
+
+指定した 2 匹の動物の合計体重を返す、出力 (OUT)
+パラメータ。
+
+さらにこのストアドプロシージャは結果セットを返します。その内容は、
+最初のパラメータで指定した動物から 2
+番目のパラメータで指定した動物までの
+動物の一覧をアルファベット順に並べたものとなります。
+
+<?php >
+  $sql = 'CALL match_animal(?, ?, ?)';
+  $conn = db2_connect($database, $user, $password);
+  $stmt = db2_prepare($conn, $sql);
+  
+  $name = "Peaches";
+  $second_name = "Rickety Ride";
+  $weight = 0;
+  
+  db2_bind_param($stmt, 1, "name", DB2_PARAM_IN);
+  db2_bind_param($stmt, 2, "second_name", DB2_PARAM_INOUT);
+  db2_bind_param($stmt, 3, "weight", DB2_PARAM_OUT);
+  
+  print "コール前のバインド変数の値:\n";
+  print "  1: {$name} 2: {$second_name} 3: {$weight}\n\n";
+  
+  if (db2_execute($stmt)) {
+      print "コール後のバインド変数の値:\n";
+      print "  1: {$name} 2: {$second_name} 3: {$weight}\n\n";
+  
+      print "結果:\n";
+      while ($row = db2_fetch_array($stmt)) {
+          print "  {$row[0]}, {$row[1]}, {$row[2]}\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  コール前のバインド変数の値:
+    1: Peaches 2: Rickety Ride 3: 0
+  
+  コール後のバインド変数の値:
+    1: Peaches 2: TRUE 3: 22
+  
+  結果:
+    Peaches, dog, 12.3
+    Pook, cat, 3.2
+    Rickety Ride, goat, 9.7
+
+バイナリラージオブジェクト (BLOB)
+をファイルから直接挿入する
+ラージオブジェクトのデータは、通常は XML
+ドキュメントあるいは
+音声ファイルのようなファイルに保存されています。
+いったんファイルの内容を PHP 変数に読み込んだうえで SQL
+文にバインドする代わりに、ファイルを直接 sql
+文の入力パラメータに
+バインドすることでメモリのオーバーヘッドを避けることができます。
+以下の例で、BLOB
+カラムにファイルを直接バインドする方法を説明します。
+
+<?php >
+  $stmt = db2_prepare($conn, "INSERT INTO animal_pictures(picture) VALUES (?)");
+  
+  $picture = "/opt/albums/spook/grooming.jpg";
+  $rc = db2_bind_param($stmt, 1, "picture", DB2_PARAM_FILE);
+  $rc = db2_execute($stmt);
+?>
+
+
+
+|db2_execute| |db2_prepare|
+
+vim:ft=help:

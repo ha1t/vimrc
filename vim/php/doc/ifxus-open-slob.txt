@@ -1,0 +1,18 @@
+ifxus_open_slob -- SLOB オブジェクトをオープンする
+
+  int ifxus_open_slob(int bid, int mode)~
+
+SLOB オブジェクトをオープンします。 {bid} は存在する SLOB
+ID である必要があります。
+
+{bid} 既存の SLOB の ID。
+
+{mode} IFX_LO_RDONLY、 IFX_LO_WRONLY、IFX_LO_APPEND、
+IFX_LO_RDWR、IFX_LO_BUFFER、 IFX_LO_NOBUFFER の組み合わせ。
+
+新しい SLOB オブジェクトの ID、あるいはエラー時に FALSE
+を返します。
+
+|ifxus_close_slob| |ifxus_free_slob|
+
+vim:ft=help:

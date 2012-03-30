@@ -1,0 +1,34 @@
+defined -- 指定した名前の定数が存在するかどうかを調べる
+
+  bool defined(string name)~
+
+指定した定数が存在し、定義されているかどうかを調べます。
+
+変数が存在するかどうかを知りたければ、|isset|
+を利用してください。|defined| は
+定数にしか適用できません。
+関数が存在するかどうかを知りたければ、 |function_exists|
+を利用してください。
+
+{name} 定数名。
+
+{name} で指定した名前の定数が定義されている 場合に
+TRUE、その他の場合にFALSEを返します。
+
+定数のチェック
+
+<?php >
+  /* 引用符の使い方に注意してください。これは重要です。この例では
+   * 文字列 'CONSTANT' が、定数 CONSTANT の名前かどうかを調べています。*/
+  if (defined('CONSTANT')) {
+      echo CONSTANT;
+  }
+?>
+
+
+
+
+
+|define| |constant| |get_defined_constants| |function_exists| 定数の節
+
+vim:ft=help:

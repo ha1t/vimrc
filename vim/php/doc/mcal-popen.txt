@@ -1,0 +1,22 @@
+mcal_popen -- 永続的な MCAL 接続をオープンする
+
+  int mcal_popen(string calendar, string username, string password [, int options])~
+
+|mcal_popen| は、指定した {calendar}
+が保存しているMCAL接続をオープンします。
+
+内部イベント構造体のストリームも接続時に初期化されます。
+
+{calendar} MCAL カレンダ。
+
+{username} MCAL ユーザ名。
+
+{password} MCAL パスワード。
+
+{options} オプションの {options} が指定された場合、 {options}
+をメールボックスにも渡します。
+
+成功時に MCAL ストリームを、エラー時に FALSE
+を返します。
+
+vim:ft=help:

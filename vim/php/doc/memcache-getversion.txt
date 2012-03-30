@@ -1,0 +1,31 @@
+Memcache::getVersion -- サーバのバージョンを返す
+
+  string Memcache::getVersion()~
+
+|Memcache::getVersion| は、サーバのバージョン番号を
+文字列で返します。 |memcache_get_version|
+関数を使用することも可能です。
+
+バージョン番号を表す文字列を返します。
+失敗した場合は FALSE を返します。
+
+|Memcache::getVersion| の例
+
+<?php >
+  /* オブジェクト指向の API */
+  $memcache = new Memcache;
+  $memcache->connect('memcache_host', 11211);
+  echo $memcache->getVersion();
+  
+  /* 手続き型の API */
+  $memcache = memcache_connect('memcache_host', 11211);
+  echo memcache_get_version($memcache);
+?>
+
+
+
+
+
+|Memcache::getExtendedStats| |Memcache::getStats|
+
+vim:ft=help:

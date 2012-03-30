@@ -1,0 +1,32 @@
+printer_create_pen -- 新規ペンを作成する
+
+  resource printer_create_pen(int style, int width, string color)~
+
+この関数は、新しいペンを作成してそのハンドルを返します。作成したペンは、
+直線や曲線を描く際に使用されます。使用例は
+|printer_select_pen| を参照ください。
+
+{style} {style} は、以下の定数のうちのいずれかで
+ある必要があります。 PRINTER_PEN_SOLID:
+実線のペンを作成します。
+
+PRINTER_PEN_DASH: 破線のペンを作成します。
+
+PRINTER_PEN_DOT: 点線のペンを作成します。
+
+PRINTER_PEN_DASHDOT:
+ダッシュとドットで構成されるペンを作成します。
+
+PRINTER_PEN_DASHDOTDOT: ダッシュと 2
+つのドットで構成されるペンを作成します。
+
+PRINTER_PEN_INVISIBLE: 不可視のペンを作成します。
+
+{width} {width} はペンの幅を指定しす。
+
+{color} {color} は RGB 16 進フォーマットである必要が
+あります。たとえば黒は "000000" となります。
+
+Returns a pen handle or FALSE on error.
+
+vim:ft=help:

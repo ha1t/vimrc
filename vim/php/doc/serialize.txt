@@ -1,0 +1,63 @@
+serialize -- 値の保存可能な表現を生成する
+
+  string serialize(mixed value)~
+
+値の保存可能な表現を生成します。
+
+型や構造を失わずに PHP
+の値を保存または渡す際に有用です。
+
+シリアル化された文字列を PHP の値に戻すには、
+|unserialize| を使用してください。
+
+{value} シリアル化する値。 |serialize| は、resource
+以外の全ての型を処理します。自分自身への参照を含む配列を
+|serialize| することも可能です。 |serialize|
+している配列/オブジェクト内の
+循環参照も保存されます。その他の参照は失われます。
+
+PHP は、シリアル化の前にまずメンバ関数 __sleep
+のコールを試みます。ここで、シリアル化の前のオブジェクトの後始末処理
+などを行います。同様に、|unserialize| で
+オブジェクトを復元した際にはメンバ関数 __wakeup
+がコールされます。
+
+{value}
+の保存可能なバイトストリーム表現を含む文字列を返します。
+
+|serialize| の例
+
+<?php >
+  // $session_data はカレントユーザーのセッション情報を含む多次元配列を
+  // 保持しています。リクエストの最後にこれをデータベースに保存するために
+  // serialize() を使用します。
+  
+  $conn = odbc_connect("webdb", "php", "chicken");
+  $stmt = odbc_prepare($conn,
+        "UPDATE sessions SET data = ? WHERE id = ?");
+  $sqldata = array (serialize($session_data), $_SERVER['PHP_AUTH_USER']);
+  if (!odbc_execute($stmt, &amp;$sqldata)) {
+      $stmt = odbc_prepare($conn,
+       "INSERT INTO sessions (id, data) VALUES(?, ?)");
+      if (!odbc_execute($stmt, &$sqldata)) {
+          /* 何か問題があったようです.. */
+      }
+  }
+?>
+
+
+
+
+
+バージョン 説明 4.0.7
+オブジェクトのシリアル化処理の問題が修正されました。
+4.0.0
+オブジェクトをシリアル化しても、メソッドが失われなくなりました。
+詳細は オブジェクトのシリアル化 を参照ください。
+
+PHP
+の組み込みオブジェクトをシリアル化することはできません。
+
+|unserialize| オブジェクトのシリアル化
+
+vim:ft=help:

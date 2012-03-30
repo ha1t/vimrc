@@ -1,0 +1,10 @@
+fdf_add_template -- テンプレートを FDF
+ドキュメントに追加する
+
+  bool fdf_add_template(resource fdf_document, int newpage, string filename, string template, int rename)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

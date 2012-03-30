@@ -1,0 +1,8 @@
+PDF_get_errmsg -- エラーテキストを取得する
+
+  string PDF_get_errmsg(resource pdfdoc)~
+
+直近で発生した例外のテキストや、関数コールが失敗した理由の
+テキストを取得します。
+
+vim:ft=help:

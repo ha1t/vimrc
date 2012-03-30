@@ -1,0 +1,13 @@
+fdf_set_on_import_javascript -- Acrobat が FDF
+をオープンした際に実行される javascript
+のコードを追加する
+
+  bool fdf_set_on_import_javascript(resource fdf_document, string script, bool before_data_import)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+|fdf_add_doc_javascript| |fdf_set_javascript_action|
+
+vim:ft=help:

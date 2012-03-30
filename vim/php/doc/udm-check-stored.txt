@@ -1,0 +1,11 @@
+udm_check_stored -- 保存された接続を調べる
+
+  int udm_check_stored(resource agent, int link, string doc_id)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

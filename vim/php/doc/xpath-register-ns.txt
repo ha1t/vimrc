@@ -1,0 +1,15 @@
+xpath_register_ns -- 与えられた XPath
+コンテキストに与えられた名前空間を登録する
+
+  bool xpath_register_ns(XPathContext xpath_context, string prefix, string uri)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|xpath_register_ns_auto|
+
+vim:ft=help:

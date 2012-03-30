@@ -1,0 +1,108 @@
+DomNode->append_child --
+子ノードの最後に新規に子ノードを追加する
+
+  DOMNode append_child(DOMNode newnode)~
+
+この関数は既存の子ノードに子ノードを追加する、
+もしくは新規子ノードを作成します。
+
+{newnode} 追加するノード。これには、例えば ,
+など、もしくは単純にあらゆる他のノードによって作成されたノードを
+指定することが可能です。
+
+このメソッドを使用して DOMAttribute
+を追加することはできません。代わりに
+を使用してください。
+
+成功時は追加されたノード、失敗時は FALSE を返します。
+
+バージョン 説明 4.3.0
+他の文章からのノードを挿入することは、もはや許可されません。
+4.3.0 PHP 4.3.0
+以前では、新規子ノードは追加する前に複製されます。
+そのため、新規子ノードは完全に新しいコピーとなります。これは、
+この関数に渡されたノードを変更することなしに修正することが可能です。
+渡されたノードが子ノード自身の場合うまくコピーされますので、
+XML
+文章の大きな部位を簡単にコピーすることができます。
+戻り値は追加された子ノードです。
+もし追加された子ノードを変更するつもりであれば、
+返されたノードを使用する必要があります。 4.3.0 と 4.3.1
+新規子ノード {newnode} がすでに DomNode
+の子ノードである場合、最初に既存のコンテキストから削除されます。
+そのため、{newnode} は移動され、
+コピーされません。この動作は W3C
+規格に準じるものです。
+もし古い動作をさせる必要がある場合、追加ではなく
+を使用してください。 4.3.2 新規子ノード {newnode}
+がすでにツリーにある場合、
+最初に既存のコンテキストから削除されます。同じ規則が適用されます。
+
+以下の例は新規ドキュメントに新規要素ノードを追加し、
+属性 align を left に設定します。
+
+子ノードを追加する
+
+<?php >
+  $doc = domxml_new_doc("1.0");
+  $node = $doc->create_element("para");
+  $newnode = $doc->append_child($node);
+  $newnode->set_attribute("align", "left");
+?>
+
+
+
+
+
+上記の例は、以下のようにも書くことができました:
+
+子ノードを追加する
+
+<?php >
+  $doc = domxml_new_doc("1.0");
+  $node = $doc->create_element("para");
+  $node->set_attribute("align", "left");
+  $newnode = $doc->append_child($node);
+?>
+
+
+
+
+
+より複雑な例は以下の通りです。最初に特定の要素を検索し、
+子を含むノードを複製し、兄弟ノードとして追加します。
+最後に新規属性を新規兄弟ノード能古ノードの一つに追加し、
+文章全体をダンプします。
+
+子ノードを追加する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+    echo "Error while parsing the document\n";
+    exit;
+  }
+  
+  $elements = $dom->get_elements_by_tagname("informaltable");
+  print_r($elements);
+  $element = $elements[0];
+  
+  $parent = $element->parent_node();
+  $newnode = $parent->append_child($element);
+  $children = $newnode->children();
+  $attr = $children[1]->set_attribute("align", "left");
+  
+  $xmlfile = $dom->dump_mem();
+  echo htmlentities($xmlfile);
+?>
+
+
+
+
+
+上記の例は の代わりに を用いても動作します。
+
+を使用してください。
+
+vim:ft=help:

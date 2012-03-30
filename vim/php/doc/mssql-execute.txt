@@ -1,0 +1,22 @@
+mssql_execute -- MS SQL
+サーバデータベースでストアドプロシージャを実行する
+
+  mixed mssql_execute(resource stmt [, bool skip_results])~
+
+MS SQL
+サーバデータベースでストアドプロシージャを実行します。
+
+{stmt} |mssql_init| で取得したステートメントハンドル.
+
+{skip_results}
+
+ストアドプロシージャが返すパラメータや返り値は、ストアドプロシージャが
+複数の結果セットを返す場合を除いて |mssql_execute|
+のコール後に使用可能となります。複数の結果セットを返す場合は
+|mssql_next_result| を使用して結果に移動します。
+最後の結果セットが処理されてはじめてパラメータや返り値が使用可能と
+なります。
+
+|mssql_bind| |mssql_free_statement| |mssql_init|
+
+vim:ft=help:

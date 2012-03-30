@@ -1,0 +1,44 @@
+Swish->getPropertyList --
+このインデックスのプロパティ一覧を取得する
+
+  array Swish->getPropertyList(string index_name)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{index_name} インデックスファイルの名前。
+
+指定したインデックスのプロパティ一覧を配列で返します。
+
+基本的な |Swish->getPropertyList| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $properties = $swish->getPropertyList("index.swish-e");
+      foreach ($properties as $prop) {
+          echo $prop["Name"],"\n";
+      }
+  
+  } catch (SwishException $e) {
+      echo $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  swishreccount
+  swishrank
+  swishfilenum
+  swishdbfile
+  swishdocpath
+  swishtitle
+  swishdocsize
+  swishlastmodified
+
+
+
+vim:ft=help:

@@ -1,0 +1,33 @@
+ssh2_auth_none -- "none" として認証する
+
+  mixed ssh2_auth_none(resource session, string username)~
+
+通常失敗する（そしてそうあるべき）"none"
+認証を試みます。
+失敗の一環として、サーバは可能な認証メソッドの一覧を返します。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{username} リモートのユーザ名。
+
+もしサーバが {username} に対する認証メソッドとして "none"
+を受け入れる場合、この関数は単純に TRUE を返します。
+
+認証メソッドの一覧の取得
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  
+  $auth_methods = ssh2_auth_none($connection, 'user');
+  
+  if (in_array('password', $auth_methods)) {
+    echo "Server supports password based authentication\n";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

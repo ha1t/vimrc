@@ -1,0 +1,12 @@
+radius_strerror -- エラーメッセージを返す
+
+  string radius_strerror(resource radius_handle)~
+
+Radius
+関数が失敗した場合にはエラーメッセージが記録されます。
+この関数により、エラーメッセージを取得することが可能となります。
+
+失敗した radius
+関数からのエラーメッセージを文字列で返します。
+
+vim:ft=help:

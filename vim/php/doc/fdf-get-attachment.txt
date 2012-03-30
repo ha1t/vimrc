@@ -1,0 +1,43 @@
+fdf_get_attachment -- FDF
+に埋め込まれている、アップロードされたファイルを展開する
+
+  array fdf_get_attachment(resource fdf_document, string fieldname, string savepath)~
+
+「ファイル選択」フィールド {fieldname} によって
+アップロードされたファイルを展開し、それを {savepath}
+に保存します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{fieldname}
+
+{savepath}
+ファイル名または既存のディレクトリ名を指定し、ディレクトリ名を
+指定した場合はその下に元のファイル名で保存されます。
+同名のファイルが存在した場合は上書きします。
+
+{savepath} にディレクトリを使用してファイルを
+保存してその名前を調べる以外には、元のファイル名を知る方法はないと
+思われます。
+
+返される配列は以下のようなフィールドを保持します。
+{path} - ファイルが保存された場所
+
+{size} - 保存されたファイルのバイト数
+
+{type} - (もし FDF 指定されていた場合) FDF の mimetype
+
+アップロードされたファイルを保存する
+
+<?php >
+    $fdf = fdf_open_string($HTTP_FDF_DATA);
+    $data = fdf_get_attachment($fdf, "filename", "/tmpdir");
+    echo "アップロードされたファイルが $data[path] に保存されました。";
+?>
+
+
+
+
+
+vim:ft=help:

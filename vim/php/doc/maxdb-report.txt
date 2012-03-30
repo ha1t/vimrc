@@ -1,0 +1,34 @@
+maxdb_report --
+内部のレポート関数を有効あるいは無効にする
+
+  bool maxdb_report(int flags)~
+
+手続き型
+
+<?php >
+  /* レポートを有効にします */
+  maxdb_report(MAXDB_REPORT_ERROR);
+  
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* このクエリはエラーを報告します */
+  $result = maxdb_query($link,"SELECT Name FROM Nonexistingtable WHERE population > 50000");
+  
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Warning: maxdb_query(): -4004 POS(18) Unknown table name:NONEXISTINGTABLE <...>
+
+vim:ft=help:

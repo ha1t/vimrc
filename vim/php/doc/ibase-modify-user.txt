@@ -1,0 +1,19 @@
+ibase_modify_user --
+セキュリティデータベースのユーザを変更する(IB6
+以降のみ)
+
+  bool ibase_modify_user(resource service_handle, string user_name, string password [, string first_name [, string middle_name [, string last_name]]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+PHP 4 では、{service_handle} パラメータのかわりに {server}、
+{dba_user_name} および {dba_user_password} を使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_add_user| |ibase_delete_user|
+
+vim:ft=help:

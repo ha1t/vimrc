@@ -1,0 +1,38 @@
+bcompiler_read --
+ファイルハンドルを読み込み、クラスを生成する
+
+  bool bcompiler_read(resource filehandle)~
+
+開いているファイルハンドルからデータを読み込み、バイトコードからクラスを生成します。
+
+{filehandle} |fopen| が返すファイルハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_read| の例
+
+<?php >
+  $fh = fopen("/tmp/example","r");
+  bcompiler_read($fh);
+  fclose($fh);
+  print_r(get_defined_classes());
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+バイトコードをパースするには、include 文や require 文を
+使用してください。この関数を使用するよりも、そのほうが
+より移植性が高く便利です。
+
+この関数は、バイトコードファイルに含まれるスクリプト本体のコードを
+実行するわけではないことに注意しましょう。
+
+vim:ft=help:

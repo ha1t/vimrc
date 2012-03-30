@@ -1,0 +1,17 @@
+ncurses_color_content -- 色の RGB 値を取得する
+
+  int ncurses_color_content(int color, int r, int g, int b)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{color}
+
+{r}
+
+{g}
+
+{b}
+
+vim:ft=help:

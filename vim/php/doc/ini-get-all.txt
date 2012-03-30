@@ -1,0 +1,56 @@
+ini_get_all -- 全ての設定オプションを得る
+
+  array ini_get_all([string extension])~
+
+すべての登録済み設定オプションを返します。
+
+{extension}
+オプションで指定する拡張モジュール名。指定した場合は、
+その拡張モジュールに関するオプションのみを返します。
+
+返される配列ではキーとしてディレクティブの名前が使用されています。
+配列の要素には、 global_value(php.iniで設定されている)、
+local_value(おそらく|ini_set|または
+.htaccessでセットされている)、access(アクセスレベル)
+の配列が入ります。
+アクセスレベルの意味についてはマニュアルの
+設定を変更するには をご覧ください。
+
+ディレクティブに複数のアクセスレベルを設定することができます。
+それが、access
+が妥当なビットマスク値を持っている理由です。
+
+|ini_get_all| の例
+
+<?php >
+  $inis = ini_get_all();
+  
+  print_r($inis);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [allow_call_time_pass_reference] => Array
+      (
+          [global_value] => 1
+          [local_value] => 1
+          [access] => 6
+      )
+      [allow_url_fopen] => Array
+      (
+          [global_value] => 1
+          [local_value] => 1
+          [access] => 7
+      )
+  
+      ...
+  
+  )
+
+
+
+|ini_get| |ini_restore| |ini_set| |get_loaded_extensions| |phpinfo|
+
+vim:ft=help:

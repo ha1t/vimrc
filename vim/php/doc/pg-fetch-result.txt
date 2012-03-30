@@ -1,0 +1,54 @@
+pg_fetch_result -- 結果リソースから値を返す
+
+  string pg_fetch_result(resource result, int row, mixed field)~
+
+  string pg_fetch_result(resource result, int row, mixed field, resource result, mixed field)~
+
+|pg_fetch_result| は、PostgreSQL 結果リソースから
+特定の行とフィールド（カラム）の値を返します。
+
+この関数は、以前は |pg_result| という名前でした。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{row} 結果から取得する行の番号。行番号は 0
+から始まります。指定しなかった
+場合は、次の行が読み込まれます。
+
+{field}
+取得するフィールド（カラム）の名前を表す文字列、あるいは取得する
+フィールドの番号。フィールド番号は 0 から始まります。
+
+論理型の値は "t" あるいは "f" の形式で返します。
+配列を含むそれ以外の型は、PostgreSQL
+のやりかたにしたがって文字列として
+フォーマットされた形式で返します。これは psql
+プログラムの出力と同じ形式です。データベースの NULL
+値は、NULL として返します。
+
+{row} が結果の行数より大きい場合、
+あるいはそれ以外のエラーが発生した場合は FALSE
+を返します。
+
+|pg_fetch_result| の例
+
+<?php >
+  $db = pg_connect("dbname=users user=me") || die();
+  
+  $res = pg_query($db, "SELECT 1 UNION ALL SELECT 2");
+  
+  $val = pg_fetch_result($res, 1, 0);
+  
+  echo "First field in the second row is: ", $val, "\n";
+?>
+
+上の例の出力は以下となります。
+
+  First field in the second row is: 2
+
+
+
+|pg_query| |pg_fetch_array|
+
+vim:ft=help:

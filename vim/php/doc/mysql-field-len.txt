@@ -1,0 +1,41 @@
+mysql_field_len -- 指定したフィールドの長さを返す
+
+  int mysql_field_len(resource result, int field_offset)~
+
+|mysql_field_len|は指定したフィールドの長さを 返します。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset} は 0
+から始まります。 {field_offset} が存在しない場合、 E_WARNING
+レベルのエラーが発行されます。
+
+成功した場合には指定したフィールドの長さ、失敗した場合に
+FALSE を返します。
+
+|mysql_field_len| の例
+
+<?php >
+  $result = mysql_query("SELECT id,email FROM people WHERE id = '42'");
+  if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
+      exit;
+  }
+  
+  // データベーススキーマで定義されている、id フィールドの
+  // 長さを取得する
+  $length = mysql_field_len($result, 0);
+  echo $length;
+?>
+
+
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_fieldlen|
+
+|mysql_fetch_lengths| |strlen|
+
+vim:ft=help:

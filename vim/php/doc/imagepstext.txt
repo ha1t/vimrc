@@ -1,0 +1,66 @@
+imagepstext -- PostScript Type1
+フォントを用いて画像の上に文字列を描く
+
+  array imagepstext(resource image, string text, resource font, int size, int foreground, int background, int x, int y [, int space [, int tightness [, float angle [, int antialias_steps]]]])~
+
+PostScript Type1
+フォントを使用して、画像の上にテキストを描画します。
+
+動作に関して不明な場合は、フォント及びその測り方に関する
+PostScipt ドキュメントを参照ください。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{text} 書き出すテキスト。
+
+{ font}latin2
+エンコーディングの組み込みのフォントの場合は 1, 2, 3, 4,
+5 のいずれか
+(数字が大きなほうが、より大きいフォントに対応します)、
+あるいは |imageloadfont|
+で登録したフォントの識別子のいずれか。
+
+{size} {size} はピクセルで表します。
+
+{foreground} テキストの色。
+
+{background} アンチエイリアス時にフェードアウトする色。
+{background} 色のピクセルは描画されないので、
+背景画像が無地である必要はありません。
+
+{x} 最初の文字の左下隅の x 座標。
+
+{y} 最初の文字の左下隅の y 座標。
+
+{space}
+フォントが占める空間のデフォルト値を変更することが可能です。
+この値が元の値に付加されます。また、負の値とすることも可能です。
+文字間隔の単位で表され、1 単位が文字矩形の 1/1000
+となります。
+
+{tightness} {tightness}
+により文字間の空白の量を制御できます。
+この量は元の文字幅に追加され、負の値とすることも可能です。
+文字間隔の単位で表され、1 単位が文字矩形の 1/1000
+となります。
+
+{angle} {angle} は、度で表します。
+
+{antialias_steps} {antialias_steps} によりアンチエイリアスを行
+うテキストの色数を制御することが可能です。指定できるのは
+4 および 16 です。 20
+より小さな大きさのテキストには、見易くするために大きい方を推奨します。
+より大きなフォントでは、計算負荷がより少ない 4
+を使用してください。
+
+この関数は、以下の要素からなる配列を返します。 0
+左下の x 座標 1 左下の y 座標 2 右上の x 座標 3 右上の y
+座標
+
+この関数は、PHP が --with-t1lib
+を指定してコンパイルされている場合のみ使用可能です。
+
+|imagepsbbox|
+
+vim:ft=help:

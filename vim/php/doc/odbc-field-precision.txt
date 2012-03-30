@@ -1,0 +1,7 @@
+odbc_field_precision -- odbc_field_len のエイリアス
+
+この関数は次の関数のエイリアスです。 |odbc_field_len|.
+
+浮動小数点の精度を得るには |odbc_field_scale|
+
+vim:ft=help:

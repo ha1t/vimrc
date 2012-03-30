@@ -1,0 +1,26 @@
+openssl_public_decrypt -- 公開鍵でデータを復号する
+
+  bool openssl_public_decrypt(string data, string decrypted, mixed key [, int padding])~
+
+|openssl_public_decrypt| は、事前に |openssl_private_encrypt|
+で暗号化された {data} を復号し、それを {decrypted}
+に格納します。
+
+これを使用するのは、例えばメッセージの作者が秘密鍵の所有者であるかどうかを調べる場合です。
+
+{data}
+
+{decrypted}
+
+{key} {key} は、
+データの暗号化に使用したものに対応する公開鍵である必要があります。
+
+{padding} {padding} のデフォルトは OPENSSL_PKCS1_PADDING ですが、
+これ以外にも OPENSSL_NO_PADDING が指定可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openssl_private_encrypt| |openssl_private_decrypt|
+
+vim:ft=help:

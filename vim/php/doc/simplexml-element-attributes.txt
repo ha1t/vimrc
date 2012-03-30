@@ -1,0 +1,40 @@
+SimpleXMLElement->attributes() -- 要素の属性を定義する
+
+  SimpleXMLElement attributes([string ns [, bool is_prefix]])~
+
+この関数は、XMLタグの中で定義された属性とその値を取得します。
+
+SimpleXML
+では、ほとんどのメソッドに反復処理を追加するための手順が定義されています。
+これらは、|var_dump| やオブジェクトを評価する他の手段で
+見ることはできません。
+
+{ns} オプションで指定する、取得した属性の名前空間。
+
+{is_prefix} デフォルトは FALSE。
+
+
+
+XML文字列を解釈する
+
+<?php >
+  $string = <<<XML
+  <a xmlns:b>
+   <foo name="one" game="lonely">1</foo>
+  </a>
+  XML;
+  
+  $xml = simplexml_load_string($string);
+  foreach($xml->foo[0]->attributes() as $a => $b) {
+      echo $a,'="',$b,"\"\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  name="one"
+  game="lonely"
+
+
+
+vim:ft=help:

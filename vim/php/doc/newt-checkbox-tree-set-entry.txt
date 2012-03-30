@@ -1,0 +1,17 @@
+newt_checkbox_tree_set_entry --
+
+  void newt_checkbox_tree_set_entry(resource checkboxtree, mixed data, string text)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{checkboxtree}
+
+{data}
+
+{text}
+
+値を返しません。
+
+vim:ft=help:

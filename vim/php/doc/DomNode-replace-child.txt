@@ -1,0 +1,22 @@
+DomNode->replace_child -- 子ノードを置換する
+
+  domelement DomNode->replace_child(domelement newnode, domelement oldnode)~
+
+(PHP 4.2) この関数は子ノード {oldnode}
+を渡された新規ノードに置換します。もし新規ノードがすでに子ノードの場合、
+二度目は追加されません。もし古いノードが存在しない場合、
+この関数は FALSE を返します。もし置換が成功した場合、
+古いノードが返されます。
+
+(PHP 4.3) この関数は新規ノードがすでに DomNode
+の子ノードだったとしても、 子ノード {oldnode} を渡された
+{newnode} に置換します。 もし {newnode}
+ガスでに文章に挿入されている場合、
+最初に既存のコンテキストから削除されます。
+もし古いノードが存在しない場合、この関数は FALSE
+を返し、 置換が成功した場合は古いノードが返されます
+(この動作は W3C 規格に準拠しています。)
+
+|domnode_append_child| も参照ください。
+
+vim:ft=help:

@@ -1,0 +1,31 @@
+array_values -- 配列の全ての値を返す
+
+  array array_values(array input)~
+
+|array_values| は、配列 {input}
+から全ての値を取り出し、数値添字をつけた配列を返します。
+
+{input} 配列。
+
+数値添字の値の配列を返します。
+
+|array_values| の例
+
+<?php >
+  $array = array("size" => "XL", "color" => "gold");
+  print_r(array_values($array));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => XL
+      [1] => gold
+  )
+
+
+
+|array_keys|
+
+vim:ft=help:

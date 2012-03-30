@@ -1,0 +1,13 @@
+oci_cancel -- カーソルからの読み込みをキャンセルする
+
+  bool oci_cancel(resource statement)~
+
+カーソルを無効にして関連付けられた全てのリソースを開放し、
+読み込みをキャンセルします。
+
+{statement} OCI ステートメント
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

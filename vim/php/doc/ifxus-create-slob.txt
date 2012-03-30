@@ -1,0 +1,15 @@
+ifxus_create_slob -- SLOB オブジェクトを作成し、オープンする
+
+  int ifxus_create_slob(int mode)~
+
+SLOB オブジェクトを作成し、オープンします。
+
+{mode} IFX_LO_RDONLY、 IFX_LO_WRONLY、IFX_LO_APPEND、
+IFX_LO_RDWR、IFX_LO_BUFFER、 IFX_LO_NOBUFFER の組み合わせ。
+
+新しい SLOB オブジェクトの ID、あるいはエラー時に FALSE
+を返します。
+
+|ifxus_close_slob| |ifxus_free_slob|
+
+vim:ft=help:

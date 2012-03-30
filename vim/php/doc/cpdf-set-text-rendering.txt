@@ -1,0 +1,20 @@
+cpdf_set_text_rendering -- テキストのレンダリング法を定義する
+
+  bool cpdf_set_text_rendering(int pdf_document, int rendermode)~
+
+テキストのレンダリング方法を指定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{rendermode} {mode} で使用可能な値は、
+0=塗りつぶす、1=輪郭を描く、2=塗りつぶし輪郭を描く、3=不可視、
+4=塗りつぶしクリッピングパスに追加、5=輪郭を描いてクリッピングパスに
+追加、6=塗りつぶし輪郭を描いてクリッピングパスに追加、
+7=クリッピングパスに追加です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_text_matrix| |cpdf_set_text_rise|
+
+vim:ft=help:

@@ -1,0 +1,35 @@
+mcrypt_get_key_size -- 指定した暗号のキーの長さを得る
+
+  int mcrypt_get_key_size(int cipher)~
+
+  int mcrypt_get_key_size(int cipher, string cipher, string module)~
+
+最初のプロトタイプは libmcrypt 2.2.x
+とリンクした場合であり、2 番目の ものは libmcrypt 2.4.x
+あるいは 2.5.x とリンクした場合です。
+
+|mcrypt_get_key_size| は、 {cipher}
+で(暗号化モードとあわせて)指定した
+キーの長さを得るために使用されます。
+
+この例では、libmcrypt 2.4.x および 2.5.x とリンクした場合の
+この関数の使用法を示します。 |mcrypt_enc_get_key_size|
+関数を使用するほうが より有用です。これは
+|mcrypt_module_open| が返すリソースを使用します。
+|mcrypt_get_block_size| の例
+
+<?php >
+      echo mcrypt_get_key_size('tripledes', 'ecb');
+?>
+  
+  Prints:
+  24
+
+
+
+
+
+|mcrypt_get_block_size|、 |mcrypt_end_get_key_size| および
+|mcrypt_encrypt| も参照ください。
+
+vim:ft=help:

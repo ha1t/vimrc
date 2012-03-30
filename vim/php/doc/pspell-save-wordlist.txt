@@ -1,0 +1,35 @@
+pspell_save_wordlist -- 個人の単語リストをファイルに保存する
+
+  bool pspell_save_wordlist(int dictionary_link)~
+
+|pspell_save_wordlist| は、
+現在のセッションから個人の単語リストを保存します。
+ファイルの位置は |pspell_config_personal|
+および(オプションで) |pspell_config_repl|
+で指定されている必要があります。
+
+{dictionary_link} |pspell_new_personal| でオープンした辞書リンク
+ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pspell_add_to_personal|
+
+<?php >
+  $pspell_config = pspell_config_create("en");
+  pspell_config_personal($pspell_config, "/tmp/dicts/newdict");
+  $pspell_link = pspell_new_config($pspell_config);
+  
+  pspell_add_to_personal($pspell_link, "Vlad");
+  pspell_save_wordlist($pspell_link);
+?>
+
+
+
+
+
+この関数は、pspell .11.2 および aspell .32.5
+以降がない限り動作しないことに注意してください。
+
+vim:ft=help:

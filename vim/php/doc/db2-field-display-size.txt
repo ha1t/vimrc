@@ -1,0 +1,22 @@
+db2_field_display_size --
+カラムを表示するために必要な最大のバイト数を返す
+
+  int db2_field_display_size(resource stmt, mixed column)~
+
+結果セット内のカラムを表示するために必要な最大のバイト数を返す
+
+{stmt}
+結果セットを含むステートメントリソースを指定します。
+
+{column} 結果セット内のカラムを指定します。0
+から始まるインデックス、
+あるいはカラム名を表す文字列のいずれかが使用可能です。
+
+指定したカラムを表示するために必要な最大バイト数を表す整数値を返します。
+結果セット内にそのカラムが存在しない場合には、
+|db2_field_display_size| は FALSE を返します。
+
+|db2_field_name| |db2_field_num| |db2_field_precision| |db2_field_scale|
+|db2_field_type| |db2_field_width|
+
+vim:ft=help:

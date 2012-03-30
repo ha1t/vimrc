@@ -1,0 +1,23 @@
+yaz_element -- 取得時の要素集合の名前を指定する
+
+  bool yaz_element(resource id, string elementset)~
+
+この関数は、取得時の要素集合の名前を指定します。
+
+この関数は、|yaz_search| あるいは |yaz_present|
+をコールする前に、
+取得するレコードの要素集合の名前を指定するために使用します。
+
+この関数が動作していないように見える場合は、
+|yaz_connect| の piggybacking オプションについての説明を
+参照ください。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{elementset} ほとんどのサーバは、 F（完全版）および
+B（短縮版） をサポートします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

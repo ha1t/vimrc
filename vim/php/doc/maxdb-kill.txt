@@ -1,0 +1,83 @@
+maxdb->kill -- MaxDB サーバから切断する
+
+手続き型
+
+  bool maxdb_kill(resource link, int processid)~
+
+オブジェクト指向型 (メソッド)
+
+  bool kill(resource link, int processid, int processid)~
+
+この関数は、{processid} で指定した MaxDB
+サーバから切断するために使用されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* スレッド ID を調べます */
+  $thread_id = $maxdb->thread_id;
+  
+  /* 接続を殺します */
+  $maxdb->kill($thread_id);
+  
+  /* これは、エラーとなります */
+  if (!$maxdb->query("CREATE TABLE myCity LIKE City")) {
+     printf("エラー: %s\n", $maxdb->error);
+     exit;
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* スレッド ID を調べます */
+  $thread_id = maxdb_thread_id($link);
+  
+  /* 接続を殺します */
+  maxdb_kill($link, $thread_id);
+  
+  /* これは、エラーとなります */
+  if (!maxdb_query($link, "CREATE TABLE myCity LIKE City")) {
+     printf("エラー: %s\n", maxdb_error($link));
+     exit;
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  エラー: Session not connected
+
+|maxdb_thread_id|
+
+vim:ft=help:

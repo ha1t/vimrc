@@ -1,0 +1,25 @@
+stmt->close_long_data -- maxdb_stmt_send_long_data
+のシーケンスを終了する
+
+手続き型
+
+  bool maxdb_stmt_close_long_data(resource stmt, int param_nr)~
+
+オブジェクト指向型 (メソッド)
+
+  bool maxdb_stmt->close_long_data(resource stmt, int param_nr)~
+
+この関数は、|maxdb_execute| で開始した後、
+|maxdb_stmt_send_long_data|
+のシーケンスの後にコールする必要があります。
+
+{param_nr} は、
+データの最後にどのパラメータを関連付けるかを示します。
+パラメータは、0 番から順に番号がつけられます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|maxdb_prepare| |maxdb_stmt_bind_param|
+
+vim:ft=help:

@@ -1,0 +1,18 @@
+hebrev -- 論理表記のヘブライ語を物理表記に変換する
+
+  string hebrev(string hebrew_text [, int max_chars_per_line])~
+
+論理表記のヘブライ語を物理表記に変換します。
+
+この関数は、単語の分断をできるだけ回避しようとします。
+
+{hebrew_text} ヘブライ語の入力文字列。
+
+{max_chars_per_line} このオプションのパラメータは、
+出力される行毎の最大文字数を返します。
+
+物理表記の文字列を返します。
+
+|hebrevc|
+
+vim:ft=help:

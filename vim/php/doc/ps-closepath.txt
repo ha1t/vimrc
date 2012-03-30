@@ -1,0 +1,15 @@
+ps_closepath -- パスを閉じる
+
+  bool ps_closepath(resource psdoc)~
+
+パスの終了点と開始点をつなげます。出来上がったパスは、
+描画、塗りつぶし、切り取りなどに使用されます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_clip| |ps_closepath_stroke|
+
+vim:ft=help:

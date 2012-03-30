@@ -1,0 +1,140 @@
+usort --
+ユーザー定義の比較関数を使用して、配列を値でソートする
+
+  bool usort(array array, callback cmp_function)~
+
+この関数は、ユーザー定義の比較関数により配列をその値でソートします。
+ソートしたい配列を複雑な基準でソートする必要がある場合、
+この関数を使用するべきです。
+
+二つのメンバーの比較結果が等しいとなった場合、
+ソートされた配列の順番は定義されません。
+
+この関数は、 {array}
+パラメータの要素に対して新しいキーを割り当てます。
+その際、単純にキーを並べ替える代わりに、
+すでに割り当てられている既存のキーを削除してしまいます。
+
+{array} 入力の配列。
+
+{cmp_function} 比較関数は、最初の引数が 2
+番目の引数より小さいか、等しいか、大きい場合に、
+それぞれゼロ未満、ゼロに等しい、ゼロより大きい整数を返す
+必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.1.0
+新しいソートアルゴリズムが導入されました。 {cmp_function}
+は、
+要素の比較結果が等しい場合にもとの並び順を維持しません。
+
+|usort| の例
+
+<?php >
+  function cmp($a, $b)
+  {
+      if ($a == $b) {
+          return 0;
+      }
+      return ($a < $b) ? -1 : 1;
+  }
+  
+  $a = array(3, 2, 5, 6, 1);
+  
+  usort($a, "cmp");
+  
+  foreach ($a as $key => $value) {
+      echo "$key: $value\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  0: 1
+  1: 2
+  2: 3
+  3: 5
+  4: 6
+
+
+
+もちろん、このような簡単な例では |rsort|
+関数の方がより適当です。
+
+多次元配列を使用する |usort| の例
+
+<?php >
+  function cmp($a, $b)
+  {
+      return strcmp($a["fruit"], $b["fruit"]);
+  }
+  
+  $fruits[0]["fruit"] = "lemons";
+  $fruits[1]["fruit"] = "apples";
+  $fruits[2]["fruit"] = "grapes";
+  
+  usort($fruits, "cmp");
+  
+  while (list($key, $value) = each($fruits)) {
+      echo "\$fruits[$key]: " . $value["fruit"] . "\n";
+  }
+?>
+
+多次元配列をソートする際には、$a と $b
+は配列の最初のインデックスへの参照を保持しています。
+
+上の例の出力は以下となります。
+
+  $fruits[0]: apples
+  $fruits[1]: grapes
+  $fruits[2]: lemons
+
+
+
+|usort| でオブジェクトのメンバ関数を使用する例
+
+<?php >
+  class TestObj {
+      var $name;
+  
+      function TestObj($name)
+      {
+          $this->name = $name;
+      }
+  
+      /* これは、比較用の静的関数です */
+      static function cmp_obj($a, $b)
+      {
+          $al = strtolower($a->name);
+          $bl = strtolower($b->name);
+          if ($al == $bl) {
+              return 0;
+          }
+          return ($al > $bl) ? +1 : -1;
+      }
+  }
+  
+  $a[] = new TestObj("c");
+  $a[] = new TestObj("b");
+  $a[] = new TestObj("d");
+  
+  usort($a, array("TestObj", "cmp_obj"));
+  
+  foreach ($a as $item) {
+      echo $item->name . "\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  b
+  c
+  d
+
+
+
+|uasort| |uksort| |sort| |asort| |arsort| |ksort| |natsort| |rsort|
+
+vim:ft=help:

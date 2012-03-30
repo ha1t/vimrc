@@ -1,0 +1,13 @@
+ming_setscale -- グローバルなスケール要素を設定する
+
+  void ming_setscale(int scale)~
+
+出力する SWF の倍率を設定します。 SWF
+ファイル内では、座標は PIXEL ではなく TWIPS
+で計算します。 1 ピクセルは 20 TWIPS にあたります。
+
+{scale} 設定する倍率。
+
+値を返しません。
+
+vim:ft=help:

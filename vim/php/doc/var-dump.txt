@@ -1,0 +1,61 @@
+var_dump -- 変数に関する情報をダンプする
+
+  void var_dump(mixed expression [, mixed expression [, mixed ...]])~
+
+この関数は、指定した式に関してその型や値を含む構造化された情報を
+返します。配列の場合、その構造を表示するために各値について再帰的に
+探索されます。
+
+PHP 5 では、オブジェクトのすべての public、private および
+protected なプロパティが出力されます。
+
+ブラウザに直接結果を出力する
+すべてのものと同様に、出力制御関数
+を使用してこの関数の出力をキャプチャーし、(例えば)文字列
+(string)に保存することが可能です。
+
+{expression} 展開したい変数。
+
+値を返しません。
+
+|var_dump| の例
+
+<?php >
+  $a = array(1, 2, array("a", "b", "c"));
+  var_dump($a);
+?>
+
+上の例の出力は以下となります。
+
+  array(3) {
+    [0]=>
+    int(1)
+    [1]=>
+    int(2)
+    [2]=>
+    array(3) {
+      [0]=>
+      string(1) "a"
+      [1]=>
+      string(1) "b"
+      [2]=>
+      string(1) "c"
+    }
+  }
+
+<?php >
+  $b = 3.1;
+  $c = true;
+  var_dump($b, $c);
+?>
+
+上の例の出力は以下となります。
+
+  float(3.1)
+  bool(true)
+
+
+
+|var_export| |print_r|
+
+vim:ft=help:

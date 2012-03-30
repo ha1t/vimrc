@@ -1,0 +1,17 @@
+vsprintf -- フォーマットされた文字列を返す
+
+  string vsprintf(string format, array args)~
+
+|sprintf|と動作は同じですが、
+可変長の引数ではなく配列を引数とします。
+
+{format}
+
+{args}
+
+(|sprintf|のドキュメントに記述された) {format}
+に基づきフォーマットされた文字列として配列値を返します。
+
+|sprintf| |vprintf|
+
+vim:ft=help:

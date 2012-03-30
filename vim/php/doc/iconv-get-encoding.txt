@@ -1,0 +1,42 @@
+iconv_get_encoding -- iconv
+拡張モジュールの内部設定変数を取得する
+
+  mixed iconv_get_encoding([string type])~
+
+iconv 拡張モジュールの内部設定変数を取得します。
+
+{type} オプション {type}
+の値は以下のどれかとすることができます。 all
+input_encoding output_encoding internal_encoding
+
+成功時に内部設定変数の現在の設定、失敗時に FALSE
+を返します。
+
+{type} が省略されるか、"all"が指定された場合、
+|iconv_get_encoding| は上記変数全てを格納した
+配列を返します。
+
+|iconv_get_encoding| の例
+
+  <pre>
+<?php >
+  iconv_set_encoding("internal_encoding", "UTF-8");
+  iconv_set_encoding("output_encoding", "ISO-8859-1");
+  var_dump(iconv_get_encoding('all'));
+?>
+  </pre>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [input_encoding] => ISO-8859-1
+      [output_encoding] => ISO-8859-1
+      [internal_encoding] => UTF-8
+  )
+
+
+
+|iconv_set_encoding| |ob_iconv_handler|
+
+vim:ft=help:

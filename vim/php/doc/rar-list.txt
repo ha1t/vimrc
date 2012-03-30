@@ -1,0 +1,26 @@
+rar_list -- Rar アーカイブのエントリ一覧を取得する
+
+  array rar_list(resource rar_file)~
+
+Rar アーカイブから、エントリの一覧を取得します。
+
+{rar_file} |rar_open| でオープンした Rar ファイルリソース。
+
+|rar_list| は成功した場合にエントリの配列、 エラー時には
+FALSE を返します。
+
+|rar_list| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entries_list = rar_list($rar_file);
+  
+  print_r($entries_list);
+?>
+
+
+
+
+
+vim:ft=help:

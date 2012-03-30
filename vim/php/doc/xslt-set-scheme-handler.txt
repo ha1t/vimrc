@@ -1,0 +1,25 @@
+xslt_set_scheme_handler -- XSLT
+プロセッサ用にスキーマハンドラを設定する
+
+  void xslt_set_scheme_handler(resource xh, array handlers)~
+
+{xh}
+で指定したリソースハンドルにスキーマハンドラを設定します。
+
+{xh} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+{handlers}
+スキーマハンドラは、フォーマットの配列とする必要があります
+(全ての要素はオプションです)。
+
+  array(
+  [get_all] => get all handler,
+  [open] => open handler,
+  [get] => get handler,
+  [put] => put handler,
+  [close] => close handler
+  )
+
+値を返しません。
+
+vim:ft=help:

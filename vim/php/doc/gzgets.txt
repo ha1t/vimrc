@@ -1,0 +1,36 @@
+gzgets -- ファイルポインタから 1 行を得る
+
+  string gzgets(resource zp, int length)~
+
+与えられたファイルポインタから最大 length - 1
+バイトの文字を読み込み、 これを含む (非圧縮の)
+文字列を返します。 length - 1
+バイトを読み込むか、改行または EOF になった場合、
+(どれかが最初にきた時点で) 読み込みを終了します。
+
+{zp} gz ファイルポインタを指定します。
+これは有効なファイルポインタであり、かつ、 |gzopen|
+によりオープンできたファイルを指している必要があります。
+
+{length} 取得するデータ長を指定します。
+
+非圧縮の文字列、もしくはエラー時に FALSE
+
+|gzgets| の例
+
+<?php >
+  $handle = gzopen('somefile.gz', 'r');
+  while (!gzeof($handle)) {
+     $buffer = gzgets($handle, 4096);
+     echo $buffer;
+  }
+  gzclose($handle);
+?>
+
+
+
+
+
+|gzopen| |gzgetc| |gzwrite|
+
+vim:ft=help:

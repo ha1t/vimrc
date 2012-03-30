@@ -1,0 +1,5 @@
+gzputs -- のエイリアス gzwrite
+
+この関数は次の関数のエイリアスです。 |gzwrite|.
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+fam_monitor_collection --
+指定したディレクトリにあるファイルの変更を監視する
+
+  resource fam_monitor_collection(resource fam, string dirname, int depth, string mask)~
+
+ディレクトリ内のファイルの監視を要求します。
+
+ファイルの状態が変化したときに FAM
+イベントが発生します。
+発生しうるイベントコードの詳細は、このセクションの
+定数 の欄にあります。
+
+{fam} |fam_open| が返す、 FAM
+サービスへの接続を表すリソース。
+
+{dirname} ファイルを監視するディレクトリへのパス。
+
+{depth} このディレクトリから最大 {depth}
+階層まで掘り下げたディレクトリが検索対象となります。
+
+{mask} シェルパターン {mask}
+により、検索するファイル名を制限します。
+
+モニタリングリソース、あるいはエラー時に FALSE
+を返します。
+
+|fam_monitor_file| |fam_monitor_directory| |fam_cancel_monitor|
+|fam_suspend_monitor| |fam_resume_monitor|
+
+vim:ft=help:

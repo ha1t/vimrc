@@ -1,0 +1,32 @@
+posix_strerror --
+指定したエラー番号に対応するシステムのエラーメッセージを取得する
+
+  string posix_strerror(int errno)~
+
+指定したエラー番号 {errno} に対応する POSIX
+システムエラーメッセージを返します。 {errno}
+を取得するには、 |posix_get_last_error| をコールします。
+
+{errno} |posix_get_last_error| が返す POSIX エラー番号。0
+に設定すると、文字列 "Success" が返されます。
+
+エラーメッセージを表す文字列を返します。
+
+|posix_strerror| の例
+この例では、存在しないプロセスを殺そうとしています。
+そして、その結果として発生したエラーに対応するメッセージを表示します。
+
+<?php >
+  posix_kill(50,SIGKILL);
+  echo posix_strerror(posix_get_last_error())."\n";
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  No such process
+
+
+
+|posix_get_last_error|
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+ifx_create_blob -- BLOB オブジェクトを作成する
+
+  int ifx_create_blob(int type, int mode, string param)~
+
+BLOB オブジェクトを作成します。
+
+{type} 1 = TEXT, 0 = BYTE
+
+{mode} 0 = BLOB オブジェクトはメモリーに内容を保持する, 1 =
+BLOB オブジェクトはファイルに内容を保持する。
+
+{param} mode = 0 の場合: 内容へのポインタ mode = 1 の場合:
+ファイル文字列へのポインタ
+
+新規の BLOB オブジェクト ID を返します。 エラーの場合に
+FALSE を返します。
+
+|ifx_copy_blob| |ifx_free_blob|
+
+vim:ft=help:

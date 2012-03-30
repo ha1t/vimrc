@@ -1,0 +1,6 @@
+stream_register_wrapper -- stream_wrapper_register のエイリアス
+
+この関数は次の関数のエイリアスです。
+|stream_wrapper_register|.
+
+vim:ft=help:

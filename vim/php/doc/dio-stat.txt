@@ -1,0 +1,38 @@
+dio_stat -- ファイル記述子 fd に関する stat 情報を取得する
+
+  array dio_stat(resource fd)~
+
+|dio_stat| は、与えられたファイル記述子に関する
+情報を返します。
+
+{fd} |dio_open| が返すファイル記述子。
+
+以下のキーを含む連想配列を返します。 "device" - デバイス
+
+"inode" - i ノード
+
+"mode" - モード
+
+"nlink" - ハードリンク数
+
+"uid" - ユーザ ID
+
+"gid" - グループ ID
+
+"device_type" - デバイス型（inode デバイスの場合）
+
+"size" - サイズ（バイト数）
+
+"blocksize" - ブロック長
+
+"blocks" - 割り当てられたブロック数
+
+"atime" - 最終アクセス時刻
+
+"mtime" - 最終更新時刻
+
+"ctime" - 最終変更時刻
+
+エラー時には |dio_stat| は NULL を返します。
+
+vim:ft=help:

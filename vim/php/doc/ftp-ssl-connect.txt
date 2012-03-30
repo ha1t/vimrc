@@ -1,0 +1,60 @@
+ftp_ssl_connect -- セキュアな SSL-FTP 接続をオープンする
+
+  resource ftp_ssl_connect(string host [, int port [, int timeout]])~
+
+|ftp_ssl_connect| は、指定した {host} への SSL-FTP
+接続をオープンします。
+
+|ftp_ssl_connect| は、 OpenSSL サポートがあなたの使っている
+PHP で有効になっているときにのみ使うことができます。
+FTP サポートを有効にしているにもかかわらず
+この関数が定義されていないのは、それが理由です。
+Windows でこの関数のサポートを有効にするには、自分で PHP
+バイナリを コンパイルする必要があります。
+
+{host} FTP
+サーバのアドレス。このパラメータには、最後のスラッシュや
+先頭の ftp:// をつけてはいけません。
+
+{port} {port} パラメータは別のポートに接続することを
+指定します。これを省略するか 0
+にした場合、デフォルトの FTP ポート、 つまり 21
+が使用されます。
+
+{timeout}
+このパラメータは、以降の全てのネットワーク処理の
+タイムアウトを指定します。省略された場合の
+デフォルト値は、90 秒となります。timeout は、
+|ftp_set_option| および |ftp_get_option|
+でいつでも変更および取得可能です。
+
+成功した場合に SSL-FTP ストリーム、エラー時に FALSE
+を返します。
+
+バージョン 説明 5.2.2 この関数は、SSL
+接続を使用できないときに FALSE
+を返すようになりました。 これまでは、SSL
+ではない接続に移行していました。
+
+|ftp_ssl_connect| の例
+
+<?php >
+  // SSL 接続を確立する
+  $conn_id = ftp_ssl_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  echo ftp_pwd($conn_id); // /
+  
+  // SSL 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_connect|
+
+vim:ft=help:

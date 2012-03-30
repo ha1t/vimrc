@@ -1,0 +1,13 @@
+ifx_nullformat -- 取得する行のデフォルトの返り値を設定する
+
+  bool ifx_nullformat(int mode)~
+
+取得する行のデフォルトの返り値を NULL 値に設定します。
+
+{mode} モード "0" は "" を返し、モード "1" は "NULL"
+を返します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

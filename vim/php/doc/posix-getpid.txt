@@ -1,0 +1,21 @@
+posix_getpid -- 現在のプロセス ID を返す
+
+  int posix_getpid()~
+
+現在のプロセスのプロセス ID を返します。
+
+ID を表す整数値を返します。
+
+|posix_getpid| の使用例
+
+<?php >
+  echo posix_getpid(); //8805
+?>
+
+
+
+
+
+|posix_kill| は、プロセスを殺します POSIX man ページ GETPID(2)
+
+vim:ft=help:

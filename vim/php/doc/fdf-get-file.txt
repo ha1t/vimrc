@@ -1,0 +1,14 @@
+fdf_get_file -- /F キーの値を得る
+
+  string fdf_get_file(resource fdf_document)~
+
+/F キーの値を取得します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+キーの値を文字列を返します。
+
+|fdf_set_file|
+
+vim:ft=help:

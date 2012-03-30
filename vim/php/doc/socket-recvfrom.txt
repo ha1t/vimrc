@@ -1,0 +1,86 @@
+socket_recvfrom --
+接続しているかどうかによらず、ソケットからデータを受信する
+
+  int socket_recvfrom(resource socket, string buf, int len, int flags, string name [, int port])~
+
+|socket_recvfrom| 関数は、 ポート {port} (AF_UNIX
+型のソケットである場合を除く) 上の {name} から受信した
+{len} バイトのデータを {buf} に格納します。 |socket_recvfrom|
+は、
+接続済みのソケットだけでなく接続していないソケットに対しても使用可能です。
+さらに、フラグを指定することでこの関数の挙動を設定できます。
+
+{name} と {port}
+は参照渡しとしなければなりません。接続していないソケットの場合は、
+{name} はリモートホストの IP アドレスか UNIX
+ソケットへのパスとなります。接続済みのソケットの場合は、
+{name} は NULL とします。 また、AF_INET あるいは AF_INET6
+形式のまだ接続していないソケットの場合、 {port}
+にはリモートホストのポート番号を指定します。
+
+{socket} {socket} には、 socket_create()
+で作成したソケットリソースを指定します。
+
+{buf} 受信したデータが {buf} に格納されます。
+
+{len} 最大 {len}
+バイトまでのデータをリモートホストから取得します。
+
+{flags} {flags} の値は、以下のフラグの任意の組み合わせを
+論理 OR 演算子 (|) で連結したものとなります。
+
+{flags} に使用できる値 フラグ 説明 MSG_OOB 帯域外 (out-of-band)
+のデータを処理する。 MSG_PEEK
+受信キューの先頭にあるデータを受信し、
+そのデータをそのままキューに残しておく。 MSG_WAITALL
+少なくとも {len} バイト受信するまではブロックする。
+しかし、もし何らかのシグナルを受信したりリモートホストとの接続が切断された場合は
+これより少ないバイト数を返す可能性がある。 MSG_DONTWAIT
+通常はブロックする場面であってもそのまま return する。
+{name} AF_UNIX 型のソケットの場合は、 {name}
+はファイルへのパスとなります。
+それ以外の場合は、未接続のソケットの場合には {name}
+はリモートホストの IP アドレスとなります。
+接続済みソケットの場合は NULL となります。
+
+{port} この引数は AF_INET 型あるいは AF_INET6
+型のソケットに対してのみ適用され、
+データを受信するリモートホストのポートを指定します。
+接続済みソケットの場合は {port} は NULL となります。
+
+|socket_recvfrom| は、受信したバイト数を返します。
+あるいはエラー時には -1 を返します。
+エラーコードを取得するには |socket_last_error|
+をコールします。取得したエラーコードを |socket_strerror|
+に渡すと、
+そのエラーについての説明を得ることができます。
+
+|socket_recvfrom| の例
+
+<?php >
+  error_reporting(E_ALL | E_STRICT);
+  
+  $socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+  socket_bind($socket, '127.0.0.1', 1223);
+  
+  $from = "";
+  $port = 0;
+  socket_recvfrom($socket, $buf, 12, 0, $from, $port);
+  
+  echo "リモートアドレス $from のポート $port から $buf を受信しました" . PHP_EOL;
+?>
+
+この例は、127.0.0.1 のポート 1223 との UDP
+ソケットを確立し、受信したデータを最大 12
+バイトまで表示します。
+
+
+
+
+
+バージョン 説明 4.3.0 |socket_recvfrom|
+はバイナリセーフとなりました。
+
+|socket_recv| |socket_send| |socket_sendto| |socket_create|
+
+vim:ft=help:

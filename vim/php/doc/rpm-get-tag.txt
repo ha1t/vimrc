@@ -1,0 +1,35 @@
+rpm_get_tag -- RPM ファイルからヘッダタグを取得する
+
+  mixed rpm_get_tag(resource rpmr, int tagnum)~
+
+|rpm_get_tag| は、RPM ファイルのヘッダから
+指定したタグを取得してそれを返します。
+
+{rpmr} |rpm_open| でオープンした
+ファイルポインタリソース。
+
+{tagnum} RPM ヘッダから取得するタグの番号。この値は、
+このモジュールで定義されている定数の一覧を使用して指定可能です。
+
+関数に渡した {tagnum} の値により、
+返り値の型はいろいろな形式になりえます。
+
+|rpm_get_tag| の例
+
+<?php >
+  $file = "/path/to/file.rpm";
+  $rpmr = rpm_open($file);
+  
+  $name = rpm_get_tag($rpmr, RPMREADER_NAME);
+  echo "$name<br>\n";
+  
+  rpm_close($rpmr);
+?>
+
+
+
+
+
+|rpm_open| |rpm_close|
+
+vim:ft=help:

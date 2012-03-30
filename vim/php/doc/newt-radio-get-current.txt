@@ -1,0 +1,13 @@
+newt_radio_get_current --
+
+  resource newt_radio_get_current(resource set_member)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{set_member}
+
+
+
+vim:ft=help:

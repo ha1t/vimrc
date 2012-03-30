@@ -1,0 +1,47 @@
+parse_str -- 文字列を処理し、変数に代入する
+
+  void parse_str(string str [, array arr])~
+
+URL 経由で渡されるクエリ文字列と同様に {str}
+を処理し、現在のスコープに変数をセットします。
+
+現在の QUERY_STRING を取得するには、変数 $_SERVER['QUERY_STRING']
+を使用する事ができます。また、 PHP の外部から来る変数
+のセクションも読んでください。
+
+magic_quotes_gpc
+の設定が、この関数の出力に影響を与えます。というのも
+|parse_str| が使用している仕組みは PHP が $_GET や $_POST
+などの設定に使用しているものと同じだからです。
+
+{str} 入力文字列。
+
+{arr} 2 番目の引数 {arr} が指定された場合、
+変数は、代わりに配列の要素としてこの変数に保存されます。
+
+値を返しません。
+
+バージョン 説明 4.0.3 {arr} パラメータが追加されました。
+
+|parse_str| の使用法
+
+<?php >
+  $str = "first=value&amp;arr[]=foo+bar&arr[]=baz";
+  parse_str($str);
+  echo $first;  // value
+  echo $arr[0]; // foo bar
+  echo $arr[1]; // baz
+  
+  parse_str($str, $output);
+  echo $output['first'];  // value
+  echo $output['arr'][0]; // foo bar
+  echo $output['arr'][1]; // baz
+?>
+
+
+
+
+
+|parse_url| |pathinfo| |http_build_query| |get_magic_quotes_gpc| |urldecode|
+
+vim:ft=help:

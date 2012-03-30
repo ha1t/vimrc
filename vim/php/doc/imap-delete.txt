@@ -1,0 +1,54 @@
+imap_delete --
+現在のメールボックスから削除するメッセージに印を付ける
+
+  bool imap_delete(resource imap_stream, int msg_number [, int options])~
+
+{msg_number} が指すメッセージに
+削除予定のマークをします。削除マークを付けられたメッセージは、
+|imap_expunge| がコールされるか |imap_close| に CL_EXPUNGE
+を付けてコールされるかのどちらかが行われるまでメールボックスに残ったままになります。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+{options} {FT_UID} を指定すると、 引数 {msg_number} を {UID}
+として処理することを関数に指示できます。
+
+Returns TRUE.
+
+|imap_delete| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org}INBOX", "username", "password")
+      or die("接続できません: " . imap_last_error());
+  
+  $check = imap_mailboxmsginfo($mbox);
+  echo "Messages before delete: " . $check->Nmsgs . "<br />\n";
+  
+  imap_delete($mbox, 1);
+  
+  $check = imap_mailboxmsginfo($mbox);
+  echo "Messages after  delete: " . $check->Nmsgs . "<br />\n";
+  
+  imap_expunge($mbox);
+  
+  $check = imap_mailboxmsginfo($mbox);
+  echo "Messages after expunge: " . $check->Nmsgs . "<br />\n";
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+POP3
+メールボックスは、コネクション間で保存可能なメッセージフラグを持っていません。
+そのため、削除マークをつけたメッセージを本当に削除するためには、
+同一の接続内で |imap_expunge|
+をコールする必要があります。
+
+|imap_undelete| |imap_expunge| |imap_close|
+
+vim:ft=help:

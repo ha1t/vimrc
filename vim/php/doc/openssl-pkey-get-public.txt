@@ -1,0 +1,21 @@
+openssl_pkey_get_public --
+証明書から公開鍵を抽出し、使用できるようにする
+
+  resource openssl_pkey_get_public(mixed certificate)~
+
+|openssl_get_publickey| は公開鍵を {certificate} から抽出し、
+他の関数で使用できるよう準備します。
+
+{certificate} {certificate} は以下のいずれかです。 an X.509
+証明書リソース
+
+file://path/to/file.pem 形式の文字列。 このファイルは、PEM
+エンコードされた証明書/秘密鍵である必要が
+あります（両方を含むことも可能です）。
+
+PEM フォーマットの秘密鍵。
+
+成功した場合に正のキーリソース ID、エラー時に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,35 @@
+mysql_num_fields -- 結果におけるフィールドの数を得る
+
+  int mysql_num_fields(resource result)~
+
+クエリから、フィールドの数を取得します。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+成功した場合に結果セット resource のフィールド数、
+失敗した場合に FALSE を返します。
+
+|mysql_num_fields| の例
+
+<?php >
+  $result = mysql_query("SELECT id,email FROM people WHERE id = '42'");
+  if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
+      exit;
+  }
+  
+  /* id,email の 2 つのフィールドがあるので、2 を返す */
+  echo mysql_num_fields($result);
+?>
+
+
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_numfields|
+
+|mysql_select_db| |mysql_query| |mysql_fetch_field| |mysql_num_rows|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+ssh2_publickey_remove -- 認証済み公開鍵を取り除く
+
+  bool ssh2_publickey_remove(resource pkey, string algoname, string blob)~
+
+認証済み公開鍵を取り除きます。
+
+{pkey} 公開鍵サブシステムのリソース。
+
+{algoname} 公開鍵のアルゴリズム。例: ssh-dss、ssh-rsa
+
+{blob} 生のバイナリデータとしての blob 形式の公開鍵。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この公開鍵サブシステムは、クライアントが認証 済 の
+公開鍵をサーバ上で管理するために使用されます。
+公開鍵認証によりリモートシステムで認証を行うには、かわりに
+|ssh2_auth_pubkey_file| 関数を使用してください。
+
+|ssh2_publickey_init| |ssh2_publickey_add| |ssh2_publickey_list|
+
+vim:ft=help:

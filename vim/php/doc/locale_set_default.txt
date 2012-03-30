@@ -1,0 +1,60 @@
+locale_set_default -- デフォルトのロケールを設定する
+
+  bool locale_set_default(string name)~
+
+PHP プログラムのデフォルトのロケールを設定します。
+この関数は、|setlocale|
+やシステムロケールには何の影響も及ぼさないことに注意しましょう。
+
+{name}
+新しいロケール名。サポートされるロケールの一覧は
+にあります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|locale_set_default| の例 ここでは、 |locale_set_default|
+を使用して |sort| 関数をローカライズする例を示します。
+
+<?php >
+  // ソートする文字列のリスト
+  $array = array(
+      'caramelo',
+      'cacto',
+      'caçada'
+  );
+  
+  // ロケールを設定します (この場合はポルトガル語)
+  locale_set_default('pt_PT');
+  
+  // 設定したロケールを使用して並べ替えます
+  sort($array, SORT_LOCALE_STRING);
+  
+  print_r($array);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => caçada
+      [1] => cacto
+      [2] => caramelo
+  )
+
+ロケールを使用しない場合は、PHP は ASCII
+文字コードを使用してソートを行います。そのため、
+以下のような結果となります (これは間違った結果です)
+
+  Array
+  (
+      [0] => cacto
+      [1] => caramelo
+      [2] => caçada
+  )
+
+
+
+|locale_get_default|
+
+vim:ft=help:

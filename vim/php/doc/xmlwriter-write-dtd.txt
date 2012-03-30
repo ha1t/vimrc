@@ -1,0 +1,29 @@
+XMLWriter::writeDTD -- DTD タグ全体を書き込む
+
+オブジェクト指向型
+
+  bool writeDTD(string name [, string publicId [, string systemId [, string subset]]])~
+
+手続き型
+
+  bool xmlwriter_write_dtd(string name [, string publicId [, string systemId [, string subset, resource xmlwriter, string name [, string publicId [, string systemId [, string subset]]]]]])~
+
+DTD 全体を書き込みます。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{name} DTD 名。
+
+{publicId} 外部サブセットの公開識別子。
+
+{systemId} 外部サブセットのシステム識別子。
+
+{subset} DTD の内容。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

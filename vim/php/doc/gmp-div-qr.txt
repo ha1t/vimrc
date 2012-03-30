@@ -1,0 +1,37 @@
+gmp_div_qr -- 除算を行い、商と余りを得る
+
+  array gmp_div_qr(resource n, resource d [, int round])~
+
+この関数は、{n} を {d} で割ります。
+
+{n} 割られる数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{d} {n} を割る数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{round} 引数 {round} の説明については、 |gmp_div_q|
+関数を参照ください。
+
+配列を返します。配列の最初の要素は [n/d]
+(割算の結果の整数値)、2 番目の要素は (n - [n/d] * d)
+(割算の余り) です。
+
+GMP 数の割算
+
+<?php >
+  $a = gmp_init("0x41682179fbf5");
+  $res = gmp_div_qr($a, "0xDEFE75");
+  printf("Result is: q - %s, r - %s",
+         gmp_strval($res[0]), gmp_strval($res[1]));
+?>
+
+
+
+
+
+|gmp_div_q| |gmp_div_r|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+newt_label_set_text --
+
+  void newt_label_set_text(resource label, string text)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{label}
+
+{text}
+
+値を返しません。
+
+vim:ft=help:

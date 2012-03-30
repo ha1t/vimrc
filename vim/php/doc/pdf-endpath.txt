@@ -1,0 +1,7 @@
+PDF_endpath -- 現在のパスを終了する
+
+  bool PDF_endpath(resource p)~
+
+塗りつぶしや描画を行わず、現在のパスを終了します。
+
+vim:ft=help:

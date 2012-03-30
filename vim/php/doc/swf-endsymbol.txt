@@ -1,0 +1,12 @@
+swf_endsymbol -- シンボルの定義を終了する
+
+  void swf_endsymbol()~
+
+関数 |swf_startsymbol|
+で開始したシンボルの定義を終了します。
+
+値を返しません。
+
+|swf_startsymbol|
+
+vim:ft=help:

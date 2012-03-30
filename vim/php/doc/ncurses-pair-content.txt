@@ -1,0 +1,15 @@
+ncurses_pair_content -- 色の RGB 値を取得する
+
+  int ncurses_pair_content(int pair, int f, int b)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{pair}
+
+{f}
+
+{b}
+
+vim:ft=help:

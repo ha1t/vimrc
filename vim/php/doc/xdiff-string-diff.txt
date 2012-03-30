@@ -1,0 +1,42 @@
+xdiff_string_diff -- 2 つの文字列の unified diff を作成する
+
+  string xdiff_string_diff(string str1, string str2 [, int context [, bool minimal]])~
+
+ふたつの文字列の diff を作成します。
+
+{str1}
+
+{str2}
+
+{context} diff の結果の前後に含める行の数を指定します。
+
+{minimal} このパラメータを TRUE にすると、diff
+のファイルが最小になります
+(非常に時間がかかります)。結果のファイルは可読形式となります。
+
+成功した場合に結果の文字列、内部エラーが発生した場合に
+FALSE を返します。
+
+|xdiff_string_diff| の例 以下のコードは 2 つの記事の unified
+diff を作成します。
+
+<?php >
+  $old_article = file_get_contents('./old_article.txt');
+  $new_article = $_REQUEST['article']; /* Let's say that someone pasted a new article to html form */
+  
+  $diff = xdiff_string_diff($old_article, $new_article, 1);
+  if (is_string($diff)) {
+      echo "2 つの記事の差分:\n";
+      echo $diff;
+  }
+?>
+
+
+
+この関数はバイナリ文字列に対しては動作しません。バイナリ文字列の
+差分を作成するには |xdiff_string_diff_binary|
+を使用してください。
+
+|xdiff_file_diff|
+
+vim:ft=help:

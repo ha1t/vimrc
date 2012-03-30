@@ -1,0 +1,5 @@
+msql -- msql_db_query のエイリアス
+
+この関数は次の関数のエイリアスです。 |msql_db_query|
+
+vim:ft=help:

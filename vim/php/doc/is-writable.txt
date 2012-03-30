@@ -1,0 +1,45 @@
+is_writable -- ファイルが書き込み可能かどうかを調べる
+
+  bool is_writable(string filename)~
+
+{filename}が存在して、かつそれが書き込み可能であれば
+TRUEを返します。引数filenameはディレクトリ名とすることができ、
+ディレクトリが書き込み可能であることを調べることが可能です。
+
+PHP は、Web サーバが実行されているユーザ ID('nobody'
+が多い)
+でファイルにアクセスすることを覚えておいてください。
+セーフモードの制限は働きません。
+
+{filename} 調べたいファイル名。
+
+{filename} が存在して書き込み可能な場合に TRUE
+を返します。
+
+|is_writable| の例
+
+<?php >
+  $filename = 'test.txt';
+  if (is_writable($filename)) {
+      echo 'このファイルは書き込み可能です';
+  } else {
+      echo 'このファイルは書き込みできません';
+  }
+?>
+
+
+
+
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|is_readable| |file_exists| |fwrite|
+
+vim:ft=help:

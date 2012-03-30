@@ -1,0 +1,5 @@
+ocirowcount -- oci_num_rows のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_num_rows|.
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+ps_include_file -- 外部ファイルを生の PostScript
+コードとして読み込む
+
+  bool ps_include_file(resource psdoc, string file)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+{psdoc} |ps_new| が返す postscript ファイルの ID リソース。
+
+{file}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

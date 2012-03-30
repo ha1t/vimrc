@@ -1,0 +1,34 @@
+imagejpeg -- 画像をブラウザまたはファイルに出力する
+
+  bool imagejpeg(resource image [, string filename [, int quality]])~
+
+|imagejpeg| は、画像 {image} から JPEG ファイルを作成します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{filename} 保存するファイルへのパス。省略したり NULL
+を指定したりした場合は、
+生の画像ストリームを直接出力します。
+
+{quality}
+パラメータを指定するためにこの引数をスキップするには、
+NULL を指定します。
+
+{quality} {quality} はオプションであり、0(品質は最低
+ですが、ファイルはより小さい)から100(品質は最高ですが、ファイルは
+最大)の範囲で指定します。デフォルトは IJG
+品質値(75)です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+JPEG サポートは、 PHP が GD-1.8
+以降と共にコンパイルされている場合のみ利用可能です。
+
+プログレッシブ JPEG を出力したい場合には、 |imageinterlace|
+でインターレースをセットする必要があります。
+
+|imagepng| |imagegif| |imagewbmp| |imageinterlace| |imagetypes|
+
+vim:ft=help:

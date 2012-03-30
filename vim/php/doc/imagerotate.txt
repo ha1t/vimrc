@@ -1,0 +1,55 @@
+imagerotate -- 指定された角度で画像を回転する
+
+  resource imagerotate(resource source_image, float angle, int bgd_color [, int ignore_transparent])~
+
+画像 {source_image} を、 {angle}
+で指定された角度だけ回転します。
+
+回転の中心は画像の中心です。回転された画像はスケールダウンされるので、
+回転された画像全体は対象画像にフィットします。縁はクリップされません。
+
+
+
+{source_image} 元画像のリンク。
+
+{angle} 回転角度。
+
+{bgd_color} 回転後、カバーされない部分の色。
+
+{ignore_transparent}
+ゼロ以外を指定すると、透過色は無視されます
+(その他の場合は保持されます)。
+
+
+
+バージョン 説明 5.1.0 {ignore_transparent} が追加されました。
+
+画像を 180 度回転する この例は、画像を 180 度 -
+上下逆さまに回転します
+
+<?php >
+  // ファイルと回転角
+  $filename = 'test.jpg';
+  $degrees = 180;
+  
+  // コンテントタイプ
+  header('Content-type: image/jpeg');
+  
+  // 読み込み
+  $source = imagecreatefromjpeg($filename);
+  
+  // 回転
+  $rotate = imagerotate($source, $degrees, 0);
+  
+  // 出力
+  imagejpeg($rotate);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+この関数は、PHP がバンドル版の GD ライブラリで
+コンパイルされている場合のみ使用可能です。
+
+vim:ft=help:

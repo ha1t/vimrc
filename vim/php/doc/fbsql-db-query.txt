@@ -1,0 +1,26 @@
+fbsql_db_query -- FrontBase クエリを送信する
+
+  resource fbsql_db_query(string database, string query [, resource link_identifier])~
+
+データベースを選択し、そこでクエリを実行します。
+
+{database} 選択したデータベース。
+
+{query} 実行する SQL クエリ。
+
+クエリ文字列の最後には、セミコロンをつけなければなりません。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+クエリ結果への正の FrontBase 結果 ID、またはエラー時には
+FALSE を返します。
+
+|fbsql_query| |fbsql_connect|
+
+vim:ft=help:

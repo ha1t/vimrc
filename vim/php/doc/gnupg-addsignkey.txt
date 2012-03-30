@@ -1,0 +1,28 @@
+gnupg_addsignkey -- 署名のためのキーを追加する
+
+  bool gnupg_addsignkey(resource identifier, string fingerprint [, string passphrase])~
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+手続き型の |gnupg_addsignkey| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_addsignkey($res,"8660281B6051D071D94B5B230549F9DC851566DC","test");
+?>
+
+
+
+オブジェクト指向の |gnupg_addsignkey| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> addsignkey("8660281B6051D071D94B5B230549F9DC851566DC","test");
+?>
+
+
+
+
+
+vim:ft=help:

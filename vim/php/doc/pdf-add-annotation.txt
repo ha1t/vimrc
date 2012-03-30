@@ -1,0 +1,6 @@
+PDF_add_annotation -- 注記を追加する [古い関数]
+
+この関数は非推奨です。かわりに |PDF_create_annotation| を
+{type=Text} で使用してください。
+
+vim:ft=help:

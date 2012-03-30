@@ -1,0 +1,14 @@
+ob_clean -- 出力バッファをクリア(消去)する
+
+  void ob_clean()~
+
+この関数は、出力バッファの内容を消去します。
+
+この関数は、|ob_end_clean|
+のように出力バッファを破棄するわけではありません。
+
+値を返しません。
+
+|ob_flush| |ob_end_flush| |ob_end_clean|
+
+vim:ft=help:

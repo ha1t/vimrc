@@ -1,0 +1,27 @@
+XMLWriter::startAttributeNS -- 名前空間つきの属性を開始する
+
+オブジェクト指向型
+
+  bool startAttributeNS(string prefix, string name, string uri)~
+
+手続き型
+
+  bool xmlwriter_start_attribute_ns(string prefix, string name, string uri, resource xmlwriter, string prefix, string name, string uri)~
+
+名前空間つきの属性を開始します。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{prefix} 名前空間プレフィックス。
+
+{name} 属性の名前。
+
+{uri} 名前空間 URI。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

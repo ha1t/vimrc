@@ -1,0 +1,19 @@
+is_object -- 変数がオブジェクトかどうかを検査する
+
+  bool is_object(mixed var)~
+
+与えられた変数がオブジェクトかどうかを調べます。
+
+{var} 評価する変数
+
+もし {var} が object 型 の場合 TRUE、 そうでない場合は FALSE
+を返します。
+
+クラス定義が存在しない場合に、
+シリアライズされていないオブジェクトに対して使用すると
+(|gettype| は object を返すにもかかわらず) この関数は FALSE
+を返します。
+
+|is_bool| |is_int| |is_float| |is_string| |is_array|
+
+vim:ft=help:

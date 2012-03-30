@@ -1,0 +1,9 @@
+PDF_close_pdi_page -- ページハンドルを閉じる
+
+  bool PDF_close_pdi_page(resource p, int page)~
+
+ページハンドルを閉じ、そのページに関係する全てのリソースを開放します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

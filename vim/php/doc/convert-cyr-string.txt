@@ -1,0 +1,30 @@
+convert_cyr_string -- キリル文字セットを他のものに変換する
+
+  string convert_cyr_string(string str, string from, string to)~
+
+キリル文字セットを、別の文字セットに変換します。
+
+{str} 変換したい文字列。
+
+{from} 変換元のキリル文字セットを一文字で表したもの。
+
+{to} 変換先のキリル文字セットを一文字で表したもの。
+
+サポートされている文字セットは次のとおりです。 k -
+koi8-r
+
+w - windows-1251
+
+i - iso8859-5
+
+a - x-cp866
+
+d - x-cp866
+
+m - x-mac-cyrillic
+
+変換した文字列を返します。
+
+この関数はバイナリデータに対応しています。
+
+vim:ft=help:

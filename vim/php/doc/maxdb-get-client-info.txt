@@ -1,0 +1,34 @@
+maxdb_get_client_info -- MaxDB
+クライアントのバージョンを文字列で返す
+
+  string maxdb_get_client_info()~
+
+|maxdb_get_client_info| 関数は、 MaxDB
+拡張モジュールで使用されている、
+クライアントのバージョンを表す文字列を返すために使用されます。
+
+MaxDB
+クライアントライブラリのバージョンを表す文字列を返します。
+
+maxdb_get_client_info
+
+<?php >
+  /* MaxDB クライアントライブラリのバージョンを
+     知るには、接続する必要はありません。 */
+  
+  printf("クライアントライブラリのバージョン: %s\n", maxdb_get_client_info());
+?>
+
+
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  クライアントライブラリのバージョン: libSQLDBC <...>
+
+|maxdb_get_client_version| |maxdb_get_server_info| |maxdb_get_server_version|
+
+vim:ft=help:

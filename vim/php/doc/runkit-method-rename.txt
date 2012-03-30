@@ -1,0 +1,52 @@
+runkit_method_rename --
+指定したメソッドの名前を動的に変更する
+
+  bool runkit_method_rename(string classname, string methodname, string newname)~
+
+この関数は、
+現在実行中(もしくはチェーンド)のメソッドを操作することはできません。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{classname} メソッド名を変更するクラス。
+
+{methodname} 変更するメソッドの名前。
+
+{newname} 変更後のメソッドの名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_method_rename| の例
+
+<?php >
+  class Example {
+      function foo() {
+          return "foo!\n";
+      }
+  }
+  
+  // 'foo' メソッドの名前を 'bar' に変更する
+  runkit_method_rename(
+      'Example',
+      'foo',
+      'bar'
+  );
+  
+  // 変更後の関数の出力
+  echo Example::bar();
+?>
+
+上の例の出力は以下となります。
+
+  foo!
+
+
+
+|runkit_method_add| |runkit_method_copy| |runkit_method_redefine|
+|runkit_method_remove| |runkit_function_rename|
+
+vim:ft=help:

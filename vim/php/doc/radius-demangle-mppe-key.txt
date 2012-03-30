@@ -1,0 +1,16 @@
+radius_demangle_mppe_key -- 変形されたデータから mppe
+キーを得る
+
+  string radius_demangle_mppe_key(resource radius_handle, string mangled)~
+
+MS-CHAPv2 で MPPE
+を使用している場合には、送信キーおよび受信キーが
+変形されます (RFC 2548
+を参照ください)。しかしこの関数は無意味です。なぜなら
+PHP では PPTP-MPPE
+は実装されていないし、今後も実装されるとは思えないからです。
+
+復元したデータ、あるいはエラー時には FALSE
+を返します。
+
+vim:ft=help:

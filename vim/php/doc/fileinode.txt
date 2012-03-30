@@ -1,0 +1,23 @@
+fileinode -- ファイルの inode を取得する
+
+  int fileinode(string filename)~
+
+ファイルの inode を取得します。
+
+{filename} ファイルへのパス。
+
+ファイルの inode 番号を返し、エラーの場合は FALSE
+を返します。
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|stat|
+
+vim:ft=help:

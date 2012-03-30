@@ -1,0 +1,37 @@
+ps_shading -- 以降の出力で用いるシェーディングを作成する
+
+  int ps_shading(resource psdoc, string type, float x0, float y0, float x1, float y1, float c1, float c2, float c3, float c4, string optlist)~
+
+シェーディングを作成します。これは |ps_shfill| や
+|ps_shading_pattern| で用いられます。
+
+シェーディングの色には、pattern
+以外の任意の色空間が利用できます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{type} シェーディングの種類で、radial (放射状) または axial
+(直線状) のいずれかです。
+シェーディングは現在の塗りつぶし色で始まり、 {c1} から
+{c4} までのパラメータで指定される色で終わります
+(パラメータの意味は |ps_setcolor| を参照ください)。
+
+{x0, x1, y0, y1} {x0}, {y0}, {x1}, {y1} は、
+シェーディングの開始位置・終了位置の座標です。
+シェーディングの形式が radial の場合は、
+それぞれ開始円・終了円の中心となります。
+
+{c1, c2, c3, c4} このパラメータの意味は |ps_setcolor|
+を参照してください。
+
+{optlist} type が radial の場合、{optlist} にはパラメータ r0 と
+r1
+が含まれる必要があります。これらはそれぞれ開始位置と終了位置を表す
+円の半径です。
+
+成功した場合にパターンの ID を、失敗した場合に FALSE
+を返します。
+
+|ps_shading_pattern| |ps_shfill|
+
+vim:ft=help:

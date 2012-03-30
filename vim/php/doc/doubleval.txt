@@ -1,0 +1,9 @@
+doubleval -- floatval のエイリアス
+
+この関数は次の関数のエイリアスです。 |floatval|.
+
+バージョン 説明 4.2.0 |doubleval| は |floatval|
+のエイリアスになりました。 これ以前では |doubleval|
+のみ存在していました。
+
+vim:ft=help:

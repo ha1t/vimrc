@@ -1,0 +1,5 @@
+ocicolumnisnull -- oci_field_is_null のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_field_is_null|.
+
+vim:ft=help:

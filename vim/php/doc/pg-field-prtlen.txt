@@ -1,0 +1,73 @@
+pg_field_prtlen -- 表示される長さを返す
+
+  int pg_field_prtlen(resource result, int row_number, mixed field_name_or_number)~
+
+  int pg_field_prtlen(resource result, int row_number, mixed field_name_or_number, resource result, mixed field_name_or_number)~
+
+|pg_field_prtlen| は、PostgreSQL の {result}
+の指定した値に関して、実際に
+表示した場合の長さ(文字の数)を返します。行番号(row_number)は
+0
+から始まります。この関数は、エラーの場合に-1を返します。
+
+{field_name_or_number} は、integer または string
+のどちらかで渡すことが可能です。 integer
+で渡された場合、PHP はそれをフィールド番号と判断
+します。それ以外の場合はフィールド名と判断します。
+
+|pg_field_name| ページの例を参照ください。
+
+この関数は、以前は |pg_fieldprtlen| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{row} 結果の行番号。行番号は 0
+から始まります。指定しなかった場合は
+カレントの行を取得します。
+
+フィールドの表示される長さを返します。エラー時には
+FALSE を返します。
+
+フィールドの情報を取得する
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    $res = pg_query($dbconn, "select * from authors where author = 'Orwell'");
+    $i = pg_num_fields($res);
+    for ($j = 0; $j < $i; $j++) {
+        echo "column $j\n";
+        $fieldname = pg_field_name($res, $j);
+        echo "fieldname: $fieldname\n";
+        echo "printed length: " . pg_field_prtlen($res, $fieldname) . " characters\n";
+        echo "storage length: " . pg_field_size($res, $j) . " bytes\n";
+        echo "field type: " . pg_field_type($res, $j) . " \n\n";
+    }
+?>
+
+上の例の出力は以下となります。
+
+  column 0
+  fieldname: author
+  printed length: 6 characters
+  storage length: -1 bytes
+  field type: varchar 
+  
+  column 1
+  fieldname: year
+  printed length: 4 characters
+  storage length: 2 bytes
+  field type: int2 
+  
+  column 2
+  fieldname: title
+  printed length: 24 characters
+  storage length: -1 bytes
+  field type: varchar
+
+
+
+|pg_field_size|
+
+vim:ft=help:

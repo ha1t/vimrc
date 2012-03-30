@@ -1,0 +1,99 @@
+maxdb->change_user --
+指定したデータベース接続のユーザを変更する
+
+手続き型
+
+  bool maxdb_change_user(resource link, string user, string password, string database)~
+
+オブジェクト指向型 (メソッド)
+
+  bool change_user(resource link, string user, string password, string database, string user, string password, string database)~
+
+|maxdb_change_user| は、パラメータ {link}
+で指定したデータベース接続のユーザを変更し、現在のデータベースを
+{database} で指定したものに変更するために使用します。
+
+ユーザの変更を行うには、{username} および {password}
+に有効な値が指定されていること、
+そして指定したデータベースに対する適切なアクセス権がユーザに与えられていることが必要です。
+何らかの理由で認証に失敗すると、現在のユーザ認証のままの状態となります。
+
+このコマンドを使用すると、その操作が正常に終了したか否かにかかわらず、
+新しくデータベースに接続したのと同じように扱われます。つまり、
+現在アクティブなトランザクションはすべてロールバックされ、
+一時テーブルはすべて閉じられ、テーブルに対するロックもすべて解除されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  /* test データベースに接続します */
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if ($result = $maxdb->query("SELECT * FROM dual")) {
+     $row = $result->fetch_row();
+     printf("結果: %s\n", $row[0]);
+     $result->free();
+  }
+  
+  /* すべてをリセットし、新しいデータベースを選択します */
+  if (!$maxdb->change_user("DBADMIN", "SECRET", "DEMODB")) {
+    printf("データベースが稼動していません\n");
+  } else {
+    printf("データベースが稼動中です\n");
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (!$link) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if ($result = maxdb_query($link, "SELECT * FROM dual")) {
+     $row = maxdb_fetch_row($result);
+     printf("結果: %s\n", $row[0]);
+     maxdb_free_result($result);
+  }
+  
+  /* すべてをリセットし、新しいデータベースを選択します */
+  if (!maxdb_change_user($link, "DBADMIN", "SECRET", "DEMODB")) {
+    printf("データベースが稼動していません\n");
+  } else {
+    printf("データベースが稼動中です\n");
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  結果: a
+  データベースが稼動中です
+
+|maxdb_connect| |maxdb_select_db|
+
+vim:ft=help:

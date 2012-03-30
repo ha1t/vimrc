@@ -1,0 +1,24 @@
+XMLWriter::outputMemory -- 現在のバッファを返す
+
+オブジェクト指向型
+
+  bool outputMemory([bool flush])~
+
+手続き型
+
+  string xmlwriter_output_memory([bool flush, resource xmlwriter [, bool flush]])~
+
+現在のバッファを返します。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{flush}
+出力バッファをフラッシュするかどうか。デフォルトは
+TRUE。
+
+現在のバッファを文字列で返します。
+
+vim:ft=help:

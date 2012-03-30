@@ -1,0 +1,42 @@
+sesam_connect -- SESAM データベース接続をオープンする
+
+  bool sesam_connect(string catalog, string schema, string user)~
+
+SESAM データベースハンドラ
+タスクへの接続を確立します。接続は、最初の起動時にのみ設定された
+SESAM OML PLAM
+ライブラリから実際にドライバがロードされるという
+意味で常に"持続的"です。この後のコールではドライバは再利用され、
+指定したカタログ、スキーマ、ユーザが直ちに使用されます。
+
+{catalog} データベースを作成する際、{"catalog"} 名は、 SESAM
+設定ディレクティブ //ADD-SQL-DATABASE-CATALOG-LIST ENTRY-1 =
+*CATALOG(CATALOG-NAME = catalogname,...) で 指定します。
+
+{schema} {"schema"} には選択したデータベーススキーマを
+指定します (SESAM ハンドブックを参照)。
+
+{user} {"user"} 引数には、この {"catalog"} / {"schema"}
+の組にアクセス可能なユーザの一人を 指定します。{"user"}
+は、システムのユーザ ID と HTTP
+ユーザ/パスワード保護から共に完全に独立していことに
+注意してください。SESAM 設定にのみ使用されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+SESAM データベースへの接続
+
+<?php >
+  if (!sesam_connect ("mycatalog", "myschema", "otto")) {
+      die("SESAM に接続できません");
+  }
+?>
+
+
+
+
+
+|sesam_disconnect|
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+yp_match -- 検索した行を返す
+
+  string yp_match(string domain, string map, string key)~
+
+指定した {map} から、 {key} に対応する値を返します。
+
+{domain} NIS ドメイン名。
+
+{map} NIS マップ。
+
+{key} キーは正確でなければなりません。
+
+値、あるいはエラー時に FALSE を返します。
+
+NIS 検索の例
+
+<?php >
+  $entry = yp_match($domain, "passwd.byname", "joe");
+  echo "マッチしたエントリは、" . $entry;
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  joe:##joe:11111:100:Joe User:/home/j/joe:/usr/local/bin/bash
+
+
+
+|yp_get_default_domain|
+
+vim:ft=help:

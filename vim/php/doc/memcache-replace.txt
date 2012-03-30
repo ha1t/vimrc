@@ -1,0 +1,49 @@
+Memcache::replace -- 既存項目の値を置換する
+
+  bool Memcache::replace(string key, mixed var [, int flag [, int expire]])~
+
+|Memcache::replace| は、{key}
+に対応する既存項目の値を置換するために使用します。
+指定したキーに対応する項目がない場合は、
+|Memcache::replace| は FALSE を返します。
+それ以外の点では、|Memcache::replace| の振る舞いは
+|Memcache::set| と同じです。 |memcache_replace|
+関数を使用することも可能です。
+
+{key} 項目に関連付けられたキー。
+
+{var}
+格納する値。文字列および整数値はそのままの形式で、それ以外の型は
+シリアライズされて格納されます。
+
+{flag} 項目を圧縮して格納する場合に MEMCACHE_COMPRESSED
+を使用します (zlib を使用します)。
+
+{expire} 項目の有効期限。ゼロの場合は有効期限なし
+(いつまでも有効) となります。Unix
+タイムスタンプ形式、あるいは現在からの
+秒数で指定することが可能ですが、後者の場合は秒数が
+2592000 (30 日) を超えることはできません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Memcache::replace| の例
+
+<?php >
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  
+  /* 手続き型の API */
+  memcache_replace($memcache_obj, "test_key", "some variable", false, 30);
+  
+  /* オブジェクト指向の API */
+  $memcache_obj->replace("test_key", "some variable", false, 30);
+?>
+
+
+
+
+
+|Memcache::set| |Memcache::add|
+
+vim:ft=help:

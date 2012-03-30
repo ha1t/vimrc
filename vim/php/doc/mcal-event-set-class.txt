@@ -1,0 +1,14 @@
+mcal_event_set_class --
+グローバルイベント構造体ストリームのクラスを設定する
+
+  void mcal_event_set_class(int stream, int class)~
+
+グローバルイベント構造体ストリームのクラスを指定した値に設定します。
+
+{stream} MCAL ストリーム。
+
+{class} class は、public の場合 1、private の場合 0 とします。
+
+値を返しません。
+
+vim:ft=help:

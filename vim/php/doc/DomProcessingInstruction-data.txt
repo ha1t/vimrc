@@ -1,0 +1,12 @@
+DomProcessingInstruction->data -- PI ノードのデータを返す
+
+  string data()~
+
+このメソッドは PI ノードのデータを取得します。
+
+PI のデータを返します。
+
+DOMProcessingInstruction の data
+プロパティを使用してください。
+
+vim:ft=help:

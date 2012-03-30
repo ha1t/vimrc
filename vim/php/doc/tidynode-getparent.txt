@@ -1,0 +1,10 @@
+tidyNode::getParent -- カレントノードの親ノードを返す
+
+  tidyNode tidyNode::getParent()~
+
+カレントノードの親ノードを返します。
+
+そのノードが親を持っている場合に tidyNode、
+それ以外の場合に NULL を返します。
+
+vim:ft=help:

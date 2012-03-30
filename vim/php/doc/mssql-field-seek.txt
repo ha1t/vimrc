@@ -1,0 +1,19 @@
+mssql_field_seek -- 指定したフィールドオフセットに移動する
+
+  bool mssql_field_seek(resource result, int field_offset)~
+
+指定したフィールドオフセットを探します。この後、フィールドオフセット
+を指定せずに |mssql_fetch_field| をコールした
+場合、このフィールドが返されます。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+{field_offset} フィールドオフセット。0 から始まります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mssql_fetch_field|
+
+vim:ft=help:

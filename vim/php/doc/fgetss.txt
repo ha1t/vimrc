@@ -1,0 +1,38 @@
+fgetss -- ファイルポインタから 1 行取り出し、HTML
+タグを取り除く
+
+  string fgetss(resource handle [, int length [, string allowable_tags]])~
+
+|fgets| と同じですが、 |fgetss| は読み込んだテキストから
+HTML および PHP
+のタグを取り除こうとすることが異なります。
+
+{handle}
+ファイルポインタは、有効なファイルポインタである必要があり、
+|fopen| または |fsockopen| で正常にオープンされた
+（そしてまだ |fclose| でクローズされていない）
+ファイルを指している必要があります。
+
+{length} 取得したいデータの長さ。
+
+{allowable_tags} オプションの 3 番目の引数を使用して、
+取り除く必要がないタグを指定することができます。
+
+{handle} で指定したファイルポインタから最大 {length} - 1
+バイト読み出し、 HTML や PHP
+コードを取り除いた文字列を返します。
+
+エラーが発生した場合は FALSE を返します。
+
+バージョン 説明 5.0.0 {length}
+パラメータがオプションとなりました。 3.0.13 および 4.0.0
+{allowable_tags} パラメータが追加されました。
+
+マッキントッシュコンピュータ上で作成されたファイルを読み込む際に、
+PHP が行末を認識できないという問題が発生した場合、
+実行時の設定オプションauto_detect_line_endings
+を有効にする必要が生じるかもしれません。
+
+|fgets| |fopen| |popen| |fsockopen| |strip_tags|
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+imap_headers --
+メールボックス内のすべてのメッセージのヘッダを返す
+
+  array imap_headers(resource imap_stream)~
+
+メールボックス内のすべてのメッセージのヘッダを返します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+ヘッダ情報でフォーマットされた文字列の配列を返します。1
+つの メールメッセージ毎に 1 つの要素が格納されます。
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+enchant_dict_check -- 単語のスペルが正しいかどうかを調べる
+
+  bool enchant_dict_check(resource dict, string word)~
+
+単語のスペルが正しい場合に TRUE、 そうでない場合に FALSE
+を返します。
+
+{dict} 辞書リソース。
+
+{word} 調べる単語。
+
+単語のスペルが正しい場合に TRUE、 そうでない場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,59 @@
+SimpleXMLElement->asXML() -- SimpleXML 要素に基づき整形式の XML
+文字列を返す
+
+  mixed asXML([string filename])~
+
+asXML メソッドは、親オブジェクトのデータを XML version 1.0
+形式にフォーマットします。
+
+{filename}
+指定した場合、データを返すかわりにファイルにデータを書き込みます。
+
+{filename} が指定されていない場合、この関数は 成功時に
+string 、エラー時に FALSE を返します。
+パラメータが指定されていた場合は、ファイルが正常に書き込めたときに
+TRUE 、そうでないときに FALSE を返します。
+
+XML を取得する
+
+<?php >
+  $string = <<<XML
+  <a>
+   <b>
+    <c>text</c>
+    <c>stuff</c>
+   </b>
+   <d>
+    <c>code</c>
+   </d>
+  </a>
+  XML;
+  
+  $xml = new SimpleXMLElement($string);
+  
+  echo $xml->asXML(); // <?xml ... <a><b><c>text</c><c>stuff</c> ...
+?>
+
+
+
+
+
+asXML は Xpath の結果にも適用できます: Xpath の結果に asXML()
+を使用する
+
+<?php >
+  // 上の XML の例から続く
+  
+  /* <a><b><c>を探す */
+  $result = $xml->xpath('/a/b/c');
+  
+  while(list( , $node) = each($result)) {
+      echo $node->asXML(); // <c>text</c> と <c>stuff</c>
+  }
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,25 @@
+ldap_get_values_len --
+結果エントリから全てのバイナリ値を得る
+
+  array ldap_get_values_len(resource link_identifier, resource result_entry_identifier, string attribute)~
+
+結果のエントリから、属性のすべての値を読み込みます。
+
+この関数は、文字列データではなくバイナリデータを処理すること以外は、
+|ldap_get_values| と全く同じです。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{result_entry_identifier}
+
+{attribute}
+
+成功時に属性の値を配列で返し、エラー時に FALSE
+を返します。
+個々の値は、配列インデックスによりアクセスします。最初のインデックスは、0
+です。 値の数は、結果の配列の "count"
+という要素で知ることができます。
+
+|ldap_get_values|
+
+vim:ft=help:

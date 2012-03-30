@@ -1,0 +1,33 @@
+geoip_db_filename -- 対応する GeoIP
+データベースのファイル名を返す
+
+  string geoip_db_filename(int database)~
+
+|geoip_db_filename| 関数は、 対応する GeoIP
+データベースのファイル名を返します。
+
+これは、そのファイルが存在するかどうかを表すものではありません。
+単に、ライブラリがデータベースを探す先を返すだけのものです。
+
+{database}
+データベースの形式を表す整数値。この拡張モジュールで定義している
+さまざまな定数 (GEOIP_*_EDITION)
+を使用することができます。
+
+対応するデータベースのファイル名、あるいはエラー時に
+NULL を返します。
+
+|geoip_db_filename| の例
+これは、対応するデータベースのファイル名を出力します。
+
+<?php >
+  print geoip_db_filename(GEOIP_COUNTRY_EDITION);
+?>
+
+上の例の出力は以下となります。
+
+  /usr/share/GeoIP/GeoIP.dat
+
+
+
+vim:ft=help:

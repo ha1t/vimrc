@@ -1,0 +1,21 @@
+apd_get_active_symbols --
+ローカルスコープ内の現在の変数名を配列で取得する
+
+  array apd_get_active_symbols()~
+
+アクティブなスコープ内で定義されているすべての変数名を返します
+(変数の値ではありません)。
+
+すべての変数を含む多次元配列を返します。
+
+|apd_get_active_symbols| の例
+
+<?php >
+  apd_echo(apd_get_active_symbols());
+?>
+
+
+
+
+
+vim:ft=help:

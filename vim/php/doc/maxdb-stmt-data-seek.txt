@@ -1,0 +1,113 @@
+stmt->data_seek --
+ステートメントの結果セットの、任意の行に移動する
+
+手続き型
+
+  bool maxdb_stmt_data_seek(resource statement, int offset)~
+
+オブジェクト指向型 (メソッド)
+
+  bool data_seek(resource statement, int offset, int offset)~
+
+|maxdb_stmt_data_seek| 関数は、{statement}
+が表すステートメント結果セットの中の {offset}
+で指定した任意のオフセットに結果ポインタを移動します。
+{offset} は、ゼロから全行数マイナス 1 までの間
+(0..|maxdb_stmt_num_rows| - 1) である必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  /* 接続をオープンします */
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */ 
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query = "SELECT name, zip FROM hotel.city ORDER BY name";
+  if ($stmt = $maxdb->prepare($query)) {
+  
+     /* クエリを実行します */
+     $stmt->execute();
+  
+     /* 結果変数にバインドします */
+     $stmt->bind_result($name, $code);
+  
+     /* 結果を保存します */
+     $stmt->store_result();
+  
+     /* 行番号 5 に移動します */
+     $stmt->data_seek(5);
+  
+     /* 値を取得します */
+     $stmt->fetch();
+  
+     printf ("City: %s  Zip: %s\n", $name, $code);
+  
+     /* ステートメントを閉じます */
+     $stmt->close();
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  /* 接続をオープンします */
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */ 
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query = "SELECT name, zip FROM hotel.city ORDER BY name";
+  if ($stmt = maxdb_prepare($link, $query)) {
+  
+     /* クエリを実行します */
+     maxdb_stmt_execute($stmt);
+  
+     /* 結果変数にバインドします */
+     maxdb_stmt_bind_result($stmt, $name, $code);
+  
+     /* 結果を保存します */
+     maxdb_stmt_store_result($stmt);
+  
+     /* 行番号 5 に移動します */
+     maxdb_stmt_data_seek($stmt, 5);
+  
+     /* 値を取得します */
+     maxdb_stmt_fetch($stmt);
+  
+     printf ("City: %s  Zip: %s\n", $name, $code);
+  
+     /* ステートメントを閉じます */
+     maxdb_stmt_close($stmt);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  City: Dallas  Zip: 75243
+
+|maxdb_prepare|
+
+vim:ft=help:

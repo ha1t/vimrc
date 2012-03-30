@@ -1,0 +1,13 @@
+posix_getpgrp -- 現在のプロセスのグループ ID を返す
+
+  int posix_getpgrp()~
+
+現在のプロセスのグループ ID を返します。
+
+ID を表す整数値を返します。
+
+プロセスグループの詳細な情報に関しては、POSIX.1 および
+POSIX システムのマニュアルページ getpgrp(2)
+を参照ください。
+
+vim:ft=help:

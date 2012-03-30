@@ -1,0 +1,24 @@
+mb_ereg_search --
+指定したマルチバイト文字列が正規表現に一致するか調べる
+
+  bool mb_ereg_search([string pattern [, string option]])~
+
+指定したマルチバイト文字列に対するマルチバイト正規表現マッチングを行います。
+
+{pattern} 検索パターン。
+
+{option} 検索オプション。
+
+|mb_ereg_search|は、マルチバイト文字列が正規表現に
+一致するかどうか調べ、一致する場合にTRUE、それ以外の場合に
+FALSE を返します。検索対象の文字列は、 |mb_ereg_search_init|
+により設定します。 正規表現 {pattern} を省略した場合は、
+前回のものを再利用します。
+
+内部エンコーディングあるいは |mb_regex_encoding|
+で指定した文字エンコーディングを、
+この関数の文字エンコーディングとして使用します。
+
+|mb_regex_encoding| |mb_ereg_search_init|
+
+vim:ft=help:

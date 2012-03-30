@@ -1,0 +1,39 @@
+hash_hmac -- HMAC 方式を使用してハッシュ値を生成する
+
+  string hash_hmac(string algo, string data, string key [, bool raw_output])~
+
+{algo} 選択したアルゴリズムの名前 (すなわち
+"md5"、"sha256"、"haval160,4" など…)。
+
+{data} ハッシュするメッセージ。
+
+{key} HMAC
+方式でのメッセージダイジェストを生成するために使用する
+共有の秘密鍵。
+
+{raw_output} TRUE
+を設定すると、生のバイナリデータを出力します。
+デフォルト (FALSE) の場合は小文字の 16
+進数値となります。
+
+{raw_output} が true に設定されていない場合は、
+メッセージダイジェストの計算結果を小文字の 16
+進数値形式の文字列で 返します。もし true
+に設定されていた場合は、メッセージダイジェストが
+そのままのバイナリ形式で返されます。
+
+|hash_hmac| の例
+
+<?php >
+  echo hash_hmac('ripemd160', 'The quick brown fox jumped over the lazy dog.', 'secret');
+?>
+
+上の例の出力は以下となります。
+
+  b8e7ae12510bdfb1812e463a7f086122cf37e4f7
+
+
+
+|hash| |hash_init| |hash_hmac_file|
+
+vim:ft=help:

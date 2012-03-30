@@ -1,0 +1,7 @@
+PDF_utf16_to_utf8 -- 文字列を UTF-16 から UTF-8 に変換する
+
+  string PDF_utf16_to_utf8(resource pdfdoc, string utf16string)~
+
+文字列を UTF-16 フォーマットから UTF-8 に変換します。
+
+vim:ft=help:

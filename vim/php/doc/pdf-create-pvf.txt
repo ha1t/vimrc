@@ -1,0 +1,7 @@
+PDF_create_pvf -- PDFlib 仮想ファイルを作成する
+
+  bool PDF_create_pvf(resource pdfdoc, string filename, string data, string optlist)~
+
+メモリ内のデータから、読み込み専用の仮想ファイルを作成します。
+
+vim:ft=help:

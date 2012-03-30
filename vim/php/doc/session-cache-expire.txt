@@ -1,0 +1,52 @@
+session_cache_expire -- 現在のキャッシュの有効期限を返す
+
+  int session_cache_expire([int new_cache_expire])~
+
+|session_cache_expire| は現在の session.cache_expire
+の設定を返します。
+
+リクエストがあった時点でキャッシュの有効期限は
+session.cache_limiter
+で設定されたデフォルト値にリセットされます。
+そのため、すべてのリクエストにおいて
+(そして|session_start| をコールする前に) |session_cache_expire|
+をコールする必要があります。
+
+{new_cache_expire} {new_cache_expire} が指定された場合、
+現在のキャッシュの有効期限は、 {new_cache_expire}
+で置換されます。
+
+session.cache_limiterが
+nocache以外の値にセットされている場合にのみ
+{new_cache_expire}が有効となります。
+
+session.cache_expire の現在の設定を返します。
+返り値は分単位で、デフォルトは 180 です。
+
+|session_cache_expire| の例
+
+<?php >
+  /* set the cache limiter to 'private' */
+  
+  session_cache_limiter('private');
+  $cache_limiter = session_cache_limiter();
+  
+  /* set the cache expire to 30 minutes */
+  session_cache_expire(30);
+  $cache_expire = session_cache_expire();
+  
+  /* start the session */
+  
+  session_start();
+  
+  echo "The cache limiter is now set to $cache_limiter<br />";
+  echo "The cached session pages expire after $cache_expire minutes";
+?>
+
+
+
+
+
+session.cache_expire session.cache_limiter |session_cache_limiter|
+
+vim:ft=help:

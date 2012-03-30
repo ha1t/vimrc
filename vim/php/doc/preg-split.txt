@@ -1,0 +1,104 @@
+preg_split -- 正規表現で文字列を分割する
+
+  array preg_split(string pattern, string subject [, int limit [, int flags]])~
+
+指定した文字列を、正規表現で分割します。
+
+{pattern} 検索するパターンを表す文字列。
+
+{subject} 入力文字列。
+
+{limit} これを指定した場合、最大 {limit}
+個の部分文字列が返されます。そして、 {limit} が -1
+の場合は「制限が無い」ことを意味します。
+これは、{flags} を指定する場合に有用です。
+
+{flags} {flags} は、次のフラグを組み合わせたものとする
+（ビット和演算子｜で組み合わせる）ことが可能です。
+PREG_SPLIT_NO_EMPTY
+このフラグを設定すると、空文字列でないものだけが
+|preg_split| により返されます。
+
+PREG_SPLIT_DELIM_CAPTURE
+このフラグを設定すると、文字列分割用のパターン中の
+カッコによるサブパターンでキャプチャされた値も同時に返されます。
+
+PREG_SPLIT_OFFSET_CAPTURE
+このフラグを設定した場合、各マッチに対応する文字列のオフセットも返されます。
+これにより、返り値は配列となり、配列の要素 0
+はマッチした文字列、 要素 1 は {subject}
+におけるマッチした文字列のオフセット値となることに
+注意してください。
+
+{pattern} にマッチした境界で分割した {subject}
+の部分文字列の配列を返します。
+
+バージョン 説明 4.3.0 PREG_SPLIT_OFFSET_CAPTURE
+が追加されました。 4.0.5 PREG_SPLIT_DELIM_CAPTURE
+が追加されました。 4.0.0 パラメータ {flags}
+が追加されました。
+
+|preg_split| の例 : 検索文字列のある部分を取得
+
+<?php >
+  // カンマまたは " ", \r, \t, \n , \f などの空白文字で句を分割する。
+  $keywords = preg_split("/[\s,]+/", "hypertext language, programming");
+?>
+
+
+
+
+
+文字列を文字要素に分割
+
+<?php >
+  $str = 'string';
+  $chars = preg_split('//', $str, -1, PREG_SPLIT_NO_EMPTY);
+  print_r($chars);
+?>
+
+
+
+
+
+文字列をマッチするものとそのオフセットに分割
+
+<?php >
+  $str = 'hypertext language programming';
+  $chars = preg_split('/ /', $str, -1, PREG_SPLIT_OFFSET_CAPTURE);
+  print_r($chars);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => Array
+          (
+              [0] => hypertext
+              [1] => 0
+          )
+  
+      [1] => Array
+          (
+              [0] => language
+              [1] => 10
+          )
+  
+      [2] => Array
+          (
+              [0] => programming
+              [1] => 19
+          )
+  
+  )
+
+
+
+正規表現の威力を必要としないのなら、より高速な
+(機能はシンプルですが) 代替関数として |explode| あるいは
+|str_split| のような選択肢があります。
+
+|spliti| |split| |implode| |preg_match| |preg_match_all| |preg_replace|
+
+vim:ft=help:

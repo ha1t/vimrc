@@ -1,0 +1,31 @@
+px_set_parameter -- パラメータを設定する
+
+  bool px_set_parameter(resource pxdoc, string name, string value)~
+
+さまざまなパラメータを設定します。
+
+{pxdoc} |px_new| が返す、 paradox データベースのリソース ID。
+
+{name} 設定したいパラメータの内容に応じて、{name}
+には以下のいずれかを指定します。
+
+tablename データベースヘッダに格納されるテーブル名。
+
+targetencoding
+出力用のエンコーディング。文字フィールドから読み込まれたデータは、
+targetencoding で記録されます。
+
+inputencoding
+入力データをデータベースに保存する際のエンコーディング。
+
+{value} パラメータに設定する値。inputencoding および
+targetencoding の場合は、iconv あるいは recode
+が理解できるエンコーディング名 (例:
+iso-8859-1、utf-8、cp850) である必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+DOS コードページについては |px_get_info| を参照ください。
+
+vim:ft=help:

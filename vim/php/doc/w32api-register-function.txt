@@ -1,0 +1,28 @@
+w32api_register_function -- ライブラリの関数 function_name を PHP
+に登録する
+
+  bool w32api_register_function(string library, string function_name, string return_type)~
+
+この関数は、ライブラリ {libary} から {function_name}
+という名前の関数を探し、PHP
+にインポートしようとします。
+
+{library} ライブラリ名を表す文字列。
+
+{function_name} 関数名を表す文字列。
+
+{return_type} 関数は、指定した {return_type} で登録されます。
+この型は、PHP の組み込み型かあるいは |w32api_deftype|
+で定義した型とすることが可能です。
+型の名前は大文字小文字を区別します。組み込みの型の名前は
+すべて小文字となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

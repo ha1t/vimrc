@@ -1,0 +1,92 @@
+str_word_count --
+文字列に使用されている単語についての情報を返す
+
+  mixed str_word_count(string string [, int format [, string charlist]])~
+
+{string} の単語数を数えます。 オプションの {format}
+が指定されていない場合、
+見つかった単語の数を整数値で返します。 {format}
+が指定されている場合は結果が配列で返され、
+配列の内容は {format} に依存します。 {format}
+に設定できる値と対応する出力については
+以下で示します。
+
+この関数を使用するうえで、'単語'
+は以下のように定義されます。すなわち、
+「ロケールに依存しないアルファベットからなる文字列で、その先頭以外の部分に
+"'" および "-" が含まれていてもよい」。
+
+{string} 文字列。
+
+{format}
+この関数の戻り値を設定します。現在サポートされている値は
+以下のとおりです。 0 - 見つかった単語の数を返します。
+
+1 - {string} の中に見つかった単語を含む 配列を返します。
+
+2 - 連想配列を返します。{string} の中での
+単語の開始位置がキー、単語自体を対応する値となります。
+
+{charlist} '単語'
+とみなされる文字に追加する文字のリスト。
+
+選択した {format}
+に応じて、配列あるいは整数を返します。
+
+バージョン 説明 5.1.0 {charlist}
+パラメータが追加されました。
+
+|str_word_count| の例
+
+<?php >
+  $str = "Hello fri3nd, you're
+         looking          good today!";
+  
+  print_r(str_word_count($str, 1));
+  print_r(str_word_count($str, 2));
+  print_r(str_word_count($str, 1, 'àáãç3'));
+  
+  echo str_word_count($str);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => Hello
+      [1] => fri
+      [2] => nd
+      [3] => you're
+      [4] => looking
+      [5] => good
+      [6] => today
+  )
+  
+  Array
+  (
+      [0] => Hello
+      [6] => fri
+      [10] => nd
+      [14] => you're
+      [29] => looking
+      [46] => good
+      [51] => today
+  )
+  
+  Array
+  (
+      [0] => Hello
+      [1] => fri3nd
+      [2] => you're
+      [3] => looking
+      [4] => good
+      [5] => today
+  )
+  
+  7
+
+
+
+|explode| |preg_split| |split| |count_chars| |substr_count|
+
+vim:ft=help:

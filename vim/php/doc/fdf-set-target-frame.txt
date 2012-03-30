@@ -1,0 +1,19 @@
+fdf_set_target_frame --
+フォームの表示対象となるフレームを設定する
+
+  bool fdf_set_target_frame(resource fdf_document, string frame_name)~
+
+|fdf_save_file| で定義した PDF の結果を出力する
+対象のフレームを設定します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{frame_name} フレーム名を表す文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fdf_save_file|
+
+vim:ft=help:

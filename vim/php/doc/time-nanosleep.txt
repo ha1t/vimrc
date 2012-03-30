@@ -1,0 +1,57 @@
+time_nanosleep -- 秒およびナノ秒単位で実行を遅延する
+
+  mixed time_nanosleep(int seconds, int nanoseconds)~
+
+指定した {seconds} および {nanoseconds}
+の時間だけプログラムの実行を遅延させます。
+
+{seconds} 正の整数である必要があります。
+
+{nanoseconds}
+十億よりも小さい正の整数である必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+シグナルによって遅延処理が中断された場合、以下の要素からなる連想配列を返します。
+seconds - 残りの秒数
+
+nanoseconds - 残りのナノ秒数
+
+|time_nanosleep| の例
+
+<?php >
+  // 注意! もし配列が返された場合、これはうまく動作しません
+  if (time_nanosleep(0, 500000000)) {
+      echo "0.5 秒遅延しました。\n";
+  }
+  
+  // こちらのほうがよいでしょう
+  if (time_nanosleep(0, 500000000) === true) {
+      echo "0.5 秒遅延しました。\n";
+  }
+  
+  // そしてこれが最良の方法です
+  $nano = time_nanosleep(2, 100000);
+  
+  if ($nano === true) {
+      echo "2.1 秒遅延しました。\n";
+  } elseif ($nano === false) {
+      echo "遅延に失敗しました。\n";
+  } elseif (is_array($nano)) {
+      $seconds = $nano['seconds'];
+      $nanoseconds = $nano['nanoseconds'];
+      echo "シグナルによって中断しました。\n";
+      echo "残りの秒数は $seconds 秒と $nanoseconds ナノ秒です。";
+  }
+?>
+
+
+
+
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|sleep|, |usleep|, |set_time_limit|
+
+vim:ft=help:

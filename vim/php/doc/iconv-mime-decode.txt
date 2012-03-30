@@ -1,0 +1,44 @@
+iconv_mime_decode -- MIME ヘッダフィールドをデコードする
+
+  string iconv_mime_decode(string encoded_header [, int mode [, string charset]])~
+
+MIME ヘッダフィールドをデコードします。
+
+{encoded_header} エンコードされたヘッダを表す文字列。
+
+{mode} {mode} は、|iconv_mime_decode| が不正な形式の MIME
+ヘッダフィールドに遭遇した場合の
+振る舞いを定義します。以下のビットマスクの組み合わせで指定が可能です。
+|iconv_mime_decode| で指定できるビットマスク 値 定数名 説明
+1 ICONV_MIME_DECODE_STRICT 指定すると、ヘッダは RFC2047
+で定義されている標準に完全準拠する形式でデコードされます。
+このオプションはデフォルトでは無効になっています。なぜなら、世の中には
+おかしなメールソフトが多く存在し、それらは規格に従わずに間違った
+MIME ヘッダを生成するからです。 2
+ICONV_MIME_DECODE_CONTINUE_ON_ERROR
+指定すると、|iconv_mime_decode_headers|
+は文法的なエラーを無視し、デコード作業を継続します。
+
+{charset} オプションの {charset} パラメータは、結果の
+文字セットを指定します。指定されなかった場合は
+iconv.internal_encoding が用いられます。
+
+成功した場合はデコードされた MIME フィールドを、
+デコード中にエラーが発生した場合は FALSE を返します。
+
+|iconv_mime_decode| の例
+
+<?php >
+  // この結果は "Subject: Prüfung Prüfung" となります。
+  echo iconv_mime_decode("Subject: =?UTF-8?B?UHLDvGZ1bmcgUHLDvGZ1bmc=?=",
+                         0, "ISO-8859-1");
+?>
+
+
+
+
+
+|iconv_mime_decode_headers| |mb_decode_mimeheader| |imap_mime_header_decode|
+|imap_base64| |imap_qprint|
+
+vim:ft=help:

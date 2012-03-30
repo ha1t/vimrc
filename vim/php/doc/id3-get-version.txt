@@ -1,0 +1,48 @@
+id3_get_version -- ID3 タグのバージョンを取得する
+
+  int id3_get_version(string filename)~
+
+|id3_get_version| は、MP3 ファイル内の ID3
+タグのバージョンを取得します。
+
+あるファイルが ID3 v1.1
+タグを含んでいるのなら、そのファイルは 常に 1.0
+タグも含んでいます。というのも、バージョン 1.1 は単に
+1.0 を拡張したものであるからです。
+
+{filename} MP3 ファイルへのパス。
+
+ファイル名のかわりに、ストリームリソースを渡すことも可能です。
+
+MP3 ファイル内の ID3 タグのバージョンを返します。 ID3 v1.x
+のタグおよび v2.x
+のタグを同時に保持することも可能なので、
+この関数の返す値を利用する際には 定義済みの定数
+ID3_V1_0、 ID3_V1_1 および ID3_V2
+とのビット比較を行わなければなりません。
+
+|id3_get_version| の例
+
+<?php >
+  $version = id3_get_version( "path/to/example.mp3" );
+  if ($version &amp; ID3_V1_0) {
+      echo "1.x タグを含んでいます\n";
+  }
+  if ($version &amp; ID3_V1_1) {
+      echo "1.1 タグを含んでいます\n";
+  }
+  if ($version &amp; ID3_V2) {
+      echo "2.x タグを含んでいます\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  1.x タグを含んでいます
+  1.1 タグを含んでいます
+
+
+
+|id3_set_tag| |id3_get_tag| |id3_remove_tag|
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+zip_entry_compressedsize --
+ディレクトリエントリの圧縮時のサイズを取得する
+
+  int zip_entry_compressedsize(resource zip_entry)~
+
+ディレクトリエントリの圧縮時のサイズを取得します。
+
+{zip_entry} |zip_read|により返されたディレクトリのエントリ
+
+圧縮後のサイズ
+
+|zip_open| |zip_read|
+
+vim:ft=help:

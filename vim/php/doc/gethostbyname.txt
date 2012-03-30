@@ -1,0 +1,28 @@
+gethostbyname --
+インターネットホスト名に対応するIPアドレスを取得する
+
+  string gethostbyname(string hostname)~
+
+{hostname} で指定したインターネットホストの IP
+アドレスを返します。
+
+{hostname} ホスト名。
+
+IP アドレスを返します。失敗した場合は、そのままの形の
+{hostname} を文字列で返します。
+
+単純な |gethostbyname| の例
+
+<?php >
+  $ip = gethostbyname('www.example.com');
+  
+  echo $ip;
+?>
+
+
+
+
+
+|gethostbyaddr| |gethostbynamel|
+
+vim:ft=help:

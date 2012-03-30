@@ -1,0 +1,10 @@
+readline_list_history -- ヒストリを一覧表示する
+
+  array readline_list_history()~
+
+コマンドラインヒストリ全体を取得します。
+
+コマンドラインヒストリ全体の配列を返します。
+各要素にはゼロから始まる整数の添字が付加されています。
+
+vim:ft=help:

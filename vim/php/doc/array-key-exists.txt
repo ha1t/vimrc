@@ -1,0 +1,49 @@
+array_key_exists --
+指定したキーまたは添字が配列にあるかどうかを調べる
+
+  bool array_key_exists(mixed key, array search)~
+
+指定した {key} が配列に設定されている場合、
+|array_key_exists| は TRUE を返します。 {key}
+は配列添字として使用できる全ての値を使用可能です。
+|array_key_exists| はオブジェクトに対しても動作します。
+
+{key} 調べる値。
+
+{search} キーが存在するかどうかを調べたい配列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|array_key_exists| の例
+
+<?php >
+  $search_array = array('first' => 1, 'second' => 4);
+  if (array_key_exists('first', $search_array)) {
+      echo "この配列には 'first' という要素が存在します";
+  }
+?>
+
+
+
+
+
+この関数の名前は、PHP 4.0.6では |key_exists| です。
+
+|array_key_exists| 対 |isset| |isset| は NULL
+値を持つ配列キーに対して TRUE
+を返しません。一方、|array_key_exists| は TRUE を返します。
+
+<?php >
+  $search_array = array('first' => null, 'second' => 4);
+  
+  // false を返します
+  isset($search_array['first']);
+  
+  // true を返します
+  array_key_exists('first', $search_array);
+?>
+
+|isset| |array_keys| |in_array|
+
+vim:ft=help:

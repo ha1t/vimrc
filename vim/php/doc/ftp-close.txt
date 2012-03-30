@@ -1,0 +1,39 @@
+ftp_close -- FTP 接続を閉じる
+
+  bool ftp_close(resource ftp_stream)~
+
+|ftp_close| は、指定されたリンク ID を閉じて resource
+を開放します。
+
+この関数をコールした後は、FTP
+接続を利用することはできません。 利用するためには
+|ftp_connect| で新しい接続を 作成しなければなりません。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ftp_close| の例
+
+<?php >
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // 現在のディレクトリを表示する
+  echo ftp_pwd($conn_id); // /
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_connect|
+
+vim:ft=help:

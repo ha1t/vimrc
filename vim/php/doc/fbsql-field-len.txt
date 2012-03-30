@@ -1,0 +1,15 @@
+fbsql_field_len -- 指定したフィールドの長さを返す
+
+  int fbsql_field_len(resource result [, int field_offset])~
+
+指定したフィールドの長さを返します。
+
+{result} |fbsql_list_fields| が返す結果ポインタ。
+
+{field_offset}
+フィールドの数値オフセット。フィールドのインデックスは
+0 からはじまります。
+
+指定したフィールドの長さを返します。
+
+vim:ft=help:

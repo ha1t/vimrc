@@ -1,0 +1,9 @@
+PDF_add_thumbnail -- 現在のページにサムネイルを追加する
+
+  bool PDF_add_thumbnail(resource pdfdoc, int image)~
+
+現在のページにサムネイルとして既存のイメージを追加します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

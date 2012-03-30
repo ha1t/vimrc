@@ -1,0 +1,36 @@
+image_type_to_mime_type -- getimagesize, exif_read_data, exif_thumbnail,
+exif_imagetypeから返される 画像形式のMIMEタイプを取得する
+
+  string image_type_to_mime_type(int imagetype)~
+
+|image_type_to_mime_type| は IMAGETYPE 定数で指定される Mime-Type
+を取得します。
+
+{imagetype} IMAGETYPE_XXX 定数のいずれか。
+
+戻り値は次のとおりです。 戻り値の定数 {imagetype} 戻り値
+IMAGETYPE_GIF image/gif IMAGETYPE_JPEG image/jpeg IMAGETYPE_PNG image/png
+IMAGETYPE_SWF application/x-shockwave-flash IMAGETYPE_PSD image/psd
+IMAGETYPE_BMP image/bmp IMAGETYPE_TIFF_II (intel byte order) image/tiff
+IMAGETYPE_TIFF_MM (motorola byte order) image/tiff IMAGETYPE_JPC
+application/octet-stream IMAGETYPE_JP2 image/jp2 IMAGETYPE_JPX
+application/octet-stream IMAGETYPE_JB2 application/octet-stream IMAGETYPE_SWC
+application/x-shockwave-flash IMAGETYPE_IFF image/iff IMAGETYPE_WBMP
+image/vnd.wap.wbmp IMAGETYPE_XBM image/xbm IMAGETYPE_ICO
+image/vnd.microsoft.icon
+
+image_type_to_mime_type (ファイル)
+
+<?php >
+  header("Content-type: " . image_type_to_mime_type(IMAGETYPE_PNG));
+?>
+
+
+
+
+
+この関数は GD ライブラリを必要としません。
+
+|getimagesize| |exif_imagetype| |exif_read_data| |exif_thumbnail|
+
+vim:ft=help:

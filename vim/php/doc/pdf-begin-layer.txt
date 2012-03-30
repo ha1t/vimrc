@@ -1,0 +1,10 @@
+PDF_begin_layer -- レイヤーを開始する
+
+  bool PDF_begin_layer(resource pdfdoc, int layer)~
+
+その後のページ出力で使用するレイヤーを開始します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+この関数は、PDF 1.5 で使用可能です。
+
+vim:ft=help:

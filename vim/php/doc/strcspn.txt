@@ -1,0 +1,26 @@
+strcspn --
+マスクにマッチしない最初のセグメントの長さを返す
+
+  int strcspn(string str1, string str2 [, int start [, int length]])~
+
+{str1} において {str2}
+の文字がどれも含まれていない最初のセグメントの長さを返します。
+
+{str1} 最初の文字列。
+
+{str2} 2 番目の文字列。
+
+{start} 調べ始める位置。
+
+{length} 調べる文字列の長さ。
+
+セグメントの長さを返します。
+
+バージョン 説明 4.3.0 {start} および {length}
+が追加されました。
+
+この関数はバイナリデータに対応しています。
+
+|strspn|
+
+vim:ft=help:

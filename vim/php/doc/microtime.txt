@@ -1,0 +1,69 @@
+microtime -- 現在の Unix
+タイムスタンプをマイクロ秒まで返す
+
+  mixed microtime([bool get_as_float])~
+
+|microtime| は、現在の Unix
+タイムスタンプをマイクロ秒単位で返します。
+この関数は、gettimeofday() システムコールをサポートする
+オペレーティングシステムでのみ使用できます。
+
+{get_as_float}
+オプション引数を付けずにコールされた場合、この関数は文字列
+"msec sec" を返します。ただし、sec は Unix エポック (1970 年 1
+月 1 日 0:00:00 GMT) から計算した秒数、msec
+はマイクロ秒の部分です。
+文字列のそれぞれの部分は秒単位で返されます。
+
+{get_as_float} を TRUE に設定すると、結果を float (秒単位)
+で返します。
+
+バージョン 説明 5.0.0 {get_as_float}
+パラメータが追加されました。
+
+|microtime| でタイマスクリプト実行
+
+<?php >
+  /**
+   * PHP 5の動作を模擬する簡単な関数
+   */
+  function microtime_float()
+  {
+      list($usec, $sec) = explode(" ", microtime());
+      return ((float)$usec + (float)$sec);
+  }
+  
+  $time_start = microtime_float();
+  
+  // しばらくスリープ
+  usleep(100);
+  
+  $time_end = microtime_float();
+  $time = $time_end - $time_start;
+  
+  echo "Did nothing in $time seconds\n";
+?>
+
+
+
+PHP 5 におけるタイマスクリプト実行
+
+<?php >
+  $time_start = microtime(true);
+  
+  // しばらくスリープ
+  usleep(100);
+  
+  $time_end = microtime(true);
+  $time = $time_end - $time_start;
+  
+  echo "Did nothing in $time seconds\n";
+?>
+
+
+
+
+
+|time|
+
+vim:ft=help:

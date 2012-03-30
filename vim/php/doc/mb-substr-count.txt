@@ -1,0 +1,31 @@
+mb_substr_count -- 部分文字列の出現回数を数える
+
+  int mb_substr_count(string haystack, string needle [, string encoding])~
+
+文字列 {haystack} の中での部分文字列 {needle}
+の出現回数を数えます。
+
+{haystack} 調べたい文字列。
+
+{needle} 見つける文字列。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+文字列 {haystack} の中での部分文字列 {needle}
+の出現回数を返します。
+
+|mb_substr_count| の例
+
+<?php >
+  echo mb_substr_count("これはてすとです。", "す"); // 2 を出力する
+?>
+
+
+
+
+
+|mb_strpos| |mb_substr| |substr_count|
+
+vim:ft=help:

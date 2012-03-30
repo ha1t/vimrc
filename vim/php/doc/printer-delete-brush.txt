@@ -1,0 +1,13 @@
+printer_delete_brush -- ブラシを削除する
+
+  void printer_delete_brush(resource brush_handle)~
+
+この関数は、選択したブラシを削除します。使用例は
+|printer_select_brush| を参照ください。
+
+{brush_handle} {brush_handle} は、
+有効なブラシのハンドルである必要があります。
+
+値を返しません。
+
+vim:ft=help:

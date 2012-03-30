@@ -1,0 +1,36 @@
+bzwrite -- バイナリ対応の bzip2 ファイルへの書き込み
+
+  int bzwrite(resource bz, string data [, int length])~
+
+|bzwrite| は、文字列を与えられた bzip2
+ファイルストリームに書き込みます。
+
+{bz} ファイルポインタ。これは有効である必要があり、
+|bzopen| によりオープンされたファイルを指してい
+る必要があります。
+
+{data} 書き込むデータ
+
+{length} 指定した場合、 (圧縮前の) {length}
+バイト分の書き込みが終ったか、 {data}
+の終端に達したかで書き込みは終了します。
+
+書き込んだバイト数、もしくはエラー時に FALSE
+を返します。
+
+|bzwrite| の例
+
+<?php >
+  $str = "uncompressed data";
+  $bz = bzopen("/tmp/foo.bz2", "w");
+  bzwrite($bz, $str, strlen($str));
+  bzclose($bz);
+?>
+
+
+
+
+
+|bzread| |bzopen|
+
+vim:ft=help:

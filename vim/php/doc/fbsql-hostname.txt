@@ -1,0 +1,23 @@
+fbsql_hostname --
+接続で使用されているホスト名を取得あるいは設定する
+
+  string fbsql_hostname(resource link_identifier [, string host_name])~
+
+接続で使用されているホスト名を取得あるいは設定します。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+{host_name}
+指定した場合は、これが新しい接続のホスト名となります。
+
+現在の接続で使用しているホスト名を返します。
+
+|fbsql_username| |fbsql_password|
+
+vim:ft=help:

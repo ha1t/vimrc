@@ -1,0 +1,19 @@
+symlink -- シンボリックリンクを作成する
+
+  bool symlink(string target, string link)~
+
+|symlink|は、指定されたリンク名 {link} で既存のファイル
+{target} へのシンボリックリンクを作成します。
+
+{target} リンクの対象。
+
+{link} リンクの名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+ハードリンクを作るには |link| |readlink| や |linkinfo|
+
+vim:ft=help:

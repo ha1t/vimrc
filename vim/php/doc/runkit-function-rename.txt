@@ -1,0 +1,20 @@
+runkit_function_rename -- 関数名を変更する
+
+  bool runkit_function_rename(string funcname, string newname)~
+
+デフォルトでは、
+削除・リネーム・変更が可能なのはユーザ定義関数だけです。組み込み関数を
+オーバーライドするには、php.ini で runkit.internal_override
+を有効にする必要があります。
+
+{funcname} 現在の関数名。
+
+{newname} 新しい関数名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_function_add| |runkit_function_copy| |runkit_function_redefine|
+|runkit_function_remove|
+
+vim:ft=help:

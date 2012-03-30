@@ -1,0 +1,62 @@
+pg_field_size --
+指定したフィールドの内部記憶領域におけるサイズを返す
+
+  int pg_field_size(resource result, int field_number)~
+
+|pg_field_size| は、指定した PostgreSQL の
+結果において、指定したフィールド番号の内部記憶領域のサイズを
+(バイト数で)返します。
+
+この関数は、以前は |pg_fieldsize| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{field_number} フィールド番号。0 から始まります。
+
+内部記憶領域のサイズ（バイト数）を返します。-1
+は可変長フィールドを 示します。エラー時には FALSE
+を返します。
+
+フィールドの情報を取得する
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    $res = pg_query($dbconn, "select * from authors where author = 'Orwell'");
+    $i = pg_num_fields($res);
+    for ($j = 0; $j < $i; $j++) {
+        echo "column $j\n";
+        $fieldname = pg_field_name($res, $j);
+        echo "fieldname: $fieldname\n";
+        echo "printed length: " . pg_field_prtlen($res, $fieldname) . " characters\n";
+        echo "storage length: " . pg_field_size($res, $j) . " bytes\n";
+        echo "field type: " . pg_field_type($res, $j) . " \n\n";
+    }
+?>
+
+上の例の出力は以下となります。
+
+  column 0
+  fieldname: author
+  printed length: 6 characters
+  storage length: -1 bytes
+  field type: varchar 
+  
+  column 1
+  fieldname: year
+  printed length: 4 characters
+  storage length: 2 bytes
+  field type: int2 
+  
+  column 2
+  fieldname: title
+  printed length: 24 characters
+  storage length: -1 bytes
+  field type: varchar
+
+
+
+|pg_field_prtlen| |pg_field_type|
+
+vim:ft=help:

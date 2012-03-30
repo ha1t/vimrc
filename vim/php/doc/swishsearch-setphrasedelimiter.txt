@@ -1,0 +1,57 @@
+SwishSearch->setPhraseDelimiter --
+フレーズの区切り文字を設定する
+
+  void SwishSearch->setPhraseDelimiter(string delimiter)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{delimiter}
+フレーズの区切り文字。デフォルトの区切り文字はダブルクォートです。
+
+値を返しません。
+
+基本的な |SwishSearch->setPhraseDelimiter| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $search = $swish->prepare();
+  
+      $results = $search->execute('"every time"'); // "every time" を検索します
+      echo "First query found: ", $results->hits, " hits\n";
+  
+      $search->setPhraseDelimiter("'");
+      $results = $search->execute("'every time'"); // 同じクエリですが、別の区切り文字を使用します
+      echo "Second query found: ", $results->hits, " hits\n";
+  
+      $search->setPhraseDelimiter('"');
+      $results = $search->execute("'every time'"); // "every" および "time" を検索します
+      echo "Third query found: ", $results->hits, " hits\n";
+  
+      //let's look at parsed words
+      var_dump($results->getParsedWords("index.swish-e"));
+  
+  } catch (SwishException $e) {
+      echo $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  First query found: 1 hits
+  Second query found: 1 hits
+  Third query found: 2 hits
+  array(2) {
+    [0]=>
+    string(5) "every"
+    [1]=>
+    string(4) "time"
+  }
+
+
+
+vim:ft=help:

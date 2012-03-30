@@ -1,0 +1,76 @@
+msg_receive -- メッセージキューからメッセージを受信する
+
+  bool msg_receive(resource queue, int desiredmsgtype, int msgtype, int maxsize, mixed message [, bool unserialize [, int flags [, int errorcode]]])~
+
+|msg_receive| は、指定した {queue} から指定した {desiredmsgtype}
+の最初のメッセージを受信します。
+
+{queue}
+
+{desiredmsgtype} {desiredmsgtype} が 0 の場合、
+キューの先頭にあるメッセージが返されます。{desiredmsgtype}
+が 0
+より大きな値の場合、その型のメッセージのうち一番最初にあるものが返されます。
+{desiredmsgtype} が 0 より小さな値の場合、 {desiredmsgtype}
+の絶対値と同じかそれより小さい型のメッセージのうち一番最初にあるものが返されます。
+条件を満たすメッセージがない場合は、
+条件を満たすメッセージがキューに投入されるまで待ち続けます。
+パラメータ {flags} に MSG_IPC_NOWAIT を指定することで、
+ブロックモードではなくすることが可能です。
+
+{msgtype}
+受信したメッセージの型がこのパラメータに保存されます。
+
+{maxsize} 読み込むメッセージの最大サイズは {maxsize}
+で指定します。もしキューにあるメッセージのサイズがこれより大きい場合、
+(以下で説明する {flags} が設定されていない限り)
+この関数は失敗します。
+
+{message} エラーが発生しなければ、 受信したメッセージは
+{message} に保存されます。
+
+{unserialize} {unserialize} のデフォルト値は TRUE です。
+このパラメータが TRUE に設定されている場合、
+メッセージはセッションモジュールと同様の方法でシリアライズされているものとみなされます。
+メッセージは元の状態に復元されたうえでスクリプトに返されます。
+これにより、配列やオブジェクト構造体のような複雑な形式のデータを他の
+PHP
+スクリプトから簡単に受信することが可能となります。
+また、もし WDDX
+シリアライザを使用しているなら、あらゆる WDDX
+互換のソースからデータを受け取ることが可能となります。
+
+{unserialize} が FALSE の場合、
+メッセージはバイナリセーフな文字列として返されます。
+
+{flags} オプションの {flags} により、低レベルの msgrcv
+システムコールにフラグを渡すことが可能です。デフォルト値は
+0
+ですが、以下の値のうちのいくつかを(値を足すかあるいは論理和ととることで)
+指定することが可能です。 msg_receive のフラグの値
+MSG_IPC_NOWAIT {desiredmsgtype}
+を満たすメッセージが存在しない場合に、
+待ち続けずにすぐに結果を返します。
+関数は失敗し、MSG_ENOMSG に対応する整数値を返します。
+MSG_EXCEPT このフラグを正の {desiredmsgtype}
+と組み合わせて使用すると、この関数は {desiredmsgtype}
+以外の型をもつ
+最初のメッセージを受信するようになります。 MSG_NOERROR
+このフラグを設定しておくと、メッセージが {maxsize}
+より大きい場合に そのメッセージを {maxsize}
+までに切り詰め、 エラーを返しません。
+
+{errorcode} エラーが発生した場合は、オプションの {errorcode}
+にシステムの errno 値が設定されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+処理が正常に完了すると、メッセージキューデータ構造体は以下のように更新されます。
+msg_lrpid には呼び出し元のプロセス ID が
+設定され、{msg_qnum} が 1 減少し、 msg_rtime
+が現在の時刻に設定されます。
+
+|msg_remove_queue| |msg_send| |msg_stat_queue| |msg_set_queue|
+
+vim:ft=help:

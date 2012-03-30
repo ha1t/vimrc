@@ -1,0 +1,5 @@
+maxdb_set_opt -- maxdb_options のエイリアス
+
+この関数は次の関数のエイリアスです。 |maxdb_options|.
+
+vim:ft=help:

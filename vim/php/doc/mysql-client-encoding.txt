@@ -1,0 +1,34 @@
+mysql_client_encoding -- 文字セット名を返す
+
+  string mysql_client_encoding([resource link_identifier])~
+
+MySQL の character_set 変数の値を取得します。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+カレントの接続から、デフォルトの文字セット名を返します。
+
+|mysql_client_encoding| の例
+
+<?php >
+  $link    = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  $charset = mysql_client_encoding($link);
+  
+  echo "カレントの文字セットは: $charset\n";
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  カレントの文字セットは: latin1
+
+
+
+|mysql_real_escape_string|
+
+vim:ft=help:

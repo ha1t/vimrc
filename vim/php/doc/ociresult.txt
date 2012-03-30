@@ -1,0 +1,5 @@
+ociresult -- oci_result のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_result|.
+
+vim:ft=help:

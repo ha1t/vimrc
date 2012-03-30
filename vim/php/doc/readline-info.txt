@@ -1,0 +1,22 @@
+readline_info -- 種々の readline の内部変数を取得/設定する
+
+  mixed readline_info([string varname [, string newvalue]])~
+
+さまざまな readline
+の内部変数の取得あるいは設定を行います。
+
+{varname} 変数の名前。
+
+{newvalue}
+指定した場合は、これがその設定の新しい値となります。
+
+パラメータを指定しないでコールした場合、この関数は
+readline が使用する
+すべての設定の値を配列で返します。要素の添字は次のようになります。
+done, end, erase_empty_line, library_version, line_buffer, mark,
+pending_input, point, prompt, readline_name, terminal_name
+
+ひとつあるいはふたつのパラメータを指定してコールした場合は、
+元の値が返されます。
+
+vim:ft=help:

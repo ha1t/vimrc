@@ -1,0 +1,28 @@
+imap_fetchheader -- メッセージのヘッダを返す
+
+  string imap_fetchheader(resource imap_stream, int msg_number [, int options])~
+
+指定したメッセージについて、フィルタリング
+されていない完全な RFC2822
+フォーマットのヘッダをテキスト文字列として取得します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+{options} オプション {options} は次のようになります。 FT_UID -
+引数 {msgno} は UID です。
+
+FT_INTERNAL - 返される文字列は "internal"
+フォーマットです。CRLF は正規化しません。
+
+FT_PREFETCHTEXT - RFC822.TEXT を、
+同時に事前に取得しておく必要があります。これは、メッセージテキスト
+全体を取得したい場合（例:「ローカルファイルに保存する」操作）に
+IMAP 接続で余分な RTT を回避します。
+
+指定したメッセージのヘッダをテキスト文字列で返します。
+
+|imap_fetch_overview|
+
+vim:ft=help:

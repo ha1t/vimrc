@@ -1,0 +1,32 @@
+aspell_suggest -- 単語スペルの修正案を示す [非推奨]
+
+  array aspell_suggest(int dictionary_link, string word)~
+
+|aspell_suggest| は、指定した {word}
+に関するスペルを提案します。
+
+{dictionary_link} |aspell_new| が返す辞書リンク識別子。
+
+{word} 調べる単語。
+
+提案内容の配列を返します。
+
+|aspell_suggest| の例
+
+<?php >
+  $aspell_link = aspell_new("english");
+  
+  if (!aspell_check($aspell_link, "test")) {
+      $suggestions = aspell_suggest($aspell_link, "test");
+  
+      foreach ($suggestions as $suggestion) {
+          echo "Possible spelling: $suggestion<br />\n"; 
+      }
+  }
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,74 @@
+openssl_pkcs7_encrypt -- S/MIME メッセージを暗号化する
+
+  bool openssl_pkcs7_encrypt(string infile, string outfile, mixed recipcerts, array headers [, int flags [, int cipherid]])~
+
+|openssl_pkcs7_encrypt| は、 {infile}
+という名前のファイルの内容を RC2 40
+ビット暗号により暗号化します。この内容は、 {recipcerts}
+で指定した意図する受信者によってのみ読むことが可能です。
+
+{infile}
+
+{outfile}
+
+{recipcerts} X.509 証明書または X.509 証明書の配列。
+
+{headers} {headers} は、
+暗号化された後にデータの前に付加されるヘッダの配列です。
+
+{headers}
+はヘッダ名をキーとする連想配列または添字配列であり、
+各要素には、各ヘッダ行が一行ずつ含まれています。
+
+{flags} {flags} は
+オプションとして使用可能であり、エンコード処理を変更するために指定します。
+PKCS7 定数 を参照ください。
+
+{cipherid} {cipherid} で暗号を選択可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.0.0 {cipherid}
+パラメータが追加されました。
+
+|openssl_pkcs7_encrypt| の例
+
+<?php >
+  // 暗号化するメッセージを nighthawk という名前の外部の秘密の
+  // エージェントに送信します。送信先の証明書をファイル nighthawk.pem に
+  // 有しています。
+  $data = <<<EOD
+  Nighthawk,
+  
+  Top secret, for your eyes only!
+  
+  The enemy is closing in! Meet me at the cafe at 8.30am
+  to collect your forged passport!
+  
+  HQ
+  EOD;
+  
+  // キーを読み込む
+  $key = file_get_contents("nighthawk.pem");
+  
+  // ファイルにメッセージを保存
+  $fp = fopen("msg.txt", "w");
+  fwrite($fp, $data);
+  fclose($fp);
+  
+  // メッセージを暗号化
+  if (openssl_pkcs7_encrypt("msg.txt", "enc.txt", $key,
+      array("To" => "nighthawk@example.com", // 連想配列の構文
+            "From: HQ <hq@example.com>", // 添字配列の構文
+            "Subject" => "Eyes only"))) {
+      // メッセージを暗号化し、送信します!
+      exec(ini_get("sendmail_path") . " < enc.txt");
+  }
+?>
+
+
+
+
+
+vim:ft=help:

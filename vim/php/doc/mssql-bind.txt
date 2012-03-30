@@ -1,0 +1,58 @@
+mssql_bind --
+ストアドプロシージャまたはリモートストアドプロシージャへパラメータを追加する
+
+  bool mssql_bind(resource stmt, string param_name, mixed var, int type [, int is_output [, int is_null [, int maxlen]]])~
+
+ストアドプロシージャまたはリモートストアドプロシージャへパラメータをバインドします。
+
+{stmt} |mssql_init| で取得したステートメントリソース。
+
+{param_name} パラメータ名を表す文字列。
+
+T-SQL 構文のように @ 文字を含めなければなりません。
+|mssql_execute| にある例を参照ください。
+
+{var} MSSQL パラメータとしてバインドする PHP 変数。
+値渡し、参照渡しのどちらも可能です。実行後に OUTPUT や
+RETVAL を取得するには参照渡しとします。
+
+{type} SQLTEXT, SQLVARCHAR, SQLCHAR, SQLINT1, SQLINT2, SQLINT4, SQLBIT,
+SQLFLT4, SQLFLT8, SQLFLTN のいずれか。
+
+{is_output} 値が OUTPUT パラメータであるかどうか。OUTPUT
+パラメータであることに気づかなかった場合、それは通常の
+INPUT パラメータとして扱われ、エラーは発生しません。
+
+{is_null} パラメータが NULL かどうか。NULL 値を {var}
+に渡しても正しく動作しません。
+
+{maxlen} char/varchar
+値で使用します。データの長さを指定する必要があります。
+たとえばパラメータが varchar(50) の場合、型は SQLVARCHAR
+で、この値が 50 となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mssql_bind| の例
+
+<?php >
+  $cn = mssql_connect($DBSERVER, $DBUSER, $DBPASS);
+  mssql_select_db($DB, $cn);
+  
+  $sp = mssql_init("WDumpAdd"); // ストアドプロシージャ名
+  
+  mssql_bind($sp, "@productname", stripslashes($newproduct), SQLVARCHAR, false, false, 150);
+  mssql_bind($sp, "@quantity", stripslashes($newquantity), SQLVARCHAR, false, false, 50);
+  
+  mssql_execute($sp);
+  mssql_close($cn);
+?>
+
+
+
+
+
+|mssql_execute| |mssql_free_statement| |mssql_init|
+
+vim:ft=help:

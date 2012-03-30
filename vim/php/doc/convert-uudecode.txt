@@ -1,0 +1,25 @@
+convert_uudecode -- uuencode された文字列をデコードする
+
+  string convert_uudecode(string data)~
+
+|convert_uudecode| は、uuencode
+された文字列をデコードします。
+
+{data} uuencode されたデータ。
+
+デコードしたデータを文字列で返します。
+
+|convert_uudecode| の例
+
+<?php >
+  /* 何が表示されるか、想像できますか? (^o^) */
+  echo convert_uudecode("+22!L;W9E(%!(4\"$`\n`");
+?>
+
+
+
+
+
+|convert_uuencode|
+
+vim:ft=help:

@@ -1,0 +1,18 @@
+runkit_constant_add -- define()
+と同じだが、クラス定数も指定可能
+
+  bool runkit_constant_add(string constname, mixed value)~
+
+{constname}
+定義する定数名。グローバル定数を表す文字列、あるいは
+classname::constname 形式でクラス定数を示す。
+
+{value} 新しい定数に定義する値。 NULL, Bool, Long, Double, String,
+あるいは Resource のいずれかの型の値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|define| |runkit_constant_redefine| |runkit_constant_remove|
+
+vim:ft=help:

@@ -1,0 +1,21 @@
+dngettext -- dgettext の複数形版
+
+  string dngettext(string domain, string msgid1, string msgid2, int n)~
+
+|dngettext|
+関数により、単一の複数形メッセージ参照について
+現在のドメインを上書きすることができます。
+
+{domain} ドメイン。
+
+{msgid1}
+
+{msgid2}
+
+{n}
+
+成功した場合に文字列を返します。
+
+|ngettext|
+
+vim:ft=help:

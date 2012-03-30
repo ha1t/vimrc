@@ -1,0 +1,8 @@
+PDF_scale -- スケールを設定する
+
+  bool PDF_scale(resource p, float sx, float sy)~
+
+座表系のスケールを設定します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

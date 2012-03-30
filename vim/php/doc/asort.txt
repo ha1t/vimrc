@@ -1,0 +1,46 @@
+asort --
+連想キーと要素との関係を維持しつつ配列をソートする
+
+  bool asort(array array [, int sort_flags])~
+
+この関数は、
+連想配列において各配列のキーと要素との関係を維持しつつ配列をソートします。
+この関数は、
+主に実際の要素の並び方が重要である連想配列をソートするために使われます。
+
+{array} 入力の配列。
+
+{sort_flags} オプションのパラメータ {sort_flags}
+によりソートの動作を修正可能です。
+詳細については、|sort| を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|asort| の例
+
+<?php >
+  $fruits = array("d" => "lemon", "a" => "orange", "b" => "banana", "c" => "apple");
+  asort($fruits);
+  foreach ($fruits as $key => $val) {
+      echo "$key = $val\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  c = apple
+  b = banana
+  d = lemon
+  a = orange
+
+fruits はアルファベットの昇順にソートされ、
+各要素とキーとの関係は維持されます。
+
+
+
+
+
+|arsort| |sort| |ksort| |rsort|
+
+vim:ft=help:

@@ -1,0 +1,150 @@
+create_function -- 匿名関数 (ラムダ形式) を作成する
+
+  string create_function(string args, string code)~
+
+指定したパラメータにより匿名関数を作成し、その関数のユニークな名前を返します。
+
+通常、{args}には、シングルクオートで括った文字列を
+指定し、{code}
+の場合も同様に指定することが推奨されます。
+シングルクオートで括った文字列を使用する理由は、パース時に変数名を保護するためです。
+ダブルクオートを使用した場合には、\$avarのように変数名を
+エスケープする必要があります。 {args} 関数の引数。
+
+{code} 関数のコード。
+
+一意な関数名を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+|create_function| による匿名関数の作成
+この関数を使用すると、(たとえば)
+実行時に取得した情報をもとにして関数を作成できます。
+
+<?php >
+  $newfunc = create_function('$a,$b', 'return "ln($a) + ln($b) = " . log($a * $b);');
+  echo "新しい匿名関数: $newfunc\n";
+  echo $newfunc(2, M_E) . "\n";
+  // 出力
+  // 新しい匿名関数: lambda_1
+  // ln(2) + ln(2.718281828459) = 1.6931471805599
+?>
+
+
+
+もしくは、パラメータリストに一連の処理を行うことができる
+一般的なハンドラ関数を定義できます。
+
+|create_function| による一般的な処理関数の作成
+
+<?php >
+  function process($var1, $var2, $farr)
+  {
+      foreach ($farr as $f) {
+          echo $f($var1, $var2) . "\n";
+      }
+  }
+  
+  // 数学関数群を作成します
+  $f1 = 'if ($a >=0) {return "b*a^2 = ".$b*sqrt($a);} else {return false;}';
+  $f2 = "return \"min(b^2+a, a^2,b) = \".min(\$a*\$a+\$b,\$b*\$b+\$a);";
+  $f3 = 'if ($a > 0 &amp;& $b != 0) {return "ln(a)/b = ".log($a)/$b; } else { return false; }';
+  $farr = array(
+      create_function('$x,$y', 'return "some trig: ".(sin($x) + $x*cos($y));'),
+      create_function('$x,$y', 'return "a hypotenuse: ".sqrt($x*$x + $y*$y);'),
+      create_function('$a,$b', $f1),
+      create_function('$a,$b', $f2),
+      create_function('$a,$b', $f3)
+      );
+  
+  echo "\n無名関数群の最初の配列を使用します\n";
+  echo "パラメータ: 2.3445, M_PI\n";
+  process(2.3445, M_PI, $farr);
+  
+  // 文字列処理関数群を作成します
+  $garr = array(
+      create_function('$b,$a', 'if (strncmp($a, $b, 3) == 0) return "** \"$a\" '.
+      'and \"$b\"\n** Look the same to me! (looking at the first 3 chars)";'),
+      create_function('$a,$b', '; return "CRCs: " . crc32($a) . " , ".crc32(b);'),
+      create_function('$a,$b', '; return "similar(a,b) = " . similar_text($a, $b, &amp;$p) . "($p%)";')
+      );
+  echo "\n無名関数群の二番目の配列を使用します\n";
+  process("Twas brilling and the slithy toves", "Twas the night", $garr);
+?>
+
+上の例の出力は以下となります。
+
+  無名関数群の最初の配列を使用します
+  パラメータ: 2.3445, M_PI
+  some trig: -1.6291725057799
+  a hypotenuse: 3.9199852871011
+  b*a^2 = 4.8103313314525
+  min(b^2+a, a^2,b) = 8.6382729035898
+  ln(a/b) = 0.27122299212594
+  
+  無名関数群の二番目の配列を使用します
+  ** "Twas the night" and "Twas brilling and the slithy toves"
+  ** Look the same to me! (looking at the first 3 chars)
+  CRCs: -725381282 , 1908338681
+  similar(a,b) = 11(45.833333333333%)
+
+
+
+ラムダ形式の (匿名の) 関数の最も一般的な使用法は、
+コールバック関数を作成することでしょう。たとえば
+|array_walk| あるいは |usort| などで使用します。
+
+コールバック関数としての匿名関数の使用法
+
+<?php >
+  $av = array("the ", "a ", "that ", "this ");
+  array_walk($av, create_function('&amp;$v,$k', '$v = $v . "mango";'));
+  print_r($av);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+    [0] => the mango
+    [1] => a mango
+    [2] => that mango
+    [3] => this mango
+  )
+
+文字列の配列が、短い順に並べ替えられます。
+
+<?php >
+  $sv = array("small", "larger", "a big string", "it is a string thing");
+  print_r($sv);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+    [0] => small
+    [1] => larger
+    [2] => a big string
+    [3] => it is a string thing
+  )
+
+長い順に並べ替えます。
+
+<?php >
+  usort($sv, create_function('$a,$b','return strlen($b) - strlen($a);'));
+  print_r($sv);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+    [0] => it is a string thing
+    [1] => a big string
+    [2] => larger
+    [3] => small
+  )
+
+
+
+vim:ft=help:

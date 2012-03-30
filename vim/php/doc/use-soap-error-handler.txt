@@ -1,0 +1,10 @@
+use_soap_error_handler -- SOAP
+エラーハンドラを使用して前の値を返すかどうかを設定する
+
+  bool use_soap_error_handler([bool handler])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

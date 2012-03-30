@@ -1,0 +1,22 @@
+sesam_num_fields -- 結果集合のフィールド/カラム数を返す
+
+  int sesam_num_fields(string result_id)~
+
+"select型"クエリで |sesam_query| をコールした後、
+この関数により結果のカラム数を得ることが可能です。
+
+"即時型"命令の場合、値 0 が返されます。SESAM
+"複数フィールド" カラムは、
+それぞれの次元毎に数えられます。すなわち、"複数フィールド"
+の 3 カラムはカラム 3 つとして数えられます。
+
+{result_id} |sesam_query| が返す結果 ID。
+
+{result_id} が指す結果セットの 全体のカラム
+(またはフィールド) の数を記述する整数を返します。
+エラー時には FALSE を返します。
+
+|sesam_query| |sesam_field_array| で "複数フィールド"
+カラムと標準カラムを区別します。
+
+vim:ft=help:

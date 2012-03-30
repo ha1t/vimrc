@@ -1,0 +1,23 @@
+SQLiteResult->rewind -- 先頭レコード番号へシークする
+
+  bool sqlite_rewind(resource result)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  bool rewind(resource result)~
+
+|sqlite_rewind|は、
+結果セットの先頭レコードへシークします。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+この関数は、
+バッファなしの結果ハンドルで使用することはできません。
+
+結果セットにレコードがもうない場合は、FALSE、
+そうでない場合は TRUE を返します。
+
+|sqlite_next| |sqlite_current| |sqlite_seek|
+
+vim:ft=help:

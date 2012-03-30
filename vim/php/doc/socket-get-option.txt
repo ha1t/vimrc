@@ -1,0 +1,93 @@
+socket_get_option -- ソケットのオプションを取得する
+
+  mixed socket_get_option(resource socket, int level, int optname)~
+
+|socket_get_option| 関数は、ソケット {socket} のオプション
+{optname} の値を取得します。|socket_get_option|
+は、失敗した場合に FALSE を返します。
+
+{socket} |socket_create| あるいは |socket_accept|
+で作成したソケットリソース。
+
+{level} {level}
+パラメータは、オプションのプロトコルレベルを指定します。
+例えば、オプションをソケットレベルで取得するには
+{level} パラメータに SOL_SOCKET を指定します。 TCP
+のようなそれ以外のレベルの場合、そのレベルのプロトコル番号を指定します。
+プロトコル番号は |getprotobyname|
+関数を使用して取得可能です。
+
+{optname} 使用可能なソケットオプション オプション 説明
+型 SO_DEBUG
+デバッグ情報を記録するかどうかを報告します。 int
+SO_BROADCAST
+ブロードキャストメッセージの送信がサポートされているかどうかを報告します。
+int SO_REUSEADDR
+ローカルアドレスが再使用可能するかどうかを報告します。
+int SO_KEEPALIVE
+定期的なメッセージの送信によって接続がアクティブになっているかどうかを報告します。
+もしソケットがこれらのメッセージに応答できなかった場合、
+接続は崩壊し、ソケットへの書き込みを行うと SIGPIPE
+シグナルを受け取ります。 int SO_LINGER
+データがまだ残っているうちに |socket_close|
+をコールした場合に、{socket}
+を残存させるかどうかを報告します。
+デフォルトでは、ソケットが閉じられる際には未送信のデータをすべて送信しようとします。
+接続ベースのソケットでは、 |socket_close|
+は接続先がデータを認識するまで閉じるのを待ちます。
+
+l_onoff が非ゼロで l_linger がゼロの場合は、
+その時点で未送信のデータはすべて破棄されます。
+接続ベースのソケットの場合、接続先には RST (リセット)
+を送信します。
+
+一方 l_onoff が非ゼロで l_linger も非ゼロの場合は、
+|socket_close| は 全データを送信し終えるか l_linger
+で指定した時間が経過するまで処理をブロックします。
+ソケットが非ブロックモードの場合は、 |socket_close|
+は失敗してエラーを返します。
+
+array。配列に含まれるキーは l_onoff および l_linger
+のふたつ。 SO_OOBINLINE {socket}
+が帯域外のデータをインラインに残し続けるかを報告します。
+int SO_SNDBUF 送信バッファのサイズを報告します。 int
+SO_RCVBUF 受信バッファのサイズを報告します。 int SO_ERROR
+エラーステータスに関する情報を報告し、それをクリアします。
+int (|socket_set_option| で設定することはできません) SO_TYPE
+{socket} の型 (たとえば SOCK_STREAM) を報告します。 int
+(|socket_set_option| で設定することはできません) SO_DONTROUTE
+送信メッセージがルータを越えるかどうかを報告します。
+int SO_RCVLOWAT {socket}
+の入力操作を行う際の最小バイト数を報告します。 int
+SO_RCVTIMEO 入力操作のタイムアウト値を報告します。
+array。配列に含まれるキーはふたつ。 sec
+はタイムアウトの秒単位の部分で、 usec
+はタイムアウトのミリ秒単位の部分。 SO_SNDTIMEO
+出力関数がフロー制御のためにブロックするタイムアウト値を報告します。
+array。配列に含まれるキーはふたつ。 sec
+はタイムアウトの秒単位の部分で、 usec
+はタイムアウトのミリ秒単位の部分。 SO_SNDLOWAT {socket}
+の出力操作を行う際の最小バイト数を報告します。 int
+
+指定したオプションの値、あるいはエラー時に FALSE
+を返します。
+
+|socket_set_option| の例
+
+<?php >
+  $socket = socket_create_listen(1223);
+  
+  $linger = array('l_linger' => 1, 'l_onoff' => 1);
+  socket_set_option($socket, SOL_SOCKET, SO_LINGER, $linger);
+  
+  var_dump(socket_get_option($socket, SOL_SOCKET, SO_REUSEADDR));
+?>
+
+
+
+
+
+バージョン 説明 4.3.0 関数の名前が変わりました。以前は
+socket_getopt() という名前でした。
+
+vim:ft=help:

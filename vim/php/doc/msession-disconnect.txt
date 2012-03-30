@@ -1,0 +1,9 @@
+msession_disconnect -- msession サーバへの接続を閉じる
+
+  void msession_disconnect()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

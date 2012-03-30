@@ -1,0 +1,27 @@
+mcrypt_module_self_test --
+指定したモジュールのセルフテストを実行する
+
+  bool mcrypt_module_self_test(string algorithm [, string lib_dir])~
+
+この関数は、指定したアルゴリズムのセルフテストを実行します。
+オプションのパラメータ {lib_dir} により、 システム上での
+algorithm モジュールの位置を指定することが可能です。
+
+この関数は、セルフテストが成功した場合
+TRUE、失敗した場合に FALSE を返します。
+
+|mcrypt_module_self_test| の例
+
+<?php >
+  var_dump(mcrypt_module_self_test(MCRYPT_RIJNDAEL_128)) . "\n";
+  var_dump(mcrypt_module_self_test(MCRYPT_BOGUS_CYPHER));
+?>
+
+上の例の出力は以下となります。
+
+  bool(true)
+  bool(false)
+
+
+
+vim:ft=help:

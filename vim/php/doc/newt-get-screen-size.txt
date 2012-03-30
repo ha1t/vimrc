@@ -1,0 +1,31 @@
+newt_get_screen_size --
+参照で渡された引数に、現在の端末の大きさを格納する
+
+  void newt_get_screen_size(int cols, int rows)~
+
+参照で渡された引数に、現在の端末の大きさを格納します。
+
+{cols} 端末のカラム数。
+
+{rows} 端末の行数。
+
+値を返しません。
+
+|newt_get_screen_size| の例
+このコードは、端末の画面の大きさを表示します。
+
+<?php >
+   newt_init();
+   newt_get_screen_size (&amp;$cols, &$rows);
+   newt_finished();
+  
+   print "端末のサイズは {$cols}x{$rows} です。\n";
+?>
+
+上の例の出力は以下となります。
+
+  端末のサイズは 138x47 です。
+
+
+
+vim:ft=help:

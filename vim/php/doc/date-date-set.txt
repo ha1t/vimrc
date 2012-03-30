@@ -1,0 +1,19 @@
+date_date_set -- 日付を設定する
+
+  void date_date_set(DateTime object, int year, int month, int day)~
+
+  void DateTime::setDate(DateTime object, int year, int month, int day, int year, int month, int day)~
+
+{object} DateTime オブジェクト。
+
+{year} その日付の年。
+
+{month} その日付の月。
+
+{day} その日付の日。
+
+成功した場合に NULL、失敗した場合に FALSE を返します。
+
+|date_isodate_set| |date_time_set|
+
+vim:ft=help:

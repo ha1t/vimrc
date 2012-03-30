@@ -1,0 +1,12 @@
+PDF_close_pdi -- PDF ドキュメント入力を閉じる [古い関数]
+
+  bool PDF_close_pdi(resource p, int doc)~
+
+全てのオープンされたページハンドルをクローズし、PDF
+ドキュメント入力 (PDI) を閉じます。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+この関数は PDFlib バージョン 7 で廃止されました。
+かわりに |PDF_close_pdi_document| を使用してください。
+
+vim:ft=help:

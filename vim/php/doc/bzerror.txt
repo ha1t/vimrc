@@ -1,0 +1,30 @@
+bzerror -- bzip2 エラー番号とエラー文字列を配列で返す
+
+  array bzerror(resource bz)~
+
+与えられたファイルポインタから返された bzip2
+エラーのエラー番号とエラー文字列を返します。
+
+{bz} ファイルポインタ。これは有効である必要があり、
+|bzopen| によりオープンされたファイルを指してい
+る必要があります。
+
+errno エントリにエラーコード、errstr
+エントリにエラーメッセージを持つ連想配列を返します。
+
+|bzerror| の例
+
+<?php >
+  $error = bzerror($bz);
+  
+  echo $error["errno"];
+  echo $error["errstr"];
+?>
+
+
+
+
+
+|bzerrno| |bzerrstr|
+
+vim:ft=help:

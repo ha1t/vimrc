@@ -1,0 +1,9 @@
+msession_timeout -- セッションの有効期間を設定/取得する
+
+  int msession_timeout(string session [, int param])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

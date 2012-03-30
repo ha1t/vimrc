@@ -1,0 +1,23 @@
+msql_list_fields -- 結果フィールドのリストを得る
+
+  resource msql_list_fields(string database, string tablename [, resource link_identifier])~
+
+|msql_list_fields|
+は、指定したテーブルに関する情報を返します。
+
+{database} データベースの名前。
+
+{tablename} テーブルの名前。
+
+{ link_identifier}mSQL 接続。 指定されない場合、|msql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、この関数は、
+|msql_connect|をコールした時と同様にリンクを確立し、使用します。
+
+結果セットを返します。これは |msql_fetch_array|
+のような結果セットを読み込む関数によって処理が可能です。失敗した場合は、
+この関数は FALSE を返します。
+
+|msql_list_tables| |msql_list_dbs|
+
+vim:ft=help:

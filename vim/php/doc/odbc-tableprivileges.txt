@@ -1,0 +1,30 @@
+odbc_tableprivileges --
+各テーブルのリストおよび関連する権限のリストを取得する
+
+  resource odbc_tableprivileges(resource connection_id, string qualifier, string owner, string name)~
+
+指定した範囲にあるテーブルおよび各テーブルに関連する権限のリストを取得します。
+ODBC 結果 ID または、失敗した場合に FALSE を返します。
+
+結果は次のカラムを有します。 TABLE_QUALIFIER
+
+TABLE_OWNER
+
+TABLE_NAME
+
+GRANTOR
+
+GRANTEE
+
+PRIVILEGE
+
+IS_GRANTABLE
+
+結果セットは TABLE_QUALIFIER、TABLE_OWNER、TABLE_NAME
+の順番になります。
+
+引数 {owner} および {name} には検索パターン
+(ゼロ以上の文字にマッチする '%'
+や単一の文字にマッチする '_') を使用可能です。
+
+vim:ft=help:

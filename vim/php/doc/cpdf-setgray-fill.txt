@@ -1,0 +1,16 @@
+cpdf_setgray_fill -- 塗りつぶし色をグレー値に設定する
+
+  bool cpdf_setgray_fill(int pdf_document, float value)~
+
+パスを塗りつぶす現在のグレー値 {value} を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{value} グレー値を表す float 値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_setrgbcolor_fill|
+
+vim:ft=help:

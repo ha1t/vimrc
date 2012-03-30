@@ -1,0 +1,24 @@
+printer_abort -- プリンタのスプールファイルを削除する
+
+  void printer_abort(resource printer_handle)~
+
+この関数は、プリンタのスプールファイルを削除します。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+値を返しません。
+
+|printer_abort| の例
+
+<?php >
+  $handle = printer_open();
+  printer_abort($handle);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

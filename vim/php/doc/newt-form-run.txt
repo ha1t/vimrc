@@ -1,0 +1,22 @@
+newt_form_run -- フォームを実行する
+
+  void newt_form_run(resource form, array exit_struct)~
+
+この関数は、引数で渡したフォームを実行します。
+
+{form} フォームコンポーネント。
+
+{exit_struct}
+フォームコンポーネントを実行した後の情報を返すために使用する
+配列。キーと値については以下の表で示します。 Form
+の終了情報の構造 インデックスのキー 値の型 説明 reason
+integer フォームが終了した理由。とりうる値については
+ここ で定義しています。 watch resource |newt_form_watch_fd|
+で指定したリソースリンク。 キー 整数 ホットキー
+component resource フォームを終了させたコンポーネント。
+
+値を返しません。
+
+|newt_run_form|
+
+vim:ft=help:

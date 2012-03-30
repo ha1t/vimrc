@@ -1,0 +1,13 @@
+metaphone -- 文字列の metaphone キーを計算する
+
+  string metaphone(string str [, int phones])~
+
+{str} の metaphone キーを計算します。
+
+|soundex| と同様に metaphone は、
+発音が似た単語について同じキーを作成します。metaphone
+は、 英語の発音の基本的ルールを知っているので、
+|soundex| よりも正確です。 metaphone
+が生成するキーは可変長です。
+
+vim:ft=help:

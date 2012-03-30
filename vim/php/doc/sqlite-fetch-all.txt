@@ -1,0 +1,83 @@
+SQLiteUnbuffered->fetchAll --
+結果セットから全てのレコードを配列の配列として取得する
+
+  array sqlite_fetch_all(resource result [, int result_type [, bool decode_binary]])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  array fetchAll(resource result [, int result_type [, bool decode_binary [, int result_type [, bool decode_binary]]]])~
+
+  array fetchAll(resource result [, int result_type [, bool decode_binary [, int result_type [, bool decode_binary [, int result_type [, bool decode_binary]]]]]])~
+
+|sqlite_fetch_all| は結果リソース {result}
+から全結果セットの配列を返します。 これは |sqlite_query|
+(もしくは |sqlite_unbuffered_query|)
+の後に結果セットの各レコードに対して |sqlite_fetch_array|
+を行うことと等価です。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{result_type} オプションの {result_type}
+パラメータには定数を指定でき、返される配列の添字を定義します。
+SQLITE_ASSOC
+を用いると、連想配列の添字(名前フィールド)のみが
+返されます。一方、SQLITE_NUM は、
+数値の添字(フィールド番号)のみを返します。SQLITE_BOTH
+は、 連想配列の添字と数値の添字の両方を返します。
+SQLITE_BOTH がこの関数のデフォルトです。
+
+{decode_binary} {decode_binary} パラメータが TRUE (デフォルト)に
+設定された場合、PHP
+はバイナリエンコーディングをデコードします。
+これは、|sqlite_escape_string|
+によりエンコードされたデータに 適用されます。sqlite
+をサポートする他のアプリケーションにより
+作成されたデータベースを処理する時以外は、この値をデフォルトのままにしておくべきです。
+
+結果セットからのカレントレコードの配列を返します。
+|sqlite_query| の直後にコールされた場合、
+全ての行を返します。|sqlite_fetch_array|
+の後にコールされた場合、残りの行を返します。
+結果セットに行が残っていない場合、空の配列を返します。
+
+SQLITE_ASSOC および SQLITE_BOTH で
+返されるカラム名は、設定オプション sqlite.assoc_case
+の値に基づき、 大文字小文字が変換されます。
+
+手続き型言語スタイルでの例
+
+<?php >
+  $dbhandle = sqlite_open('sqlitedb');
+  $query = sqlite_query($dbhandle, 'SELECT name, email FROM users LIMIT 25');
+  $result = sqlite_fetch_all($query, SQLITE_ASSOC);
+  foreach ($result as $entry) {
+      echo 'Name: ' . $entry['name'] . '  E-mail: ' . $entry['email'];
+  }
+?>
+
+
+
+
+
+オブジェクト指向言語型スタイルでの例
+
+<?php >
+  $dbhandle = new SQLiteDatabase('sqlitedb');
+  
+  $query = $dbhandle->query('SELECT name, email FROM users LIMIT 25'); // buffered result set
+  $query = $dbhandle->unbufferedQuery('SELECT name, email FROM users LIMIT 25'); // unbuffered result set
+  
+  $result = $query->fetchAll(SQLITE_ASSOC);
+  foreach ($result as $entry) {
+      echo 'Name: ' . $entry['name'] . '  E-mail: ' . $entry['email'];
+  }
+?>
+
+
+
+
+
+|sqlite_fetch_array|
+
+vim:ft=help:

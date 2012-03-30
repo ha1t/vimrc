@@ -1,0 +1,102 @@
+filter_var_array --
+複数の変数を受け取り、オプションでそれらをフィルタリングする
+
+  mixed filter_var_array(array data [, mixed definition])~
+
+この関数を使用すると、大量の変数を取得する際に
+|filter_var|
+を繰り返しコールする必要がなくなるので便利です。
+
+{data}
+文字列キーの配列。フィルタリングするデータを保持します。
+
+{definition}
+引数を定義する配列。配列のキーとして使用できるのは
+変数名を string で表したものです。
+対応する値に使用できるのは、 フィルタの型か配列
+(フィルタ・フラグ・オプションを指定したもの) です。
+配列の値として配列を使用する場合に使用できるキーは、
+filter (フィルタの型)、 flags (フィルタに適用するフラグ)
+および options (フィルタに適用するオプション)
+です。理解を深めるために、以下の例を参照ください。
+
+このパラメータには、フィルタ定数
+を表す整数値を指定することもできます。
+こうすると、入力配列のすべての値がそのフィルタで処理されます。
+
+成功した場合は要求された変数の値を含む配列、
+あるいは失敗した場合に FALSE を返します。
+配列の値は、フィルタリングに失敗した場合には FALSE、
+変数が設定されていない場合は NULL となります。
+
+|filter_var_array| の例
+
+<?php >
+  error_reporting(E_ALL | E_STRICT);
+  $data = array(
+      'product_id'    => 'libgd<script>',
+      'component'     => '10',
+      'versions'      => '2.0.33',
+      'testscalar'    => array('2', '23', '10', '12'),
+      'testarray'     => '2',
+  );
+  
+  $args = array(
+      'product_id'   => FILTER_SANITIZE_ENCODED,
+      'component'    => array('filter'    => FILTER_VALIDATE_INT,
+                              'flags'     => FILTER_FORCE_ARRAY, 
+                              'options'   => array('min_range' => 1, 'max_range' => 10)
+                             ),
+      'versions'     => FILTER_SANITIZE_ENCODED,
+      'doesnotexist' => FILTER_VALIDATE_INT,
+      'testscalar'   => array(
+                              'filter' => FILTER_VALIDATE_INT,
+                              'flags'  => FILTER_REQUIRE_SCALAR,
+                             ),
+      'testarray'    => array(
+                              'filter' => FILTER_VALIDATE_INT,
+                              'flags'  => FILTER_FORCE_ARRAY,
+                             )
+  
+  );
+  
+  $myinputs = filter_var_array($data, $args);
+  
+  var_dump($myinputs);
+  echo "\n";
+?>
+
+上の例の出力は以下となります。
+
+  array(6) {
+    ["product_id"]=>
+    array(1) {
+      [0]=>
+      string(17) "libgd%3Cscript%3E"
+    }
+    ["component"]=>
+    array(1) {
+      [0]=>
+      int(10)
+    }
+    ["versions"]=>
+    array(1) {
+      [0]=>
+      string(6) "2.0.33"
+    }
+    ["doesnotexist"]=>
+    NULL
+    ["testscalar"]=>
+    bool(false)
+    ["testarray"]=>
+    array(1) {
+      [0]=>
+      int(2)
+    }
+  }
+
+
+
+|filter_input_array| |filter_var| |filter_input|
+
+vim:ft=help:

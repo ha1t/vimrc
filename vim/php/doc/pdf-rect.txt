@@ -1,0 +1,8 @@
+PDF_rect -- 矩形を描く
+
+  bool PDF_rect(resource p, float x, float y, float width, float height)~
+
+矩形を描画します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

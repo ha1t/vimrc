@@ -1,0 +1,12 @@
+hw_api_object->attreditable -- 属性が編集可能かどうかを調べる
+
+  bool attreditable(array parameter)~
+
+属性が編集可能かどうかを調べます。
+
+{parameter}
+
+属性が編集可能な場合に TRUE、それ以外の場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,42 @@
+mssql_pconnect -- 持続的 MS SQL 接続をオープンする
+
+  resource mssql_pconnect([string servername [, string username [, string password [, bool new_link]]]])~
+
+|mssql_pconnect| は |mssql_connect|
+とほとんど同じく動作しますが、違う点が 2 つあります。
+
+第 1
+に、この関数は接続時に同じホスト、ユーザ名、パスワードで既に
+オープンされている(持続的)リンクを探そうとします。
+もし見つかった場合、新規の接続をオープンせずにその ID
+を返します。
+
+第 2 に、SQL
+サーバはスクリプトの実行終了時に接続を閉じません。
+代わりに、リンクは後に使用されるためにオープンされたままとします
+(|mssql_close| は |mssql_pconnect|
+により確立されたリンクを閉じません)。
+
+この型のリンクはこのため '持続的である'
+と呼ばれます。
+
+{servername} MS SQL サーバ。 hostname:port
+のようにポート番号を含めることもできます。
+
+{username} ユーザ名。
+
+{password} パスワード。
+
+{new_link} 同じ引数で |mssql_pconnect|
+が再度コールされた場合、
+新規のリンクは作成されず、代わりに既にオープンされたリンク
+ID が返されます。
+このパラメータは、この振る舞いを変更し、|mssql_pconnect|
+が常に新しいリンクを返すようにします。同じパラメータで事前に
+|mssql_pconnect| がコールされていたとしても、
+新しいリンクを返します。
+
+成功時に正の MS SQL 持続的リンク ID、エラー時に FALSE
+を返します。
+
+vim:ft=help:

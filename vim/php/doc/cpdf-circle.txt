@@ -1,0 +1,26 @@
+cpdf_circle -- 円を描く
+
+  bool cpdf_circle(int pdf_document, float x_coor, float y_coor, float radius [, int mode])~
+
+円を描きます。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{x_coor} 中心の x 座標。
+
+{y_coor} 中心の y 座標。
+
+{radius} 円の半径。
+
+{ mode}オプションのパラメータ {mode}
+は単位長さを定義します。この値が 0
+または値が省略された場合、
+このページで指定されたデフォルト値が使用されます。それ以外の場合、
+現在の単位を無視してポストスクリプトのポイントで座標が計測されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_arc|
+
+vim:ft=help:

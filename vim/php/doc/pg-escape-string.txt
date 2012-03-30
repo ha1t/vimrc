@@ -1,0 +1,50 @@
+pg_escape_string --
+テキスト型フィールドに挿入するために、文字列をエスケープする
+
+  string pg_escape_string([resource connection, string data])~
+
+|pg_escape_string| は、データベースに挿入するための
+文字列をエスケープします。PostgreSQL
+フォーマットにエスケープされた
+文字列を返します。|addslashes| の代わりにこの関数を
+使用することを推奨します。カラム型が bytea
+の場合は、代わりに |pg_escape_bytea|
+を使用しなければなりません。
+
+この関数は、PostgreSQL 7.2 以降が必要です。
+
+{connection} PostgreSQL データベース接続リソース。 {connection}
+が存在しない場合は、
+デフォルトの接続を使用します。デフォルトの接続は、
+|pg_connect| あるいは |pg_pconnect|
+で直近に作成されたものとなります。
+
+{data} エスケープするテキスト文字列。
+
+エスケープされたデータを文字列で返します。
+
+バージョン 説明 5.2.0 {connection} が追加されました。
+
+|pg_escape_string| の例
+
+<?php >
+    // データベースに接続する
+    $dbconn = pg_connect('dbname=foo');
+    
+    // テキストファイルを読み込む（アポストロフィやスラッシュが含まれている）
+    $data = file_get_contents('letter.txt');
+    
+    // テキストデータをエスケープする
+    $escaped = pg_escape_string($data);
+    
+    // それをデータベースに挿入する
+    pg_query("INSERT INTO correspondence (name, data) VALUES ('My letter', '{$escaped}')");
+?>
+
+
+
+
+
+|pg_escape_bytea|
+
+vim:ft=help:

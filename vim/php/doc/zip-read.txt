@@ -1,0 +1,18 @@
+zip_read -- Zip
+ファイルアーカイブの中の次のエントリを読み込む
+
+  mixed zip_read(resource zip)~
+
+Zip
+ファイルアーカイブの中の次のエントリを読み込みます。
+
+{zip} |zip_open| でオープン済みの ZIP ファイル。
+
+後で zip_entry_...
+関数で使用されるディレクトリエントリリソース、または、
+読み込むエントリがもうない場合に FALSE、
+その他のエラーが発生した場合はエラー番号を返します。
+
+|zip_open| |zip_close| |zip_entry_open| |zip_entry_read|
+
+vim:ft=help:

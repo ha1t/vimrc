@@ -1,0 +1,43 @@
+set_include_path -- include_path 設定オプションをセットする
+
+  string set_include_path(string new_include_path)~
+
+include_path
+設定オプションの値を、このスクリプト内でだけ変更します。
+
+{new_include_path} include_path の新しい値。
+
+成功した場合に元の include_path の値、失敗した場合に FALSE
+を返します。
+
+|set_include_path| の例
+
+<?php >
+  // PHP 4.3.0 以降で動作します
+  set_include_path('/inc');
+  
+  // すべてのバージョンの PHP で動作します
+  ini_set('include_path', '/inc');
+?>
+
+
+
+
+
+include path の追加 PATH_SEPARATOR 定数を利用することで、
+オペレーティングシステムに依存せずに include path
+を追加することが可能です。
+
+この例では、既存の include_path の最後に /usr/lib/pear
+を追加します。
+
+<?php >
+  $path = '/usr/lib/pear';
+  set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+?>
+
+
+
+|ini_set| |get_include_path| |restore_include_path| |include|
+
+vim:ft=help:

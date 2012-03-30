@@ -1,0 +1,14 @@
+ldap_unbind -- LDAP ディレクトリへのバインドを解除する
+
+  bool ldap_unbind(resource link_identifier)~
+
+LDAP ディレクトリへのバインドを解除します。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ldap_bind|
+
+vim:ft=help:

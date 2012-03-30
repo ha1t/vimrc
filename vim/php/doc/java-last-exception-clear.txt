@@ -1,0 +1,16 @@
+java_last_exception_clear -- 直近の例外をクリアする
+
+  void java_last_exception_clear()~
+
+直近の Java の例外をクリアします。
+
+値を返しません。
+
+使用例は |java_last_exception_get| を参照ください。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

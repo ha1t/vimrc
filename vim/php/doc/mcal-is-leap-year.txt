@@ -1,0 +1,13 @@
+mcal_is_leap_year -- 指定した年が閏年であるかどうかを返す
+
+  bool mcal_is_leap_year(int year)~
+
+|mcal_is_leap_year| は指定した年が 閏年である場合に
+1、そうでない場合に 0 を返します。
+
+{year} 調べたい年。
+
+指定した年が閏年である場合に TRUE、そうでない場合に
+FALSE を返します。
+
+vim:ft=help:

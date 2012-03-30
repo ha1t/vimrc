@@ -1,0 +1,22 @@
+newt_open_window --
+指定したサイズと位置でウィンドウをオープンする
+
+  int newt_open_window(int left, int top, int width, int height [, string title])~
+
+指定したサイズと位置でウィンドウをオープンします。
+
+{left} ウィンドウの左上隅の位置(カラム番号)。
+
+{top} ウィンドウの左上隅の位置(行番号)。
+
+{width} ウィンドウの幅。
+
+{height} ウィンドウの高さ。
+
+{title} ウィンドウのタイトル。
+
+成功した場合に 1、失敗した場合に 0 を返します。
+
+|newt_pop_window| |newt_centered_window|
+
+vim:ft=help:

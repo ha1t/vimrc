@@ -1,0 +1,15 @@
+com_create_guid -- グローバルユニーク ID (GUID) を生成する
+
+  string com_create_guid()~
+
+グローバルユニーク ID (GUID) を生成します。
+
+GUID は DCE UUID と同様の方法で生成されますが、Microsoft の
+規約により、GUID
+が中括弧で囲まれるという点が異なります。
+
+GUID を文字列で返します。
+
+PECL uuid 拡張モジュールの |uuid_create|
+
+vim:ft=help:

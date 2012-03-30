@@ -1,0 +1,8 @@
+PDF_circle -- 円を描く
+
+  bool PDF_circle(resource pdfdoc, float x, float y, float r)~
+
+円を追加します。成功した場合に TRUE を、失敗した場合に
+FALSE を返します。
+
+vim:ft=help:

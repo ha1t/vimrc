@@ -1,0 +1,34 @@
+ncurses_border -- 属性付きの文字で画面周囲に境界を描画する
+
+  int ncurses_border(int left, int right, int top, int bottom, int tl_corner, int tr_corner, int bl_corner, int br_corner)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+指定した線と角を、メインウィンドウの周りに描画します。
+
+サブウィンドウの周りに境界を描画するには |ncurses_wborder|
+を使用してください!
+
+各パラメータに 0 を指定すると描画を行い、1
+を指定すると描画しません。 {left}
+
+{right}
+
+{top}
+
+{bottom}
+
+{tl_corner} 左上隅。
+
+{tr_corner} 右上隅。
+
+{bl_corner} 左下隅。
+
+{br_corner} 右下隅。
+
+|ncurses_wborder|
+
+vim:ft=help:

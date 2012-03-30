@@ -1,0 +1,11 @@
+DomElement->set_attribute_node() -- 新規属性を追加する
+
+  DomNode set_attribute_node(DomNode attr)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+lzf_optimized_for -- LZF
+拡張モジュールの最適化指定を取得する
+
+  int lzf_optimized_for()~
+
+LZF 拡張モジュールの最適化指定を取得します。
+
+LZF が速度に最適化されている場合に
+1、圧縮率に最適化されている場合に 0 を返します。
+
+vim:ft=help:

@@ -1,0 +1,25 @@
+sqrt -- 平方根
+
+  float sqrt(float arg)~
+
+{arg} の平方根を返します。
+
+{arg} 処理する引数。
+
+{arg} の平方根を返します。
+
+|sqrt| の例
+
+<?php >
+  // 小数点以下の精度は、precision ディレクティブの設定に依存します
+  echo sqrt(9); // 3
+  echo sqrt(10); // 3.16227766 ...
+?>
+
+
+
+
+
+|pow|
+
+vim:ft=help:

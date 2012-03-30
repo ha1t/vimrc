@@ -1,0 +1,36 @@
+basename -- パス中のファイル名の部分を返す
+
+  string basename(string path [, string suffix])~
+
+この関数は、ファイルへのパスを有する文字列を引数とし、
+ファイルのベース名を返します。
+
+{path} パス。
+
+Windows では、スラッシュ(/) とバックスラッシュ (\)
+の両方がディレクトリ区切り文字として使われます。
+その他の環境ではスラッシュ(/)になります。
+
+{suffix} ファイル名が、 {suffix} で終了する場合、
+この部分もカットされます。
+
+指定した {path} のベース名を返します。
+
+バージョン 説明 4.1.0 パラメータ {suffix}
+が追加されました。
+
+|basename| の例
+
+<?php >
+  $path = "/home/httpd/html/index.php";
+  $file = basename($path);         // $file は "index.php" に設定される
+  $file = basename($path,".php");  // $file は "index" に設定される
+?>
+
+
+
+
+
+|dirname|
+
+vim:ft=help:

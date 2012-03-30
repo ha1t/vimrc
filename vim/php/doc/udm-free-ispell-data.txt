@@ -1,0 +1,17 @@
+udm_free_ispell_data -- ispell
+データ用に確保されたメモリを解放する
+
+  bool udm_free_ispell_data(int agent)~
+
+ispell データ用に確保されたメモリを解放します。
+
+{agent} |udm_alloc_agent| により得られるエージェントリンク
+ID。
+
+|udm_free_ispell_data| は、常に TRUE を返します。
+
+この関数は、mnoGoSearch バージョン 3.1.12
+以降でサポートされた関数で、
+これより前のバージョンではサポートされていません。
+
+vim:ft=help:

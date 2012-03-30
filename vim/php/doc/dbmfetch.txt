@@ -1,0 +1,13 @@
+dbmfetch -- DBM データベースからキーの値を取り出す
+
+  string dbmfetch(resource dbm_identifier, string key)~
+
+キー {key} が指す値を返します。
+
+{ dbm_identifier}|dbmopen| が返す DBM リンク識別子。
+
+{key} キーを表す文字列。
+
+{key} に関連付けられた値を返します。
+
+vim:ft=help:

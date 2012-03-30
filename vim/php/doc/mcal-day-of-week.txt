@@ -1,0 +1,16 @@
+mcal_day_of_week -- 指定した日の曜日を返す
+
+  int mcal_day_of_week(int year, int month, int day)~
+
+指定した日の曜日を返します。
+
+{year} 年。
+
+{month} 月。
+
+{day} 日。
+
+返される値の範囲は、日曜日を意味する 0
+から土曜日を意味する 6 までです。
+
+vim:ft=help:

@@ -1,0 +1,88 @@
+call_user_func --
+最初の引数で指定したユーザ関数をコールする
+
+  mixed call_user_func(callback function [, mixed parameter [, mixed ...]])~
+
+パラメータ {function}で指定した
+ユーザ定義のコールバック関数をコールします。
+
+{function} コールする関数。このパラメータに array($classname,
+$methodname) を指定することにより、
+クラスメソッドも静的にコールすることができます。
+
+{parameter} この関数に渡す、ゼロ個以上のパラメータ。
+
+|call_user_func| のパラメータは
+参照渡しではないことに注意しましょう。
+
+<?php >
+  function increment(&amp;$var)
+  {
+      $var++;
+  }
+  
+  $a = 0;
+  call_user_func('increment', $a);
+  echo $a; // 0
+  
+  call_user_func_array('increment', array(&amp;$a)); // このようにしてもかまいません
+  echo $a; // 1
+?>
+
+関数の結果、あるいはエラー時に FALSE を返します。
+
+|call_user_func| の例
+
+<?php >
+  function barber($type)
+  {
+      echo "$type ですね、わかりました。";
+  }
+  call_user_func('barber', "マッシュルームカット");
+  call_user_func('barber', "髭剃り");
+?>
+
+
+
+名前空間を使用した |call_user_func|
+
+<?php >
+  namespace Foobar;
+  
+  class Foo {
+      static public function test() {
+          print "Hello world!\n";
+      }
+  }
+  
+  call_user_func(__NAMESPACE__ .'::Foo::test'); // PHP 5.3.0 以降
+  // Hello world!
+  call_user_func(array(__NAMESPACE__ .'::Foo', 'test')); // PHP 5.3.0 以降
+  // Hello world!
+?>
+
+
+
+クラスメソッドの使用
+
+<?php >
+  class myclass {
+      static function say_hello()
+      {
+          echo "Hello!\n";
+      }
+  }
+  
+  $classname = "myclass";
+  
+  call_user_func(array($classname, 'say_hello'));
+  call_user_func($classname .'::say_hello'); // 5.2.3 以降
+?>
+
+
+
+
+
+|call_user_func_array| |is_callable| callback 型に関する情報
+
+vim:ft=help:

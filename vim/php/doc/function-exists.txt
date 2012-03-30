@@ -1,0 +1,37 @@
+function_exists -- 指定した関数が定義されている場合に TRUE
+を返す
+
+  bool function_exists(string function_name)~
+
+組み込みの内部関数およびユーザ定義関数の中から、
+{function_name} で指定した名前の関数を探します。
+
+{function_name} 関数名を表す文字列。
+
+{function_name} が存在し、関数である場合に TRUE、
+それ以外の場合に FALSE を返します。
+
+この関数は、 |include_once| や |echo|
+のような言語構造については FALSE を返します。
+
+|function_exists| の例
+
+<?php >
+  if (function_exists('imap_open')) {
+      echo "IMAP 関数が利用可能です。<br />\n";
+  } else {
+      echo "IMAP 関数は利用できません。<br />\n";
+  }
+?>
+
+
+
+
+
+ある関数がそれ自体設定やコンパイルオプションの問題で使用できない
+場合でもその関数の名前が存在する可能性があることに注意してください
+(例としては image 関数などがあります)。
+
+|method_exists| |is_callable| |get_defined_functions|
+
+vim:ft=help:

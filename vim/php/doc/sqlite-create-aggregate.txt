@@ -1,0 +1,121 @@
+SQLiteDatabase->createAggregate --
+SQLステートメントで使用する集約UDFを登録する
+
+  void sqlite_create_aggregate(resource dbhandle, string function_name, callback step_func, callback finalize_func [, int num_args])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  void createAggregate(resource dbhandle, string function_name, callback step_func, callback finalize_func [, int num_args, string function_name, callback step_func, callback finalize_func [, int num_args]])~
+
+|sqlite_create_aggregate| は、 |sqlite_create_function|
+に似ていますが、
+クエリの全レコードを通じて集約された結果を計算するために使用される
+関数を登録するところが異なります。
+
+この関数と |sqlite_create_function| の主な違い
+は、二つの関数が集約を管理するために必要であることです。
+{step_func}は、結果セットの各レコードに関して
+コールされます。PHP関数は、結果を加算し、集約コンテキストに保存する
+必要があります。 全レコードが処理された後、
+{finalize_func}がコールされ、
+集約コンテキストからデータが取得され、結果が返されます。
+コールバック関数は SQLite が認識可能な型 (すなわち
+スカラー型) を返す必要があります。
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{function_name} SQL ステートメントで使用される関数名
+
+{step_func}
+結果セットの各レコードに対してコールされるコールバック関数
+
+{finalize_func} 各レコードからの "段階的な"
+データを集約するためのコールバック関数
+
+{num_args}
+見積もられた引数の数をコールバック関数が受け入れる場合に
+SQLite パーサへ渡すヒント
+
+値を返しません。
+
+max_length 集約関数の例
+
+<?php >
+  $data = array(
+     'one',
+     'two',
+     'three',
+     'four',
+     'five',
+     'six',
+     'seven',
+     'eight',
+     'nine',
+     'ten',
+     );
+  $dbhandle = sqlite_open(':memory:');
+  sqlite_query($dbhandle, "CREATE TABLE strings(a)");
+  foreach ($data as $str) {
+      $str = sqlite_escape_string($str);
+      sqlite_query($dbhandle, "INSERT INTO strings VALUES ('$str')");
+  }
+  
+  function max_len_step(&amp;$context, $string)
+  {
+      if (strlen($string) > $context) {
+          $context = strlen($string);
+      }
+  }
+  
+  function max_len_finalize(&amp;$context)
+  {
+      return $context;
+  }
+  
+  sqlite_create_aggregate($dbhandle, 'max_len', 'max_len_step', 'max_len_finalize');
+  
+  var_dump(sqlite_array_query($dbhandle, 'SELECT max_len(a) from strings'));
+?>
+
+
+
+
+
+この例では、テーブルのあるカラムに存在する最長な文字列長を計算する
+集約関数を生成します。各レコードに対して max_len_step
+関数がコールされ、{context} パラメータが渡されます。
+コンテキストパラメータは他の PHP 変数と同様で、
+配列もしくはオブジェクト値を保持するよう設定されます。
+この例では、単純にこれまでの最大長を保持するために使用しています。
+もし {string} が現在の最大長よりも長い場合、
+新しい最大長を保持するためにコンテキストを更新します。
+
+全てのレコードが処理された後、SQLite
+は集約結果を決定するために max_len_finalize
+関数をコールします。 ここで、{context}
+内に見つかったデータに基づいた
+計算のような処理を実行することができます。
+ただ、この簡単な例では、クエリの処理が進むと共に結果を計算しているので、
+単純にコンテキストの値を返す必要があります。
+
+上記の例は、カラムがバイナリデータを含む場合に正しく動作しません。
+なぜそうなるか、またどのようにバイナリエンコーディングを考慮するか
+についてはマニュアルページの |sqlite_udf_decode_binary|
+を参照ください。
+
+SQLite
+がクエリを処理するために大量のメモリを使用する原因になるので、
+コンテキストの値のコピーをストアした後でそれらを処理することは
+推奨されません。 もし 32 バイトの文字列を含む 100
+万レコードがメモリにストアされた場合、
+どの程度のメモリが必要になるか考えてみてください。
+
+|sqlite_create_function| や |sqlite_create_aggregate|
+を用いることで、 SQLite のネイティブな SQL
+関数をオーバーライドすることが可能です。
+
+|sqlite_create_function| |sqlite_udf_encode_binary| |sqlite_udf_decode_binary|
+
+vim:ft=help:

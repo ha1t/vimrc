@@ -1,0 +1,5 @@
+ociinternaldebug -- oci_internal_debug のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_internal_debug|.
+
+vim:ft=help:

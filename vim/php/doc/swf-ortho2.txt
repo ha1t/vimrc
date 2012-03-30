@@ -1,0 +1,25 @@
+swf_ortho2 --
+ユーザ座標の二次元直交マッピングを現在のビューポイントに定義する
+
+  void swf_ortho2(float xmin, float xmax, float ymin, float ymax)~
+
+ユーザ座標の二次元直交マッピングを現在のビューポートに定義します。この関数は、
+デフォルトを Flash ムービーの 1 対 1
+のマッピングとします。
+
+遠近法による変換を望む場合、関数 |swf_perspective|
+を使用することが可能です。
+
+{xmin}
+
+{xmax}
+
+{ymin}
+
+{ymax}
+
+値を返しません。
+
+|swf_ortho|
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+cpdf_setdash -- 破線のパターンを設定する
+
+  bool cpdf_setdash(int pdf_document, float white, float black)~
+
+破線のパターンを指定したものに設定します。両方のパラメータを
+0 にした場合は実線となります。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{white} 白い部分の長さを表す float 値。
+
+{black} 黒い部分の長さを表す float 値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

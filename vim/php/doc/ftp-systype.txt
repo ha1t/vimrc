@@ -1,0 +1,33 @@
+ftp_systype -- リモート FTP サーバのシステム型 ID を返す
+
+  string ftp_systype(resource ftp_stream)~
+
+リモート FTP サーバのシステム型 ID を返します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+リモートシステム型を返します。エラー時には FALSE
+を返します。
+
+|ftp_systype| の例
+
+<?php >
+  // 接続を確立する
+  $ftp = ftp_connect('ftp.example.com');
+  ftp_login($ftp, 'user', 'password');
+  
+  // システム型を取得する
+  if ($type = ftp_systype($ftp)) {
+      echo "Example.com is powered by $type\n";
+  } else {
+      echo "Couldn't get the systype";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Example.com is powered by UNIX
+
+
+
+vim:ft=help:

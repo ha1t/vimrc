@@ -1,0 +1,16 @@
+dbmfirstkey -- DBM データベースから最初のキーを取り出す
+
+  string dbmfirstkey(resource dbm_identifier)~
+
+データベースから最初のキーを取り出します。データベースは順序を
+保証しないハッシュテーブルを使って構築されている可能性があるので、
+返される値の順序は保証されないことに注意してください。
+
+{ dbm_identifier}|dbmopen| が返す DBM リンク識別子。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dbmnextkey|
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+hw_GetText -- テキストドキュメントを取得する
+
+  int hw_gettext(int connection, int objectID [, mixed rootID/prefix])~
+
+オブジェクト ID {objectID} を有するドキュメントを
+返します。ドキュメントが、挿入可能なアンカーを有している場合、
+既に挿入されています。
+
+この関数は、純粋なテキストドキュメントについてのみ動作します。
+特別なデータ接続をオープンしないため、伝達の間、
+制御用の接続はブロックされます。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+vim:ft=help:

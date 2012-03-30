@@ -1,0 +1,201 @@
+xml_parse_into_struct -- 配列構造体に XML データを処理する
+
+  int xml_parse_into_struct(resource parser, string data, array values [, array index])~
+
+この関数は、XMLファイルを処理し、2つの配列構造体に代入します。
+ひとつめの配列 ({index}) は、配列 {values}
+にある適当な値の位置を指すポインタを保持しています。
+これら最後の二つのパラメータは参照渡しとする必要があります。
+
+{parser}
+
+{data}
+
+{values}
+
+{index}
+
+|xml_parse_into_struct| は失敗した場合に 0、 成功した場合に 1
+を返します。これは FALSE および TRUE とは
+異なるものですので、===
+のような演算子を使用する場合は注意しましょう。
+
+以下の例は、この関数により生成された配列の内部構造を示すものです。
+noteタグをparaタグの中に埋
+め込んで使用した後、これをパースし、生成された構造体を出力します。
+|xml_parse_into_struct| の例
+
+<?php >
+  $simple = "<para><note>simple note</note></para>";
+  $p = xml_parser_create();
+  xml_parse_into_struct($p, $simple, $vals, $index);
+  xml_parser_free($p);
+  echo "Index array\n";
+  print_r($index);
+  echo "\nVals array\n";
+  print_r($vals);
+?>
+
+このコードを実行した場合、出力は次のようになります。
+
+  Index array
+  Array
+  (
+      [PARA] => Array
+          (
+              [0] => 0
+              [1] => 2
+          )
+  
+      [NOTE] => Array
+          (
+              [0] => 1
+          )
+  
+  )
+  
+  Vals array
+  Array
+  (
+      [0] => Array
+          (
+              [tag] => PARA
+              [type] => open
+              [level] => 1
+          )
+  
+      [1] => Array
+          (
+              [tag] => NOTE
+              [type] => complete
+              [level] => 2
+              [value] => simple note
+          )
+  
+      [2] => Array
+          (
+              [tag] => PARA
+              [type] => close
+              [level] => 1
+          )
+  
+  )
+
+
+
+(expatライブラリを使用した)イベント駆動型パーサによる処理は、XML
+ドキュメントが複雑な場合に複雑になる場合があります。この関数は、
+DOM形式のオブジェクトを生成しませんが、ツリー風に一連の処理を行い
+得る構造体を生成します。つまり、XMLのファイルを表すオブジェクトを
+容易に作成することが可能です。次のXMLファイルを見てみましょう。
+このファイルでは、アミノ酸の情報に関する小さなデータベースを表します。
+moldb.xml - 分子情報の小さなデータベース
+
+  <?xml version="1.0"?>
+  <moldb>
+  
+    <molecule>
+        <name>Alanine</name>
+        <symbol>ala</symbol>
+        <code>A</code>
+        <type>hydrophobic</type>
+    </molecule>
+  
+    <molecule>
+        <name>Lysine</name>
+        <symbol>lys</symbol>
+        <code>K</code>
+        <type>charged</type>
+    </molecule>
+  
+  </moldb>
+
+
+
+ドキュメントを処理し、適当なオブジェクトを生成するいくつかのコード
+parsemoldb.php - moldb.xml
+を処理し、分子オブジェクトの配列に代入
+
+<?php >
+  class AminoAcid {
+      var $name;  // aa name
+      var $symbol;    // three letter symbol
+      var $code;  // one letter code
+      var $type;  // hydrophobic, charged or neutral
+      
+      function AminoAcid ($aa) 
+      {
+          foreach ($aa as $k=>$v)
+              $this->$k = $aa[$k];
+      }
+  }
+  
+  function readDatabase($filename) 
+  {
+      // read the XML database of aminoacids
+      $data = implode("", file($filename));
+      $parser = xml_parser_create();
+      xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
+      xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
+      xml_parse_into_struct($parser, $data, $values, $tags);
+      xml_parser_free($parser);
+  
+      // loop through the structures
+      foreach ($tags as $key=>$val) {
+          if ($key == "molecule") {
+              $molranges = $val;
+              // each contiguous pair of array entries are the 
+              // lower and upper range for each molecule definition
+              for ($i=0; $i < count($molranges); $i+=2) {
+                  $offset = $molranges[$i] + 1;
+                  $len = $molranges[$i + 1] - $offset;
+                  $tdb[] = parseMol(array_slice($values, $offset, $len));
+              }
+          } else {
+              continue;
+          }
+      }
+      return $tdb;
+  }
+  
+  function parseMol($mvalues) 
+  {
+      for ($i=0; $i < count($mvalues); $i++) {
+          $mol[$mvalues[$i]["tag"]] = $mvalues[$i]["value"];
+      }
+      return new AminoAcid($mol);
+  }
+  
+  $db = readDatabase("moldb.xml");
+  echo "** Database of AminoAcid objects:\n";
+  print_r($db);
+?>
+
+
+
+parsemoldb.phpを実行した後、変数 $db は、オブジェクト
+AminoAcidの配列を有しており、スクリプトの
+出力は、次のようになります。
+
+  ** Database of AminoAcid objects:
+  Array
+  (
+      [0] => aminoacid Object
+          (
+              [name] => Alanine
+              [symbol] => ala
+              [code] => A
+              [type] => hydrophobic
+          )
+  
+      [1] => aminoacid Object
+          (
+              [name] => Lysine
+              [symbol] => lys
+              [code] => K
+              [type] => charged
+          )
+  
+  )
+
+vim:ft=help:

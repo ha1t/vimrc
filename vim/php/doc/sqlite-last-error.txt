@@ -1,0 +1,22 @@
+SQLiteDatabase->lastError --
+データベースに関する直近のエラーコードを返す
+
+  int sqlite_last_error(resource dbhandle)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  int lastError(resource dbhandle)~
+
+{dbhandle} (データベースハンドル)、
+上で実行された直近の処理のエラーコード、
+あるいはエラーが発生しなかった場合に 0
+を返します。人が読み取れるエラーコードの詳細は、
+|sqlite_error_string| で取得可能です。
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+|sqlite_error_string|
+
+vim:ft=help:

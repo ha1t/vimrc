@@ -1,0 +1,45 @@
+xattr_list -- 拡張属性の一覧を取得する
+
+  array xattr_list(string filename [, int flags])~
+
+この関数は、ファイルの拡張属性の名前の一覧を取得します。
+
+拡張属性には二種類の異なる名前空間、つまり、ユーザとルートがあります。
+ユーザ名前空間は、すべてのユーザで利用可能ですが、ルート名前空間は、ルート権限を有するユーザのみ利用可能です。
+xattr はデフォルトでユーザ名前空間で処理を行いますが、
+{flags} 引数によりこれを変更することができます。
+
+{filename} ファイルのパス。
+
+{flags} サポートされる xattr のフラグ XATTR_DONTFOLLOW
+シンボリックリンクのリンク先をたどらず、リンクそのものを操作します。
+XATTR_ROOT root (信頼された)
+名前空間に属性を設定します。root 権限が必要です。
+
+この関数は、拡張属性の名前を配列で返します。
+
+ファイルのすべての拡張属性の名前を表示する
+
+<?php >
+  $file = 'some_file';
+  $root_attributes = xattr_list($file, XATTR_ROOT);
+  $user_attributes = xattr_list($file);
+  
+  echo "Root 属性: \n";
+  foreach ($root_attributes as $attr_name) {
+      printf("%s\n", $attr_name);
+  }
+  
+  echo "\n User 属性: \n";
+  foreach ($attributes as $attr_name) {
+      printf("%s\n", $attr_name);
+  }
+?>
+
+
+
+
+
+|xattr_get|
+
+vim:ft=help:

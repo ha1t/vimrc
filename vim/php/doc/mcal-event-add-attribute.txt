@@ -1,0 +1,18 @@
+mcal_event_add_attribute --
+グローバルイベント構造体ストリームに属性およびその値を追加する
+
+  bool mcal_event_add_attribute(int stream, string attribute, string value)~
+
+ストリームのグローバルイベント構造体に、{value}
+という値の属性を追加します。
+
+{stream} MCAL ストリーム。
+
+{attribute} 属性の名前。
+
+{value} 属性の値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

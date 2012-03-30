@@ -1,0 +1,23 @@
+ming_useswfversion -- SWF のバージョンを設定する
+
+  void ming_useswfversion(int version)~
+
+ムービーで使用する SWF のバージョンを設定します。
+これは Action Script の動作に影響します。
+
+{version} 使用する SWF のバージョン。
+
+値を返しません。
+
+|ming_useswfversion| の例
+
+<?php >
+  $movie = new SWFMovie();
+  ming_useswfversion(4); // Flash 4
+?>
+
+
+
+
+
+vim:ft=help:

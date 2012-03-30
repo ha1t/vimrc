@@ -1,0 +1,19 @@
+DomDocument->create_element -- 新規要素ノードを作成する
+
+  object DomDocument->create_element(string name)~
+
+この関数は DomElement
+クラスの新規インスタンスを返します。
+要素のタグ名は渡されたパラメータの値です。このノードは、例えば
+|DomNode_append_child| などを用いて挿入されるまで、
+文章には現れません。
+
+エラーが発生した場合、戻り値は FALSE です。
+
+|DomNode_append_child|, |DomDocument_create_text|,
+|DomDocument_create_comment|, |DomDocument_create_attribute|,
+|DomDocument_create_processing_instruction|,
+|DomDocument_create_entity_reference|, |DomNode_insert_before|
+も参照ください。
+
+vim:ft=help:

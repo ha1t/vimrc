@@ -1,0 +1,31 @@
+Memcache::getStats -- サーバの統計情報を取得する
+
+  array Memcache::getStats([string type [, int slabid [, int limit]]])~
+
+|Memcache::getStats| は、サーバの統計情報を含む
+連想配列を返します。配列のキーが統計情報パラメータの名前、そして
+配列の値がパラメータの値に対応します。 |memcache_get_stats|
+関数を使用することも可能です。
+
+{type} 取得する統計情報の型。使用可能な値は {reset, malloc,
+maps, cachedump, slabs, items, sizes} のいずれかです。 memcached
+プロトコルの仕様によると、これらの追加の引数は
+「memcache
+の開発者の都合により、変更される可能性があります」
+ということです。
+
+{slabid} {type} を cachedump
+と設定した場合に使用し、ダンプを取得する slab
+を指定します。 cachedump
+コマンドはサーバと結びついており、デバッグ目的でのみ使用します。
+
+{limit} {type} を cachedump
+と設定した場合に使用し、ダンプするエントリの数を制限します。
+デフォルト値は 100 です。
+
+サーバの統計情報を含む連想配列を返します。失敗した場合は
+FALSE を返します。
+
+|Memcache::getVersion| |Memcache::getExtendedStats|
+
+vim:ft=help:

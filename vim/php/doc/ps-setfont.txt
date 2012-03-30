@@ -1,0 +1,20 @@
+ps_setfont -- 以降の出力で用いるフォントを設定する
+
+  bool ps_setfont(resource psdoc, int fontid, float size)~
+
+フォントを設定します。このフォントは、事前に
+|ps_findfont| で読み込まれている必要があります。
+フォントを設定せずにテキストを出力するとエラーとなります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{fontid} |ps_findfont| が返す、フォント ID。
+
+{size} フォントのサイズ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_findfont|
+
+vim:ft=help:

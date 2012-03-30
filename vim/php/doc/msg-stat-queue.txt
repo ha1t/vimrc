@@ -1,0 +1,27 @@
+msg_stat_queue -- メッセージキューデータ構造体の情報を返す
+
+  array msg_stat_queue(resource queue)~
+
+|msg_stat_queue| は、{queue}
+で指定したメッセージキューのメタデータを返します。
+これは、例えば受信したメッセージがどのプロセスから送信されたのかを調べる場合などに有用です。
+
+{queue}
+
+返り値は配列で、そのキーと値は以下のような意味をもちます。
+msg_stat_queue の配列構造 msg_perm.uid キューの所有者の uid 。
+msg_perm.gid キューの所有者の gid 。 msg_perm.mode
+キューのファイルアクセスモード。 msg_stime
+キューに対して最後にメッセージが送信された時刻。
+msg_rtime キューから最後にメッセージを受信した時刻。
+msg_ctime キューが最後に更新された時刻。 msg_qnum
+キューにある読み込み待ちのメッセージの数。 msg_qbytes
+送信されたメッセージのうち、まだ受信されていないものを保持する領域として、
+キューで現在使用可能なバイト数 msg_lspid
+最後にキューに対してメッセージを送信したプロセスの
+pid 。 msg_lrpid
+最後にキューからメッセージを受信したプロセスの pid 。
+
+|msg_remove_queue| |msg_receive| |msg_get_queue| |msg_set_queue|
+
+vim:ft=help:

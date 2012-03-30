@@ -1,0 +1,31 @@
+enchant_broker_dict_exists --
+辞書が存在するかどうかを調べる。空でないタグを使用する
+
+  bool enchant_broker_dict_exists(resource broker, string tag)~
+
+辞書が存在するかどうかを調べます。空でないタグを使用します。
+
+{broker} ブローカーリソース。
+
+{tag} 空でない、LOCALE 形式のタグ。例: us_US、ch_DE など。
+
+タグが存在する場合に TRUE、存在しない場合に FALSE
+を返します。
+
+|enchant_broker_dict_exists| の例
+
+<?php >
+  $tag = 'en_US';
+  $r = enchant_broker_init();
+  if (enchant_broker_dict_exists($r,$tag)) {
+      echo $tag . " の辞書が見つかりました。\n";
+  }
+?>
+
+
+
+
+
+|enchant_broker_describe|
+
+vim:ft=help:

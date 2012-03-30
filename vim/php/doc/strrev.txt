@@ -1,0 +1,21 @@
+strrev -- 文字列を逆順にする
+
+  string strrev(string string)~
+
+{string} を逆順にして返します。
+
+{string} 逆順にしたい文字列。
+
+逆順にした文字列を返します。
+
+|strrev| で文字列を逆順にする
+
+<?php >
+  echo strrev("Hello world!"); // 出力は "!dlrow olleH" となります
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+sybase_get_last_message -- サーバから直近のメッセージを返す
+
+  string sybase_get_last_message()~
+
+|sybase_get_last_message|
+はサーバからの直近のメッセージを返します。
+
+メッセージを文字列で返します。
+
+|sybase_min_message_severity|
+
+vim:ft=help:

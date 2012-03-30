@@ -1,0 +1,90 @@
+SQLiteDatabase->arrayQuery --
+指定したデータベースに対してクエリを実行し、配列を返す
+
+  array sqlite_array_query(resource dbhandle, string query [, int result_type [, bool decode_binary]])~
+
+  array sqlite_array_query(resource dbhandle, string query [, int result_type [, bool decode_binary, string query, resource dbhandle [, int result_type [, bool decode_binary]]]])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  array arrayQuery(resource dbhandle, string query [, int result_type [, bool decode_binary, string query, resource dbhandle [, int result_type [, bool decode_binary, string query [, int result_type [, bool decode_binary]]]]]])~
+
+|sqlite_array_query| は与えられたクエリを実行し、
+結果セット全体を配列で返します。これは、結果セットの各レコードに関して
+|sqlite_query|に続いて
+|sqlite_fetch_array|をコールすることに似ています。
+|sqlite_array_query| は前述の方法よりも著しく高速です。
+
+|sqlite_array_query| は、返すレコードが45件以下
+のクエリーで最も有効です。これ以上のデータがある場合には、
+より性能を最適化するために、代わりに
+|sqlite_unbuffered_query|を使用するようなスクリ
+プトを書くことをお薦めします。
+
+{query} 実行するクエリ
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{result_type} オプションの {result_type}
+パラメータには定数を指定でき、返される配列の添字を定義します。
+SQLITE_ASSOC
+を用いると、連想配列の添字(名前フィールド)のみが
+返されます。一方、SQLITE_NUM は、
+数値の添字(フィールド番号)のみを返します。SQLITE_BOTH
+は、 連想配列の添字と数値の添字の両方を返します。
+SQLITE_BOTH がこの関数のデフォルトです。
+
+{decode_binary} {decode_binary} パラメータが TRUE (デフォルト)に
+設定された場合、PHP
+はバイナリエンコーディングをデコードします。
+これは、|sqlite_escape_string|
+によりエンコードされたデータに 適用されます。sqlite
+をサポートする他のアプリケーションにより
+作成されたデータベースを処理する時以外は、この値をデフォルトのままにしておくべきです。
+
+(MySQL
+のような)他のデータベースエクステンションとの互換性のため、
+2 種類の構文がサポートされています。
+推奨されるのは最初の構文で、{dbhandle} パラメータを
+関数の最初のパラメータとするものです。
+
+結果セット全体の配列、その他の場合は FALSE
+を返します。
+
+SQLITE_ASSOC および SQLITE_BOTH で
+返されるカラム名は、設定オプション sqlite.assoc_case
+の値に基づき、 大文字小文字が変換されます。
+
+手続き言語型スタイル
+
+<?php >
+  $dbhandle = sqlite_open('sqlitedb');
+  $result = sqlite_array_query($dbhandle, 'SELECT name, email FROM users LIMIT 25', SQLITE_ASSOC);
+  foreach ($result as $entry) {
+      echo 'Name: ' . $entry['name'] . '  E-mail: ' . $entry['email'];
+  }
+?>
+
+
+
+
+
+オブジェクト指向言語型スタイル
+
+<?php >
+  $dbhandle = new SQLiteDatabase('sqlitedb');
+  $result = $dbhandle->arrayQuery('SELECT name, email FROM users LIMIT 25', SQLITE_ASSOC);
+  foreach ($result as $entry) {
+      echo 'Name: ' . $entry['name'] . '  E-mail: ' . $entry['email'];
+  }
+?>
+
+
+
+
+
+|sqlite_query| |sqlite_fetch_array| |sqlite_fetch_string|
+
+vim:ft=help:

@@ -1,0 +1,32 @@
+tidy_setopt -- 指定した Tidy
+ドキュメントについての設定を更新する
+
+  bool tidy_setopt(string option, mixed value)~
+
+|tidy_setopt| は、 指定したオプション {option} の値を
+新しい値 {value} に更新します。
+各設定オプションの一覧を
+http://tidy.sourceforge.net/docs/quickref.html でご覧いただけます。
+
+|tidy_setopt| の例
+
+<?php >
+  $html = '<p>test</i>';
+  
+  $tidy = tidy_parse_string($html);
+  
+  tidy_setopt('indent', FALSE);
+?>
+
+
+
+
+
+|tidy_getopt|, |tidy_get_config|, |tidy_reset_config|, |tidy_save_config|
+も参照ください。
+
+この関数は、Tidy 1.0 でのみ利用可能です。
+この関数は、Tidy 2.0
+では古い関数として削除されているためです。
+
+vim:ft=help:

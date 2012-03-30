@@ -1,0 +1,57 @@
+openssl_verify -- 署名を検証する
+
+  int openssl_verify(string data, string signature, mixed pub_key_id [, int signature_alg])~
+
+|openssl_verify| は、 {pub_key_id} が指す公開鍵を使用し、
+指定した {data} に関して {signature}
+が正しいことを確認します。
+署名が正しいと判定されるためには、
+その公開鍵が署名の際に使用した秘密鍵に対応していることを必要とします。
+
+{data}
+
+{signature}
+
+{pub_key_id}
+
+{signature_alg} デフォルト値は OPENSSL_ALGO_SHA1 です。
+詳細な情報は、 署名アルゴリズム
+の一覧を参照ください。
+
+署名 (signature) が正しい場合に 1、正しくない場合に 0、
+エラーの場合に -1 を返します。
+
+バージョン 説明 5.0.0 {signature_alg}
+パラメータが追加されました。
+
+|openssl_verify| の例
+
+<?php >
+  // $data および $signature はデータおよび署名が含まれていると仮定
+  
+  // 認証局から公開鍵を取得し、使用可能にする
+  $fp = fopen("/src/openssl-0.9.6/demos/sign/cert.pem", "r");
+  $cert = fread($fp, 8192);
+  fclose($fp);
+  $pubkeyid = openssl_get_publickey($cert);
+  
+  // 署名が正しいかどうかを確認
+  $ok = openssl_verify($data, $signature, $pubkeyid);
+  if ($ok == 1) {
+      echo "正しいです";
+  } elseif ($ok == 0) {
+      echo "正しくありません";
+  } else {
+      echo "署名を確認する際にエラーが発生しました";
+  }
+  // メモリからキーを開放
+  openssl_free_key($pubkeyid);
+?>
+
+
+
+
+
+|openssl_sign|
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+hw_api->unlock -- オブジェクトのロックを解除する
+
+  bool unlock(array parameter)~
+
+ロックされたオブジェクトのロックを解除します。
+ロックを解除できるのは、そのオブジェクトをロックしたユーザか
+システムユーザのみです。
+
+{parameter} パラメータの配列には、 必須属性
+'objectIdentifier'、そしてオプションのパラメータ 'mode'
+および 'objectquery' が含まれます。 'mode' の意味は |hwapi_lock|
+関数と同じです。
+
+成功した場合に TRUE、それ以外の場合に HW_API_Error
+クラスのオブジェクトを返します。
+
+vim:ft=help:

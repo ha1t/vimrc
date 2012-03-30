@@ -1,0 +1,31 @@
+mssql_result -- 結果データを得る
+
+  string mssql_result(resource result, int row, mixed field)~
+
+|mssql_result|は、MS SQL 結果行からセルの内容を返します。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+{row} 行番号。
+
+{field} フィールドオフセット、フィールド名または
+テーブル名.フィールド名の形式で指定することができます。
+カラム名がエイリアス定義されている場合 ('select foo as bar
+from...')、そのカラム名の代わりにエイリアスが使用されます。
+
+{field}
+引数でオフセット番号を指定する方が、フィールド名または
+テーブル名.フィールド名で引数で指定するよりもかなり高速です。
+
+指定したセルの内容を返します。
+
+大量の結果を処理する場合、(以下に示す)行全体を取得する関数のどれかを
+使用することを考える必要があります。これらの関数は一回の関数
+コールで複数のセルの内容を返すので、 |mssql_result|
+よりもかなり高速です。
+
+推奨される高性能な代替関数: |mssql_fetch_row| |mssql_fetch_array|
+|mssql_fetch_object|
+
+vim:ft=help:

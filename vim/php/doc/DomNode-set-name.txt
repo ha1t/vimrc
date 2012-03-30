@@ -1,0 +1,9 @@
+DomNode->set_name -- ノード名を設定する
+
+  bool DomNode->set_name()~
+
+ノード名を設定します。
+
+|domnode_node_name| も参照ください。
+
+vim:ft=help:

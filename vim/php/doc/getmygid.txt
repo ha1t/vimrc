@@ -1,0 +1,12 @@
+getmygid -- PHP スクリプトの所有者の GID を得る
+
+  int getmygid()~
+
+現在のスクリプトのグループ ID を取得します。
+
+現在のスクリプトのグループ ID
+を返します。またはエラー時に FALSE を返します。
+
+|getmyuid| |getmypid| |get_current_user| |getmyinode| |getlastmod|
+
+vim:ft=help:

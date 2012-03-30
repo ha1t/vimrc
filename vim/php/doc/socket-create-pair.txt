@@ -1,0 +1,102 @@
+socket_create_pair --
+区別できないソケットの組を作成し、配列に保存する
+
+  bool socket_create_pair(int domain, int type, int protocol, array fd)~
+
+|socket_create_pair| は、接続されており区別できない 2
+つのソケットを作成し、それを {fd} に保存します。
+この関数は、一般に IPC（InterProcess Communication:
+プロセス間通信） で使用します。
+
+{domain} {domain}
+は、ソケットで使用するプロトコルの種類を指定します。
+完全な一覧は |socket_create| を参照ください。
+
+{type} {type}
+では、ソケットが使用する通信の形式を選択します。
+完全な一覧は |socket_create| を参照ください。
+
+{protocol} {protocol} は、指定した {domain}
+の中の特定のプロトコルを指定します。これは、返されるソケットとの通信に使用されます。
+使用可能な値の名前は |getprotobyname|
+で取得可能です。もし要求されるプロトコルが TCP
+あるいは UDP の場合、 対応する定数 SOL_TCP および SOL_UDP
+も使用可能です。
+
+サポートするプロトコルの完全な一覧は |socket_create|
+を参照ください。
+
+{fd} 2 つのソケットリソースが格納される配列への参照。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|socket_create_pair| の例
+
+<?php >
+  $sockets = array();
+  /* ソケットの組の設定 */
+  if (socket_create_pair(AF_UNIX, SOCK_STREAM, 0, $sockets) === false) {
+      echo "socket_create_pair failed. Reason: ".socket_strerror(socket_last_error());
+  }
+  /* データの送受信 */
+  if (socket_write($sockets[0], "ABCdef123\n", strlen("ABCdef123\n")) === false) {
+      echo "socket_write() failed. Reason: ".socket_strerror(socket_last_error($sockets[0]));
+  }
+  if (($data = socket_read($sockets[1], strlen("ABCdef123\n"), PHP_BINARY_READ) === false) {
+      echo "socket_read() failed. Reason: ".socket_strerror(socket_last_error($sockets[1]));
+  }
+  var_dump($data);
+  
+  /* ソケットのクローズ */
+  socket_close($sockets[0]);
+  socket_close($sockets[1]);
+?>
+
+
+
+
+
+|socket_create_pair| での IPC の例
+
+<?php >
+  $ary = array();
+  $strone = 'Message From Parent.';
+  $strtwo = 'Message From Child.';
+  if (socket_create_pair(AF_UNIX, SOCK_STREAM, 0, $ary) === false) {
+      echo "socket_create_pair() failed. Reason: ".socket_strerror(socket_last_error());
+  }
+  $pid = pcntl_fork();
+  if ($pid == -1) {
+      echo 'プロセスを fork できません。';
+  } elseif ($pid) {
+      /* 親プロセス */
+      socket_close($ary[0]);
+      if (socket_write($ary[1], $strone, strlen($strone)) === false) {
+          echo "socket_write() failed. Reason: ".socket_strerror(socket_last_error($ary[1]));
+      }
+      if (socket_read($ary[1], strlen($strtwo), PHP_BINARY_READ) == $strtwo) {
+          echo "Recieved $strtwo\n";
+      }
+      socket_close($ary[1]);
+  } else {
+      /* 子プロセス */
+      socket_close($ary[1]);
+      if (socket_write($ary[0], $strtwo, strlen($strtwo)) === false) {
+          echo "socket_write() failed. Reason: ".socket_strerror(socket_last_error($ary[0]));
+      }
+      if (socket_read($ary[0], strlen($strone), PHP_BINARY_READ) == $strone) {
+          echo "Recieved $strone\n";
+      }
+      socket_close($ary[0]);
+  }
+?>
+
+
+
+
+
+|socket_create| |socket_create_listen| |socket_bind| |socket_listen|
+|socket_last_error| |socket_strerror|
+
+vim:ft=help:

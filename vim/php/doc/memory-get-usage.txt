@@ -1,0 +1,43 @@
+memory_get_usage -- PHP に割り当てられたメモリの量を返す
+
+  int memory_get_usage([bool real_usage])~
+
+現在の PHP
+スクリプトに割り当てられたメモリの量をバイト単位で返します。
+
+{real_usage} これを TRUE
+に設定すると、システムが割り当てた実際のメモリの大きさを取得します。
+省略したり FALSE を設定したりすると、 emalloc()
+が使用するメモリのみを報告します。
+
+メモリの量をバイト単位で返します。
+
+バージョン 説明 5.2.1 この関数を使用するために、
+--enable-memory-limit
+でコンパイルすることは必須ではなくなりました。 5.2.0
+{real_usage} が追加されました。
+
+|memory_get_usage| の例
+
+<?php >
+  // これは単なる例にすぎません。
+  // 以下の数値はシステムによって変化します。
+  
+  echo memory_get_usage() . "\n"; // 36640
+  
+  $a = str_repeat("Hello", 4242);
+  
+  echo memory_get_usage() . "\n"; // 57960
+  
+  unset($a);
+  
+  echo memory_get_usage() . "\n"; // 36744
+?>
+
+
+
+
+
+|memory_get_peak_usage| memory_limit
+
+vim:ft=help:

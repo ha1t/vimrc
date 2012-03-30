@@ -1,0 +1,32 @@
+gmp_legendre -- ルジェンドル記号
+
+  int gmp_legendre(resource a, resource p)~
+
+{a} と {p} の ルジェンドル記号 を計算します。{p}
+は、正の奇数である必要があります。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{p} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+正の奇数でなければなりません。
+
+GMP 数リソースを返します。
+
+|gmp_legendre| の例
+
+<?php >
+  echo gmp_legendre("1", "3") . "\n";
+  echo gmp_legendre("2", "3") . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  1
+  0
+
+
+
+vim:ft=help:

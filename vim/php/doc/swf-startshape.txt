@@ -1,0 +1,13 @@
+swf_startshape -- 複雑な形状を開始する
+
+  void swf_startshape(int objid)~
+
+複雑な形状を開始します。
+
+{objid} オブジェクト ID。
+
+値を返しません。
+
+|swf_endshape|
+
+vim:ft=help:

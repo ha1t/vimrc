@@ -1,0 +1,35 @@
+oci_execute -- 文を実行する
+
+  bool oci_execute(resource statement [, int mode])~
+
+事前にパースされた {statement} を実行します。
+
+{statement} 有効な OCI ステートメント ID
+
+{mode} 実行モードを指定することを可能にする
+(デフォルトは OCI_COMMIT_ON_SUCCESS) 。
+
+自動的にコミットされたくない場合は、 {mode} に OCI_DEFAULT
+に指定する。
+
+OCI_DEFAULT モードを使用する場合、
+トランザクションを生成する。
+トランザクションは接続を閉じたとき、
+もしくはスクリプトの終了時のいずれの場合でも
+すぐに自動的にロールバックされる。
+トランザクションをコミットするには |oci_commit| を、
+トランザクションを破棄する場合は |oci_rollback|
+をそれぞれ明示的にコールする必要がある。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+PHP バージョン 5.0.0 以前では、代わりに |ociexecute|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_execute| への別名として残されていますが、
+推奨されません。
+
+|oci_parse|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+cpdf_fill_stroke -- 現在のパスを塗りつぶし、描く
+
+  bool cpdf_fill_stroke(int pdf_document)~
+
+現在のパスの内部を現在の塗りつぶし色で塗りつぶし、
+それを描画します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_closepath| |cpdf_stroke| |cpdf_fill| |cpdf_setgray_fill| |cpdf_setgray|
+|cpdf_setrgbcolor_fill| |cpdf_setrgbcolor|
+
+vim:ft=help:

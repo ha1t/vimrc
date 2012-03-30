@@ -1,0 +1,8 @@
+fbsql_select_db -- FrontBase データベースを選択する
+
+  bool fbsql_select_db([string database_name [, resource link_identifier]])~
+
+指定したリンク ID
+上の、現在アクティブなデータベースを設定します。
+
+vim:ft=help:

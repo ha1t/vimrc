@@ -1,0 +1,37 @@
+ob_get_length -- 出力バッファの長さを返す
+
+  int ob_get_length()~
+
+この関数は、出力バッファの内容の長さを返します。
+
+出力バッファの内容の長さを返します。
+出力のバッファリングがアクティブでない場合には、FALSE
+を返します。
+
+単純な |ob_get_length| の例
+
+<?php >
+  ob_start();
+  
+  echo "Hello ";
+  
+  $len1 = ob_get_length();
+  
+  echo "World";
+  
+  $len2 = ob_get_length();
+  
+  ob_end_clean();
+  
+  echo $len1 . ", ." . $len2;
+?>
+
+上の例の出力は以下となります。
+
+  6, 11
+
+
+
+|ob_start| |ob_get_contents|
+
+vim:ft=help:

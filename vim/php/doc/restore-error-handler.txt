@@ -1,0 +1,39 @@
+restore_error_handler -- 以前のエラーハンドラ関数を回復する
+
+  bool restore_error_handler()~
+
+|set_error_handler| を使用してエラーハンドラ関数を
+変更した後、元のエラーハンドラ(組込またはユーザ定義関数)に戻すために
+使用されます。
+
+この関数は常に TRUE を返します。
+
+|restore_error_handler| の例 |unserialize|
+がエラーを発生した場合に
+元のエラーハンドラに戻すことにする
+
+<?php >
+  function unserialize_handler($errno, $errstr)
+  {
+      echo "Invalid serialized value.\n";
+  }
+  
+  $serialized = 'foo';
+  set_error_handler('unserialize_handler');
+  $original = unserialize($serialized);
+  restore_error_handler();
+?>
+
+上の例の出力は以下となります。
+
+  Invalid serialized value.
+
+
+
+error_handler 関数の中から |restore_error_handler|
+がコールされた場合、 それは無視されます。
+
+|error_reporting| |set_error_handler| |restore_exception_handler|
+|trigger_error|
+
+vim:ft=help:

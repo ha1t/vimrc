@@ -1,0 +1,65 @@
+oci_define_by_name -- SELECT 実行中、定義用の PHP
+変数を使用する
+
+  bool oci_define_by_name(resource statement, string column_name, mixed variable [, int type])~
+
+SQL カラムカラムをフェッチするための PHP
+変数を定義します。
+
+{statement} 有効な OCI ステートメント ID
+
+{column_name} カラム名。大文字であること。
+
+Oracle は、全ての大文字のカラム名を使用するが、 select
+の中で小文字も書くことが可能であることを考慮すること。
+select
+文にない変数を定義する場合、エラーは発生しない。
+
+{variable} PHP 変数
+
+{type}
+
+抽象 Datatype (LOB/ROWID/BFILE) を定義する必要がある場合、
+まず |oci_new_descriptor| 関数を用いてその
+領域を確保する必要がある。 |oci_bind_by_name|
+関数も参照のこと。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|oci_define_by_name| の例
+
+<?php >
+  /* oci_define_by_name の例 - thies at thieso dot net (980219) */
+  
+  $conn = oci_connect("scott", "tiger");
+  
+  $stmt = oci_parse($conn, "SELECT empno, ename FROM emp");
+  
+  /* 定義は oci_execute の前に行われなければなりません! */
+  
+  oci_define_by_name($stmt, "EMPNO", $empno);
+  oci_define_by_name($stmt, "ENAME", $ename);
+  
+  oci_execute($stmt);
+  
+  while (oci_fetch($stmt)) {
+      echo "empno:" . $empno . "\n";
+      echo "ename:" . $ename . "\n";
+  }
+  
+  oci_free_statement($stmt);
+  oci_close($conn);
+?>
+
+
+
+
+
+PHP バージョン 5.0.0 以前では、代わりに |ocidefinebyname|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_define_by_name| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

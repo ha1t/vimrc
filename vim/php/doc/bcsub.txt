@@ -1,0 +1,31 @@
+bcsub -- 任意精度数値の減算を行う
+
+  string bcsub(string left_operand, string right_operand [, int scale])~
+
+{left_operand} から {right_operand} を引きます。
+
+{left_operand} 左オペランドを表す文字列。
+
+{right_operand} 右オペランドを表す文字列。
+
+{ scale}このオプションパラメータを使用して、
+結果の小数点以下の桁数を指定します。すべての関数で使用するデフォルトのスケールを定義するには
+|bcscale| を使用します。
+
+減算の結果を文字列で返します。
+
+|bcsub| の例
+
+<?php >
+  $a = '1.234';
+  $b = '5';
+  
+  echo bcsub($a, $b);     // -3
+  echo bcsub($a, $b, 4);  // -3.7660
+?>
+
+
+
+|bcadd|
+
+vim:ft=help:

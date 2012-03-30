@@ -1,0 +1,11 @@
+ifx_error -- 直近の Informix コールのエラーコードを返す
+
+  string ifx_error([resource link_identifier])~
+
+文の結果を表す一文字の文字列、そして、
+直近に実行された SQL 文についての SQLSTATE と SQLCODE
+を返します。
+
+{link_identifier} リンク ID。
+
+vim:ft=help:

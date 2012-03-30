@@ -1,0 +1,15 @@
+fam_open -- FAM デーモンへの接続をオープンする
+
+  resource fam_open([string appname])~
+
+FAM サービスデーモンへの接続をオープンします。
+
+{appname}
+ログ記録用にアプリケーションを特定する文字列。
+
+成功した場合に FAM サービスへの接続を表すリソース、
+失敗した場合に FALSE を返します。
+
+|fam_close|
+
+vim:ft=help:

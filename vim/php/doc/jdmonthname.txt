@@ -1,0 +1,26 @@
+JDMonthName -- 月の名前を返す
+
+  string jdmonthname(int julianday, int mode)~
+
+月の名前を含んだ文字列を返します。
+{mode}はユリウス積算日をどの暦に変換するか、
+どんなタイプの月名を返すかを関数に伝えます。
+暦モード モード 意味 値 0 グレゴリウス暦 - 省略形 Jan,
+Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec 1 グレゴリウス暦
+January, February, March, April, May, June, July, August, September, October,
+November, December 2 ユリウス暦 - 省略形 Jan, Feb, Mar, Apr, May, Jun,
+Jul, Aug, Sep, Oct, Nov, Dec 3 ユリウス暦 January, February, March,
+April, May, June, July, August, September, October, November, December 4
+ユダヤ暦 Tishri, Heshvan, Kislev, Tevet, Shevat, AdarI, AdarII, Nisan,
+Iyyar, Sivan, Tammuz, Av, Elul 5 フランス革命暦 Vendemiaire, Brumaire,
+Frimaire, Nivose, Pluviose, Ventose, Germinal, Floreal, Prairial, Messidor,
+Thermidor, Fructidor, Extra
+
+{jday} 変換したいユリウス積算日。
+
+{calendar} 月名を取得する暦。
+
+指定したユリウス積算日と {calendar}
+にもとづく月名を返します。
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+udm_open_stored -- 保存した接続をオープンする
+
+  int udm_open_stored(resource agent, string storedaddr)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

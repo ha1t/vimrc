@@ -1,0 +1,44 @@
+token_get_all -- 指定したソースを PHP トークンに分割する
+
+  array token_get_all(string source)~
+
+|token_get_all| は指定した文字列 {source} をパースし、Zend
+engine の 字句解析スキャナにより PHP
+言語のトークンに分割します。
+
+パーサトークンの一覧を得るには、 を参照するか、
+あるいは |token_name| でトークン値を文字列表現に
+変換します。
+
+{source} パースする PHP ソース。
+
+トークン ID の配列を返します。配列の各要素には、1
+文字単位の文字列 (例: ;、.、 >、! など...)、
+またはトークンのインデックスを 0
+番目の要素、トークンの文字列表現を 1 番目の要素、
+行番号を 2 番目の要素とする配列が含まれます。
+
+|token_get_all| の例
+
+<?php >
+  $tokens = token_get_all('<?php echo; ?>'); /* => array(
+                                                    array(T_OPEN_TAG, '<?php'), 
+                                                    array(T_ECHO, 'echo'),
+                                                    ';',
+                                                    array(T_CLOSE_TAG, '?>') ); */
+  
+  /* 以下の例では、文字列が T_COMMENT (PHP <5 では T_ML_COMMENT)
+     ではなく T_INLINE_HTML とパースされていることに注意しましょう。
+     これは、指定した "code" の中に開始タグ/終了タグが含まれていないからです。
+     通常のファイルで、コメントを <?php ?> タグの外部に書いた場合にも同じようになります。 */
+  $tokens = token_get_all('/* comment */'); // => array(array(T_INLINE_HTML, '/* comment */'));
+?>
+
+
+
+
+
+バージョン 説明 5.2.2 2
+番目の要素として行番号を返すようになりました。
+
+vim:ft=help:

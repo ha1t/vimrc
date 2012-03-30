@@ -1,0 +1,11 @@
+ncurses_top_panel -- 可視パネルをスタックの最上部に移動する
+
+  int ncurses_top_panel(resource panel)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{panel}
+
+vim:ft=help:

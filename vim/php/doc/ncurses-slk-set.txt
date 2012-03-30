@@ -1,0 +1,15 @@
+ncurses_slk_set -- ファンクションキーラベルを設定する
+
+  bool ncurses_slk_set(int labelnr, string label, int format)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{labelnr}
+
+{label}
+
+{format}
+
+vim:ft=help:

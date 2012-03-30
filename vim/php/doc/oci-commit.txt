@@ -1,0 +1,63 @@
+oci_commit -- 未解決の文をコミットする
+
+  bool oci_commit(resource connection)~
+
+Oracle接続{connection}
+上のアクティブなトランザクションに関する全ての未解決の文をコミットします。
+
+{connection} Oracle 接続 ID。 |oci_connect| もしくは |oci_pconnect|
+によって返されたもの。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|oci_commit| の例
+
+<?php >
+  // Oracle サーバにログインする
+  $conn = oci_connect('scott', 'tiger');
+  
+  // SQL をパースする
+  $stmt = oci_parse($conn, "
+                            INSERT INTO
+                                       employees (name, surname)
+                                 VALUES
+                                       ('Maxim', 'Maletsky')
+                           ");
+  
+  /* 文を実行する。
+     OCI_DEFAULT は oci_execute() に
+     文をすぐにコミットしないように伝える */
+  oci_execute($stmt, OCI_DEFAULT);
+  
+  /*
+  ....
+  ここで他の文をパース、実行 ...
+  ....
+  */
+  
+  // トランザクションをコミット
+  $committed = oci_commit($conn);
+  
+  // コミットが成功したかどうかをテストする。もしエラーが発生していたら、エラーメッセージを返す
+  if (!$committed) {
+      $error = oci_error($conn);
+      echo 'Commit failed. Oracle reports: ' . $error['message'];
+  }
+?>
+
+
+
+
+
+トランザクションは接続を閉じたとき、
+もしくはスクリプトの終了時のいずれの場合でも
+すぐに自動的にロールバックされます。
+トランザクションをコミットするには |oci_commit|
+をコールする、
+もしくはトランザクションを破棄する場合は |oci_rollback|
+を明示的にコールする必要があります。
+
+|oci_rollback| |oci_execute|
+
+vim:ft=help:

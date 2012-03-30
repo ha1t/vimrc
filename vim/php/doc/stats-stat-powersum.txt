@@ -1,0 +1,15 @@
+stats_stat_powersum -- 未ドキュメント化
+
+  float stats_stat_powersum(array arr, float power)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{arr}
+
+{power}
+
+
+
+vim:ft=help:

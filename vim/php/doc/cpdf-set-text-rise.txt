@@ -1,0 +1,16 @@
+cpdf_set_text_rise -- テキストの高さを設定する
+
+  bool cpdf_set_text_rise(int pdf_document, float value)~
+
+テキストの高さを {value} 単位に設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{value} テキストの高さを表す float 値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_text_rendering| |cpdf_set_text_matrix|
+
+vim:ft=help:

@@ -1,0 +1,64 @@
+syslog -- システムログのメッセージを生成する
+
+  bool syslog(int priority, string message)~
+
+|syslog|
+はシステムログが出力するログメッセージを生成します。
+
+ユーザ定義のログハンドラの設定に関する情報については、Unix
+マニュアルの syslog.conf 5 を参照ください。 syslog の facility
+と option に関するより詳細な情報は、 Unix マシンの syslog 3
+にあります。
+
+{priority} {priority} は、容易さ (facility) とレベル (level)
+の組み合わせです。以下の値が使用できます。 |syslog|
+の優先順位 (降順) 定数 説明 LOG_EMERG システムは使用不可
+LOG_ALERT アクションを直ちにおこす必要がある LOG_CRIT
+致命的な条件 LOG_ERR エラーを発生する条件 LOG_WARNING
+警告を発生する条件 LOG_NOTICE
+通常の動作だが、特徴的な条件 LOG_INFO
+情報を与えるメッセージ LOG_DEBUG デバッグ用のメッセージ
+
+{message}
+残りの引数は送信するメッセージです。ただし、文字 %m
+は、errno の値に対応するエラーメッセージ文字列 (strerror)
+に置換されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|syslog| の使用例
+
+<?php >
+  define_syslog_variables();
+  // syslogをオープンし、プロセスIDをインクルードし、標準エラー出力にも
+  // ログを出力します。そして、ユーザ定義のログ記録機構を使用します。
+  openlog("myScriptLog", LOG_PID | LOG_PERROR, LOG_LOCAL0);
+  
+  // 何らかのコード
+  
+  if (authorized_client()) {
+      // 何かをする
+  } else {
+      // クライアントは未認証!
+      // ログを記録する
+      $access = date("Y/m/d H:i:s");
+      syslog(LOG_WARNING, "Unauthorized client: $access {$_SERVER['REMOTE_ADDR']} ({$_SERVER['HTTP_USER_AGENT']})");
+  }
+  
+  closelog();
+?>
+
+
+
+
+
+Windows NT では、syslog
+サービスはイベントログを使用してエミュレートされます。
+
+Windows 環境では、|openlog| の {facility} パラメータに LOG_LOCAL0
+から LOG_LOCAL7 までを使用することはできません。
+
+|define_syslog_variables| |openlog| |closelog|
+
+vim:ft=help:

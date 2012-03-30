@@ -1,0 +1,31 @@
+timezone_identifiers_list --
+すべてのタイムゾーン識別子を含む配列を返す
+
+  array timezone_identifiers_list()~
+
+  array DateTimeZone::listIdentifiers()~
+
+成功した場合に配列、失敗した場合に FALSE を返します。
+
+|timezone_identifiers_list| の例
+
+<?php >
+  $timezone_identifiers = DateTimeZone::listIdentifiers();
+  for ($i=0; $i < 5; $i++) {
+      echo "$timezone_identifiers[$i]\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Africa/Abidjan
+  Africa/Accra
+  Africa/Addis_Ababa
+  Africa/Algiers
+  Africa/Asmera
+
+
+
+|timezone_abbreviations_list|
+
+vim:ft=help:

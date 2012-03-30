@@ -1,0 +1,23 @@
+dbplus_rchperm -- リレーションの許可属性を変更する
+
+  int dbplus_rchperm(resource relation, int mask, string user, string group)~
+
+{mask}, {user},{group} で
+指定した許可属性に変更します。これらの値はオペレーティングシステムに依存します。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+{mask}
+
+{user}
+
+{group}
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

@@ -1,0 +1,32 @@
+enchant_broker_request_dict --
+タグを使用して新しい辞書を作成する
+
+  resource enchant_broker_request_dict(resource broker, string tag)~
+
+タグを使用して新しい辞書を作成します。空でない言語タグで、
+使用したい辞書を指定します ("en_US"、"de_DE"、...)。
+
+{broker} ブローカーリソース。
+
+{tag} ロケールを表すタグ。例えば en_US、de_DE など。
+
+成功した場合に辞書リソース、失敗した場合に FALSE
+を返します。
+
+|enchant_broker_request_dict| の例 辞書が存在するかどうかを
+|enchant_broker_dict_exists| で調べ、それを要求します。
+
+<?php >
+  $tag = 'en_US';
+  $broker = enchant_broker_init();
+  if (enchant_broker_dict_exists($broker,$tag)) {
+      $dict = enchant_broker_request_dict($r, $tag);
+  }
+?>
+
+
+
+|enchant_dict_describe| |enchant_broker_dict_exists|
+|enchant_broker_dict_free|
+
+vim:ft=help:

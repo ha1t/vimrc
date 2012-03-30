@@ -1,0 +1,5 @@
+is_long -- is_int のエイリアス
+
+この関数は次の関数のエイリアスです。 |is_int|.
+
+vim:ft=help:

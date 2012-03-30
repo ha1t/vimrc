@@ -1,0 +1,15 @@
+stream_wrapper_unregister -- URL ラッパの登録を解除する
+
+  bool stream_wrapper_unregister(string protocol)~
+
+すでに定義されているストリームラッパを無効にします。ラッパが無効になった後は、
+|stream_wrapper_register| を使用してユーザ定義の
+ラッパで上書きしたり |stream_wrapper_restore|
+で再度使用可能にしたりすることが可能となります。
+
+{protocol}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+nsapi_response_headers -- すべての HTTP
+レスポンスヘッダを取得する
+
+  array nsapi_response_headers()~
+
+Gets all the NSAPI response headers.
+
+すべての NSAPI レスポンスヘッダの連想配列を返します。
+
+|nsapi_request_headers| |headers_sent|
+
+vim:ft=help:

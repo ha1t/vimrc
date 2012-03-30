@@ -1,0 +1,41 @@
+SoapServer->setClass() -- SOAP
+リクエストを処理するクラスを設定する
+
+  void setClass(string class_name [, mixed args [, mixed ...]])~
+
+指定されたクラスから全てのメソッドをエクスポートします。
+
+このオブジェクトは メソッドにより指定した PHP
+セッションに関するリクエストをまたがる
+持続性を持たせることができます
+
+{class_name} エクスポートするクラス名
+
+{args} これらのオプションパラメータは、
+オブジェクト作成時にデフォルトのクラスコンストラクタに渡されます。
+
+値を返しません。
+
+いくつかの例
+
+<?php >
+  class foo {
+      function foo()
+      {
+      }
+  }
+  $server->setClass("foo");
+  
+  class bar {
+      function bar($x, $y)
+      {
+      }
+  }
+  $server->setClass("bar", $arg1, $arg2);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,26 @@
+readgzfile -- gz ファイルを出力する
+
+  int readgzfile(string filename [, int use_include_path])~
+
+ファイルを読み込み、解凍し、標準出力に書き込みます。
+
+|readgzfile|は、gzip
+フォーマットでないファイルの読込にも使用可能です。この場合、
+|readgzfile| はファイルを解凍せずに直接読込みます。
+
+{filename}
+ファイル名を指定します。このファイルはファイルシステムからオープンされ、
+内容は標準出力に書き込まれます。
+
+{use_include_path} include_path
+にあるファイルも検索したい場合、このオプションパラメータを
+1 に設定してください。
+
+ファイルから読み込んだ (解凍された)
+データのバイト数を返します。
+エラーが発生した場合、FALSE が返され、@readgzfile
+としてコールされている場合を除き、エラーメッセージが出力されます。
+
+|gzpassthru| |gzfile| |gzopen|
+
+vim:ft=help:

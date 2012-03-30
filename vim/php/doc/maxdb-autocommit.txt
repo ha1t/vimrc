@@ -1,0 +1,61 @@
+maxdb->auto_commit --
+データベースの変更内容の自動コミット機能を有効あるいは無効にする
+
+手続き型
+
+  bool maxdb_autocommit(resource link, bool mode)~
+
+オブジェクト指向型 (メソッド)
+
+  bool auto_commit(resource link, bool mode, bool mode)~
+
+|maxdb_autocommit| は、{link}
+リソースが表すデータベース接続上のクエリについて、
+自動コミットモードを有効または無効にするために使用されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* 自動コミットを有効にします */
+  $maxdb->autocommit(TRUE);
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  if (!$link) {
+     printf("localhost に接続できません。エラー: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* 自動コミットを有効にします */
+  maxdb_autocommit($link, TRUE);
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例は、なにも出力しません。
+
+|maxdb_commit| |maxdb_rollback|
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+imap_utf8 -- MIME エンコードされたテキストを UTF-8
+に変換する
+
+  string imap_utf8(string mime_encoded_text)~
+
+指定した {mime_encoded_text} を UTF-8 に変換します。
+
+{mime_encoded_text} MIME エンコードされた文字列。 MIME
+エンコーディング方法および UTF-8
+の仕様については、それぞれ RFC2047 および RFC2044
+を参照ください。
+
+UTF-8 エンコードされた文字列を返します。
+
+|imap_mime_header_decode|
+
+vim:ft=help:

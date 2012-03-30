@@ -1,0 +1,41 @@
+mysql_thread_id -- カレントのスレッド ID を返す
+
+  int mysql_thread_id([resource link_identifier])~
+
+カレントのスレッド ID
+を取得します。接続が一度切断され、 |mysql_ping|
+によって再接続された場合には、 スレッド ID
+は変わります。つまり、スレッド ID
+は必要になったその時点で
+取得すべきだということです。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合にスレッド ID 、失敗した場合に FALSE
+を返します。
+
+|mysql_thread_id| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  $thread_id = mysql_thread_id($link);
+  if ($thread_id){
+      printf("current thread id is %d\n", $thread_id);
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  current thread id is 73
+
+
+
+|mysql_ping| |mysql_list_processes|
+
+vim:ft=help:

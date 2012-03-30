@@ -1,0 +1,16 @@
+readline_completion_function -- 補完関数を登録する
+
+  bool readline_completion_function(callback function)~
+
+この関数は補完用の関数を登録します。 これは、Bash
+を使用している際に、タブキーを
+押して得られるのと同様の機能です。
+
+{function} コマンドラインの一部を入力とし、
+マッチする可能性がある文字列の配列を返す
+既存の関数の名前を指定する必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

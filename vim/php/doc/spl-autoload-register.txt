@@ -1,0 +1,43 @@
+spl_autoload_register -- 指定した関数を __autoload()
+の実装として登録する
+
+  bool spl_autoload_register([callback autoload_function])~
+
+指定した関数を、spl が提供する __autoload
+スタックに登録します。
+スタックがまだアクティブになっていない場合は、まずアクティブにします。
+パラメータが指定されなかった場合は、デフォルト実装である
+spl_autoload が登録されます。登録に成功した場合は true、
+失敗した場合は false が返されます。
+
+もしあなたのコード中に __autoload 関数が存在するのなら、
+それを明示的に __autoload
+スタックに登録しなければなりません。
+なぜなら、spl_autoload_register() は、 spl_autoload() あるいは
+spl_autoload_call() によって __autoload
+関数のエンジンキャッシュを効率的に置き換えるからです。
+
+|spl_autoload_register| の例
+
+<?php >
+  namespace Foobar;
+  
+  class Foo {
+      static public function test($name) {
+          print '[['. $name .']]';
+      }
+  }
+  
+  spl_autoload_register(__NAMESPACE__ .'::Foo::test'); // PHP 5.3.0 以降
+  
+  new InexistentClass;
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  [[Foobar::InexistentClass]]
+  Fatal error: Class 'Foobar::InexistentClass' not found in ...
+
+
+
+vim:ft=help:

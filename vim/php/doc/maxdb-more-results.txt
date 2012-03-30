@@ -1,0 +1,17 @@
+maxdb->more_results --
+複数クエリの結果の中に結果セットがまだあるかどうかを調べる
+
+  bool maxdb_more_results(resource link)~
+
+|maxdb_more_results| は、事前の |maxdb_multi_query|
+のコールによって取得した結果に
+まだ結果セットが含まれているかどうかを示します。
+
+常に FALSE を返します。
+
+|maxdb_multi_query| を参照ください。
+
+|maxdb_multi_query| |maxdb_next_result| |maxdb_store_result|
+|maxdb_use_result|
+
+vim:ft=help:

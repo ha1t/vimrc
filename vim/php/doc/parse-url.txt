@@ -1,0 +1,80 @@
+parse_url -- URL を解釈し、その構成要素を返す
+
+  mixed parse_url(string url [, int component])~
+
+この関数は、URL
+の様々な構成要素のうち特定できるものに関して
+連想配列にして返します。
+
+この関数は、指定された URL
+が有効かどうかを調べるためのもの ではなく、単に URL
+を上で示した 要素に分解するだけのものです。不完全な
+URL であっても受け入れられますし、 そのような場合でも
+|parse_url| は可能な限り 正しく解析しようとします。
+
+{url} パースする URL
+
+{component} PHP_URL_SCHEME、 PHP_URL_HOST、PHP_URL_PORT、
+PHP_URL_USER、PHP_URL_PASS、 PHP_URL_PATH、PHP_URL_QUERY あるいは
+PHP_URL_FRAGMENT のうちのいずれかを指定し、 特定の URL
+コンポーネントのみを 文字列で取得するようにします。
+
+完全におかしな形式の URL については、|parse_url| は FALSE
+を返し、E_WARNING を発生します。それ以外の場合は
+連想配列が返され、その中には以下の要素（のうち少なくともひとつ）が含まれます。
+scheme - 例: http
+
+host
+
+port
+
+user
+
+pass
+
+path
+
+query - クエスチョンマーク ? 以降
+
+fragment - ハッシュマーク # 以降
+
+{component} が指定されている場合、結果は array
+ではなく文字列で返されます。
+
+バージョン 説明 5.1.2 パラメータ {component}
+が追加されました。
+
+|parse_url| の例
+
+<?php >
+  $url = 'http://username:password@hostname/path?arg=value#anchor';
+  
+  print_r(parse_url($url));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [scheme] => http
+      [host] => hostname
+      [user] => username
+      [pass] => password
+      [path] => /path
+      [query] => arg=value
+      [fragment] => anchor
+  )
+
+
+
+この関数は相対 URL では動作しません。
+
+|parse_url| は URL をパースするための関数であり、 URI
+をパースするものではありません。しかし、PHP
+の後方互換性を満たすため、 例外として file://
+スキームについては 3 重スラッシュ(file:///...)
+が認められています。他のスキームにおいては、これは無効な形式となります。
+
+|pathinfo| |parse_str| |dirname| |basename|
+
+vim:ft=help:

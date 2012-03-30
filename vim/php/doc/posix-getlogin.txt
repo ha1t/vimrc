@@ -1,0 +1,21 @@
+posix_getlogin -- ログイン名を返す
+
+  string posix_getlogin()~
+
+現在のプロセスを所有するユーザのログイン名を返します。
+
+ユーザのログイン名を文字列で返します。
+
+|posix_getlogin| の使用例
+
+<?php >
+  echo posix_getlogin(); //apache
+?>
+
+
+
+
+
+|posix_getpwnam| POSIX man ページ GETLOGIN(3)
+
+vim:ft=help:

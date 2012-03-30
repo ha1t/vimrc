@@ -1,0 +1,13 @@
+newt_checkbox_get_value --
+チェックボックスリソースの値を取得する
+
+  string newt_checkbox_get_value(resource checkbox)~
+
+この関数は、シーケンス内の文字を返します。
+これは、チェックボックスの現在の値を表します。
+
+{checkbox}
+
+チェックボックスの値を表す文字を返します。
+
+vim:ft=help:

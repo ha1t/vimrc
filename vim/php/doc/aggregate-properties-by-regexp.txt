@@ -1,0 +1,32 @@
+aggregate_properties_by_regexp --
+正規表現を使用して選択したクラスプロパティを、
+動的にオブジェクトに集約する
+
+  void aggregate_properties_by_regexp(object object, string class_name, string regexp [, bool exclude])~
+
+クラスのプロパティを既存のオブジェクトに集約します。集約するプロパティを
+決定するために正規表現を使用します。
+
+アンダースコア文字 (_) で始まる名前のプロパティ
+(プライベートとみなされます)
+は、常に対象となりません。
+
+{object}
+
+{class_name}
+
+{regexp}
+
+{exclude} オプションのパラメータ {exclude}
+で、正規表現にマッチするプロパティを集約する ({exclude}
+が FALSE の場合。これがデフォルトです)
+のかマッチしないプロパティを集約する ({exclude} が TRUE)
+のかを指定します。
+
+値を返しません。
+
+|aggregate| |aggregate_methods| |aggregate_methods_by_list|
+|aggregate_methods_by_regexp| |aggregate_properties|
+|aggregate_properties_by_list| |aggregate_info| |deaggregate|
+
+vim:ft=help:

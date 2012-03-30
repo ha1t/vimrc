@@ -1,0 +1,25 @@
+cpdf_set_text_pos -- テキスト位置を設定する
+
+  bool cpdf_set_text_pos(int pdf_document, float x_coor, float y_coor [, int mode])~
+
+次に |cpdf_show| がコールされた時の
+テキストの位置を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{x_coor} テキスト位置の x 座標。
+
+{y_coor} テキスト位置の y 座標。
+
+{ mode}オプションのパラメータ {mode}
+は単位長さを定義します。この値が 0
+または値が省略された場合、
+このページで指定されたデフォルト値が使用されます。それ以外の場合、
+現在の単位を無視してポストスクリプトのポイントで座標が計測されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_show| |cpdf_text|
+
+vim:ft=help:

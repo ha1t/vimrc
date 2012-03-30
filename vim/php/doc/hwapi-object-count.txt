@@ -1,0 +1,11 @@
+hw_api_object->count -- 属性の数を返す
+
+  int count(array parameter)~
+
+属性の数を返します。
+
+{parameter}
+
+属性の数を返します。
+
+vim:ft=help:

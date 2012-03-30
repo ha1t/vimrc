@@ -1,0 +1,59 @@
+mb_output_handler --
+出力バッファ内で文字エンコーディングを変換するコールバック関数
+
+  string mb_output_handler(string contents, int status)~
+
+|mb_output_handler| は、 |ob_start| のコールバック関数です。
+|mb_output_handler| は、出力バッファの文字を
+内部文字エンコーディングから HTTP
+出力文字エンコーディングに変換します。
+
+{contents} 出力バッファの中身。
+
+{status} 出力バッファの状態。
+
+変換後の文字列を返します。
+
+バージョン 説明 4.1.0
+以下の条件が満たされた場合に、このハンドラは charset
+HTTP ヘッダを設定します。
+
+|header| で Content-Type が設定されていない
+
+デフォルトの MIME 型が text/ で始まる
+
+mbstring.http_input の設定が pass 以外である
+
+|mb_output_handler| の例
+
+<?php >
+  mb_http_output("UTF-8");
+  ob_start("mb_output_handler");
+?>
+
+
+
+
+
+PHP 4.3.0 以降において、
+イメージのようなバイナリデータを PHP
+スクリプトから出力したい場合、
+バイナリデータを送信する前に |header| により Content-Type:
+ヘッダ(例：header("Content-Type: image/png"))を
+送信する必要があります。Content-Type:
+ヘッダが送信されると出力文字
+コード変換は無効となります。
+
+ただし、|header| により"Content-Type: text/*"
+を送信した場合には、テキストが送信されるとみなし、文字コード設定に
+基づいて出力文字コード変換を行います。
+
+なお、PHP 4.2.x
+あるいはそれ以前のバージョンで画像のようなバイナリデータを
+出力する場合には、|mb_http_output| を用いて
+出力エンコーディングを "pass"
+に設定する必要があります。
+
+|ob_start|
+
+vim:ft=help:

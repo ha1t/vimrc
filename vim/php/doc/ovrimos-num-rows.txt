@@ -1,0 +1,15 @@
+ovrimos_num_rows -- update 命令により変更された行の数を返す
+
+  int ovrimos_num_rows(int result_id)~
+
+update 操作で変更された行の数を取得します。
+
+{result_id} |ovrimos_execute| あるいは |ovrimos_exec| が返す結果
+ID。
+
+行の数を表す整数値、あるいはエラー時 FALSE
+を返します。
+
+|ovrimos_num_fields|
+
+vim:ft=help:

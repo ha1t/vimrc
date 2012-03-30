@@ -1,0 +1,58 @@
+extension_loaded --
+ある拡張機能がロードされているかどうかを調べる
+
+  bool extension_loaded(string name)~
+
+拡張モジュールがロードされているかどうかを調べます。
+
+{name} 拡張モジュールの名前。
+
+|phpinfo|を使って種々の拡張モジュールの
+名前を見ることができます。PHP の CGIまたはCLIバージョン
+を使っている場合には -m スイッチで、
+使用できる全ての拡張モジュールのリストを得ることができます:
+
+  $ php -m
+  [PHP Modules]
+  xml
+  tokenizer
+  standard
+  sockets
+  session
+  posix
+  pcre
+  overload
+  mysql
+  mbstring
+  ctype
+  
+  [Zend Modules]
+
+
+
+{name} で指定する拡張機能がロードされている場合に TRUE
+を返します。さもなければ FALSE を返します。
+
+|extension_loaded| の例
+
+<?php >
+  if (!extension_loaded('gd')) {
+      if (!dl('gd.so')) {
+          exit;
+      }
+  }
+?>
+
+
+
+
+
+特定の拡張が使用可能かどうかをテストするために、
+|extension_loaded|はその内部拡張の名前を
+使用します。ほとんどの内部拡張の名前は小文字ですが、
+大文字のものもあるかもしれません。この関数は
+大文字小文字を区別することに 注意してください!
+
+|get_loaded_extensions| |get_extension_funcs| |phpinfo| |dl|
+
+vim:ft=help:

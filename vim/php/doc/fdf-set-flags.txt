@@ -1,0 +1,21 @@
+fdf_set_flags -- フィールドのフラグを設定する
+
+  bool fdf_set_flags(resource fdf_document, string fieldname, int whichFlags, int newFlags)~
+
+指定したフィールドのフラグを設定します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{fieldname} FDF フィールド名を表す文字列。
+
+{whichFlags}
+
+{newFlags}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fdf_set_opt|
+
+vim:ft=help:

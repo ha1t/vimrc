@@ -1,0 +1,33 @@
+ob_iconv_handler --
+出力バッファハンドラとして文字エンコーディングを変換する
+
+  string ob_iconv_handler(string contents, int status)~
+
+{internal_encoding} でエンコードされた文字列を
+{output_encoding}に変換します。
+
+{internal_encoding} および {output_encoding} は、 |iconv_set_encoding|
+または設定ファイル php.ini
+で定義されている必要があります。
+
+このハンドラのパラメータについての情報は |ob_start|
+を参照ください。
+
+このハンドラの返り値についての情報は |ob_start|
+を参照ください。
+
+|ob_iconv_handler| の例
+
+<?php >
+  iconv_set_encoding("internal_encoding", "UTF-8");
+  iconv_set_encoding("output_encoding", "ISO-8859-1");
+  ob_start("ob_iconv_handler"); // 出力バッファリングを開始
+?>
+
+
+
+
+
+|iconv_get_encoding| |iconv_set_encoding| 出力制御関数 (output control)
+
+vim:ft=help:

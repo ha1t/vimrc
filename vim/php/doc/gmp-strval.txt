@@ -1,0 +1,28 @@
+gmp_strval -- GMP 数を文字列に変換する
+
+  string gmp_strval(resource gmpnumber [, int base])~
+
+GMP 数を {base} を基数とする文字列表現に変換します。
+デフォルトの基数は 10 です。
+
+{gmpnumber} 文字列の変換したい GMP 数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{base} 返り値の基数。デフォルトは 10 です。
+基数として使用可能な値は 2 から 36 までです。
+
+数を文字列で表したものを返します。
+
+GMP 数を文字列に変換する
+
+<?php >
+  $a = gmp_init("0x41682179fbf5");
+  printf("10 進数: %s, 36 進数: %s", gmp_strval($a), gmp_strval($a,36));
+?>
+
+
+
+
+
+vim:ft=help:

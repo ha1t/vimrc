@@ -1,0 +1,35 @@
+mqseries_disc -- MQSeries MQDISC
+
+   mqseries_disc(resource hconn, resourceref compCode, resourceref reason)~
+
+|mqseries_disc| (MQDISC)
+をコールすると、キューマネージャとアプリケーションプログラムとの間の接続を切断します。
+|mqseries_conn| (MQCONN) や |mqseries_connx| (MQCONNX)
+の逆の意味です。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_disc| の例
+
+<?php >
+      mqseries_disc($conn, $comp_code, $reason);
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("disc CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+      }
+?>
+
+
+
+
+
+|mqseries_conn| |mqseries_connx|
+
+vim:ft=help:

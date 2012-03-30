@@ -1,0 +1,31 @@
+pspell_clear_session -- 現在のセッションをクリアする
+
+  bool pspell_clear_session(int dictionary_link)~
+
+|pspell_clear_session| は、
+現在のセッションをクリアします。現在の単語リストはブランクになり、
+例えば |pspell_save_wordlist|
+でこのリストを保存しても何もおきません。
+
+{dictionary_link}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pspell_add_to_personal| の例
+
+<?php >
+  $pspell_config = pspell_config_create("en");
+  pspell_config_personal($pspell_config, "/var/dictionaries/custom.pws");
+  $pspell_link = pspell_new_config($pspell_config);
+  
+  pspell_add_to_personal($pspell_link, "Vlad");
+  pspell_clear_session($pspell_link);
+  pspell_save_wordlist($pspell_link);    //"Vlad" は保存されません
+?>
+
+
+
+
+
+vim:ft=help:

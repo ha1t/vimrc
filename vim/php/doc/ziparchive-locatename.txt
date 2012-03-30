@@ -1,0 +1,53 @@
+ZipArchive::locateName --
+アーカイブ内のエントリのインデックスを返す
+
+  mixed ZipArchive::locateName(string name [, int flags])~
+
+名前を使用して、エントリの場所を取得します。
+
+{name} 探したいエントリの名前。
+
+{flags}
+この関数は、アーカイブ内の指定した名前のファイルのインデックスを返します。
+フラグには、次の値を OR で連結して指定します。
+あるいは何もしていしない場合は 0 とします。
+ZIPARCHIVE::FL_NOCASE
+
+ZIPARCHIVE::FL_NODIR
+
+成功した場合にエントリのインデックス、失敗した場合に
+FALSE を返します。
+
+アーカイブを作成し、locateName を使用する
+
+<?php >
+  $file = 'testlocate.zip';
+  
+  $zip = new ZipArchive;
+  if ($zip->open($file, ZIPARCHIVE::CREATE) !== TRUE) {
+      exit('失敗');
+  }
+  
+  $zip->addFromString('entry1.txt', 'entry #1');
+  $zip->addFromString('entry2.txt', 'entry #2');
+  $zip->addFromString('dir/entry2d.txt', 'entry #2');
+  
+  if (!$zip->status == ZIPARCHIVE::ER_OK) {
+      echo "zip の書き込みに失敗\n";
+  }
+  $zip->close();
+  
+  if ($zip->open($file) !== TRUE) {
+      exit('失敗');
+  }
+  
+  echo $zip->locateName('entry1.txt') . "\n";
+  echo $zip->locateName('eNtry2.txt') . "\n";
+  echo $zip->locateName('eNtry2.txt', ZIPARCHIVE::FL_NOCASE) . "\n";
+  echo $zip->locateName('enTRy2d.txt', ZIPARCHIVE::FL_NOCASE|ZIPARCHIVE::FL_NODIR) . "\n";
+  $zip->close();
+?>
+
+
+
+vim:ft=help:

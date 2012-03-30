@@ -1,0 +1,48 @@
+imap_thread -- スレッド化したメッセージのツリーを返す
+
+  array imap_thread(resource imap_stream [, int options])~
+
+スレッド化されたメッセージのツリーを取得します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{options}
+
+|imap_thread| は、REFERENCES
+でスレッド化したメッセージのツリーを含む連想配列を返します。
+エラー時には FALSE を返します。
+
+現在のメールボックス内のすべてのメッセージが、結果の配列の
+3 つの エントリで表されます。 $thread["XX.num"] -
+現在のメッセージ番号。
+
+$thread["XX.next"]
+
+$thread["XX.branch"]
+
+|imap_thread| の例
+
+<?php >
+  // ここでは、ニュースグループのスレッドを HTML で出力します。
+  
+  $nntp = imap_open('{news.example.com:119/nntp}some.newsgroup', '', '');
+  $threads = imap_thread($nntp);
+  
+  foreach ($threads as $key => $val) {
+    $tree = explode('.', $key);
+    if ($tree[1] == 'num') {
+      $header = imap_headerinfo($nntp, $val);
+      echo "<ul>\n\t<li>" . $header->fromaddress . "\n";
+    } elseif ($tree[1] == 'branch') {
+      echo "\t</li>\n</ul>\n";
+    }
+  }
+  
+  imap_close($nntp);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+SDO_DAS_XML_Document::setEncoding --
+エンコーディングを文字列で設定する
+
+  void SDO_DAS_XML_Document::setEncoding(string encoding)~
+
+エンコーディングを文字列で設定します。
+
+{encoding} エンコーディング文字列。
+
+何も返しません。
+
+vim:ft=help:

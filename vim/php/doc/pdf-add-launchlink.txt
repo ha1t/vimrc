@@ -1,0 +1,13 @@
+PDF_add_launchlink -- 現在のページに起動用注記を追加する
+[古い関数]
+
+  bool PDF_add_launchlink(resource pdfdoc, float llx, float lly, float urx, float ury, string filename)~
+
+web リソースへのリンクを追加します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに type=Launch として
+|PDF_create_action|、そして {type=Link} として |PDF_create_annotation|
+を使用してください。
+
+vim:ft=help:

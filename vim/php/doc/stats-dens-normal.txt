@@ -1,0 +1,17 @@
+stats_dens_normal -- 未ドキュメント化
+
+  float stats_dens_normal(float x, float ave, float stdev)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{x}
+
+{ave}
+
+{stdev}
+
+
+
+vim:ft=help:

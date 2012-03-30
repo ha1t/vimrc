@@ -1,0 +1,36 @@
+printer_select_font -- フォントを選択する
+
+  void printer_select_font(resource printer_handle, resource font_handle)~
+
+この関数は、テキストを描画するフォントを選択します。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{font_handle} {font_handle} は、フォントの
+有効なハンドルである必要があります。
+
+値を返しません。
+
+|printer_select_font| の例
+
+<?php >
+  $handle = printer_open();
+  printer_start_doc($handle, "My Document");
+  printer_start_page($handle);
+  
+  $font = printer_create_font("Arial", 148, 76, PRINTER_FW_MEDIUM, false, false, false, -50);
+  printer_select_font($handle, $font);
+  printer_draw_text($handle, "PHP is simply cool", 40, 40);
+  printer_delete_font($font);
+  
+  printer_end_page($handle);
+  printer_end_doc($handle);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,25 @@
+dio_close -- fd で指定したファイル記述子を閉じる
+
+  void dio_close(resource fd)~
+
+関数 |dio_close| は、ファイル記述子 {fd} を閉じます。
+
+{fd} |dio_open| が返すファイル記述子。
+
+値を返しません。
+
+開いているファイル記述子を閉じる
+
+<?php >
+  $fd = dio_open('/dev/ttyS0', O_RDWR);
+  
+  dio_close($fd);
+?>
+
+
+
+
+
+|dio_open|
+
+vim:ft=help:

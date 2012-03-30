@@ -1,0 +1,48 @@
+pg_lo_create -- ラージオブジェクトを生成する
+
+  int pg_lo_create([resource connection])~
+
+|pg_lo_create| はラージオブジェクトを
+生成し、そのラージオブジェクトの OID を返します。
+PostgreSQL アクセスモード INV_READ、INV_WRITE および INV_ARCHIVE
+はサポートされません。オブジェクトは
+常に読み書き可のアクセス権で生成されます。 INV_ARCHIVE
+は PostgreSQL 自身からも削除されました （バージョン 6.3
+以降）。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+ラージオブジェクトインターフェース（アクセス制御もできないし使用が面倒）
+を使用するかわりに、PostgreSQL の bytea カラム型と
+|pg_escape_bytea| を試してください。
+
+この関数は、以前は |pg_locreate| と呼ばれていました。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+ラージオブジェクトの OID を返します。 エラー時には FALSE
+を返します。
+
+|pg_lo_create| の例
+
+<?php >
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     $oid = pg_lo_create($database);
+     echo "$oid\n";
+     $handle = pg_lo_open($database, $oid, "w");
+     echo "$handle\n";
+     pg_lo_write($handle, "large object data");
+     pg_lo_close($handle);
+     pg_query($database, "commit");
+?>
+
+
+
+
+
+vim:ft=help:

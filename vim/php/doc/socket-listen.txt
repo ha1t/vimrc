@@ -1,0 +1,39 @@
+socket_listen -- ソケット上で接続待ち(listen)する
+
+  bool socket_listen(resource socket [, int backlog])~
+
+ソケット {socket} が |socket_create| を用いて作成され、
+|socket_bind| で名前が付けられた後、 {socket}
+上の接続要求を待つための通信ができるようになります。
+
+|socket_listen| は、ソケットが SOCK_STREAM 型または SOCK_SEQPACKET
+型の場合のみ利用可能です。
+
+{socket} |socket_create| で作成したソケットリソース。
+
+{backlog} 最大 {backlog} 個の接続を処理用の
+キューで待ち受けることが可能です。もし待ちうけ用のキューが
+いっぱいになった場合、クライアントでは ECONNREFUSED
+の通知とともにエラーが発生します。あるいは、もし基盤となるプロトコルが
+リクエストの再送をサポートしている場合、再試行が成功するまで
+リクエストは無視されます。
+
+{backlog} パラメータに指定できる値の最大値は
+プラットフォームに大きく依存します。Linux
+では、最大値は SOMAXCONN に切り詰められます。win32 では、
+もし SOMAXCONN を渡した場合、backlog の
+最大値を適切な値に設定する責任はサービスの
+提供側が負います。 このプラットフォームでは、実際の
+backlog の値を見つける標準的な
+手段が提供されていません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 エラーコードは |socket_last_error|
+で取得可能で、このコードを |socket_strerror|
+に指定することにより
+エラーの内容を文字列として取得可能です。
+
+|socket_accept| |socket_bind| |socket_connect| |socket_create|
+|socket_strerror|
+
+vim:ft=help:

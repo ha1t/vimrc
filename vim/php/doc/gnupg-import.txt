@@ -1,0 +1,33 @@
+gnupg_import -- キーをインポートする
+
+  array gnupg_import(resource identifier, string keydata)~
+
+キー {keydata} をインポートし、インポート処理に
+ついての情報を配列で返します。
+
+成功した場合、この関数はインポート処理の情報を配列で返します。
+失敗した場合、この関数は FALSE を返します。
+
+手続き型の |gnupg_import| の例
+
+<?php >
+  $res = gnupg_init();
+  $info = gnupg_import($res,$keydata);
+  print_r($info);
+?>
+
+
+
+オブジェクト指向の |gnupg_import| の例
+
+<?php >
+  $gpg = new gnupg();
+  $info = $gpg -> import($keydata);
+  print_r($info);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,10 @@
+maxdb_get_metadata -- maxdb_stmt_result_metadata のエイリアス
+
+この関数は次の関数のエイリアスです。
+|maxdb_stmt_result_metadata|.
+
+この関数エイリアスは非推奨であり、下位互換性維持のために残されています。
+今後、PHP
+から削除される可能性がありますので、この関数を使用しないことを推奨します。
+
+vim:ft=help:

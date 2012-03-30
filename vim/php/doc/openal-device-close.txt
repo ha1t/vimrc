@@ -1,0 +1,13 @@
+openal_device_close -- OpenAL デバイスを閉じる
+
+  bool openal_device_close(resource device)~
+
+閉じようとしている Open AL (デバイス) リソース (事前に
+|openal_device_open| で作成したもの)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openal_device_open|
+
+vim:ft=help:

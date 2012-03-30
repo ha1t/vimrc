@@ -1,0 +1,56 @@
+SAMConnection->peekAll() --
+ひとつあるいは複数のメッセージをキューから読み込み、それをキューに残したままにする
+
+  array peekAll(string target [, array properties])~
+
+{target} メッセージを取得するキューの識別子。
+
+{properties}
+オプションの連想配列で、読み込み操作を制御するパラメータを指定します。
+プロパティ名 とりうる値 SAM_CORRELID
+これは、取得するメッセージの相関 ID 文字列です。
+典型的な例は、"send" リクエストが返す相関 ID
+文字列となります。 SAM_MESSAGEID
+これは、取得するメッセージのメッセージ ID
+文字列です。
+
+このメソッドは SAMMessage オブジェクトを返します。
+エラーが発生した場合は FALSE を返します。
+
+キューからすべてのメッセージを取得し、そのままメッセージをキューに残す
+
+<?php >
+  $msgArray = $conn->peekAll('queue://receive/test');
+  if ($msgArray) {
+     foreach ( $msgArray as $key => $msg) {
+         echo "Message $key: body = $msg->body\n";
+     }
+  } else {
+     echo "PeekAll failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+相関 ID にマッチするメッセージをキューから取得する
+
+<?php >
+     $msgArray = $conn->peekAll('queue://receive/test', array(SAM_CORRELID => $correlId ));
+     if ($msgArray) {
+  
+        foreach ( $msgArray as $key => $msg) {
+              echo "Message $key: body = $msg->body\n";
+           }
+        }
+     else
+        echo "PeekAll failed ($conn->errno) $conn->error";
+     }
+?>
+
+
+
+
+
+vim:ft=help:

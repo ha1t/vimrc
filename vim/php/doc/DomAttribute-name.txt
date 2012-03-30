@@ -1,0 +1,13 @@
+DomAttribute->name -- 属性の名前を返す
+
+  string name()~
+
+属性名を取得します。
+
+属性名を返します。
+
+DOMAttr の name プロパティを使用してください。
+
+使用例は を参照ください。
+
+vim:ft=help:

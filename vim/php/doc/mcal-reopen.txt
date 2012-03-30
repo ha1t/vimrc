@@ -1,0 +1,20 @@
+mcal_reopen -- MCAL 接続を再オープンする
+
+  bool mcal_reopen(int mcal_stream, string calendar [, int options])~
+
+MCAL ストリームを新規カレンダー用に再オープンします。
+
+|mcal_reopen|は、指定した {calendar}
+が保存したMCAL接続を再オープンします。
+
+{mcal_stream} MCAL ストリーム。
+
+{calendar} カレンダー。
+
+{options} オプションの {options} が指定された場合、 {options}
+をメールボックスにも渡します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

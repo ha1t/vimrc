@@ -1,0 +1,86 @@
+maxdb_num_rows -- 結果の行数を取得する
+
+手続き型
+
+  int maxdb_num_rows(resource result)~
+
+オブジェクト指向型 (プロパティ)
+
+結果セットの行数を返します。
+
+使用している結果セットがバッファ化されているかどうかによって、
+|maxdb_num_rows| の使用法は変わります。
+バッファ化されていない結果セットの場合、
+結果セットのすべての行を取得するまでは |maxdb_num_rows|
+は正しい結果を返しません。
+
+結果セットの行の数を返します。
+
+行数が int
+型の最大値をこえる場合は、結果が文字列として返されます。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if ($result = $maxdb->query("SELECT cno, name FROM hotel.customer ORDER BY name")) {
+  
+     /* 結果セットの行数を取得します */
+     $row_cnt = $result->num_rows;
+  
+     printf("Result set has %d rows.\n", $row_cnt);
+  
+     /* 結果セットを閉じます */
+     $result->close();
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if ($result = maxdb_query($link, "SELECT cno, name FROM hotel.customer ORDER BY name")) {
+  
+     /* 結果セットの行数を取得します */
+     $row_cnt = maxdb_num_rows($result);
+  
+     printf("Result set has %d rows.\n", $row_cnt);
+  
+     /* 結果セットを閉じます */
+     maxdb_free_result($result);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Result set has 15 rows.
+
+|maxdb_affected_rows| |maxdb_store_result| |maxdb_use_result| |maxdb_query|
+
+vim:ft=help:

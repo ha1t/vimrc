@@ -1,0 +1,36 @@
+gnupg_sign -- 指定したテキストに署名する
+
+  string gnupg_sign(resource identifier, string plaintext)~
+
+事前に gnupg_addsignkey で設定したキーを使用して {plaintext}
+に署名し、 gnupg_setsignmode
+の設定に応じて署名済みテキストあるいは署名を返します。
+
+成功した場合、この関数は署名済みテキストあるいは署名を返します。
+失敗した場合、この関数は FALSE を返します。
+
+手続き型の |gnupg_sign| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_addsignkey($res,"8660281B6051D071D94B5B230549F9DC851566DC","test");
+  $signed = gnupg_sign($res, "just a test");
+  echo $signed;
+?>
+
+
+
+オブジェクト指向の |gnupg_sign| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> setsignkey("8660281B6051D071D94B5B230549F9DC851566DC","test");
+  $signed = $gpg -> sign("just a test");
+  echo $signed;
+?>
+
+
+
+
+
+vim:ft=help:

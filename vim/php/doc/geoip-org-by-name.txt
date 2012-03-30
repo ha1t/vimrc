@@ -1,0 +1,34 @@
+geoip_org_by_name -- 組織名を取得する
+
+  string geoip_org_by_name(string hostname)~
+
+|geoip_org_by_name| 関数は、 その IP
+アドレスが割り当てられている組織の名前を返します。
+
+現在この関数を使用できるのは、商用の GeoIP Organization, ISP
+あるいは AS Edition を購入した人だけです。
+適切なデータベースが見つからない場合には警告が発生します。
+
+{hostname} ホスト名あるいは IP アドレス。
+
+成功した場合には組織名、
+アドレスがデータベースで見つからない場合には FALSE
+を返します。
+
+|geoip_org_by_name| の例 これは、ホスト example.com の IP
+が誰に割り当てられているかを表示します。
+
+<?php >
+  $org = geoip_country_code_by_name('www.example.com');
+  if ($org) {
+      echo 'This host IP is allocated to: ' . $org;
+  }
+?>
+
+上の例の出力は以下となります。
+
+  This host IP is allocated to: ICANN c/o Internet Assigned Numbers Authority
+
+
+
+vim:ft=help:

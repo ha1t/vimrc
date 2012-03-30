@@ -1,0 +1,23 @@
+ircg_eval_ecmascript_params -- JS
+エンコードされたパラメータの一覧をデコードする
+
+  array ircg_eval_ecmascript_params(string params)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+  ircg_eval_ecmascript_params のソースファイルより。
+     /*
+      * State 0: Looking for ' or digit
+      * State 1: Assembling parameter inside '..'
+      * State 2: After escape sign: Copies single char verbatim, go to 1
+      * State 3: Assembling numeric para, no quotation
+      * State 4: Looking for ",", skipping whitespace
+      */
+
+|ircg_lookup_format_messages|
+
+vim:ft=help:

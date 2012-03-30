@@ -1,0 +1,11 @@
+dba_list --
+オープンされている全データベースファイルのリストを得る
+
+  array dba_list()~
+
+|dba_list| は、オープンされている全ての
+データベースファイルの一覧を返します。
+
+resourceid => filename 形式の連想配列を返します。
+
+vim:ft=help:

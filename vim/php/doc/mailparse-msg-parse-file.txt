@@ -1,0 +1,16 @@
+mailparse_msg_parse_file -- ファイルをパースする
+
+  resource mailparse_msg_parse_file(string filename)~
+
+ファイルをパースします。
+ディスク上にあるメールファイルをパースするための最良の方法です。
+
+{filename} メッセージを保持するファイルへのパス。
+このファイルがオープンされ、ストリームとしてパーサに流し込まれます。
+
+構造を表す MIME リソース、あるいはエラー時に FALSE
+を返します。
+
+|mailparse_msg_free| |mailparse_msg_create|
+
+vim:ft=help:

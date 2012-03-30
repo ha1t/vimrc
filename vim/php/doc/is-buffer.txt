@@ -1,0 +1,17 @@
+is_buffer -- 変数がネイティブ unicode
+あるいはバイナリ文字列かどうかを調べる
+
+  bool is_buffer(mixed var)~
+
+指定した変数が、ネイティブの unicode
+あるいはバイナリ文字列かどうかを調べます。
+
+{var} 調べる変数。
+
+{var} がネイティブの unicode
+あるいはバイナリ文字列である場合に
+TRUE、それ以外の場合に FALSE を返します。
+
+|is_binary| |is_string| |is_unicode|
+
+vim:ft=help:

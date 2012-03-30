@@ -1,0 +1,29 @@
+imagecolordeallocate -- イメージの色リソースを開放する
+
+  bool imagecolordeallocate(resource image, int color)~
+
+|imagecolorallocate| または |imagecolorallocatealpha|
+で確保された色を開放します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{color} 色 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imagecolordeallocate| の使用法
+
+<?php >
+  $white = imagecolorallocate($im, 255, 255, 255);
+  imagecolordeallocate($im, $white);
+?>
+
+
+
+
+
+|imagecolorallocate| |imagecolorallocatealpha|
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+escapeshellarg --
+シェル引数として使用される文字列をエスケープする
+
+  string escapeshellarg(string arg)~
+
+|escapeshellarg| は、文字列をシングルクオート
+で括り、既存のシングルクオートを全てクオート/エスケープします。こ
+れにより、文字列を直接シェル関数に渡し、単一の安全な引数として処
+理することを可能にします。この関数は、ユーザー入力からの入力を
+シェル関数への引数として渡す際にエスケープするために使用する必要
+があります。シェル関数には、|exec|, |system|そして
+バックティック演算子 を含むシェル関数が含まれます。
+
+{arg} エスケープされる引数
+
+エスケープされた文字列
+
+|escapeshellarg| の例
+
+<?php >
+  system('ls '.escapeshellarg($dir));
+?>
+
+
+
+
+
+|escapeshellcmd| |exec| |popen| |system| バックティック演算子
+
+vim:ft=help:

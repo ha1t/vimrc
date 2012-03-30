@@ -1,0 +1,56 @@
+get_defined_functions -- 定義済みの全ての関数を配列で返す
+
+  array get_defined_functions()~
+
+すべての定義済み関数を配列で返します。
+
+この関数は、組込 (内部)
+関数およびユーザ定義関数を共に含む定義済み
+の全ての関数のリストを有する多次元配列を返します。内部関数は、
+$arr["internal"]、ユーザ定義関数は $arr["user"]
+によりアクセス可能となります
+(以下の例を参照ください)。
+
+|get_defined_functions| の例
+
+<?php >
+  function myrow($id, $data)
+  {
+      return "<tr><th>$id</th><td>$data</td></tr>\n";
+  }
+  
+  $arr = get_defined_functions();
+  
+  print_r($arr);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [internal] => Array
+          (
+              [0] => zend_version
+              [1] => func_num_args
+              [2] => func_get_arg
+              [3] => func_get_args
+              [4] => strlen
+              [5] => strcmp
+              [6] => strncmp
+              ...
+              [750] => bcscale
+              [751] => bccomp
+          )
+  
+      [user] => Array
+          (
+              [0] => myrow
+          )
+  
+  )
+
+
+
+|function_exists| |get_defined_vars| |get_defined_constants|
+
+vim:ft=help:

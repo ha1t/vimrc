@@ -1,0 +1,10 @@
+PDF_shfill -- シェーディングで領域を塗りつぶす
+
+  bool PDF_shfill(resource pdfdoc, int shading)~
+
+シェーディングオブジェクトに基づいたシェーディングで、
+領域を塗りつぶします。
+
+この関数は、PDF 1.4 以降で使用可能です。
+
+vim:ft=help:

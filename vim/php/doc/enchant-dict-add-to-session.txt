@@ -1,0 +1,18 @@
+enchant_dict_add_to_session -- '単語'
+を、このスペルチェックセッションに追加する
+
+  void enchant_dict_add_to_session(resource dict, string word)~
+
+指定した辞書に単語を追加します。
+追加されるのは、アクティブなスペルチェックセッションについてのみです。
+
+{dict} 辞書リソース。
+
+{word} 追加する単語。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|enchant_broker_request_dict|
+
+vim:ft=help:

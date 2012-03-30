@@ -1,0 +1,83 @@
+libxml_get_errors -- エラー配列を取得する
+
+  array libxml_get_errors()~
+
+エラー配列を取得します。
+
+エラーがバッファにある場合に LibXMLError
+オブジェクトの配列、
+それ以外の場合に空の配列を返します。
+
+|libxml_get_errors| の例 この例は、簡単な libxml
+エラーハンドラを構築する方法を示すものです。
+
+<?php >
+  libxml_use_internal_errors(true);
+  
+  $xmlstr = <<< XML
+  <?xml version='1.0' standalone='yes'?>
+  <movies>
+   <movie>
+    <titles>PHP: Behind the Parser</title>
+   </movie>
+  </movies>
+  XML;
+  
+  $doc = simplexml_load_string($xmlstr);
+  $xml = explode("\n", $xmlstr);
+  
+  if (!$doc) {
+      $errors = libxml_get_errors();
+  
+      foreach ($errors as $error) {
+          echo display_xml_error($error, $xml);
+      }
+  
+      libxml_clear_errors();
+  }
+  
+  
+  function display_xml_error($error, $xml)
+  {
+      $return  = $xml[$error->line - 1] . "\n";
+      $return .= str_repeat('-', $error->column) . "^\n";
+  
+      switch ($error->level) {
+          case LIBXML_ERR_WARNING:
+              $return .= "Warning $error->code: ";
+              break;
+           case LIBXML_ERR_ERROR:
+              $return .= "Error $error->code: ";
+              break;
+          case LIBXML_ERR_FATAL:
+              $return .= "Fatal Error $error->code: ";
+              break;
+      }
+  
+      $return .= trim($error->message) .
+                 "\n  Line: $error->line" .
+                 "\n  Column: $error->column";
+  
+      if ($error->file) {
+          $return .= "\n  File: $error->file";
+      }
+  
+      return "$return\n\n--------------------------------------------\n\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  <titles>PHP: Behind the Parser</title>
+  ^
+  Fatal Error 76: Opening and ending tag mismatch: titles line 4 and title
+    Line: 4
+    Column: 0
+  
+  --------------------------------------------
+
+
+
+|libxml_get_last_error| |libxml_clear_errors|
+
+vim:ft=help:

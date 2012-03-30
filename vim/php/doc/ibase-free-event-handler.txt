@@ -1,0 +1,17 @@
+ibase_free_event_handler --
+登録済みのイベントハンドラをキャンセルする
+
+  bool ibase_free_event_handler(resource event)~
+
+この関数は、{event} で指定した登録済みの
+イベントハンドラをキャンセルします。イベントに対応して登録されていた
+コールバック関数は、もはやコールされません。
+
+{event} |ibase_set_event_handler| で作成したイベントリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_set_event_handler|
+
+vim:ft=help:

@@ -1,0 +1,96 @@
+maxdb->real_escape_string --
+現在の接続の文字セットを考慮したうえで、 SQL
+文で使用される文字列中の特殊文字をエスケープする
+
+手続き型
+
+  string maxdb_real_escape_string(resource link, string escapestr)~
+
+オブジェクト指向型 (メソッド)
+
+  string real_escape_sring(resource link, string escapestr, string escapestr)~
+
+この関数は、SQL 文で使用するために、SQL
+で使用可能な文字列を作成するために使用します。
+文字列 escapestr が、エスケープされた SQL
+文字列にエンコードされます。その際、接続の現在の文字セットを考慮します。
+
+エンコードされる文字は ', " です。
+
+エスケープされた文字列を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $maxdb->query("CREATE TABLE temp.mycity LIKE hotel.city");
+  
+  $city = "'s Hertogenbosch";
+  
+  /* $city をエスケープしていないため、このクエリは失敗します */
+  if (!$maxdb->query("INSERT into temp.mycity VALUES ('11111','$city','NY')")) {
+     printf("エラー: %s\n", $maxdb->sqlstate);
+  }
+  
+  $city = $maxdb->real_escape_string($city);
+  
+  /* このクエリは、$city をエスケープしているので動作します */
+  if ($maxdb->query("INSERT into temp.mycity VALUES ('22222','$city','NY')")) {
+     printf("%d 行挿入されました。\n", $maxdb->affected_rows);
+  } 
+  
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  maxdb_query($link, "CREATE TABLE temp.mycity LIKE hotel.city");
+  
+  $city = "'s Hertogenbosch";
+  
+  /* $city をエスケープしていないため、このクエリは失敗します */
+  if (!maxdb_query($link, "INSERT into temp.mycity VALUES ('11111','$city','NY')")) {
+     printf("エラー: %s\n", maxdb_sqlstate($link));
+  }
+  
+  $city = maxdb_real_escape_string($link, $city);
+  
+  /* このクエリは、$city をエスケープしているので動作します */
+  if (maxdb_query($link, "INSERT into temp.mycity VALUES ('22222','$city','NY')")) {
+     printf("%d 行挿入されました。\n", $maxdb->affected_rows);
+  } 
+  
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Warning: maxdb_query(): -5016 POS(43) Missing delimiter: ) <...>
+  エラー: 42000
+  1 行挿入されました。
+
+|maxdb_character_set_name|
+
+vim:ft=help:

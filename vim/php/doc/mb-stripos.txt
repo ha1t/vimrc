@@ -1,0 +1,26 @@
+mb_stripos -- 大文字小文字を区別せず、
+文字列の中で指定した文字列が最初に現れる位置を探す
+
+  int mb_stripos(string haystack, string needle [, int offset [, string encoding]])~
+
+|mb_stripos| は、 {needle} が {haystack}
+の中で最初に現れる位置を返します。 |mb_strpos|
+とは異なり、 |mb_stripos| は大文字小文字を区別しません。
+{needle} が見つからなかった場合は FALSE を返します。
+
+{haystack} {needle} が最初に現れる位置を見つける文字列。
+
+{needle} {haystack} の中で探す文字列。
+
+{offset} {haystack} の中で、検索を開始する位置。
+
+{encoding} 使用する文字エンコーディング名。
+省略した場合は内部文字エンコーディングが用いられます。
+
+{needle} が {haystack}
+の中で最初に現れる位置を返します。{needle}
+が見つからない場合は FALSE を返します。
+
+|stripos| |strpos| |mb_strpos|
+
+vim:ft=help:

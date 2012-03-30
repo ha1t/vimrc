@@ -1,0 +1,105 @@
+sesam_diagnostic -- 直近の SESAM
+コールに関するステータス情報を返す
+
+  array sesam_diagnostic()~
+
+直近の SESAM
+コールについてのステータス情報を返します。
+
+直近の SQL
+クエリ/命令/コマンドに関するステータスおよびエラーコードを
+連想配列として返します。配列の要素は次のようになります。
+|sesam_diagnostic| により返されるステータス情報 要素 内容
+$array["sqlstate"] 5 桁の SQL リターンコード (SQLSTATE
+の値の説明については、 SESAM
+マニュアルを参照ください)。 $array["rowcount"] 直近の
+update/insert/delete クエリで作用されたレコードの数
+("即時型"命令の後でのみ設定されます)。 $array["errmsg"]
+"可読な" エラーメッセージ文字列
+(エラーの後でのみ設定されます)。 only) $array["errcol"]
+以前のエラーのエラーカラム番号 (0
+から始まり、未定義の場合は
+-1。エラーの後でのみ設定されます)。 $array["errlin"]
+前のエラーのエラー行番号 (0
+から始まり、未定義の場合は
+-1。エラーの後でのみ設定されます)。
+
+次の例では、問題がある SQL
+命令を含み、エラー位置を指す構文エラー (E SEW42AE ILLEGAL
+CHARACTER) が表示されます。 エラー位置を付けて SESAM
+エラーメッセージを表示
+
+<?php >
+  // フォーマットされたエラーメッセージを出力する関数
+  // SQL 命令における構文エラーの場所を表示
+  function PrintReturncode($exec_str)
+  {
+      $err = Sesam_Diagnostic();
+      $colspan=4; // 4 cols for: sqlstate, errlin, errcol, rowcount
+      if ($err["errlin"] == -1)
+          --$colspan;
+      if ($err["errcol"] == -1)
+          --$colspan;
+      if ($err["rowcount"] == 0)
+          --$colspan;
+      echo "<table border=\"1\">\n";
+      echo "<tr><th colspan=\"" . $colspan . "\"><span class=\"spanred\">ERROR:</span> ".
+           htmlspecialchars($err["errmsg"]) . "</th></tr>\n";
+      if ($err["errcol"] >= 0) {
+          echo "<tr><td colspan=\"" . $colspan . "\"><pre>\n";
+          $errstmt = $exec_str . "\n";
+          for ($lin=0; $errstmt != ""; ++$lin) {
+              if ($lin != $err["errlin"]) { // $lin is less or greater than errlin
+                  if (!($i = strchr($errstmt, "\n")))
+                      $i = "";
+                  $line = substr ($errstmt, 0, strlen($errstmt)-strlen($i)+1);
+                  $errstmt = substr($i, 1);
+                  if ($line != "\n")
+                      echo htmlspecialchars($line);
+              } else {
+                  if (! ($i = strchr ($errstmt, "\n")))
+                      $i = "";
+                  $line = substr ($errstmt, 0, strlen ($errstmt)-strlen($i)+1);
+                  $errstmt = substr($i, 1);
+                  for ($col=0; $col < $err["errcol"]; ++$col) {
+                      echo (substr($line, $col, 1) == "\t") ? "\t" : ".";
+                  }
+                  echo "<span class=\"spanred\">\\</span>\n";
+                  echo "<span class=\"normal\">" . htmlspecialchars($line) . "</span>";
+                  for ($col=0; $col < $err["errcol"]; ++$col) {
+                      echo (substr ($line, $col, 1) == "\t") ? "\t" : ".";
+                  }
+                  echo "<span class=\"spanred\">/</span>\n";
+              }
+          }
+          echo "</pre></td></tr>\n";
+      }
+      echo "<tr>\n";
+      echo " <td>sqlstate=" . $err["sqlstate"] . "</td>\n";
+      if ($err["errlin"] != -1)
+          echo " <td>errlin=" . $err["errlin"] . "</td>\n";
+      if ($err["errcol"] != -1)
+          echo " <td>errcol=" . $err["errcol"] . "</td>\n";
+      if ($err["rowcount"] != 0)
+           echo " <td>rowcount=" . $err["rowcount"] . "</td>\n";
+      echo "</tr>\n";
+      echo "</table>\n";
+  }
+  
+  if (!sesam_connect ("mycatalog", "phoneno", "otto"))
+    die ("cannot connect");
+  
+  $stmt = "SELECT * FROM phone\n" .
+          " WHERE@ LASTNAME='KRAEMER'\n" .
+          " ORDER BY FIRSTNAME";
+  if (!($result = sesam_query ($stmt)))
+      PrintReturncode ($stmt);
+?>
+
+
+
+
+
+|sesam_errormsg|
+
+vim:ft=help:

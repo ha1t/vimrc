@@ -1,0 +1,47 @@
+sesam_execimm -- SQL 命令を直ちに実行する
+
+  string sesam_execimm(string query)~
+
+"直接" 文を実行します。
+
+|sesam_affected_rows| 関数により取得可能な {affected_rows}
+の値を設定します。
+
+|sesam_query| は、"即時型" および "select型"
+クエリの両方を処理することができることに注意してください。実行される
+命令の型が事前に分かっている場合にのみ |sesam_execimm|
+を使用してください。SELECT 型
+クエリを使用しようとすると、|sesam_execimm| は $err["sqlstate"]
+== "42SBW" を返します。
+
+{query} 命令 (すなわち、UPDATE、
+INSERT、DELETEのような結果を返さない命令や入出力変数がない命令)
+を "直ちに"実行します。"select 型" クエリは、 |sesam_execimm|
+で使用することはできません。
+
+成功時にSESAM "結果 ID"、エラー時に FALSE を返します。
+
+返される "結果ID"
+は、何かを取得する際に使用することはできず、
+|sesam_affected_rows| を実行する際に使用します。 この ID
+は、|sesam_query| 関数と対称性を保つため
+にのみ返されます。
+
+|sesam_execimm| Example
+
+<?php >
+  $stmt = "INSERT INTO mytable VALUES ('one', 'two')";
+  $result = sesam_execimm($stmt);
+  $err = sesam_diagnostic();
+  echo "sqlstate = " . $err["sqlstate"] . "\n".
+         "変更された行数 = " . $err["rowcount"] . " == " .
+         sesam_affected_rows($result) . "\n";
+?>
+
+
+
+
+
+|sesam_query| |sesam_affected_rows|
+
+vim:ft=help:

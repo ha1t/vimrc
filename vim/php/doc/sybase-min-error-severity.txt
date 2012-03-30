@@ -1,0 +1,18 @@
+sybase_min_error_severity -- エラーの severity の最小値を設定する
+
+  void sybase_min_error_severity(int severity)~
+
+|sybase_min_error_severity| はエラー severity
+レベルの最小値を設定します。
+
+{severity}
+
+値を返しません。
+
+この関数は、Sybase の CT
+ライブラリインターフェイスでのみ使用可能で、DB
+ライブラリでは使用できません。
+
+|sybase_min_message_severity|
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+msql_field_name --
+結果における指定したフィールドの名前を取得する
+
+  string msql_field_name(resource result, int field_offset)~
+
+|msql_field_name| は、指定したフィールドインデックスの
+名前を取得します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset}
+は、1から始まります。
+
+フィールドの名前を返します。失敗した場合は FALSE
+を返します。
+
+|msql_field_len|
+
+vim:ft=help:

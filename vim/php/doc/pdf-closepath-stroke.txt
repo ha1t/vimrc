@@ -1,0 +1,8 @@
+PDF_closepath_stroke -- パスを閉じ、パスに沿って線を描く
+
+  bool PDF_closepath_stroke(resource p)~
+
+パスを閉じ、その輪郭を描きます。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

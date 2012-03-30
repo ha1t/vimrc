@@ -1,0 +1,49 @@
+pg_lo_open -- ラージオブジェクトをオープンする
+
+  resource pg_lo_open(resource connection, int oid, string mode)~
+
+|pg_lo_open| はデータベース内にラージオブジェクトを
+オープンし、それを操作するためのラージオブジェクトリソースを返します。
+
+ラージオブジェクトのリソースを閉じる前にデータベースへの接続を
+閉じないでください。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+この関数は、以前は |pg_loopen| と呼ばれていました。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{oid} データベース内のラージオブジェクトの OID 。
+
+{mode} 読み込み専用の "r"、書き込み専用の
+"w"、読み書き可能な "rw" のいずれか。
+
+ラージオブジェクトのリソースを返します。エラー時には
+FALSE を返します。
+
+|pg_lo_open| の例
+
+<?php >
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     $oid = pg_lo_create($database);
+     echo "$oid\n";
+     $handle = pg_lo_open($database, $oid, "w");
+     echo "$handle\n";
+     pg_lo_write($handle, "large object data");
+     pg_lo_close($handle);
+     pg_query($database, "commit");
+?>
+
+
+
+
+
+|pg_lo_close| |pg_lo_create|
+
+vim:ft=help:

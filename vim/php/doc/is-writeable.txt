@@ -1,0 +1,5 @@
+is_writeable -- is_writable のエイリアス
+
+この関数は次の関数のエイリアスです。 |is_writable|.
+
+vim:ft=help:

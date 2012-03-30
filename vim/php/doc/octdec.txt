@@ -1,0 +1,32 @@
+octdec -- 8 進数を 10 進数に変換する
+
+  number octdec(string octal_string)~
+
+{octal_string} により指定された 8 進数を 10
+進数表現した数値を返します。
+
+{octal_string} 変換したい 8 進文字列。
+
+{octal_string} を 8 進で表した値を返します。
+
+バージョン 説明 4.1.0 以降 この関数は、integer
+型の範囲をこえる大きな数値も変換できるようになりました。
+そのような値は、float で返します。
+
+|octdec| の例
+
+<?php >
+  echo octdec('77') . "\n";
+  echo octdec(decoct(45));
+?>
+
+上の例の出力は以下となります。
+
+  63
+  45
+
+
+
+|decoct| |bindec| |hexdec| |base_convert|
+
+vim:ft=help:

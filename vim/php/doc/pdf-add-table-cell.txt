@@ -1,0 +1,8 @@
+PDF_add_table_cell --
+新しいテーブル、あるいは既存のテーブルにセルを追加する
+
+  int PDF_add_table_cell(resource pdfdoc, int table, int column, int row, string text, string optlist)~
+
+新しいテーブル、あるいは既存のテーブルにセルを追加します。
+
+vim:ft=help:

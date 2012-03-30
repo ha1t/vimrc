@@ -1,0 +1,23 @@
+hw_GetObjectByQueryColl --
+コレクションのオブジェクトを検索する
+
+  array hw_getobjectbyquerycoll(int connection, int objectID, string query, int max_hits)~
+
+ID {objectID} を有するコレクションのオブジェクトを
+検索し、オブジェクト ID の配列を返します。
+
+{connection} 接続 ID。
+
+{objectID} コレクション ID。
+
+{query} クエリはインデックス付き属性でのみ動作します。
+
+{max_hits} 最大マッチ数は、{max_hits} で制限されます。
+{max_hits} が -1 にセットされた場合、
+最大マッチ数は、無制限となります。
+
+オブジェクト ID の配列を返します。
+
+|hw_getobjectbyquerycollobj|
+
+vim:ft=help:

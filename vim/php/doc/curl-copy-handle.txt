@@ -1,0 +1,37 @@
+curl_copy_handle -- cURL
+ハンドルを、その設定も含めてコピーする
+
+  resource curl_copy_handle(resource ch)~
+
+cURL ハンドルをコピーし、同じ設定を保持します。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+新しい cURL ハンドルを返します。
+
+cURL ハンドルのコピー
+
+<?php >
+  // 新しい cURL リソースを作成します
+  $ch = curl_init();
+  
+  // URL その他のオプションを適切に設定します
+  curl_setopt($ch, CURLOPT_URL, 'http://www.example.com/');
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+  
+  // ハンドルをコピーします
+  $ch2 = curl_copy_handle($ch);
+  
+  // URL (http://www.example.com/) を取得し、ブラウザに渡します
+  curl_exec($ch2);
+  
+  // cURL リソースを閉じ、システムリソースを開放します
+  curl_close($ch2);
+  curl_close($ch);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,57 @@
+mysql_field_flags --
+結果において指定したフィールドのフラグを取得する
+
+  string mysql_field_flags(resource result, int field_offset)~
+
+|mysql_field_flags|は、指定したフィールドの
+フィールドフラグを返します。個々のフラグは、空白一つで区切られた
+形式で返されます。このため、返された値を |explode|
+で分割することができます。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset} は 0
+から始まります。 {field_offset} が存在しない場合、 E_WARNING
+レベルのエラーが発行されます。
+
+結果についてのフラグを文字列で返します。失敗した場合に
+FALSE を返します。
+
+運用システム上のMySQLがサポートしている場合、次のフラグがレポート
+されます。 "not_null", "primary_key", "unique_key", "multiple_key",
+"blob", "unsigned", "zerofill", "binary", "enum", "auto_increment" そして
+"timestamp"
+
+|mysql_field_flags| の例
+
+<?php >
+  $result = mysql_query("SELECT id,email FROM people WHERE id = '42'");
+  if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
+      exit;
+  }
+  $flags = mysql_field_flags($result, 0);
+  
+  echo $flags;
+  print_r(explode(' ', $flags));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  not_null primary_key auto_increment
+  Array
+  (
+      [0] => not_null
+      [1] => primary_key
+      [2] => auto_increment
+  )
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_fieldflags|
+
+|mysql_field_type| |mysql_field_len|
+
+vim:ft=help:

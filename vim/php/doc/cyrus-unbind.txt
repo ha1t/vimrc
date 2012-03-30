@@ -1,0 +1,16 @@
+cyrus_unbind -- アンバインドする ...
+
+  bool cyrus_unbind(resource connection, string trigger_name)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{connection} 接続ハンドル。
+
+{trigger_name} トリガ名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

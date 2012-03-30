@@ -1,0 +1,16 @@
+pcntl_wifexited --
+ステータスコードが正常終了を表しているかどうかを調べる
+
+  bool pcntl_wifexited(int status)~
+
+ステータスコードが正常終了を表しているかどうかを調べます。
+
+{status} パラメータ {status} は、 |pcntl_waitpid|
+が正常にコールされた際に得られます。
+
+子プロセスのステータスコードが終了に成功した場合に
+TRUE、 それ以外の場合に FALSE を返します。
+
+|pcntl_waitpid| |pcntl_wexitstatus|
+
+vim:ft=help:

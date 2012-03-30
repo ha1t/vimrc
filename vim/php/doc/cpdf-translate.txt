@@ -1,0 +1,16 @@
+cpdf_translate -- 座標系の原点を設定する
+
+  bool cpdf_translate(int pdf_document, float x_coor, float y_coor)~
+
+座標系の原点を、指定した場所に設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{x_coor} 位置の x 座標。
+
+{y_coor} 位置の y 座標。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

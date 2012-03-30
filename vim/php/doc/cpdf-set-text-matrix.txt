@@ -1,0 +1,16 @@
+cpdf_set_text_matrix -- テキスト行列を設定する
+
+  bool cpdf_set_text_matrix(int pdf_document, array matrix)~
+
+現在のテキストフォントに適用する変換を記述する行列を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{matrix} 6 つの要素からなる、変換内容を指定する配列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_text_rendering| |cpdf_set_text_rise|
+
+vim:ft=help:

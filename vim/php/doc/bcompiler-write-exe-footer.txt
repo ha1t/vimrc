@@ -1,0 +1,64 @@
+bcompiler_write_exe_footer -- 開始位置および exe
+形式ファイルのフッタを書き込む
+
+  bool bcompiler_write_exe_footer(resource filehandle, int startpos)~
+
+EXE (あるいは実行可能)
+ファイルは、三つの部分からできています。 PHP
+インタプリタ・bcompiler
+拡張モジュール・保存されたバイトコードを読み込み、
+指定した関数をコールためのスタブ
+(実行可能なコード。たとえばコンパイル済の C
+プログラムなど) バイトコード
+(この場合は圧縮していないもののみが対象となります)
+bcompiler の EXE フッタ
+
+bcompiler の CVS 上で examples/embed ディレクトリにある、
+php_embed ベースのスタブ phpe.c をコンパイルすることで
+適切なスタブが取得できます。
+
+{filehandle} |fopen| が返すファイルハンドル。
+
+{startpos} ファイル内でのバイトコードの開始位置。
+ftell($fh) を使用して取得することが可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_write_footer| の例
+
+<?php >
+  /* 出力ファイル (example.exe) を作成します */
+  $fh = fopen("example.exe", "w");
+  
+  /* 1) スタブ (phpe.exe) を書き込みます */
+  $size = filesize("phpe.exe");
+  $fr = fopen("phpe.exe", "r");
+  fwrite($fh, fread($fr, $size), $size);
+  $startpos = ftell($fh);
+  
+  /* 2) バイトコードを書き込みます */
+  bcompiler_write_header($fh);
+  bcompiler_write_class($fh, "myclass");
+  bcompiler_write_function($fh, "main");
+  bcompiler_write_footer($fh);
+  
+  /* 3) EXE フッタを書き込みます */
+  bcompiler_write_exe_footer($fh, $startpos);
+  
+  /* 出力ファイルを閉じます */
+  fclose($fh);
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|bcompiler_write_header| |bcompiler_write_class| |bcompiler_write_footer|
+
+vim:ft=help:

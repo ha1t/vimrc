@@ -1,0 +1,9 @@
+PDF_setdash -- 破線パターンを設定する
+
+  bool PDF_setdash(resource pdfdoc, float b, float w)~
+
+現在のダッシュパターンを黒 {b} および白 {w}
+単位で設定します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

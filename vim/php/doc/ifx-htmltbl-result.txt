@@ -1,0 +1,12 @@
+ifx_htmltbl_result -- クエリ結果の全行を HTML
+テーブルにフォーマットする
+
+  int ifx_htmltbl_result(resource result_id [, string html_table_options])~
+
+クエリ結果 {result_id} の全ての行を HTML
+テーブルにフォーマットします。
+
+{result_id} {result_id} is a valid resultid returned by |ifx_query| or
+|ifx_prepare| (select type queries only!).
+
+vim:ft=help:

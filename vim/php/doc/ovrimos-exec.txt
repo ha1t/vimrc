@@ -1,0 +1,18 @@
+ovrimos_exec -- SQL 文を実行する
+
+  int ovrimos_exec(int connection_id, string query)~
+
+SQL 文 (クエリまたは更新) を実行し、結果 ID を返します。
+
+{connection_id} |ovrimos_connect| が返す Ovrimos 接続 ID。
+
+{query} SQL
+命令。パラメータを含めてはいけません。プリペアドステートメントの場合は
+|ovrimos_prepare| を使用します。
+
+結果 ID を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+|ovrimos_execute| |ovrimos_prepare|
+
+vim:ft=help:

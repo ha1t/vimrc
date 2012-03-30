@@ -1,0 +1,41 @@
+pspell_config_repl -- 置換候補を保持するファイルを設定する
+
+  bool pspell_config_repl(int dictionary_link, string file)~
+
+置換候補を保持するファイルを設定します。
+
+置換の組は、スペルチェッカの品質を改善します。
+単語のスペルミスをした場合、そして、適当な修正候補がリストにあった場合、
+|pspell_store_replacement|
+を置換候補を保存するために使用し、置換候補を含む単語リストを保存するために
+|pspell_save_wordlist|を使用することが可能です。
+
+|pspell_config_repl| は、 |pspell_new_config|
+をコールする前に設定を行うために使用する必要があります。
+
+{dictionary_link}
+
+{file} このファイルは PHP の実行ユーザ (たとえば nobody)
+が書き込み可能である必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pspell_config_repl|
+
+<?php >
+  $pspell_config = pspell_config_create("en");
+  pspell_config_personal($pspell_config, "/var/dictionaries/custom.pws");
+  pspell_config_repl($pspell_config, "/var/dictionaries/custom.repl");
+  $pspell_link = pspell_new_config($pspell_config);
+  pspell_check($pspell_link, "thecat");
+?>
+
+
+
+
+
+この関数は、pspell .11.2 および aspell .32.5
+以降でない限り動作しないことに注意してください。
+
+vim:ft=help:

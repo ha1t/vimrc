@@ -1,0 +1,29 @@
+mb_strpos --
+文字列の中に指定した文字列が最初に現れる位置を見つける
+
+  int mb_strpos(string haystack, string needle [, int offset [, string encoding]])~
+
+ある文字列の中で別の文字列が最初に現れる位置を見つけます。
+
+マルチバイト文字列に正しくマッチするように |strpos|
+を拡張したもので、 最初の 1 文字目の位置が 0 、2
+文字目の文字が 1 というようになります。
+
+{haystack} 調べたい文字列。
+
+{needle} {haystack} の中での位置を調べる文字列。
+
+{offset} 検索オフセット。 指定されない場合は、0
+が使用されます。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+文字列 {haystack} の中で {needle}
+が最初に現れる位置を数字で返します。 {needle}
+が見付からなかった場合、FALSE を返します。
+
+|mb_| |mb_internal_encoding| |strpos|
+
+vim:ft=help:

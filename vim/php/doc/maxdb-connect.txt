@@ -1,0 +1,79 @@
+maxdb() -- MaxDB サーバへの新しい接続をオープンする
+
+手続き型
+
+  resource maxdb_connect([string host [, string username [, string passwd [, string dbname [, int port [, string socket]]]]]])~
+
+オブジェクト指向型 (コンストラクタ)
+
+|maxdb_connect| 関数は、{host} で稼動している MaxDB
+サーバへの接続をオープンしようと試みます。 {host}
+にはホスト名あるいは IP アドレスが指定可能です。
+"localhost"
+を渡すと、ローカルホストが使用されます。接続に成功すると、
+|maxdb_connect|
+はデータベースへの接続を表すリソースを返します。
+失敗した場合は FALSE を返します。
+
+{username} および {password} で、MaxDB
+サーバに接続する際のユーザ名およびパスワードを指定します。
+パスワードが指定されなかった場合 (NULL が渡された場合)
+は、php.ini の {maxdb.default_pw} を使用して MaxDB
+サーバへの接続を試みます。
+
+{dbname} では、
+クエリを実行する際のデフォルトのデータベースを指定します。
+指定されなかった場合は、php.ini の {maxdb.default_db}
+エントリの内容が使用されます。
+
+{port} および {socket} は、MaxDB サーバでは無視されます。
+
+MaxDB
+サーバへの接続を表す文字列、あるいは接続に失敗した場合に
+FALSE を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */ 
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  printf("ホスト情報: %s\n", $maxdb->host_info);
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */ 
+  if (!$link) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  printf("ホスト情報: %s\n", maxdb_get_host_info($link));
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  ホスト情報: localhost
+
+vim:ft=help:

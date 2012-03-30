@@ -1,0 +1,35 @@
+stream_socket_sendto --
+接続されているかどうかにかかわらず、ソケットにデータを送信する
+
+  int stream_socket_sendto(resource socket, string data [, int flags [, string address]])~
+
+関数 |stream_socket_sendto| は、 {data} で指定したデータを
+{socket} で指定したソケットに送信します。 {address}
+で別のアドレスが指定されていない限り、
+ソケットストリームが作成された際のアドレスを使用します。
+
+{flags} は以下の値の組み合わせです。 {flags} でとりうる値
+STREAM_OOB OOB (out-of-band) データを処理します。
+
+|stream_socket_sendto| の例
+
+<?php >
+  /* localhost のポート 1234 へのソケットをオープンします */
+  $socket = stream_socket_client('tcp://127.0.0.1:1234');
+  
+  /* 普通のデータを普通のチャネルで送信します */
+  fwrite($socket, "Normal data transmit.");
+  
+  /* 帯域外のデータを送信します */
+  stream_socket_sendto($socket, "Out of Band data.", STREAM_OOB);
+  
+  /* ソケットを閉じます */
+  fclose($socket);
+?>
+
+
+
+|stream_socket_recvfrom|、 |stream_socket_client| および
+|stream_socket_server| も参照ください。
+
+vim:ft=help:

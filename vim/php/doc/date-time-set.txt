@@ -1,0 +1,19 @@
+date_time_set -- 時刻を設定する
+
+  void date_time_set(DateTime object, int hour, int minute [, int second])~
+
+  void DateTime::setTime(DateTime object, int hour, int minute [, int second, int hour, int minute [, int second]])~
+
+{object} DateTime オブジェクト。
+
+{hour} その時刻の時。
+
+{minute} その時刻の分。
+
+{second} その時刻の秒。
+
+成功した場合に NULL、失敗した場合に FALSE を返します。
+
+|date_date_set|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+swf_shapelineto -- 線を描画する
+
+  void swf_shapelineto(float x, float y)~
+
+パラメータ {x}、 {y} で指定した x,y
+座標まで線を描きます。 現在の位置はパラメータ x,y
+となります。
+
+{x} 対象の x 座標。
+
+{y} 対象の y 座標。
+
+値を返しません。
+
+vim:ft=help:

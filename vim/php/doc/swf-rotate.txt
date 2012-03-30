@@ -1,0 +1,15 @@
+swf_rotate -- 現在の座標を回転する
+
+  void swf_rotate(float angle, string axis)~
+
+パラメータ {angle} で指定した角度だけ、 パラメータ {axis}
+で指定した座標軸の周りに 現在の座標軸を回転します。
+
+{angle} 回転角度。
+
+{axis} 軸。有効な値は x (x 軸)、 y (y 軸) あるいは z (z 軸)
+のいずれかです。
+
+値を返しません。
+
+vim:ft=help:

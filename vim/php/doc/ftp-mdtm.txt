@@ -1,0 +1,48 @@
+ftp_mdtm -- 指定したファイルが最後に更新された時刻を返す
+
+  int ftp_mdtm(resource ftp_stream, string remote_file)~
+
+|ftp_mdtm|
+はリモートファイルが最後に更新された時刻を取得します。
+
+すべてのサーバがこの機能をサポートしているわけではありません!
+
+|ftp_mdtm| はディレクトリに対しては機能しません。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{remote_file} 最終更新時刻を取得するファイル。
+
+成功した場合にUNIXのタイムスタンプ、エラー時に -1
+を返します。
+
+|ftp_mdtm| の例
+
+<?php >
+  $file = 'somefile.txt';
+  
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // 最終更新時刻を取得する
+  $buff = ftp_mdtm($conn_id, $file);
+  
+  if ($buff != -1) {
+      // somefile.txt の最終更新時刻は: March 26 2003 14:16:41.
+      echo "$file was last modified on : " . date("F d Y H:i:s.", $buff);
+  } else {
+      echo "Couldn't get mdtime";
+  }
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+vim:ft=help:

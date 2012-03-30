@@ -1,0 +1,16 @@
+udm_clear_search_limits -- mnoGoSearch
+検索に関する全ての制約をクリアする
+
+  bool udm_clear_search_limits(resource agent)~
+
+|udm_clear_search_limits| は、
+検索に関する制約をリセットします。
+
+{agent} 事前の |>udm_alloc_agent|
+のコールにより返されたエージェントへのリンク。
+
+Returns TRUE.
+
+|udm_add_search_limit|
+
+vim:ft=help:

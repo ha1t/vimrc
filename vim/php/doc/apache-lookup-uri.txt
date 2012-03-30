@@ -1,0 +1,58 @@
+apache_lookup_uri --
+リクエストの一部を指定したURIに対して行い、全ての情報を返す
+
+  object apache_lookup_uri(string filename)~
+
+この関数は、URIにリクエストの一部を行います。このリクエストは指定した
+リソースに関する全ての重要な情報を得るのに十分なものです。
+
+この関数は、 PHP が apache
+モジュールとしてインストールされた場合のみサポートされます。
+
+{filename} リクエストされているファイル名 (URI)。
+
+URI に関する情報のオブジェクトです。返される object
+のプロパティは次のようなものです。
+
+status the_request status_line method content_type handler uri filename
+path_info args boundary no_cache no_local_copy allowed send_bodyct bytes_sent
+byterange clength unparsed_uri mtime request_time
+
+|apache_lookup_uri| の例
+
+<?php >
+  $info = apache_lookup_uri('index.php?var=value');
+  print_r($info);
+  
+  if (file_exists($info->filename)) {
+      echo 'file exists!';
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  stdClass Object
+  (
+      [status] => 200
+      [the_request] => GET /dir/file.php HTTP/1.1
+      [method] => GET
+      [mtime] => 0
+      [clength] => 0
+      [chunked] => 0
+      [content_type] => application/x-httpd-php
+      [no_cache] => 0
+      [no_local_copy] => 1
+      [unparsed_uri] => /dir/index.php?var=value
+      [uri] => /dir/index.php
+      [filename] => /home/htdocs/dir/index.php
+      [args] => var=value
+      [allowed] => 0
+      [sent_bodyct] => 0
+      [bytes_sent] => 0
+      [request_time] => 1074282764
+  )
+  file exists!
+
+
+
+vim:ft=help:

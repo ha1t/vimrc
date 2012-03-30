@@ -1,0 +1,11 @@
+hw_api_object->title -- title 属性を返す
+
+  string title(array parameter)~
+
+title 属性を返します。
+
+{parameter}
+
+タイトルを文字列で返します。
+
+vim:ft=help:

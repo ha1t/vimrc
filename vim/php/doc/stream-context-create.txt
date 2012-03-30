@@ -1,0 +1,46 @@
+stream_context_create -- ストリームコンテキストを作成する
+
+  resource stream_context_create([array options [, array params]])~
+
+{options} に、
+指定されたオプションが予め設定されたストリームコンテキストを作成し、
+それを返します。
+
+{options} は、
+次のような形式の連想配列からなる連想配列でなくてはなりません。
+$arr['wrapper']['option'] = $value. デフォルトは空の配列です。
+
+{params} は、 $arr['parameter'] = $value
+形式の連想配列でなくてばなりません。
+標準のストリームパラメータについては
+|stream_context_set_params| を参照ください。
+
+引数 {params} は PHP 6.0.0 で追加されました。
+
+|stream_context_create| を利用する
+
+<?php >
+  $opts = array(
+    'http'=>array(
+      'method'=>"GET",
+      'header'=>"Accept-language: en\r\n" .
+                "Cookie: foo=bar\r\n"
+    )
+  );
+  
+  $context = stream_context_create($opts);
+  
+  /* 上のヘッダと共に http リクエストを www.example.com に対して
+     送出します */
+  $fp = fopen('http://www.example.com', 'r', false, $context);
+  fpassthru($fp);
+  fclose($fp);
+?>
+
+
+
+|stream_context_set_option| と
+コンテキストオプションをサポートするラッパのリスト ()
+も参照ください。
+
+vim:ft=help:

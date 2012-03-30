@@ -1,0 +1,7 @@
+PDF_end_glyph -- Type 3 フォントのグリフ定義を終了する
+
+  bool PDF_end_glyph(resource pdfdoc)~
+
+Type 3 フォントのグリフ定義を終了します。
+
+vim:ft=help:

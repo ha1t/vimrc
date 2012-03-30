@@ -1,0 +1,11 @@
+rewinddir -- ディレクトリハンドルを元に戻す
+
+  void rewinddir(resource dir_handle)~
+
+{dir_handle} で指定されたディレクトリの
+ストリームをディレクトリの先頭にリセットします。
+
+{dir_handle} |opendir|により事前にオープンされた
+ディレクトリハンドルリソース
+
+vim:ft=help:

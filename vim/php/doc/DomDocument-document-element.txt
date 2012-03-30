@@ -1,0 +1,35 @@
+DomDocument->document_element -- ルート要素ノードを返す
+
+  domelement DomDocument->document_element()~
+
+この関数は文章のルート要素ノードを返します。
+
+以下の例はただ CHAPTER
+という名前の要素を返し表示します。 他のノード --
+コメント -- は返しません。 ルート要素を取得する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+    echo "Error while parsing the document\n";
+    exit;
+  }
+  
+  $root = $dom->document_element();
+  print_r($root);
+?>
+
+上の例の出力は以下となります。
+
+  domelement Object
+  (
+      [type] => 1
+      [tagname] => chapter
+      [0] => 6
+      [1] => 137960648
+  )
+
+
+
+vim:ft=help:

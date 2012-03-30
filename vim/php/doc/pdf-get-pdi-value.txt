@@ -1,0 +1,12 @@
+PDF_get_pdi_value -- 数値型の PDI パラメータを取得する
+[古い関数]
+
+  float PDF_get_pdi_value(resource p, string key, int doc, int page, int reserved)~
+
+数値型を有する PDI
+ドキュメントパラメータの内容を取得します。
+
+この関数は PDFlib バージョン 7 で廃止されました。
+かわりに |PDF_pcos_get_number| を使用してください。
+
+vim:ft=help:

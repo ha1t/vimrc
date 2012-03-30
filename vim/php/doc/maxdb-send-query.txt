@@ -1,0 +1,13 @@
+maxdb->send_query -- クエリを送信する
+
+  bool maxdb_send_query(resource link, string query)~
+
+オブジェクト指向型 (メソッド)
+
+  bool send_query(resource link, string query, string query)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

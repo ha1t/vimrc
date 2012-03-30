@@ -1,0 +1,80 @@
+Memcache::setServerParams --
+サーバのパラメータおよび状態を、実行時に変更する
+
+  bool Memcache::setServerParams(string host [, int port [, int timeout [, int retry_interval [, bool status [, callback failure_callback]]]]])~
+
+|Memcache::setServerParams| は、
+サーバのパラメータを実行時に変更します。
+|memcache_set_server_params| 関数を使用することも可能です。
+
+この関数は、Memcache バージョン 2.1.0 で追加されました。
+
+{host} memcached が接続を待ち受けるホストを指定します。
+
+{port} memcached が接続を待ち受けるポートを指定します。
+このパラメータはオプションで、デフォルト値は 11211
+です。
+
+{timeout} デーモンへの接続の際に使用する値 (秒単位)
+です。 デフォルト値を 1
+秒でも変更する前には十分注意してください。
+接続が遅くなってしまうと、
+キャッシュ処理のメリットが なくなってしまいます。
+
+{retry_interval}
+サーバとの接続が失敗した際に再試行を行う頻度を設定します。
+デフォルト値は 15 秒です。このパラメータを -1
+にすると、 自動的な再試行を行いません。 |dl|
+を使用してこの拡張モジュールが動的に
+読み込まれている場合は、このパラメータおよび
+{persistent} は何の効果も及ぼしません。
+
+{status}
+サーバがオンライン状態であるかどうかを制御します。このパラメータを
+FALSE にし、{retry_interval} を -1
+と設定すると、失敗したサーバもコネクションプールに残します。
+これにより、キー配布アルゴリズムに影響を与えないようにします。
+このサーバへのリクエストは、フェイルオーバーされるか失敗します。
+どちらになるかは {memcache.allow_failover}
+の設定によって決まります。デフォルトは TRUE で、
+サーバがオンライン状態であることを意味します。
+
+{failure_callback}
+エラーが発生した際に実行されるコールバック関数を指定できるようにします。
+コールバック関数は、フェイルオーバー処理の前に実行されます。
+この関数は、ふたつの引数
+(ホスト名、失敗したサーバのポート) を受け取ります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Memcache::setServerParams| の例
+
+<?php >
+  function _callback_memcache_failure($host, $port) {
+      print "memcache '$host:$port' failed";
+  }
+  
+  /* オブジェクト指向の API */
+  
+  $memcache = new Memcache;
+  
+  // サーバをオフラインモードで追加します
+  $memcache->addServer('memcache_host', 11211, false, 1, 1, -1, false);
+  
+  // サーバをオンラインに変更します
+  $memcache->setServerParams('memcache_host', 11211, 1, 15, true, '_callback_memcache_failure');
+  
+  /* 手続き型の API */
+  
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  memcache_set_server_params($memcache_obj, 'memcache_host', 11211, 1, 15, true, '_callback_memcache_failure');
+?>
+
+
+
+
+
+|Memcache::addServer| |Memcache::getServerStatus|
+
+vim:ft=help:

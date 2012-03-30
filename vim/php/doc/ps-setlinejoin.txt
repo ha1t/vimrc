@@ -1,0 +1,17 @@
+ps_setlinejoin -- 線の連結方法を設定する
+
+  bool ps_setlinejoin(resource psdoc, int type)~
+
+線がどのように連結されるかを設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{type} 線の連結方式。 PS_LINEJOIN_MITER、 PS_LINEJOIN_ROUND
+あるいは PS_LINEJOIN_BEVEL のいずれか。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_setlinecap| |ps_setlinewidth| |ps_setmiterlimit|
+
+vim:ft=help:

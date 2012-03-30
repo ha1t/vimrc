@@ -1,0 +1,15 @@
+printer_end_doc -- ドキュメントを閉じる
+
+  bool printer_end_doc(resource printer_handle)~
+
+プリンタスプーラ内の新規ドキュメントを閉じます。
+これにより、ドキュメントの印刷準備が完了します。使用例は
+|printer_start_doc| を参照ください。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

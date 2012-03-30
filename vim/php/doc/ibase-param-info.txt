@@ -1,0 +1,17 @@
+ibase_param_info --
+プリペアドクエリのパラメータに関する情報を返す
+
+  array ibase_param_info(resource query, int param_number)~
+
+クエリが準備された後に、パラメータについての情報を配列で返します。
+
+{query} InterBase プリペアドクエリのハンドル。
+
+{param_number} パラメータのオフセット。
+
+配列を返します。配列に含まれるキーは name、
+alias、relation、 length および type となります。
+
+|ibase_field_info| |ibase_num_params|
+
+vim:ft=help:

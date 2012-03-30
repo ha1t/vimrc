@@ -1,0 +1,25 @@
+imagecreatefromgd -- GD ファイルまたは URL
+から新規イメージを生成する
+
+  resource imagecreatefromgd(string filename)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+fopen wrappers が有効の場合、この関数のファイル名として
+URL
+を使用することができます。ファイル名の指定方法に関する詳細は
+|fopen|、サポートされる URL プロトコルの種類
+については、(例えば) を参照してください。
+
+{filename}
+
+PHP 4.3.0 より前のバージョンの Windows 版 PHP
+は、現在この関数に関してリモートファイルアクセス機能を
+サポートしていません。これは、allow_url_fopen を
+有効にした場合でも同様です。
+
+vim:ft=help:

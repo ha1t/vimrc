@@ -1,0 +1,25 @@
+imagecreatefromxbm -- ファイル又は URL
+から新規イメージを生成する
+
+  resource imagecreatefromxbm(string filename)~
+
+|imagecreatefromxbm| は、指定した filename
+から得られたイメージを表すイメージIDを返します。
+
+fopen wrappers が有効の場合、この関数のファイル名として
+URL
+を使用することができます。ファイル名の指定方法に関する詳細は
+|fopen|、サポートされる URL プロトコルの種類
+については、(例えば) を参照してください。
+
+PHP 4.3.0 より前のバージョンの Windows 版 PHP
+は、現在この関数に関してリモートファイルアクセス機能を
+サポートしていません。これは、allow_url_fopen を
+有効にした場合でも同様です。
+
+{filename} XBM 画像へのパス。
+
+成功した場合に画像リソース ID、エラー時に FALSE
+を返します。
+
+vim:ft=help:

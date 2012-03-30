@@ -1,0 +1,63 @@
+maxdb->get_host_info --
+使用している接続の型を表す文字列を返す
+
+手続き型
+
+  string maxdb_get_host_info(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_get_host_info| 関数は、 {link}
+で表される接続を表す文字列を返します。
+
+サーバのホスト名および接続の型を表す文字列を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* ホスト情報を表示します */
+  printf("ホスト情報: %s\n", $maxdb->host_info);
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* ホスト情報を表示します */
+  printf("ホスト情報: %s\n", maxdb_get_host_info($link));
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  ホスト情報: localhost
+
+|maxdb_get_proto_info|
+
+vim:ft=help:

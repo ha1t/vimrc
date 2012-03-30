@@ -1,0 +1,23 @@
+ora_numcols -- カラム数を返す
+
+  int ora_numcols(resource cursor)~
+
+結果のカラム数を返します。 parse/exec/fetch
+シーケンスの後でのみ意味がある値が返されます。
+
+{cursor} |ora_open| でオープンした Oracle カーソル。
+
+カラムの数を表す整数値、あるいはエラー時に FALSE
+を返します。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_num_fields|
+
+|ora_parse| |ora_exec| |ora_fetch| |ora_do|
+
+vim:ft=help:

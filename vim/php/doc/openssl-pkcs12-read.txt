@@ -1,0 +1,21 @@
+openssl_pkcs12_read -- PKCS#12
+認証ストアをパースして配列形式にする
+
+  bool openssl_pkcs12_read(mixed PKCS12, array certs, string pass)~
+
+|openssl_pkcs12_read| は、 {PKCS12} で指定した PKCS#12
+認証ストアをパースして {certs}
+で指定した配列に格納します。
+
+{PKCS12}
+
+{certs}
+成功した場合に、ここに認証ストアデータが格納されます。
+
+{pass} PKCS#12
+ファイルのロックを解除するためのパスワード。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+fbsql_drop_db -- FrontBase データベースを破棄(削除)する
+
+  bool fbsql_drop_db(string database_name [, resource link_identifier])~
+
+|fbsql_drop_db| は、指定したリンク ID が指す
+サーバからデータベース全体を破棄(削除)します。
+
+{database_name} データベース名を表す文字列。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fbsql_create_db|
+
+vim:ft=help:

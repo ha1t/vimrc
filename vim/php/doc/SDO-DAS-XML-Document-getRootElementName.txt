@@ -1,0 +1,11 @@
+SDO_DAS_XML_Document::getRootElementName -- ルート要素の名前を返す
+
+  string SDO_DAS_XML_Document::getRootElementName()~
+
+ルート要素の名前を返します。
+
+
+
+ルート要素の名前を返します。
+
+vim:ft=help:

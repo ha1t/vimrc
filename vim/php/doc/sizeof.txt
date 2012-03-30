@@ -1,0 +1,5 @@
+sizeof -- count のエイリアス
+
+この関数は次の関数のエイリアスです。 |count|.
+
+vim:ft=help:

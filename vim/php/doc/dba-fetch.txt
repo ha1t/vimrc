@@ -1,0 +1,36 @@
+dba_fetch -- キーが指すデータを取得する
+
+  string dba_fetch(string key, resource handle)~
+
+  string dba_fetch(string key, resource handle, string key, int skip, resource handle)~
+
+|dba_fetch| は、{handle} が指すデータベースから {key}
+が指すデータを 取得します。
+
+{key} データを取得するキー。
+
+inifile
+を利用する際には、この関数は配列を受け入れることが可能です。
+インデックス 0 にはグループ名、インデックス 1
+には値の名前を格納します。 |dba_key_split|
+も参照ください。
+
+{skip} dba データベースを使用する際に無視する キー / 値
+の組み合わせ数。
+複数のキーに同じ名前をつけることがサポートされていないデータベースです、
+この値は無視されます。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+キー /
+データの組が見つかった場合にそれに関連する文字列、
+それ以外の場合に FALSE を返します。
+
+バージョン 説明 4.3 複数のキーに同じ名前をつけられる
+cdb の機能に対応するため、 {skip}
+パラメータが使用可能になりました。
+
+|dba_exists| |dba_delete| |dba_insert| |dba_replace| |dba_key_split|
+
+vim:ft=help:

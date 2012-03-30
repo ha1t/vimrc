@@ -1,0 +1,20 @@
+ps_set_parameter -- パラメータを設定する
+
+  bool ps_set_parameter(resource psdoc, string name, string value)~
+
+多くの関数で利用されるパラメータを設定します。
+パラメータは文字列値として定義されます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{name} 使用できる名称については |ps_get_parameter|
+を参照ください。
+
+{value} パラメータの値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_get_parameter| |ps_set_value|
+
+vim:ft=help:

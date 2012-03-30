@@ -1,0 +1,54 @@
+array_push -- 一つ以上の要素を配列の最後に追加する
+
+  int array_push(array array, mixed var [, mixed ...])~
+
+|array_push|は、{array}
+をスタックとして処理し、渡された変数を {array}
+の最後に加えます。配列 {array}
+の長さは渡された変数の数だけ増加します。 各 {var}
+毎に以下を繰り返すことと同じ効果があります。
+
+<?php >
+  $array[] = $var;
+?>
+
+各 {var} で繰り返されます。
+
+もし配列にひとつの要素を加えるために |array_push|
+を使用するなら、
+関数を呼ぶオーバーヘッドがないので、$array[] =
+を使用するほうがいいです。
+
+最初の引数が配列でない場合、|array_push|
+は警告を発生させます。これは新規配列を生成する場合における
+$var[] の動作と異なります。
+
+{array} 入力の配列。
+
+{var} 追加する値。
+
+処理後の配列の中の要素の数を返します。
+
+|array_push| の例
+
+<?php >
+  $stack = array("orange", "banana");
+  array_push($stack, "apple", "raspberry");
+  print_r($stack);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => orange
+      [1] => banana
+      [2] => apple
+      [3] => raspberry
+  )
+
+
+
+|array_pop| |array_shift| |array_unshift|
+
+vim:ft=help:

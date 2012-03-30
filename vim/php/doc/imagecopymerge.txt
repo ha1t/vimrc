@@ -1,0 +1,37 @@
+imagecopymerge -- イメージの一部をコピー、マージする
+
+  bool imagecopymerge(resource dst_im, resource src_im, int dst_x, int dst_y, int src_x, int src_y, int src_w, int src_h, int pct)~
+
+{src_im}の{src_x}, {src_y } で始まる幅
+{src_w}、高さ{src_h}の領域を x,y座標で指定した
+{dst_im}にコピーします。
+定義された部分は、x,y座標、{dst_x}、
+{dst_y}にコピーされます。
+
+{dst_im} コピー先の画像リンクリソース。
+
+{src_im} コピー元の画像リンクリソース。
+
+{dst_x} コピー先の x 座標。
+
+{dst_y} コピー先の y 座標。
+
+{src_x} コピー元の x 座標。
+
+{src_y} コピー元の y 座標。
+
+{src_w} コピー元の幅。
+
+{src_h} コピー元の高さ。
+
+{pct} 二つの画像は、 0から100の範囲で指定した
+{pct}に基づきマージされます。 {pct} = 0
+の時は、何も行われません。
+100の場合、この関数の動作は、パレットイメージに対する
+|imagecopy| と同じとなります。その上、 True
+カラーイメージに対するアルファ透過性を実装しています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,25 @@
+intl_get_error_message -- 直近のエラーの説明を取得する
+
+  string intl_get_error_message()~
+
+直近の国際化関数のコールによるエラーメッセージを取得します。
+
+直近の API
+関数のコールで発生したエラーの説明を返します。
+
+|intl_get_error_message| の例
+
+<?php >
+  if( Collator::getAvailableLocales() === false ) {
+      show_error( intl_get_error_message() );
+  }
+?>
+
+
+
+
+
+|intl_error_name| |intl_get_error_code| |intl_is_failure|
+|collator_get_error_message| |numfmt_get_error_message|
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+SQLiteDatabase->singleQuery --
+クエリを実行し、単一カラムもしくは先頭レコードの値に対する配列を返す
+
+  array sqlite_single_query(resource db, string query [, bool first_row_only [, bool decode_binary]])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  array singleQuery(resource db, string query [, bool first_row_only [, bool decode_binary, string query [, bool first_row_only [, bool decode_binary]]]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

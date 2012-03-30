@@ -1,0 +1,14 @@
+lzf_compress -- LZF 圧縮を行う
+
+  string lzf_compress(string data)~
+
+|lzf_compress| は、指定された {arg} を圧縮します。
+
+{data} 圧縮するデータ。
+
+圧縮されたデータを返します。エラー時には FALSE
+を返します。
+
+|lzf_decompress|
+
+vim:ft=help:

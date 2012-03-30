@@ -1,0 +1,17 @@
+mssql_data_seek -- 内部行ポインタを移動する
+
+  bool mssql_data_seek(resource result_identifier, int row_number)~
+
+|mssql_data_seek| は、指定した結果 ID が指す MS SQL
+結果に関する内部行ポインタを指定した行番号に移動します。
+最初の行は行番号 0 となります。 この後、|mssql_fetch_row|
+をコールした場合、 その行を返します。
+
+{result_identifier} 処理対象となる結果リソース。
+
+{row_number} 新しい結果ポインタの行番号。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,87 @@
+db2_client_info -- DB2
+データベースクライアントの情報をプロパティに保持するオブジェクトを返す
+
+  object db2_client_info(resource connection)~
+
+この関数は、DB2
+データベースクライアントについての情報を
+読み取り専用のプロパティに保持するオブジェクトを返します。
+以下の表は、DB2 クライアントプロパティの一覧です。 DB2
+クライアントプロパティ プロパティ名 返り値の型 説明
+APPL_CODEPAGE int アプリケーションのコードページ。
+CONN_CODEPAGE int 現在の接続のコードページ。 DATA_SOURCE_NAME
+string
+現在のデータベース接続に使用されているデータソース名
+(DSN)。 DRIVER_NAME string DB2 コールレベルインターフェイス
+(CLI) の仕様を実装した ライブラリの名前。 DRIVER_ODBC_VER
+string DB2 クライアントがサポートしている ODBC
+のバージョン。 "MM.mm" という形式の文字列で、MM
+がメジャーバージョン、mm
+がマイナーバージョンを表します。DB2 クライアントは、
+常に "03.51" を返します。 DRIVER_VER string
+クライアントのバージョン。"MM.mm.uuuu"
+という形式の文字列で、 MM がメジャーバージョン、 mm
+がマイナーバージョン、 そして uuuu
+がアップデートを表します。 例えば "08.02.0001" は
+メジャーバージョン 8、マイナーバージョン
+2、アップデート 1 を表します。 ODBC_SQL_CONFORMANCE string
+クライアントがサポートする ODBC SQL 構文レベル。 MINIMUM
+最小限の ODBC SQL 構文をサポートします。
+
+CORE コア ODBC SQL をサポートします。
+
+EXTENDED 拡張 ODBC SQL 構文をサポートします。
+
+ODBC_VER string ODBC ドライバマネージャがサポートする ODBC
+のバージョン。 "MM.mm.rrrr" という形式の文字列で、 MM
+がメジャーバージョン、 mm がマイナーバージョン、
+そして rrrr がリリースを表します。 DB2
+クライアントは、常に "03.01.0000" を返します。
+
+{connection} アクティブな DB2
+クライアント接続を指定します。
+
+成功した場合にオブジェクト、失敗した場合に FALSE
+を返します。
+
+|db2_client_info| の例
+クライアントの情報を取得するには、有効なデータベース接続リソースを
+|db2_client_info| に渡す必要があります。
+
+<?php >
+  $conn = db2_connect( 'SAMPLE', 'db2inst1', 'ibmdb2' );
+  $client = db2_client_info( $conn );
+  
+  if ($client) {
+      echo "DRIVER_NAME: ";           var_dump( $client->DRIVER_NAME );
+      echo "DRIVER_VER: ";            var_dump( $client->DRIVER_VER );
+      echo "DATA_SOURCE_NAME: ";      var_dump( $client->DATA_SOURCE_NAME );
+      echo "DRIVER_ODBC_VER: ";       var_dump( $client->DRIVER_ODBC_VER );
+      echo "ODBC_VER: ";              var_dump( $client->ODBC_VER );
+      echo "ODBC_SQL_CONFORMANCE: ";  var_dump( $client->ODBC_SQL_CONFORMANCE );
+      echo "APPL_CODEPAGE: ";         var_dump( $client->APPL_CODEPAGE );
+      echo "CONN_CODEPAGE: ";         var_dump( $client->CONN_CODEPAGE );
+  }
+  else {
+      echo "クライアント情報の取得エラー。
+       おそらくデータベース接続が無効です。";
+  }
+  db2_close($conn);
+?>
+
+上の例の出力は以下となります。
+
+  DRIVER_NAME: string(8) "libdb2.a"
+  DRIVER_VER: string(10) "08.02.0001"
+  DATA_SOURCE_NAME: string(6) "SAMPLE"
+  DRIVER_ODBC_VER: string(5) "03.51"
+  ODBC_VER: string(10) "03.01.0000"
+  ODBC_SQL_CONFORMANCE: string(8) "EXTENDED"
+  APPL_CODEPAGE: int(819)
+  CONN_CODEPAGE: int(819)
+
+
+
+|db2_server_info|
+
+vim:ft=help:

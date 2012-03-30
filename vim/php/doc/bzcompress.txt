@@ -1,0 +1,36 @@
+bzcompress -- 文字列をbzip2形式のデータに圧縮する
+
+  mixed bzcompress(string source [, int blocksize [, int workfactor]])~
+
+|bzcompress| は、与えられた文字列を圧縮し、 bzip2
+形式のデータとして返します。
+
+{source} 圧縮する文字列
+
+{blocksize} 圧縮時のブロック長を指定します。 1 から 9
+の数とする必要があります。この場合、9
+の圧縮度が最大ですが、リソースの消費量も最大となります。
+{blocksize} のデフォルトは 4 です。
+
+{workfactor}
+繰り返しが多い、最悪の入力データの場合の圧縮処理の動作を制御します。
+この値は、0 から 250 までとなり、0 は特別な場合、30
+はデフォルト値となります。
+
+{workfactor} によらず、 生成される出力は同じになります。
+
+圧縮された文字列、もしくはエラー時はエラー数
+
+データの圧縮
+
+<?php >
+  $str = "sample data";
+  $bzstr = bzcompress($str, 9);
+  echo $bzstr;
+?>
+
+
+
+|bzdecompress|
+
+vim:ft=help:

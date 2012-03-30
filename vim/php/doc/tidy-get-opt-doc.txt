@@ -1,0 +1,52 @@
+tidy_get_opt_doc --
+与えられたオプション名に対するドキュメントを返す
+
+Procedural style:
+
+  string tidy_get_opt_doc(tidy object, string optname)~
+
+Object oriented style:
+
+  string tidy->getOptDoc(tidy object, string optname, string optname)~
+
+|tidy_get_opt_doc| は、
+与えられたオプション名に対するドキュメントを返します。
+
+この関数を有効にするには、少なくとも2005年4月25日以降の
+libtidy が必要です。
+
+{object} Tidy オブジェクトを指定します。
+
+{optname} オプション名を指定します。
+
+オプションが存在し、かつドキュメントが利用可能であれば、文字列を返します。
+その他の場合は FALSE を返します。
+
+全てのオプションについてのドキュメントとデフォルト値をプリントする
+
+<?php >
+  $tidy = new tidy;
+  $config = $tidy->getConfig();
+  
+  ksort($config);
+  
+  foreach ($config as $opt => $val) {
+  
+      if (!$doc = $tidy->getOptDoc($opt))
+          $doc = 'no documentation available!';
+  
+      $val = ($tidy->getOpt($opt) === true)  ? 'true'  : $val;
+      $val = ($tidy->getOpt($opt) === false) ? 'false' : $val;
+  
+      echo "<p><b>$opt</b> (default: '$val')<br />".
+           "$doc</p><hr />\n";
+  }
+?>
+
+
+
+
+
+|tidy_get_config| |tidy_getopt|
+
+vim:ft=help:

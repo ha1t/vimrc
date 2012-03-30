@@ -1,0 +1,29 @@
+ZipArchive::renameName -- 名前を使用してエントリ名を変更する
+
+  bool ZipArchive::renameName(string name, string newname)~
+
+名前を使用して、エントリ名を変更します。
+
+{name} 名前を変更するエントリの名前。
+
+{newname} 新しい名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+エントリ名の変更
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip');
+  if ($res === TRUE) {
+      $zip->renameName('currentname.txt','newname.txt');
+      $zip->close();
+  } else {
+      echo '失敗、コード:' . $res;
+  }
+?>
+
+
+
+vim:ft=help:

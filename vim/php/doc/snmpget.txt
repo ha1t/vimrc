@@ -1,0 +1,33 @@
+snmpget -- SNMP オブジェクトを取得する
+
+  string snmpget(string hostname, string community, string object_id [, int timeout [, int retries]])~
+
+|snmpget| は {object_id} で指定した SNMP
+オブジェクトの値を読みとるために使用されます。
+
+{hostname} SNMP エージェント。
+
+{community} リードコミュニティ。
+
+{object_id} SNMP オブジェクト。
+
+{timeout}
+
+{retries}
+
+成功した場合に SNMP オブジェクトの値、失敗した場合に
+FALSE を返します。
+
+|snmpget| の使用例
+
+<?php >
+  $syscontact = snmpget("127.0.0.1", "public", "system.SysContact.0");
+?>
+
+
+
+
+
+|snmpset|
+
+vim:ft=help:

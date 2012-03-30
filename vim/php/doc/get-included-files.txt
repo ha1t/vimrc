@@ -1,0 +1,61 @@
+get_included_files -- include または require
+で読み込まれたファイルの名前を配列として返す
+
+  array get_included_files()~
+
+この関数は、|include|, |include_once|, |require|, |require_once|
+によりスクリプトにロードされた
+すべてのファイルの名前を取得します。
+
+すべてのファイル名を含む配列を返します。
+
+最初にコールされたスクリプトは "include されたファイル"
+という扱いに なります。そのため、|include|
+やその仲間たちにより
+読み込まれたファイルの一覧に含めて表示されます。
+
+複数回読み込まれているファイルも、
+返される配列には一度しかあらわれません。
+
+バージョン 説明 4.0.1 PHP
+4.0.1および以前のバージョンにおいて、 |get_included_files|
+は読み込まれるファイルが拡張子 .php
+となることを仮定しており、他の拡張子のファイルは返されませんでした。
+|get_included_files| により返される配列は
+連想配列であり、|include| および |include_once|
+で読み込まれたファイルのみが
+一覧に含まれていました。
+
+|get_included_files| の例
+
+<?php >
+  // このファイルは abc.php です
+  
+  include 'test1.php';
+  include_once 'test2.php';
+  require 'test3.php';
+  require_once 'test4.php';
+  
+  $included_files = get_included_files();
+  
+  foreach ($included_files as $filename) {
+      echo "$filename\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  abc.php
+  test1.php
+  test2.php
+  test3.php
+  test4.php
+
+
+
+設定ディレクティブ auto_prepend_file
+で読み込まれたファイルは、返される配列には含まれません。
+
+|include| |include_once| |require| |require_once| |get_required_files|
+
+vim:ft=help:

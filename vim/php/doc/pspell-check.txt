@@ -1,0 +1,30 @@
+pspell_check -- 単語をチェックする
+
+  bool pspell_check(int dictionary_link, string word)~
+
+|pspell_check| は単語のスペルをチェックします。
+
+{dictionary_link}
+
+{word} チェックする単語。
+
+スペルが正しい場合に TRUE、そうでない場合に FALSE
+を返します。
+
+|pspell_check| の例
+
+<?php >
+  $pspell_link = pspell_new("en");
+  
+  if (pspell_check($pspell_link, "testt")) {
+      echo "This is a valid spelling";
+  } else {
+      echo "Sorry, wrong spelling";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

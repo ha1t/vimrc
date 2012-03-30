@@ -1,0 +1,13 @@
+mcal_append_event -- MCALカレンダーに新規イベントを保存する
+
+  int mcal_append_event(int mcal_stream)~
+
+|mcal_append_event|はグローバルイベントを
+指定したストリーム {mcal_stream}
+のMCALカレンダーに保存します。
+
+{mcal_stream} MCAL ストリーム。
+
+新規に挿入されたイベントのuidを返します。
+
+vim:ft=help:

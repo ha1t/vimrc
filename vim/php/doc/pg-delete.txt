@@ -1,0 +1,51 @@
+pg_delete -- レコードを削除する
+
+  mixed pg_delete(resource connection, string table_name, array assoc_array [, int options])~
+
+|pg_delete| は、{assoc_array}
+で指定したキーと値を用いてテーブルからレコードを削除します。
+{options} が指定された場合、指定したオプションを つけて
+|pg_convert| が {assoc_array} に適用されます。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{table_name} 行を削除するテーブルの名前。
+
+{assoc_array} そのキーが {table_name}
+テーブルのフィールド名、
+値が削除したいフィールドの値となっている配列。
+
+{options} PGSQL_CONV_FORCE_NULL、 PGSQL_DML_NO_CONV、 PGSQL_DML_EXEC
+あるいは PGSQL_DML_STRING を組み合わせた数。 {options} に
+PGSQL_DML_STRING
+が含まれている場合、クエリ文字列が返されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 {options} で PGSQL_DML_STRING
+が渡された場合は文字列を返します。
+
+|pg_delete| の例
+
+<?php >
+    $db = pg_connect('dbname=foo');
+    // これは安全です。なぜなら $_POST は自動的に変換されるからです
+    $res = pg_delete($db, 'post_log', $_POST);
+    if ($res) {
+        echo "POST data is deleted: $res\n";
+    } else {
+        echo "User must have sent wrong inputs\n";
+    }
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|pg_convert|
+
+vim:ft=help:

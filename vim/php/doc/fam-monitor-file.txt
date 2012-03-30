@@ -1,0 +1,24 @@
+fam_monitor_file -- 通常のファイルの変更を監視する
+
+  resource fam_monitor_file(resource fam, string filename)~
+
+指定した 1 個のファイルの
+監視を指示します。このファイルのステータス(すなわち、このファイルに関する
+関数 |stat| の結果)が変化する度に FAM イベントが
+発生します。
+
+発生しうるイベントコードの詳細は、このセクションの
+定数 の欄にあります。
+
+{fam} |fam_open| が返す、 FAM
+サービスへの接続を表すリソース。
+
+{filename} 監視するファイルへのパス。
+
+モニタリングリソース、あるいはエラー時に FALSE
+を返します。
+
+|fam_monitor_directory| |fam_monitor_collection| |fam_cancel_monitor|
+|fam_suspend_monitor| |fam_resume_monitor|
+
+vim:ft=help:

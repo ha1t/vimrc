@@ -1,0 +1,47 @@
+imap_mime_header_decode -- MIME ヘッダ要素をデコードする
+
+  array imap_mime_header_decode(string text)~
+
+非 ASCII テキストの MIME
+メッセージヘッダエクステンションをデコードします
+(RFC2047 を参照ください)。
+
+{text} MIME テキスト。
+
+デコードされた要素は、オブジェクトの配列で返されます。
+各オブジェクトは、二つのプロパティ charset と text
+を有しています。
+
+要素がエンコードされていない場合、言い替えるとプレーンな
+US-ASCII の場合は この要素の charset プロパティは default
+に設定されます。
+
+|imap_mime_header_decode| の例
+
+<?php >
+  $text = "=?ISO-8859-1?Q?Keld_J=F8rn_Simonsen?= <keld@example.com>";
+  
+  $elements = imap_mime_header_decode($text);
+  for ($i=0; $i<count($elements); $i++) {
+      echo "Charset: {$elements[$i]->charset}\n";
+      echo "Text: {$elements[$i]->text}\n\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Charset: ISO-8859-1
+  Text: Keld Jørn Simonsen
+  
+  Charset: default
+  Text:  <keld@example.com>
+
+
+
+上の例には二つの要素があります。最初の要素は
+ISO-8859-1、 2 番目の要素はプレーンな US-ASCII
+で事前にエンコードされています。
+
+|imap_utf8|
+
+vim:ft=help:

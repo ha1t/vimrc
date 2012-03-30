@@ -1,0 +1,7 @@
+mysqli_client_encoding -- mysqli_character_set_name のエイリアス
+
+この関数は |mysqli_character_set_name| のエイリアスです。
+
+|mysqli_real_escape_string|
+
+vim:ft=help:

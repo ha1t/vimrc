@@ -1,0 +1,35 @@
+gzread -- バイナリ対応のgzファイル読み込み
+
+  string gzread(resource zp, int length)~
+
+|gzread| は、最大 {length} バイトのデータを {zp} が指す gz
+ファイルポインタ から読み込みます。(解凍された) {length}
+バイトのデータが読み込まれたか、 EOF
+に達したとき、読み込みは終了します。
+
+{zp} gz
+ファイルポインタを指定します。これは有効なファイルポインタであり、
+かつ、|gzopen|
+によりオープンできたファイルを指している必要があります。
+
+{length} 読み込むバイト数を指定します。
+
+読み込まれたデータ
+
+|gzread| の例
+
+<?php >
+  // gz ファイルの内容を文字列に読み込む
+  $filename = "/usr/local/something.txt.gz";
+  $zd = gzopen($filename, "r");
+  $contents = gzread($zd, 10000);
+  gzclose($zd);
+?>
+
+
+
+
+
+|gzwrite| |gzopen| |gzgets| |gzgetss| |gzfile| |gzpassthru|
+
+vim:ft=help:

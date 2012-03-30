@@ -1,0 +1,12 @@
+PDF_fill_pdfblock -- PDF
+ブロックをさまざまなデータで塗りつぶす
+
+  int PDF_fill_pdfblock(resource pdfdoc, int page, string blockname, int contents, string optlist)~
+
+PDF
+ブロックを、そのプロパティに基づいたさまざまなデータで塗りつぶします。
+
+この関数は、PDFlib Personalization Server (PPS)
+でのみ使用可能です。
+
+vim:ft=help:

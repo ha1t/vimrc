@@ -1,0 +1,19 @@
+hw_GetChildCollObj --
+子のコレクションのオブジェクトレコード
+
+  array hw_getchildcollobj(int connection, int objectID)~
+
+オブジェクトレコードの配列を返します。各オブジェクトレコードは、
+ID {objectID} を有するコレクションの
+子コレクションに属しています。
+この関数は、子ドキュメントを返しません。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+オブジェクトレコードの配列を返します。
+
+|hw_childrenobj| |hw_getchilddoccollobj|
+
+vim:ft=help:

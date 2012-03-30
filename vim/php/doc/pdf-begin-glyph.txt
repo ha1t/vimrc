@@ -1,0 +1,7 @@
+PDF_begin_glyph -- Type 3 フォントのグリフ定義を開始する
+
+  bool PDF_begin_glyph(resource pdfdoc, string glyphname, float wx, float llx, float lly, float urx, float ury)~
+
+Type 3 フォントのグリフ定義を開始します。
+
+vim:ft=help:

@@ -1,0 +1,26 @@
+cpdf_set_font -- フォントの種類とサイズを選択する
+
+  bool cpdf_set_font(int pdf_document, string font_name, float size, string encoding)~
+
+現在のフォントフェイス、フォントサイズおよびエンコーディングを設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{font_name} フォント名。現在サポートされているのは、
+標準の postscript フォントだけです。
+
+詳細な情報、特にアジア用フォント (訳注：日本語
+フォントを含む CJK フォント)
+のサポートについては、ClibPDF
+のマニュアルを参照ください。
+
+{size} フォントサイズ。
+
+{encoding} 次のいずれかの値を指定します。MacRomanEncoding、
+MacExpertEncoding、 WinAnsiEncoding および NULL
+(フォントの組み込みエンコーディング)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

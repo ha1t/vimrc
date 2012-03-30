@@ -1,0 +1,13 @@
+swf_shapemoveto -- 現在の位置を移動する
+
+  void swf_shapemoveto(float x, float y)~
+
+現在の位置を、指定した場所に移動します。
+
+{x} 対象の x 座標。
+
+{y} 対象の y 座標。
+
+値を返しません。
+
+vim:ft=help:

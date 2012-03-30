@@ -1,0 +1,20 @@
+curl_multi_remove_handle -- cURL
+ハンドルのセットからマルチハンドルを削除する
+
+  int curl_multi_remove_handle(resource mh, resource ch)~
+
+指定した {ch} ハンドルを、{mh} ハンドルから削除します。
+{ch} ハンドルが削除されてからも、このハンドルで
+|curl_exec| を実行できます。
+使用中のハンドルを削除する際には、進行中の転送をきちんと停止します。
+
+{mh} |curl_multi_init| が返す cURL マルチハンドル。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+成功した場合に cURL ハンドル、失敗した場合に FALSE
+を返します。
+
+|curl_init| |curl_multi_init| |curl_multi_add_handle|
+
+vim:ft=help:

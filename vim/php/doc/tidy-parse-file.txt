@@ -1,0 +1,48 @@
+tidy_parse_file -- ファイルまたは URI
+にあるマークアップをパースする
+
+手続き型:
+
+  tidy tidy_parse_file(string filename [, mixed config [, string encoding [, bool use_include_path]]])~
+
+オブジェクト指向型:
+
+  bool tidy->parseFile(string filename [, mixed config [, string encoding [, bool use_include_path, string filename [, mixed config [, string encoding [, bool use_include_path]]]]]])~
+
+この関数は与えられたファイルをパースします。
+
+{config}パラメータは、配列または
+文字列として指定することができます。文字列として指定した場合には設定ファイルの名前として解釈され、
+そうでない場合はオプション自体として解釈されます。各オプションに関する説明については、
+http://tidy.sourceforge.net/docs/quickref.html を参照してください。
+
+{encoding}
+パラメータは、文書を入力/出力する際のエンコーディングを
+設定します。{encoding} には次の値を使用可能です。 ascii,
+latin0, latin1, raw, utf8, iso2022, mac, win1252, ibm858, utf16, utf16le,
+utf16be, big5 および shiftjis.
+
+|tidy_parse_file| の例
+
+<?php >
+  $tidy = tidy_parse_file('file.html');
+  
+  $tidy->cleanRepair();
+  
+  if(!empty($tidy->errorBuffer)) {
+      echo "The following errors or warnings occured:\n";
+      echo $tidy->errorBuffer;
+  }
+?>
+
+
+
+
+
+オプションのパラメータ config_options と enconding は Tidy 2.0
+で追加されました。
+
+|tidy_parse_string|, |tidy_repair_file|, |tidy_repair_string|
+も参照ください。
+
+vim:ft=help:

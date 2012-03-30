@@ -1,0 +1,57 @@
+px_new -- 新しい paradox オブジェクトを作成する
+
+  resource px_new()~
+
+新しい paradox オブジェクトを作成します。この関数は、
+その他の関数をコールする前にコールする必要があります。
+|px_new| は、ディスク上にファイルを作成するのではなく、
+ただ単に paradox
+オブジェクトのインスタンスを作成するだけです。
+オブジェクト指向のインターフェイスを使用している場合は、
+この関数をコールしてはいけません。代わりに new
+paradox_db() を使用してください。
+
+失敗した場合は FALSE を返します。
+
+Paradox データベースをオープンする
+
+<?php >
+  if(!$pxdoc = px_new()) {
+    /* エラー処理 */
+  }
+  $fp = fopen("test.db", "r");
+  if(!px_open_fp($pxdoc, $fp)) {
+    /* エラー処理 */
+  }
+  // ...
+  px_close($pxdoc);
+  px_delete($pxdoc);
+  fclose($fp);
+?>
+
+
+
+
+
+オブジェクト指向の API
+がお好みなら、上の例は、このようになります。 Paradox
+データベースをオープンする
+
+<?php >
+  $fp = fopen("test.db", "r");
+  $pxdoc = new paradox_db();
+  if(!$pxdoc->open_fp($fp)) {
+    /* エラー処理 */
+  }
+  // ...
+  $pxdoc->close();
+  fclose($fp);
+?>
+
+
+
+
+
+|px_delete| |px_open_fp|
+
+vim:ft=help:

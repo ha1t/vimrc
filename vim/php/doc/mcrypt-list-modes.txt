@@ -1,0 +1,35 @@
+mcrypt_list_modes --
+サポートされる全てのモードの配列を取得する
+
+  array mcrypt_list_modes([string lib_dir])~
+
+|mcrypt_list_modes| は、 {lib_dir}
+にあるサポートされる全てのモードを
+取得するために使用されます。
+
+|mcrypt_list_modes| はオプションのパラメータと
+して全てのモードがある場所をとります。指定されない場合には、
+php.ini ディレクティブの mcrypt.modes_dir
+の値が使用されます。
+
+|mcrypt_list_modes| の例
+
+<?php >
+      $modes = mcrypt_list_modes();
+  
+      foreach ($modes as $mode) {
+          echo "$mode <br />\n";
+      }
+?>
+
+上の例は、デフォルトのモードディレクトリにあるサポートされる
+全てのアルゴリズムの一覧を出力します。ini
+ディレクティブの mcrypt.modes_dir
+でこれが設定されていない場合、mcrypt の
+デフォルトディレクトリ(/usr/local/lib/libmcrypt)が使用されます。
+
+
+
+
+
+vim:ft=help:

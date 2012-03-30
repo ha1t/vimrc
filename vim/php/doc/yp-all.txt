@@ -1,0 +1,20 @@
+yp_all --
+マップを走査し、各エントリ上で関数をコールする
+
+  void yp_all(string domain, string map, string callback)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+{domain} NIS ドメイン名。
+
+{map} NIS マップ。
+
+{callback}
+
+値を返しません。
+
+vim:ft=help:

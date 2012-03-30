@@ -1,0 +1,9 @@
+PDF_fill_stroke -- パスを塗りつぶし、パスの輪郭を描く
+
+  bool PDF_fill_stroke(resource p)~
+
+現在のパスの内部を塗りつぶし色で塗りつぶし、輪郭を
+輪郭色で描画します。 成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

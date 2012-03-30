@@ -1,0 +1,54 @@
+pg_update -- テーブルを更新する
+
+  mixed pg_update(resource connection, string table_name, array data, array condition [, int options])~
+
+|pg_update| は、data に関して condition
+にマッチするレコードを更新します。 options
+が指定された場合、指定したオプションとともに
+|pg_convert| が data に適用されます。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{table_name} 行を更新するテーブルの名前。
+
+{data} テーブル {table_name} のフィールド名をキーに、
+そしてマッチした対象を更新するデータを値にもつ配列。
+
+{condition} テーブル {table_name} のフィールド名をキーに、
+そして取得対象となる行にマッチするデータを値にもつ配列。
+
+{options} PGSQL_CONV_OPTS、 PGSQL_DML_NO_CONV、 PGSQL_DML_EXEC あるいは
+PGSQL_DML_STRING の組み合わせ。 {options} の一部に PGSQL_DML_STRING
+が含まれていた場合、 クエリ文字列が返されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 {options} に PGSQL_DML_STRING
+が渡された場合は文字列を返します。
+
+|pg_update| の例
+
+<?php >
+    $db = pg_connect('dbname=foo');
+    $data = array('field1'=>'AA', 'field2'=>'BB');
+    
+    // これは安全です。なぜなら $_POST は自動的に変換されるからです。
+    $res = pg_update($db, 'post_log', $_POST, $data);
+    if ($res) {
+        echo "データが更新されました: $res\n";
+    } else {
+        echo "ユーザが誤った入力を送信しました。\n";
+    }
+?>
+
+
+
+
+
+|pg_convert|
+
+vim:ft=help:

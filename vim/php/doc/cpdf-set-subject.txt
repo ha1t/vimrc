@@ -1,0 +1,17 @@
+cpdf_set_subject -- pdf ドキュメントの subject
+フィールドを設定する
+
+  bool cpdf_set_subject(int pdf_document, string subject)~
+
+PDF ドキュメントの {subject} を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{subject} ドキュメントの表題。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_title| |cpdf_set_creator| |cpdf_set_keywords|
+
+vim:ft=help:

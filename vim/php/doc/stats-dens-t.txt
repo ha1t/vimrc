@@ -1,0 +1,15 @@
+stats_dens_t -- 未ドキュメント化
+
+  float stats_dens_t(float x, float dfr)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{x}
+
+{dfr}
+
+
+
+vim:ft=help:

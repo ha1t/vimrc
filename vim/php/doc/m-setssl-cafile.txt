@@ -1,0 +1,16 @@
+m_setssl_cafile -- サーバ証明書を検証するための SSL CA
+(Certificate Authority) ファイルを設定する
+
+  int m_setssl_cafile(resource conn, string cafile)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{cafile}
+
+
+
+vim:ft=help:

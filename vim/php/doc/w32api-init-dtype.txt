@@ -1,0 +1,24 @@
+w32api_init_dtype -- データ型 typename
+のインスタンスを作成し、そこに渡された値を代入する
+
+  resource w32api_init_dtype(string typename, mixed value [, mixed ...])~
+
+この関数は、{typename}
+という型のデータのインスタンスを作成し、値を代入します。
+
+{typename} パラメータ {typename}
+は大文字小文字を区別します。
+
+{value} |w32api_deftype|
+で定義したのと同じ順番で値を指定する必要があります。
+
+{...}
+
+dynaparm リソースを返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

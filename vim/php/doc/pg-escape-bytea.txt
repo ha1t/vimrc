@@ -1,0 +1,61 @@
+pg_escape_bytea -- bytea
+フィールドに挿入するために文字列をエスケープする
+
+  string pg_escape_bytea([resource connection, string data])~
+
+|pg_escape_bytea| は、bytea 型のために文字列を
+エスケープし、エスケープした文字列を返します。
+
+bytea 型を SELECT した場合、PostgreSQL は '\' で 始まる 8
+進数のバイト値（例:
+\032）を返します。これをユーザが手動で
+コンバートすることを期待されています。
+
+この関数は PostgreSQL 7.2
+以降のバージョンを必要とします。PostgreSQL 7.2.0 および
+7.2.1 では、マルチバイトのサポートを有効にした場合は
+bytea の値をキャストする必要があります。例: INSERT INTO
+test_table (image) VALUES ('$image_escaped'::bytea); PostgreSQL 7.2.2
+以降ではキャストする必要はありません。
+クライアントとバックエンドの文字エンコーディングが一致しない場合は
+例外で、この場合はマルチバイトストリームエラーが発生します。この
+エラーを避けるためには bytea
+型へのキャストが必要になります。
+
+{connection} PostgreSQL データベース接続リソース。 {connection}
+が存在しない場合は、
+デフォルトの接続を使用します。デフォルトの接続は、
+|pg_connect| あるいは |pg_pconnect|
+で直近に作成されたものとなります。
+
+{data} bytea
+型のカラムに挿入するテキストまたはバイナリデータを含む
+文字列。
+
+エスケープされたデータを文字列で返します。
+
+バージョン 説明 5.2.0 {connection} が追加されました。
+
+|pg_escape_bytea| の例
+
+<?php >
+    // データベースに接続する
+    $dbconn = pg_connect('dbname=foo');
+    
+    // バイナリファイルを読み込む
+    $data = file_get_contents('image1.jpg');
+    
+    // バイナリデータをエスケープする
+    $escaped = pg_escape_bytea($data);
+    
+    // それをデータベースに挿入する
+    pg_query("INSERT INTO gallery (name, data) VALUES ('Pine trees', '{$escaped}')");
+?>
+
+
+
+
+
+|pg_unescape_bytea| |pg_escape_string|
+
+vim:ft=help:

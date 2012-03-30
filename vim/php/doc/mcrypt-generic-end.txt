@@ -1,0 +1,16 @@
+mcrypt_generic_end -- 暗号処理を終了する
+
+  bool mcrypt_generic_end(resource td)~
+
+この関数は非推奨です。かわりに |mcrypt_generic_deinit|
+を使用してください。 |mcrypt_module_close|
+とともに使用すると、
+複数バッファの開放によりクラッシュを引き起こすことがあります。
+
+この関数は、暗号化記述子(td)
+で指定した暗号化処理を終了します。
+この関数は全てのバッファをクリアし、使用した全てのモジュールを
+クローズします。エラーの場合に FALSE、成功時に TRUE
+を返します。
+
+vim:ft=help:

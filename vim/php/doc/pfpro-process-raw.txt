@@ -1,0 +1,70 @@
+pfpro_process_raw -- Payflow Pro
+により素のトランザクションを処理する
+
+  string pfpro_process_raw(string parameters [, string address [, int port [, int timeout [, string proxy_address [, int proxy_port [, string proxy_logon [, string proxy_password]]]]]]])~
+
+|pfpro_process_raw| は、生のトランザクション 文字列を Payflow
+Pro で処理します。実際には、
+これらのトランザクションのエンコーディング規則が非標準であるため、
+|pfpro_process| を代わりに使用するべきです。
+
+必要なパラメータおよびエンコーディング規約の詳細については、
+Payflow Pro Developers Guide を参照ください。代わりに
+|pfpro_process| を使用することを強く推奨します。
+
+{parameters}
+生のトランザクション要求を有する文字列です。
+
+{address} 接続するホストを指定します。デフォルトは
+test.signio.com
+です。実際のトランザクションを処理するには、 これを
+connect.signio.com に変更します。
+
+{port} 接続するポートを指定します。デフォルトは 443 で、
+これは標準の SSL のポート番号です。
+
+{timeout} タイムアウト秒数を指定します。デフォルトは 30
+秒です。
+このタイムアウトは、プロセッサへのリンクが確立されてからのものであることに注意しましょう。
+DNS
+やネットワークに問題がある場合、非常に長い時間がかかってしまうことがあります。
+
+{proxy_address} 必要に応じて、SSL
+プロキシのホスト名を指定します。
+
+{proxy_port} 必要に応じて、SSL
+プロキシのポート番号を指定します。
+
+{proxy_logon} 必要に応じて、SSL プロキシにログオンする際の
+ID を指定します。
+
+{proxy_password} 必要に応じて、SSL
+プロキシにログオンする際のパスワードを指定します。
+
+生のレスポンスを文字列で返します。
+
+Payflow Pro の例
+
+<?php >
+  pfpro_init();
+  
+  $response = pfpro_process_raw(
+  "USER=mylogin&amp;PWD[5]=m&ndy&PARTNER=VeriSign&TRXTYPE=S" .
+  "&TENDER=C&AMT=1.50&ACCT=4111111111111111&EXPDATE=0904");
+  
+  if (!$response) {
+    die("Couldn't establish link to Verisign.\n");
+  }
+  
+  echo "Verisign raw response was " . $response;
+  
+  pfpro_cleanup();
+?>
+
+
+
+
+
+|pfpro_process|
+
+vim:ft=help:

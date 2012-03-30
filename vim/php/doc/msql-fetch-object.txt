@@ -1,0 +1,56 @@
+msql_fetch_object -- 結果の行をオブジェクトとして取得する
+
+  object msql_fetch_object(resource result)~
+
+|msql_fetch_object| は、 |msql_fetch_array|
+に似ていますが、配列の代わりに
+オブジェクトを返すところだけが異なっています。遠まわしに言うと、
+オフセット値によってではなくフィールド名によってのみデータを
+アクセスすることができることを意味しています
+（数字は、プロパティ名として使用できません）。
+
+速度面でこの関数は |msql_fetch_array|
+と同等です。そして、ほぼ |msql_fetch_row|
+と同等の速度を有しています（その差は無視できるほどです）。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+得た行に対応するプロパティを有するオブジェクトを返します。
+もう行がない場合には FALSE を返します。
+
+|msql_fetch_object| の例
+
+<?php >
+  $con = msql_connect();
+  if (!$con) {
+      die('Server connection problem: ' . msql_error());
+  }
+  
+  if (!msql_select_db('test', $con)) {
+      die('Database connection problem: ' . msql_error());
+  }
+  
+  $result = msql_query('SELECT id, name FROM people', $con);
+  if (!$result) {
+      die('Query execution problem: ' . msql_error());
+  }
+  
+  while ($row = msql_fetch_object($result, MSQL_ASSOC)) {
+      echo $row->id . ': ' . $row->name . "\n";
+  }
+  
+  msql_free_result($result);
+?>
+
+
+
+
+
+バージョン 説明 4.3.11 および 5.0.4 NULL
+値を含むカラムからデータを取得する際のバグが修正されました。
+そのようなカラムは結果の配列に含まれていませんでした。
+
+|msql_fetch_array| |msql_fetch_row| |msql_data_seek| |msql_result|
+
+vim:ft=help:

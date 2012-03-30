@@ -1,0 +1,14 @@
+ncurses_panel_above -- パネルの上のパネルを返す
+
+  resource ncurses_panel_above(resource panel)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{panel}
+
+パネルが null
+の場合は、スタックの最下部のパネルを返します。
+
+vim:ft=help:

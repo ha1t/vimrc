@@ -1,0 +1,66 @@
+yaz_scan -- スキャンの準備をする
+
+  void yaz_scan(resource id, string type, string startterm [, array flags])~
+
+この関数は、指定した接続上で Z39.50
+スキャンリクエストの 準備をします。
+
+実際にスキャンリクエストをサーバへ送信して応答を受信するには、
+|yaz_wait| をコールする必要があります。 |yaz_wait|
+のコールが完了した後、応答を処理するために |yaz_error|
+および |yaz_scan_result| をコールします。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{type} 現時点では rpn 型のみがサポートされています。
+
+{startterm} スキャンを開始する項目の位置。
+
+開始項目の形式は、パラメータ {type} で与えられます。
+
+このパラメータの構文は、 |yaz_search| で説明した RPN
+クエリに似ています。 startterm は、ゼロ以上の @attr
+演算子の後に
+トークンがひとつだけ続く形式となります。
+
+{flags}
+オプションのパラメータで、スキャンリクエストの動作を制御する
+追加情報を指定します。現在、次の3つの添字が flags
+配列から 読み込まれます。
+number（リクエストされた語の数）、
+position（要求された語の位置）、
+stepSize（要求されたステップ数）
+
+値を返しません。
+
+タイトルをスキャンする PHP 関数
+
+<?php >
+  function scan_titles($id, $startterm) 
+  {
+    yaz_scan($id, "rpn", "@attr 1=4 " . $startterm);
+    yaz_wait();
+    $errno = yaz_errno($id);
+    if ($errno == 0) {
+      $ar = yaz_scan_result($id, &amp;$options);
+      echo 'Scan ok; ';
+      foreach ($options as $key => $val) {
+        echo "$key = $val &amp;nbsp;";
+      }
+      echo '<br /><table>';
+      while (list($key, list($k, $term, $tcount)) = each($ar)) {
+        if (empty($k)) continue;
+        echo "<tr><td>$term</td><td>$tcount</td></tr>";
+      }
+      echo '</table>';
+    } else {
+      echo "Scan failed. Error: " . yaz_error($id) . "<br />";
+    }
+  }
+?>
+
+
+
+
+
+vim:ft=help:

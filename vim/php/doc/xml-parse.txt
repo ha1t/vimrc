@@ -1,0 +1,29 @@
+xml_parse -- XML ドキュメントの処理を開始する
+
+  int xml_parse(resource parser, string data [, bool is_final])~
+
+|xml_parse| は XML ドキュメントを処理します。
+設定されているイベントのハンドラが、必要に応じてコールされます。
+
+{parser} 使用する XML パーサへのリファレンス。
+
+{data} 処理するデータ。ドキュメントは、 {is_final}
+パラメータが設定され、 最後のデータが処理され TRUE
+になるまで、新規のデータに関して 複数回 |xml_parse|
+をコールすることにより、
+部分毎で処理することが可能です。
+
+{is_final} TRUE が設定された場合、{data} は
+この処理の間に送られた最後のデータということになります。
+
+成功した場合に 1、失敗した場合に 0 を返します。
+
+処理が成功しなかった場合、エラー情報を
+|xml_get_error_code|, |xml_error_string|, |xml_get_current_line_number|,
+|xml_get_current_column_number| および |xml_get_current_byte_index|
+により取得可能です。
+
+エンティティのエラーが報告されるのは、ドキュメントの最後
+つまり {is_final} が TRUE に設定されている場合です。
+
+vim:ft=help:

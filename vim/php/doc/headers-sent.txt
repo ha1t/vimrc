@@ -1,0 +1,60 @@
+headers_sent --
+ヘッダが既に送信されているかどうかを調べる
+
+  bool headers_sent([string file [, int line]])~
+
+ヘッダがすでに送信されているかどうかを調べます。
+
+ヘッダブロックがいったん送信されてしまった後で |header|
+関数を使って新たなヘッダ行を送信することはできません。
+この関数を使うには、少なくとも HTTP
+ヘッダ関連のエラーを予防する必要があります。
+あるいは、出力バッファリング を使う方法もあります。
+
+{file} オプション引数の {file} と {line}
+がセットされている場合、 PHP
+のソースファイル名と出力が開始された行番号が、それぞれ
+{file} と {line} に格納されます。
+
+{line} 出力を開始した行番号。
+
+|headers_sent| は、HTTP ヘッダがまだ送信されていない場合に
+FALSE、 そうでないでない場合に TRUE を返します。
+
+バージョン 説明 4.3.0 オプションのパラメータ {file} と
+{line} が追加されました。
+
+|headers_sent| 関数の使用例
+
+<?php >
+  // ヘッダがまだ何も送信されていない場合に、送信します
+  if (!headers_sent()) {
+      header('Location: http://www.example.com/');
+      exit;
+  }
+  
+  // オプションのfileとlineパラメータの使用例（PHP4.3.0以降）
+  // $filename と $linenum が後で使用されていることに注目。
+  // これらの変数に事前に値を与えたりしてはいけません。
+  if (!headers_sent($filename, $linenum)) {
+      header('Location: http://www.example.com/');
+      exit;
+  
+  // おそらく、ここでエラー処理を行うでしょう。
+  } else {
+  
+      echo "$filename の $linenum 行目でヘッダがすでに送信されています。\n" .
+            "リダイレクトできません。代わりにこの <a " .
+            "href=\"http://www.example.com\">リンク</a> をクリックしてください。\n";
+      exit;
+  }
+?>
+
+
+
+
+
+|ob_start| |trigger_error| |headers_list|
+関連する詳細な情報については |header|
+
+vim:ft=help:

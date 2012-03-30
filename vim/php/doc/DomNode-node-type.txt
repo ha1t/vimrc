@@ -1,0 +1,28 @@
+DomNode->node_type -- ノードの型を返す
+
+  int DomNode->node_type()~
+
+ノードの型を返します。全ての取りうる型は、
+導入のページにある表に一覧されています。
+
+<?php >
+  include 'example.inc';
+  
+  $dom = domxml_open_mem($xmlstr);
+  
+  $chapter = $dom->document_element();
+  
+  // 章に含まれる要素を見てみよう
+  foreach($chapter->child_nodes() as $node) {
+    if ($node->node_type() == XML_ELEMENT_NODE) {
+      echo $node->node_name() . "\n";
+    }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  title
+  para
+
+vim:ft=help:

@@ -1,0 +1,18 @@
+sybase_field_seek -- フィールドオフセットを設定する
+
+  bool sybase_field_seek(resource result, int field_offset)~
+
+指定したフィールドオフセットに移動します。次にフィールドオフセットを指定しないで
+|sybase_fetch_field| をコールした場合、
+このフィールドが返されます。
+
+{result}
+
+{field_offset}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|sybase_fetch_field|
+
+vim:ft=help:

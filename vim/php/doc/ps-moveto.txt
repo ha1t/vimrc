@@ -1,0 +1,21 @@
+ps_moveto -- 現在位置を設定する
+
+  bool ps_moveto(resource psdoc, float x, float y)~
+
+現在位置を新しい座標に指定します。前回のパスが終了してからはじめて
+|ps_moveto| が呼ばれた場合、新しいパスを開始します。
+もしすでにパスが開始されているときに呼ばれた場合は、
+単に現在位置を設定し、サブパスを開始します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{x} 移動する位置の x 座標。
+
+{y} 移動する位置の y 座標。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_lineto|
+
+vim:ft=help:

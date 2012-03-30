@@ -1,0 +1,28 @@
+posix_getsid -- プロセスの現在の sid を得る
+
+  int posix_getsid(int pid)~
+
+プロセス {pid} のセッション ID を返します。
+プロセスのセッション ID
+とは、セッションリーダーのプロセスグループ ID
+のことです。
+
+{pid} プロセス ID。0
+を指定すると、現在のプロセスとみなされます。
+
+ID を表す整数値を返します。
+
+|posix_getsid| の使用例
+
+<?php >
+  $pid = posix_getpid();
+  echo posix_getsid($pid); //8805
+?>
+
+
+
+
+
+|posix_getpgid| |posix_setsid| POSIX man ページ GETSID(2)
+
+vim:ft=help:

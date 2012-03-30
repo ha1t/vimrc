@@ -1,0 +1,42 @@
+DOTNET -- DOTNET クラス
+
+DOTNET クラスにより、.Net アセンブリからクラスを生成して
+そのメソッドをコールしたりプロパティにアクセスしたりできるようになります。
+
+  string DOTNET::DOTNET(string assembly_name, string class_name [, int codepage])~
+
+DOTNET クラスのコンストラクタです。
+読み込むアセンブリ名を {assembly_name}
+で指定し、アセンブリから生成するクラスを {class_name}
+で指定します。unicode
+文字列の変換に使用するため、オプションの パラメータ
+{codepage} を設定することができます。
+コードページの詳細については クラスを 参照ください。
+
+返されるオブジェクトはオーバーロードされています。つまり、通常の
+クラスのような固定されたメソッドは存在しないということです。
+そのかわりに、プロパティやメソッドへのアクセスは COM
+を通じて DOTNET に渡されます。言い換えれば、.Net
+ランタイムが提供する 機能によって .Net オブジェクトが
+COM 連携用にマップされているという ことです。
+
+DOTNET オブジェクトが作成されると、PHP はそれを他の COM
+オブジェクトと同等のものとして扱い、同様の規則が適用されます。
+
+DOTNET の例
+
+<?php >
+   $stack = new DOTNET("mscorlib", "System.Collections.Stack");
+   $stack->Push(".Net");
+   $stack->Push("Hello ");
+   echo $stack->Pop() . $stack->Pop();
+?>
+
+
+
+
+
+この機能を使用するには、Web サーバに .Net ランタイムを
+インストールする必要があります。
+
+vim:ft=help:

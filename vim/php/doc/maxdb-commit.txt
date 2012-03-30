@@ -1,0 +1,87 @@
+maxdb->commit -- 現在のトランザクションをコミットする
+
+手続き型
+
+  bool maxdb_commit(resource link)~
+
+オブジェクト指向型 (メソッド)
+
+  bool commit(resource link)~
+
+{link} パラメータで指定したデータベース接続について、
+現在のトランザクションをコミットします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* 自動コミットを無効にします */
+  $maxdb->autocommit(FALSE);
+  
+  maxdb_report (MAXDB_REPORT_OFF);
+  $maxdb->query("DROP TABLE mycustomer");
+  maxdb_report (MAXDB_REPORT_ERROR);
+  
+  $maxdb->query("CREATE TABLE mycustomer LIKE hotel.customer");
+  
+  /* 何かの値を挿入します */
+  $maxdb->query("INSERT INTO mycustomer VALUES (3000,'Mrs','Jenny','Porter','10580','1340 N.Ash Street, #3')");
+  $maxdb->query("INSERT INTO mycustomer VALUES (3100,'Mr','Peter','Brown','48226','1001 34th Str., APT.3')");
+  
+  /* トランザクションをコミットします */
+  $maxdb->commit();
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (!$link) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* 自動コミットを無効にします */
+  maxdb_autocommit($link, FALSE);
+  
+  maxdb_report (MAXDB_REPORT_OFF);
+  maxdb_query($link,"DROP TABLE mycustomer");
+  maxdb_report (MAXDB_REPORT_ERROR);
+  
+  maxdb_query($link, "CREATE TABLE mycustomer LIKE hotel.customer");
+  
+  /* 何かの値を挿入します */
+  maxdb_query($link, "INSERT INTO mycustomer VALUES (3000,'Mrs','Jenny','Porter','10580','1340 N.Ash Street, #3')");
+  maxdb_query($link, "INSERT INTO mycustomer VALUES (3100,'Mr','Peter','Brown','48226','1001 34th Str., APT.3')");
+  
+  /* トランザクションをコミットします */
+  maxdb_commit($link);
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例は、なにも出力しません。
+
+|maxdb_autocommit| |maxdb_rollback|
+
+vim:ft=help:

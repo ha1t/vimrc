@@ -1,0 +1,5 @@
+wddx_deserialize -- wddx_unserialize のエイリアス
+
+この関数は次の関数のエイリアスです。 |wddx_unserialize|
+
+vim:ft=help:

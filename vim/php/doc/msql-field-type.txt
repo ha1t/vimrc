@@ -1,0 +1,17 @@
+msql_field_type -- フィールドの型を取得する
+
+  string msql_field_type(resource result, int field_offset)~
+
+|msql_field_type| は、指定したフィールドインデックスの
+型を取得します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset}
+は、1から始まります。
+
+フィールドの型。int、 char、real、ident、 null あるいは
+unknown のいずれか。 失敗した場合には FALSE を返します。
+
+vim:ft=help:

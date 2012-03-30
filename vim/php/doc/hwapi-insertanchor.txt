@@ -1,0 +1,23 @@
+hw_api->insertanchor --
+アンカー型の新しいオブジェクトを挿入する
+
+  hw_api_object insertanchor(array parameter)~
+
+この関数は |hwapi_insert| の短縮版です。
+アンカー型のオブジェクトを挿入し、必要な属性を設定します。
+
+{parameter} パラメータの配列には、必須要素 'object' および
+'documentIdentifier'、そしてオプションの要素
+'destinationIdentifier'、'parameter'、'hint' および 'attributeSelector'
+が含まれます。 'documentIdentifier'
+は、アンカーが挿入される文書を指定します。
+アンカーの対象が既に存在する場合は、それを
+'destinationIdentifier'
+に設定します。対象が存在しない場合は、
+後で挿入する予定のオブジェクトの名前を 'hint'
+に設定しなければなりません。
+オブジェクトが挿入された後に、アンカーの指し示す先は自動的に解決されます。
+
+
+
+vim:ft=help:

@@ -1,0 +1,31 @@
+SoapHeader->__construct() -- SoapHeader コンストラクタ
+
+新規 SoapHeader オブジェクトを生成します。
+
+{namespace} SOAP ヘッダ要素の名前空間
+
+{name} SOAP ヘッダ要素の名前
+
+{data} SOAP ヘッダの内容。PHP の値もしくは SoapVar
+オブジェクトです。
+
+{mustUnderstand} SOAP ヘッダ要素の mustUnderstand 属性の値
+
+{actor} SOAP ヘッダ要素の actor 属性の値
+
+いくつかの例
+
+<?php >
+  $client = new SoapClient(null, array('location' => "http://localhost/soap.php",
+                                       'uri'      => "http://test-uri/"));
+  $client->__soapCall("echoVoid", null, null,
+                  new SoapHeader('http://soapinterop.org/echoheader/',
+                                 'echoMeStringRequest',
+                                 'hello world'));
+?>
+
+
+
+
+
+vim:ft=help:

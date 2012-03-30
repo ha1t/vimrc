@@ -1,0 +1,22 @@
+openssl_x509_export_to_file --
+証明書をファイルにエクスポートする
+
+  bool openssl_x509_export_to_file(mixed x509, string outfilename [, bool notext])~
+
+|openssl_x509_export_to_file| は、 PEM エンコード形式の {x509}
+をファイル {outfilename} に保存します。
+
+{x509}
+
+{outfilename} 出力ファイルへのパス。
+
+{notext} オプションのパラメータ {notext}
+を設定すると、出力内容の冗長性が変化します。FALSE
+を指定すると、
+人間が読むための追加情報が出力に含まれるようになります。
+{notext} のデフォルト値は TRUE です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

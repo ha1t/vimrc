@@ -1,0 +1,355 @@
+stream_wrapper_register -- PHP のクラスとして実装された URL
+ラッパを登録する
+
+  bool stream_wrapper_register(string protocol, string classname)~
+
+|stream_wrapper_register| は、自分で作った
+プロトコルハンドラとストリームを実装し、それを |fopen|
+や |fread|
+といったファイルシステムの関数と利用することを可能にします。
+
+ラッパを実装するには、下記のようないくつかのメンバ関数を持った
+クラスを定義しなくてはなりません。もし、誰かがあなたの作った
+ストリームを |fopen| したとき、 PHP は {classname}
+のインスタンスを作り
+以後そのインスタンスと共にメソッドを呼び出そうとします。
+これらのメソッドは、下記に示したとおり、正確に実装されなければなりません。
+さもないと、定義されていない動作をします。
+
+PHP 5.0.0 より新たに、{classname} のインスタンス内の {context}
+プロパティが、 コンテキストリソース を参照する形で
+初期化されるようになります。なお、 この
+コンテキストリソースは、 |stream_context_get_options|
+によっても 取得することができます。
+もし、コンテキストがストリーム生成関数に対し渡されていない場合は、
+{context} の値は NULL にセットされます。
+
+|stream_wrapper_register| は、 {protocol}
+というハンドラが既にある場合、 FALSE を返します。
+
+  bool stream_open(string protocol, string classname, string path, string mode, int options, string opened_path)~
+
+このメソッドは、ストリームオブジェクトが生成された直後に呼び出されます。
+{path} には、|fopen| に 与えられ、データの取得元となる URL
+が入ります。 |parse_url| を使えば、この URL
+を解釈できます。
+
+{mode} は、ファイルを開く際に使われるモードです。 |fopen|
+で詳しく述べられているように、 この関数の側で、{mode}
+が要求された {path}
+に適切かどうかを調べなくてはなりません。
+
+{options} は、ストリーム API によってセットされる
+付加的なフラグです。この値は次に挙げた値のいずれかか、
+それらを二つ以上 OR 演算した値となります。 フラグ 説明
+STREAM_USE_PATH もし {path} が相対パスだった場合、 include_path
+で指定されたパス内を探索します。 STREAM_REPORT_ERRORS
+このフラグがセットされている場合は、ストリームのオープン時に
+ラッパ側で |trigger_error| 関数を使い、エラーを
+発生させる必要があります。逆に、このフラグがセットされていない場合は、
+ラッパ側でエラーを発生させてはいけません。
+
+もし {path} に対するストリームのオープンに成功し、
+STREAM_USE_PATH が {options} にセットされていた
+際には、{opened_path} に、実際に開かれた
+ファイルまたはリソースへの絶対パスをセットしなくてはなりません。
+
+もし要求されたリソースを正常に開けた場合、TRUE
+を、そうでなければ、 FALSE を返さなくてはなりません。
+
+  void stream_close(string protocol, string classname, string path, string mode, int options, string opened_path)~
+
+このメソッドは、|fclose|によってストリームが閉じられるときに呼び出されます。
+この時点で、カスタムストリームの中でロックされたか確保されたリソースを
+開放しなくてはなりません。
+
+  string stream_read(string protocol, string classname, string path, string mode, int options, string opened_path, int count)~
+
+このメソッドはカスタムストリームに対する |fread| または
+|fgets| に対応して呼び出されます。 {count}
+バイトを超えない長さのデータが返される
+ようにする必要があります。 {count}
+バイトよりも少ないデータしか準備できていない
+場合は、その時点にあるだけを返します。もし渡すべきデータがもうなければ、
+FALSE または空文字列を返してください。
+また、正常に読み込めた分だけ、ストリームの読み込み/書き出し操作における
+内部位置を更新しなくてはなりません。
+
+  int stream_write(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data)~
+
+このメソッドは、カスタムストリームに対する |fwrite|
+などの 書き出し動作に対応して呼び出されます。{data}
+には、
+カスタムストリームで使われている下層にあるストレージに書き出されるべき
+データが入っています。渡されたデータをすべて書き出せない場合は、
+書き出せるだけ書き出します。このとき、正常にデータを書き出せた場合は、
+その書き出せたバイト数を、書き出せなかった場合は 0
+を返さなくては なりません。
+また、正常に読み込めた分だけ、ストリームの読み込み/書き出し操作における
+内部位置を更新しなくてはなりません。
+
+  bool stream_eof(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data)~
+
+このメソッドは、ストリームに対する |feof| 関数の実行に
+対応して呼び出されます。
+もし、ストリームの読み込み/書き出し操作における内部位置が、
+ストリームの終端にある場合は、あるいは、もう読み込むべきデータがない
+場合は TRUE を、その他の場合には FALSE
+をそれぞれ返さなくては なりません。
+
+  int stream_tell(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data)~
+
+このメソッドは、ストリームに対する |ftell| 関数の
+実行に対応して呼び出されます。
+ストリームの読み込み/書き出し操作における内部位置を返します。
+
+  bool stream_seek(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence)~
+
+このメソッドは、ストリームに対する |fseek| 関数の
+実行に対応して呼び出されます。
+ストリームの読み込み/書き出し操作における内部位置を、
+{offset} パラメータと {whence}
+パラメータの値に従って更新しなければなりません。
+なお、これらの値の取り方については、|fseek|
+を参照ください。 正常に位置が更新できた場合には TRUE
+を、失敗した場合は FALSE を返します。
+
+  bool stream_flush(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence)~
+
+このメソッドは、ストリームに対する |fflush| 関数の
+実行に対応して呼び出されます。
+もしカスタムストリームがデータをキャッシュしていて、
+それをまだ下層にあるストレージへ記録していない場合は、
+このメソッドが呼ばれた時に、それを書き出します。
+もしキャッシュされたデータが正常に書き出された
+(あるいは、もう書くべきデータ がない) 場合は、TRUE
+を、もしくは、データを書き出すことができなかった
+場合は FALSE を返します。
+
+  array stream_stat(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence)~
+
+このメソッドは、ストリームに対する |fstat| 関数の
+実行に対応して呼び出されます。 |fstat|
+が返すのと同じような要素をもつ配列に、
+適切な値を入れて返さなくてはなりません。
+
+  bool unlink(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path)~
+
+このメソッドは、ラッパに関連付けられた URL
+のパスに対する |unlink|
+関数の実行に対応して呼び出されます。 {path}
+で指定されたパスにあるアイテムを
+削除しようと試みなければなりません。その時、削除に成功したら
+TRUE を、失敗したら FALSE を返してください。
+適切なエラーメッセージがユーザに返されるよう、ラッパ側で削除を
+サポートしない場合は、このメソッドを定義しないでください。
+
+ユーザ定義のラッパにおける unlink メソッドは、 PHP 5.0.0
+以前ではサポートされていません。
+
+  bool rename(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path, string path_from, string path_to)~
+
+このメソッドは、ラッパに関連付けられた URL
+のパスに対する |rename|
+関数の実行に対応して呼び出され、 {path_from}
+で指定されたパスにある項目を {path_to}
+にリネームすることを試みなければなりません。
+成功した場合に TRUE、失敗した場合に FALSE
+を返さなければなりません。
+適切なエラーメッセージが返されるよう、ラッパ側でリネームをサポートしない
+場合はこのメソッドを定義しないでください。
+
+ユーザ定義のラッパにおける rename メソッドは、 PHP 5.0.0
+以前ではサポートされていません。
+
+  bool mkdir(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path, string path_from, string path_to, string path, int mode, int options)~
+
+このメソッドは、ラッパに関連付けられた URL
+のパスに対する |mkdir| 関数の実行に対応して呼び出され、
+{path} で指定されたディレクトリの作成を
+試みなければなりません。 成功した場合に
+TRUE、失敗した場合に FALSE を返さなければなりません。
+適切なエラーメッセージが返されるよう、ラッパ側でディレクトリの作成を
+サポートしない場合はこのメソッドを定義しないでください。
+{options} でとりうる値には STREAM_REPORT_ERRORS および
+STREAM_MKDIR_RECURSIVE が含まれます。
+
+ユーザ定義のラッパにおける mkdir メソッドは、 PHP 5.0.0
+以前ではサポートされていません。
+
+  bool rmdir(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path, string path_from, string path_to, string path, int mode, int options, string path, int options)~
+
+このメソッドは、ラッパに関連付けられた URL
+のパスに対する |rmdir| 関数の実行に対応して呼び出され、
+{path} で指定されたディレクトリの削除を
+試みなければなりません。 成功した場合に
+TRUE、失敗した場合に FALSE を返さなければなりません。
+適切なエラーメッセージが返されるよう、ラッパ側でディレクトリの削除を
+サポートしない場合はこのメソッドを定義しないでください。
+{options} でとりうる値には STREAM_REPORT_ERRORS が含まれます。
+
+ユーザ定義のラッパにおける rmdir メソッドは、 PHP 5.0.0
+以前ではサポートされていません。
+
+  bool dir_opendir(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path, string path_from, string path_to, string path, int mode, int options, string path, int options, string path, int options)~
+
+このメソッドは、ディレクトリの内容を走査するために、
+ストリームオブジェクトが |opendir|によって
+生成されるその時に呼び出されます。 {path} は、|opendir| に
+渡された、このオブジェクトが走査すべき場所を示す URL
+を指定します。 このとき、|parse_url| を使えば、この URL を
+細分することができます。
+
+  array url_stat(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path, string path_from, string path_to, string path, int mode, int options, string path, int options, string path, int options, string path, int flags)~
+
+このメソッドは、ラッパに関連付けられた URL
+のパスに対する |stat| 関数の実行に対応して呼び出され、
+システムの関数が返す要素とできるだけ同じ内容を返さなければなりません。
+不明な、あるいは取得できない値には、妥当な値を設定しておくべきです
+（通常は 0 です）。
+
+{flags} には、ストリーム API によって設定された
+追加のフラグを保持します。以下のうちのひとつまたは複数を
+OR で結合した 値を保持します。 フラグ 説明
+STREAM_URL_STAT_LINK
+他のリソースへのリンク機能があるリソース（たとえば
+HTTP の Location: forward やファイルシステムのシンボリック
+リンクなど）。このフラグはリンクそのものについての情報のみを
+返し、リンクが指している先のリソースについては返しません。
+このフラグは |lstat|、 |is_link| あるいは |filetype|
+のコールへの応答として設定されます。 STREAM_URL_STAT_QUIET
+このフラグが設定されている場合、ラッパは一切エラーを
+報告してはいけません。このフラグが設定されていない場合は、
+パスを調べている間に発生したエラーについて
+|trigger_error| で報告する義務があります。
+
+  string dir_readdir(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path, string path_from, string path_to, string path, int mode, int options, string path, int options, string path, int options, string path, int flags)~
+
+このメソッドは、|readdir| 関数の呼び出しに
+対応して呼ばれます。|dir_opendir| メソッドにおいて
+指定された場所にあるファイルのリスト上の、次のファイル名を表す
+文字列を返さなくてはなりません。
+
+  bool dir_rewinddir(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path, string path_from, string path_to, string path, int mode, int options, string path, int options, string path, int options, string path, int flags)~
+
+このメソッドは、|rewinddir| 関数の呼び出しに
+対応して呼ばれます。このとき、|dir_readdir|
+メソッドにおいて変更された状態をリセットしなくてはなりません。
+つまり、このメソッドの呼び出しに続いて |dir_readdir| が
+呼ばれると、|dir_opendir| によって開かれた
+ファイルのリスト上の、最初のエントリを返すことになります。
+
+  bool dir_closedir(string protocol, string classname, string path, string mode, int options, string opened_path, int count, string data, int offset, int whence, string path, string path_from, string path_to, string path, int mode, int options, string path, int options, string path, int options, string path, int flags)~
+
+このメソッドは、|closedir| 関数の呼び出しに
+対応して呼ばれます。このとき、ディレクトリストリームの利用に際して
+確保されたりロックされたリソースを全て開放しなければなりません。
+
+下記の例は、var:// プロトコルハンドラを実装し、 |fread|
+などの標準のファイルシステム関数
+を利用して、指定されたグローバル変数に対するアクセスができるように
+するものです。 var:// プロトコルは、"var://foo"
+として与えられた URL に対応して、 $GLOBALS["foo"]
+からデータを読み込んだり、そこにデータを書き込んだり
+します。 グローバル変数を読み書きするストリーム
+
+<?php >
+  class VariableStream {
+      var $position;
+      var $varname;
+  
+      function stream_open($path, $mode, $options, &amp;$opened_path)
+      {
+          $url = parse_url($path);
+          $this->varname = $url["host"];
+          $this->position = 0;
+  
+          return true;
+      }
+  
+      function stream_read($count)
+      {
+          $ret = substr($GLOBALS[$this->varname], $this->position, $count);
+          $this->position += strlen($ret);
+          return $ret;
+      }
+  
+      function stream_write($data)
+      {
+          $left = substr($GLOBALS[$this->varname], 0, $this->position);
+          $right = substr($GLOBALS[$this->varname], $this->position + strlen($data));
+          $GLOBALS[$this->varname] = $left . $data . $right;
+          $this->position += strlen($data);
+          return strlen($data);
+      }
+  
+      function stream_tell()
+      {
+          return $this->position;
+      }
+  
+      function stream_eof()
+      {
+          return $this->position >= strlen($GLOBALS[$this->varname]);
+      }
+  
+      function stream_seek($offset, $whence)
+      {
+          switch ($whence) {
+              case SEEK_SET:
+                  if ($offset < strlen($GLOBALS[$this->varname]) &amp;& $offset >= 0) {
+                       $this->position = $offset;
+                       return true;
+                  } else {
+                       return false;
+                  }
+                  break;
+  
+              case SEEK_CUR:
+                  if ($offset >= 0) {
+                       $this->position += $offset;
+                       return true;
+                  } else {
+                       return false;
+                  }
+                  break;
+  
+              case SEEK_END:
+                  if (strlen($GLOBALS[$this->varname]) + $offset >= 0) {
+                       $this->position = strlen($GLOBALS[$this->varname]) + $offset;
+                       return true;
+                  } else {
+                       return false;
+                  }
+                  break;
+  
+              default:
+                  return false;
+          }
+      }
+  }
+  
+  stream_wrapper_register("var", "VariableStream")
+      or die("プロトコルの登録に失敗しました");
+  
+  $myvar = "";
+  
+  $fp = fopen("var://myvar", "r+");
+  
+  fwrite($fp, "line1\n");
+  fwrite($fp, "line2\n");
+  fwrite($fp, "line3\n");
+  
+  rewind($fp);
+  while (!feof($fp)) {
+      echo fgets($fp);
+  }
+  fclose($fp);
+  var_dump($myvar);
+?>
+
+
+
+
+
+vim:ft=help:

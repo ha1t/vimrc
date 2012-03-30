@@ -1,0 +1,32 @@
+aggregate_methods_by_regexp --
+正規表現を使用して選択したクラスメソッドを、
+動的にオブジェクトに集約する
+
+  void aggregate_methods_by_regexp(object object, string class_name, string regexp [, bool exclude])~
+
+クラスのメソッドを既存のオブジェクトに集約します。
+集約するメソッドを決定するために正規表現を使用します。
+
+クラスのコンストラクタ、およびアンダースコア文字 (_)
+で始まる名前の メソッド (プライベートとみなされます)
+は、常に対象となりません。
+
+{object}
+
+{class_name}
+
+{regexp}
+
+{exclude} オプションのパラメータ {exclude}
+で、正規表現にマッチするメソッドを集約する ({exclude} が
+FALSE の場合。これがデフォルトです)
+のかマッチしないメソッドを集約する ({exclude} が TRUE)
+のかを指定します。
+
+値を返しません。
+
+|aggregate| |aggregate_info| |aggregate_methods| |aggregate_methods_by_list|
+|aggregate_properties| |aggregate_properties_by_list|
+|aggregate_properties_by_regexp| |deaggregate|
+
+vim:ft=help:

@@ -1,0 +1,72 @@
+curl_setopt_array -- CURL 転送用の複数のオプションを設定する
+
+  bool curl_setopt_array(resource ch, array options)~
+
+cURL セッション用の複数のオプションを設定します。
+この関数が便利なのは大量の cURL
+オプションを設定する場合で、 何度も繰り返して
+|curl_setopt| をコールせずにすみます。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+{options}
+設定するオプションとその値を指定した配列。キーとして使用できるのは、
+有効な |curl_setopt| 定数か、
+その定数に対応する整数値だけです。
+
+すべてのオプションがうまく設定できた場合に TRUE
+を返します。
+うまく設定できないオプションがあった時点で即時に FALSE
+が返され、{options}
+配列に含まれるそれ以降のオプションは無視されます。
+
+新規に CURL セッションを初期化、ウェブページを取得する
+
+<?php >
+  // 新しい cURL リソースを作成します
+  $ch = curl_init();
+  
+  // URL その他のオプションを適切に設定します
+  $options = array(CURLOPT_URL => 'http://www.example.com/',
+                   CURLOPT_HEADER => false
+                  );
+  
+  curl_setopt_array($ch, $options);
+  
+  // URL の内容を取得し、ブラウザに渡します
+  curl_exec($ch);
+  
+  // cURL リソースを閉じ、システムリソースを開放します
+  curl_close($ch);
+?>
+
+
+
+
+
+PHP 5.1.4
+より前のバージョンでこの関数と同等の操作をするには、次のようにします。
+
+|curl_setopt_array| の独自実装
+
+<?php >
+  if (!function_exists('curl_setopt_array')) {
+     function curl_setopt_array(&amp;$ch, $curl_options)
+     {
+         foreach ($curl_options as $option => $value) {
+             if (!curl_setopt($ch, $option, $value)) {
+                 return false;
+             } 
+         }
+         return true;
+     }
+  }
+?>
+
+
+
+
+
+|curl_setopt|
+
+vim:ft=help:

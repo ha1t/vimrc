@@ -1,0 +1,126 @@
+session_set_save_handler --
+ユーザ定義のセッション保存関数を設定する
+
+  bool session_set_save_handler(callback open, callback close, callback read, callback write, callback destroy, callback gc)~
+
+|session_set_save_handler| は、セッションに
+関連するデータを保存および取得するために使用されるユーザ定義の
+セッション保存関数を設定します。この関数は、セッションデータを
+ローカルデータベースに保存する場合のように PHP
+セッションにより
+提供されるもの以外の保存方法を使用したい場合に有用です。
+
+{open}
+
+{close}
+
+{read} save ハンドラが期待通りに動作するように read
+関数は常に文字列を返す
+必要があります。データがない場合には、空の文字列を返してください。
+他のハンドラからの返り値は、論理式、すなわち成功した場合に
+TRUE、 失敗した場合に FALSE を返します。
+
+{write} "write"
+ハンドラは、出力ストリームが閉じてから実行されます。
+したがって、"write"
+ハンドラ内でデバッグ出力を行っても、
+それはブラウザに表示されません。
+デバッグ出力が必要なら、それをファイルに書き出すようにしましょう。
+
+{destroy}
+
+{gc}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|session_set_save_handler| の例
+以下の例では、デフォルトの保存 {files} に似た
+ファイルベースのセッション保存を行います。この例は、PHP
+がサポート
+する任意のデータベースエンジンを用いてデータベースへの保存を行う
+ように容易に拡張可能です。
+
+<?php >
+  function open($save_path, $session_name)
+  {
+    global $sess_save_path;
+  
+    $sess_save_path = $save_path;
+    return(true);
+  }
+  
+  function close()
+  {
+    return(true);
+  }
+  
+  function read($id)
+  {
+    global $sess_save_path;
+  
+    $sess_file = "$sess_save_path/sess_$id";
+    return (string) @file_get_contents($sess_file);
+  }
+  
+  function write($id, $sess_data)
+  {
+    global $sess_save_path;
+  
+    $sess_file = "$sess_save_path/sess_$id";
+    if ($fp = @fopen($sess_file, "w")) {
+      $return = fwrite($fp, $sess_data);
+      fclose($fp);
+      return $return;
+    } else {
+      return(false);
+    }
+  
+  }
+  
+  function destroy($id)
+  {
+    global $sess_save_path;
+  
+    $sess_file = "$sess_save_path/sess_$id";
+    return(@unlink($sess_file));
+  }
+  
+  function gc($maxlifetime)
+  {
+    global $sess_save_path;
+  
+    foreach (glob("$sess_save_path/sess_*") as $filename) {
+      if (filemtime($filename) + $maxlifetime < time()) {
+        @unlink($filename);
+      }
+    }
+    return true;
+  }
+  
+  session_set_save_handler("open", "close", "read", "write", "destroy", "gc");
+  
+  session_start();
+  
+  // セッションを通常通り使用します。
+?>
+
+
+
+PHP 5.0.5 以降、{write} ハンドラおよび {close}
+ハンドラはオブジェクトが破棄されたあとにコールされます。
+そのため、セッション内でデストラクタを使用可能ですが、
+ハンドラ内ではオブジェクトを使用できません。
+
+この「ニワトリが先かタマゴが先か」の問題を解決するために、
+デストラクタから |session_write_close| を
+コールすることが可能です。
+
+SAPI
+の種類によっては、スクリプトの終了時にセッションを閉じると
+現在の作業ディレクトリが変わってしまうことがあります。これを防ぐには、
+事前に |session_write_close| でセッションを閉じます。
+
+設定ディレクティブ session.save_handler
+
+vim:ft=help:

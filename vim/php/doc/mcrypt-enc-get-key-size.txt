@@ -1,0 +1,12 @@
+mcrypt_enc_get_key_size --
+オープンされたモードでサポートされる最大キー長を返す
+
+  int mcrypt_enc_get_key_size(resource td)~
+
+そのアルゴリズムでサポートされる最大キー長をバイト単位で返します。
+
+{td} 暗号化記述子。
+
+そのアルゴリズムでサポートされる最大キー長をバイト単位で返します。
+
+vim:ft=help:

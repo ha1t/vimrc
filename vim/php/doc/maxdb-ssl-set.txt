@@ -1,0 +1,16 @@
+maxdb->ssl_set -- SSL
+を使用したセキュアな接続を確立するために使用する
+
+手続き型
+
+  bool maxdb_ssl_set(resource link, string key, string cert, string ca, string capath, string cipher)~
+
+オブジェクト指向型 (メソッド)
+
+  bool ssl_set(resource link, string key, string cert, string ca, string capath, string cipher, string key, string cert, string ca, string capath, string cipher)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

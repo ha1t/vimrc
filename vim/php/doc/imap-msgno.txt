@@ -1,0 +1,17 @@
+imap_msgno -- 指定した UID のメッセージ番号を返す
+
+  int imap_msgno(resource imap_stream, int uid)~
+
+指定した {uid} のメッセージ番号を返します。
+
+この関数は、|imap_uid| の逆の動作となります。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{uid} メッセージの UID。
+
+指定した {uid} のメッセージ番号を返します。
+
+|imap_uid|
+
+vim:ft=help:

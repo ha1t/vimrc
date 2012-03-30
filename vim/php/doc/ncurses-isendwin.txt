@@ -1,0 +1,19 @@
+ncurses_isendwin -- Ncurses が endwin
+モードの場合、通常の画面出力が実行可能
+
+  bool ncurses_isendwin()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+ncurses が endwin モードであるかどうかを調べます。
+
+|ncurses_endwin| がコールされた後に 続けて |ncurses_wrefresh|
+がコールされていない場合に TRUE、それ以外の場合に FALSE
+を返します。
+
+|ncurses_endwin| |ncurses_wrefresh|
+
+vim:ft=help:

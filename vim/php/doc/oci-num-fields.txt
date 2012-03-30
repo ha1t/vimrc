@@ -1,0 +1,45 @@
+oci_num_fields -- ある文における結果のカラム数を返す
+
+  int oci_num_fields(resource statement)~
+
+指定した文 {statement} におけるカラムの数を返します。
+
+{statement} 有効な OCI ステートメント ID。
+
+カラムの数を表す整数値、あるいはエラー時に FALSE
+を返します。
+
+|oci_num_fields| の例
+
+<?php >
+  $conn = oci_connect("scott", "tiger");
+  $stmt = oci_parse($conn, "select * from emp");
+  
+  oci_execute($stmt);
+  
+  while (oci_fetch($stmt)) {
+      echo "\n";
+      $ncols = oci_num_fields($stmt);
+      for ($i = 1; $i <= $ncols; $i++) {
+          $column_name  = oci_field_name($stmt, $i);
+          $column_value = oci_result($stmt, $i);
+          echo $column_name . ': ' . $column_value . "\n";
+      }
+      echo "\n";
+  }
+  
+  oci_free_statement($stmt);
+  oci_close($conn);
+?>
+
+
+
+
+
+PHP バージョン 5.0.0 以前では、代わりに |ocinumcols|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_num_fields| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

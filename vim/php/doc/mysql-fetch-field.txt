@@ -1,0 +1,95 @@
+mysql_fetch_field --
+結果からカラム情報を取得し、オブジェクトとして返す
+
+  object mysql_fetch_field(resource result [, int field_offset])~
+
+フィールド情報を含むオブジェクトを返します。特定のクエリー結果の中の
+フィールドに関する情報を得るために使用可能です。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{field_offset}
+数字で表したフィールドの位置です。もし指定されなければ、
+まだこの関数で情報を取得していないフィールドのうち最初のものが
+選択されます。{field_offset} は、 0 からはじまります。
+
+フィールド情報を含むobjectを返します。オブジェクトの
+プロパティは次のとおりです。
+
+name - カラム名
+
+table - カラムが属しているテーブルの名前
+
+def - カラムのデフォルト値
+
+max_length - カラムの最大長
+
+not_null - カラムが NULL 値をとることができない場合 1
+
+primary_key - カラムが主キーであれば 1
+
+unique_key - カラムがユニークキーであれば 1
+
+multiple_key - カラムが非ユニークキーであれば 1
+
+numeric - カラムが数値(numeric)であれば 1
+
+blob - カラムがBLOBであれば 1
+
+type - カラムの型
+
+unsigned - カラムが符号無し(unsigned)であれば 1
+
+zerofill - カラムがゼロで埋められている(zero-filled)場合に 1
+
+|mysql_fetch_field| の例
+
+<?php >
+  $conn = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$conn) {
+      die('Could not connect: ' . mysql_error());
+  }
+  mysql_select_db('database');
+  $result = mysql_query('select * from table');
+  if (!$result) {
+      die('Query failed: ' . mysql_error());
+  }
+  /* カラムのメタデータを取得する */
+  $i = 0;
+  while ($i < mysql_num_fields($result)) {
+      echo "Information for column $i:<br />\n";
+      $meta = mysql_fetch_field($result, $i);
+      if (!$meta) {
+          echo "No information available<br />\n";
+      }
+      echo "<pre>
+  blob:         $meta->blob
+  max_length:   $meta->max_length
+  multiple_key: $meta->multiple_key
+  name:         $meta->name
+  not_null:     $meta->not_null
+  numeric:      $meta->numeric
+  primary_key:  $meta->primary_key
+  table:        $meta->table
+  type:         $meta->type
+  default:      $meta->def
+  unique_key:   $meta->unique_key
+  unsigned:     $meta->unsigned
+  zerofill:     $meta->zerofill
+  </pre>";
+      $i++;
+  }
+  mysql_free_result($result);
+?>
+
+
+
+
+
+この関数により返されるフィー ルド名は
+大文字小文字を区別 します。
+
+|mysql_field_seek|
+
+vim:ft=help:

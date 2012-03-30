@@ -1,0 +1,56 @@
+pg_fetch_row -- 数値添字の配列として行を得る
+
+  array pg_fetch_row(resource result [, int row])~
+
+|pg_fetch_row| は、指定した {result} リソースが指す結果から 1
+行分のデータを取得します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{row} 結果から取得する行の番号。行番号は 0
+から始まります。指定しなかった
+場合は、次の行が読み込まれます。
+
+個々の値を文字列として格納した配列を返します。配列の添字は
+0 から 始まります。データベースの NULL 値は NULL
+として返します。
+
+{row} が結果の行数より大きい場合・行が存在しない場合
+、そしてそれ以外のエラーが発生した場合は FALSE
+を返します。
+
+バージョン 説明 4.1.0 {row}
+パラメータがオプションとなりました。
+
+|pg_fetch_row| の例
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  $result = pg_query($conn, "SELECT author, email FROM authors");
+  if (!$result) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  while ($row = pg_fetch_row($result)) {
+    echo "Author: $row[0]  E-mail: $row[1]";
+    echo "<br />\n";
+  }
+?>
+
+
+
+
+
+|pg_query| |pg_fetch_array| |pg_fetch_object| |pg_fetch_result|
+
+vim:ft=help:

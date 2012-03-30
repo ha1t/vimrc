@@ -1,0 +1,37 @@
+variant_or -- 2 つの variant の論理和を計算する
+
+  mixed variant_or(mixed left, mixed right)~
+
+論理 OR 処理を行います。通常の OR
+操作とは少し違いがあることに注意しましょう。
+
+{left} 左オペランド。
+
+{right} 右オペランド。
+
+variant
+に関するすべての計算用関数と同様、この関数のパラメータには
+PHP のネイティブ型 (整数、文字列、浮動小数点数、boolean
+あるいは NULL) あるいは COM、VARIANT、DOTNET
+クラスのインスタンスが使用できます。 PHP
+のネイティブ型は、
+クラスのコンストラクタと同じ方法で variant
+に変換されます。 COM オブジェクトおよび DOTNET
+オブジェクトはデフォルトプロパティの値を持っており、
+これを variant の値として使用します。
+
+variant に関する計算関数は、COM
+ライブラリの同名の関数のラッパーです。
+これらの関数についての詳細な情報は、MSDN
+ライブラリでご確認ください。 PHP
+での関数名は微妙に異なります。たとえば、PHP での関数
+|variant_add| に対応する関数は、MSDN のドキュメントでは
+VarAdd() となります。
+
+Variant の OR 規則 {left} {right} 結果 TRUETRUETRUE TRUEFALSETRUE
+TRUENULLTRUE FALSETRUETRUE FALSEFALSEFALSE FALSENULLNULL NULLTRUETRUE
+NULLFALSENULL NULLNULLNULL
+
+|variant_and| |variant_xor|
+
+vim:ft=help:

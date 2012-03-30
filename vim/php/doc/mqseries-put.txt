@@ -1,0 +1,79 @@
+mqseries_put -- MQSeries MQPUT
+
+   mqseries_put(resource hConn, resource hObj, array md, array pmo, string message, resourceref compCode, resourceref reason)~
+
+The |mqseries_put| (MQPUT)
+は、メッセージをキューあるいは配送リストにおきます。
+キューあるいは配送リストを事前にオープンしておく必要があります。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{hObj} オブジェクトハンドル。
+
+このハンドルは、使用するオブジェクトを表します。
+
+{md} メッセージ記述子 (MQMD)。
+
+{pmo} Put メッセージのオプション (MQPMO)。
+
+{message} 実際にキューに置くメッセージ。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_put| の例
+
+<?php >
+  // キューマネージャへの接続をオープンします
+      mqseries_conn('WMQ1', $conn, $comp_code, $reason);
+  // これで、$conn がキューマネージャへの接続を指すようになります
+  
+  // testq キューへの接続をオープンします
+      mqseries_open(
+                  $conn,
+                  array('ObjectName' => 'TESTQ'),
+                  MQSERIES_MQOO_INPUT_AS_Q_DEF | MQSERIES_MQOO_FAIL_IF_QUIESCING | MQSERIES_MQOO_OUTPUT,
+                  $obj,
+                  $comp_code,
+                  $reason);
+  // これで、$obj はオブジェクト (TESTQ) を指すようになります
+  
+  // メッセージ記述子の配列を設定します。MQSeries のリファレンスマニュアルを参照ください
+      $md = 	array(
+                  'Version' => MQSERIES_MQMD_VERSION_1,
+                  'Expiry' => MQSERIES_MQEI_UNLIMITED,
+                  'Report' => MQSERIES_MQRO_NONE,
+                  'MsgType' => MQSERIES_MQMT_DATAGRAM,
+                  'Format' => MQSERIES_MQFMT_STRING,
+                  'Priority' => 1,
+                  'Persistence' => MQSERIES_MQPER_PERSISTENT);
+  
+  // Put メッセージのオプションを設定します
+      $pmo = array('Options' => MQSERIES_MQPMO_NEW_MSG_ID|MQSERIES_MQPMO_SYNCPOINT);
+      
+  // 'Ping' というメッセージをキューに置きます
+      mqseries_put($conn, $obj, $md, $pmo, 'Ping', $comp_code, $reason);
+  
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("put CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+      }
+  
+  // オブジェクトへの参照 $obj を閉じます
+      mqseries_close($conn, $obj, MQSERIES_MQCO_NONE, $comp_code, $reason);
+  
+  // キューマネージャとの接続を切断します
+      mqseries_disc($conn, $comp_code, $reason);
+?>
+
+
+
+
+
+|mqseries_conn| |mqseries_connx| |mqseries_open| |mqseries_get|
+
+vim:ft=help:

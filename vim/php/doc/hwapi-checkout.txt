@@ -1,0 +1,22 @@
+hw_api->checkout -- オブジェクトをチェックアウトする
+
+  bool checkout(array parameter)~
+
+この関数は、オブジェクトあるいはオブジェクト階層の全体をチェックアウトします。
+
+{parameter} パラメータ配列の中には、必須要素
+'objectIdentifier' およびオプションの要素
+'version'、'mode'、'objectQuery' が含まれます。 'mode'
+は以下の値のいずれかです。 HW_API_CHECKIN_NORMAL
+オブジェクトをチェックアウトします。
+オブジェクトは文書でなければなりません。
+
+HW_API_CHECKIN_RECURSIVE
+チェックアウトするオブジェクトがコレクションであった場合、
+もし子要素が文書であればそれらもすべて再帰的にチェックアウトされます。
+コレクションをチェックアウトしようとすると、エラーが発生することがあります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

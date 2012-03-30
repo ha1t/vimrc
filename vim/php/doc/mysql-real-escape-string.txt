@@ -1,0 +1,151 @@
+mysql_real_escape_string -- SQL
+文中で用いる文字列の特殊文字をエスケープする
+
+  string mysql_real_escape_string(string unescaped_string [, resource link_identifier])~
+
+現在の接続の文字セットで {unescaped_string}
+の特殊文字をエスケープし、 |mysql_query|
+で安全に利用できる形式に変換します。バイナリデータを挿入しようとしている場合、
+必ずこの関数を利用しなければなりません。
+
+|mysql_real_escape_string| は、MySQL のライブラリ関数
+mysql_real_escape_string をコールしています。
+これは以下の文字について先頭にバックスラッシュを付加します。
+\x00, \n, \r, \, ', " そして \x1a.
+
+データの安全性を確保するため、MySQL
+へクエリを送信する場合には
+（わずかな例外を除いて）常にこの関数を用いなければなりません。
+
+{unescaped_string} エスケープされる文字列。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合にエスケープ後の文字列、失敗した場合に
+FALSE を返します。
+
+単純な |mysql_real_escape_string| の例
+
+<?php >
+  // 接続
+  $link = mysql_connect('mysql_host', 'mysql_user', 'mysql_password')
+      OR die(mysql_error());
+  
+  // クエリ
+  $query = sprintf("SELECT * FROM users WHERE user='%s' AND password='%s'",
+              mysql_real_escape_string($user),
+              mysql_real_escape_string($password));
+?>
+
+
+
+
+
+SQL インジェクション攻撃の例
+
+<?php >
+  // データベース上のユーザに一致するかどうかを調べる
+  $query = "SELECT * FROM users WHERE user='{$_POST['username']}' AND password='{$_POST['password']}'";
+  mysql_query($query);
+  
+  // $_POST['password'] をチェックしなければ、このような例でユーザに望みどおりの情報を取得されてしまう
+  $_POST['username'] = 'aidan';
+  $_POST['password'] = "' OR ''='";
+  
+  // MySQL に送信されたクエリは、
+  echo $query;
+?>
+
+MySQL に送信されたクエリは次のとおり:
+
+  SELECT * FROM users WHERE user='aidan' AND password='' OR ''=''
+
+これでは、パスワードを知らなくても誰でもログインできてしまいます。
+
+
+
+
+
+"うまいやり方" のクエリ それぞれの変数に
+|mysql_real_escape_string| を適用し、 SQL
+インジェクションを防ぎます。この例では、
+データベースにクエリを送信する場合の "うまいやり方"
+を示します。これは、 マジッククオート
+の設定に依存しません。
+
+<?php >
+  if (isset($_POST['product_name']) &amp;& isset($_POST['product_description']) && isset($_POST['user_id'])) {
+      // 接続します
+  
+      $link = mysql_connect('mysql_host', 'mysql_user', 'mysql_password');
+  
+      if(!is_resource($link)) {
+  
+          echo "サーバへの接続に失敗しました\n";
+          // ... エラーを適切にログ出力します
+  
+      } else {
+          
+          // magic_quotes_gpc/magic_quotes_sybase が ON になっている場合に、その処理内容を元に戻します
+  
+          if(get_magic_quotes_gpc()) {
+              $product_name        = stripslashes($_POST['product_name']);
+              $product_description = stripslashes($_POST['product_description']);
+          } else {
+              $product_name        = $_POST['product_name'];
+              $product_description = $_POST['product_description'];
+          }
+  
+          // 安全なクエリを作成します
+          $query = sprintf("INSERT INTO products (`name`, `description`, `user_id`) VALUES ('%s', '%s', %d)",
+                      mysql_real_escape_string($product_name, $link),
+                      mysql_real_escape_string($product_description, $link),
+                      $_POST['user_id']);
+  
+          mysql_query($query, $link);
+  
+          if (mysql_affected_rows($link) > 0) {
+              echo "製品を追加しました\n";
+          }
+      }
+  } else {
+      echo "フォームの内容を適切に入力してください\n";
+  }
+?>
+
+これでクエリは正しく実行され、SQL
+インジェクション攻撃が機能しなくなります。
+
+
+
+
+
+|mysql_real_escape_string| を利用する前に、MySQL
+接続が確立されている必要があります。もし存在しなければ、
+E_WARNING レベルのエラーが生成され、FALSE
+が返されます。{link_identifier} が指定されなかった場合は、
+直近の MySQL 接続が用いられます。
+
+magic_quotes_gpc が有効な場合は、 まず最初に |stripslashes|
+を適用します。そうしないと、
+すでにエスケープされているデータに対してさらにエスケープ処理を
+してしまうことになります。
+
+この関数を用いてデータをエスケープしなければ、クエリは
+SQL インジェクション攻撃
+に対しての脆弱性を持ったものになります。
+
+|mysql_real_escape_string| は % や _ をエスケープしません。 MySQL
+では、これらの文字を LIKE, GRANT, または REVOKE
+とともに用いることで、 ワイルドカードを表現します。
+
+|mysql_client_encoding| |addslashes| |stripslashes| The magic_quotes_gpc
+ディレクティブ The magic_quotes_runtime ディレクティブ
+
+vim:ft=help:

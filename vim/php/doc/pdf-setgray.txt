@@ -1,0 +1,13 @@
+PDF_setgray -- 色をグレーに設定する [古い関数]
+
+  bool PDF_setgray(resource p, float g)~
+
+現在の塗りつぶしおよび輪郭描画色を 0 から 1
+までのグレー値に設定します。 成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+この関数は PDFlib バージョン 4
+で廃止されました。かわりに |PDF_setcolor|
+を使用してください。
+
+vim:ft=help:

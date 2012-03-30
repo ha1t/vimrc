@@ -1,0 +1,35 @@
+gnupg_decrypt -- 指定されたテキストを復号する
+
+  string gnupg_decrypt(resource identifier, string text)~
+
+事前に gnupg_adddecryptkey
+で設定されたキーを使用し、指定されたテキストを復号します。
+
+成功した場合、この関数は復号されたテキストを返します。
+失敗した場合、この関数は FALSE を返します。
+
+手続き型の |gnupg_decrypt| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_adddecryptkey($res,"8660281B6051D071D94B5B230549F9DC851566DC","test");
+  $plain = gnupg_decrypt($res,$encrypted_text);
+  echo $plain;
+?>
+
+
+
+オブジェクト指向の |gnupg_encrypt| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> adddecryptkey("8660281B6051D071D94B5B230549F9DC851566DC","test");
+  $plain = $gpg -> decrypt($encrypted_text);
+  echo $plain;
+?>
+
+
+
+
+
+vim:ft=help:

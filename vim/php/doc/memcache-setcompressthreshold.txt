@@ -1,0 +1,43 @@
+Memcache::setCompressThreshold --
+大きな値に対する自動圧縮処理を有効にする
+
+  bool Memcache::setCompressThreshold(int threshold [, float min_savings])~
+
+|Memcache::setCompressThreshold| は、
+大きな値に対して自動圧縮処理を有効にします。
+|memcache_set_compress_threshold|
+関数を使用することも可能です。
+
+この関数は、Memcache バージョン 2.0.0 で追加されました。
+
+{threshold}
+自動圧縮を試みる値の長さの最小値を指定します。
+
+{min_saving}
+値を圧縮する際の、最小の圧縮率を指定します。 値は 0
+から 1 までの間で指定する必要があります。
+デフォルト値は 0.2 で、最低 20% の圧縮を指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Memcache::setCompressThreshold| の例
+
+<?php >
+  /* オブジェクト指向の API */
+  
+  $memcache_obj = new Memcache;
+  $memcache_obj->addServer('memcache_host', 11211);
+  $memcache_obj->setCompressThreshold(20000, 0.2);
+  
+  /* 手続き型の API */
+  
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  memcache_set_compress_threshold($memcache_obj, 20000, 0.2);
+?>
+
+
+
+
+
+vim:ft=help:

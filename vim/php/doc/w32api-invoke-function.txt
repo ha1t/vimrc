@@ -1,0 +1,26 @@
+w32api_invoke_function --
+関数名の後ろに指定された引数を指定し、関数 funcname
+を実行する
+
+  mixed w32api_invoke_function(string funcname, mixed argument [, mixed ...])~
+
+|w32api_invoke_function| は、 {funcname}
+という名前の事前に登録された関数を探し、
+指定したパラメータを渡します。
+
+{funcname} 関数の名前。
+
+{argument} 引数の型は PHP 型のいずれかか、必要に応じて
+|w32api_deftype| で定義された型となります。
+
+{...}
+
+返り値の型は、その関数を登録した際に定義したもので、
+値はその関数が返す値そのものとなります。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

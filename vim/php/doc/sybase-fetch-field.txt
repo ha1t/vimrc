@@ -1,0 +1,33 @@
+sybase_fetch_field -- 結果からフィールド情報を取得する
+
+  object sybase_fetch_field(resource result [, int field_offset])~
+
+|sybase_fetch_field| は、あるクエリーの結果において、
+フィールドに関する情報を得るために使用します。
+
+{result}
+
+{field_offset} フィールドオフセットが指定されない場合、
+|sybase_fetch_field|
+によりまだ取り込まれていない次のフィールドが取り込まれます。
+
+フィールド情報を含むオブジェクトを返します。
+
+オブジェクトのプロパティを以下に示します。
+
+name -
+カラム名。そのカラムがある関数の結果である場合、
+このプロパティは、computed#N
+にセットされます。ただし、#N はシリアルナンバーです。
+
+column_source - そのカラムが取り出されたテーブル
+
+max_length - カラムの最大長
+
+numeric - そのカラムが数値である場合に 1
+
+type - カラムのデータ型
+
+|sybase_field_seek|
+
+vim:ft=help:

@@ -1,0 +1,35 @@
+iconv -- 文字列を指定した文字エンコーディングに変換する
+
+  string iconv(string in_charset, string out_charset, string str)~
+
+文字列 {str} の文字セットを {in_charset} から {out_charset}
+に変換します。
+
+{in_charset} 入力文字セット。
+
+{out_charset} 出力文字セット。
+
+文字列 //TRANSLIT を {out_charset}
+に追加すると、翻字機能が有効になります。これは、指定された文字集合で
+表せない文字を、見た目の似ている別の文字に置き換える機能です。
+文字列 //IGNORE を追加すると、指定された文字集合で
+表せない文字は黙って切り捨てられます。
+それ以外の場合は、{str} の中に変換できない文字が
+出現した時点で変換が打ち切られます。
+
+{str} 変換する文字列。
+
+変換された文字列、あるいは失敗した場合に FALSE
+を返します。
+
+|iconv| の例
+
+<?php >
+  echo iconv("ISO-8859-1", "UTF-8", "This is a test.");
+?>
+
+
+
+
+
+vim:ft=help:

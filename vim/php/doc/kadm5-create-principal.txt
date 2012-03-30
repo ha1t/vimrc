@@ -1,0 +1,44 @@
+kadm5_create_principal -- 指定したパラメータで、kerberos
+のプリンシパルを作成する
+
+  bool kadm5_create_principal(resource handle, string principal [, string password [, array options]])~
+
+指定した {password} で {principal} を作成します。
+
+{handle} KADM5 ハンドル。
+
+{principal} プリンシパル。
+
+{password} {password} を指定しなかったり NULL
+を指定した場合は、ランダムなキーが生成されます。
+
+{options} 配列 {options} にオプションのパラメータを
+指定することができます。指定可能なオプションは以下のとおりです。
+KADM5_PRINC_EXPIRE_TIME, KADM5_PW_EXPIRATION, KADM5_ATTRIBUTES,
+KADM5_MAX_LIFE, KADM5_KVNO, KADM5_POLICY, KADM5_CLEARPOLICY, KADM5_MAX_RLIFE.
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+プリンシパルを作成する例
+
+<?php >
+  $handle = kadm5_init_with_password("afs-1", "GONICUS.LOCAL", "admin/admin", "password");
+  
+  $attributes = KRB5_KDB_REQUIRES_PRE_AUTH | KRB5_KDB_DISALLOW_PROXIABLE;
+  $options = array(KADM5_PRINC_EXPIRE_TIME => 0,
+                   KADM5_POLICY => "default",
+                   KADM5_ATTRIBUTES => $attributes);
+  
+  kadm5_create_principal($handle, "burbach@GONICUS.LOCAL", "password", $options);
+  
+  kadm5_destroy($handle);
+?>
+
+
+
+
+
+|kadm5_modify_principal| |kadm5_delete_principal|
+
+vim:ft=help:

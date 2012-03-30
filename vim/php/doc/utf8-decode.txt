@@ -1,0 +1,17 @@
+utf8_decode -- UTF-8 エンコードされた ISO-8859-1
+文字列をシングルバイトの ISO-8859-1 に変換する
+
+  string utf8_decode(string data)~
+
+この関数は、{data} が UTF-8
+エンコードされているものとみなして ISO-8859-1
+に変換します。
+
+{data} UTF-8 エンコードされた文字列。
+
+{data} を ISO-8859-1 に変換した結果を返します。
+
+UTF-8 エンコーディングについての説明は |utf8_encode|
+を参照ください。
+
+vim:ft=help:

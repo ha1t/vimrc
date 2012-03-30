@@ -1,0 +1,9 @@
+tidy_node->get_attr -- 指定された属性 ID を持つ属性を返す
+
+  tidy_attr tidy_node->get_attr(int attrib_id)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

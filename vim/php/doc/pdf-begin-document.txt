@@ -1,0 +1,8 @@
+PDF_begin_document -- 新しい PDF ファイルを作成する
+
+  int PDF_begin_document(resource pdfdoc, string filename, string optlist)~
+
+さまざまなオプションをもとにして、新しい PDF
+ファイルを作成します。
+
+vim:ft=help:

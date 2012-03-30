@@ -1,0 +1,16 @@
+bzerrstr -- bzip2 エラー文字列を返す
+
+  string bzerrstr(resource bz)~
+
+与えられたファイルポインタから返された bzip2
+エラーのエラーの文字列を返します。
+
+{bz} ファイルポインタ。これは有効である必要があり、
+|bzopen| によりオープンされたファイルを指してい
+る必要があります。
+
+エラーメッセージを含む文字列を返します。
+
+|bzerrno| |bzerror|
+
+vim:ft=help:

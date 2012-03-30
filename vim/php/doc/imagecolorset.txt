@@ -1,0 +1,27 @@
+imagecolorset --
+指定したパレットインデックスの色を設定する
+
+  void imagecolorset(resource image, int index, int red, int green, int blue)~
+
+この関数は、パレット上で指定したインデックス index を
+指定した色 color に設定します。
+実際にぬりつぶしを実行するオーバーヘッドなしに
+パレット上の色を使用する画像をぬりつぶしたような効果を得る
+ことができ、便利です。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{index} パレットのインデックス。
+
+{red} 赤コンポーネントの値。
+
+{green} 緑コンポーネントの値。
+
+{blue} 青コンポーネントの値。
+
+値を返しません。
+
+|imagecolorat|
+
+vim:ft=help:

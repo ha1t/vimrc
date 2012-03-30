@@ -1,0 +1,16 @@
+SwishResults->getRemovedStopwords --
+クエリから削除したストップワードの配列を取得する
+
+  array SwishResults->getRemovedStopwords(string index_name)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{index_name} Swish
+オブジェクトの初期化に使用するインデックスの名前。
+
+クエリから取り除かれたストップワードの配列を返します。
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+ircg_nickname_escape -- ニックネームの中の特別な文字が IRC
+互換となるようにエンコードする
+
+  string ircg_nickname_escape(string nick)~
+
+関数 |ircg_nickname_escape| は、 {nick}
+で指定したニックネームを IRC
+互換形式にエンコードした結果を返します。
+
+{nick}
+
+IRC 互換形式のニックネームを返します。
+
+|ircg_nickname_unescape|
+
+vim:ft=help:

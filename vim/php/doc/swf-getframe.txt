@@ -1,0 +1,11 @@
+swf_getframe -- 現在のフレームのフレーム番号を得る
+
+  int swf_getframe()~
+
+関数 |swf_getframe| は、現在のフレームの 番号を得ます。
+
+現在のフレーム番号を整数値で返します。
+
+|swf_setframe|
+
+vim:ft=help:

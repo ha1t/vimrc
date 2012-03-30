@@ -1,0 +1,84 @@
+xslt_set_error_handler -- XSLT
+プロセッサ用のエラーハンドラを設定する
+
+  void xslt_set_error_handler(resource xh, mixed handler)~
+
+{xh} で指定した XSLT
+プロセッサ用にエラーハンドラ関数を設定します。
+この関数は、XSLT
+変換においてエラーが発生する度にコールされます
+(この関数は通知のためにもコールされます)。
+
+{xh} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+  void (resource xh, mixed handler, resource xh, int error_level, int error_code, array messages)~
+
+{handler} ユーザ関数は 4
+つのパラメータを受け取る必要があります: XSLT
+プロセッサ、エラーレベル、エラーコードとメッセージの配列です。
+その関数は次のように表すことができます。
+
+値を返しません。
+
+|xslt_set_error_handler| の例
+
+<?php >
+  // 独自の XSLT エラーハンドラ
+  function xslt_error_handler($handler, $errno, $level, $info)
+  {
+    // 差し当たり、引数を見るだけにする
+    var_dump(func_get_args());
+  }
+  
+  // XML の内容 :
+  $xml='<?xml version="1.0"?>
+  <para>
+   oops, I misspelled the closing tag
+  </pata>';
+  
+  // XSL の内容 :
+  $xsl='<?xml version="1.0"?>
+  <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+     <strong><xsl:value-of select="para"/></strong>
+  </xsl:template>
+  </xsl:stylesheet>';
+  
+  $xh = xslt_create();
+  
+  xslt_set_error_handler($xh, "xslt_error_handler");
+  
+  echo xslt_process($xh, 'arg:/_xml', 'arg:/_xsl',
+                    NULL, array("/_xml" => $xml, "/_xsl" => $xsl));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  array(4) {
+    [0]=>
+    resource(1) of type (XSLT Processor)
+    [1]=>
+    int(3)
+    [2]=>
+    int(0)
+    [3]=>
+    array(6) {
+      ["msgtype"]=>
+      string(5) "error"
+      ["code"]=>
+      string(1) "2"
+      ["module"]=>
+      string(9) "Sablotron"
+      ["URI"]=>
+      string(9) "arg:/_xml"
+      ["line"]=>
+      string(1) "4"
+      ["msg"]=>
+      string(34) "XML parser error 7: mismatched tag"
+    }
+  }
+
+オブジェクトメソッドをハンドラとして使用したい場合は
+|xslt_set_object|
+
+vim:ft=help:

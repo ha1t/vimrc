@@ -1,0 +1,11 @@
+hw_insertanchors -- テキストにアンカーのみを挿入する
+
+  bool hw_insertanchors(int hwdoc, array anchorecs, array dest [, array urlprefixes])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

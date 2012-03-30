@@ -1,0 +1,30 @@
+imap_timeout -- imap タイムアウトを設定あるいは取得する
+
+  mixed imap_timeout(int timeout_type [, int timeout])~
+
+imap タイムアウトを設定あるいは取得します。
+
+{timeout_type} IMAP_OPENTIMEOUT、 IMAP_READTIMEOUT、 IMAP_WRITETIMEOUT
+あるいは IMAP_CLOSETIMEOUT のいずれか。
+
+{timeout} タイムアウト秒数。
+
+{timeout} が設定されている場合は、
+この関数は成功した場合に TRUE、失敗した場合に FALSE
+を返します。
+
+{timeout} が省略されていたり、-1
+と評価される値が設定されている場合は、
+現在のタイムアウト値 {timeout_type} を整数で返します。
+
+|imap_timeout| の例
+
+<?php >
+  echo "現在の読み込みタイムアウト秒数は " . imap_timeout(IMAP_READTIMEOUT) . " です\n";
+?>
+
+
+
+
+
+vim:ft=help:

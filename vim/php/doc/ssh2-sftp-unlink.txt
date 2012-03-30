@@ -1,0 +1,30 @@
+ssh2_sftp_unlink -- ファイルを削除する
+
+  bool ssh2_sftp_unlink(resource sftp, string filename)~
+
+リモートファイルシステム上のファイルを削除します。
+
+{sftp} |ssh2_sftp| でオープンした SSH2 SFTP リソース。
+
+{filename}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+ファイルの削除
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  $sftp = ssh2_sftp($connection);
+  
+  ssh2_sftp_unlink($sftp, '/home/username/stale_file');
+?>
+
+
+
+
+
+|unlink|
+
+vim:ft=help:

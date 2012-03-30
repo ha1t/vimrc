@@ -1,0 +1,14 @@
+mcrypt_ecb -- 非推奨: ECB モードでデータを暗号化/復号する
+
+  string mcrypt_ecb(int cipher, string key, string data, int mode)~
+
+  string mcrypt_ecb(int cipher, string key, string data, int mode, string cipher, string key, string data, int mode [, string iv])~
+
+最初のプロトタイプは libmcrypt 2.2.x とリンクした場合、2
+番目は libmcrypt 2.4.x とリンクした場合です。 {mode} は
+MCRYPT_ENCRYPT あるいは MCRYPT_DECRYPT のいずれかとなります。
+
+この関数は非推奨であり、使用すべきではありません。代替機能については
+|mcrypt_generic| および |mdecrypt_generic| を参照ください。
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+is_nan -- 値が数値でないかどうかを判定する
+
+  bool is_nan(float val)~
+
+{val} が '非数値 (not a number)'
+であるかどうかを調べます。たとえば acos(1.01)
+の結果などがこれにあたります。
+
+{val} 調べる値。
+
+{val} が '非数値 (not a number)' の場合に
+TRUE、そうでない場合に FALSE を返します。
+
+|is_finite| |is_infinite|
+
+vim:ft=help:

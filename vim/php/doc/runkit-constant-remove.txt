@@ -1,0 +1,14 @@
+runkit_constant_remove -- 定義済みの定数を削除する
+
+  bool runkit_constant_remove(string constname)~
+
+{constname}
+削除する定数名。グローバル定数を表す文字列、あるいは
+classname::constname 形式でクラス定数を示す。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|define| |runkit_constant_add| |runkit_constant_redefine|
+
+vim:ft=help:

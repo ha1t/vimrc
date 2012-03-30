@@ -1,0 +1,16 @@
+ncurses_whline -- 指定した属性文字を用いて、最大 n
+文字分の長さの水平線を ウィンドウに描画する
+
+  int ncurses_whline(resource window, int charattr, int n)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{charattr}
+
+{n}
+
+vim:ft=help:

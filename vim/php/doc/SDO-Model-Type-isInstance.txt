@@ -1,0 +1,23 @@
+SDO_Model_Type::isInstance -- SDO_DataObject が、この SDO_Model_Type
+のインスタンスであるかどうかを調べる
+
+  bool SDO_Model_Type::isInstance(SDO_DataObject data_object)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+SDO_DataObject が、この SDO_Model_Type
+のインスタンスであるかどうかを 調べます。 指定した
+SDO_DataObject が、この SDO_Model_Type
+あるいはその派生クラスのインスタンスである場合に
+TRUE、それ以外の場合に FALSE を返します。
+
+{data_object} 調べようとしている SDO_DataObject。
+
+指定した SDO_DataObject が、この SDO_Model_Type
+あるいはその派生クラスのインスタンスである場合に
+TRUE、それ以外の場合に FALSE を返します。
+
+vim:ft=help:

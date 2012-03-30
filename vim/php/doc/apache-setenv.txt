@@ -1,0 +1,38 @@
+apache_setenv -- Apacheサブプロセスの環境変数を設定する
+
+  bool apache_setenv(string variable, string value [, bool walk_to_top])~
+
+|apache_setenv| は {variable} で指定された Apache
+環境変数の値を設定します。
+
+Apache 環境変数を設定しても、対応する $_SERVER
+の値は変更されません。
+
+{variable} 設定する環境変数
+
+{value} {variable} の新しい値
+
+{walk_to_top} 全ての Apache
+レイヤに対して有効なトップレベルの変数を設定するかどうか
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|apache_setenv| を使った Apache 環境変数の設定
+
+<?php >
+  apache_setenv("EXAMPLE_VAR", "Example Value");
+?>
+
+
+
+
+
+|apache_setenv| は、分割されたページや PHP
+スクリプトによって取り込まれた Server Side Includes (.shtml)
+に渡すための変数を設定する場合、 |apache_getenv|
+と対にして使用することができます。
+
+|apache_getenv|
+
+vim:ft=help:

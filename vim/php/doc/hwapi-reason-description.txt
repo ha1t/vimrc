@@ -1,0 +1,9 @@
+hw_api_reason->description -- 原因の説明を返す
+
+  string description()~
+
+原因の説明を返します。
+
+原因の説明を返します。
+
+vim:ft=help:

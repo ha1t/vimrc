@@ -1,0 +1,18 @@
+mailparse_msg_parse -- データをパースし、バッファに追加する
+
+  bool mailparse_msg_parse(resource mimemail, string data)~
+
+データを順にパースし、指定した mime
+メールリソースに格納します。
+
+この関数により、ファイル全体を読み込んでからパースするのではなく
+読み込んだ部分から順に処理していくことができます。
+
+{mimemail} 有効な MIME リソース。
+
+{data}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

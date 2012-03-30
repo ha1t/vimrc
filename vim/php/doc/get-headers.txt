@@ -1,0 +1,63 @@
+get_headers -- HTTP リクエストに対するレスポンス内で
+サーバによって送出された全てのヘッダを取得する
+
+  array get_headers(string url [, int format])~
+
+|get_headers| は、HTTP リクエストに対するレスポンス内で
+サーバによって送出されたヘッダの配列を返します。
+
+{url} 対象となる URL。
+
+{format} オプションの {format} パラメータが 1
+にセットされた場合、|get_headers|
+はレスポンスをパースし、配列のキーをセットします。
+
+数値添字配列あるいは連想配列でヘッダを返します。
+失敗した場合は FALSE を返します。
+
+バージョン 説明 5.1.3
+この関数はデフォルトのストリームコンテキストを使用します。
+これは、|stream_context_get_default|
+関数を使用して設定/変更することが可能です。
+
+|get_headers| の例
+
+<?php >
+  $url = 'http://www.example.com';
+  
+  print_r(get_headers($url));
+  
+  print_r(get_headers($url, 1));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => HTTP/1.1 200 OK
+      [1] => Date: Sat, 29 May 2004 12:28:13 GMT
+      [2] => Server: Apache/1.3.27 (Unix)  (Red-Hat/Linux)
+      [3] => Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+      [4] => ETag: "3f80f-1b6-3e1cb03b"
+      [5] => Accept-Ranges: bytes
+      [6] => Content-Length: 438
+      [7] => Connection: close
+      [8] => Content-Type: text/html
+  )
+  
+  Array
+  (
+      [0] => HTTP/1.1 200 OK
+      [Date] => Sat, 29 May 2004 12:28:14 GMT
+      [Server] => Apache/1.3.27 (Unix)  (Red-Hat/Linux)
+      [Last-Modified] => Wed, 08 Jan 2003 23:11:55 GMT
+      [ETag] => "3f80f-1b6-3e1cb03b"
+      [Accept-Ranges] => bytes
+      [Content-Length] => 438
+      [Connection] => close
+      [Content-Type] => text/html
+  )
+
+
+
+vim:ft=help:

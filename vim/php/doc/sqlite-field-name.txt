@@ -1,0 +1,27 @@
+SQLiteUnbuffered->fieldName -- 特定のフィールドの名前を返す
+
+  string sqlite_field_name(resource result, int field_index)~
+
+Object oriented style (method):
+
+  string fieldName(resource result, int field_index, int field_index)~
+
+  string fieldName(resource result, int field_index, int field_index, int field_index)~
+
+Given the ordinal column number, {field_index}, |sqlite_field_name| returns
+the name of that field in the result set {result}.
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{field_index} 結果セットにおけるオリジナルのカラム番号
+
+与えられたオリジナルのカラム番号での SQLite
+結果セット中のフィールド名を返します。エラーの場合は、FALSE
+を返します。
+
+SQLITE_ASSOC および SQLITE_BOTH で
+返されるカラム名は、設定オプション sqlite.assoc_case
+の値に基づき、 大文字小文字が変換されます。
+
+vim:ft=help:

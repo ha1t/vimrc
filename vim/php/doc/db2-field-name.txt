@@ -1,0 +1,21 @@
+db2_field_name -- 結果セット内のカラムの名前を返す
+
+  string db2_field_name(resource stmt, mixed column)~
+
+結果セット内の指定したカラムの名前を返します。
+
+{stmt}
+結果セットを含むステートメントリソースを指定します。
+
+{column} 結果セット内のカラムを指定します。0
+から始まるインデックス、
+あるいはカラム名を表す文字列のいずれかが使用可能です。
+
+指定したカラムの名前を含む文字列を返します。
+結果セット内にそのカラムが存在しない場合には、
+|db2_field_name| は FALSE を返します。
+
+|db2_field_display_size| |db2_field_num| |db2_field_precision|
+|db2_field_scale| |db2_field_type| |db2_field_width|
+
+vim:ft=help:

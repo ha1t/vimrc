@@ -1,0 +1,14 @@
+sybase_num_fields -- 結果におけるフィールドの数を取得する
+
+  int sybase_num_fields(resource result)~
+
+|sybase_num_fields| は、
+結果セットにおけるフィールド数を返します。
+
+{result}
+
+フィールドの数を返します。
+
+|sybase_query| |sybase_fetch_field| |sybase_num_rows|
+
+vim:ft=help:

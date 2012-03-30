@@ -1,0 +1,30 @@
+apd_continue -- インタプリタを再開する
+
+  bool apd_continue(int debug_level)~
+
+インタプリタを再開するために、一般的にはソケット経由で送信します。
+
+{ debug_level} XXX_TRACE 定数の組み合わせによる整数値。
+
+MEMORY_TRACE を用いることは推奨しません。
+これは非常に低速で、またあまり正確ではないようだからです。
+ASSIGNMENT_TRACE は、まだ実装されていません。
+
+すべての機能 (TIMING, FUNCTIONS, ARGS SUMMARY (strace -c
+のようなもの)) のトレースを有効にするには、値 99
+を指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|apd_continue| の例
+
+<?php >
+  apd_continue(0);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,32 @@
+session_set_cookie_params --
+セッションクッキーパラメータを設定する
+
+  void session_set_cookie_params(int lifetime [, string path [, string domain [, bool secure [, bool httponly]]]])~
+
+ファイル php.ini
+で定義されたクッキーパラメータを設定します。
+この関数の効果が持続するのは、スクリプトの実行が終了するまでです。
+したがって、リクエスト毎や |session_start|
+がコールされる前に |session_set_cookie_params|
+をコールする必要があります。
+
+{lifetime}
+
+{path}
+
+{domain}
+
+{secure}
+
+{httponly}
+
+値を返しません。
+
+バージョン 説明 5.2.0 {httponly}
+パラメータが追加されました。 4.0.4 {secure}
+パラメータが追加されました。
+
+session.cookie_lifetime session.cookie_domain session.cookie_secure
+session.cookie_httponly |session_get_cookie_params|
+
+vim:ft=help:

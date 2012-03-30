@@ -1,0 +1,8 @@
+PDF_arcn -- 時計回りに円弧を描く
+
+  bool PDF_arcn(resource p, float x, float y, float r, float alpha, float beta)~
+
+描画の方向以外は、この関数の動作は |pdf_arc|
+とまったく同じです。
+
+vim:ft=help:

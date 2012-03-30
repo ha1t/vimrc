@@ -1,0 +1,14 @@
+cosh -- 双曲線余弦（ハイパボリックコサイン）
+
+  float cosh(float arg)~
+
+{arg} のハイパボリックコサインを返します。
+これは、(exp(arg) + exp(-arg))/2 で定義されます。
+
+{arg} 処理する引数。
+
+{arg} のハイパボリックコサインを返します。
+
+|cos| |acosh| |sinh| |cosh|
+
+vim:ft=help:

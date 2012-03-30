@@ -1,0 +1,53 @@
+ZipArchive::extractTo -- アーカイブの内容を展開する
+
+  mixed ZipArchive::extractTo(string destination [, mixed entries])~
+
+アーカイブの全体あるいは指定したファイルを、
+指定した場所に展開します。
+
+{destination} ファイルを展開する場所。
+
+{entries} 展開するエントリ。単一のエントリ名、
+あるいはエントリ名の配列を指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この例は、ZIP
+ファイルアーカイブをオープンして内部の各ファイルを読み込み、
+その内容を表示します。この例で使用するアーカイブ
+test2.zip は、ZZIPlib
+のソース配布物に含まれているテスト用アーカイブのひとつです。
+
+全エントリの展開
+
+<?php >
+  $zip = new ZipArchive;
+  if ($zip->open('test.zip') === TRUE) {
+      $zip->extractTo('/my/destination/dir/');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+二つのエントリのみの展開
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test_im.zip');
+  if ($res === TRUE) {
+      $zip->extractTo('/my/destination/dir/', array('pear_item.gif', 'testfromfile.php'));
+      $zip->close();
+      echo 'ok';
+  } else {
+      echo 'failed';
+  }
+?>
+
+
+
+vim:ft=help:

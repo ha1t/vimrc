@@ -1,0 +1,27 @@
+runkit_return_value_used --
+現在の関数の返り値が使用されているかどうかを調べる
+
+  bool runkit_return_value_used()~
+
+呼び出し元のスコープで関数の返り値が使用されている場合に
+TRUE、 それ以外の場合に FALSE を返します。
+
+|runkit_return_value_used| の例
+
+<?php >
+  function foo() {
+    var_dump(runkit_return_value_used());
+  }
+  
+  foo();
+  $f = foo();
+?>
+
+上の例の出力は以下となります。
+
+  bool(false)
+  bool(true)
+
+
+
+vim:ft=help:

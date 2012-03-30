@@ -1,0 +1,19 @@
+mb_strlen -- 文字列の長さを得る
+
+  int mb_strlen(string str [, string encoding])~
+
+文字列の長さを取得します。
+
+{str} 長さを調べたい文字列。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+文字エンコーディング {encoding} の文字列 {str}
+の文字数を返します。
+マルチバイト文字の一文字は1個として数えられます。
+
+|mb_internal_encoding| |strlen|
+
+vim:ft=help:

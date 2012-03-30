@@ -1,0 +1,14 @@
+pspell_config_dict_dir -- メイン単語リストの場所
+
+  bool pspell_config_dict_dir(int conf, string directory)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

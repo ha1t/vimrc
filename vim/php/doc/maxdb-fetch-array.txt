@@ -1,0 +1,136 @@
+result->fetch_array --
+結果の行を連想配列、数値添字配列あるいはその両方で取得する
+
+手続き型
+
+  mixed maxdb_fetch_array(resource result [, int resulttype])~
+
+オブジェクト指向型 (メソッド)
+
+  mixed fetch_array(resource result [, int resulttype [, int resulttype]])~
+
+取得した行に対応する配列を返します。 {result}
+が表す結果セットに行がもう存在しない場合には NULL
+を返します。
+
+|maxdb_fetch_array| は |maxdb_fetch_row| 関数を拡張したものです。
+データを数値添字の配列に保存することに加え、
+|maxdb_fetch_array| 関数は結果を連想配列でも保存します。
+その際は、結果セットのフィールド名をキーとして使用します。
+
+この関数により返されるフィー ルド名は
+大文字小文字を区別 します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+結果の中に同名のカラムが複数存在する場合は、最後のカラムが優先され、
+その前に現れたデータを上書きします。同名の複数のカラムにアクセスするには、
+数値添字形式の配列を使用します。
+
+オプションの 2 番目の引数 {resulttype} は、
+行データからどのような形式の配列を作成するかを指定する定数です。
+このパラメータに指定可能な値は、
+MAXDB_ASSOC、MAXDB_ASSOC_UPPER、MAXDB_ASSOC_LOWER、MAXDB_NUM あるいは
+MAXDB_BOTH のいずれかです。デフォルトでは |maxdb_fetch_array|
+関数は MAXDB_BOTH を使用します。これは、このパラメータに
+MAXDB_NUM および MAXDB_ASSOC
+を指定したのと同じ動作をします。
+
+定数 MAXDB_ASSOC を使用すると、この関数は |maxdb_fetch_assoc|
+と同じように動作します。一方、MAXDB_NUM の場合は
+|maxdb_fetch_row| と同じ動作となります。 最後のオプション
+MAXDB_BOTH は、両方の属性をひとつの配列に含めます。
+
+定数 MAXDB_ASSOC_UPPER を使用すると、この関数の動作は
+MAXDB_ASSOC を使用した場合とほぼ同じになります。ただ、
+配列のインデックスが、フィールド名を大文字にしたものになるという点が違います。
+
+定数 MAXDB_ASSOC_LOWER を使用すると、この関数の動作は
+MAXDB_ASSOC を使用した場合とほぼ同じになります。ただ、
+配列のインデックスが、フィールド名を小文字にしたものになるという点が違います。
+
+取得した行に対応する配列、あるいは結果セットに行がもうない場合に
+NULL を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+   
+  $query = "SELECT name, state FROM hotel.city ORDER by zip";
+  $result = $maxdb->query($query);
+  
+  /* 数値添字の配列 */
+  $row = $result->fetch_array(MAXDB_NUM);
+  printf ("%s (%s)\n", $row[0], $row[1]);  
+  
+  /* 連想配列 */
+  $row = $result->fetch_array(MAXDB_ASSOC);
+  printf ("%s (%s)\n", $row["NAME"], $row["STATE"]);  
+  
+  /* 連想配列および数値添字の配列 */
+  $row = $result->fetch_array(MAXDB_BOTH);
+  printf ("%s (%s)\n", $row[0], $row["STATE"]);  
+  
+  /* 結果セットを開放します */
+  $result->close();
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query = "SELECT name, state FROM hotel.city ORDER by zip";
+  $result = maxdb_query($link, $query);
+  
+  /* 数値添字の配列 */
+  $row = maxdb_fetch_array($result, MAXDB_NUM);
+  printf ("%s (%s)\n", $row[0], $row[1]);  
+  
+  /* 連想配列 */
+  $row = maxdb_fetch_array($result, MAXDB_ASSOC);
+  printf ("%s (%s)\n", $row["NAME"], $row["STATE"]);  
+  
+  /* 連想配列および数値添字の配列 */
+  $row = maxdb_fetch_array($result, MAXDB_BOTH);
+  printf ("%s (%s)\n", $row[0], $row["STATE"]);  
+  
+  /* 結果セットを開放します */
+  maxdb_free_result($result);
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  New York (NY)
+  New York (NY)
+  Long Island (NY)
+
+|maxdb_fetch_assoc| |maxdb_fetch_row| |maxdb_fetch_resource|
+
+vim:ft=help:

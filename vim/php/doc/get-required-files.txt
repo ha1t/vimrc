@@ -1,0 +1,5 @@
+get_required_files -- get_included_files のエイリアス
+
+この関数は次の関数のエイリアスです。 |get_included_files|.
+
+vim:ft=help:

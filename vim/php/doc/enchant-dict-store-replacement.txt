@@ -1,0 +1,20 @@
+enchant_dict_store_replacement -- 単語の修正候補を追加する
+
+  void enchant_dict_store_replacement(resource dict, string mis, string cor)~
+
+'mis' の修正候補として 'cor' を使用します。 @mis が @cor
+に置き換えられることに注意しましょう。 今後 @mis
+が登場すると、それは @cor で置き換えられます。
+そのため、@cor
+が修正候補の中で衝突するかもしれません。
+
+{dict} 辞書リソース。
+
+{mis} 修正する単語。
+
+{cor} 正しい単語。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

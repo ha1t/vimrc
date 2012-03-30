@@ -1,0 +1,29 @@
+pg_dbname -- データベース名を取得する
+
+  string pg_dbname([resource connection])~
+
+|pg_dbname| は、 PostgreSQL {connection} リソースで指定した
+データベースの名前を返します。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{connection} が指すデータベースの名前を表す
+文字列を返します。エラー時には FALSE を返します。
+
+|pg_dbname| の例
+
+<?php >
+    error_reporting(E_ALL);
+  
+    pg_connect("host=localhost port=5432 dbname=mary");
+    echo pg_dbname(); // mary
+?>
+
+
+
+
+
+vim:ft=help:

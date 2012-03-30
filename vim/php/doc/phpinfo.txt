@@ -1,0 +1,68 @@
+phpinfo -- いろいろな PHP 情報を出力する
+
+  bool phpinfo([int what])~
+
+現在の PHP
+の状態に関する、多くの情報を出力します。出力される情報には、
+PHP コンパイルオプションと拡張機能、PHP のバージョン、
+サーバ情報と環境（モジュールとしてコンパイルされた場合）、
+PHP の環境、OS
+バージョン情報、パス、構成オプションのマスター
+およびローカルの値、HTTP ヘッダ、PHP License
+などがあります。
+
+システムの設定はそれぞれ違うため、実行時設定 や
+利用できる 定義済みの変数 を調べるために |phpinfo|
+がよく使われます。
+
+また、|phpinfo| には EGPCS (Environment, GET, POST, Cookie, Server)
+の情報が含まれているため、デバッグツールとしても便利です。
+
+{what} 以下にあるconstantsビット値をひとつまたは
+複数個を加算して、オプションの{what}引数に
+渡すことによって出力をカスタマイズできます。
+それぞれの定数やビット値をor演算子
+で結んで渡すこともできます。
+
+|phpinfo| のオプション 名前(定数) 値 説明 INFO_GENERAL 1
+configure オプション、php.ini の場所、ビルド日時、 Web
+サーバ、オペレーティングシステム等。 INFO_CREDITS 2 PHP
+クレジット。|phpcredits| も参照ください。 INFO_CONFIGURATION 4
+ローカルおよびマスタの、現在の PHP
+ディレクティブの値。 |ini_get| も参照ください。 INFO_MODULES
+8 ロードされているモジュールと、それぞれの設定。
+|get_loaded_extensions| も参照ください。 INFO_ENVIRONMENT 16 $_ENV
+で取得できる環境変数の情報。 INFO_VARIABLES 32
+EGPCS（環境変数・GET・POST・クッキー・サーバ変数）から
+すべての 定義済みの変数を表示します。 INFO_LICENSE 64 PHP
+ライセンス情報。ライセンス FAQ も参照ください。 INFO_ALL
+-1 上記のすべてを表示します。これがデフォルトです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|phpinfo| の例
+
+<?php >
+  // すべての情報を表示します。デフォルトは INFO_ALL です。
+  phpinfo();
+  
+  // モジュール情報だけを表示します。
+  // phpinfo(8) としても同じです。
+  phpinfo(INFO_MODULES);
+?>
+
+
+
+
+
+expose_php が off の場合、一部の情報は表示されません。
+これにはPHPとZendのロゴ、そしてクレジットが含まれます。
+
+CLI モードを利用している場合、|phpinfo| は HTML
+ではなくプレーンテキストで結果を出力します。
+
+|phpversion| |phpcredits| |php_logo_guid| |ini_get| |ini_set|
+|get_loaded_extensions| 定義済みの変数
+
+vim:ft=help:

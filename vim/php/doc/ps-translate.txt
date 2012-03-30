@@ -1,0 +1,83 @@
+ps_translate -- 座標変換を設定する
+
+  bool ps_translate(resource psdoc, float x, float y)~
+
+新しい座標系の原点を設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{x} 変換後の座標系の原点の x 座標。
+
+{y} 変換後の座標系の原点の y 座標。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+座標系の変換
+
+<?php >
+  function rectangle($ps) {
+      ps_moveto($ps, 0, 0);
+      ps_lineto($ps, 0, 50);
+      ps_lineto($ps, 50, 50);
+      ps_lineto($ps, 50, 0);
+      ps_lineto($ps, 0, 0);
+      ps_stroke($ps);
+  }
+  
+  $ps = ps_new();
+  if (!ps_open_file($ps, "translate.ps")) {
+    print "Cannot open PostScript file\n";
+    exit;
+  }
+  
+  ps_set_info($ps, "Creator", "translate.php");
+  ps_set_info($ps, "Author", "Uwe Steinmann");
+  ps_set_info($ps, "Title", "Translated example");
+  ps_set_info($ps, "BoundingBox", "0 0 596 842");
+  
+  $psfont = ps_findfont($ps, "Helvetica", "", 0);
+  
+  ps_begin_page($ps, 596, 842);
+  ps_set_text_pos($ps, 100, 100);
+  ps_translate($ps, 500, 750);
+  rectangle($ps);
+  ps_translate($ps, -500, -750);
+  ps_setfont($ps, $psfont, 8.0);
+  ps_show($ps, "Text at initial position");
+  ps_end_page($ps);
+  
+  ps_begin_page($ps, 596, 842);
+  ps_set_text_pos($ps, 100, 100);
+  ps_save($ps);
+  ps_translate($ps, 500, 750);
+  rectangle($ps);
+  ps_restore($ps);
+  ps_setfont($ps, $psfont, 8.0);
+  ps_show($ps, "Text at initial position");
+  ps_end_page($ps);
+  
+  ps_delete($ps);
+?>
+
+上の例は、図形 (ここでは単なる矩形)
+を、図形自身の座標系を使用したまま
+ページ内の任意の位置に配置するための 2
+種類の方法を示しています。
+矩形を描画する前に、座標系の原点を変更しているのがポイントです。
+矩形を描画した後は、座標系をもとに戻さなければなりません。
+
+2
+ページ目では、少し異なった、よりエレガントな方法を使用しています。
+座標系の変換を元に戻すために |ps_translate|
+をもう一度コールするのではなく、
+座標系の変更前に描画コンテキストを保存しておいて、
+矩形の描画後にそれを復元しています。
+
+
+
+
+
+|ps_scale| |ps_rotate|
+
+vim:ft=help:

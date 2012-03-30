@@ -1,0 +1,19 @@
+date_isodate_set -- ISO 日付を設定する
+
+  void date_isodate_set(DateTime object, int year, int week [, int day])~
+
+  void DateTime::setISODate(DateTime object, int year, int week [, int day, int year, int week [, int day]])~
+
+{object} DateTime オブジェクト。
+
+{year} その日付の年。
+
+{week} その日付の週。
+
+{day} その日付の日。
+
+成功した場合に NULL、失敗した場合に FALSE を返します。
+
+|date_date_set|
+
+vim:ft=help:

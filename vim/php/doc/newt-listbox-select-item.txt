@@ -1,0 +1,17 @@
+newt_listbox_select_item --
+
+  void newt_listbox_select_item(resource listbox, mixed key, int sense)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{listbox}
+
+{key}
+
+{sense}
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+mssql_init --
+ストアドプロシージャまたはリモートのストアドプロシージャを初期化する
+
+  resource mssql_init(string sp_name [, resource link_identifier])~
+
+ストアドプロシージャまたはリモートのストアドプロシージャを初期化します。
+
+{sp_name} ストアドプロシージャ名。たとえば ownew.sp_name や
+otherdb.owner.sp_name のようになります。
+
+{link_identifier} |mssql_connect| が返す MS SQL リンク ID。
+
+"statement" リソースの ID を返します。これを使用して、
+|mssql_bind| や |mssql_execute| をコールします。エラー時には
+FALSE を返します。
+
+|mssql_bind| |mssql_execute| |mssql_free_statement|
+
+vim:ft=help:

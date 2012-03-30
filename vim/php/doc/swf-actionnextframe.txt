@@ -1,0 +1,11 @@
+swf_actionnextframe -- フレームを一つ進める
+
+  void swf_actionnextframe()~
+
+フレームを一つ進めます。
+
+値を返しません。
+
+|swf_actionprevframe|
+
+vim:ft=help:

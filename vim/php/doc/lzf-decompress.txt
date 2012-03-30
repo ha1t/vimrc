@@ -1,0 +1,14 @@
+lzf_decompress -- LZF 圧縮を解凍する
+
+  string lzf_decompress(string data)~
+
+|lzf_decompress| は、指定された {data} を解凍します。
+
+{data} 圧縮されたデータ。
+
+解凍されたデータを返します。エラー時には FALSE
+を返します。
+
+|lzf_compress|
+
+vim:ft=help:

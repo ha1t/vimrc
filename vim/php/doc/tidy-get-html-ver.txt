@@ -1,0 +1,18 @@
+tidy_get_html_ver -- 指定したドキュメントで検出された HTML
+バージョンを取得する
+
+手続き型:
+
+  int tidy_get_html_ver(tidy object)~
+
+オブジェクト指向型:
+
+  int tidy->getHtmlVer(tidy object)~
+
+|tidy_get_html_ver| は、 指定した Tidy オブジェクト {object}
+で検出された HTML バージョンを返します。
+
+この関数はまだ Tidylib 自身に実装されていません。
+なので、常に 0 を返します。
+
+vim:ft=help:

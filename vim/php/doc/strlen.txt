@@ -1,0 +1,28 @@
+strlen -- 文字列の長さを得る
+
+  int strlen(string string)~
+
+与えられた {string} の長さを返します。
+
+{string} 長さを調べる文字列。
+
+成功した場合に {string} の長さ、 {string}
+が空の文字列だった場合に 0 を返します。
+
+|strlen| の例
+
+<?php >
+  $str = 'abcdef';
+  echo strlen($str); // 6
+  
+  $str = ' ab cd ';
+  echo strlen($str); // 7
+?>
+
+
+
+
+
+|count| |mb_strlen|
+
+vim:ft=help:

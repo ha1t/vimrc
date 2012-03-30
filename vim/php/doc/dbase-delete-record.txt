@@ -1,0 +1,21 @@
+dbase_delete_record -- データベースからレコードを削除する
+
+  bool dbase_delete_record(int dbase_identifier, int record_number)~
+
+データベースから削除したいレコードをマークします。
+
+実際にデータベースからレコードを削除するには、
+|dbase_pack| もコールする必要があります。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+{record_number} 1 からデータベース内のレコード数
+（|dbase_numrecords| が返す） までの範囲の整数値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dbase_add_record| |dbase_replace_record|
+
+vim:ft=help:

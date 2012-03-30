@@ -1,0 +1,16 @@
+mcal_expunge --
+削除マークを付けられた全てのイベントを削除する
+
+  bool mcal_expunge(int stream)~
+
+|mcal_expunge| は、過去に削除マークを付けられた
+全てのイベントを削除します。
+
+{stream} MCAL ストリーム。
+
+{flags}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

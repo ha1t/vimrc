@@ -1,0 +1,39 @@
+ps_setcolor -- 色を設定する
+
+  bool ps_setcolor(resource psdoc, string type, string colorspace, float c1, float c2, float c3, float c4)~
+
+描画色、塗りつぶし色、あるいはその両方を設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{type} {type} は both、fill、 あるいは fillstroke
+のいずれかです。
+
+{colorspace} colorspace は gray、 rgb、cmyk、 spot、pattern
+のいずれかです。 colorspace
+の値によって、以下のパラメータのうち最初のひとつ・最初の３つ
+あるいはすべてが利用されます。
+
+{c1} colorspace の値によって、red 成分 (rgb の場合)、 cyan 成分
+(cmyk の場合)、グレースケール (gray の場合)、
+スポット色の ID あるいはパターンの ID
+のいずれかとなります。
+
+{c2} colorspace の値によって、green 成分 (rgb の場合)、 magenta
+成分 (cmyk の場合) のいずれかとなります。
+
+{c3} colorspace の値によって、blue 成分 (rgb の場合)、 yellow
+成分 (cmyk の場合) のいずれかとなります。
+
+{c4} colorspace が cmyk の場合にのみ設定され、black
+成分の値を指定します。
+
+2
+番目のパラメータは、現在は常に評価されるわけではありません。
+設定内容にかかわらず、fillstroke
+が渡されたときのような振る舞いをすることがあります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,70 @@
+fbsql_query -- FrontBase クエリを送信する
+
+  resource fbsql_query(string query [, resource link_identifier [, int batch_size]])~
+
+クエリ {query} を、
+サーバ上の現在アクティブなデータベースに送信します。
+
+クエリが成功したと仮定すると、 |fbsql_num_rows| を使用して
+SELECT 文から 返された行数を取得したり |fbsql_affected_rows|
+を使用して DELETE、INSERT、REPLACE あるいは UPDATE
+文で変更された行数を 取得したりすることが可能です。
+
+{query} 実行する SQL クエリ。
+
+クエリ文字列の最後はセミコロンで終わらなければなりません。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+{batch_size}
+
+|fbsql_query| は、クエリが成功したかどうかを 示すために
+TRUE (非ゼロ) あるいは FALSE を返します。 返り値が TRUE
+の場合、クエリは正しい形式であってサーバで実行された
+ことを示します。変更された行数や返された行数については何も示しません。
+クエリが成功しても 1 行も変更しなかったり 1
+行も返さなかったりすることは
+十分にありえることです。
+
+SELECT 文の場合は |fbsql_query| は新しい結果 ID
+を返し、これを |fbsql_result| に渡すことができます。
+
+クエリが参照しているテーブルへのアクセス権がない場合にも
+|fbsql_query| は失敗し、FALSE を返します。
+
+以下のクエリは文法的に間違っています。そのため
+|fbsql_query| は失敗して FALSE を返します。 |fbsql_query| の例
+
+<?php >
+  $result = fbsql_query("SELECT * WHERE 1=1")
+      or die ("不正なクエリ");
+?>
+
+
+
+
+
+テーブル my_tbl に my_col
+というカラムが存在しない場合、以下のクエリは意味的に間違ったものと
+なります。そのため |fbsql_query| は失敗して FALSE
+を返します。 |fbsql_query| の例
+
+<?php >
+  $result = fbsql_query ("SELECT my_col FROM my_tbl;")
+      or die ("不正なクエリ");
+?>
+
+
+
+
+
+|fbsql_affected_rows| |fbsql_db_query| |fbsql_free_result| |fbsql_result|
+|fbsql_select_db| |fbsql_connect|
+
+vim:ft=help:

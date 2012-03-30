@@ -1,0 +1,64 @@
+SwishSearch->setLimit -- 検索の限界を設定する
+
+  void SwishSearch->setLimit(string property, string low, string high)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{property} 検索結果のプロパティ名。
+
+{low} プロパティの最小値。
+
+{high} プロパティの最大値。
+
+値を返しません。
+
+エラー時に SwishException をスローします。
+
+基本的な |SwishSearch->setLimit| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $search = $swish->prepare();
+  
+      $results = $search->execute("time");
+      echo "First query found: ", $results->hits, " hits\n";
+  
+      $i = 0;
+      while($result = $results->nextResult()) {
+          echo "Hit #", ++$i, " - ", $result->swishdocsize, " bytes\n";
+      }
+  
+      $search->setLimit("swishdocsize", "3000", "6000"); // ドキュメントのサイズを 3000 バイトから 6000 バイトまでに制限します
+      $results = $search->execute("time");
+      echo "Second query found: ", $results->hits, " hits\n";
+  
+      $i = 0;
+      while($result = $results->nextResult()) {
+          echo "Hit #", ++$i, " - ", $result->swishdocsize, " bytes\n";
+      }
+  
+  } catch (SwishException $e) {
+      echo $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  First query found: 5 hits
+  Hit #1 - 4261 bytes
+  Hit #2 - 37937 bytes
+  Hit #3 - 7126 bytes
+  Hit #4 - 15427 bytes
+  Hit #5 - 4768 bytes
+  Second query found: 2 hits
+  Hit #1 - 4261 bytes
+  Hit #2 - 4768 bytes
+
+
+
+vim:ft=help:

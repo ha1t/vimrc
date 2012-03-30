@@ -1,0 +1,10 @@
+iis_get_service_state -- サービス ID
+で指定したサービスの状態を取得する
+
+  int iis_get_service_state(string service_id)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

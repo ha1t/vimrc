@@ -1,0 +1,8 @@
+PDF_setflat -- 平面度を設定する
+
+  bool PDF_setflat(resource pdfdoc, float flatness)~
+
+平面度を設定します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

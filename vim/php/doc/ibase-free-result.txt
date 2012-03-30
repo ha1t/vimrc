@@ -1,0 +1,13 @@
+ibase_free_result -- 結果セットを解放する
+
+  bool ibase_free_result(resource result_identifier)~
+
+結果セットを解放します。
+
+{result_identifier} |ibase_query| あるいは |ibase_execute|
+で作成した結果セット。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

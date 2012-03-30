@@ -1,0 +1,65 @@
+natcasesort --
+大文字小文字を区別しない"自然順"アルゴリズムを用いて配列をソートする
+
+  bool natcasesort(array array)~
+
+|natcasesort| は、大文字小文字を区別しないバージョンの
+|natsort| です。
+
+この関数は、人間が行うような手法でアルファベットまたは数字の文字列の順番を
+キー/値の関係を保持したままソートします。
+これは、"自然順(natural ordering)"と呼ばれているものです。
+
+{array} 入力の配列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|natcasesort| の例
+
+<?php >
+  $array1 = $array2 = array('IMG0.png', 'img12.png', 'img10.png', 'img2.png', 'img1.png', 'IMG3.png');
+  
+  sort($array1);
+  echo "Standard sorting\n";
+  print_r($array1);
+  
+  natcasesort($array2);
+  echo "\nNatural order sorting (case-insensitive)\n";
+  print_r($array2);
+?>
+
+上の例の出力は以下となります。
+
+  Standard sorting
+  Array
+  (
+      [0] => IMG0.png
+      [1] => IMG3.png
+      [2] => img1.png
+      [3] => img10.png
+      [4] => img12.png
+      [5] => img2.png
+  )
+  
+  Natural order sorting (case-insensitive)
+  Array
+  (
+      [0] => IMG0.png
+      [4] => img1.png
+      [3] => img2.png
+      [5] => IMG3.png
+      [2] => img10.png
+      [1] => img12.png
+  )
+
+より詳細な情報については、Martin PoolのNatural Order String
+Comparison ページを参照ください。
+
+
+
+
+
+|sort| |natsort| |strnatcmp| |strnatcasecmp|
+
+vim:ft=help:

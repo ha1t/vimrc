@@ -1,0 +1,61 @@
+array_keys -- 配列のキーをすべて返す
+
+  array array_keys(array input [, mixed search_value [, bool strict]])~
+
+|array_keys| は、配列 {input} から全てのキー
+(数値および文字列) を返します。
+
+オプション {search_value} が指定された場合、
+指定した値に関するキーのみが返されます。指定されない場合は、
+{input} から全てのキーが返されます。 PHP 5 では、{strict}
+パラメータを使って、 比較に (===)
+のタイプを含めることができます。
+
+{input} 返すキーを含む配列。
+
+{search_value}
+指定した場合は、これらの値を含むキーのみを返します。
+
+{strict} PHP 5 では、このパラメータを使用すると
+検索時に厳密な比較 (===) を行います。
+
+{input} のすべてのキーを配列で返します。
+
+|array_keys| の例
+
+<?php >
+  $array = array(0 => 100, "color" => "red");
+  print_r(array_keys($array));
+  
+  $array = array("blue", "red", "green", "blue", "blue");
+  print_r(array_keys($array, "blue"));
+  
+  $array = array("color" => array("blue", "red", "green"),
+                 "size"  => array("small", "medium", "large"));
+  print_r(array_keys($array));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => 0
+      [1] => color
+  )
+  Array
+  (
+      [0] => 0
+      [1] => 3
+      [2] => 4
+  )
+  Array
+  (
+      [0] => color
+      [1] => size
+  )
+
+
+
+|array_values| |array_key_exists|
+
+vim:ft=help:

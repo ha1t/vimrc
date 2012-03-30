@@ -1,0 +1,12 @@
+spl_autoload_functions -- すべての登録済み __autoload()
+関数を返す
+
+  array spl_autoload_functions()~
+
+この関数は、すべての登録済み __autoload
+関数を配列で返します。 autoload
+スタックが有効になっていない場合は、false
+が返されます。
+関数が何も登録されていない場合は、空の配列が返されます。
+
+vim:ft=help:

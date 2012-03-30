@@ -1,0 +1,66 @@
+com_event_sink -- COM オブジェクトのイベントを PHP
+オブジェクトに接続する
+
+  bool com_event_sink(variant comobject, object sinkobject [, mixed sinkinterface])~
+
+{comobject} が生成したイベントを PHP オブジェクト {sinkobject}
+に通知するよう、COM に指示します。
+
+この機能を利用する際には注意しましょう。もし以下の例のようなことを
+行いたいのであれば、Web サーバ上でそれを行うことには
+まったく意味がありません。
+
+{comobject}
+
+{sinkobject} {sinkobject} には、要求されるディスパッチ
+インターフェースと同じ名前のメソッドを持つクラスのインスタンスを
+指定する必要があります。この要求を満たすクラスを作成するために、
+|com_print_typeinfo| を使用することができます。
+
+{sinkinterface} PHP は {comobject} に関連するタイプライブラリで
+指定されたデフォルトのディスパッチインターフェースを使用しようと
+しますが、使用させたいインターフェース名を
+{sinkinterface} に指定することで、それを
+上書きすることが可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+COM イベントシンクの例
+
+<?php >
+  class IEEventSinker {
+      var $terminated = false;
+  
+     function ProgressChange($progress, $progressmax) {
+        echo "ダウンロードの進行状況: $progress / $progressmax\n";
+      }
+  
+      function DocumentComplete(&amp;$dom, $url) {
+        echo "ドキュメント $url 完了\n";
+      }
+  
+      function OnQuit() {
+        echo "終了!\n";
+        $this->terminated = true;
+      }
+  }
+  $ie = new COM("InternetExplorer.Application");
+  // PHP 5 では &amp; が必要ないことに注意!
+  $sink =& new IEEventSinker();
+  com_event_sink($ie, $sink, "DWebBrowserEvents2");
+  $ie->Visible = true;
+  $ie->Navigate("http://www.php.net");
+  while(!$sink->terminated) {
+    com_message_pump(4000);
+  }
+  $ie = null;
+?>
+
+
+
+
+
+|com_print_typeinfo| |com_message_pump|
+
+vim:ft=help:

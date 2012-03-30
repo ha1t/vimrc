@@ -1,0 +1,11 @@
+libxml_clear_errors -- libxmlエラーハンドラをクリアする
+
+  void libxml_clear_errors()~
+
+|libxml_clear_errors|は、libxmlエラーバッファをクリアします。
+
+値を返しません。
+
+|libxml_get_errors| |libxml_get_last_error|
+
+vim:ft=help:

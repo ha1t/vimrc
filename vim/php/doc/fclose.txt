@@ -1,0 +1,29 @@
+fclose -- オープンされたファイルポインタをクローズする
+
+  bool fclose(resource handle)~
+
+{handle}が指しているファイルをクローズします。
+
+{handle}
+ファイルポインタは有効なものでなければならず、また
+|fopen|または|fsockopen|
+で正常にオープンされたファイルを指している必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+シンプルな |fclose| の例
+
+<?php >
+  $handle = fopen('somefile.txt', 'r');
+  
+  fclose($handle);
+?>
+
+
+
+
+
+|fopen| |fsockopen|
+
+vim:ft=help:

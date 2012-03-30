@@ -1,0 +1,45 @@
+imap_fetchstructure -- 特定のメッセージの構造を読み込む
+
+  object imap_fetchstructure(resource imap_stream, int msg_number [, int options])~
+
+この関数は、指定したメッセージに関するすべての構造化された情報を取り出します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+{options} オプションのパラメータで、{FT_UID}
+のみが指定可能です。 これは、{msg_number} を {UID}
+として処理することを関数に指定するためのものです。
+
+オブジェクトを返します。このオブジェクトには、 MIME
+の添付の各要素に類似のオブジェクトとしてエンベロープ、
+内部の日付、サイズ、フラグそして本体が含まれます。
+返されるオブジェクトの構造は次のようになります。
+
+|imap_fetchstructure| が返すオブジェクト type 最初の body
+部の型 encoding body 部を転送する際のエンコード法 ifsubtype
+subtype 文字列がある場合に TRUE subtype MIME の subtype
+ifdescription description 文字列がある場合に TRUE description
+内容を記述する文字列 ifid identification 文字列がある場合に
+TRUE id Identification 文字列 lines 行数 bytes バイト数 ifdisposition
+disposition 文字列がある場合に TRUE disposition Disposition 文字列
+ifdparameters dparameters 配列が存在する場合に TRUE dparameters
+オブジェクトの配列。各オブジェクトは "attribute" および
+"value" というプロパティを保持し、それぞれ
+Content-disposition MIME ヘッダの 対応するパラメータを表す。
+ifparameters 配列 parameters が存在する場合に TRUE parameters
+オブジェクトの配列。各オブジェクトは "attribute" および
+"value" というプロパティを保持する。 parts
+オブジェクトの配列であり、その構造はトップレベルオブジェクトと
+同じです。それぞれが MIME body 部に対応しています。
+
+最初の body 部の型 0text 1multipart 2message 3application 4audio 5image
+6video 7other
+
+転送時のエンコーディング 07BIT 18BIT 2BINARY 3BASE64
+4QUOTED-PRINTABLE 5OTHER
+
+|imap_fetchbody| |imap_bodystruct|
+
+vim:ft=help:

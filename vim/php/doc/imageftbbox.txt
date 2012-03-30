@@ -1,0 +1,31 @@
+imageftbbox -- freetype2
+によるフォントを用いたテキストを囲む箱を取得する
+
+  array imageftbbox(float size, float angle, string font_file, string text [, array extrainfo])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{size}
+
+{angle}
+
+{font_file}
+
+{text}
+
+{extrainfo}
+
+
+
+この関数は、GD 2.0.1 以降を必要とします (2.0.28
+以降を推奨します)。
+
+この関数は、PHP が FreeType サポート (--with-freetype-dir=DIR)
+を有効にしてコンパイルされている場合のみ使用可能です。
+
+バージョン 説明 4.3.5 {extrainfo}
+がオプションになりました。
+
+vim:ft=help:

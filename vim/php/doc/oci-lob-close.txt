@@ -1,0 +1,12 @@
+OCI-Lob->close -- LOB ディスクリプタを閉じる
+
+  bool close()~
+
+|OCI-Lob->close| は LOB あるいは FILE
+のディスクリプタを閉じます。この関数は
+を併用した場合のみ使用されるべきです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,46 @@
+pg_lo_write -- ラージオブジェクトを書く
+
+  int pg_lo_write(resource large_object, string data [, int len])~
+
+|pg_lo_write| は、ラージオブジェクトの
+カレントのシーク位置にデータを書き込みます。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+この関数は、以前は |pg_lowrite| と呼ばれていました。
+
+{large_object} |pg_lo_open| によって返された PostgreSQL
+ラージオブジェクト (LOB) リソース。
+
+{data} ラージオブジェクトに書き込むデータ。{len} が {data}
+の長さより小さく指定されている場合、 {len}
+バイトのみが書き込まれます。
+
+{len} 書き込むデータの最大バイト数（オプション）。0
+より大きく、かつ {data}
+のサイズ以下でなければなりません。 デフォルトは {data}
+の長さです。
+
+ラージオブジェクトに書き込んだバイト数を返します。
+エラー時には FALSE を返します。
+
+|pg_lo_write| の例
+
+<?php >
+     $doc_oid = 189762345;
+     $data = "This will overwrite the start of the large object.";
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     $handle = pg_lo_open($database, $doc_oid, "w");
+     $data = pg_lo_write($handle, $data);
+     pg_query($database, "commit");
+?>
+
+
+
+
+
+|pg_lo_create| |pg_lo_open|
+
+vim:ft=help:

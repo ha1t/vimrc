@@ -1,0 +1,12 @@
+PDF_begin_page -- 新規ページを開始する [古い関数]
+
+  bool PDF_begin_page(resource pdfdoc, float width, float height)~
+
+新しいページをドキュメントに追加します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに |PDF_begin_page_ext|
+を使用してください。
+
+vim:ft=help:

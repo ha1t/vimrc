@@ -1,0 +1,19 @@
+hw_cp -- オブジェクトをコピーする
+
+  int hw_cp(int connection, array object_id_array, int destination_id)~
+
+2番目のパラメータとして指定されたオブジェクトID
+を有するオブジェクト ID {destination id}
+を有するコレクションにコピーします。
+
+{connection} 接続 ID。
+
+{object_id_array} オブジェクト ID の配列。
+
+{destination_id} コピー先のコレクション ID。
+
+コピーされたオブジェクトの数を返します。
+
+|hw_mv|
+
+vim:ft=help:

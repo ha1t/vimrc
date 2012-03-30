@@ -1,0 +1,15 @@
+newt_component_takes_focus --
+
+  void newt_component_takes_focus(resource component, bool takes_focus)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{component}
+
+{takes_focus}
+
+値を返しません。
+
+vim:ft=help:

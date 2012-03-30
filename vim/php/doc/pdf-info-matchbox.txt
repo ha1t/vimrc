@@ -1,0 +1,7 @@
+PDF_info_matchbox -- マッチボックスの情報を問い合わせる
+
+  float PDF_info_matchbox(resource pdfdoc, string boxname, int num, string keyword)~
+
+現在のページ上のマッチボックスについての情報を問い合わせます。
+
+vim:ft=help:

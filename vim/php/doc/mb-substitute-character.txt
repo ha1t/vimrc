@@ -1,0 +1,41 @@
+mb_substitute_character -- 置換文字を設定あるいは取得する
+
+  mixed mb_substitute_character([mixed substrchar])~
+
+入力文字エンコーディングが無効、
+または出力文字エンコーディングに文字コードが存在しない場合の代替文字を指定します。
+無効な文字は、NULL (出力しない)、文字列または整数値
+(Unicode 文字コード値) に置換することが可能です。
+
+この設定は、|mb_convert_encoding|、 |mb_convert_variables|、
+|mb_output_handler|、 および |mb_send_mail| に影響します。
+
+{substrchar} Unicode
+値の整数または文字列を以下のように指定します。 "none" :
+出力しない
+
+"long" : 文字コードの値 (例: U+3000,JIS+7E7E) を出力する
+
+{substchar} が設定された場合、成功時に
+TRUE、そうでない場合に FALSE を返します。 {substchar}
+が設定されない場合、Unicode 値または "none" あるいは "long"
+を返します。
+
+|mb_substitute_character| の例
+
+<?php >
+  /* Unicode U+3013 (ゲタ記号)を設定 */
+  mb_substitute_character(0x3013);
+  
+  /* HEX フォーマットを設定 */
+  mb_substitute_character("long");
+  
+  /* 現在の設定を表示 */
+  echo mb_substitute_character();
+?>
+
+
+
+
+
+vim:ft=help:

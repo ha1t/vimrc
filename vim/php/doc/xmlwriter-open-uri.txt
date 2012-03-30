@@ -1,0 +1,23 @@
+XMLWriter::openURI -- ソース URI を指定して新しい xmlwriter
+を作成する
+
+オブジェクト指向型
+
+  bool openURI(string uri)~
+
+手続き型
+
+  resource xmlwriter_open_uri(string uri, string uri)~
+
+{uri} を指定した新しい XMLWriter を作成します。
+
+{uri} 出力するリソースの URI。
+
+オブジェクト指向型: 成功した場合に TRUE
+を、失敗した場合に FALSE を返します。。
+
+手続き型: 成功した場合に、その後の xmlwriter
+関数で使用するための新しい xmlwriter リソース、
+エラーの場合に FALSE を返します。
+
+vim:ft=help:

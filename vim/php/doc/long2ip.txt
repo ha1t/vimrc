@@ -1,0 +1,15 @@
+long2ip -- (IPv4)
+インターネットアドレスをインターネット標準ドット表記に変換する
+
+  string long2ip(int proper_address)~
+
+関数|long2ip| は、適切なアドレス表現からドット表記
+(例:aaa.bbb.ccc.ddd)のインターネットアドレスを生成します。
+
+{proper_address} 正しい形式のアドレス。
+
+インターネットの IP アドレスを表す文字列を返します。
+
+|ip2long|
+
+vim:ft=help:

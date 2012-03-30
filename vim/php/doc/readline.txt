@@ -1,0 +1,34 @@
+readline -- 一行読み込む
+
+  string readline([string prompt])~
+
+ユーザからの入力を一行読み込みます。 この行を
+|readline_add_history|.
+を用いてヒストリに追加する必要があります。
+
+{prompt} ユーザに示す確認文字列を指定します。
+
+ユーザから取得した文字列を一つだけ返します。
+返り値の最後の改行は取り除かれます。
+
+|readline| の例
+
+<?php >
+  // ユーザから 3 回コマンドを取得
+  for ($i=0; $i < 3; $i++) {
+          $line = readline("Command: ");
+          readline_add_history($line);
+  }
+  
+  // ヒストリをダンプ
+  print_r(readline_list_history());
+  
+  // 変数をダンプ
+  print_r(readline_info());
+?>
+
+
+
+
+
+vim:ft=help:

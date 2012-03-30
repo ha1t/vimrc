@@ -1,0 +1,34 @@
+array_sum -- 配列の中の値の合計を計算する
+
+  number array_sum(array array)~
+
+|array_sum| は、配列の中の値の合計を整数または float
+として返します。
+
+{array} 入力の配列。
+
+値の合計を整数または float として返します。
+
+バージョン 説明 4.2.1 4.2.1 より前のバージョンの PHP
+は、渡された配列自体を修正し、 文字列を数値
+(これは値にもよるが多くの場合ゼロとなります)
+に変換していました。
+
+|array_sum| の例
+
+<?php >
+  $a = array(2, 4, 6, 8);
+  echo "sum(a) = " . array_sum($a) . "\n";
+  
+  $b = array("a" => 1.2, "b" => 2.3, "c" => 3.4);
+  echo "sum(b) = " . array_sum($b) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  sum(a) = 20
+  sum(b) = 6.9
+
+
+
+vim:ft=help:

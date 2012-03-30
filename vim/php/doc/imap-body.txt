@@ -1,0 +1,32 @@
+imap_body -- メッセージ本文を読む
+
+  string imap_body(resource imap_stream, int msg_number [, int options])~
+
+|imap_body| は、現在のメールボックスにある {msg_number}
+番目のメッセージの本文を返します。
+
+|imap_body| は、メッセージの本文と全く同じ
+コピーのみを返します。マルチパート MIME
+エンコードされたメッセージの
+一部を展開するには、その構造を解析するために
+|imap_fetch_structure| を使用し、単一の部分要素の
+コピーを展開する際には、 |imap_fetchbody|
+を使用する必要があります。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+{options} オプションの {options} はビットマスクであり、
+以下の要素の組み合わせとなります。 FT_UID - {msg_number} は
+UID です
+
+FT_PEEK - 既に設定されていない場合、\Seen
+フラグを設定しない
+
+FT_INTERNAL - 内部フォーマットで文字列を返す。 CRLF
+を正規化しない。
+
+指定したメッセージの本文を文字列で返します。
+
+vim:ft=help:

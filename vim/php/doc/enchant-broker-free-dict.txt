@@ -1,0 +1,14 @@
+enchant_broker_free_dict -- 辞書リソースを開放する
+
+  bool enchant_broker_free_dict(resource dict)~
+
+辞書リソースを開放します。
+
+{dict} 辞書リソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|enchant_broker_request_dict| |enchant_broker_request_pwl_dict|
+
+vim:ft=help:

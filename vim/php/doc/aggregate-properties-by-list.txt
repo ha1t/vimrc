@@ -1,0 +1,30 @@
+aggregate_properties_by_list --
+選択したクラスプロパティを、動的にオブジェクトに集約する
+
+  void aggregate_properties_by_list(object object, string class_name, array properties_list [, bool exclude])~
+
+プロパティ名のリストを使用して、クラスのプロパティを既存のオブジェクトに集約します。
+
+アンダースコア文字 (_) で始まる名前のプロパティ
+(プライベートとみなされます)
+は、常に対象となりません。
+
+{object}
+
+{class_name}
+
+{properties_list}
+
+{exclude} オプションのパラメータ {exclude}
+で、リストに含まれているプロパティを集約する ({exclude}
+が FALSE の場合。これがデフォルトです)
+のか含まれていないプロパティを集約する ({exclude} が TRUE)
+のかを指定します。
+
+値を返しません。
+
+|aggregate| |aggregate_methods| |aggregate_methods_by_list|
+|aggregate_methods_by_regexp| |aggregate_properties|
+|aggregate_properties_by_regexp| |aggregate_info| |deaggregate|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+swf_scale -- 現在の変換をスケリーングする
+
+  void swf_scale(float x, float y, float z)~
+
+|swf_scale|
+は、指定した値で曲線の座標をスケーリングします。
+
+{x} x 方向のスケール値。
+
+{y} y 方向のスケール値。
+
+{z} z 方向のスケール値。
+
+値を返しません。
+
+vim:ft=help:

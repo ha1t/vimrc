@@ -1,0 +1,92 @@
+sesam_query -- SESAM SQL クエリを実行し、結果を準備する
+
+  string sesam_query(string query [, bool scrollable])~
+
+|sesam_query| は、クエリをサーバ上の現在
+アクティブなデータベースに送信します。この関数は、"即時"
+SQL 命令 および "select型"
+クエリの両方を実行可能です。"即時型" 命令を
+実行した場合はカーソルは確保されず、この後に
+|sesam_fetch_row| または |sesam_fetch_result|
+をコールしても空の結果 (結果の終端を示すカラム数 0)
+が返されます。
+
+"スクロール型"カーソルを使用している場合、カーソルは結果集合上を
+自由に移動可能です。各"スクロール型"クエリに関して、スクロール型の
+グローバルデフォルト値 (SESAM_SEEK_NEXT に
+初期化されています) と |sesam_seek_row| により
+一度設定するか、|sesam_fetch_row| を使用して
+レコードを取得する度に設定するスクロールオフセットがあります。
+
+"即時型"命令の場合、作用されたレコードの数が保存されます。この数は、
+|sesam_affected_rows| 関数で取得可能です。
+
+{query} クエリ文。
+
+{scrollable} "select型" 命令の場合、 結果記述子および
+(オプションのパラメータ {scrollable}
+の設定によりスクロール型または 連続型の)
+カーソルが確保されます。{scrollable}
+が省略された場合、カーソルは連続型となります。
+
+成功時に SESAM "結果 ID"、またはエラー時に FALSE
+を返します。 この結果 ID
+を、その他の関数で使用します。
+
+"phone" テーブルの全てのレコードを HTML
+テーブルとして表示する
+
+<?php >
+  if (!sesam_connect("phonedb", "demo", "otto"))
+      die("接続できません");
+  $result = sesam_query("select * from phone");
+  if (!$result) {
+      $err = sesam_diagnostic();
+      die ($err["errmsg"]);
+  }
+  echo "<table border>\n";
+  // 結果の上にカラム名をヘッダとして表示します
+  if ($cols = sesam_field_array($result)) {
+      echo "<tr><th colspan=" . $cols["count"] . ">Result:</th></tr>\n";
+      echo "<tr>\n";
+      for ($col = 0; $col < $cols["count"]; ++$col) {
+          $colattr = $cols[$col];
+          /* SESAM の "Multiple Fields" について、列を連結します */
+          if ($colattr["count"] > 1) {
+              echo "<th colspan=\"" . $colattr["count"] . "\">" . $colattr["name"] .
+                  "(1.." . $colattr["count"] . ")</th>\n";
+              $col += $colattr["count"] - 1;
+          } else
+              echo "<th>" . $colattr["name"] . "</th>\n";
+      }
+      echo "</tr>\n";
+  }
+  
+  do {
+      // 最大 100 行までに分割して結果を取得します
+      $ok = sesam_fetch_result($result, 100);
+      for ($row=0; $row < $ok["rows"]; ++$row) {
+          echo " <tr>\n";
+          for ($col = 0; $col < $ok["cols"]; ++$col) {
+              if (isset($ok[$col][$row])) {
+                  echo "<td>" . $ok[$col][$row] . "</td>\n";
+              } else {
+                  echo "<td>-empty-</td>\n";
+              }
+          }
+          echo "</tr>\n";
+      }
+  } while ($ok["truncated"]); // データがなくなるまで続けます
+  
+  echo "</table>\n";
+  // 結果 id を開放します
+  sesam_free_result($result);
+?>
+
+
+
+
+
+|sesam_fetch_row| |sesam_fetch_result|
+
+vim:ft=help:

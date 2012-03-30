@@ -1,0 +1,13 @@
+newt_listbox_clear --
+
+  void newt_listbox_clear(resource listobx)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{listobx}
+
+値を返しません。
+
+vim:ft=help:

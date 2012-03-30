@@ -1,0 +1,12 @@
+PDF_get_minorversion -- マイナーバージョン番号を取得する
+[古い関数]
+
+  int PDF_get_minorversion()~
+
+PDFlib のマイナーバージョン番号を返します。
+
+この関数は PDFlib バージョン 5 で廃止されました。
+かわりにパラメータ {minor} を用いて |PDF_get_value|
+を使用してください。
+
+vim:ft=help:

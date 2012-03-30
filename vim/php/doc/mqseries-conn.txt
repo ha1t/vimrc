@@ -1,0 +1,40 @@
+mqseries_conn -- MQSeries MQCONN
+
+   mqseries_conn(string qManagerName, resourceref hconn, resourceref compCode, resourceref reason)~
+
+The |mqseries_conn| (MQCONN)
+をコールすると、アプリケーションプログラムをキューマネージャに接続します。
+これによって取得した接続ハンドルを、
+アプリケーション側でそれ以降のメッセージキューコールの際に使用します。
+
+{qManagerName} キューマネージャ名。
+
+アプリケーションが接続したいキューマネージャの名前。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_conn| の例
+
+<?php >
+      mqseries_conn('WMQ1', $conn, $comp_code, $reason);
+      if ($comp_code !== MQSERIES_MQCC_OK) {		
+          printf("conn CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+          exit;
+      }
+?>
+
+
+
+
+
+|mqseries_disc|
+
+vim:ft=help:

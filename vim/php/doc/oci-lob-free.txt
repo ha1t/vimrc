@@ -1,0 +1,12 @@
+OCI-Lob->free -- LOB
+ディスクリプタに関連付けられたりソースを解放する
+
+  bool free()~
+
+事前に |oci_new_descriptor| を使用して割り当てられた
+ディスクリプタに関連付けられたりソースを解放します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

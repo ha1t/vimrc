@@ -1,0 +1,17 @@
+udm_alloc_agent_array -- mnoGoSearch セッションを割り当てる
+
+  resource udm_alloc_agent_array(array databases)~
+
+|udm_alloc_agent_array| は、
+複数データベース接続にエージェントを作成します。
+
+{databases} {databases} の各要素にはデータベースの URL
+を指定します。 これは |udm_alloc_agent|
+の最初のパラメータと同じ形式です。
+
+成功した場合にリソースリンク ID、失敗した場合に FALSE
+を返します。
+
+|udm_alloc_agent|
+
+vim:ft=help:

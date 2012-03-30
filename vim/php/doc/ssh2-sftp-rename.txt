@@ -1,0 +1,32 @@
+ssh2_sftp_rename -- リモートファイルを改名する
+
+  bool ssh2_sftp_rename(resource sftp, string from, string to)~
+
+リモートファイルシステム上のファイルを改名します。
+
+{sftp} |ssh2_sftp| でオープンした SSH2 SFTP リソース。
+
+{from} 名前を変更したいファイル。
+
+{to} {from} のかわりに新しく使用したいファイル名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+sftp 経由でのファイルの改名
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  $sftp = ssh2_sftp($connection);
+  
+  ssh2_sftp_rename($sftp, '/home/username/oldname', '/home/username/newname');
+?>
+
+
+
+
+
+|rename|
+
+vim:ft=help:

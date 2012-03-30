@@ -1,0 +1,92 @@
+array_filter --
+コールバック関数を使用して、配列の要素をフィルタリングする
+
+  array array_filter(array input [, callback callback])~
+
+{callback} 関数によりフィルタ処理が行われた {input}
+の全ての要素を含む配列を返します。 {callback} 関数が true
+を返した場合、 {input}
+の現在の値が結果の配列に入ります。 {input}
+が連想配列の場合、 キーは保存されます。
+
+{input} 処理する配列。
+
+{callback} 使用するコールバック関数。
+
+コールバック関数が与えられなかった場合、 {input}
+のエントリの中で FALSE と等しいもの (boolean への変換
+を参照ください) がすべて削除されます。
+
+フィルタリングされた結果の配列を返します。
+
+|array_filter| の例
+
+<?php >
+  function odd($var)
+  {
+      return($var &amp; 1);
+  }
+  
+  function even($var)
+  {
+      return(!($var &amp; 1));
+  }
+  
+  $array1 = array("a"=>1, "b"=>2, "c"=>3, "d"=>4, "e"=>5);
+  $array2 = array(6, 7, 8, 9, 10, 11, 12);
+  
+  echo "Odd :\n";
+  print_r(array_filter($array1, "odd"));
+  echo "Even:\n";
+  print_r(array_filter($array2, "even"));
+?>
+
+上の例の出力は以下となります。
+
+  Odd :
+  Array
+  (
+      [a] => 1
+      [c] => 3
+      [e] => 5
+  )
+  Even:
+  Array
+  (
+      [0] => 6
+      [2] => 8
+      [4] => 10
+      [6] => 12
+  )
+
+{callback} がない |array_filter|
+
+<?php >
+  $entry = array(
+               0 => 'foo',
+               1 => false,
+               2 => -1,
+               3 => null,
+               4 => ''
+            );
+  
+  print_r(array_filter($entry));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => foo
+      [2] => -1
+  )
+
+
+
+配列の内容がコールバック関数内で変更された場合
+(たとえば要素が追加されたり削除されたりなど)
+のこの関数の挙動は未定義です。
+
+|array_map| |array_reduce| |array_walk|
+
+vim:ft=help:

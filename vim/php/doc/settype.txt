@@ -1,0 +1,47 @@
+settype -- 変数の型をセットする
+
+  bool settype(mixed var, string type)~
+
+変数 {var} の型を {type} にセットします。
+
+{var} 変換する変数。
+
+{type} {type} の値は以下の命令のいずれかです。 "boolean"
+(または、PHP 4.2.0以降は"bool")
+
+"integer" (または、PHP 4.2.0以降は"int")
+
+"float" (PHP
+4.2.0以降でのみ可能、古いバージョンでは、"double"
+を使用します)
+
+"string"
+
+"array"
+
+"object"
+
+"null" (PHP 4.2.0以降)
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|settype| の例
+
+<?php >
+  $foo = "5bar"; // string
+  $bar = true;   // boolean
+  
+  settype($foo, "integer"); // ここでは、$foo は 5です (整数)
+  settype($bar, "string");  // ここでは、$bar は "1" です (文字列)
+?>
+
+
+
+
+
+"int" の最大値は PHP_INT_MAX です。
+
+|gettype| 型キャスト 型の相互変換
+
+vim:ft=help:

@@ -1,0 +1,78 @@
+ZipArchive::open -- ZIP ファイルアーカイブをオープンする
+
+  mixed ZipArchive::open(string filename [, int flags])~
+
+新しい zip
+アーカイブを、読み込み/書き込み/変更用にオープンします。
+
+{filename} オープンする ZIP アーカイブのファイル名。
+
+{flags} アーカイブのオープンに使用するモード。
+ZIPARCHIVE::OVERWRITE
+
+ZIPARCHIVE::CREATE
+
+ZIPARCHIVE::EXCL
+
+ZIPARCHIVE::CHECKCONS
+
+{エラーコード} 成功した場合に
+TRUE、それ以外の場合にエラーコードを返します。
+ZIPARCHIVE::ER_EXISTS
+
+ZIPARCHIVE::ER_INCONS
+
+ZIPARCHIVE::ER_INVAL
+
+ZIPARCHIVE::ER_MEMORY
+
+ZIPARCHIVE::ER_NOENT
+
+ZIPARCHIVE::ER_NOZIP
+
+ZIPARCHIVE::ER_OPEN
+
+ZIPARCHIVE::ER_READ
+
+ZIPARCHIVE::ER_SEEK
+
+この例は、ZIP
+ファイルアーカイブをオープンして内部の各ファイルを読み込み、
+その内容を表示します。この例で使用するアーカイブ
+test2.zip は、ZZIPlib
+のソース配布物に含まれているテスト用アーカイブのひとつです。
+
+オープンおよび展開
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip')
+  if ($res === TRUE) {
+      echo '成功';
+      $zip->extractTo('test');
+      $zip->close();
+  } else {
+      echo '失敗、コード:' . $res;
+  }
+?>
+
+
+
+アーカイブの作成
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip', ZipArchive::CREATE);
+  if ($res === TRUE) {
+      $zip->addFromString('test.txt', 'ここにファイルの内容を書きます');
+      $zip->addFile('data.txt', 'entryname.txt');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

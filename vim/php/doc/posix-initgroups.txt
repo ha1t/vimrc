@@ -1,0 +1,17 @@
+posix_initgroups -- グループアクセスリストを求める
+
+  bool posix_initgroups(string name, int base_group_id)~
+
+指定した名前のユーザについてのグループアクセスリストを求めます。
+
+{name} リストを取得したいユーザ。
+
+{base_group_id}
+パスワードファイルから取得したグループ番号。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+Unix の initgroups(3) のマニュアル
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+SDO_DAS_XML_Document::setXMLVersion -- xml
+バージョンを文字列で設定する
+
+  void SDO_DAS_XML_Document::setXMLVersion(string xmlVersion)~
+
+xml バージョンを文字列で設定します。
+
+{xmlVersion} xml バージョン文字列。
+
+何も返しません。
+
+vim:ft=help:

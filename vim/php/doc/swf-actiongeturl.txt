@@ -1,0 +1,14 @@
+swf_actiongeturl -- Shockwave Flash ムービーから URL を得る
+
+  void swf_actiongeturl(string url, string target)~
+
+指定したターゲット {target} からパラメータ {url}
+で指定したURLを得ます。
+
+{url} URL を表す文字列。
+
+{target} 対象を表す文字列。
+
+値を返しません。
+
+vim:ft=help:

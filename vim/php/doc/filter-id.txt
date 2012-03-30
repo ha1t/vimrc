@@ -1,0 +1,12 @@
+filter_id -- フィルタの名前からフィルタ ID を返す
+
+  int filter_id(string filtername)~
+
+{filtername} 取得したいフィルタの名前。
+
+フィルタの ID を返します。フィルタが存在しない場合は
+NULL を返します。
+
+|filter_list|
+
+vim:ft=help:

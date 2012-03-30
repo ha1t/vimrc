@@ -1,0 +1,19 @@
+DomDocument->create_entity_reference --
+エンティティ参照を作成する
+
+  domentityreference DomDocument->create_entity_reference(string content)~
+
+この関数は DomEntityReference
+クラスの新規インスタンスを返します。
+エンティティ参照の内容は渡されたパラメータの値です。このノードは、(たとえば)
+|domnode_append_child|
+などで挿入されない限り、ドキュメント内に現われません。
+
+エラーが発生した場合、戻り値は FALSE です。
+
+|domnode_append_child|, |domdocument_create_element|,
+|domdocument_create_text|, |domdocument_create_cdata_section|,
+|domdocument_create_processing_instruction|, |domdocument_create_attribute|,
+|domnode_insert_before| も参照ください。
+
+vim:ft=help:

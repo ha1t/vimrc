@@ -1,0 +1,16 @@
+px_close -- paradox データベースを閉じる
+
+  bool px_close(resource pxdoc)~
+
+paradox
+データベースを閉じます。この関数は、ファイルは閉じません。
+この後で |fclose| をコールする必要があります。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|px_open_fp| |px_new| の例
+
+vim:ft=help:

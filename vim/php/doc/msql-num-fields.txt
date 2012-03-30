@@ -1,0 +1,15 @@
+msql_num_fields -- 結果におけるフィールドの数を得る
+
+  int msql_num_fields(resource result)~
+
+|msql_num_fields|は、結果セットにおける
+フィールドの数を返します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+結果セットにおけるフィールドの数を返します。
+
+|msql_query| |msql_fetch_field| |msql_num_rows|
+
+vim:ft=help:

@@ -1,0 +1,24 @@
+ncurses_prefresh --
+パッドから仮想画面にリージョンをコピーする
+
+  int ncurses_prefresh(resource pad, int pminrow, int pmincol, int sminrow, int smincol, int smaxrow, int smaxcol)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{pad}
+
+{pminrow}
+
+{pmincol}
+
+{sminrow}
+
+{smincol}
+
+{smaxrow}
+
+{smaxcol}
+
+vim:ft=help:

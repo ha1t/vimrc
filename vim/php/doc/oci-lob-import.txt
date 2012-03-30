@@ -1,0 +1,13 @@
+OCI-Lob->import -- ファイルデータを LOB にインポートする
+
+  bool import(string filename)~
+
+{filename}
+からのデータをラージオブジェクトの現在の位置に書き込みます。
+
+{filename} ファイルへのパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+SDO_DAS_XML_Document::setXMLDeclaration -- xml 宣言を設定する
+
+  void SDO_DAS_XML_Document::setXMLDeclaration(bool xmlDeclatation)~
+
+XML ドキュメントの最初に XML
+宣言を生成するかどうかを制御します。 true を設定すると
+XML 宣言が生成され、 false にすると宣言を抑制します。
+
+{xmlDeclatation} XML 宣言を設定するための Boolean 値。
+
+何も返しません。
+
+vim:ft=help:

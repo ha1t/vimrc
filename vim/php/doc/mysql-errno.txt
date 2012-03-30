@@ -1,0 +1,53 @@
+mysql_errno -- 直近の MySQL
+処理からエラーメッセージのエラー番号を返す
+
+  int mysql_errno([resource link_identifier])~
+
+直近の MySQL 関数で発生したエラーの番号を返します。
+
+MySQL データベースバックエンドから返ってくるエラーは、
+警告を発生しません。代わりに |mysql_errno| を用いて
+エラー番号を取得してください。この関数が返すのは、直近に実行された
+MySQL 関数（|mysql_error| と |mysql_errno|
+は除く）のエラーコードだけであることに
+注意しましょう。この関数を利用するなら、別の MySQL
+関数をコールする前に
+値を調べることを忘れないようにしましょう。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+直近の MySQL
+関数からのエラー番号を返します。エラーが発生していない
+場合は、0 (ゼロ)を返します。
+
+|mysql_errno| の例
+
+<?php >
+  $link = mysql_connect("localhost", "mysql_user", "mysql_password");
+  
+  if (!mysql_select_db("nonexistentdb", $link)) {
+      echo mysql_errno($link) . ": " . mysql_error($link). "\n";
+  }
+  
+  mysql_select_db("kossu", $link);
+  if (!mysql_query("SELECT * FROM nonexistenttable", $link)) {
+      echo mysql_errno($link) . ": " . mysql_error($link) . "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  1049: Unknown database 'nonexistentdb'
+  1146: Table 'kossu.nonexistenttable' doesn't exist
+
+
+
+|mysql_error| MySQL エラーコード
+
+vim:ft=help:

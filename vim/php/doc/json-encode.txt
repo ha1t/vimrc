@@ -1,0 +1,35 @@
+json_encode -- 値を JSON 形式にして返す
+
+  string json_encode(mixed value)~
+
+{value} を JSON 形式にした文字列を返します。
+
+{value} エンコードする値。 resource
+型以外の任意の型を指定できます。
+
+この関数は、UTF-8
+エンコードされたデータでのみ動作します。
+
+成功した場合に、JSON
+エンコードされた文字列を返します。
+
+バージョン 説明 5.2.1 JSON
+エンコードの基本型のサポートを追加しました。
+
+|json_encode| の例
+
+<?php >
+  $arr = array ('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5);
+  
+  echo json_encode($arr);
+?>
+
+上の例の出力は以下となります。
+
+  {"a":1,"b":2,"c":3,"d":4,"e":5}
+
+
+
+|json_decode|
+
+vim:ft=help:

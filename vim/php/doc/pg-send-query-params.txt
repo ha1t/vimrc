@@ -1,0 +1,53 @@
+pg_send_query_params --
+コマンドとパラメータを分割してサーバに送信し、その結果を待たない
+
+  bool pg_send_query_params(resource connection, string query, array params)~
+
+コマンドとパラメータを分割してサーバに送信します。その結果を待つことは
+しません。
+
+これは |pg_send_query| とほぼ同じですが、パラメータが
+{query} とは別に分かれている点が違います。
+関数のパラメータは、|pg_query_params| によって
+完全に制御されます。|pg_query_params| と同様、 7.4 より前の
+PostgreSQL では動作しません。またクエリ文字列には
+ひとつのコマンドのみを含めることができます。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{query} パラメータ化した SQL
+文。ひとつの文のみである必要があります
+（複数の文をセミコロンで区切る形式は使用できません）。パラメータを
+使用する際は $1、$2 などの形式で参照されます。
+
+{params} プリペアドステートメント中の $1、$2
+などのプレースホルダを
+置き換えるパラメータの配列。配列の要素数はプレースホルダの
+数と一致する必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+クエリの結果を判断するには |pg_get_result| を使用します。
+
+|pg_send_query_params| の使用法
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    // パラメータを使用する。パラメータにはクォートやエスケープが
+    // 必要ないことに注意
+    pg_send_query_params($dbconn, 'select count(*) from authors where city = $1', array('Perth'));
+    
+    // 基本的な pg_send_query の使用法との比較
+    $str = pg_escape_string('Perth');
+    pg_send_query($dbconn, "select count(*) from authors where city = '${str}'");
+?>
+
+
+
+
+
+|pg_send_query|
+
+vim:ft=help:

@@ -1,0 +1,47 @@
+PDO::pgsqlLOBOpen --
+既存のラージオブジェクトのストリームをオープンする
+
+  resource PDO::pgsqlLOBOpen(string oid [, string mode])~
+
+|PDO::pgsqlLOBOpen| は、{oid}
+が指すデータにアクセスするためのストリームをオープンします。
+{mode} が r の場合、
+ストリームは読み込み用にオープンされます。 {mode} が w
+の場合、 ストリームは書き込み用にオープンされます。
+|fread|、|fwrite| および |fgets|
+のような通常のファイルシステム関数を使用して、
+ストリームの内容を操作することができます。
+
+この関数およびラージオブジェクトに対するすべての操作は、
+トランザクション内で処理される必要があります。
+
+{oid} ラージオブジェクトの ID。
+
+{mode} モードが r
+の場合、読み込み用のストリームをオープンします。
+モードが w
+の場合、書き込み用のストリームをオープンします。
+
+成功した場合にストリームリソース、失敗した場合に FALSE
+を返します。
+
+|PDO::pgsqlLOBOpen| の例 |PDO::pgsqlLOBCreate| の例に引き続き、
+このコード片はデータベースからラージオブジェクトを取得して
+それをブラウザに出力します。
+
+<?php >
+  $db = new PDO('pgsql:dbname=test host=localhost', $user, $pass);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $db->beginTransaction();
+  $stmt = $db->prepare("select oid from BLOBS where ident = ?");
+  $stmt->execute(array($some_id));
+  $stmt->bindColumn('oid', $lob, PDO::PARAM_LOB);
+  $stmt->fetch(PDO::FETCH_BOUND);
+  fpassthru($lob);
+?>
+
+
+
+|PDO::pgsqlLOBCreate| |PDO::pgsqlLOBUnlink| |pg_lo_open|
+
+vim:ft=help:

@@ -1,0 +1,53 @@
+imap_reopen -- 新規メールボックスへの IMAP
+ストリームを再度オープンする
+
+  bool imap_reopen(resource imap_stream, string mailbox [, int options [, int n_retries]])~
+
+IMAP または NNTP サーバ上の新しい {mailbox}
+に対して指定されたストリームを再オープンします。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+{options} {options}
+はビットマスクであり、以下の組み合わせとなります。
+OP_READONLY -
+メールボックスを読み込み専用でオープンします。
+
+OP_ANONYMOUS - ニュースに関して .newsrc
+を使用せず、更新もしません（NNTP のみ）。
+
+OP_HALFOPEN - IMAP および NNTP
+名について、接続をオープンするが
+メールボックスをオープンしません。
+
+OP_EXPUNGE -
+何も警告せずにリサイクルストリームを削除します。
+
+CL_EXPUNGE - メールボックスを閉じた際に、自動的に
+メールボックスを削除する（|imap_delete| および |imap_expunge|
+も参照ください）。
+
+{n_retries} 接続試行の最大数。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.2.0 {n_retries} が追加されました。
+
+|imap_reopen| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org:143}INBOX", "username", "password") or die(implode(", ", imap_errors()));
+  // ...
+  imap_reopen($mbox, "{imap.example.org:143}INBOX.Sent") or die(implode(", ", imap_errors()));
+  // ..
+?>
+
+
+
+
+
+vim:ft=help:

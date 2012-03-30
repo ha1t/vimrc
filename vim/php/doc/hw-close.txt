@@ -1,0 +1,12 @@
+hw_Close -- Hyperwave 接続を閉じる
+
+  bool hw_close(int connection)~
+
+Hyperwave サーバとの接続を閉じます。
+
+{connection} 接続 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

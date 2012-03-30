@@ -1,0 +1,16 @@
+px_get_field -- 単一のフィールドの仕様を返す
+
+  array px_get_field(resource pxdoc, int fieldno)~
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+{fieldno} フィールド番号。最初のフィールドが 0
+番となります。 0
+より小さい番号やフィールド数以上の番号を指定すると、
+エラーが発生します。
+
+fieldno 番目のデータベースフィールドの仕様を、
+連想配列で返します。 name、type および size という 3
+つのフィールドが含まれます。
+
+vim:ft=help:

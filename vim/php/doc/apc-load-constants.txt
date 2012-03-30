@@ -1,0 +1,41 @@
+apc_load_constants -- 定数群をキャッシュから読み込む
+
+  bool apc_load_constants(string key [, bool case_sensitive])~
+
+定数群をキャッシュから読み込みます。
+
+{key} 取得したい定数群（|apc_define_constants|
+を使用して格納されたもの）。
+
+{case_sensitive}
+デフォルトでは、定数名の大文字・小文字は区別されます。すなわち、
+CONSTANT と Constant は別の値を表します。このパラメータを
+FALSE にすると、
+定数名の大文字・小文字は区別されなくなります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|apc_load_constants| の例
+
+<?php >
+  $constants = array(
+      'ONE'   => 1,
+      'TWO'   => 2,
+      'THREE' => 3,
+  );
+  apc_define_constants('numbers', $constants);
+  apc_load_constants('numbers');
+  echo ONE, TWO, THREE;
+?>
+
+上の例の出力は以下となります。
+
+  123
+
+
+
+|apc_define_constants| |define| |constant| あるいは PHP
+リファレンスの「定数」
+
+vim:ft=help:

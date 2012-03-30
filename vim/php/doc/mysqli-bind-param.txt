@@ -1,0 +1,9 @@
+mysqli_bind_param -- mysqli_stmt_bind_param のエイリアス
+
+この関数は |mysqli_stmt_bind_param| のエイリアスです。
+
+|mysqli_bind_param| は非推奨で、将来は削除される予定です。
+
+|mysqli_stmt_bind_param|
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+stats_dens_pmf_hypergeometric --
+
+  float stats_dens_pmf_hypergeometric(float n1, float n2, float N1, float N2)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{n1}
+
+{n2}
+
+{N1}
+
+{N2}
+
+
+
+vim:ft=help:

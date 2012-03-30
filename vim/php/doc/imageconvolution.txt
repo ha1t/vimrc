@@ -1,0 +1,62 @@
+imageconvolution -- div および offset の係数を使用し、3x3
+の畳み込み配列を適用する
+
+  bool imageconvolution(resource image, array matrix, float div, float offset)~
+
+画像に畳み込み配列を適用します。
+指定した係数とオフセットを使用します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{matrix} 3x3 の配列。三つの float
+値からなる三つの配列の配列。
+
+{div} 畳み込み結果の除数。正規化で使用します。
+
+{offset}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+PHP.net ロゴのエンボス加工
+
+<?php >
+  $image = imagecreatefromgif('http://www.php.net/images/php.gif');
+  
+  $emboss = array(array(2, 0, 0), array(0, -1, 0), array(0, 0, -1));
+  imageconvolution($image, $emboss, 1, 127);
+  
+  header('Content-Type: image/png');
+  imagepng($image, null, 9);
+?>
+
+上の例の出力は以下となります。
+
+ガウス分布のぼかし
+
+<?php >
+  $image = imagecreatetruecolor(180,40);
+  
+  // テキストを書き、画像にガウス分布のぼかしを適用します
+  imagestring($image, 5, 10, 8, 'Gaussian Blur Text', 0x00ff00);
+  $gaussian = array(array(1.0, 2.0, 1.0), array(2.0, 4.0, 2.0), array(1.0, 2.0, 1.0));
+  imageconvolution($image, $gaussian, 16, 0);
+  
+  // 比較用にもう一度テキストを書きます
+  imagestring($image, 5, 10, 18, 'Gaussian Blur Text', 0x00ff00);
+  
+  header('Content-Type: image/png');
+  imagepng($image, null, 9);
+?>
+
+上の例の出力は以下となります。
+
+
+
+この関数は、PHP がバンドル版の GD ライブラリで
+コンパイルされている場合のみ使用可能です。
+
+|imagefilter|
+
+vim:ft=help:

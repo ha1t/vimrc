@@ -1,0 +1,16 @@
+ps_open_memory_image -- GD 画像を受け取り、PS
+ドキュメントにはめ込む画像を返す
+
+  int ps_open_memory_image(resource psdoc, int gd)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+{psdoc} |ps_new| が返す postscript ファイルの ID リソース。
+
+{gd}
+
+vim:ft=help:

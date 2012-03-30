@@ -1,0 +1,15 @@
+pcntl_wstopsig -- 子プロセスを停止させたシグナルを返す
+
+  int pcntl_wstopsig(int status)~
+
+子プロセスを停止させたシグナル番号を返します。この関数は、
+|pcntl_wifstopped| が TRUE を返す場合のみ有用です。
+
+{status} パラメータ {status} は、 |pcntl_waitpid|
+が正常にコールされた際に得られます。
+
+シグナル番号を返します。
+
+|pcntl_waitpid| |pcntl_wifstopped|
+
+vim:ft=help:

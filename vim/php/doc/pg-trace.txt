@@ -1,0 +1,53 @@
+pg_trace -- PostgreSQL 接続のトレースを有効にする
+
+  bool pg_trace(string pathname [, string mode [, resource connection]])~
+
+|pg_trace| は、PostgreSQL フロントエンド/
+バックエンド間の通信をデバック用のファイルにトレースすることを有効にします。
+このトレース結果を完全に理解するためには、PostgreSQL
+通信プロトコルの詳細に 精通している必要があります。
+
+そうでない人にとっても、サーバに送られたクエリのエラーを
+トレースすることは有用です。試しに grep '^To backend'
+trace.log を実行し、実際に PostgreSQL サーバに送信される
+クエリを見てみるとよいでしょう。詳細な情報は PostgreSQL
+ドキュメントを 参照ください。
+
+{pathname}
+トレースログを書き込むファイルの名前（フルパスを含む）。
+|fopen| と同じ。
+
+{mode} オプションのファイルアクセスモード。|fopen|
+と同じです。デフォルトは "w" です。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_trace| の例
+
+<?php >
+  $pgsql_conn = pg_connect("dbname=mark host=localhost");
+  
+  if ($pgsql_conn) {
+     pg_trace('/tmp/trace.log', 'w', $pgsql_conn);
+     pg_query("SELECT 1");
+     pg_untrace($pgsql_conn);
+     // /tmp/trace.log にバックエンドの通信が記録される
+  } else {
+     print pg_last_error($pgsql_conn);
+     exit;
+  }
+?>
+
+
+
+
+
+|fopen| |pg_untrace|
+
+vim:ft=help:

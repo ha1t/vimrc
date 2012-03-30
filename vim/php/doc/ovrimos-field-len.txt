@@ -1,0 +1,17 @@
+ovrimos_field_len -- 出力カラムの長さを返す
+
+  int ovrimos_field_len(int result_id, int field_number)~
+
+指定した出力カラムの長さを取得します。
+
+{result_id} |ovrimos_execute| あるいは |ovrimos_exec| が返す結果
+ID。
+
+{field_number} フィールド番号。1 から始まります。
+
+フィールドの長さを表す整数値、あるいはエラー時に FALSE
+を返します。
+
+|ovrimos_field_name| |ovrimos_field_num| |ovrimos_field_type|
+
+vim:ft=help:

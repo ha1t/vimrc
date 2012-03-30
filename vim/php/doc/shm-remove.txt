@@ -1,0 +1,15 @@
+shm_remove -- Unix システムから共有メモリを削除する
+
+  bool shm_remove(int shm_identifier)~
+
+|shm_remove| は、共有メモリ {shm_identifier} を削除します。
+全てのデータは破棄されます。
+
+{shm_identifier} 共有メモリの ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|shm_remove_var|
+
+vim:ft=help:

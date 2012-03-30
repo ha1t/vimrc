@@ -1,0 +1,34 @@
+fbsql_table_name -- フィールドのテーブル名を得る
+
+  string fbsql_table_name(resource result, int index)~
+
+|fbsql_table_name| は、指定した結果セット {result}
+から現在のテーブル名を取得します。
+
+|fbsql_num_rows| 関数を使用して、
+現在の結果ポインタ内のテーブルの数を判断します。
+
+{result} |fbsql_list_tables| が返す結果ポインタ。
+
+{index} 現在のテーブルの整数値インデックス。
+
+テーブル名を文字列で返します。
+
+|fbsql_table_name| の例
+
+<?php >
+  fbsql_connect("localhost", "_SYSTEM", "");
+  $result = fbsql_list_tables("wisconsin");
+  $i = 0;
+  while ($i < fbsql_num_rows($result)) {
+      $tb_names[$i] = fbsql_table_name($result, $i);
+      echo $tb_names[$i] . "<br />";
+      $i++;
+  }
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,55 @@
+SQLiteDatabase->busyTimeout --
+ビジータイムアウト時間を設定またはビジーハンドラを無効にする
+
+  void sqlite_busy_timeout(resource dbhandle, int milliseconds)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  void busyTimeout(resource dbhandle, int milliseconds, int milliseconds)~
+
+SQLite データベース {database}が利用可能となるまでの
+最大の待ち時間を {milliseconds} に設定します。
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{milliseconds} ミリ秒での数。 {milliseconds} が 0の場合、
+ビジーハンドラは無効となり、他のプロセス/スレッドが更新用にデータベー
+スをロックしている際に、sqliteはSQLITE_BUSYを
+直ちに返します。
+
+PHPはデフォルトでデータベースがオープンされる際のビジータイムアウト
+を 60 秒に設定しています。
+
+1 秒は 1000 ミリ秒です。
+
+値を返しません。
+
+手続き言語型スタイル
+
+<?php >
+  $dbhandle = sqlite_open('sqlitedb');
+  sqlite_busy_timeout($dbhandle, 10000); // タイムアウトを 10 秒に設定する
+  sqlite_busy_timeout($dbhandle, 0); // ビジーハンドラを無効にする
+?>
+
+
+
+
+
+オブジェクト指向言語型スタイル
+
+<?php >
+  $dbhandle = new SQLiteDatabase('sqlitedb');
+  $dbhandle->busyTimeout(10000); // 10 秒にする
+  $dbhandle->busyTimeout(0); // 無効にする
+?>
+
+
+
+
+
+|sqlite_open|
+
+vim:ft=help:

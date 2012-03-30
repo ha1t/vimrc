@@ -1,0 +1,78 @@
+geoip_db_get_all_info -- すべての GeoIP
+データベース形式についての詳細情報を返す
+
+  array geoip_db_get_all_info()~
+
+|geoip_db_get_all_info| 関数は、 すべての GeoIP
+データベース形式についての詳細情報を多次元配列で返します。
+
+この関数は、データベースがインストールされていない場合でも使用可能です。
+その場合は、使用できないことが返されます。
+
+返される連想配列のキーは、次のようになります。
+
+"available" -- DB が使用可能かどうか (|geoip_db_avail|
+を参照ください)
+
+"description" -- データベースについての説明
+
+"filename" -- ディスク上でのデータベースのファイル名
+(|geoip_db_filename| を参照ください)
+
+連想配列を返します。
+
+|geoip_db_get_all_info| の例
+これは、すべての情報を含む配列を表示します。
+
+<?php >
+  $infos = geoip_db_get_all_info();
+  if (is_array($infos)) {
+      var_dump($infos);
+  }
+?>
+
+上の例の出力は以下となります。
+
+  array(11) {
+    [1]=>
+    array(3) {
+      ["available"]=>
+      bool(true)
+      ["description"]=>
+      string(21) "GeoIP Country Edition"
+      ["filename"]=>
+      string(32) "/usr/share/GeoIP/GeoIP.dat"
+    }
+  
+  [ ... ]
+  
+    [11]=>
+    array(3) {
+      ["available"]=>
+      bool(false)
+      ["description"]=>
+      string(25) "GeoIP Domain Name Edition"
+      ["filename"]=>
+      string(38) "/usr/share/GeoIP/GeoIPDomain.dat"
+    }
+  }
+
+
+
+|geoip_db_get_all_info| の例
+さまざまな定数を使用することで、特定の情報のみを取得することができます。
+
+<?php >
+  $infos = geoip_db_get_all_info();
+  if ($infos[GEOIP_COUNTRY_EDITION]['available']) {
+      echo $infos[GEOIP_COUNTRY_EDITION]['description'];
+  }
+?>
+
+上の例の出力は以下となります。
+
+  GeoIP Country Edition
+
+
+
+vim:ft=help:

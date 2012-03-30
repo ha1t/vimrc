@@ -1,0 +1,12 @@
+readline_add_history -- ヒストリに 1 行追加する
+
+  bool readline_add_history(string line)~
+
+この関数は、コマンドラインヒストリに 1 行追加します。
+
+{line} ヒストリに追加する行。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

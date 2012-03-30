@@ -1,0 +1,5 @@
+ocinumcols -- oci_num_fields のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_num_fields|.
+
+vim:ft=help:

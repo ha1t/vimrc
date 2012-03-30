@@ -1,0 +1,27 @@
+SAMConnection->error -- 最後に実行した SAM
+操作のエラーの説明を含む
+
+この接続で最後に実行された SAM
+操作のテキストによる説明が含まれます。
+直近の操作が正常に終了した場合は、このプロパティには空の文字列が含まれます。
+
+この接続で発生した最後のエラーの内容を表すテキストを返します。
+空の文字列は、この接続の直近の操作が正常に終了したことを表します。
+
+エラー番号および説明の取得法
+
+<?php >
+  $conn = new SAMConnection();
+  $conn->connect(SAM_WMQ, array(SAM_HOST => 'localhost', SAM_PORT => 1506));
+  $msg = new SAMMessage('This is a simple text item');
+  if (!$conn->send('topic://test', $msg)) {
+      // 送信に失敗しました!
+      echo "Send failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

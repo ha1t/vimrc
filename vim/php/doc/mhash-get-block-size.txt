@@ -1,0 +1,23 @@
+mhash_get_block_size --
+指定したハッシュのブロックサイズを得る
+
+  int mhash_get_block_size(int hash)~
+
+指定した {hash} のブロックサイズを取得します。
+
+{hash} ハッシュ ID。MHASH_XXX 定数のいずれかを指定します。
+
+サイズをバイト数で返します。{hash} が存在しない場合は
+FALSE を返します。
+
+|mhash_get_block_size| の例
+
+<?php >
+  echo mhash_get_block_size(MHASH_MD5); // 16
+?>
+
+
+
+
+
+vim:ft=help:

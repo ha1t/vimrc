@@ -1,0 +1,29 @@
+mcrypt_decrypt --
+指定したパラメータで暗号化されたテキストを復号する
+
+  string mcrypt_decrypt(string cipher, string key, string data, string mode [, string iv])~
+
+{data} を復号し、復号されたデータを返します。
+
+{cipher} {cipher} には、アルゴリズム名を表す定数
+MCRYPT_暗号名 の一つを文字列で指定します。
+
+{key} {key} は、データを暗号化する際のキーです。
+必要なキー長よりも短い場合には、'\0' で埋められます。
+
+{data} {data} は、指定した暗号およびモードで復号
+されます。データの大きさが n * blocksize
+でない場合、データは、 '\0' で埋められます。
+
+{mode} {mode} には、"ecb", "cbc", "cfb", "ofb", "nofb" ,"stream"
+のどれかを用いて定数 MCRYPT_MODE_モード名を 指定します。
+
+{iv} パラメータ {IV} は、CBC, CFB, OFB モードおよび STREAM
+モードのいくつかのアルゴリズムの初期化の際に使用されます。
+アルゴリズムで必要とする IV
+を指定しない場合、この関数は警告を発生し、
+全てのバイトを '\0' に設定した IV を使用します。
+
+復号されたデータを文字列で返します。
+
+vim:ft=help:

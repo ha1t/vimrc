@@ -1,0 +1,87 @@
+print_r -- 指定した変数に関する情報を解りやすく出力する
+
+  mixed print_r(mixed expression [, bool return])~
+
+|print_r| は、
+変数の値に関する情報を解り易い形式で表示します。
+
+|print_r|、|var_dump| および |var_export| は、PHP 5
+においてオブジェクトの protected および private
+のプロパティも表示します。
+静的なクラスメンバーは表示されません。
+
+|print_r| は、配列ポインタを終端まで移動する
+ことに注意してください。ポインタを最初に戻すために
+|reset| を使用してください。
+
+{expression} 表示したい式。
+
+{return} |print_r| の結果を取得したい場合には {return}
+引数を試用してください。 |print_r|
+はデフォルトでは結果を直接表示してしまいますが
+この引数が TRUE の場合には結果を戻します。
+
+string、integer, float
+を指定した場合はその値が出力されます。 array
+を指定した場合、キーと要素を表す形式で値が
+表示されます。object
+に関しても同様の表示形式となります。
+
+この関数は、
+このパラメータに対して内部的に出力バッファリングを使用しています。
+そのため、|ob_start|
+コールバック関数の中で使用することはできません。
+
+バージョン 説明 4.3.0 {return} 引数が PHP 4.3.0
+以降追加されました。 PHP4.3.0
+より前のバージョンを使っている場合で |print_r|
+の結果を取得したい場合には、
+出力制御関数を使用してください。 4.0.4 PHP 4.0.4
+より前のバージョンでは、自分自身への直接または間接の
+参照を含む array または object が指定された
+場合には、無限に |print_r| が実行されてしまいました。
+print_r($GLOBALS) が例で、 $GLOBALS
+はそれ自体自分自身への参照を有する
+グローバル変数です。
+
+|print_r| の例
+
+  <pre>
+<?php >
+  $a = array ('a' => 'apple', 'b' => 'banana', 'c' => array ('x', 'y', 'z'));
+  print_r ($a);
+?>
+  </pre>
+
+上の例の出力は以下となります。
+
+  <pre>
+  Array
+  (
+      [a] => apple
+      [b] => banana
+      [c] => Array
+          (
+              [0] => x
+              [1] => y
+              [2] => z
+          )
+  )
+  </pre>
+
+
+
+{return} 引数の例
+
+<?php >
+  $b = array ('m' => 'monkey', 'foo' => 'bar', 'x' => array ('x', 'y', 'z'));
+  $results = print_r($b, true); // print_r の結果が $results に格納されます
+?>
+
+
+
+
+
+|ob_start| |var_dump| |var_export|
+
+vim:ft=help:

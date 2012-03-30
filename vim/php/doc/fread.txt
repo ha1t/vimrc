@@ -1,0 +1,85 @@
+fread -- バイナリセーフなファイルの読み込み
+
+  string fread(resource handle, int length)~
+
+|fread| は、{handle} が指すファイルポインタから最高 {length}
+バイト読み込みます。
+以下のいずれかの条件を満たしたら、読み込みを終了します。
+{length} バイトぶん読み込んだ
+
+EOF (ファイルの終端) に達した
+
+パケットが利用可能になった
+(ネットワークストリームの場合)
+
+8192 バイトぶん読み込んだ
+(ユーザ定義ストリームをオープンした後)
+
+{handle} |fopen|
+を使用して作成したファイルシステムポインタリソース。
+
+{length} 最大 {length} バイトまで読み込む。
+
+読み込んだ文字列、またはエラー時には FALSE
+を返します。
+
+シンプルな |fread| の例
+
+<?php >
+  // ファイルの中身を読んで文字列に格納する
+  $filename = "/usr/local/something.txt";
+  $handle = fopen($filename, "r");
+  $contents = fread($handle, filesize($filename));
+  fclose($handle);
+?>
+
+
+
+
+
+バイナリの |fread| の例
+バイナリとテキストファイルの形式が異なるシステム(すなわち
+Windows)では、|fopen|の mode パラメータに 'b'
+を指定してファイルをオープンする必要があります。
+
+<?php >
+  $filename = "c:\\files\\somepic.gif";
+  $handle = fopen($filename, "rb");
+  $contents = fread($handle, filesize($filename));
+  fclose($handle);
+?>
+
+
+
+リモートファイルの |fread| の例
+通常のローカルファイル以外のもの、例えば
+リモートファイル や |popen|、|fsockopen| が返す
+ストリームを読み込んでいる場合には、
+パケットが有効になった後に読み込みはストップします。
+つまり以下の例のように分割されたデータを結合すべきであるということです。
+
+<?php >
+  // PHP 5 以降での例
+  $handle = fopen("http://www.example.com/", "rb");
+  $contents = stream_get_contents($handle);
+  fclose($handle);
+?>
+
+<?php >
+  $handle = fopen("http://www.example.com/", "rb");
+  $contents = '';
+  while (!feof($handle)) {
+    $contents .= fread($handle, 8192);
+  }
+  fclose($handle);
+?>
+
+
+
+文字列にファイルを読み込みたいだけならば、|file_get_contents|
+を使うほうが上記の例よりも効率的です。
+
+|fwrite| |fopen| |fsockopen| |popen| |fgets| |fgetss| |fscanf| |file|
+|fpassthru|
+
+vim:ft=help:

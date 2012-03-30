@@ -1,0 +1,40 @@
+ps_open_image -- 後で配置するために画像を読み込む
+
+  int ps_open_image(resource psdoc, string type, string source, string data, int lenght, int width, int height, int components, int bpc, string params)~
+
+すでにメモリ上にある画像を読み込みます。現在は {source}
+は評価されず、常に memory と仮定されます。
+画像データは、左上から右下に向かってピクセルデータを順に並べたものです。
+各ピクセルは、色コンポーネント {components}
+で構成されており、このコンポーネントの大きさは {bpc}
+ビットです。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{type} 画像の形式。png、 jpeg あるいは eps。
+
+{source} 使用されません。
+
+{data} 画像データ。
+
+{length} 画像データの長さ。
+
+{width} 画像の幅。
+
+{height} 画像の高さ。
+
+{components} 各ピクセルのコンポーネントの数。 1
+(グレースケール画像)、 3 (rgb 画像) あるいは 4 (cmyk, rgba
+画像)。
+
+{bpc} コンポーネント単位のビット数 (ほとんどの場合は 8)
+
+{params}
+
+成功した場合に画像の ID
+を、失敗した場合にゼロを返します。 ID は、0
+より大きい正の数値です。
+
+|ps_open_image_file| |ps_place_image| |ps_close_image|
+
+vim:ft=help:

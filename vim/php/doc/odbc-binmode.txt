@@ -1,0 +1,42 @@
+odbc_binmode -- バイナリカラムデータを処理する
+
+  bool odbc_binmode(resource result_id, int mode)~
+
+バイナリカラムデータを処理できるようにします
+(関係するODBC SQL型: BINARY, VARBINARY, LONGVARBINARY)。
+
+バイナリ SQL
+データが文字データに変換される時、ソースデータの
+各バイト (8 ビット) は、2
+つのアスキー文字で表現されます。 これらの文字は、16
+進表現で数値をアスキー文字で表現したものです。
+例えば、2 進数 000000001 は "01" に変換され、 11111111 は "FF"
+に変換されます。 LONGVARBINARY 処理 binmode longreadlen 結果
+ODBC_BINMODE_PASSTHRU 0 通過 ODBC_BINMODE_RETURN 0 通過
+ODBC_BINMODE_CONVERT 0 通過 ODBC_BINMODE_PASSTHRU 0 通過
+ODBC_BINMODE_PASSTHRU >0 通過 ODBC_BINMODE_RETURN >0 そのまま返す
+ODBC_BINMODE_CONVERT >0 char として返す
+
+|odbc_fetch_into| を使用した場合、
+「通過」は空文字列が対応するカラムに返されることを意味します。
+
+{result_id} 結果 ID。
+
+{result_id} に 0 を指定した場合、
+ここで設定した値は、新規の結果に関するデフォルト値として用いられます。
+longreadlen のデフォルト値は 4096 で、binmode
+のデフォルト値は ODBC_BINMODE_RETURN です。
+バイナリロングカラムの処理は、|odbc_longreadlen|
+の影響も受けます。
+
+{mode} {mode} には、以下の値が指定できます。
+ODBC_BINMODE_PASSTHRU: BINARY データとして通過
+
+ODBC_BINMODE_RETURN: そのまま返す
+
+ODBC_BINMODE_CONVERT: char に変換し返す
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,5 @@
+imap_listmailbox -- imap_list のエイリアス
+
+この関数は次の関数のエイリアスです。 |imap_list|.
+
+vim:ft=help:

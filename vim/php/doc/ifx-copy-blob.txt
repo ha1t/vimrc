@@ -1,0 +1,14 @@
+ifx_copy_blob -- 指定した BLOB オブジェクトを二重化する
+
+  int ifx_copy_blob(int bid)~
+
+指定した BLOB オブジェクトを二重化します。
+
+{bid} BLOB オブジェクトの ID。
+
+新規の BLOB オブジェクト ID を返します。 エラーの場合に
+FALSE を返します。
+
+|ifx_create_blob| |ifx_free_blob|
+
+vim:ft=help:

@@ -1,0 +1,8 @@
+PDF_setlinecap -- linecap パラメータを設定する
+
+  bool PDF_setlinecap(resource p, int linecap)~
+
+{linecap} を設定し、
+ストロークを考慮したうえでパスの終端の形状を制御します。
+
+vim:ft=help:

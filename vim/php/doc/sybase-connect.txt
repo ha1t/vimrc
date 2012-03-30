@@ -1,0 +1,48 @@
+sybase_connect -- Sybase サーバ接続をオープンする
+
+  resource sybase_connect([string servername [, string username [, string password [, string charset [, string appname]]]]])~
+
+|sybase_connect| は、Sybase サーバへの接続を確立します。
+
+同じ引数で |sybase_connect| を 2 度コールした場合、
+新たなリンクは確立されず、代わりに既にオープンされたリンクのリンク
+ID が返されます。
+
+|sybase_close|
+をコールすることにより明示的に閉じた場合を除き、
+サーバへのリンクはスクリプトの実行終了時に閉じられます。
+
+{servername} 引数 servername は、'interfaces'
+ファイル中で定義された
+有効なサーバ名である必要があります。
+
+{username} Sybase のユーザ名。
+
+{password} {username} のパスワード。
+
+{charset} 接続に使用する文字セットを指定します。
+
+{appname}
+
+成功した場合に正の Sybase リンク ID、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.0.2 {charset}
+パラメータが追加されました。
+
+|sybase_connect| の例
+
+<?php >
+  $link = sybase_connect('SYBASE', '', '')
+          or die("接続できません !");
+  echo "接続に成功しました";
+  sybase_close($link);
+?>
+
+
+
+
+
+|sybase_pconnect| |sybase_close|
+
+vim:ft=help:

@@ -1,0 +1,51 @@
+cpdf_rect -- 矩形を描く
+
+  bool cpdf_rect(int pdf_document, float x_coor, float y_coor, float width, float height [, int mode])~
+
+矩形を描画します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{x_coor} 左下隅の x 座標。
+
+{y_coor} 左下隅の y 座標。
+
+{width} 矩形の幅。
+
+{height} 矩形の高さ。
+
+{ mode}オプションのパラメータ {mode}
+は単位長さを定義します。この値が 0
+または値が省略された場合、
+このページで指定されたデフォルト値が使用されます。それ以外の場合、
+現在の単位を無視してポストスクリプトのポイントで座標が計測されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+矩形の描画
+
+<?php >
+  $cpdf = cpdf_open(0);
+  cpdf_page_init($cpdf, 1, 0, 595, 842, 1.0);
+  
+  // set the fill color to red
+  cpdf_setrgbcolor($cpdf, 1, 0, 0);
+  
+  // draw a (180 * 100) rectangle
+  cpdf_rect($cpdf, 645, 400, 180, 100);
+  
+  // fill the rectangle
+  cpdf_fill($cpdf);
+  
+  cpdf_finalize($cpdf);
+  Header("Content-type: application/pdf");
+  cpdf_output_buffer($cpdf);
+  cpdf_close($cpdf);
+?>
+
+
+
+
+
+vim:ft=help:

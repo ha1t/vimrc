@@ -1,0 +1,54 @@
+openssl_open --
+シール(暗号化)されたデータをオープン(復号)する
+
+  bool openssl_open(string sealed_data, string open_data, string env_key, mixed priv_key_id)~
+
+|openssl_open| は、キー ID {priv_key_id} およびエンベロープキー
+{env_key} に関連する公開鍵を使用して、 {sealed_data}
+をオープン(復号)します。
+エンベロープキーは、データがシール(暗号化)された際に生成され、特定の
+一つの公開鍵でのみ使用することが可能です。詳細な情報については、
+|openssl_seal| を参照ください。
+
+{sealed_data}
+
+{open_data}
+成功した場合、オープンしたデータをここに返します。
+
+{env_key}
+
+{priv_key_id}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openssl_open| の例
+
+<?php >
+  // $sealed および $env_key に暗号化されたデータおよびエンベロープキー
+  // が含まれていると仮定。共にシール元(暗号化側)から与えられる。
+  
+  // ファイルから公開鍵を取得し、使用可能とする
+  $fp = fopen("/src/openssl-0.9.6/demos/sign/key.pem", "r");
+  $priv_key = fread($fp, 8192);
+  fclose($fp);
+  $pkeyid = openssl_get_privatekey($priv_key);
+  
+  // データを復号化し、$open に保存
+  if (openssl_open($sealed, $open, $env_key, $pkeyid)) {
+      echo "here is the opened data: ", $open;
+  } else {
+      echo "failed to open data";
+  }
+  
+  // 公開鍵をメモリから開放
+  openssl_free_key($pkeyid);
+?>
+
+
+
+
+
+|openssl_seal|
+
+vim:ft=help:

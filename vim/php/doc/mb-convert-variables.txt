@@ -1,0 +1,43 @@
+mb_convert_variables -- 変数の文字コードを変換する
+
+  string mb_convert_variables(string to_encoding, mixed from_encoding, mixed vars [, mixed ...])~
+
+エンコーディング {from_encoding} の変数 {vars}
+をエンコーディング {to_encoding} に変換します。
+
+|mb_convert_variables| は、エンコーディング検出のために Array
+または Object の文字列を結合します。これは、
+エンコーディング検出は短い文字列では失敗する傾向があるためです。このため、
+1
+つの配列またはオブジェクトで異なるエンコーディングを混ぜることはできません。
+
+{to_encoding} 文字列の変換後のエンコーディング。
+
+{from_encoding} {from_encoding}
+には配列またはカンマ区切りの文字列を指定し、
+{from-coding} からエンコーディングの検出を試みます。
+{from_encoding} が省略された場合、detect_order を使用します。
+
+{vars} {vars}(3番目以降の引数)は、変換する変数への
+リファレンスです。文字列、配列、オブジェクトを指定することが可能です。
+|mb_convert_variables| は全てのパラメータが
+同じエンコーディングを有することを仮定します。
+
+{...} 追加の変数。
+
+成功時に変換前の文字エンコーディングを返し、失敗した場合に
+FALSE を返します。
+
+|mb_convert_variables| の例
+
+<?php >
+  /* 変数 $post1, $post2 を内部エンコーディングに変換する */
+  $interenc = mb_internal_encoding();
+  $inputenc = mb_convert_variables($interenc, "ASCII,UTF-8,SJIS-win", $post1, $post2);
+?>
+
+
+
+
+
+vim:ft=help:

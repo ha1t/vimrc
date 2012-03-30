@@ -1,0 +1,31 @@
+XMLWriter::startDocument -- ドキュメントタグを作成する
+
+オブジェクト指向型
+
+  bool startDocument([string version [, string encoding [, string standalone]]])~
+
+手続き型
+
+  bool xmlwriter_start_document([string version [, string encoding [, string standalone, resource xmlwriter [, string version [, string encoding [, string standalone]]]]]])~
+
+ドキュメントを開始します。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{version} XML
+宣言で使用するドキュメントのバージョン番号。
+デフォルトは 1.0。
+
+{encoding} XML
+宣言で使用するドキュメントのエンコーディング。
+デフォルトは NULL。
+
+{standalone} yes あるいは no。 デフォルトは NULL。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

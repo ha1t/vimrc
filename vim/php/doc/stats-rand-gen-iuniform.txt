@@ -1,0 +1,16 @@
+stats_rand_gen_iuniform -- LOW (それ自身を含む) と HIGH
+(それ自身を含む) の間の一様分布から整数値を生成する
+
+  int stats_rand_gen_iuniform(int low, int high)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{low}
+
+{high}
+
+
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+SoapServer->getFunctions() -- 定義されている関数の一覧を返す
+
+  array getFunctions()~
+
+このメソッドは、 もしくは
+で追加された全ての関数の一覧を返します。
+
+全ての関数の一覧
+
+いくつかの例
+
+<?php >
+  $server = new SoapServer(NULL, array("uri" => "http://test-uri"));
+  $server->addFunction(SOAP_FUNCTIONS_ALL);
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $server->handle();
+  } else {
+    echo "This SOAP server can handle following functions: ";
+    $functions = $server->getFunctions();
+    foreach($functions as $func) {
+      echo $func . "\n";
+    }
+  }
+?>
+
+
+
+
+
+vim:ft=help:

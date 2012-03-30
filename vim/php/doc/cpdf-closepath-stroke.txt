@@ -1,0 +1,17 @@
+cpdf_closepath_stroke -- パスを閉じ、線をパスに沿って描く
+
+  bool cpdf_closepath_stroke(int pdf_document)~
+
+現在のパスを閉じ、パスに沿って線を描きます。
+
+|cpdf_closepath_stroke| は |cpdf_closepath| と |cpdf_stroke|
+を組み合わせたものです。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_closepath| |cpdf_stroke|
+
+vim:ft=help:

@@ -1,0 +1,37 @@
+pspell_config_runtogether --
+複合語を有効な単語の組み合わせとして考慮する
+
+  bool pspell_config_runtogether(int dictionary_link, bool flag)~
+
+この関数は、複合語を正しい複合語として処理するかどうかを定義します。
+つまり、"thecat"
+には、二つの単語の間に空白はありませんが、
+正しい複合語となります。この設定の変更は、 |pspell_check|
+による返り値にのみ影響を与えます。 |pspell_suggest|
+は、この場合でも修正候補を返します。
+
+|pspell_config_runtogether| は、 |pspell_new_config|
+をコールする前に設定を行うために使用する必要があります。
+
+{dictionary_link}
+
+{flag} 連続した単語を複合語として扱う場合な TRUE、
+それ以外の場合は FALSE。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pspell_config_runtogether|
+
+<?php >
+  $pspell_config = pspell_config_create("en");
+  pspell_config_runtogether($pspell_config, true);
+  $pspell_link = pspell_new_config($pspell_config);
+  pspell_check($pspell_link, "thecat");
+?>
+
+
+
+
+
+vim:ft=help:

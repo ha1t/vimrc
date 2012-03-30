@@ -1,0 +1,48 @@
+maxdb->options -- オプションを設定する
+
+手続き型
+
+  bool maxdb_options(resource link, int option, mixed value)~
+
+オブジェクト指向型 (メソッド)
+
+  bool options(resource link, int option, mixed value, int option, mixed value)~
+
+|maxdb_options| は、
+接続時の追加のオプションを設定し、接続の振る舞いを変更するために使用されます。
+
+この関数は、いくつかのオプションを設定するために複数回コールすることが可能です。
+
+|maxdb_options| は、 |maxdb_init| をコールした後、
+|maxdb_real_connect|
+がコールされるまでにコールしなければなりません。
+
+パラメータ {option} は設定したいオプションで、 {value}
+はオプションの値です。
+オプションについての詳細な説明は、
+http://maxdb.sap.com/documentation/ を参照ください。 パラメータ
+{option} は、以下のいずれかの値となります。
+使用可能なオプション 名前 説明 MAXDB_COMPNAME SQLDBC
+実行環境の初期化に使用するコンポーネントの名前。
+MAXDB_APPLICATION データベースに接続するアプリケーション。
+MAXDB_APPVERSION アプリケーションのバージョン。 MAXDB_SQLMODE
+SQL モード。 MAXDB_UNICODE unicode (UCS2)
+クライアントからの接続の場合に TRUE、そうでない場合に
+FALSE。 MAXDB_TIMEOUT
+データベースへの接続がシステムによって閉じられるまでの、
+無通信時間の最大値。 MAXDB_ISOLATIONLEVEL
+共有ロックおよび排他ロックのどちらがどのように要求/開放されるかを指定します。
+MAXDB_PACKETCOUNT 接続に使用される、要求パケットの数。
+MAXDB_STATEMENTCACHESIZE
+再利用のために接続にキャッシュされるプリペアドステートメントの数。
+MAXDB_CURSORPREFIX
+自動的に命名された結果テーブルに使用するプレフィックス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|maxdb_real_connect| を参照ください。
+
+|maxdb_init| |maxdb_real_connect|
+
+vim:ft=help:

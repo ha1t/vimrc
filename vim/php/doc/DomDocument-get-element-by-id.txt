@@ -1,0 +1,17 @@
+DomDocument->get_element_by_id -- 特定の ID を持つ要素を検索する
+
+  domelement DomDocument->get_element_by_id(string id)~
+
+この関数は |domdocument_get_elements_by_tagname|
+と似ていますが、与えられた ID
+を持つ要素を検索します。 DOM
+標準によれば、これには属性 ID を ID 型として定義する DTD
+が必要になりますが、現在の実装は単純に "//*[@ID = '%s']"
+に対する xpath 検索を行っています。これは属性が ID
+型でない場合に NULL を返す必要がある DOM
+標準に準拠していません。
+この動作は固定されているようですので、現在の動作を当てにしないでください。
+
+|domdocument_get_elements_by_tagname| も参照ください。
+
+vim:ft=help:

@@ -1,0 +1,34 @@
+mcrypt_list_algorithms --
+サポートされる全ての暗号を配列として取得する
+
+  array mcrypt_list_algorithms([string lib_dir])~
+
+|mcrypt_list_algorithms| は、 {lib_dir}
+にあるサポートされる暗号を全て
+取得するために使用します。
+
+|mcrypt_list_algorithms| はオプションの パラメータとして
+{lib_dir} をとり、全ての
+アルゴリズムがある場所のディレクトリを指定することが可能です。
+指定されない場合には、php.ini ディレクティブ
+mcrypt.algorithms_dir の値が使用されます。
+
+|mcrypt_list_algorithms| の例
+
+<?php >
+      $algorithms = mcrypt_list_algorithms("/usr/local/lib/libmcrypt");
+  
+      foreach ($algorithms as $cipher) {
+          echo "$cipher<br />\n";
+      }
+?>
+
+上記の例は、"/usr/local/lib/libmcrypt"
+ディレクトリにある全ての
+サポートされるアルゴリズムの一覧を表示します。
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,28 @@
+fbsql_set_transaction --
+トランザクションのロックと分離レベルを設定する
+
+  void fbsql_set_transaction(resource link_identifier, int locking, int isolation)~
+
+トランザクションのロック {locking} および分離レベル
+{isolation} を設定します。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+{locking} 設定するロックの形式。定数 FBSQL_LOCK_DEFERRED、
+FBSQL_LOCK_OPTIMISTIC あるいは FBSQL_LOCK_PESSIMISTIC
+のいずれかとなります。
+
+{isolation} 設定する分離レベル。定数 FBSQL_ISO_READ_UNCOMMITTED、
+FBSQL_ISO_READ_COMMITTED、 FBSQL_ISO_REPEATABLE_READ、
+FBSQL_ISO_SERIALIZABLE および FBSQL_ISO_VERSIONED
+のいずれかとなります。
+
+値を返しません。
+
+vim:ft=help:

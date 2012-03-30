@@ -1,0 +1,31 @@
+apache_response_headers -- HTTPレスポンスヘッダを全て取得する
+
+  array apache_response_headers()~
+
+全てのApacheレスポンスヘッダを配列として取得します。
+
+全てのApacheレスポンスヘッダの配列、もしくは FALSE
+を返します。
+
+|apache_response_headers| の例
+
+<?php >
+  print_r(apache_response_headers());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [Accept-Ranges] => bytes
+      [X-Powered-By] => PHP/4.3.8
+  )
+
+
+
+PHP 4.3.3 以降、 Netscape/iPlanet/SunONE Web サーバの NSAPI
+サーバモジュール でもこの関数を使用できます。
+
+|apache_request_headers| |headers_sent| |headers_list|
+
+vim:ft=help:

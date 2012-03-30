@@ -1,0 +1,16 @@
+sqlite_error_string -- エラーコードの説明を返す
+
+  string sqlite_error_string(int error_code)~
+
+|sqlite_last_error|から返される
+{error_code}の可読性が高い説明を返します。
+
+{error_code} 使用するエラーコード。これは |sqlite_last_error|
+から返されたものです。
+
+{error_code}
+に対応する可読形式の説明を文字列で返します。
+
+|sqlite_last_error|
+
+vim:ft=help:

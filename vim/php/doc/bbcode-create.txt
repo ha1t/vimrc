@@ -1,0 +1,92 @@
+bbcode_create -- BBCode リソースを作成する
+
+  resource bbcode_create([array bbcode_initial_tags])~
+
+この関数は、新しい BBCode リソースを返します。
+これを用いて BBCode 文字列をパースします。
+
+{bbcode_initial_tags} タグ名をキー、BBCode
+を正しくパースするために必要なパラメータをその値とする連想配列。
+以下の キー/値 のペアが使用可能です。 flags (任意) -
+BBCODE_FLAGS_* 定数を組み合わせたフラグ。
+
+type (必須) - タグの種類を表す整数値。BBCODE_TYPE_*
+定数を使用します。
+
+open_tag (必須) - 開始タグ用の HTML 置換文字列。
+
+close_tag (必須) - 終了タグ用の HTML 置換文字列。
+
+default_arg (任意) - tag_type が OPTARG で、
+引数が指定されていない場合に使用するデフォルトの引数。
+
+content_handling (任意) -
+コンテンツの変更時に使用するコールバックの名前を指定します。
+オブジェクト指向の記法は 0.10.1
+以降でしかサポートしていません。
+コールバック関数のプロトタイプは string name(string $content,
+string $argument) となります。
+
+param_handling (任意) -
+引数の変更時に使用するコールバックの名前を指定します。
+オブジェクト指向の記法は 0.10.1
+以降でしかサポートしていません。
+コールバック関数のプロトタイプは string name(string $content,
+string $argument) となります。
+
+childs (任意) -
+このタグの子として使用できるタグのリスト。
+カンマ区切りの文字列で指定します。 先頭が !
+の場合は、指定したタグ以外のすべての子を許可します。
+
+parent (任意) -
+このタグの子として使用できるタグのリスト。
+カンマ区切りの文字列で指定します。
+
+BBCode_Container を返します。
+
+|bbcode_create| の例
+
+<?php >
+  $arrayBBCode=array(
+      ''=>         array('type'=>BBCODE_TYPE_ROOT,  'childs'=>'!i'),
+      'i'=>        array('type'=>BBCODE_TYPE_NOARG, 'open_tag'=>'<i>',
+                      'close_tag'=>'</i>', 'childs'=>'b'),
+      'url'=>      array('type'=>BBCODE_TYPE_OPTARG,
+                      'open_tag'=>'<a href="{PARAM}">', 'close_tag'=>'</a>',
+                      'default_arg'=>'{CONTENT}',
+                      'childs'=>'b,i'),
+      'img'=>      array('type'=>BBCODE_TYPE_NOARG,
+                      'open_tag'=>'<img src="', 'close_tag'=>'" />',
+                      'childs'=>''),
+      'b'=>        array('type'=>BBCODE_TYPE_NOARG, 'open_tag'=>'<b>',
+                      'close_tag'=>'</b>'),
+  );
+  $text=<<<EOF
+  [b]太字のテキスト[/b]
+  [i]斜体のテキスト[/i]
+  [url]http://www.php.net/[/url]
+  [url=http://pecl.php.net/][b]PECL のサイト[/b][/url]
+  [img]http://static.php.net/www.php.net/images/php.gif[/img]
+  [url=http://www.php.net/]
+  [img]http://static.php.net/www.php.net/images/php.gif[/img]
+  [/url]
+  EOF;
+  $BBHandler=bbcode_create($arrayBBCode);
+  echo bbcode_parse($BBHandler,$text);
+?>
+
+上の例の出力は以下となります。
+
+  <b>太字のテキスト</b>
+  <i>斜体のテキスト</i>
+  <a href="http://www.php.net/">http://www.php.net/</a>
+  <a href="http://pecl.php.net/"><b>PECL のサイト</b></a>
+  <img src="http://static.php.net/www.php.net/images/php.gif" />
+  <a href="http://www.php.net/">
+  [img]http://static.php.net/www.php.net/images/php.gif[/img]
+  </a>
+
+
+
+vim:ft=help:

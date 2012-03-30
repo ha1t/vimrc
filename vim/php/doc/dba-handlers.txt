@@ -1,0 +1,42 @@
+dba_handlers -- 利用可能なハンドラの一覧を得る
+
+  array dba_handlers([bool full_info])~
+
+|dba_handlers| は、この拡張モジュールにより
+サポートされる全てのハンドラの一覧を返します。
+
+{full_info}
+結果の全ての情報を表示するかどうかを切り替えます。
+デフォルトは FALSE です。
+
+データベースハンドラの配列を返します。{full_info} が TRUE
+の場合、この配列はハンドラ名をキー、そのバージョンを値とする
+連想配列となります。それ以外の場合はハンドラ名を値に持つ数値添字の配列と
+なります。
+
+cdb ライブラリが用いられている場合、 cdb および cdb_make
+が表示されます。
+
+|dba_handlers| の例
+
+<?php >
+  echo "Available DBA handlers:\n";
+  foreach (dba_handlers(true) as $handler_name => $handler_version) {
+    // バージョン番号を見やすくする
+    $handler_version = str_replace('$', '', $handler_version);
+    echo " - $handler_name: $handler_version\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Available DBA handlers:
+   - cdb: 0.75, Revision: 1.3.2.3 
+   - cdb_make: 0.75, Revision: 1.2.2.4 
+   - db2: Sleepycat Software: Berkeley DB 2.7.7: (08/20/99)
+   - inifile: 1.0, Revision: 1.6.2.3 
+   - flatfile: 1.0, Revision: 1.5.2.4
+
+
+
+vim:ft=help:

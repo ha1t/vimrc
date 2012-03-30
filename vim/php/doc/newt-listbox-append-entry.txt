@@ -1,0 +1,17 @@
+newt_listbox_append_entry --
+
+  void newt_listbox_append_entry(resource listbox, string text, mixed data)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{listbox}
+
+{text}
+
+{data}
+
+値を返しません。
+
+vim:ft=help:

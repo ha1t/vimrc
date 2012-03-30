@@ -1,0 +1,28 @@
+imagewbmp -- ブラウザまたはファイルにイメージを出力する
+
+  bool imagewbmp(resource image [, string filename [, int foreground]])~
+
+|imagewbmp| は、指定した {image} を WBMP
+にして出力あるいは保存します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{filename} 保存するファイルへのパス。省略したり NULL
+を設定したりした場合は、
+生の画像ストリームを直接出力します。
+
+{foreground} このパラメータで、
+前景の色を指定できます。|imagecolorallocate| で 取得した ID
+を使用してください。デフォルトの前景色は黒です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+WBMP サポートは、PHP を GD-1.8
+以降と組み合わせてコンパイルした
+場合にのみ利用可能です。
+
+|image2wbmp| |imagepng| |imagegif| |imagejpeg| |imagetypes|
+
+vim:ft=help:

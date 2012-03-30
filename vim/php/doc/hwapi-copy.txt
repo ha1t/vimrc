@@ -1,0 +1,16 @@
+hw_api->copy -- 物理的にコピーする
+
+  hw_api_content copy(array parameter)~
+
+この関数は物理的なコピーを作成します。
+もしコンテンツが含まれる場合は、それも含めてコピーされ、
+新しいオブジェクトあるいはエラーオブジェクトを返します。
+
+{parameter} パラメータの配列には、必須要素 'objectIdentifier'
+および 'destinationParentIdentifier'
+が含まれます。オプションのパラメータは 'attributeSelector'
+です。
+
+コピーしたオブジェクトを返します。
+
+vim:ft=help:

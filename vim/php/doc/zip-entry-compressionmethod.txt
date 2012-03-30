@@ -1,0 +1,15 @@
+zip_entry_compressionmethod --
+ディレクトリエントリの圧縮方法を取得する
+
+  string zip_entry_compressionmethod(resource zip_entry)~
+
+{zip_entry}により指定されたディレクトリエントリの
+圧縮方法を返します。
+
+{zip_entry} |zip_read|により返されたディレクトリのエントリ
+
+圧縮方法
+
+|zip_open| |zip_read|
+
+vim:ft=help:

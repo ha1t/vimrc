@@ -1,0 +1,19 @@
+session_pgsql_add_error --
+エラーカウントを加算し、直近のエラーメッセージを設定する
+
+  bool session_pgsql_add_error(int error_level [, string error_message])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{error_level}
+
+{error_message}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|session_pgsql_get_error|
+
+vim:ft=help:

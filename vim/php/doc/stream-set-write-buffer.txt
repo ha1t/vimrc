@@ -1,0 +1,43 @@
+stream_set_write_buffer --
+指定されたストリームのファイルバッファリングを有効にする
+
+  int stream_set_write_buffer(resource stream, int buffer)~
+
+|fwrite| による出力は、通常では 8K バイトがバッファ
+されます。
+これは、もし同じストリームに対し出力を行おうとするプロセスが2つあったとき、
+いずれかのプロセスは、他方のプロセスが出力できるように
+8K バイト分
+データを書き出したところで停止することを示しています。
+|stream_set_write_buffer| は、{stream}
+で指定されたファイルポインタに {buffer}
+で表されたバイト数分だけ出力バッファを設定します。
+{buffer} が 0 であれば、書き込み操作はバッファされなく
+なります。 これにより、|fwrite|
+による書き込み操作が、他の
+プロセスが同じ出力ストリームに対して何らかの書き込み操作を行う前に
+完了することが保証されます。
+
+この関数は、成功時に 0
+を、要求通りに設定できなかった場合は EOF を返します。
+
+次の例は、バッファされていないストリームを
+|stream_set_write_buffer| によって
+作成する方法を示したものです。 |stream_set_write_buffer| の例
+
+<?php >
+  $fp = fopen($file, "w");
+  if ($fp) {
+    stream_set_write_buffer($fp, 0);
+    fwrite($fp, $output);
+    fclose($fp);
+  }
+?>
+
+
+
+
+
+|fopen|, |fwrite| も参照ください。
+
+vim:ft=help:

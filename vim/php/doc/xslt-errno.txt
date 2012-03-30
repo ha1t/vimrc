@@ -1,0 +1,14 @@
+xslt_errno -- エラー番号を返す
+
+  int xslt_errno(resource xh)~
+
+XSLT
+プロセッサで発生した直近のエラーを記述するエラーコードを返します。
+
+{xh} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+エラーコードを表す整数値を返します。
+
+|xslt_error|
+
+vim:ft=help:

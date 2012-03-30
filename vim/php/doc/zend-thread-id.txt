@@ -1,0 +1,12 @@
+zend_thread_id -- 現在のスレッドの一意な ID を返す
+
+  int zend_thread_id()~
+
+この関数は、現在のスレッドの一意な ID を返します。
+
+スレッドの ID を表す整数値を返します。
+
+この関数が使用できるのは、PHP を ZTS (Zend Thread Safety)
+サポートつきでビルドした場合のみです。
+
+vim:ft=help:

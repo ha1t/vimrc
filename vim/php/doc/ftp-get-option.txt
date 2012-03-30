@@ -1,0 +1,35 @@
+ftp_get_option -- カレント FTP
+ストリームでの種々の実行時動作を取得する
+
+  mixed ftp_get_option(resource ftp_stream, int option)~
+
+この関数は、指定した FTP 接続について {option}
+の値を返します。
+
+{ftp_stream} FTP 接続のリンク ID
+
+{option} 現在、以下のオプションがサポートされています:
+サポートされる実行時 FTP オプション FTP_TIMEOUT_SEC
+ネットワーク関連処理で使用されるカレントのタイムアウトを返します。
+FTP_AUTOSEEK オプションが設定されている場合に TRUE
+を、それ以外の場合に FALSE を返します。
+
+成功した場合はその値を、指定した {option}
+がサポートされていない場合は FALSE
+を返します。後者の場合は、
+同時に警告メッセージも発生します。
+
+|ftp_get_option| の例
+
+<?php >
+  // 指定した FTP ストリームのタイムアウトを取得する
+  $timeout = ftp_get_option($conn_id, FTP_TIMEOUT_SEC);
+?>
+
+
+
+
+
+|ftp_set_option|
+
+vim:ft=help:

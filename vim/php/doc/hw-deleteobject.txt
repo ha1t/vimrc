@@ -1,0 +1,18 @@
+hw_Deleteobject -- オブジェクトを削除する
+
+  bool hw_deleteobject(int connection, int object_to_delete)~
+
+2 番目のパラメータで指定されたオブジェクト ID
+を有するオブジェクトを
+削除します。この関数は、オブジェクトの全てのインスタンスを削除します。
+
+{connection} 接続 ID。
+
+{object_to_delete} オブジェクト ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|hw_mv|
+
+vim:ft=help:

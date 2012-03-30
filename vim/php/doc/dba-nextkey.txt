@@ -1,0 +1,15 @@
+dba_nextkey -- 次のキーを取得する
+
+  string dba_nextkey(resource handle)~
+
+|dba_nextkey| は、
+が指すデータベースの次のキーを返し、内部キーポインタを進めます。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+成功した場合にキー、失敗した場合に FALSE を返します。
+
+|dba_firstkey| |dba_key_split| DBA の例の例 2
+
+vim:ft=help:

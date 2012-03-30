@@ -1,0 +1,30 @@
+oci_fetch_assoc -- 結果データの次の行を連想配列で返す
+
+  array oci_fetch_assoc(resource statement)~
+
+次の結果行を連想配列として返します
+
+|oci_fetch_assoc| をコールするのは、 |oci_fetch_array| で OCI_ASSOC
+を指定してコールするのと同じです。
+
+続けて |oci_fetch_assoc| をコールすると、
+次の行を返します。行がない場合は FALSE を返します。
+
+oci8 ドライバによるデータ型マッピングの
+詳細については、ドライバが サポートするデータ型
+を参照ください。
+
+{statement} 有効な OCI ステートメント ID。
+
+連想配列を返します。 {statement} にもう行がない場合は
+FALSE を返します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+Oracle は全てのフィールド名を大文字で返し、
+結果の連想配列のインデックスも大文字になります。
+
+|oci_fetch_array| |oci_fetch_object| |oci_fetch_row| |oci_fetch_all|
+
+vim:ft=help:

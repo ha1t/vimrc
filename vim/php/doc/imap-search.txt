@@ -1,0 +1,100 @@
+imap_search --
+指定した検索条件にマッチするメッセージを配列として返す
+
+  array imap_search(resource imap_stream, string criteria [, int options [, string charset]])~
+
+この関数は、指定した imap
+ストリームの現在オープンしているメールボックス
+において検索を行います。
+
+例えば、Mom
+から送られた全ての未回答のメッセージにマッチさせるには、
+"UNANSWERED FROM mom" を使用します。
+検索は、大文字小文字が区別されずに行われます。
+検索条件のリストは、UW C
+クライアントのソースコードからのものであり、
+不完全または不正確である可能性があります (RFC2060, section
+6.4.4 も参照ください)。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{criteria}
+空白で区切られた文字列で、以下のキーワードが使用可能です。
+複数の単語からなるキーワード（例 FROM "joe smith"）
+は全て引用符で括る必要があります。 ALL -
+他の検索条件にマッチする全メッセージを返す
+
+ANSWERED - \\ANSWERED
+フラグが設定されているメッセージにマッチ
+
+BCC "string" - Bcc: フィールドに "string"
+を有するメッセージにマッチ
+
+BEFORE "date" - "date" より前の Date:
+を有するメッセージにマッチ
+
+BODY "string" - メッセージ本体に "string"
+を有するメッセージにマッチ
+
+CC "string" - Cc: フィールドに "string"
+を有するメッセージにマッチ
+
+DELETED - 削除されたメッセージにマッチ
+
+FLAGGED - \\FLAGGED フラグ（重要または緊急を表すものとして
+使用されることがあります）が設定されているメッセージにマッチ
+
+FROM "string" - From: フィールドに "string"
+を有するメッセージにマッチ
+
+KEYWORD "string" - キーワードとして "string"
+を有するメッセージにマッチ
+
+NEW - 新規メッセージにマッチ
+
+OLD - 古いメッセージにマッチ
+
+ON "date" - Date: が "date" であるメッセージにマッチ
+
+RECENT - \\RECENT フラグが設定されているメッセージにマッチ
+
+SEEN - 既読の（\\SEEN
+フラグが設定されている）メッセージにマッチ
+
+SINCE "date" - Date: が "date" 以降であるメッセージにマッチ
+
+SUBJECT "string" - Subject: に "string"
+を有するメッセージにマッチ
+
+TEXT "string" - テキスト "string" を有するメッセージにマッチ
+
+TO "string" - To: に "string" を有するメッセージにマッチ
+
+UNANSWERED - 未回答のメッセージにマッチ
+
+UNDELETED - 削除されていないメッセージにマッチ
+
+UNFLAGGED - フラグが設定されていないメッセージにマッチ
+
+UNKEYWORD "string" - キーワード "string"
+を有さないメッセージにマッチ
+
+UNSEEN - 未読のメッセージにマッチ
+
+{options} {options} に指定できる値は SE_UID
+です。これを指定すると、 メッセージ番号ではなく UID
+を含む配列を返します。
+
+{charset}
+
+メッセージ番号あるいは UID の配列を返します。
+
+検索条件 {criteria} を処理できなかった場合や
+結果が見つからなかった場合は、FALSE を返します。
+
+バージョン 説明 4.3.3 パラメータ {charset}
+が追加されました。
+
+|imap_listscan|
+
+vim:ft=help:

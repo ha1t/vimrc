@@ -1,0 +1,102 @@
+scandir --
+指定されたパスのファイルとディレクトリのリストを取得する
+
+  array scandir(string directory [, int sorting_order [, resource context]])~
+
+{directory} 内のファイルおよびディレクトリを
+配列で返します。
+
+{directory} 調べるディレクトリ。
+
+{sorting_order}
+デフォルトでは、ソート順はアルファベット昇順です。
+オプションの {sorting_order} が使用（1にセット）された
+場合、ソート順はアルファベット降順になります。
+
+{context} {context} パラメータの説明については、
+マニュアルのストリーム を参照ください。
+
+成功した場合にファイル名の配列、失敗した場合に FALSE
+を返します。 {directory} がディレクトリではない場合は、
+FALSE を返し、E_WARNING レベルのエラーを 発行します。
+
+|scandir| の簡単な例
+
+<?php >
+  $dir    = '/tmp';
+  $files1 = scandir($dir);
+  $files2 = scandir($dir, 1);
+  
+  print_r($files1);
+  print_r($files2);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => .
+      [1] => ..
+      [2] => bar.php
+      [3] => foo.txt
+      [4] => somedir
+  )
+  Array
+  (
+      [0] => somedir
+      [1] => foo.txt
+      [2] => bar.php
+      [3] => ..
+      [4] => .
+  )
+
+
+
+PHP 4 での |scandir| の代用方法
+
+<?php >
+  $dir = "/tmp";
+  $dh  = opendir($dir);
+  while (false !== ($filename = readdir($dh))) {
+      $files[] = $filename;
+  }
+  
+  sort($files);
+  
+  print_r($files);
+  
+  rsort($files);
+  
+  print_r($files);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => .
+      [1] => ..
+      [2] => bar.php
+      [3] => foo.txt
+      [4] => somedir
+  )
+  Array
+  (
+      [0] => somedir
+      [1] => foo.txt
+      [2] => bar.php
+      [3] => ..
+      [4] => .
+  )
+
+
+
+fopen wrappers が有効の場合、この関数のファイル名として
+URL
+を使用することができます。ファイル名の指定方法に関する詳細は
+|fopen|、サポートされる URL プロトコルの種類
+については、(例えば) を参照してください。
+
+|opendir| |readdir| |glob| |is_dir| |sort|
+
+vim:ft=help:

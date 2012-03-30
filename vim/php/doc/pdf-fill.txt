@@ -1,0 +1,9 @@
+PDF_fill -- 現在のパスを塗りつぶす
+
+  bool PDF_fill(resource p)~
+
+現在のパスの内部を現在の塗りつぶし色で塗りつぶします。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

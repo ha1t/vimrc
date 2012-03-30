@@ -1,0 +1,25 @@
+fbsql_rollback --
+データベースへのトランザクションをロールバックする
+
+  bool fbsql_rollback([resource link_identifier])~
+
+直近のコミット以降に発行されたすべての文をロールバックし、
+現在のトランザクションを終了します。
+
+このコマンドは、autocommit が false
+に設定されている場合にのみ必要となります。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fbsql_autocommit| |fbsql_commit|
+
+vim:ft=help:

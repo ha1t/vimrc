@@ -1,0 +1,12 @@
+mcrypt_enc_get_block_size --
+オープンされたアルゴリズムのブロックサイズを返す
+
+  int mcrypt_enc_get_block_size(resource td)~
+
+オープンされたアルゴリズムのブロックサイズを取得します。
+
+{td} 暗号化記述子。
+
+指定したアルゴリズムのブロック長をバイト単位で返します。
+
+vim:ft=help:

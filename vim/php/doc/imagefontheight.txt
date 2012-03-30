@@ -1,0 +1,18 @@
+imagefontheight -- フォントの高さを取得する
+
+  int imagefontheight(int font)~
+
+指定されたフォントの文字の高さをピクセル単位で返します。
+
+{ font}latin2
+エンコーディングの組み込みのフォントの場合は 1, 2, 3, 4,
+5 のいずれか
+(数字が大きなほうが、より大きいフォントに対応します)、
+あるいは |imageloadfont|
+で登録したフォントの識別子のいずれか。
+
+高さをピクセルで返します。
+
+|imagefontwidth| |imageloadfont|
+
+vim:ft=help:

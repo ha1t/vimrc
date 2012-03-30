@@ -1,0 +1,14 @@
+hash_update --
+アクティブなハッシュコンテキストにデータを投入する
+
+  bool hash_update(resource context, string data)~
+
+{context} |hash_init| が返すハッシュコンテキスト。
+
+{data} ハッシュダイジェストに含めるメッセージ。
+
+TRUE を返します。
+
+|hash_init| |hash_update_file| |hash_update_stream| |hash_final|
+
+vim:ft=help:

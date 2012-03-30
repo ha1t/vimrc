@@ -1,0 +1,33 @@
+gnupg_setsignmode -- 署名方式を設定する
+
+  bool gnupg_setsignmode(resource identifier, int signmode)~
+
+{signmode} には、作成する署名の形式を表す
+定数をしていします。 GNUPG_SIG_MODE_NORMAL、 GNUPG_SIG_MODE_DETACH
+および GNUPG_SIG_MODE_CLEAR が使用可能です。 デフォルトでは
+GNUPG_SIG_MODE_CLEAR が使用されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+手続き型の |gnupg_setsignmode| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_setsignmode($res,GNUPG_SIG_MODE_DETACH); // 独立した署名を作成します
+?>
+
+
+
+オブジェクト指向の |gnupg_setsignmode| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> setsignmode(gnupg::SIG_MODE_DETACH); // 独立した署名を作成します
+?>
+
+
+
+
+
+vim:ft=help:

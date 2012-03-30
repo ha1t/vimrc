@@ -1,0 +1,14 @@
+filepro_fieldcount -- filePro
+データベース中のフィールド数を返す
+
+  int filepro_fieldcount()~
+
+オープンした filePro
+データベースのフィールド（カラム）の数を返します。
+
+オープンした filePro データベースのフィールド数、
+あるいはエラーの場合に FALSE を返します。
+
+|filepro|
+
+vim:ft=help:

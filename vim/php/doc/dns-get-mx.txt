@@ -1,0 +1,5 @@
+dns_get_mx -- getmxrr のエイリアス
+
+この関数は次の関数のエイリアスです。 |getmxrr|.
+
+vim:ft=help:

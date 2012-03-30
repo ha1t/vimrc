@@ -1,0 +1,26 @@
+muscat_get -- コア muscat API から 1 行分のデータを取得する
+
+  string muscat_get(resource muscat_handle)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+コア muscat API から 1 行分のデータを取得します。
+
+{muscat_handle} |muscat_setup| あるいは |muscat_setup_net| が返す
+muscat セッションハンドラ。
+
+muscat レスポンスを文字列で返します。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|muscat_give|
+
+vim:ft=help:

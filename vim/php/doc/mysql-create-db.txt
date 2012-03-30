@@ -1,0 +1,54 @@
+mysql_create_db -- MySQL データベースを作成する
+
+  bool mysql_create_db(string database_name [, resource link_identifier])~
+
+|mysql_create_db| は、指定したリンク ID が指す
+サーバ上に新規のデータベースを作成します。
+
+{database_name} 作成されるデータベースの名前です。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mysql_create_db| の別の例 |mysql_create_db|
+は廃止予定です。代わりに |mysql_query| を用いて CREATE
+DATABASE ステートメントを発行する方法が 推奨されます。
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('接続できません: ' . mysql_error());
+  }
+  
+  $sql = 'CREATE DATABASE my_db';
+  if (mysql_query($sql, $link)) {
+      echo "データベース my_db の作成に成功しました\n";
+  } else {
+      echo 'データベースの作成に失敗しました: ' . mysql_error() . "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  データベース my_db の作成に成功しました
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_createdb|
+
+MySQL 4.x クライアントライブラリを用いて MySQL
+拡張モジュールを
+ビルドした場合、この関数は利用できません。
+
+|mysql_query| |mysql_select_db|
+
+vim:ft=help:

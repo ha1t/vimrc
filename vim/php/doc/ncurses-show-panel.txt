@@ -1,0 +1,12 @@
+ncurses_show_panel --
+不可視のパネルをスタックの最上部に置き、見えるようにする
+
+  int ncurses_show_panel(resource panel)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{panel}
+
+vim:ft=help:

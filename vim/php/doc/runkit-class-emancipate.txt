@@ -1,0 +1,37 @@
+runkit_class_emancipate --
+他のクラスを継承しているクラスから継承関係を解消し、
+親クラスから継承しているメソッドを取り除く
+
+  bool runkit_class_emancipate(string classname)~
+
+{classname} 継承関係を解消するクラス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_class_emancipate| の例
+
+<?php >
+  class myParent {
+    function parentFunc () {
+      echo "Parent Function Output\n";
+    }
+  }
+  class myChild extends myParent {
+  }
+  
+  myChild::parentFunc();
+  runkit_class_emancipate('myChild');
+  myChild::parentFunc();
+?>
+
+上の例の出力は以下となります。
+
+  Parent Function Output
+  Fatal error: Call to undefined function:  parentFunc() in example.php on line 12
+
+
+
+|runkit_class_adopt|
+
+vim:ft=help:

@@ -1,0 +1,5 @@
+ocinewcursor -- oci_new_cursor のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_new_cursor|.
+
+vim:ft=help:

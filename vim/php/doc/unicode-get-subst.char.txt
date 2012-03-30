@@ -1,0 +1,18 @@
+unicode_get_subst_char --
+文字列変換エラー時に使用する置換文字を取得する
+
+  unicode unicode_get_subst_char()~
+
+|unicode_set_subst_char| で設定した、
+文字列変換エラー時に使用する置換文字を返します。
+
+unicode 型の置換文字を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|unicode_set_error_mode| |unicode_set_subst_char|
+
+vim:ft=help:

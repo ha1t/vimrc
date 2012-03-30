@@ -1,0 +1,38 @@
+tmpfile -- テンポラリファイルを作成する
+
+  resource tmpfile()~
+
+書き込み可のモード (w+)
+でユニークな名前を有するテンポラリファイルを作成し、
+ファイルハンドルを返します。
+
+ファイルが (|fclose| を用いて) クローズされた時、
+またはスクリプトが終了された際に自動的にファイルが削除されます。
+
+詳細については、関数 tmpfile(3)
+のシステムドキュメント、およびヘッダファイル stdio.h
+を参照ください。
+
+ファイルのハンドルを返します。 これは、 |fopen|
+により返されるハンドルと同じものです。
+失敗した場合には FALSE を返します。
+
+|tmpfile| の例
+
+<?php >
+  $temp = tmpfile();
+  fwrite($temp, "writing to tempfile");
+  fseek($temp, 0);
+  echo fread($temp, 1024);
+  fclose($temp); // ファイルを削除します
+?>
+
+上の例の出力は以下となります。
+
+  writing to tempfile
+
+
+
+|tempnam| |sys_get_temp_dir|
+
+vim:ft=help:

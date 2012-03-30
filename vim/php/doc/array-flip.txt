@@ -1,0 +1,53 @@
+array_flip -- 配列のキーと値を反転する
+
+  array array_flip(array trans)~
+
+|array_flip| は、配列を反転して返します。 すなわち、{trans}
+のキーが値となり、 {trans} の値がキーとなります。
+
+{trans}
+の値は有効なキーを必要とすることに注意してください。
+すなわち、キーは、integer または string
+である必要があります。ある値が間違った型である場合、
+警告が出力され、問題のこのキー/値の組は逆順にされません。
+
+ある値が複数回出現した場合、最後のキーがその値として使用され、
+その他の値は失われます。
+
+{trans} 反転を行うキー/値の組。
+
+成功した場合に反転した配列、失敗した場合に FALSE
+を返します。
+
+|array_flip| の例
+
+<?php >
+  $trans = array_flip($trans);
+  $original = strtr($str, $trans);
+?>
+
+
+
+
+
+|array_flip| の例 : 衝突
+
+<?php >
+  $trans = array("a" => 1, "b" => 1, "c" => 2);
+  $trans = array_flip($trans);
+  print_r($trans);
+?>
+
+$trans は次のようになります:
+
+  Array
+  (
+      [1] => b
+      [2] => c
+  )
+
+
+
+|array_values| |array_keys| |array_reverse|
+
+vim:ft=help:

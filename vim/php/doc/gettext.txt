@@ -1,0 +1,42 @@
+gettext -- 現在のドメインのメッセージを参照する
+
+  string gettext(string message)~
+
+現在のドメインのメッセージを参照します。
+
+{message}
+
+翻訳テーブルに翻訳文字列が見つかった場合にその文字列、
+あるいは見つからなかった場合に元の文字列を返します。
+
+|gettext| のチェック
+
+<?php >
+  // ドイツ語に設定します
+  setlocale(LC_ALL, 'de_DE');
+  
+  // 変換テーブルの場所を指定します
+  bindtextdomain("myPHPApp", "./locale");
+  
+  // ドメインを選択します
+  textdomain("myPHPApp");
+  
+  // 翻訳内容は ./locale/de_DE/LC_MESSAGES/myPHPApp.mo から検索されます
+  
+  // テストメッセージを出力します
+  echo gettext("Welcome to My PHP Application");
+  
+  // あるいは、gettext() のかわりに _() も使用可能です
+  echo _("Have a nice day");
+?>
+
+
+
+
+
+この関数のエイリアスとして、アンダースコア文字 '_'
+を使用することができます。
+
+|setlocale|
+
+vim:ft=help:

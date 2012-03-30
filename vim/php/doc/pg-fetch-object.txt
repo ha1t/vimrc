@@ -1,0 +1,80 @@
+pg_fetch_object -- 行をオブジェクトとして得る
+
+  object pg_fetch_object(resource result [, int row [, int result_type]])~
+
+  object pg_fetch_object(resource result [, int row [, int result_type, resource result [, int row [, string class_name [, array params]]]]])~
+
+|pg_fetch_object| は、取得した行のフィールド名に
+対応するプロパティを有するオブジェクトを返します。オプションとして、
+指定したクラスのコンストラクタにパラメータを渡してインスタンス化する
+ことも可能です。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+速度面では、この関数は |pg_fetch_array| と同じであり、
+|pg_fetch_row| とほとんど同じ程度です
+（違いはわずかです）。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{row} 取得する行番号。最初の行は 0
+です。指定されなかった場合、 次の行が取得されます。
+
+{result_type} 非推奨で、無視されます。デフォルトは
+PGSQL_ASSOC です。
+
+{class_name}
+インスタンス化し、プロパティを設定して返り値とするクラスの名前。
+指定しない場合は stdClass オブジェクトが返されます。
+
+{params} {class_name} オブジェクトのコンストラクタに
+渡すオプションの配列。
+
+結果の各フィールドに対応する属性を持つ object
+を返します。 データベースの NULL 値は NULL
+として返します。
+
+{row} が結果の行数より大きい場合・行が存在しない場合
+、そしてそれ以外のエラーが発生した場合は FALSE
+を返します。
+
+バージョン 説明 5.0.0 {class_name} と {params}
+が追加されました。{result_type}
+を用いた古い形式は、過去のバージョンとの互換性を保つために残されています。
+4.3.0 {result_type} のデフォルト値が、 PGSQL_BOTH から PGSQL_ASSOC
+に変わりました。数値インデックスが使用できないためです。
+4.1.0 {row} パラメータがオプションとなりました。
+
+|pg_fetch_object| の例
+
+<?php >
+  $database = "store";
+  
+  $db_conn = pg_connect("host=localhost port=5432 dbname=$database");
+  if (!$db_conn) {
+    echo "Failed connecting to postgres database $database\n";
+    exit;
+  }
+  
+  $qu = pg_query($db_conn, "SELECT * FROM books ORDER BY author");
+  
+  
+  while ($data = pg_fetch_object($qu)) {
+    echo $data->author . " (";
+    echo $data->year . "): ";
+    echo $data->title . "<br />";
+  }
+  
+  pg_free_result($qu);
+  pg_close($db_conn);
+?>
+
+
+
+
+
+|pg_query| |pg_fetch_array| |pg_fetch_assoc| |pg_fetch_row| |pg_fetch_result|
+
+vim:ft=help:

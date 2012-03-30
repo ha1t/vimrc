@@ -1,0 +1,380 @@
+curl_setopt -- cURL 転送用オプションを設定する
+
+  bool curl_setopt(resource ch, int option, mixed value)~
+
+指定した cURL
+セッションハンドルのオプションを設定します。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+{option} 設定したい CURLOPT_XXX オプション。
+
+{value} {option} に設定する値。
+
+{value} には、 {option} の以下の値に関して bool
+値を指定する必要があります。 オプション {value}
+への設定値 注記 CURLOPT_AUTOREFERER TRUE を設定すると、Location:
+によるリダイレクトを たどる際には自動的に Referer:
+フィールドをリクエストに 追加します。 PHP 5.1.0
+以降で有効です。 CURLOPT_BINARYTRANSFER TRUE
+を設定すると、CURLOPT_RETURNTRANSFER
+が使用された場合に出力結果を何も加工せずに返します。
+CURLOPT_COOKIESESSION TRUE を設定すると、クッキーの
+"セッション" を新しく開始します。
+以前のセッションで読み込まれていた
+"セッションクッキー" は無視するよう、 libcurl
+に指示します。デフォルトでは、それがセッションクッキーであるか
+どうかにかかわらず libcurl
+はすべてのクッキーを読み込んで保存します。
+セッションクッキーとは、有効期限が指定されておらず
+"セッション" の間のみ 有効であるクッキーのことです。
+PHP 5.1.0 以降で有効です。 CURLOPT_CRLF TRUE
+を設定すると、転送時に Unix 形式の改行を CRLF
+形式に変換します。 CURLOPT_DNS_USE_GLOBAL_CACHE TRUE
+を設定すると、グローバル DNS キャッシュを利用します。
+このオプションはスレッドセーフではありません。また、デフォルトで
+有効になっています。 CURLOPT_FAILONERROR TRUE
+を設定すると、HTTP で 400 以上のコードが返ってきた際に
+処理失敗と判断し、何もしません。デフォルトでは、コードの値を無視して
+ページの内容を取得します。 CURLOPT_FILETIME TRUE
+を設定すると、ドキュメントの更新日時を取得しようと試みます。
+この値を取得するには、|curl_getinfo| で {CURLINFO_FILETIME}
+オプションを用います。 CURLOPT_FOLLOWLOCATION TRUE
+を設定すると、サーバが HTTP
+ヘッダの一部として送ってくる "Location: "
+ヘッダの内容をたどります
+（これは再帰的に行われます。CURLOPT_MAXREDIRS
+が指定されていない限り、送ってくる "Location: "
+ヘッダの内容をずっとたどり続けることに注意しましょう）。
+CURLOPT_FORBID_REUSE TRUE
+を設定すると、処理が終了した際に明示的に接続を切断します。
+接続を再利用しません。 CURLOPT_FRESH_CONNECT TRUE
+を設定すると、キャッシュされている接続を利用せずに
+新しい接続を確立します。 CURLOPT_FTP_USE_EPRT TRUE
+を設定すると、FTP のダウンロードに EPRT（および LPRT）
+を利用します。FALSE の場合は EPRT・LPRT を無効にして PORT
+を利用します。 PHP 5.0.0 で追加されました。
+CURLOPT_FTP_USE_EPSV TRUE を設定すると、FTP 転送の際にまず EPSV
+コマンドの利用を 試みます。失敗した場合は PASV
+を利用します。FALSE を設定すると、 EPSV を無効にします。
+CURLOPT_FTPAPPEND TRUE
+を設定すると、リモートファイルを上書きせずに追記します。
+CURLOPT_FTPASCII CURLOPT_TRANSFERTEXT のエイリアスです。
+CURLOPT_FTPLISTONLY TRUE を設定すると、FTP
+でディレクトリ名のみ表示します。 CURLOPT_HEADER TRUE
+を設定すると、ヘッダの内容も出力します。 CURLOPT_HTTPGET
+TRUE を設定すると、HTTP のリクエスト形式を GET
+に戻します。 GET
+はデフォルト設定なので、リクエスト形式が変更されている
+場合にのみ必要となります。 CURLOPT_HTTPPROXYTUNNEL TRUE
+を設定すると、指定された HTTP プロキシを利用します。
+CURLOPT_MUTE TRUE を設定すると、cURL
+関数に関連する出力を完全に抑えます。 CURLOPT_NETRC TRUE
+を設定すると、リモートサイトと接続を確立する際に用いる
+ユーザ名やパスワードを、~/.netrc から取得します。
+CURLOPT_NOBODY TRUE
+を設定すると、出力からの本文を削除します。
+CURLOPT_NOPROGRESS TRUE を設定すると、cURL
+転送の進捗状況表示を無効にします。 PHP
+は、このオプションを自動的に TRUE に設定します。
+これを変更するのは、デバッグ時のみにすべきです。
+
+CURLOPT_NOSIGNAL TRUE を設定すると、cURL 関数が PHP
+プロセスに送信するシグナルを
+無視します。マルチスレッド SAPI ではデフォルトで on
+となっており、
+そのためタイムアウトオプションもまだ利用されています。
+cURL 7.10 および PHP 5.0.0 で追加されました。 CURLOPT_POST TRUE
+を設定すると、HTTP POST を行います。POST は、
+application/x-www-form-urlencoded 形式で
+行われます。これは一般的な HTML
+のフォームと同じ形式です。 CURLOPT_PUT TRUE
+を設定すると、HTTP PUT を行います。PUT するファイルは
+CURLOPT_INFILE および CURLOPT_INFILESIZE
+で指定されている必要があります。 CURLOPT_RETURNTRANSFER TRUE
+を設定すると、|curl_exec| の返り値を
+文字列で返します。通常はデータを直接出力します。
+CURLOPT_SSL_VERIFYPEER FALSE を設定すると、cURL
+はサーバ証明書の検証を行いません。 別の証明書を
+CURLOPT_CAINFO オプションで 指定するか、CURLOPT_CAPATH
+オプションで 証明ディレクトリを指定します。
+CURLOPT_SSL_VERIFYPEER を無効にする場合、 CURLOPT_SSL_VERIFYHOST
+もまた TRUE あるいは FALSE
+にする必要があります（デフォルトは 2 です）。 cURL 7.10
+以降、デフォルト値は TRUE です。また、 cURL 7.10
+以降、デフォルトでインストールされています。
+CURLOPT_TRANSFERTEXT TRUE を設定すると、FTP 転送を ASCII
+モードで行います。 LDAP の場合は、データを HTML
+ではなくプレーンテキストで取得します。 Windows
+システムでは STDOUT
+に対してバイナリモードを設定しないでください。
+CURLOPT_UNRESTRICTED_AUTH TRUE を設定すると、（CURLOPT_FOLLOWLOCATION
+を利用して）場所をたどっていく際にユーザ名とパスワードを送信し続けます。
+これは、たとえホスト名が変わっても続けられます。 PHP
+5.0.0 で追加されました。 CURLOPT_UPLOAD TRUE
+を設定すると、アップロードの準備をします。
+CURLOPT_VERBOSE TRUE
+を設定すると、詳細な情報を出力します。情報は STDERR
+か、または CURLOPT_STDERR
+で指定したファイルに出力されます。
+
+{value} には、 {option} の以下の値に関して
+整数値を指定する必要があります。 オプション {value}
+への設定値 注記 CURLOPT_BUFFERSIZE 1
+回の読み込みに用いるバッファのサイズ。しかしながら、必ず
+このバッファいっぱいまで読み込まれることを保証するものではありません。
+cURL 7.10 および PHP 5.0.0 で追加されました。 CURLOPT_CLOSEPOLICY
+{CURLCLOSEPOLICY_LEAST_RECENTLY_USED} あるいは {CURLCLOSEPOLICY_OLDEST}
+です。 他にも 3 つの CURLCLOSEPOLICY_ 定数が存在しますが、
+cURL はそれらをまだサポートしていません。
+CURLOPT_CONNECTTIMEOUT 接続の試行を待ち続ける秒数。0
+は永遠に待ち続けることを意味します。
+CURLOPT_DNS_CACHE_TIMEOUT DNS
+エントリをメモリ内に保持し続ける秒数。デフォルトでは
+120（2 分）に設定されています。 CURLOPT_FTPSSLAUTH
+（使用可能な場合の）FTP 認証方法。 CURLFTPAUTH_SSL（まず SSL
+を試す）、 CURLFTPAUTH_TLS（まず TLS を試す）あるいは
+CURLFTPAUTH_DEFAULT（cURL が決める）のいずれかです。 cURL 7.12.2
+および PHP 5.1.0 で追加されました。 CURLOPT_HTTP_VERSION
+{CURL_HTTP_VERSION_NONE} (デフォルト。
+使用するバージョンを決めるのは cURL にまかせる)、
+{CURL_HTTP_VERSION_1_0} (HTTP/1.0 を使用する)、 あるいは
+{CURL_HTTP_VERSION_1_1} (HTTP/1.1 を使用する) のいずれかです。
+CURLOPT_HTTPAUTH 使用する HTTP
+認証方法。以下の中から選びます。 {CURLAUTH_BASIC}、
+{CURLAUTH_DIGEST}、 {CURLAUTH_GSSNEGOTIATE}、 {CURLAUTH_NTLM}、
+{CURLAUTH_ANY} および {CURLAUTH_ANYSAFE}。
+
+2 つ以上の方法を組み合わせるには、ビット演算子 |（or）
+を使用します。このような場合、cURL
+はサーバがサポートしている方法を
+問い合わせたうえで最適な方法を選択します。
+
+{CURLAUTH_ANY} は CURLAUTH_BASIC | CURLAUTH_DIGEST | CURLAUTH_GSSNEGOTIATE |
+CURLAUTH_NTLM のエイリアスです。
+
+{CURLAUTH_ANYSAFE} は CURLAUTH_DIGEST | CURLAUTH_GSSNEGOTIATE | CURLAUTH_NTLM
+のエイリアスです。
+
+PHP 5.0.0 で追加されました。 CURLOPT_INFILESIZE
+ファイルをリモートサイトにアップロードする際のファイルサイズ。
+CURLOPT_LOW_SPEED_LIMIT 1
+秒あたりのバイト数で、転送速度がこれより遅い期間が
+CURLOPT_LOW_SPEED_TIME 秒以上続いた場合に PHP
+は転送を終了します。 CURLOPT_LOW_SPEED_TIME 転送速度が
+CURLOPT_LOW_SPEED_LIMIT
+より遅い期間がどれだけ続いた場合に転送を異常終了させるかを、
+秒単位で指定します。 CURLOPT_MAXCONNECTS
+許可される持続的接続の最大数。もしこの値に達した場合、
+どの接続を閉じるのかを CURLOPT_CLOSEPOLICY
+によって決定します。 CURLOPT_MAXREDIRS HTTP
+のリダイレクト先を追いかける最大値。 CURLOPT_FOLLOWLOCATION
+とあわせて使用します。 CURLOPT_PORT 接続先のポート番号。
+CURLOPT_PROXYAUTH プロキシ接続に使用する HTTP 認証の方法。
+CURLOPT_HTTPAUTH で説明したのと同じオプションを
+指定可能です。プロキシ認証でサポートされているのは、今のところ
+{CURLAUTH_BASIC} および {CURLAUTH_NTLM} のみです。 cURL 7.10.7
+および PHP 5.1.0 で追加されました。 CURLOPT_PROXYPORT
+プロキシ接続のポート番号。このポート番号は、
+CURLOPT_PROXY で指定することも可能です。 PHP 5.0.0
+で追加されました。 CURLOPT_PROXYTYPE
+{CURLPROXY_HTTP}（デフォルト）あるいは {CURLPROXY_SOCKS5}。 cURL
+7.10 および PHP 5.0.0 で追加されました。 CURLOPT_RESUME_FROM
+転送を途中から再開する場合のバイトオフセット。
+CURLOPT_SSL_VERIFYHOST 1 は SSL
+ピア証明書に一般名が存在するかどうかを調べます。 2
+はそれに加え、その名前がホスト名と一致することを検証します。
+CURLOPT_SSLVERSION 使用する SSL のバージョン（2 あるいは
+3）。デフォルトでは PHP
+が自動的に判断しますが、これを手動で設定する必要がある場合もあります。
+CURLOPT_TIMECONDITION CURLOPT_TIMEVALUE の扱いを決定します。
+CURLOPT_TIMEVALUE で指定した時刻以降に
+変更されたページのみを返す場合は {CURL_TIMECOND_IFMODSINCE}
+を使用します。 CURLOPT_HEADER が TRUE だと仮定すると、
+ページが変更されていない場合は "304 Not Modified"
+ヘッダが返されます。 {CURL_TIMECOND_ISUNMODSINCE}
+は反対の意味です。 デフォルトは {CURL_TIMECOND_IFMODSINCE}
+です。 PHP 5.1.0 で追加されました。 CURLOPT_TIMEOUT cURL
+関数の実行にかけられる時間の最大値。 CURLOPT_TIMEVALUE 1970
+年 1 月 1 日からの経過秒数。この値は CURLOPT_TIMECONDITION
+で使用されます。デフォルトでは {CURL_TIMECOND_IFMODSINCE}
+が設定されます。
+
+{value} は、 {option} パラメータの
+以下の値に関して文字列である必要があります。
+オプション {value} への設定値 注記 CURLOPT_CAINFO
+接続先を検証するための証明書を保持するファイル名。
+これは CURLOPT_SSL_VERIFYPEER を使用する場合に
+のみ意味を持ちます。 CURLOPT_CAPATH
+複数の証明書ファイルを保持するディレクトリ。このオプションは
+CURLOPT_SSL_VERIFYPEER とともに使用します。 CURLOPT_COOKIE HTTP
+リクエストにおける "Set-Cookie: " ヘッダの内容。
+CURLOPT_COOKIEFILE
+クッキーのデータを保持するファイルの名前。クッキーファイルは、
+Netscape フォーマットあるいは HTTP
+ヘッダを単純にファイルにダンプしたものが使用可能です。
+CURLOPT_COOKIEJAR
+接続を閉じる際に、すべての内部クッキーを保存するファイルの名前。
+CURLOPT_CUSTOMREQUEST HTTP リクエストで "GET" あるいは "HEAD"
+以外に
+使用するカスタムメソッド。これが有用なのは、"DELETE"
+やその他のあまり知られていない HTTP
+リクエストを実行する場合です。 使用可能な値は "GET"、
+"POST"、"CONNECT" などです。 HTTP
+リクエストの内容をすべて指定するわけではありません。つまり、
+"GET /index.html HTTP/1.0\r\n\r\n" のような
+記述は間違いだということです。
+使用しようとしているメソッドをサーバがサポートしていることを
+確かめるまで、これを使用しないでください。
+
+CURLOPT_EGBSOCKET CURLOPT_RANDOM_FILE と似ていますが、 Entropy
+Gathering Daemon
+ソケットを使用してファイル名を生成する点が
+違います。 CURLOPT_ENCODING "Accept-Encoding: " ヘッダの内容。
+これにより、応答のデコードを可能にします。サポートされる
+エンコーディングは "identity"、 "deflate" および "gzip"
+です。もし空文字列 "" が指定された場合、
+サポートされるエンコーディングをすべて含むヘッダが送信されます。
+cURL 7.10 で追加されました。 CURLOPT_FTPPORT FTP で "POST"
+を使用するための IP
+アドレスを取得する際に使用される値。 "POST"
+は、リモートサーバに対してこちらが指定した IP
+アドレスに
+接続するよう指示します。この値に設定できる内容は IP
+アドレス、ホスト名、
+ネットワークインターフェース名（Unix）、あるいは単に
+'-' を指定する ことでシステムのデフォルト IP
+アドレスを指定します。 CURLOPT_INTERFACE
+使用するネットワークインターフェースの名前。
+インターフェース名、IP
+アドレスあるいはホスト名が指定可能です。 CURLOPT_KRB4LEVEL
+KRB4（Kerberos 4）セキュリティレベル。以下の値のいずれか
+（セキュリティの低い順です）が指定可能です。 "clear"、
+"safe"、 "confidential"、 "private"。
+文字列がこれらのどれでもなかった場合は、 "private"
+が使用されます。このオプションを NULL にすると KRB4
+セキュリティを無効にします。現時点では、KRB4
+セキュリティは FTP 転送にのみ使用可能です。
+CURLOPT_POSTFIELDS HTTP "POST" で送信するすべてのデータ。
+ファイルを送信するには、ファイル名の先頭に @
+をつけます。 CURLOPT_PROXY リクエストを経由させる HTTP
+プロキシ。 CURLOPT_PROXYUSERPWD
+プロキシに接続するためのユーザ名とパスワード。
+"[username]:[password]" 形式で指定します。 CURLOPT_RANDOM_FILE
+使用するファイル名を、SSL
+の乱数生成器を使用して作成します。 CURLOPT_RANGE
+取得するデータの範囲を "X-Y" 形式で指定します。X
+あるいは Y は省略可能です。 HTTP
+転送では、いくつかの範囲をカンマで区切った "X-Y,N-M"
+のような形式もサポートしています。 CURLOPT_REFERER HTTP
+リクエストで使用される "Referer: " ヘッダの内容。
+CURLOPT_SSL_CIPHER_LIST SSL で使用する暗号のリスト。例えば
+RC4-SHA および TLSv1 が 使用可能です。 CURLOPT_SSLCERT PEM
+フォーマットの証明書を含むファイルの名前。
+CURLOPT_SSLCERTPASSWD CURLOPT_SSLCERT
+証明書を使用する際に必要なパスワード。 CURLOPT_SSLCERTTYPE
+証明書の形式。サポートされるフォーマットは
+"PEM"（デフォルト）、"DER" および "ENG" です。 cURL 7.9.3
+および PHP 5.0.0 で追加されました。 CURLOPT_SSLENGINE
+CURLOPT_SSLKEY で指定した SSL 秘密鍵の 暗号化エンジンの ID
+。 CURLOPT_SSLENGINE_DEFAULT
+非対称暗号化で使用する暗号化エンジンの ID 。
+CURLOPT_SSLKEY SSL 秘密鍵を含むファイルの名前。
+CURLOPT_SSLKEYPASSWD CURLOPT_SSLKEY で指定した SSL 秘密鍵を
+使用するために必要なパスワード。
+このオプションには重要なパスワードが含まれます。PHP
+スクリプトを
+安全な状態におくことを忘れないでください。
+
+CURLOPT_SSLKEYTYPE CURLOPT_SSLKEY で指定した SSL 秘密鍵の
+形式。サポートされる型は以下のとおりです。
+"PEM"（デフォルト）、"DER" および "ENG" 。 CURLOPT_URL
+取得する URL 。|curl_init| でセッションを
+初期化する際に指定することも可能です。 CURLOPT_USERAGENT
+HTTP リクエストで使用される "User-Agent: " ヘッダの内容。
+CURLOPT_USERPWD 接続に使用するユーザ名とパスワード。
+"[username]:[password]" 形式で指定します。
+
+{value} には、 {option} の以下の値に関して
+配列を指定する必要があります。 オプション {value}
+への設定値 注記 CURLOPT_HTTP200ALIASES
+エラーではなく正常な応答として扱われる、HTTP 200
+レスポンスの配列。 cURL 7.10.3 および PHP 5.0.0
+で追加されました。 CURLOPT_HTTPHEADER 設定する HTTP
+ヘッダフィールドの配列。 CURLOPT_POSTQUOTE FTP
+リクエストの実行後に、サーバ上で実行する FTP
+コマンドの配列。 CURLOPT_QUOTE FTP
+リクエストの前にサーバ上で実行する FTP
+コマンドの配列。
+
+{value} はストリームリソース（例えば |fopen|
+が作成するもの）であり、以下の {option}
+パラメータに設定します。 オプション {value}
+に設定する内容 注釈 CURLOPT_FILE
+転送内容が書き込まれるファイル。デフォルトは STDOUT
+（ブラウザウィンドウ）。 CURLOPT_INFILE
+アップロード時に転送内容を読み込むファイル。
+CURLOPT_STDERR STDERR の代わりにエラーを出力する場所。
+CURLOPT_WRITEHEADER
+転送のヘッダ部分が書き込まれるファイル。
+
+{value} には、 {option} の以下の値に関して
+有効なコールバック関数の名前を指定する必要があります。
+オプション {value} への設定値 注記 CURLOPT_HEADERFUNCTION
+コールバック関数の名前で、このコールバック関数は 2
+つの引数を とります。最初のパラメータは CURL
+リソースで、2 番目は書き込む
+ヘッダデータの文字列です。このコールバック関数を使用するにあたり、
+ヘッダデータを書き込む処理を実装するのはあなたの役目となります。
+書き込んだデータのバイト数を返します。
+CURLOPT_PASSWDFUNCTION
+コールバック関数の名前で、このコールバック関数は 3
+つの引数を とります。最初のパラメータは CURL
+リソースで、2 番目はパスワード
+プロンプトの文字列、そして 3
+番目はパスワードの最大長です。
+入力されたパスワードを文字列で返します。
+CURLOPT_READFUNCTION
+コールバック関数の名前で、このコールバック関数は 2
+つの引数を とります。最初のパラメータは cURL
+リソースで、2 番目は読み込む
+データの文字列です。このコールバック関数を使用するにあたり、
+データを読み込む処理を実装するのはあなたの役目となります。
+読み込んだデータのバイト数を返します。EOF
+シグナルを受け取った場合は 0 を返します。
+CURLOPT_WRITEFUNCTION
+コールバック関数の名前で、このコールバック関数は 2
+つの引数を とります。最初のパラメータは cURL
+リソースで、2 番目は書き込む
+データの文字列です。このコールバック関数を使用するにあたり、
+データを書き込む処理を実装するのはあなたの役目となります。
+書き込んだデータの正確なバイト数を返す必要があり、さもないと
+この関数は失敗します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+新規に cURL セッションを初期化、ウェブページを取得する
+
+<?php >
+  // 新しい cURL リソースを作成します
+  $ch = curl_init();
+  
+  // URL その他のオプションを適切に設定します
+  curl_setopt($ch, CURLOPT_URL, "http://www.example.com/");
+  curl_setopt($ch, CURLOPT_HEADER, false);
+  
+  // URL の内容を取得し、ブラウザに渡します
+  curl_exec($ch);
+  
+  // cURL リソースを閉じ、システムリソースを開放します
+  curl_close($ch);
+?>
+
+
+
+
+
+|curl_setopt_array|
+
+vim:ft=help:

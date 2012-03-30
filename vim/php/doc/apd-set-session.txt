@@ -1,0 +1,30 @@
+apd_set_session --
+現在のデバッグレベルを変更あるいは設定する
+
+  void apd_set_session(int debug_level)~
+
+アプリケーション内で、場所によってデバッグのレベルを増減する際に使用可能です。
+
+{ debug_level} XXX_TRACE 定数の組み合わせによる整数値。
+
+MEMORY_TRACE を用いることは推奨しません。
+これは非常に低速で、またあまり正確ではないようだからです。
+ASSIGNMENT_TRACE は、まだ実装されていません。
+
+すべての機能 (TIMING, FUNCTIONS, ARGS SUMMARY (strace -c
+のようなもの)) のトレースを有効にするには、値 99
+を指定します。
+
+値を返しません。
+
+|apd_set_session| の例
+
+<?php >
+  apd_set_session(9);
+?>
+
+
+
+
+
+vim:ft=help:

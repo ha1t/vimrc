@@ -1,0 +1,17 @@
+newt_entry_set_filter --
+
+  void newt_entry_set_filter(resource entry, callback filter, mixed data)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{entry}
+
+{filter}
+
+{data}
+
+値を返しません。
+
+vim:ft=help:

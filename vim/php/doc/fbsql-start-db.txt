@@ -1,0 +1,25 @@
+fbsql_start_db --
+ローカルまたはリモートサーバのデータベースを開始する
+
+  bool fbsql_start_db(string database_name [, resource link_identifier [, string database_options]])~
+
+ローカルまたはリモートサーバのデータベースを開始します。
+
+{database_name} データベース名。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+{database_options}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fbsql_db_status| |fbsql_stop_db|
+
+vim:ft=help:

@@ -1,0 +1,35 @@
+DomXsltStylesheet->process() -- DomDocument オブジェクトに XSLT
+変換を適用する
+
+  DomDocument process(DomDocument xml_doc [, array xslt_params [, bool is_xpath_param [, string profile_filename]]])~
+
+与えられた DomDocument オブジェクトに XSLT
+変換を適用します。
+
+{xml_doc} DomDocument オブジェクトとしての変換される XML 文章
+
+{xslt_params} パラメータ名と値のペアを持つ連想配列
+
+{is_xpath_param} FALSE に設定された場合、{xslt_params}
+の値は句オーとされます。これはデフォルトの動作です。
+PHP 文字列として値を渡すことができます。
+
+もし文字列がシングルクォートとダブルクォートの両方を含んでいる場合、
+このパラメータを TRUE に設定し、
+ご自身で全ての値のクォーティングを行う必要があります。
+
+{profile_filename}
+プロファイリング情報を希望する場合、ファイル名のパスを設定します。
+
+処理結果を DomDocument オブジェクトとして返します。
+
+|XSLTProcessor::setParameter| と |XSLTProcessor::transform-to-doc|
+を使用してください。
+
+バージョン 説明 4.3.0 {profile_filename}
+パラメータが追加されました。
+
+|domxml_xslt_stylesheet| |domxml_xslt_stylesheet_file|
+|domxml_xslt_stylesheet_doc|
+
+vim:ft=help:

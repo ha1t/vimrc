@@ -1,0 +1,39 @@
+yp_next -- マップから、次のキー/値の組を返す
+
+  array yp_next(string domain, string map, string key)~
+
+{map} という名前のマップの中で、指定したキー {key}
+の次にある キー/値 の組を返します。
+
+{domain}
+
+{map}
+
+{key}
+
+次のキー/値 の組を表す配列、あるいはエラー時に FALSE
+を返します。
+
+NIS next の例
+
+<?php >
+  $entry = yp_next($domain, "passwd.byname", "joe");
+  
+  if (!$entry) {
+      echo "エントリがありません\n";
+      echo "<!--" . yp_errno() . ": " . yp_err_string() . "-->";
+  }
+  
+  $key = key($entry);
+  
+  echo "joe の次のエントリのキーは " . $key 
+        . "、値は " . $entry[$key];
+?>
+
+
+
+
+
+|yp_first| |yp_get_default_domain|
+
+vim:ft=help:

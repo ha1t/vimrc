@@ -1,0 +1,37 @@
+vfprintf --
+フォーマットされた文字列をストリームに書き込む
+
+  int vfprintf(resource handle, string format, array args)~
+
+{format} によって作成された文字列を {handle}
+で指定したストリームに書き込みます。
+
+|fprintf| と同様の動作をしますが、
+可変引数ではなく引数の配列を受け取って処理します。
+
+{handle}
+
+{format} {format} については、 |sprintf|
+のドキュメントで説明されています。
+
+{args}
+
+出力された文字列の長さを返します。
+
+|vfprintf|: 数値のゼロ埋め
+
+<?php >
+  if (!($fp = fopen('date.txt', 'w')))
+      return;
+  
+  vfprintf($fp, "%04d-%02d-%02d", array($year, $month, $day));
+  // ISO 形式にフォーマットした日付を date.txt に書き込みます
+?>
+
+
+
+
+
+|printf| |sprintf| |sscanf| |fscanf| |vsprintf| |number_format|
+
+vim:ft=help:

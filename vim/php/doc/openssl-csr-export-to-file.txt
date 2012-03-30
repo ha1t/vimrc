@@ -1,0 +1,24 @@
+openssl_csr_export_to_file -- CSR をファイルにエクスポートする
+
+  bool openssl_csr_export_to_file(resource csr, string outfilename [, bool notext])~
+
+|openssl_csr_export_to_file| は、Certificate Signing Request {csr}
+を受け取り、 それを {outfilename} という名前のファイルに
+ASCII テキストとして保存します。
+
+{csr}
+
+{outfilename} 出力ファイルへのパス。
+
+{notext} オプションのパラメータ {notext}
+を設定すると、出力内容の冗長性が変化します。FALSE
+を指定すると、
+人間が読むための追加情報が出力に含まれるようになります。
+{notext} のデフォルト値は TRUE です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openssl_csr_export| |openssl_csr_new| |openssl_csr_sign|
+
+vim:ft=help:

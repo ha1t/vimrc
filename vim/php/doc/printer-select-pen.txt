@@ -1,0 +1,42 @@
+printer_select_pen -- ペンを選択する
+
+  void printer_select_pen(resource printer_handle, resource pen_handle)~
+
+この関数は、実際のデバイスコンテキストのアクティブな描画オブジェクトと
+してペンを選択します。ペンは、直線や曲線の描画に使用されます。たとえば
+一本の直線を引く際にはペンが使用されます。矩形を描く際には、その輪郭を
+ペンが描画し、ブラシがその図形を塗りつぶします。
+図形を描く前にペンが選択されていない場合、その図形の輪郭は描かれません。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{pen_handle} {pen_handle} は、
+ペンの有効なハンドルである必要があります。
+
+値を返しません。
+
+|printer_select_pen| の例
+
+<?php >
+  $handle = printer_open();
+  printer_start_doc($handle, "My Document");
+  printer_start_page($handle);
+  
+  $pen = printer_create_pen(PRINTER_PEN_SOLID, 30, "2222FF");
+  printer_select_pen($handle, $pen);
+  
+  printer_draw_line($handle, 1, 60, 500, 60);
+  
+  printer_delete_pen($pen);
+  
+  printer_end_page($handle);
+  printer_end_doc($handle);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

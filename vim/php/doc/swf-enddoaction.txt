@@ -1,0 +1,12 @@
+swf_enddoaction -- 現在のアクションを終了する
+
+  void swf_enddoaction()~
+
+関数 |swf_startdoaction| で開始した
+現在のアクションを終了します。
+
+値を返しません。
+
+|swf_startdoaction|
+
+vim:ft=help:

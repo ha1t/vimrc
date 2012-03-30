@@ -1,0 +1,49 @@
+ibase_query -- InterBase データベースでクエリを実行する
+
+  resource ibase_query([resource link_identifier, string query [, int bind_args]])~
+
+InterBase データベース上でクエリを実行します。
+
+{link_identifier} InterBase リンク ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+{query} InterBase クエリ。
+
+{bind_args}
+
+クエリが失敗した場合、FALSE を返します。成功した場合、
+(SELECT クエリのような) 結果の行がある場合、結果 ID
+を返します。 クエリが成功し、結果がない場合は TRUE
+を返します。
+
+PHP 5.0.0 以降では、INSERT・UPDATE・DELETE
+文に対してはこの関数は
+変更された行数を返します。後方互換性を確保するため、これらの文で
+クエリが成功したものの 1 行も更新されなかった場合には
+TRUE を返します。
+
+|ibase_query| の実行後に "arithmetic exception, numeric overflow, or
+string truncation. Cannot transliterate character between character sets"
+のようなエラーに遭遇した場合
+(アクセント記号つきの文字を使用した場合などに起こります)、
+文字セットを(ISO8859_1
+あるいは現在の文字セットに)設定する必要があります。
+
+|ibase_query| の例
+
+<?php >
+  $host = 'localhost:/path/to/your.gdb';
+  
+  $dbh = ibase_connect($host, $username, $password);
+  $stmt = 'SELECT * FROM tblname';
+  
+  $sth = ibase_query($dbh, $stmt) or die(ibase_errmsg());
+?>
+
+
+
+
+
+|ibase_errmsg| |ibase_fetch_row| |ibase_fetch_object| |ibase_free_result|
+
+vim:ft=help:

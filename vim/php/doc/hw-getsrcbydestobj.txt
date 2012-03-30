@@ -1,0 +1,18 @@
+hw_GetSrcByDestObj -- オブジェクトを指すアンカーを返す
+
+  array hw_getsrcbydestobj(int connection, int objectID)~
+
+ID {objectID} を有するオブジェクトを指す
+全てのアンカーのオブジェクトレコードを返します。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト
+ID。このオブジェクトは、ドキュメントまたはリンク先を指すアンカー
+のどちらかとすることができます。
+
+オブジェクトレコードの配列を返します。
+
+|hw_getanchors|
+
+vim:ft=help:

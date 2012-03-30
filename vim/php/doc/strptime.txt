@@ -1,0 +1,65 @@
+strptime -- strftime が生成した日付/時刻をパースする
+
+  array strptime(string date, string format)~
+
+|strptime| は {date}
+をパースした結果を配列で返します。エラー時には FALSE
+を返します。
+
+月名や曜日、そしてその他の言語依存な文字列は |setlocale|
+(LC_TIME) で設定された現在の
+ロケールを考慮して返します。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+{date} (string) パースする文字列（例: |strftime| の返り値）。
+
+{format} (string) {date} で使用されているフォーマット （例:
+|strftime| で使用されていたものと同じ）。
+
+フォーマットオプションについての詳細は |strftime|
+のページを参照ください。
+
+成功した場合は配列、失敗した場合は FALSE を返します。
+
+配列で返されるパラメータ パラメータ 説明 tm_sec
+分未満の秒数 (0-61) tm_min 時間未満の分数 (0-59) tm_hour 0
+時以降の時間数 (0-23) tm_mday 月内の日数 (1-31) tm_mon 1
+月から数えた月数 (0-11) tm_year 1900 年以降の年 tm_wday
+日曜日からの日数 (0-6) tm_yday 1 月 1 日からの日数 (0-365)
+unparsed {date} の中で、指定された {format}
+で判断できなかった部分
+
+|strptime| の例
+
+<?php >
+  $format = '%d/%m/%Y %H:%M:%S';
+  $strf = strftime($format);
+  
+  echo "$strf\n";
+  
+  print_r(strptime($strf, $format));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  03/10/2004 15:54:19
+  
+  Array
+  (
+      [tm_sec] => 19
+      [tm_min] => 54
+      [tm_hour] => 15
+      [tm_mday] => 3
+      [tm_mon] => 9
+      [tm_year] => 104
+      [tm_wday] => 0
+      [tm_yday] => 276
+      [unparsed] =>
+  )
+
+
+
+|strftime|
+
+vim:ft=help:

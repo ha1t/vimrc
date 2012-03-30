@@ -1,0 +1,67 @@
+stripos --
+大文字小文字を区別せずに文字列が最初に現れる位置を探す
+
+  int stripos(string haystack, string needle [, int offset])~
+
+文字列 {haystack} の中で {needle}
+が最初に現れる位置を数字で返します。
+
+|strpos| と異なり、|stripos|
+は大文字小文字を区別しません。
+
+{haystack} 検索を行う文字列。
+
+{needle} {needle} は、
+ひとつまたは複数の文字であることに注意しましょう。
+
+{needle} が文字列でない場合は、
+それを整数に変換し、その番号に対応する文字として扱います。
+
+{offset} オプションのパラメータ {offset}
+により、検索を開始する {haystack}
+の位置を指定することができます。
+この場合でも返される位置は、 {haystack}
+の先頭からの位置のままとなります。
+
+{needle} がみつからない場合、 |strpos| は boolean FALSE
+を返します。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|stripos| の例
+
+<?php >
+  $findme    = 'a';
+  $mystring1 = 'xyz';
+  $mystring2 = 'ABC';
+  
+  $pos1 = stripos($mystring1, $findme);
+  $pos2 = stripos($mystring2, $findme);
+  
+  // いいえ、'a' は明らかに 'xyz' の中には存在しません
+  if ($pos1 === false) {
+      echo "The string '$findme' was not found in the string '$mystring1'";
+  }
+  
+  // === を使用していることに注意しましょう。単に == としても期待通りに動作
+  // しません。なぜなら 'a' は 0 番目(最初) の文字だからです。
+  if ($pos2 !== false) {
+      echo "We found '$findme' in '$mystring2' at position $pos2";
+  }
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|strpos| |strrpos| |strrchr| |substr| |stristr| |strstr| |strripos|
+|str_ireplace|
+
+vim:ft=help:

@@ -1,0 +1,5 @@
+ocilogoff -- oci_close のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_close|.
+
+vim:ft=help:

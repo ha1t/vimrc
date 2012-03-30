@@ -1,0 +1,22 @@
+ldap_modify -- LDAP エントリを修正する
+
+  bool ldap_modify(resource link_identifier, string dn, array entry)~
+
+LDAP
+ディレクトリ内のエントリを修正します。エントリの構造は
+|ldap_add| と同じです。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{dn} LDAP エンティティの識別名。
+
+{entry}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数はバイナリデータに対応しています。
+
+|ldap_rename|
+
+vim:ft=help:

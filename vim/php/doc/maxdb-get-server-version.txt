@@ -1,0 +1,69 @@
+maxdb_get_server_version -- MaxDB
+サーバのバージョンを整数値で返す
+
+手続き型
+
+  int maxdb_get_server_version(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_get_server_version| 関数は、 MaxDB
+拡張モジュールが接続している ({link}
+パラメータで表される) MaxDB
+サーバのバージョンを表す整数値を返します。
+
+バージョン番号のフォーマットは main_version * 10000 +
+minor_version * 100 + sub_version (つまり、バージョン 7.5.0 は
+70500) となります。
+
+サーバのバージョンを表す整数値を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* サーバのバージョンを表示します */
+  printf("サーバのバージョン: %d\n", $maxdb->server_version);
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* サーバのバージョンを表示します */
+  printf("サーバのバージョン: %d\n", maxdb_get_server_version($link));
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  サーバのバージョン: 7<...>
+
+|maxdb_get_client_info| |maxdb_get_client_version| |maxdb_get_server_info|
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+PDF_create_fieldgroup --
+フォームフィールドグループを作成する
+
+  bool PDF_create_fieldgroup(resource pdfdoc, string name, string optlist)~
+
+さまざまなオプションをもとにして、
+フォームフィールドグループを作成します。
+
+vim:ft=help:

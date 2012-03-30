@@ -1,0 +1,43 @@
+set_exception_handler --
+ユーザ定義の例外ハンドラ関数を設定する
+
+  string set_exception_handler(callback exception_handler)~
+
+例外が try/catch
+ブロックの中でキャッチされなかった場合の
+デフォルトの例外ハンドラを設定します。
+例外は、{exception_handler} がコールされた後に 停止します。
+
+{exception_handler}
+キャッチされない例外が発生した際にコールされる関数の名前。
+この関数は、|set_exception_handler|
+をコールする前に定義する必要があります。
+このハンドラ関数は、パラメータをひとつとる必要があります。
+このパラメータは、スローされた例外オブジェクトとなります。
+
+前に定義された例外ハンドラの名前、またはエラー発生時に
+NULL を返します。
+前にハンドラが定義されていない場合にも NULL
+が返されます。
+
+|set_exception_handler| の例
+
+<?php >
+  function exception_handler($exception) {
+    echo "Uncaught exception: " , $exception->getMessage(), "\n";
+  }
+  
+  set_exception_handler('exception_handler');
+  
+  throw new Exception('Uncaught Exception');
+  echo "Not Executed\n";
+?>
+
+
+
+
+
+|restore_exception_handler|, |restore_error_handler|, |error_reporting|,
+callback 型に関する情報, そして PHP 5 例外.
+
+vim:ft=help:

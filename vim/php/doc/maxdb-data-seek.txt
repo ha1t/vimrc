@@ -1,0 +1,95 @@
+result->data_seek --
+結果ポインタを、結果の任意の行に移動する
+
+手続き型
+
+  bool maxdb_data_seek(resource result, int offset)~
+
+オブジェクト指向型 (メソッド)
+
+  bool data_seek(resource result, int offset, int offset)~
+
+|maxdb_data_seek| 関数は、{result} が表す結果セットの {offset}
+で指定した任意の位置に、
+結果ポインタを移動します。{offset} は、
+ゼロから全行数マイナス 1 の間 (0..|maxdb_num_rows| - 1)
+でなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  /* 接続をオープンします */
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */ 
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query = "SELECT name, state FROM hotel.city ORDER BY name";
+  if ($result = $maxdb->query( $query)) {
+  
+     /* 行番号 10 に移動します */
+     $result->data_seek(10);
+  
+     /* 行を取得します */
+     $row = $result->fetch_row();
+  
+     printf ("City: %s  State: %s\n", $row[0], $row[1]);
+  
+     /* 結果セットを開放します */
+     $result->close();
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */ 
+  if (!$link) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query = "SELECT name, state FROM hotel.city ORDER BY name";
+  
+  if ($result = maxdb_query($link, $query)) {
+  
+     /* 行番号 10 に移動します */
+     maxdb_data_seek($result, 10);
+  
+     /* 行を取得します */
+     $row = maxdb_fetch_row($result);
+  
+     printf ("City: %s  State: %s\n", $row[0], $row[1]);
+  
+     /* 結果セットを開放します */
+     maxdb_free_result($result);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  City: Irvine  State: CA
+
+|maxdb_store_result| |maxdb_fetch_row| |maxdb_num_rows|
+
+vim:ft=help:

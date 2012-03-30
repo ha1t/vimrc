@@ -1,0 +1,54 @@
+pg_select -- レコードを選択する
+
+  mixed pg_select(resource connection, string table_name, array assoc_array [, int options])~
+
+|pg_select| は、field=>value 形式の assoc_array
+で指定したレコードを選択します。
+クエリに成功した場合、assoc_array で指定した条件に
+マッチする全てのレコードとフィールドを含む配列が返されます。
+
+options が指定された場合、 指定したフラグとともに
+|pg_convert| が assoc_array に適用されます。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{table_name} 行を選択するテーブルの名前。
+
+{assoc_array} テーブル {table_name} のフィールド名をキーに、
+そして取得対象となる行にマッチするデータを値にもつ配列。
+
+{options} PGSQL_CONV_FORCE_NULL、 PGSQL_DML_NO_CONV、 PGSQL_DML_EXEC、
+PGSQL_DML_ASYNC あるいは PGSQL_DML_STRING の組み合わせ。 {options}
+の一部に PGSQL_DML_STRING が含まれていた場合、
+クエリ文字列が返されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 {options} に PGSQL_DML_STRING
+が渡された場合は文字列を返します。
+
+|pg_select| の例
+
+<?php >
+    $db = pg_connect('dbname=foo');
+    // これは安全です。なぜなら $_POST は自動的に変換されるからです。
+    $rec = pg_select($db, 'post_log', $_POST);
+    if ($rec) {
+        echo "選択されたレコード:\n";
+        var_dump($rec);
+    } else {
+        echo "ユーザが誤った入力を送信しました。\n";
+    }
+?>
+
+
+
+
+
+|pg_convert|
+
+vim:ft=help:

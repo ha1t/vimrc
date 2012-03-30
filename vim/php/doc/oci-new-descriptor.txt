@@ -1,0 +1,124 @@
+oci_new_descriptor -- 空の新規 LOB あるいは FILE
+ディスクリプタを初期化する
+
+  OCI-Lob oci_new_descriptor(resource connection [, int type])~
+
+ディスクリプタあるいは LOB
+ロケータを保持するリソースを確保します。
+
+{connection} |oci_connect| あるいは |oci_pconnect| が返す Oracle 接続
+ID。
+
+{type} {type} として有効な値は、 OCI_D_FILE、 OCI_D_LOB および
+OCI_D_ROWID です。
+
+成功した場合に新しい LOB あるいは FILE ディスクリプタ、
+エラー時に FALSE を返します。
+
+|oci_new_descriptor| の例
+
+<?php >
+  /* このスクリプトは HTML フォームからコールされるよう設計されています。
+   * また、$user, $passwor, $table, $where, $commitsizeがフォームから
+   * 渡されることを前提にしています。このスクリプトは、ROWID を用いて
+   * 選択された行を削除し、$commitsize 行毎にコミットします。
+   * (ロールバックがないので、注意して使用してください。)
+   */
+  $conn = oci_connect($user, $password);
+  $stmt = oci_parse($conn, "select rowid from $table $where");
+  $rowid = oci_new_descriptor($conn, OCI_D_ROWID);
+  oci_define_by_name($stmt, "ROWID", $rowid);
+  oci_execute($stmt);
+  while (oci_fetch($stmt)) {
+      $nrows = oci_num_rows($stmt);
+      $delete = oci_parse($conn, "delete from $table where ROWID = :rid");
+      oci_bind_by_name($delete, ":rid", $rowid, -1, OCI_B_ROWID);
+      oci_execute($delete);
+      echo "$nrows\n";
+      if (($nrows % $commitsize) == 0) {
+          oci_commit($conn);
+      }
+  }
+  $nrows = oci_num_rows($stmt);
+  echo "$nrows deleted...\n";
+  oci_free_statement($stmt);
+  oci_close($conn);
+?>
+
+<?php >
+      /* このスクリプトは LOB カラムにファイルをアップロードする例を示します。
+       * LOBカラムにアップロードを行うこの例に関するフォームは、
+       * <form action="upload.php3" method="post" enctype="multipart/form-data">
+       * <input type="file" name="lob_upload" />
+       * ... のようなものが使用されます。
+       */
+    if (!isset($lob_upload) || $lob_upload == 'none'){
+?>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+  Upload file: <input type="file" name="lob_upload" /><br />
+  <input type="submit" value="Upload" /> - <input type="reset" value="Reset" />
+  </form>
+<?php >
+    } else {
+  
+       // $lob_upload には、アップロードされたファイルの一時的なファイル名が含まれます
+  
+       // 安全にアップロードしたい場合は、マニュアルの
+       // ファイルアップロードに関する節を参照ください
+  
+       $conn = oci_connect($user, $password);
+       $lob = oci_new_descriptor($conn, OCI_D_LOB);
+       $stmt = oci_parse($conn, "insert into $table (id, the_blob)
+                 values(my_seq.NEXTVAL, EMPTY_BLOB()) returning the_blob into :the_blob");
+       oci_bind_by_name($stmt, ':the_blob', $lob, -1, OCI_B_BLOB);
+       oci_execute($stmt, OCI_DEFAULT);
+       if ($lob->savefile($lob_upload)){
+          oci_commit($conn);
+          echo "Blob のアップロードは成功しました\n";
+       }else{
+          echo "Blob をアップロードできませんでした\n";
+       }
+       oci_free_descriptor($lob);
+       oci_free_statement($stmt);
+       oci_close($conn);
+    }
+?>
+
+|oci_new_descriptor| の例
+
+<?php >
+  /* 入力パラメータとして clob を含む PL/SQLストアドプロシージャを
+   * コールする (PHP 4 >= 4.0.6) 。
+   * PL/SQL ストアドプロシージャのシグネチャは次の通り。
+   *
+   * PROCEDURE save_data
+   *   Argument Name                  Type                    In/Out Default?
+   *   ------------------------------ ----------------------- ------ --------
+   *   KEY                            NUMBER(38)              IN
+   *   DATA                           CLOB                    IN
+   *
+   */
+  
+  $conn = oci_connect($user, $password);
+  $stmt = oci_parse($conn, "begin save_data(:key, :data); end;");
+  $clob = oci_new_descriptor($conn, OCI_D_LOB);
+  oci_bind_by_name($stmt, ':key', $key);
+  oci_bind_by_name($stmt, ':data', $clob, -1, OCI_B_CLOB);
+  $clob->write($data);
+  oci_execute($stmt, OCI_DEFAULT);
+  oci_commit($conn);
+  $clob->free();
+  oci_free_statement($stmt);
+?>
+
+
+
+
+
+PHP バージョン 5.0.0 以前では、代わりに |ocinewdescriptor|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_new_descriptor| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

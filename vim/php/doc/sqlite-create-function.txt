@@ -1,0 +1,109 @@
+SQLiteDatabase->createFunction --
+SQLステートメントで使用するために"通常の"ユーザ定義関数を登録する
+
+  void sqlite_create_function(resource dbhandle, string function_name, callback callback [, int num_args])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  void createFunction(resource dbhandle, string function_name, callback callback [, int num_args, string function_name, callback callback [, int num_args]])~
+
+|sqlite_create_function| により、SQLiteにPHP関数 をUDF
+(ユーザ定義関数)として登録することが可能で
+す。この関数は、SQLステートメントの中からコールできます。
+
+UDFは、SELECTおよびUPDATEステートメント、そして、トリガーの中のよう
+に関数をコールできる全てのSQLステートメントで使用可能です。
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{function_name} SQL ステートメントで使用する関数名
+
+{callback} 定義された SQL
+関数を処理するためのコールバック関数
+
+コールバック関数は SQLite で有効な型 (例えば スカラー型)
+を返す必要があります
+
+{num_args}
+コールバック関数が規定の引数の数を受け入れるかどうかを決定するため
+SQLite パーサに渡すヒント
+
+(MySQL
+のような)他のデータベースエクステンションとの互換性のため、
+2 種類の構文がサポートされています。
+推奨されるのは最初の構文で、{dbhandle} パラメータを
+関数の最初のパラメータとするものです。
+
+値を返しません。
+
+|sqlite_create_function| の例
+
+<?php >
+  function md5_and_reverse($string)
+  {
+      return strrev(md5($string));
+  }
+  
+  if ($dbhandle = sqlite_open('mysqlitedb', 0666, $sqliteerror)) {
+  
+      sqlite_create_function($dbhandle, 'md5rev', 'md5_and_reverse', 1);
+  
+      $sql  = 'SELECT md5rev(filename) FROM files';
+      $rows = sqlite_array_query($dbhandle, $sql);
+  } else {
+      echo 'Error opening sqlite db: ' . $sqliteerror;
+      exit;
+  }
+?>
+
+
+
+
+
+この例では、文字列のMD5サムを計算し、順番を反転する関数が記述されています。
+このSQLステートメントが実行された場合、
+関数により変換されたファイル名の値を返します。 {$rows}
+により返されるデータには、
+処理結果が含まれています。
+
+この技術の美しいところは、データのクエリーを実行した後で
+foreach()
+ループにより結果を処理する必要がないことです。
+
+PHP は、データベースが最初にオープンされる際に php
+という名前の特別な関数を登録します。
+このphp関数は、事前に登録することなしにあらゆるPHP関数をコールする
+ために使用可能です。
+
+PHP 関数の使用例
+
+<?php >
+  $rows = sqlite_array_query($dbhandle, "SELECT php('md5', filename) from files");
+?>
+
+この例は、データベースの各 filename カラムにつ いて |md5|
+をコールし、その結果を {$rows}に返します。
+
+
+
+
+
+性能上の理由から、PHPはUDFとの間で送受信されるバイナリデータを自動
+的にエンコード/デコードしません。この方法でバイナリデータを処理す
+る必要がある場合、パラメータを手動でエンコード/デコードし、
+値を返すようにする必要があります。
+詳細については、|sqlite_udf_encode_binary|
+および|sqlite_udf_decode_binary|を参照して下さ い。
+
+適用するアプリケーションの主要な要求が高い性能でない限り、バイナリ
+データの処理を行うためにUDFを使用することは推奨されません。
+
+SQLiteのネーティブSQL関数をオーバーライドするために
+|sqlite_create_function|および
+|sqlite_create_aggregate|も使用可能です。
+
+|sqlite_create_aggregate|
+
+vim:ft=help:

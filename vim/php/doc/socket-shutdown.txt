@@ -1,0 +1,19 @@
+socket_shutdown --
+受信、送信、または送受信用のソケットをシャットダウンする
+
+  bool socket_shutdown(resource socket [, int how])~
+
+|socket_shutdown| 関数は、{socket}
+から送られてくる受信、送信あるいはすべて（デフォルト）のデータを停止します。
+
+{socket} |socket_create| で作成したソケットリソース。
+
+{how} {how} の値は以下のうちのひとつです。 {how}
+のとりうる値 0 ソケットの読み込みを停止します。 1
+ソケットの書き込みを停止します。 2
+ソケットの読み込み・書き込みを停止します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

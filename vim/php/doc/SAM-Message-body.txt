@@ -1,0 +1,17 @@
+SAMMessage->body -- メッセージの本文
+
+"body" プロパティには、メッセージの本文が含まれます。
+常に設定されているとは限りません。
+
+メッセージ本文へのテキスト文字列の設定
+
+<?php >
+  $msg = new SAMMessage();
+  $msg->body = 'This is a simple message';
+?>
+
+
+
+
+
+vim:ft=help:

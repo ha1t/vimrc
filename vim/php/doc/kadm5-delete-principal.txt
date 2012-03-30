@@ -1,0 +1,30 @@
+kadm5_delete_principal -- kerberos プリンシパルを削除する
+
+  bool kadm5_delete_principal(resource handle, string principal)~
+
+Kerberos データベースから {principal} を削除します。
+
+{handle} KADM5 ハンドル。
+
+{principal} 削除するプリンシパル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|kadm5_delete_principal| の例
+
+<?php >
+  $handle = kadm5_init_with_password("afs-1", "GONICUS.LOCAL", "admin/admin", "password");
+  
+  kadm5_delete_principal($handle, "burbach@GONICUS.LOCAL");
+  
+  kadm5_destroy($handle);
+?>
+
+
+
+
+
+|kadm5_modify_principal| |kadm5_create_principal|
+
+vim:ft=help:

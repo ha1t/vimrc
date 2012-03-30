@@ -1,0 +1,216 @@
+set_error_handler --
+ユーザ定義のエラーハンドラ関数を設定する
+
+  mixed set_error_handler(callback error_handler [, int error_types])~
+
+スクリプトのエラー処理を行うユーザ関数
+({error_handler})を設定します。
+
+この関数は、実行時のエラー処理をユーザが定義するために使用します。
+例えば、致命的なエラーの際にデータやファイルを消去する必要があるような
+アプリケーションや、ある条件のもとに
+(|trigger_error|を使用して)エラーを発生する必要がある
+アプリケーションがこの場合にあたります。
+
+PHP
+の標準のエラーハンドラは完全にバイパスされることに注意してください。
+|error_reporting| の設定にかかわらず、どのような場合でも
+ユーザが設定したエラーハンドラがコールされます。ただし、この場合でも
+ハンドラで |error_reporting| のカレントの値を読み、
+それにあわせて適切に動作させることは可能です。エラーを発生した命令の前に
+@ エラー制御演算子 が付加されている場合、この値は 0
+となることには注意しましょう。
+
+ユーザハンドラ関数は、必要に応じて |die| を
+コールする責任があることにも注意しましょう。エラーハンドラ関数が
+リターンした場合、スクリプトの実行は、エラーを発生した命令の次の命令に
+継続されます。
+
+以下のエラータイプは、ユーザ定義の関数では扱えません。
+E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR,
+E_COMPILE_WARNING および |set_error_handler|
+がコールされたファイルで発生した 大半の E_STRICT 。
+
+(ファイルアップロードのように)スクリプトが実行される前にエラーが
+発生した場合、カスタムエラーハンドラはコールされません。
+これは、その時点では登録されていないためです。
+
+{error_handler}
+ユーザ関数は、エラーコードとエラーを記述する文字列の
+2 つの引数を
+受け取る必要があります。さらにオプションのパラメータとして
+3 つの引数が
+追加されています。これらは、エラーが発生したファイル名、エラーが
+発生した行、発生したエラーのコンテキスト(エラーが発生した場所での
+アクティブなシンボルテーブルを指す配列)です。関数は以下のようになります。
+
+  mixed (callback error_handler [, int error_types, int errno, string errstr [, string errfile [, int errline [, array errcontext]]]])~
+
+{errno} 最初のパラメータ {errno} は、発生させる
+エラーのレベルを整数で格納します。
+
+{errstr} 2 番目のパラメータ {errstr} は、
+エラーメッセージを文字列で格納します。
+
+{errfile} 3 番目のパラメータ {errfile} はオプションで、
+エラーが発生したファイルの名前を文字列で格納します。
+
+{errline} 4 番目のパラメータ {errline} はオプションで、
+エラーが発生した行番号を整数で格納します。
+
+{errcontext} 5 番目のパラメータ {errcontext} はオプションで、
+エラーが発生した場所のアクティブシンボルテーブルを指す配列です。
+つまり、エラーが発生したスコープ内でのすべての変数の内容を格納した
+配列が {errcontext} だということです。
+ユーザエラーハンドラは、決してエラーコンテキストを書き換えては
+いけません。
+
+この関数が FALSE
+を返した場合は、通常のエラーハンドラが処理を引き継ぎます。
+
+{error_types} 設定パラメータ error_reporting
+で表示するエラーを制御するのと全く同様に、
+{error_handler} の起動を制御する際に 使用可能です。
+このマスクを指定しない場合、 {error_handler} は error_reporting
+の設定によらず 全てのエラーに関してコールされます。
+
+前に定義されたエラーハンドラ(ある場合)を含む文字列、または
+エラーの場合には NULL を返します。
+前に定義されたハンドラがクラスメソッドの場合、この関数は、
+クラスとメソッド名からなる添字配列を返します。
+
+バージョン 説明 5.2.0 $php_errormsg
+の内容を設定するため、エラーハンドラは必ず FALSE
+を返さなければなりません。 5.0.0 {error_types}
+パラメータが追加されました。 4.3.0 {error_handler}
+として、関数名のかわりに
+オブジェクトへのリファレンスとメソッド名を含む配列を指定することも
+できます。 4.0.2 ユーザ定義関数 {error_handler} で 3 つの
+オプションパラメータが利用できるようになりました。filename,
+line number, および context です。
+
+|set_error_handler| および |trigger_error| によるエラー処理
+以下の例では、エラーを発生させることによる内部例外の処理や
+それらをユーザ定義関数で処理する方法を説明します。
+
+<?php >
+  // エラーハンドラ関数
+  function myErrorHandler($errno, $errstr, $errfile, $errline)
+  {
+      switch ($errno) {
+      case E_USER_ERROR:
+          echo "<b>My ERROR</b> [$errno] $errstr<br />\n";
+          echo "  Fatal error on line $errline in file $errfile";
+          echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
+          echo "Aborting...<br />\n";
+          exit(1);
+          break;
+  
+      case E_USER_WARNING:
+          echo "<b>My WARNING</b> [$errno] $errstr<br />\n";
+          break;
+  
+      case E_USER_NOTICE:
+          echo "<b>My NOTICE</b> [$errno] $errstr<br />\n";
+          break;
+  
+      default:
+          echo "Unknown error type: [$errno] $errstr<br />\n";
+          break;
+      }
+  
+      /* PHP の内部エラーハンドラを実行しません */
+      return true;
+  }
+  
+  // エラー処理のテスト用関数
+  function scale_by_log($vect, $scale)
+  {
+      if (!is_numeric($scale) || $scale <= 0) {
+          trigger_error("log(x) for x <= 0 is undefined, you used: scale = $scale", E_USER_ERROR);
+      }
+  
+      if (!is_array($vect)) {
+          trigger_error("Incorrect input vector, array of values expected", E_USER_WARNING);
+          return null;
+      }
+  
+      $temp = array();
+      foreach($vect as $pos => $value) {
+          if (!is_numeric($value)) {
+              trigger_error("Value at position $pos is not a number, using 0 (zero)", E_USER_NOTICE);
+              $value = 0;
+          }
+          $temp[$pos] = log($scale) * $value;
+      }
+  
+      return $temp;
+  }
+  
+  // 定義したエラーハンドラを設定する
+  $old_error_handler = set_error_handler("myErrorHandler");
+  
+  // エラーを発生します。まず、数値でない項目が混ざった配列を定義します。
+  echo "vector a\n";
+  $a = array(2, 3, "foo", 5.5, 43.3, 21.11);
+  print_r($a);
+  
+  // 二番目の配列を生成します。
+  echo "----\nvector b - a notice (b = log(PI) * a)\n";
+  /* Value at position $pos is not a number, using 0 (zero) */
+  $b = scale_by_log($a, M_PI);
+  print_r($b);
+  
+  // 配列の代わりに文字列を渡しており、問題を発生します。
+  echo "----\nvector c - a warning\n";
+  /* Incorrect input vector, array of values expected */
+  $c = scale_by_log("not array", 2.3);
+  var_dump($c); // NULL
+  
+  // ゼロまたは負数の対数が定義されないという致命的なエラーを発生します。
+  echo "----\nvector d - fatal error\n";
+  /* log(x) for x <= 0 is undefined, you used: scale = $scale" */
+  $d = scale_by_log($a, -2.5);
+  var_dump($d); // ここには到達しません
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  vector a
+  Array
+  (
+      [0] => 2
+      [1] => 3
+      [2] => foo
+      [3] => 5.5
+      [4] => 43.3
+      [5] => 21.11
+  )
+  ----
+  vector b - a notice (b = log(PI) * a)
+  <b>My NOTICE</b> [1024] Value at position 2 is not a number, using 0 (zero)<br />
+  Array
+  (
+      [0] => 2.2894597716988
+      [1] => 3.4341896575482
+      [2] => 0
+      [3] => 6.2960143721717
+      [4] => 49.566804057279
+      [5] => 24.165247890281
+  )
+  ----
+  vector c - a warning
+  <b>My WARNING</b> [512] Incorrect input vector, array of values expected<br />
+  NULL
+  ----
+  vector d - fatal error
+  <b>My ERROR</b> [256] log(x) for x <= 0 is undefined, you used: scale = -2.5<br />
+    Fatal error on line 35 in file trigger_error.php, PHP 5.2.1 (FreeBSD)<br />
+  Aborting...<br />
+
+
+
+|error_reporting| |restore_error_handler| |trigger_error|
+エラーレベル定数 callback 型に関する情報
+
+vim:ft=help:

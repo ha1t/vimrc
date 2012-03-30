@@ -1,0 +1,13 @@
+spl_autoload_extensions -- spl_autoload
+用のデフォルトの拡張子を登録し、それを返す
+
+  string spl_autoload_extensions([string file_extensions])~
+
+この関数は、__autoload 用の組み込み関数である spl_autoload
+が使用するファイル拡張子を変更したり調べたりします。
+引数なしでコールした場合は、現在の拡張子一覧をカンマ区切りで返します。
+ファイル拡張子を変更するには、
+新しい拡張子一覧をカンマ区切り文字列で表したものを引数に指定して、
+この関数を実行します。
+
+vim:ft=help:

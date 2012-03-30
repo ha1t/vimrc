@@ -1,0 +1,60 @@
+ovrimos_fetch_row -- 結果セットからレコードを取得する
+
+  bool ovrimos_fetch_row(int result_id [, int how [, int row_number]])~
+
+結果セットから行を取得します。カラムの値は、
+別のコールで取得する必要があります。
+
+{result_id} |ovrimos_execute| あるいは |ovrimos_exec| が返す結果
+ID。
+
+{how}
+行を取得する方法を指定します。以下の文字列のいずれかです
+(大文字小文字は区別しません)。 オプション 説明 Next
+現在位置から後方へ。 これはデフォルト値です。 Prev
+現在位置から前方へ。 First 先頭から順方向へ。 Last
+終端から逆方向へ。 Absolute 先頭からの絶対位置。
+{rownumber} を指定する必要があります。
+
+{rownumber} 行番号。先頭は 0 です。 {how} が Absolute
+の場合にのみ必要となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+取得の例
+
+<?php >
+  $conn = ovrimos_connect("remote.host", "8001", "admin", "password");
+  if ($conn != 0) {
+      echo "Connection ok!";
+      $res=ovrimos_exec($conn, "select table_id, table_name from sys.tables");
+      if ($res != 0) {
+          echo "Statement ok!";
+          if (ovrimos_fetch_row($res, "First")) {
+              $table_id = ovrimos_result($res, 1);
+              $table_name = ovrimos_result($res, 2);
+              echo "table_id=" . $table_id . ", table_name=" . $table_name . "\n";
+              if (ovrimos_fetch_row($res, "Next")) {
+                  $table_id = ovrimos_result($res, "table_id");
+                  $table_name = ovrimos_result($res, "table_name");
+                  echo "table_id=" . $table_id . ", table_name=" . $table_name . "\n";
+              } else {
+                  echo "Next: error\n";
+              }
+          } else {
+              echo "First: error\n";
+          }
+          ovrimos_free_result($res);
+      }
+      ovrimos_close($conn);
+  }
+?>
+
+
+
+この例は、行を取得し、結果を出力します。
+
+|ovrimos_fetch_into|
+
+vim:ft=help:

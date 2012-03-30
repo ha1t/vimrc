@@ -1,0 +1,55 @@
+xdiff_file_patch -- ファイルに unified diff
+形式のパッチを適用する
+
+  mixed xdiff_file_patch(string file, string patch, string dest [, int flags])~
+
+ファイル {file} に unified 形式のパッチファイル {patch}
+を適用し、結果をファイルに保存します。
+
+{file} 元のファイル。
+
+{patch} パッチファイル。
+
+{dest} 結果のファイルへのパス。
+
+{flags}
+XDIFF_PATCH_NORMAL（デフォルト。通常のパッチ）あるいは
+XDIFF_PATCH_REVERSE（逆パッチ） のいずれか。
+
+内部エラーが発生した場合に FALSE を返します。
+パッチの適用に成功した場合には、パッチが拒否された部分の文字列
+あるいは TRUE を返します。
+
+|xdiff_file_patch| の例 以下のコードは、unified diff
+形式のパッチをファイルに適用します。
+
+<?php >
+  $old_version = 'my_script-1.0.php';
+  $patch = 'my_script.patch';
+  
+  $errors = xdiff_file_patch($old_version, $patch, 'my_script-1.1.php');
+  if (is_string($errors)) {
+     echo "Rejects:\n";
+     echo $errors;
+  }
+?>
+
+逆パッチの例
+以下のコードは、パッチを逆方向に適用します。
+
+<?php >
+  $new_version = 'my_script-1.1.php';
+  $patch = 'my_script.patch';
+  
+  $errors = xdiff_file_patch($new_version, $patch, 'my_script-1.0.php', XDIFF_PATCH_REVERSE);
+  if (is_string($errors)) {
+     echo "Rejects:\n";
+     echo $errors;
+  }
+?>
+
+
+
+|xdiff_string_patch|
+
+vim:ft=help:

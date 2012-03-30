@@ -1,0 +1,47 @@
+gmmktime -- GMT 日付から Unix タイムスタンプを取得する
+
+  int gmmktime([int hour [, int minute [, int second [, int month [, int day [, int year [, int is_dst]]]]]]])~
+
+指定されるパラメータが GMT 日付を表すこと以外は |mktime|
+と同じです。 |gmmktime| は内部で |mktime|
+を使用しているので、ローカル時刻として有効な値のみが使用可能です。
+
+|mktime| と同様に、
+引数は右から順に省略することができます。
+省略された引数は、GMT
+の日付と時刻に従って、現在の値にセットされます。
+
+{hour} 時
+
+{minute} 分
+
+{second} 秒
+
+{month} 月
+
+{day} 日
+
+{year} 年
+
+{is_dst} 常に GMT 日付を表すので、{is_dst}
+は結果に影響を及ぼしません。
+
+Unix タイムスタンプを integer で返します。
+
+バージョン 説明 5.1.0 PHP 5.1.0 で、{is_dst}
+パラメータは廃止されました。
+その代わりに、新しいタイムゾーン処理機能が使用されます。
+
+Windows 環境での |gmmktime|
+
+<?php >
+  gmmktime(0, 0, 0, 1, 1, 1970); // valid in GMT and west, invalid in east
+?>
+
+
+
+
+
+|mktime| |date| |time|
+
+vim:ft=help:

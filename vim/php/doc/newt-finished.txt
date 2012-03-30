@@ -1,0 +1,13 @@
+newt_finished -- newt インターフェースを終了する
+
+  int newt_finished()~
+
+newt
+インターフェースを終了します。プログラムが終了する際にこの関数を
+コールします。
+
+成功した場合に 1、失敗した場合に 0 を返します。
+
+|newt_init|
+
+vim:ft=help:

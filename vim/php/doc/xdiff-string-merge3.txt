@@ -1,0 +1,22 @@
+xdiff_string_merge3 -- 3 つの文字列をひとつに統合する
+
+  mixed xdiff_string_merge3(string str1, string str2, string str3 [, string error])~
+
+三つの文字列をひとつに結合します。
+
+{str1}
+
+{str2}
+
+{str3}
+
+{error}
+指定した場合、パッチを拒否された部分がこの変数に保存されます。
+
+統合された文字列を返します。内部エラーが発生した場合は
+FALSE、 統合された文字列が空の文字列の場合は TRUE
+を返します。
+
+|xdiff_file_merge3|
+
+vim:ft=help:

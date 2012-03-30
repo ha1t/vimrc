@@ -1,0 +1,23 @@
+xslt_backend_version -- Sablotron のバージョン番号を返す
+
+  string xslt_backend_version()~
+
+|xslt_backend_version| は、 Sablotron
+のバージョン番号を取得します。
+
+バージョン番号を返します。失敗した場合は FALSE
+を返します。
+
+|xslt_backend_version| の例
+
+<?php >
+  echo xslt_backend_version(); // たとえば 0.98
+?>
+
+
+
+
+
+|xslt_backend_info| |xslt_backend_name|
+
+vim:ft=help:

@@ -1,0 +1,8 @@
+PDF_set_horiz_scaling -- テキストの横方向倍率を設定する
+[古い関数]
+
+この関数は PDFlib バージョン 3
+で廃止されました。かわりに |PDF_set_value| でパラメータ
+{horizscaling} を使用してください。
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+cpdf_setflat -- flatness を設定する
+
+  bool cpdf_setflat(int pdf_document, float value)~
+
+flatness を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{value} flatness を表す 0 から 100 までの float 値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

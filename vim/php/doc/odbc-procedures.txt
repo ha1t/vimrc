@@ -1,0 +1,29 @@
+odbc_procedures --
+指定したデータソースに保存されているプロシージャのリストを取得する
+
+  resource odbc_procedures(resource connection_id [, string qualifier, string owner, string name])~
+
+指定した範囲の全てのプロシージャのリストを取得します。ODBC
+結果 ID または失敗した場合に FALSE を返します。
+
+結果は以下のカラムを有します。 PROCEDURE_QUALIFIER
+
+PROCEDURE_OWNER
+
+PROCEDURE_NAME
+
+NUM_INPUT_PARAMS
+
+NUM_OUTPUT_PARAMS
+
+NUM_RESULT_SETS
+
+REMARKS
+
+PROCEDURE_TYPE
+
+引数 {owner} および {name} には検索パターン
+(ゼロ以上の文字にマッチする '%'
+や単一の文字にマッチする '_') を使用可能です。
+
+vim:ft=help:

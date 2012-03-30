@@ -1,0 +1,54 @@
+posix_getgrgid -- 指定したグループ ID
+を有するグループに関する情報を返す
+
+  array posix_getgrgid(int gid)~
+
+指定した ID のグループに関する情報を取得します。
+
+{gid} グループ ID。
+
+以下の要素を持つ配列を返します。 グループ情報の配列
+要素 説明 name グループ名。これは、16
+文字以下の短い文字列からなる
+「ハンドル」であり、実際の完全な名前とは異なります。
+passwd グループのパスワードを暗号化したもの。
+システムが「シャドー」パスワードを使用している場合は、
+ここではアスタリスクが返されます。 gid グループ
+ID。この関数をコールする際に指定した {gid}
+と同じものになるので、冗長なデータです。 members
+このグループに属する全メンバーを表す文字列の配列。
+
+バージョン 説明 4.2.0 このバージョンより前は、members
+の内容は単なる整数
+(グループに所属するユーザの数)であり、
+メンバの名前は数値添字で返されました。
+
+|posix_getgrgid| の使用例
+
+<?php >
+  $groupid   = posix_getegid();
+  $groupinfo = posix_getgrgid($groupid);
+  
+  print_r($groupinfo);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [name]    => toons
+      [passwd]  => x
+      [members] => Array
+          (
+              [0] => tom
+              [1] => jerry
+          )
+      [gid]     => 42
+  )
+
+
+
+|posix_getegid| |posix_getgrnam| |filegroup| |stat| safe_mode_gid POSIX man
+ページ GETGRNAM(3)
+
+vim:ft=help:

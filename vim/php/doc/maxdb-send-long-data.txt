@@ -1,0 +1,10 @@
+maxdb_send_long_data -- maxdb_stmt_send_long_data のエイリアス
+
+この関数は次の関数のエイリアスです。
+|maxdb_stmt_send_long_data|.
+
+この関数エイリアスは非推奨であり、下位互換性維持のために残されています。
+今後、PHP
+から削除される可能性がありますので、この関数を使用しないことを推奨します。
+
+vim:ft=help:

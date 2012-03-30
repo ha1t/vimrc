@@ -1,0 +1,28 @@
+mcrypt_enc_get_modes_name -- オープンされたモードの名前を返す
+
+  string mcrypt_enc_get_modes_name(resource td)~
+
+この関数はモード名を返します。
+
+{td} 暗号化記述子。
+
+名前を表す文字列を返します。
+
+|mcrypt_enc_get_modes_name| の例
+
+<?php >
+  $td = mcrypt_module_open (MCRYPT_CAST_256, '', MCRYPT_MODE_CFB, '');
+  echo mcrypt_enc_get_modes_name($td). "\n";
+  
+  $td = mcrypt_module_open ('cast-256', '', 'ecb', '');
+  echo mcrypt_enc_get_modes_name($td). "\n";
+?>
+
+上の例の出力は以下となります。
+
+  CFB
+  ECB
+
+
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+hw_api->link -- オブジェクトへのリンクを作成する
+
+  bool link(array parameter)~
+
+オブジェクトへのリンクを作成します。このリンクへのアクセスは、
+リンクが指している先のオブジェクトへのアクセスと同じになります。
+
+{parameter} パラメータの配列には、必須要素 'objectIdentifier'
+および 'destinationParentIdentifier' が含まれます。
+'destinationParentIdentifier' は対象のコレクションです。
+
+この関数は、成功した場合に
+TRUE、それ以外の場合にエラーオブジェクトを返します。
+
+vim:ft=help:

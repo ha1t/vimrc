@@ -1,0 +1,9 @@
+readline_redisplay -- 画面を再描画する
+
+  void readline_redisplay()~
+
+画面の再描画を readline に依頼します。
+
+値を返しません。
+
+vim:ft=help:

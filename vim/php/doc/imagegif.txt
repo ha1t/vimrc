@@ -1,0 +1,71 @@
+imagegif -- ブラウザまたはファイルへ画像を出力する
+
+  bool imagegif(resource image [, string filename])~
+
+|imagegif| は画像 {image} から GIF ファイル filename
+を作成します。 引数 {image} は |imagecreate| あるいは
+imagecreatefrom* 関数から返されたものです。
+
+画像フォーマットは、|imagecolortransparent| を
+用いて画像を透明化しない限り GIF87a となります。
+透明化した場合の画像フォーマットは GIF89a となります。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{filename} 保存するファイルへのパス。省略したり NULL
+を指定したりした場合は、生の画像ストリームが直接出力されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+GD ライブラリバージョン 1.6 以降で GIF
+サポートが完全に削除されたので、該当する 版の GD
+ライブラリではこの関数を使用することは できません。GD
+ライブラリが GIF を サポートするバージョンを出す 2004
+年なかごろ以降にサポートが再開される
+と期待されています。詳しくは GD Project
+のサイトを見てください。
+
+以下の短いコードにより、利用可能な GD
+サポートの型を自動検出して 汎用性のある PHP
+アプリケーションを書くことが可能です。
+Header("Content-type: image/gif");ImageGIF($im);
+の部分を、より柔軟性のある
+このコードに置換してください。
+
+<?php >
+  if (function_exists("imagegif")) {
+      header("Content-type: image/gif");
+      imagegif($im);
+  } elseif (function_exists("imagejpeg")) {
+      header("Content-type: image/jpeg");
+      imagejpeg($im, "", 0.5);
+  } elseif (function_exists("imagepng")) {
+      header("Content-type: image/png");
+      imagepng($im);
+  } elseif (function_exists("imagewbmp")) {
+      header("Content-type: image/vnd.wap.wbmp");
+      imagewbmp($im);
+  } else {
+      die("No image support in this PHP server");
+  }
+?>
+
+バージョン 4.0.2 以降および 3.0.18
+以降では、種々のイメージ関数の
+サポートを調べるために |function_exists| の 代わりに関数
+|imagetypes| を使用することが可能です。
+
+<?php >
+  if (imagetypes() &amp; IMG_GIF) {
+      header ("Content-type: image/gif");
+      imagegif ($im);
+  } elseif (imagetypes() & IMG_JPG) {
+      /* ... etc. */
+  }
+?>
+
+|imagepng| |imagewbmp| |imagejpeg| |imagetypes|
+
+vim:ft=help:

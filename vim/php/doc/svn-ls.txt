@@ -1,0 +1,84 @@
+svn_ls -- 指定したリポジトリ URL
+のディレクトリ内の一覧を返す
+(オプションでリビジョン番号も指定可能)
+
+  array svn_ls(string repos_url [, int revision_no])~
+
+この関数は、指定したリポジトリ URL
+のファイルやディレクトリの一覧を返します。
+オプションで、特定のリビジョンを指定することもできます。
+これは、svn list $repos_url[@$revision_no] と同等です。
+
+この関数は、作業コピーに対して使用することはできません。
+{repos_url} には 必ず リポジトリの URL
+を指定しなければなりません。
+
+{url} リポジトリの URL。たとえば http://www.example.com/svnroot
+のようになります。ローカルの Subversion
+リポジトリに対してファイルシステム経由でアクセスしたい場合は、
+file URI スキームを使用して file:///home/user/svn-repos
+のようにします。
+
+{revision}
+一覧を取得したいリビジョン番号。省略した場合は HEAD
+リビジョンを使用します。
+
+成功した場合は、この関数は次のような構造の配列を返します。
+
+  [0] => Array
+      (
+          [created_rev] => 最後に変更されたリビジョン番号
+          [last_author] => 最後に変更した人の名前
+          [size] => ファイルのバイト数
+          [time] => 最終更新日時を、その古さによって 'M d H:i'
+                    あるいは 'M d Y' のいずれかの形式で表したもの
+          [time_t] => 最終更新日時の unix タイムスタンプ
+          [name] => ファイル/ディレクトリの名前
+          [type] => 'file' あるいは 'dir' のいずれか
+      )
+  [1] => ...
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|svn_ls| の例
+
+<?php >
+  print_r( svn_ls('http://www.example.com/svnroot/') );
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => Array
+          (
+              [created_rev] => 20
+              [last_author] => Joe
+              [size] => 0
+              [time] => Apr 02 09:28
+              [time_t] => 1175520529
+              [name] => tags
+              [type] => dir
+          )
+      [1] => Array
+          (
+              [created_rev] => 23
+              [last_author] => Bob
+              [size] => 0
+              [time] => Apr 02 15:15
+              [time_t] => 1175541322
+              [name] => trunk
+              [type] => dir
+          )
+  )
+
+
+
+SVN ドキュメントの svn list
+
+vim:ft=help:

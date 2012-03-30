@@ -1,0 +1,7 @@
+PDF_begin_pattern -- パターン定義を開始する
+
+  int PDF_begin_pattern(resource pdfdoc, float width, float height, float xstep, float ystep, int painttype)~
+
+新規パターンの定義を開始します。
+
+vim:ft=help:

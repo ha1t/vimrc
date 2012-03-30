@@ -1,0 +1,17 @@
+fbsql_free_result -- 結果メモリを開放する
+
+  bool fbsql_free_result(resource result)~
+
+{result} で指定した ID
+に関連付けられた全メモリを開放します。
+
+|fbsql_free_result| は、大きな結果セットを返す
+クエリでメモリの使用量が心配な場合にのみコールします。
+結果に関連付けられたメモリは、スクリプトの実行が終了した際に自動的に開放されます。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+ibase_delete_user --
+セキュリティデータベースからユーザを削除する(IB6
+以降のみ)
+
+  bool ibase_delete_user(resource service_handle, string user_name)~
+
+PHP 4 では、{service_handle} パラメータの かわりに {server}、
+{dba_user_name} および {dba_user_password} を使用します。
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_add_user| |ibase_modify_user|
+
+vim:ft=help:

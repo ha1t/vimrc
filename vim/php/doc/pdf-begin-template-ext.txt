@@ -1,0 +1,7 @@
+PDF_begin_template_ext -- テンプレート定義を開始する
+
+  int PDF_begin_template_ext(resource pdfdoc, float width, float height, string optlist)~
+
+新規テンプレートの定義を開始します。
+
+vim:ft=help:

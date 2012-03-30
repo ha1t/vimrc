@@ -1,0 +1,58 @@
+openlog -- システムのロガーへの接続をオープンする
+
+  bool openlog(string ident, int option, int facility)~
+
+|openlog|
+は、プログラムによるシステムロガーへの接続をオープンします。
+
+|openlog| の使用は必須ではありません。この関数は、
+必要に応じて |syslog| により自動的に呼び出されます。
+この場合、{ident} のデフォルト値は FALSE となります。
+
+{ident} 文字列 {ident} が、各メッセージに追加されます。
+
+{option} {option} 引数は、
+ログメッセージの生成時に使用されるロギング用オプションを指定します。
+|openlog| のオプション 定数 説明 LOG_CONS
+システムロガーにデータが送信される間にエラーが発生した場合、
+直接、システムコンソールに書き込まれます。 LOG_NDELAY
+直ちにロガーへの接続をオープンします。 LOG_ODELAY
+(デフォルト)
+最初のメッセージがロギングされるまで接続のオープンを遅延します。
+LOG_PERROR
+標準エラー出力にもログメッセージを出力します。 LOG_PID
+各メッセージに PID も含めます。
+このオプションを一つまたは複数設定することが可能です。
+複数のオプションを使用する場合、その論理和を指定します。
+つまり、直ちに接続をオープンし、コンソールに書き込み、
+各メッセージに PID を含めるには、 LOG_CONS | LOG_NDELAY |
+LOG_PID とします。
+
+{facility} 引数 {facility} には、
+ロギングを行う際のメッセージ型を指定します。これにより、
+(使用するシステムの syslog の設定に関して) 異なった
+facility
+を有するメッセージをどのように処理するかを指定できるようになります。
+|openlog| の機能 定数 説明 LOG_AUTH
+セキュリティ/認証用メッセージ (定数 LOG_AUTHPRIV
+が定義されているシステムでは、代わりにそれを使用してください)
+LOG_AUTHPRIV セキュリティ/認証 メッセージ (プライベート)
+LOG_CRON クロックデーモン (cron や at) LOG_DAEMON
+他のシステムデーモン LOG_KERN カーネルメッセージ LOG_LOCAL0
+... LOG_LOCAL7
+ローカルでの使用のために確保されているもので、Windows
+では使用できません LOG_LPR ラインプリンタサブシステム
+LOG_MAIL メールサブシステム LOG_NEWS USENET ニュース
+サブシステム LOG_SYSLOG syslogd
+で内部的に生成されたメッセージ LOG_USER
+一般的なユーザレベルのメッセージ LOG_UUCP UUCP
+サブシステム
+
+Windows 環境で使用できるのは LOG_USER だけです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|define_syslog_variables| |syslog| |closelog|
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+cpdf_output_buffer -- pdf
+ドキュメントをメモリバッファに出力する
+
+  bool cpdf_output_buffer(int pdf_document)~
+
+ドキュメントを標準出力に出力します。
+
+ドキュメントは、メモリ上に作成されている
+必要があります。メモリ上に作成されるのは、 |cpdf_open|
+を filename パラメータを指定せずに コールした場合です。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_open|
+
+vim:ft=help:

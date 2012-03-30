@@ -1,0 +1,29 @@
+fbsql_autocommit -- autocommit を有効または無効にする
+
+  bool fbsql_autocommit(resource link_identifier [, bool OnOff])~
+
+autocommit の状態を返します。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+{OnOff} このオプションのパラメータを指定すると、
+オートコミットステータスは変更されます。
+
+{OnOff} を TRUE に設定すると、
+エラーがない場合に各命令が自動的にコミットされます。
+
+OnOff を FALSE に設定すると、ユーザは |fbsql_commit| あるいは
+|fbsql_rollback|
+によりコミットまたはロールバックを行う必要があります。
+
+現在の autocommit の状態を boolean 値で返します。
+
+|fbsql_commit| |fbsql_rollback|
+
+vim:ft=help:

@@ -1,0 +1,52 @@
+dbase_create -- データベースを作成する
+
+  int dbase_create(string filename, array fields)~
+
+|dbase_create| は、指定された定義で dBase
+データベースを作成します。
+
+セーフモード が有効の場合、PHP
+は操作を行うファイル／ディレクトリが実行するスクリプトと
+同じ UID (所有者)を有しているかどうかを確認します。
+
+この関数の動作は、open_basedir の設定に依存します。
+
+{filename} データベースの名前。dBase
+がデータを格納するファイルの
+相対パスあるいは絶対パス。
+
+{fields}
+配列の配列で、各配列はデータベースにおけるひとつのフィールドの
+フォーマットを記述します。各フィールドは、名前・フィールド型を
+示す文字・長さ（オプション）・精度（オプション）から構成されます。
+
+フィールド名の長さは、10 文字までに制限されています。
+
+データベースの作成に成功した場合にリンク ID
+、エラーが発生した場合に FALSE を返します。
+
+dBase データベースファイルの作成
+
+<?php >
+  // データベースの定義
+  $def = array(
+    array("date",     "D"),
+    array("name",     "C",  50),
+    array("age",      "N",   3, 0),
+    array("email",    "C", 128),
+    array("ismember", "L")
+  );
+  
+  // 作成
+  if (!dbase_create('/tmp/test.dbf', $def)) {
+    echo "Error, can't create the database\n";
+  }
+?>
+
+
+
+
+
+|dbase_open| |dbase_close|
+
+vim:ft=help:

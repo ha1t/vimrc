@@ -1,0 +1,44 @@
+ftp_set_option -- さまざまな FTP 実行時オプションを設定する
+
+  bool ftp_set_option(resource ftp_stream, int option, mixed value)~
+
+この関数は、指定した FTP
+ストリームに関してのさまざまな実行時オプションを
+制御します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{option} 現在、以下のオプションがサポートされています:
+サポートされる実行時 FTP オプション FTP_TIMEOUT_SEC
+全てのネットワーク関連関数に関して秒単位でタイムアウトを変更
+します。{value}は、 0
+より大きい整数値である必要があります。
+デフォルトのタイムアウトは90秒です。 FTP_AUTOSEEK
+有効になっている場合は、GET や PUT のリクエストが
+{resumepos} や {startpos}
+のパラメータ付きで実行されるとファイル中の該当位置をシークします。
+デフォルトで有効になっています。
+
+{value} このパラメータの内容は、どの {option}
+を変更しようとしているかによって変わります。
+
+オプションが設定できた場合に TRUE 、そうでない場合に
+FALSE を返します。 {option}
+がサポートされていなかった場合や {option}
+が想定していない値を {value}
+に渡した場合は警告メッセージが発生します。
+
+|ftp_set_option| の例
+
+<?php >
+  // ネットワークのタイムアウトを 10 秒に設定する
+  ftp_set_option($conn_id, FTP_TIMEOUT_SEC, 10);
+?>
+
+
+
+
+
+|ftp_get_option|
+
+vim:ft=help:

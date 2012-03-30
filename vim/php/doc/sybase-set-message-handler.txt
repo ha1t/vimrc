@@ -1,0 +1,79 @@
+sybase_set_message_handler --
+サーバでメッセージが発生した際にコールされるハンドラを指定する
+
+  bool sybase_set_message_handler(callback handler [, resource connection])~
+
+|sybase_set_message_handler| は、
+サーバからのメッセージを処理するユーザ関数を設定します。グローバル関数の名前、
+あるいはオブジェクトへの参照とメソッド名を保持する配列を指定します。
+
+{handler} ハンドラは、以下の 5
+つの引数をこの順に受け取ります。 number, severity, state, line
+number そして description。 最初の 4
+つは整数値で、最後は文字列です。関数が FALSE
+を返した場合、PHP
+は通常のエラーメッセージを表示します。
+
+{connection}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.3.5 {connection}
+パラメータが追加されました。
+
+|sybase_set_message_handler| コールバック関数
+
+<?php >
+      function msg_handler($msgnumber, $severity, $state, $line, $text)
+      {
+          var_dump($msgnumber, $severity, $state, $line, $text);
+      }
+  
+      sybase_set_message_handler('msg_handler');
+?>
+
+
+
+クラスへの |sybase_set_message_handler| コールバック
+
+<?php >
+      class Sybase {
+          function handler($msgnumber, $severity, $state, $line, $text)
+          {
+              var_dump($msgnumber, $severity, $state, $line, $text);
+          }
+      }
+  
+      $sybase= new Sybase();
+      sybase_set_message_handler(array($sybase, 'handler'));
+?>
+
+
+
+|sybase_set_message_handler| が処理しないメッセージ
+
+<?php >
+      // この関数から FALSE を返すことは、それをこの関数では処理しないことを
+      // 意味します。エラーは警告として表示され、ハンドラが何も設定されていない
+      // 場合と同様に処理できます。
+      function msg_handler($msgnumber, $severity, $state, $line, $text)
+      {
+          if (257 == $msgnumber) {
+              return false;
+          }
+          var_dump($msgnumber, $severity, $state, $line, $text);
+      }
+  
+      sybase_set_message_handler('msg_handler');
+?>
+
+
+
+
+
+この関数は、Sybase の CT
+ライブラリインターフェイスでのみ使用可能で、DB
+ライブラリでは使用できません。
+
+vim:ft=help:

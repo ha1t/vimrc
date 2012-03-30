@@ -1,0 +1,9 @@
+PDF_shading -- 混色を定義する
+
+  int PDF_shading(resource pdfdoc, string shtype, float x0, float y0, float x1, float y1, float c1, float c2, float c3, float c4, string optlist)~
+
+現在の塗りつぶし色と他の色との混色を定義します。
+
+この関数は、PDF 1.4 以降で使用可能です。
+
+vim:ft=help:

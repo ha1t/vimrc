@@ -1,0 +1,26 @@
+dbplus_rcrtexact --
+インデックスを含む、リレーションの空のコピーを作成する
+
+  mixed dbplus_rcrtexact(string name, resource relation [, bool overwrite])~
+
+|dbplus_rcrtexact| は、 指定した {relation} の空のコピーを {name}
+という名前で作成します。
+
+{name}
+
+{relation} コピーするリレーション。|dbplus_open|
+でオープンしたもの。
+
+{overwrite} このパラメータが TRUE であり
+他のプロセスがそのリレーションを使用していない場合にのみ、
+同じ名前の既存のリレーションが上書きされます。
+
+成功した場合にリソース、失敗した場合に DBPLUS_ERR_UNKNOWN
+を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

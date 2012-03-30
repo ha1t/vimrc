@@ -1,0 +1,55 @@
+fprintf --
+フォーマットされた文字列をストリームに書き込む
+
+  int fprintf(resource handle, string format [, mixed args [, mixed ...]])~
+
+{format} によって作成された文字列を {handle}
+で指定したストリームに書き込みます。
+
+{handle}
+
+{format} {format} については、 |sprintf|
+のドキュメントで説明されています。
+
+{args}
+
+{...}
+
+出力された文字列の長さを返します。
+
+|fprintf|: 数値のゼロ埋め
+
+<?php >
+  if (!($fp = fopen('date.txt', 'w')))
+      return;
+  
+  fprintf($fp, "%04d-%02d-%02d", $year, $month, $day);
+  // ISO 形式にフォーマットした日付を date.txt に書き込みます
+?>
+
+
+
+|fprintf|: 金額のフォーマット
+
+<?php >
+  if (!($fp = fopen('currency.txt', 'w')))
+      return;
+  
+  $money1 = 68.75;
+  $money2 = 54.35;
+  $money = $money1 + $money2;
+  // echo $money は "123.1" を出力します
+  $len = fprintf($fp, '%01.2f', $money);
+  // "123.10" を currency.txt に書き込みます
+  
+  echo "$len バイトを currency.txt に書き込みました";
+  // fprintf の返り値を使用して、書き込まれたバイト数を取得します
+?>
+
+
+
+
+
+|printf| |sprintf| |sscanf| |fscanf| |vsprintf| |number_format|
+
+vim:ft=help:

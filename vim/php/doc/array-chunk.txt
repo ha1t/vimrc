@@ -1,0 +1,76 @@
+array_chunk -- 配列を分割する
+
+  array array_chunk(array input, int size [, bool preserve_keys])~
+
+配列を、{size} 個ずつの要素に分割します。
+最後の部分の要素数は {size}
+より小さくなることもあります。
+
+{input} 処理を行う配列。
+
+{size} 各部分のサイズ。
+
+{preserve_keys} TRUE の場合はキーをそのまま保持します。
+デフォルトは FALSE
+で、各部分のキーをあらためて数字で振りなおします。
+
+数値添字の多次元配列を返します。添え字はゼロから始まり、
+各次元の要素数が {size} となります。
+
+{size} が 1 より小さい場合は E_WARNING が発生し、NULL
+を返します。
+
+|array_chunk| の例
+
+<?php >
+  $input_array = array('a', 'b', 'c', 'd', 'e');
+  print_r(array_chunk($input_array, 2));
+  print_r(array_chunk($input_array, 2, true));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => Array
+          (
+              [0] => a
+              [1] => b
+          )
+  
+      [1] => Array
+          (
+              [0] => c
+              [1] => d
+          )
+  
+      [2] => Array
+          (
+              [0] => e
+          )
+  
+  )
+  Array
+  (
+      [0] => Array
+          (
+              [0] => a
+              [1] => b
+          )
+  
+      [1] => Array
+          (
+              [2] => c
+              [3] => d
+          )
+  
+      [2] => Array
+          (
+              [4] => e
+          )
+  
+  )
+
+
+
+vim:ft=help:

@@ -1,0 +1,93 @@
+array_splice -- 配列の一部を削除し、他の要素で置換する
+
+  array array_splice(array input, int offset [, int length [, array replacement]])~
+
+配列 {input} から {offset} および {length}
+で指定された要素を削除し、配列 {replacement}
+でそれを置換します。
+
+{input}
+の配列の数値添字は保存されないことに注意しましょう。
+
+{input} 入力の配列。
+
+{offset} {offset} が正の場合、削除される部分は 配列 {input}
+の最初から指定オフセットの
+ぶんだけ進んだ位置からとなります。 {offset}
+が負の場合、削除される部分は、 {input}
+の末尾から数えた位置からとなります。
+
+{length} {length} が省略された場合、 {offset}
+から配列の最後までが全て削除されます。 {length}
+が指定され、正の場合、複数の要素が削除されます。
+{length} が指定され、負の場合、
+削除される部分は配列の末尾から複数の要素となります。
+ヒント: {replacement} も指定した場合に {offset}
+から配列の最後まで全てを削除するには、 {length}
+を求めるために count($input) を使用してください。
+
+{replacement} 配列 {replacement} が指定された場合、
+削除された要素は、この配列の要素で置換されます。
+
+{offset} および {length}
+で何も削除しないと指定した場合、配列 {replacement}
+の要素は {offset} で指定された位置に挿入されます。
+置換される配列のキーは保存されないことに注意してください。
+
+もし {replacement} に一つしか要素がない場合、
+要素そのものが配列でない限り、array()
+で括る必要はありません。
+
+抽出された要素を含む配列を返します。
+
+|array_splice| の例
+
+<?php >
+  $input = array("red", "green", "blue", "yellow");
+  array_splice($input, 2);
+  // ここでは $input は array("red", "green") となる
+  
+  $input = array("red", "green", "blue", "yellow");
+  array_splice($input, 1, -1);
+  // ここでは $input は array("red", "yellow") となる
+  
+  $input = array("red", "green", "blue", "yellow");
+  array_splice($input, 1, count($input), "orange");
+  // ここでは $input は array("red", "orange") となる
+  
+  $input = array("red", "green", "blue", "yellow");
+  array_splice($input, -1, 1, array("black", "maroon"));
+  // ここでは $input は array("red", "green",
+  //          "blue", "black", "maroon") となる
+  
+  $input = array("red", "green", "blue", "yellow");
+  array_splice($input, 3, 0, "purple");
+  // ここでは $input は array("red", "green",
+  //          "blue", "purple", "yellow"); となる
+?>
+
+
+
+
+
+|array_splice| の例 以下の文は、同様に $input
+の値を変更します。
+
+<?php >
+  array_push($input, $x, $y);
+  array_splice($input, count($input), 0, array($x, $y));
+  array_pop($input);
+  array_splice($input, -1);
+  array_shift($input);
+  array_splice($input, 0, 1);
+  array_unshift($input, $x, $y);
+  array_splice($input, 0, 0, array($x, $y));
+  $input[$x] = $y; // キーがオフセットと等価な配列に対して
+  array_splice($input, $x, 1, $y);
+?>
+
+
+
+|array_slice| |unset| |array_merge|
+
+vim:ft=help:

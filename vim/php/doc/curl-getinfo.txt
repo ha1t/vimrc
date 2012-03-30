@@ -1,0 +1,104 @@
+curl_getinfo -- 指定した伝送に関する情報を得る
+
+  mixed curl_getinfo(resource ch [, int opt])~
+
+直近の転送に関する情報を取得します。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+{opt} これは、以下のいずれかの定数となります。
+CURLINFO_EFFECTIVE_URL - 直近の有効な URL
+
+CURLINFO_HTTP_CODE - 最後に受け取った HTTP コード
+
+CURLINFO_FILETIME -
+ドキュメントを取得するのにかかった時間。
+取得できなかった場合は -1
+
+CURLINFO_TOTAL_TIME - 直近の伝送にかかった秒数
+
+CURLINFO_NAMELOOKUP_TIME -
+名前解決が完了するまでにかかった秒数
+
+CURLINFO_CONNECT_TIME - 接続を確立するまでにかかった秒数
+
+CURLINFO_PRETRANSFER_TIME -
+開始からファイル伝送がはじまるまでにかかった秒数
+
+CURLINFO_STARTTRANSFER_TIME -
+最初のバイトの伝送がはじまるまでの秒数
+
+CURLINFO_REDIRECT_TIME -
+伝送が始まるまでのリダイレクト処理の秒数
+
+CURLINFO_SIZE_UPLOAD - アップロードされたバイト数
+
+CURLINFO_SIZE_DOWNLOAD - ダウンロードされたバイト数
+
+CURLINFO_SPEED_DOWNLOAD - 平均のダウンロード速度
+
+CURLINFO_SPEED_UPLOAD - 平均のアップロード速度
+
+CURLINFO_HEADER_SIZE - 受信したヘッダのサイズ
+
+CURLINFO_HEADER_OUT - 送信したリクエスト文字列。PHP 5.1.3
+以降で使用可能
+
+CURLINFO_REQUEST_SIZE - 発行されたリクエストのサイズ。現在は
+HTTP リクエストの場合のみ
+
+CURLINFO_SSL_VERIFYRESULT - CURLOPT_SSL_VERIFYPEER を設定した際に
+要求される SSL 証明書の認証結果
+
+CURLINFO_CONTENT_LENGTH_DOWNLOAD - ダウンロードされるサイズ。
+Content-Length: フィールドの内容を取得する
+
+CURLINFO_CONTENT_LENGTH_UPLOAD - アップロードされるサイズ。
+
+CURLINFO_CONTENT_TYPE - ダウンロードされたオブジェクトの
+Content-type 。 NULL は、サーバが適切な Content-Type:
+ヘッダを返さなかったことを示す
+
+{opt} を指定した場合は、その値を文字列で返します。
+それ以外の場合は、以下の要素をもつ連想配列を返します
+(それぞれの要素が {opt} に対応します)。 "url"
+
+"content_type"
+
+"http_code"
+
+"header_size"
+
+"request_size"
+
+"filetime"
+
+"ssl_verify_result"
+
+"redirect_count"
+
+"total_time"
+
+"namelookup_time"
+
+"connect_time"
+
+"pretransfer_time"
+
+"size_upload"
+
+"size_download"
+
+"speed_download"
+
+"speed_upload"
+
+"download_content_length"
+
+"upload_content_length"
+
+"starttransfer_time"
+
+"redirect_time"
+
+vim:ft=help:

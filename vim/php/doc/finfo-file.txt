@@ -1,0 +1,41 @@
+finfo_file -- ファイルについての情報を返す
+
+  string finfo_file(resource finfo, string file_name [, int options [, resource context]])~
+
+  string file(resource finfo, string file_name [, int options [, resource context, string file_name [, int options [, resource context]]]])~
+
+この関数は、ファイルについての情報を返すために使用します。
+
+{finfo} |finfo_open| が返す fileinfo リソース。
+
+{file_name} 調べるファイルの名前。
+
+{options} ひとつあるいは複数のFileinfo 定数の組み合わせ。
+
+{context} contexts の説明については、 を参照ください。
+
+{filename}
+のテキスト表現、あるいはエラーが発生した場合に FALSE
+を返します。
+
+|finfo_file| の例
+
+<?php >
+  $finfo = finfo_open(FILEINFO_MIME); // return mime type ala mimetype extension
+  foreach (glob("*") as $filename) {
+      echo finfo_file($finfo, $filename) . "\n";
+  }
+  finfo_close($finfo);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  text/html
+  image/gif
+  application/vnd.ms-excel
+
+
+
+|finfo_buffer|
+
+vim:ft=help:

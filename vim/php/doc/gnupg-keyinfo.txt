@@ -1,0 +1,31 @@
+gnupg_keyinfo --
+指定したパターンに一致するすべてのキーについての情報を配列で返す
+
+  array gnupg_keyinfo(resource identifier, string pattern)~
+
+指定したパターンに一致するすべてのキーについての情報を配列で返します。
+エラーが発生した場合は FALSE を返します。
+
+手続き型の |gnupg_keyinfo| の例
+
+<?php >
+  $res = gnupg_init();
+  $info = gnupg_keyinfo($res, 'test');
+  print_r($info);
+?>
+
+
+
+オブジェクト指向の |gnupg_keyinfo| の例
+
+<?php >
+  $gpg = new gnupg();
+  $info = $gpg -> keyinfo("test");
+  print_r($info);
+?>
+
+
+
+
+
+vim:ft=help:

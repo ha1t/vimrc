@@ -1,0 +1,46 @@
+pg_lo_seek -- ラージオブジェクトの位置をシークする
+
+  bool pg_lo_seek(resource large_object, int offset [, int whence])~
+
+|pg_lo_seek| はラージオブジェクトリソースの位置を
+シークします。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+{large_object} |pg_lo_open| が返す PostgreSQL の
+ラージオブジェクト(LOB)リソース。
+
+{offset} シークするバイト数。
+
+{whence} 定数
+PGSQL_SEEK_SET（オブジェクトの先頭からシークする）、
+PGSQL_SEEK_CUR（カレントの位置からシークする）、 あるいは
+PGSQL_SEEK_END（オブジェクトの最後からシークする）
+の中のひとつ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_lo_seek| の例
+
+<?php >
+     $doc_oid = 189762345;
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     $handle = pg_lo_open($database, $doc_oid, "r");
+     // 最初の 50000 バイトをスキップする
+     pg_lo_seek($handle, 50000, PGSQL_SEEK_SET);
+     // 次の 10000 バイトを読み込む
+     $data = pg_lo_read($handle, 10000);
+     pg_query($database, "commit");
+     echo $data;
+?>
+
+
+
+
+
+|pg_lo_tell|
+
+vim:ft=help:

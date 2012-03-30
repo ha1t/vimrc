@@ -1,0 +1,38 @@
+ctype_punct --
+空白、英数字以外の出力可能な文字かどうかを調べる
+
+  bool ctype_punct(string text)~
+
+与えられた文字列 {text} のすべての文字が
+句読点であるかどうかを調べます。
+
+{text} 調べる文字列。
+
+{text} のすべての文字が出力可能であり、
+かつ文字でも数字でも空白でもなかった場合に TRUE
+、そうでない場合に FALSE を返します。
+
+|ctype_punct| の例
+
+<?php >
+  $strings = array('ABasdk!@!$#', '!@ # $', '*&amp;$()');
+  foreach ($strings as $testcase) {
+      if (ctype_punct($testcase)) {
+          echo "The string $testcase consists of all punctuation.\n";
+      } else {
+          echo "The string $testcase does not consist of all punctuation.\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  The string ABasdk!@!$# does not consist of all punctuation.
+  The string !@ # $ does not consist of all punctuation.
+  The string *&$() consists of all punctuation.
+
+
+
+|ctype_cntrl| |ctype_graph|
+
+vim:ft=help:

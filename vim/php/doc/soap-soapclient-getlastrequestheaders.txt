@@ -1,0 +1,11 @@
+SoapClient->__getLastRequestHeaders() -- 直近の SOAP
+リクエストヘッダを返す
+
+  string __getLastRequestHeaders()~
+
+このメソッドは、オプション trace を指定して SoapClient
+が作成されている場合のみ使用可能です。
+
+直近の SOAP リクエストヘッダ
+
+vim:ft=help:

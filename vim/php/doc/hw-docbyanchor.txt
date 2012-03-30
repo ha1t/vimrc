@@ -1,0 +1,15 @@
+hw_DocByAnchor --
+アンカーに属するオブジェクトのオブジェクト ID
+
+  int hw_docbyanchor(int connection, int anchorID)~
+
+{anchorID} が指す ドキュメントのオブジェクト ID
+を返します。
+
+{connection} 接続 ID。
+
+{anchorID} アンカー ID。
+
+ドキュメントのオブジェクト ID を返します。
+
+vim:ft=help:

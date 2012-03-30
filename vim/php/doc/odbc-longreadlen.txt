@@ -1,0 +1,21 @@
+odbc_longreadlen -- LONG カラムを処理する
+
+  bool odbc_longreadlen(resource result_id, int length)~
+
+LONG および LONGVARBINARY
+のカラムを処理できるようにします。
+
+{result_id} 結果 ID。
+
+{length} PHP に返されるバイト数は、パラメータ length
+により制御されます。 これを 0
+をセットした場合、ロングカラムデータは、
+クライアントにそのまま渡されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+LONGVARBINARY カラムの処理は、|odbc_binmode|
+にも影響を受けます。
+
+vim:ft=help:

@@ -1,0 +1,52 @@
+SwishResult->stem -- 指定した単語の語幹を取得する
+
+  array SwishResult->stem(string word)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+インデックス化の際に使用したファジーモードにもとづいて、
+単語の語幹を取得します。各結果オブジェクトはインデックスにリンクされるので、
+結果はこのインデックスに基づくものとなります。
+
+{word} 取り除く単語。
+
+単語の活用形を取り除いた配列を返します
+(通常はひとつだけです)。
+
+エラー時に SwishException をスローします。
+
+基本的な || の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("ext/swish/tests/index.swish-e");
+      $results = $swish->query("testing OR others");
+  
+      if ($result = $results->nextResult()) {
+          var_dump($result->stem("testing")); // この結果は、インデックスで使用している stemmer に依存します
+          var_dump($result->stem("others"));
+      }
+  
+  } catch (SwishException $e) {
+      echo "Error: ", $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  array(1) {
+    [0]=>
+    string(4) "test"
+  }
+  array(1) {
+    [0]=>
+    string(5) "other"
+  }
+
+
+
+vim:ft=help:

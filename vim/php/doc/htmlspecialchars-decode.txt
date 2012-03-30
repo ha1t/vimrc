@@ -1,0 +1,8 @@
+htmlspecialchars_decode -- 特殊な HTML エンティティを文字に戻す
+
+  string htmlspecialchars_decode(string string [, int quote_style])~
+
+この関数は |htmlspecialchars| の反対です。 特殊な HTML
+エンティティを文字に戻します。
+
+vim:ft=help:

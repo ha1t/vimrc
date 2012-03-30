@@ -1,0 +1,12 @@
+filepro_fieldname -- フィールド名を取得する
+
+  string filepro_fieldname(int field_number)~
+
+{field_number} に対応するフィールド名を返します。
+
+{field_number} フィールド番号。
+
+フィールド名を表す文字列、あるいはエラーの場合に FALSE
+を返します。
+
+vim:ft=help:

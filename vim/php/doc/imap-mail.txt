@@ -1,0 +1,34 @@
+imap_mail -- e-mail メッセージを送信する
+
+  bool imap_mail(string to, string subject, string message [, string additional_headers [, string cc [, string bcc [, string rpath]]]])~
+
+この関数は、Cc および Bcc 受信者の正確な処理を行って
+email を送信することが可能です。
+
+パラメータ {to}、{cc} および {bcc} は全て文字列で、 RFC822
+アドレスリストとしてパースされます。
+
+{to} 受信者。
+
+{subject} メールの件名。
+
+{message} メールの本文。
+
+{additional_headers} メールに設定する追加ヘッダ文字列。
+
+{cc}
+
+{bcc} {bcc} で指定した受信者は mail を受信しますが、
+ヘッダからは除外されます。
+
+{rpath} リターンパスを指定するために {rpath}
+パラメータを使用してください。この関数は、
+複数のユーザ用のメールクライアントとして PHP
+を使用する際に有用です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mail|
+
+vim:ft=help:

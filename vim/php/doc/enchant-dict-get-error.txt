@@ -1,0 +1,13 @@
+enchant_dict_get_error --
+現在のスペリングセッションの直近のエラーを返す
+
+  string enchant_dict_get_error(resource dict)~
+
+現在のスペリングセッションの、直近のエラーを返します。
+
+{dict} 辞書リソース。
+
+エラーメッセージを表す文字列、あるいはエラーが発生していない場合に
+FALSE を返します。
+
+vim:ft=help:

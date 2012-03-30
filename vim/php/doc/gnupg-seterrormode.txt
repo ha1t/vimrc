@@ -1,0 +1,32 @@
+gnupg_seterrormode -- エラー報告モードを設定する
+
+  void gnupg_seterrormode(resource identifier, int errormode)~
+
+{errormode} には、使用するエラー報告形式を表す
+定数を指定します。 GNUPG_ERROR_WARNING、 GNUPG_ERROR_EXCEPTION
+および GNUPG_ERROR_SILENT が使用可能です。 デフォルトでは
+GNUPG_ERROR_SILENT が使用されます。
+
+値を返しません。
+
+手続き型の |gnupg_seterrormode| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_seterrormode($res,GNUPG_ERROR_WARNING); // エラー時には PHP の警告を発生させます
+?>
+
+
+
+オブジェクト指向の |gnupg_seterrormode| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> seterrormode(gnupg::ERROR_EXCEPTION); // エラー時には例外をスローします
+?>
+
+
+
+
+
+vim:ft=help:

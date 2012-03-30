@@ -1,0 +1,14 @@
+ncurses_replace_panel --
+パネルに関連付けられたウィンドウを置き換える
+
+  int ncurses_replace_panel(resource panel, resource window)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{panel}
+
+{window}
+
+vim:ft=help:

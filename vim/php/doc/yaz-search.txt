@@ -1,0 +1,88 @@
+yaz_search -- 検索を準備する
+
+  bool yaz_search(resource id, string type, string query)~
+
+|yaz_search| は、指定した接続で検索を行う準備をします。
+
+|yaz_connect| と同様にこの関数は非ブロックモードで
+動作し、後で |yaz_wait| がコールされたときのために
+検索の準備をするだけです。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{type} クエリの型を表します。現在は "rpn" のみがサポート
+されており、この場合 3 番目の引数には Type-1
+クエリを前置表記で 指定します。
+
+{query} RPN クエリは、Z39.50 規格により定義された Type-1
+クエリのテキスト 表現です。しかし、YAZ
+により使用されるテキスト表現では、演算子が
+オペランドの前にある前置表記が使用されます。クエリ文字列はトークンの
+並びであり、このトークンでは 2
+重引用符で括られない限り空白文字は
+無視されます。アットマーク(@)で始まるトークンは
+演算子とみなされ、そうでない場合は検索項目として処理されます。
+
+RPN 演算子 構文 説明 @and query1 query2 query1 および query2
+の積集合 @or query1 query2 query1 および query2 の和集合 @not
+query1 query2 query1 であり、query2 でない @set name
+結果セットへのリファレンス @attrset set query
+クエリの属性セットを指定します。この構造が使用できるのは
+全てのクエリの始めに一回だけです。 @attr [set] type=value
+query
+クエリに属性を適用します。型と値は属性型と属性値をそれぞれ指定する
+整数です。この組みが指定された場合、属性の組を指定します。
+属性についての情報は Z39.50 Maintenance Agency
+サイトにあります。
+
+もう少しわかりやすい記法を利用したい場合は、CCL
+パーサ関数 - |yaz_ccl_conf| および |yaz_ccl_parse|
+を使用してください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+クエリの例 単純な検索は以下のように行います。
+
+  computer
+
+は、"computer"
+を含む文書にマッチします。属性は指定されていません。
+
+クエリ
+
+  "knuth donald"
+
+は、"knuth donald"
+を含む文書にマッチします（サーバが複数の単語による
+検索をサポートしている場合）。
+
+このクエリは、同じフレーズに対して 2
+つの属性を適用しています。
+
+  @attr 1=1003 @attr 4=1 "knuth donald"
+
+最初の属性は type 1 (Bib-1 use) で、その値は 1003 (Author)
+です。 2 番目の属性は type 4 (structure) で、その値は 1
+(phrase) です。つまりこれは、Donald Knuth
+が著者である文書にマッチする ことになります。
+
+クエリ
+
+  @and @or a b @not @or c d e
+
+は、次のような意味になります。(a or b) and ((c or d) not e)
+
+さらに複雑な例です。
+
+  @attrset gils @and @attr 1=4 art @attr 1=2000 company
+
+このクエリは GILS
+属性セットをすべて使用しています。このクエリは
+表題（Title）に art が含まれ（GILS,BIB-1）、
+配布者（Distributor）に company が含まれる（GILS）
+文書にマッチします。
+
+
+
+vim:ft=help:

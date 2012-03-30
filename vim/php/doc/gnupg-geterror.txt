@@ -1,0 +1,28 @@
+gnupg_geterror -- 関数が失敗した場合にエラー文字列を返す
+
+  string gnupg_geterror(resource identifier)~
+
+エラーが発生した場合にエラー文字列、それ以外の場合に
+FALSE を返します。
+
+手続き型の |gnupg_geterror| の例
+
+<?php >
+  $res = gnupg_init();
+  echo gnupg_geterror($res);
+?>
+
+
+
+オブジェクト指向の |gnupg_geterror| の例
+
+<?php >
+  $gpg = new gnupg();
+  echo $gpg -> geterror();
+?>
+
+
+
+
+
+vim:ft=help:

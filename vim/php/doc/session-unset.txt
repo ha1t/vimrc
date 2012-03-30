@@ -1,0 +1,20 @@
+session_unset -- 全てのセッション変数を開放する
+
+  void session_unset()~
+
+関数 |session_unset|
+は現在登録されている全てのセッション変数を開放します。
+
+値を返しません。
+
+$_SESSION (または PHP 4.0.6 以前の場合は $HTTP_SESSION_VARS)
+が使用されている場合、セッション変数の登録を削除するために
+|unset| すなわち、unset ($_SESSION['varname']);
+を使用してください。
+
+$_SESSION スーパーグローバルを使用した
+セッション変数の登録が不可能になってしまうため、
+unset($_SESSION) を使って $_SESSION を完全に unset
+しないでください。
+
+vim:ft=help:

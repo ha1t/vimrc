@@ -1,0 +1,24 @@
+openssl_pkcs12_export_to_file -- PKCS#12
+互換の証明書保存ファイルをエクスポートする
+
+  bool openssl_pkcs12_export_to_file(mixed x509, string filename, mixed priv_key, string pass [, array args])~
+
+|openssl_pkcs12_export_to_file| は、 {x509} をファイル {filename} に
+PKCS#12 フォーマットで保存します。
+
+{x509}
+
+{filename} 出力ファイルへのパス。
+
+{priv_key} PKCS#12
+ファイルのプライベートキーコンポーネント。
+
+{pass} PKCS#12
+ファイルのロックを解除するためのパスワード。
+
+{args}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

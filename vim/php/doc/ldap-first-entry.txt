@@ -1,0 +1,21 @@
+ldap_first_entry -- 最初の結果 ID を返す
+
+  resource ldap_first_entry(resource link_identifier, resource result_identifier)~
+
+結果内の最初のエントリのエントリ ID
+を返します。このエントリ ID を |ldap_next_entry| に渡し、
+結果からそれ以降のエントリを取得します。
+
+LDAP 結果におけるエントリは、|ldap_first_entry| および
+|ldap_next_entry| 関数を用いて連続的に 読み込まれます。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{result_identifier}
+
+成功時に最初のエントリに関する結果エントリ
+ID、エラーの場合に FALSE を返します。
+
+|ldap_get_entries|
+
+vim:ft=help:

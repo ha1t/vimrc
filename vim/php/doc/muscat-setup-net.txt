@@ -1,0 +1,19 @@
+muscat_setup_net -- 新規 muscat セッションを作成する
+
+  resource muscat_setup_net(resource socket)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+新しい muscat セッションを作成します。
+
+{socket} ソケットハンドル。
+
+セッションハンドラ、あるいはエラー時に FALSE
+を返します。
+
+|muscat_setup| |muscat_close|
+
+vim:ft=help:

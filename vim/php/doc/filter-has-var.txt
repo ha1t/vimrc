@@ -1,0 +1,14 @@
+filter_has_var --
+指定した型の変数が存在するかどうかを調べる
+
+  bool filter_has_var(int type, string variable_name)~
+
+{type} INPUT_GET、INPUT_POST、 INPUT_COOKIE、INPUT_SERVER、 INPUT_ENV
+のいずれか。
+
+{variable_name} 調べたい変数の名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

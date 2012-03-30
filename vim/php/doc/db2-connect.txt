@@ -1,0 +1,369 @@
+db2_connect -- データベースへの接続を返す
+
+  resource db2_connect(string database, string username, string password [, array options])~
+
+IBM DB2 Universal Database、IBM Cloudscape あるいは Apache Derby
+データベースへの新しい接続を作成します。
+
+{database}
+データベースへのカタログ接続の場合には、{database} は DB2
+クライアントカタログ内でのデータベースエイリアスを表します。
+
+データベースへの非カタログ接続の場合には、 {database}
+は以下のような形式の接続文字列を表します。
+
+  DATABASE=
+
+
+
+  database
+
+
+
+  ;HOSTNAME=
+
+
+
+  hostname
+
+
+
+  ;PORT=
+
+
+
+  port
+
+
+
+  ;PROTOCOL=TCPIP;UID=
+
+
+
+  username
+
+
+
+  ;PWD=
+
+
+
+  password
+
+
+
+  ;
+
+それぞれのパラメータは以下の内容を表します。 {database}
+データベースの名前。
+
+{hostname} データベースサーバのホスト名あるいは IP
+アドレス。
+
+{port} データベースが要求を待ち受ける TCP/IP ポート。
+
+{username} データベースに接続するユーザ名。
+
+{password} データベースに接続するパスワード。
+
+{username} データベースに接続するユーザ名。
+
+カタログでない接続の場合は、NULL
+あるいは空の文字列を渡す必要があります。
+
+{password} データベースに接続するパスワード。
+
+カタログでない接続の場合は、NULL
+あるいは空の文字列を渡す必要があります。
+
+{options}
+接続の振る舞いを指定する接続オプションの連想配列。
+使用可能なキーは以下のとおりです。 {autocommit}
+DB2_AUTOCOMMIT_ON を渡すと、
+この接続ハンドルで自動コミットを有効にします。
+
+DB2_AUTOCOMMIT_OFF を渡すと、
+この接続ハンドルで自動コミットを無効にします。
+
+{DB2_ATTR_CASE} DB2_CASE_NATURAL を渡すと、
+カラム名の大文字小文字を変換せずに返します。
+
+DB2_CASE_LOWER を渡すと、
+カラム名を小文字に変換して返します。
+
+DB2_CASE_UPPER を渡すと、
+カラム名を大文字に変換して返します。
+
+{CURSOR} DB2_FORWARD_ONLY を渡すと、
+ステートメントリソースで前進のみのカーソルを使用します。
+これはデフォルトのカーソル型であり、
+すべてのデータベースサーバでサポートされています。
+
+DB2_SCROLLABLE を渡すと、
+ステートメントリソースでスクロール可能なカーソルを使用します。
+このモードでは結果セット内の行へのランダムアクセスが可能となりますが、
+現在は IBM DB2 Universal Database
+でしかサポートされていません。
+
+以下の新しい i5/OS オプションは、ibm_db2 のバージョン 1.5.1
+以降で使用可能です。 注意: それ以前のバージョンの
+ibm_db2 は、これらの新しい i5
+オプションをサポートしていません。 {i5_lib}
+未解決のファイル参照を解決する際に使用するデフォルトのライブラリを指定します。
+システムのネーミングモードを使用している接続の場合は、これは無効です。
+
+{i5_naming} DB2_I5_NAMING_ON は、DB2 UDB CLI iSeries
+のシステムネーミングモードを有効にします。ファイルの識別の際、
+区切り文字としてスラッシュ (/) を使用します。
+識別されないファイルの解決には、ジョブのライブラリ一覧を使用します。
+
+DB2_I5_NAMING_OFF は、DB2 UDB CLI
+のデフォルトのネーミングモード (SQL ネーミング)
+を無効にします。
+ファイルの識別の際、区切り文字としてピリオド (.)
+を使用します。 識別されないファイルの解決には、
+デフォルトのライブラリあるいは現在のユーザ ID
+を使用します。
+
+{i5_commit} {i5_commit} 属性は、 |db2_connect|
+の前に設定しなければなりません。
+接続が確立された後にこの値が変更され、その接続がリモートデータソースに対するものだった場合は、
+その接続ハンドルに対してもう一度 |db2_connect|
+がコールされるまで変更は反映されません。
+
+注意: php.ini の設定は {ibm_db2.i5_allow_commit}==0 あるいは
+DB2_I5_TXN_NO_COMMIT がデフォルトです。
+しかし、その設定よりも {i5_commit}
+オプションの内容のほうが優先されます。
+
+DB2_I5_TXN_NO_COMMIT - コミットの管理を使用しません。
+
+DB2_I5_TXN_READ_UNCOMMITTED - ダーティリード、
+反復不能読み取り、ファントムリードが発生する可能性があります。
+
+DB2_I5_TXN_READ_COMMITTED - ダーティリードは発生しません。
+反復不能読み取り、ファントムリードが発生する可能性があります。
+
+DB2_I5_TXN_REPEATABLE_READ - ダーティリード、
+反復不能読み取りは発生しません。
+ファントムリードが発生する可能性があります。
+
+DB2_I5_TXN_SERIALIZABLE -
+トランザクションの一貫性を保持します。
+ダーティリード、反復不能読み取り、ファントムリードは発生しません。
+
+{i5_query_optimize} DB2_FIRST_IO
+すべてのクエリは、結果の一行目をできるだけ早く返すように最適化されます。
+これが有効なのは、出力の制御をユーザが行う場合です。出力の制御とは、
+たとえば、出力の最初のページを見てそこで処理を停止させるなどのことです。
+OPTIMIZE FOR nnn ROWS
+句を指定したクエリは、その指定が優先されます。
+
+DB2_ALL_IO
+すべてのクエリは、結果全体をできるだけ短時間で取得できるように最適化されます。
+これは、結果をファイルや帳票に書き出す場合に有用なオプションです。
+あるいは出力データを順次処理するインターフェイスなどにも有用です。
+OPTIMIZE FOR nnn ROWS
+句を指定したクエリは、その指定が優先されます。
+これはデフォルトの設定です。
+
+{i5_dbcs_alloc} DB2_I5_DBCS_ALLOC_ON は、 DBCS
+トランザクションカラムサイズ用の DB2 6X
+アロケーションを有効にします。
+
+DB2_I5_DBCS_ALLOC_OFF は、 DBCS
+トランザクションカラムサイズ用の DB2 6X
+アロケーションを無効にします。
+
+注意: php.ini では {ibm_db2.i5_dbcs_alloc}==0 あるいは
+DB2_I5_DBCS_ALLOC_OFF がデフォルト設定となっています。
+しかし、{i5_dbcs_alloc} の値のほうが優先されます。
+
+{i5_date_fmt} SQL_FMT_ISO - 国際標準化機構 (ISO) の日付書式
+yyyy-mm-dd を使用します。デフォルトです。
+
+DB2_I5_FMT_USA - 合衆国の日付書式 mm/dd/yyyy を使用します。
+
+DB2_I5_FMT_EUR - 欧州の日付書式 format dd.mm.yyyy を使用します。
+
+DB2_I5_FMT_JIS - 日本工業規格 (JIS) の日付書式 yyyy-mm-dd
+を使用します。
+
+DB2_I5_FMT_MDY - 日付書式 mm/dd/yyyy を使用します。
+
+DB2_I5_FMT_DMY - 日付書式 dd/mm/yyyy を使用します。
+
+DB2_I5_FMT_YMD - 日付書式 yy/mm/dd を使用します。
+
+DB2_I5_FMT_JUL - ユリウス日 yy/ddd を使用します。
+
+DB2_I5_FMT_JOB - そのジョブのデフォルトを使用します。
+
+{i5_date_sep} DB2_I5_SEP_SLASH - スラッシュ ( / )
+を日付の区切り文字として使用します。
+デフォルトです。
+
+DB2_I5_SEP_DASH - ダッシュ ( - )
+を日付の区切り文字として使用します。
+
+DB2_I5_SEP_PERIOD - ピリオド ( . )
+を日付の区切り文字として使用します。
+
+DB2_I5_SEP_COMMA - カンマ ( , )
+を日付の区切り文字として使用します。
+
+DB2_I5_SEP_BLANK -
+ブランクを日付の区切り文字として使用します。
+
+DB2_I5_SEP_JOB - そのジョブのデフォルトを使用します。
+
+{i5_time_fmt} DB2_I5_FMT_ISO - 国際標準化機構 (ISO) の時刻書式
+hh.mm.ss を使用します。デフォルトです。
+
+DB2_I5_FMT_USA - 合衆国の時刻書式 hh:mmxx を使用します。xx
+には AM あるいは PM が入ります。
+
+DB2_I5_FMT_EUR - 欧州の時刻書式 hh.mm.ss を使用します。
+
+DB2_I5_FMT_JIS - 日本工業規格 (JIS) の時刻書式 hh:mm:ss
+を使用します。
+
+DB2_I5_FMT_HMS - hh:mm:ss を使用します。
+
+{i5_time_sep} DB2_I5_SEP_COLON - コロン ( : )
+を時刻の区切り文字として使用します。
+デフォルトです。
+
+DB2_I5_SEP_PERIOD - ピリオド ( . )
+を時刻の区切り文字として使用します。
+
+DB2_I5_SEP_COMMA - カンマ ( , )
+を時刻の区切り文字として使用します。
+
+DB2_I5_SEP_BLANK -
+ブランクを時刻の区切り文字として使用します。
+
+DB2_I5_SEP_JOB - そのジョブのデフォルトを使用します。
+
+{i5_decimal_sep} DB2_I5_SEP_PERIOD - ピリオド ( . )
+を小数点として使用します。 デフォルトです。
+
+DB2_I5_SEP_COMMA - カンマ ( , ) を小数点として使用します。
+
+DB2_I5_SEP_JOB - そのジョブのデフォルトを使用します。
+
+接続に成功した場合は接続ハンドルリソースを返します。
+接続に失敗した場合は、|db2_connect| は FALSE を返します。
+
+カタログ接続の作成 カタログ接続を行うには、DB2
+コマンドラインプロセッサ (CLP) あるいは DB2 Configuration
+Assistant を使用して
+事前に対象データベースをカタログしておく必要があります。
+
+<?php >
+  $database = 'SAMPLE';
+  $user = 'db2inst1';
+  $password = 'ibmdb2';
+  
+  $conn = db2_connect($database, $user, $password);
+  
+  if ($conn) {
+      echo "接続に成功しました。";
+      db2_close($conn);
+  }
+  else {
+      echo "接続に失敗しました。";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  接続に成功しました。
+
+非カタログ接続の作成
+非カタログ接続の場合は、データベースに動的に接続することができます。
+
+<?php >
+  $database = 'SAMPLE';
+  $user = 'db2inst1';
+  $password = 'ibmdb2';
+  $hostname = 'localhost';
+  $port = 50000;
+  
+  $conn_string = "DRIVER={IBM DB2 ODBC DRIVER};DATABASE=$database;" .
+    "HOSTNAME=$hostname;PORT=$port;PROTOCOL=TCPIP;UID=$user;PWD=$password;";
+  $conn = db2_connect($conn_string, '', '');
+  
+  if ($conn) {
+      echo "接続に成功しました。";
+      db2_close($conn);
+  }
+  else {
+      echo "接続に失敗しました。";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  接続に成功しました。
+
+自動コミットをデフォルトで無効にした接続の作成
+オプションの配列を |db2_connect|
+に渡すことで、接続ハンドルのデフォルトの振る舞いを変更できます。
+
+<?php >
+  $database = 'SAMPLE';
+  $user = 'db2inst1';
+  $password = 'ibmdb2';
+  $options = array('autocommit' => DB2_AUTOCOMMIT_OFF);
+  
+  $conn = db2_connect($database, $user, $password, $options);
+  
+  if ($conn) {
+      echo "接続に成功しました。\n";
+      if (db2_autocommit($conn)) {
+           echo "自動コミットが有効です。\n";
+      }
+      else {
+           echo "自動コミットは無効です。\n";
+      }
+      db2_close($conn);
+  }
+  else {
+      echo "接続に失敗しました。";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  接続に成功しました。
+  自動コミットは無効です。
+
+i5/OS best performance i5/OS
+で最高のパフォーマンスを引き出すためには、ibm_db2 1.5.1
+を使用した PHP アプリケーションで |db2_connect|
+にデフォルトのホスト、ユーザ ID
+およびパスワードを使用します。
+
+<?php >
+    $library = "ADC";
+    $i5 = db2_connect("", "", "", array("i5_lib"=>"qsys2"));
+    $result = db2_exec($i5, 
+         "select * from systables where table_schema = '$library'");
+    while ($row = db2_fetch_both($result)) {               
+       echo $row['TABLE_NAME']."</br>";                     
+    }                                                      
+    db2_close($i5);
+?>
+
+上の例の出力は以下となります。
+
+  ANIMALS
+  NAMES
+  PICTURES
+
+
+
+|db2_close| |db2_pconnect|
+
+vim:ft=help:

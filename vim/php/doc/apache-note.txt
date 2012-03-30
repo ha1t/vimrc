@@ -1,0 +1,60 @@
+apache_note -- Apacheリクエスト記号(note)を取得/設定する
+
+  string apache_note(string note_name [, string note_value])~
+
+この関数は、Apache の table_get および table_set
+のラッパーです。 リクエスト中に存在する note
+のテーブルを編集します。 このテーブルは、Apache
+モジュール間の通信に用いるものです。
+
+|apache_note| の主な使用法は、
+同一リクエスト内でのモジュール間の情報のやりとりです。
+
+{note_name} 記号の名前
+
+{note_value} 記号の値
+
+引数が1つだけ指定されてコールされた場合、
+現在の記号の値note_nameが返されます。
+引数が2つ指定されてコールされた場合、記号note_name
+の値をnote_valueにセットし、前の記号
+note_nameの値を返します。
+もし記号が処理できない場合、FALSE が返されます。
+
+PHP と Perl との間での情報のやりとり
+
+<?php >
+  apache_note('name', 'Fredrik Ekengren');
+  
+  // perl スクリプトをコールします
+  virtual("/perl/some_script.pl");
+  
+  $result = apache_note("resultdata");
+?>
+
+  # Apache リクエストオブジェクトを取得します
+  my $r = Apache->request()->main();
+  
+  # 受け取ったデータを取得します
+  my $name = $r->notes('name');
+  
+  # 何らかの処理をします
+  
+  # 結果を PHP 側に戻します
+  $r->notes('resultdata', $result);
+
+
+
+access.log への出力
+
+<?php >
+  apache_note('sessionID', session_id());
+?>
+
+  # "%{sessionID}n" を LogFormat ディレクティブで使用できます
+
+
+
+|virtual|
+
+vim:ft=help:

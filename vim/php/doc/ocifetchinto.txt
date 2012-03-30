@@ -1,0 +1,9 @@
+ocifetchinto -- 結果配列の次の行を取得する (非推奨)
+
+  int ocifetchinto(resource statement, array result [, int mode])~
+
+この関数は推奨されません。代わりに推奨されるものは、
+|oci_fetch_array|、 |oci_fetch_object|、 |oci_fetch_assoc| および
+|oci_fetch_row| です。
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+udm_get_doc_count --
+データベース内のドキュメントの総数を得る
+
+  int udm_get_doc_count(resource agent)~
+
+|udm_get_doc_count| は、データベース内の
+ドキュメントの数を返します。
+
+{agent} |udm_alloc_agent|
+のコールにより取得した、エージェント ID へのリンク。
+
+ドキュメントの数を返します。
+
+この関数は、mnoGoSearch 3.1.11
+かそれ以降のバージョンでのみ サポートされています。
+
+vim:ft=help:

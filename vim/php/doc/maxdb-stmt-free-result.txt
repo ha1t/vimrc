@@ -1,0 +1,21 @@
+stmt->free_result --
+指定したステートメントハンドルの結果を保存しているメモリを開放する
+
+手続き型
+
+  void maxdb_stmt_free_result(resource stmt)~
+
+オブジェクト指向型 (メソッド)
+
+  void free_result(resource stmt)~
+
+|maxdb_stmt_free_result| 関数は、 {stmt}
+パラメータで指定した結果メモリ (これは
+|maxdb_stmt_store_result| によって確保されたものです)
+を開放します。
+
+この関数は、なにも値を返しません。
+
+|maxdb_stmt_store_result|
+
+vim:ft=help:

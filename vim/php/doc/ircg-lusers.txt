@@ -1,0 +1,17 @@
+ircg_lusers -- IRC ネットワーク統計
+
+  bool ircg_lusers(resource connection)~
+
+|ircg_lusers| は、{connection}
+で接続したネットワーク接続上のユーザの統計情報を要求します。
+結果は、 |ircg_set_file| あるいは |ircg_set_current|
+で定義した出力に返されます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ircg_set_file| |ircg_set_current| |ircg_who|
+
+vim:ft=help:

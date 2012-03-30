@@ -1,0 +1,12 @@
+hw_api_object -- hw_api_object
+クラスの新しいインスタンスを作成する
+
+  hw_api_object hw_api_object(array parameter)~
+
+hw_api_object クラスの新しいインスタンスを作成します。
+
+{parameter}
+
+
+
+vim:ft=help:

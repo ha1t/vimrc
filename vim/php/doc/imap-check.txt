@@ -1,0 +1,50 @@
+imap_check -- 現在のメールボックスをチェックする
+
+  object imap_check(resource imap_stream)~
+
+現在のメールボックスに関する情報を調べます。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+以下のプロパティをもつオブジェクトの情報を返します。
+Date - 現在のシステム時刻を RFC2822
+にしたがってフォーマットしたもの。
+
+Driver -
+メールボックスにアクセスする際に使用するプロトコル:
+POP3、IMAP、NNTP
+
+Mailbox - メールボックスの名前。
+
+Nmsgs - メールボックス内のメッセージの数。
+
+Recent - メールボックス内の新規メッセージの数。
+
+失敗した場合には FALSE を返します。
+
+|imap_check| の例
+
+<?php >
+  $imap_obj = imap_check($imap_stream);
+  var_dump($imap_obj);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  object(stdClass)(5) {
+    ["Date"]=>
+    string(37) "Wed, 10 Dec 2003 17:56:54 +0100 (CET)"
+    ["Driver"]=>
+    string(4) "imap"
+    ["Mailbox"]=>
+    string(54)
+    "{www.example.com:143/imap/user="foo@example.com"}INBOX"
+    ["Nmsgs"]=>
+    int(1)
+    ["Recent"]=>
+    int(0)
+  }
+
+
+
+vim:ft=help:

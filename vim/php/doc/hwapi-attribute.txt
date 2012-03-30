@@ -1,0 +1,15 @@
+hw_api_attribute -- hw_api_attribute
+クラスのインスタンスを作成する
+
+  HW_API_Attribute hw_api_attribute([string name [, string value]])~
+
+指定した名前および値を使用して、hw_api_attribute
+の新しいインスタンスを作成します。
+
+{name} 属性の名前。
+
+{value} 属性の値。
+
+hw_api_attribute のインスタンスを返します。
+
+vim:ft=help:

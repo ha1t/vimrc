@@ -1,0 +1,28 @@
+gethostbyaddr -- 指定した IP
+アドレスに対応するインターネットホスト名を取得する
+
+  string gethostbyaddr(string ip_address)~
+
+{ip_address}
+で指定したインターネットホストのホスト名を返します。
+
+{ip_address} ホストの IP アドレス。
+
+ホスト名を返します。 失敗した場合は、そのままの形の
+{ip_address} を文字列で返します。
+
+単純な |gethostbyaddr| の例
+
+<?php >
+  $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+  
+  echo $hostname;
+?>
+
+
+
+
+
+|gethostbyname| |gethostbynamel|
+
+vim:ft=help:

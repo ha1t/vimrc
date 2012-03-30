@@ -1,0 +1,17 @@
+printf -- フォーマット済みの文字列を出力する
+
+  int printf(string format [, mixed args [, mixed ...]])~
+
+{format} にしたがって、出力を生成します。
+
+{format} {format} についての説明は |sprintf| を参照ください。
+
+{args}
+
+{...}
+
+出力した文字列の長さを返します。
+
+|print| |sprintf| |vprintf| |sscanf| |fscanf| |flush|
+
+vim:ft=help:

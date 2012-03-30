@@ -1,0 +1,15 @@
+mcal_event_set_title --
+グローバルイベント構造体ストリームの表題を設定する
+
+  void mcal_event_set_title(int stream, string title)~
+
+|mcal_event_set_title| は、グローバルイベント
+構造体ストリームの表題を指定した文字列に設定します。
+
+{stream} MCAL ストリーム。
+
+{title} 新しい表題。
+
+値を返しません。
+
+vim:ft=help:

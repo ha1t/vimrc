@@ -1,0 +1,13 @@
+finfo_close -- fileinfo リソースを閉じる
+
+  bool finfo_close(resource finfo)~
+
+この関数は、|finfo_open|
+がオープンしたリソースを閉じます。
+
+{finfo} |finfo_open| が返す fileinfo リソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

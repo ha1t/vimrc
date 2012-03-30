@@ -1,0 +1,6 @@
+get_meta_tags --
+ファイル上のすべてのメタタグ情報を配列に展開する
+
+  array get_meta_tags(string filename [, bool use_include_path])~
+
+vim:ft=help:

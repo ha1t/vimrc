@@ -1,0 +1,21 @@
+maxdb->close --
+事前にオープンされたデータベース接続を閉じる
+
+手続き型
+
+  bool maxdb_close(resource link)~
+
+オブジェクト指向型 (メソッド)
+
+  bool close(resource link)~
+
+|maxdb_close| 関数は、{link}
+パラメータで指定したデータベース接続
+(事前にオープンされたもの) を閉じます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|maxdb_connect| |maxdb_init| |maxdb_real_connect|
+
+vim:ft=help:

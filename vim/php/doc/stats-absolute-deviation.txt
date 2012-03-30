@@ -1,0 +1,13 @@
+stats_absolute_deviation -- 値の配列の絶対偏差を返す
+
+  float stats_absolute_deviation(array a)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{a}
+
+
+
+vim:ft=help:

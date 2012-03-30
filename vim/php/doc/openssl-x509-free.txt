@@ -1,0 +1,12 @@
+openssl_x509_free -- 証明書リソースを開放する
+
+  void openssl_x509_free(resource x509cert)~
+
+|openssl_x509_free| は、メモリから指定した {x509cert}
+リソースに関連した証明書を開放します。
+
+{x509cert}
+
+値を返しません。
+
+vim:ft=help:

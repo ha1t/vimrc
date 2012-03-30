@@ -1,0 +1,59 @@
+fputcsv -- 行を CSV
+形式にフォーマットし、ファイルポインタに書き込む
+
+  int fputcsv(resource handle, array fields [, string delimiter [, string enclosure]])~
+
+|fputcsv| は、行（{fields} 配列として渡されたもの）を CSV
+としてフォーマットし、それを {handle}
+で指定したファイルに書き込みます
+(いちばん最後に改行を追加します)。
+
+{handle}
+ファイルポインタは、有効なファイルポインタである必要があり、
+|fopen| または |fsockopen| で正常にオープンされた
+（そしてまだ |fclose| でクローズされていない）
+ファイルを指している必要があります。
+
+{fields} 値の配列。
+
+{delimiter} オプションの {delimiter} はフィールド区切り文字
+(一文字だけ) を指定します。デフォルトはカンマ (,)
+です。
+
+{enclosure} オプションの {enclosure} はフィールドを囲む文字
+(一文字だけ) を指定します。デフォルトは二重引用符 (")
+です。
+
+書き込んだ文字列の長さを返します。失敗した場合は FALSE
+を返します。
+
+|fputcsv| の例
+
+<?php >
+  $list = array (
+      'aaa,bbb,ccc,dddd',
+      '123,456,789',
+      '"aaa","bbb"'
+  );
+  
+  $fp = fopen('file.csv', 'w');
+  
+  foreach ($list as $line) {
+      fputcsv($fp, split(',', $line));
+  }
+  
+  fclose($fp);
+?>
+
+
+
+
+
+マッキントッシュコンピュータ上で作成されたファイルを読み込む際に、
+PHP が行末を認識できないという問題が発生した場合、
+実行時の設定オプションauto_detect_line_endings
+を有効にする必要が生じるかもしれません。
+
+|fgetcsv|
+
+vim:ft=help:

@@ -1,0 +1,22 @@
+apd_dump_regular_resources --
+現在のすべての一般リソースを配列で返す
+
+  array apd_dump_regular_resources()~
+
+現在のすべての一般リソースを配列で返します。
+
+現在の一般リソースを含む配列を返します。
+
+|apd_dump_regular_resources| の例
+
+<?php >
+  print_r(apd_dump_regular_resources());
+?>
+
+
+
+
+
+|apd_dump_persistent_resources|
+
+vim:ft=help:

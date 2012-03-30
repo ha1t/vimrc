@@ -1,0 +1,23 @@
+SDO_Sequence::getProperty --
+指定したシーケンスインデックスに対応するプロパティを返す
+
+  SDO_Model_Property SDO_Sequence::getProperty(int sequence_index)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+指定したシーケンスインデックスに対応するプロパティを返します。
+
+{sequence_index} シーケンス内での要素の位置。
+
+SDO_Model_Property を返します。 NULL
+が返された場合は、そのシーケンス要素がプロパティに属していない、
+すなわち非構造化テキストであることを意味します。
+
+{SDO_IndexOutOfBoundsException}
+シーケンスのインデックスがゼロより小さい、
+あるいはシーケンスのサイズより大きい場合にスローされます。
+
+vim:ft=help:

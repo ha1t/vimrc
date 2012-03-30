@@ -1,0 +1,47 @@
+fbsql_errno -- 前の FrontBase
+操作によるエラーメッセージの数値を返す
+
+  int fbsql_errno([resource link_identifier])~
+
+直近の FrontBase
+操作からのエラーメッセージを表す数値を返します。
+
+fbsql
+データベースのバックエンドから返されるエラーは、警告を発生しません。
+その代わりに、|fbsql_errno| を使用してエラーコードを
+取得します。この関数は、直近に実行した fbsql 関数
+(|fbsql_error| および |fbsql_errno| は除く)
+のエラーコードのみを返すことに注意しましょう。
+もしこれを使用するつもりなら、他の fbsql
+関数をコールする前に値を調べる必要があります。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+直近の fbsql
+関数のエラー番号、あるいはエラーが発生しなかった場合に
+0 (ゼロ) を返します。
+
+|fbsql_errno| の例
+
+<?php >
+  fbsql_connect("marliesle");
+  echo fbsql_errno() . ": " . fbsql_error() . "<br />";
+  fbsql_select_db("nonexistentdb");
+  echo fbsql_errno() . ": " . fbsql_error() . "<br />";
+  $conn = fbsql_query("SELECT * FROM nonexistenttable;");
+  echo fbsql_errno() . ": " . fbsql_error() . "<br />";
+?>
+
+
+
+
+
+|fbsql_error| |fbsql_warnings|
+
+vim:ft=help:

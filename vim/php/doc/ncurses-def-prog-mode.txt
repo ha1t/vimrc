@@ -1,0 +1,17 @@
+ncurses_def_prog_mode -- 端末(プログラム)モードを保存する
+
+  bool ncurses_def_prog_mode()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|ncurses_reset_prog_mode| で使用するために (curses
+内の)プログラムの現在の端末モードを保存します。
+
+成功した場合に FALSE、それ以外の場合に TRUE を返します。
+
+|ncurses_reset_prog_mode|
+
+vim:ft=help:

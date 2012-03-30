@@ -1,0 +1,24 @@
+radius_config --
+指定した設定ファイルをライブラリに読み込ませる
+
+  bool radius_config(resource radius_handle, string file)~
+
+Radius
+リクエストを発行する前には、ライブラリが接続可能なサーバを
+知っている必要があります。ライブラリを設定するいちばん簡単な方法は
+|radius_config| をコールすることです。 |radius_config|
+は、ライブラリに radius.conf
+形式のファイルを読み込ませます。
+
+{radius_handle}
+
+{file} 設定ファイルへのパスを、引数として |radius_config|
+に渡します。 |radius_add_server| をコールすることで、
+プログラム上でライブラリの設定をすることも可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|radius_add_server|
+
+vim:ft=help:

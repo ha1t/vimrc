@@ -1,0 +1,46 @@
+ftp_nlist -- 指定したディレクトリのファイルの一覧を返す
+
+  array ftp_nlist(resource ftp_stream, string directory)~
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{directory}
+一覧を表示するディレクトリ。このパラメータには引数を含めることができます。
+例: ftp_nlist($conn_id, "-la /your/dir");
+このパラメータはエスケープ処理されません。スペースやその他の文字を含む
+ファイル名では問題が発生する可能性があることに注意してください。
+
+成功した場合は指定したディレクトリ内のファイル名の配列を、
+エラー時には FALSE を返します。
+
+|ftp_nlist| の例
+
+<?php >
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // カレントディレクトリの内容を得る
+  $contents = ftp_nlist($conn_id, ".");
+  
+  // $contents を出力する
+  var_dump($contents);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  array(3) {
+    [0]=>
+    string(11) "public_html"
+    [1]=>
+    string(10) "public_ftp"
+    [2]=>
+    string(3) "www"
+
+
+
+|ftp_rawlist|
+
+vim:ft=help:

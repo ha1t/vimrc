@@ -1,0 +1,41 @@
+xattr_remove -- 拡張属性を削除する
+
+  bool xattr_remove(string filename, string name [, int flags])~
+
+この関数は、ファイルの拡張属性を削除します。
+
+拡張属性には二種類の異なる名前空間、つまり、ユーザとルートがあります。
+ユーザ名前空間は、すべてのユーザで利用可能ですが、ルート名前空間は、ルート権限を有するユーザのみ利用可能です。
+xattr はデフォルトでユーザ名前空間で処理を行いますが、
+{flags} 引数によりこれを変更することができます。
+
+{filename} 属性を削除するファイル。
+
+{name} 削除する属性の名前。
+
+{flags} サポートされる xattr のフラグ XATTR_DONTFOLLOW
+シンボリックリンクのリンク先をたどらず、リンクそのものを操作します。
+XATTR_ROOT root (信頼された)
+名前空間に属性を設定します。root 権限が必要です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+ファイルのすべての拡張属性を削除する
+
+<?php >
+  $file = 'some_file';
+  $attributes = xattr_list($file);
+  
+  foreach ($attributes as $attr_name) {
+      xattr_remove($file, $attr_name);
+  }
+?>
+
+
+
+
+
+|xattr_list| |xattr_set| |xattr_get|
+
+vim:ft=help:

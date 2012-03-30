@@ -1,0 +1,43 @@
+pg_version --
+クライアント・プロトコル・サーバのバージョンを配列で返す
+
+  array pg_version([resource connection])~
+
+|pg_version| はクライアント・プロトコル
+およびサーバのバージョンを配列で返します。プロトコルおよびサーバの
+バージョンは、PHP が PostgreSQL 7.4
+以降とともにコンパイルされている 場合のみ有効です。
+
+詳細なサーバ情報を取得するには |pg_parameter_status|
+を参照ください。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+client, protocol および server_version
+のキーとその値を持つ配列を
+返します（有効な場合）。エラー時や接続が正常でない場合に
+FALSE を返します。
+
+|pg_version| の例
+
+<?php >
+    $dbconn = pg_connect("host=localhost port=5432 dbname=mary")
+       or die("Could not connect");
+       
+    $v = pg_version($dbconn);
+    
+    echo $v['client'];
+?>
+
+上の例の出力は以下となります。
+
+  7.4
+
+
+
+|pg_parameter_status|
+
+vim:ft=help:

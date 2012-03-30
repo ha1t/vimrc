@@ -1,0 +1,15 @@
+swf_shapefillbitmapclip --
+現在の塗りつぶしモードをクリップ付きビットマップに設定する
+
+  void swf_shapefillbitmapclip(int bitmapid)~
+
+塗りつぶしをクリップ付きのビットマップに設定します。
+空いた部分は、ビットマップで埋められます。
+
+{bitmapid} ビットマップ ID。
+
+値を返しません。
+
+|swf_shapefillbitmaptile|
+
+vim:ft=help:

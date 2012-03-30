@@ -1,0 +1,5 @@
+imap_scanmailbox -- imap_listscan のエイリアス
+
+この関数は次の関数のエイリアスです。 |imap_listscan|.
+
+vim:ft=help:

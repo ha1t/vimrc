@@ -1,0 +1,31 @@
+gnupg_export -- キーをエクスポートする
+
+  string gnupg_export(resource identifier, string fingerprint)~
+
+キーの {fingerprint} をエクスポートします。
+
+成功した場合、この関数はキーのデータを返します。
+失敗した場合、この関数は FALSE を返します。
+
+Procedural |gnupg_export| example
+
+<?php >
+  $res = gnupg_init();
+  $export = gnupg_export($res,"8660281B6051D071D94B5B230549F9DC851566DC");
+  echo $export;
+?>
+
+
+
+OO |gnupg_export| example
+
+<?php >
+  $gpg = new gnupg();
+  $export = $gpg -> export("8660281B6051D071D94B5B230549F9DC851566DC");
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+imagegd -- GD イメージをブラウザまたはファイルに出力する
+
+  bool imagegd(resource image [, string filename])~
+
+GD イメージを、指定した {filename} に出力します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{filename} 保存するファイルへのパス。省略したり NULL
+を指定したりすると、生の画像ストリームが直接出力されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+通常 GD
+フォーマットはイメージの一部を高速にロードするために
+使用されます。GD フォーマットは GD
+互換アプリケーションでのみ使用可能であることに注意してください。
+
+|imagegd2|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+exif_tagname -- インデックスに対応するヘッダ名を取得する
+
+  string exif_tagname(string index)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{index} 画像のインデックス。
+
+ヘッダ名を返します。もし {index} が未定義の場合は FALSE
+を返します。 undefined.
+
+|exif_imagetype|
+
+vim:ft=help:

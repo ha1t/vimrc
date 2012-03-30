@@ -1,0 +1,22 @@
+mb_strwidth -- 文字列の幅を返す
+
+  int mb_strwidth(string str [, string encoding])~
+
+文字列 {str} の幅を返します。
+
+マルチバイト文字は、通常はシングルバイト文字の倍の幅となります。
+
+文字の幅 文字 幅 U+0000 - U+0019 0 U+0020 - U+1FFF 1 U+2000 - U+FF60 2
+U+FF61 - U+FF9F 1 U+FFA0 - 2
+
+{str} 幅を取得したい文字列。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+文字列 {str} の幅を返します。
+
+|mb_strimwidth| |mb_internal_encoding|
+
+vim:ft=help:

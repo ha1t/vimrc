@@ -1,0 +1,22 @@
+apd_dump_persistent_resources --
+すべての持続的なリソースを配列で返す
+
+  array apd_dump_persistent_resources()~
+
+すべての持続的なリソースを配列で返します。
+
+現在のコールスタックを含む配列を返します。
+
+|apd_dump_persistent_resources| の例
+
+<?php >
+  print_r(apd_dump_persistent_resources());
+?>
+
+
+
+
+
+|apd_dump_regular|
+
+vim:ft=help:

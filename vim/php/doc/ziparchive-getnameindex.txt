@@ -1,0 +1,12 @@
+ZipArchive::getNameIndex --
+インデックスを使用して、エントリの名前を返す
+
+  string ZipArchive::getNameIndex(int index)~
+
+インデックスを使用して、エントリの名前を返します。
+
+{index} エントリのインデックス。
+
+成功した場合に名前、失敗した場合に FALSE を返します。
+
+vim:ft=help:

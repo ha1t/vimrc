@@ -1,0 +1,15 @@
+xslt_getopt -- xsl プロセッサのオプションを取得する
+
+  int xslt_getopt(resource processor)~
+
+|xslt_getopt| は、与えられた {processor}
+のオプションを返します。
+
+{processor} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+オプションを返します。これは、定数 XSLT_SABOPT_XXX
+のビットマスクとなります。
+
+|xslt_setopt|
+
+vim:ft=help:

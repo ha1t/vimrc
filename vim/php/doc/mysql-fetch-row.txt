@@ -1,0 +1,42 @@
+mysql_fetch_row -- 結果を添字配列として取得する
+
+  array mysql_fetch_row(resource result)~
+
+取得された行に対応する配列を返し、内部のデータポインタを前に進めます。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+取得された行に対応する文字列の配列を返します。もう行がない場合は、
+FALSE を返します。
+
+|mysql_fetch_row|は、指定した結果 ID が指す結果から 1
+行分のデータを取得します。
+各結果カラムは、オフセット 0
+から始まる配列に格納されます。
+
+|mysql_fetch_row| で行を取得する
+
+<?php >
+  $result = mysql_query("SELECT id,email FROM people WHERE id = '42'");
+  if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
+      exit;
+  }
+  $row = mysql_fetch_row($result);
+  
+  echo $row[0]; // 42
+  echo $row[1]; // 'email' の値
+?>
+
+
+
+
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|mysql_fetch_array| |mysql_fetch_assoc| |mysql_fetch_object| |mysql_data_seek|
+|mysql_fetch_lengths| |mysql_result|
+
+vim:ft=help:

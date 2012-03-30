@@ -1,0 +1,26 @@
+dbplus_aql -- AQL クエリを実行する
+
+  resource dbplus_aql(string query [, string server [, string dbpath]])~
+
+AQL {query} を、指定した {server} および {dbpath}
+で実行します。
+
+{query} AQL A... Query Language
+に関するより詳細な情報については、 オリジナルの db++
+マニュアルで提供されています。
+
+{server}
+
+{dbpath}
+
+成功時に関係ハンドルを返します。結果データは、
+|dbplus_next| および |dbplus_current|
+をコールすることにより、このリレーションから取得可能です。
+他のリレーションアクセス関数は結果のリレーションで動作しません。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

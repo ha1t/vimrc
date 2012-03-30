@@ -1,0 +1,40 @@
+fbsql_set_lob_mode -- FrontBase 結果セットの LOB
+取得モードを設定する
+
+  bool fbsql_set_lob_mode(resource result, int lob_mode)~
+
+データベースから LOB
+データを取得する際のモードを設定します。
+
+BLOB および CLOB のデータが FrontBase
+に格納されている場合、
+それは直接的あるいは間接的に保存することが可能です。直接保存された
+LOB データは lob
+モードの設定にかかわらず常に取得されます。LOB
+データが 512
+バイトより小さい場合は常に直接保存されます。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+{lob_mode} 以下のいずれかです。 FBSQL_LOB_DIRECT - LOB
+データは直接取得されます。 データベースから
+|fbsql_fetch_row|
+やその他の関数を使用してデータを取得した場合、すべての
+CLOB あるいは BLOB カラムはその内容が直接返されます。
+これは新規 FrontBase 結果のデフォルト値です。
+
+FBSQL_LOB_HANDLE - LOB
+データは、実際のデータへのハンドルとして
+取得されます。|fbsql_fetch_row| あるいはその他の
+関数によってデータが取得された際、LOB
+データが間接的に格納されていた
+場合はそのハンドルを、直接格納されていた場合はデータそのものを返します。
+ハンドルが返された場合、それは @'000000000000000000000000'
+のような形式の 27 バイトの文字列となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fbsql_create_blob| |fbsql_create_clob| |fbsql_read_blob| |fbsql_read_clob|
+
+vim:ft=help:

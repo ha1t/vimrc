@@ -1,0 +1,23 @@
+imagesetbrush -- 線の描画用にブラシイメージを設定する
+
+  bool imagesetbrush(resource image, resource brush)~
+
+|imagesetbrush| は、特別な色 IMG_COLOR_BRUSHED または
+IMG_COLOR_STYLEDBRUSHED で描画される際に (|imageline| や
+|imagepolygon| のような)
+全ての線描画関数で使用されるブラシイメージを設定します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{brush} 画像リソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+ブラシの使用が終った際には特別な処理は不要ですが、
+ブラシイメージを破棄する場合には、新たにブラシイメージを設定するまでは、
+色 IMG_COLOR_BRUSHED または IMG_COLOR_STYLEDBRUSHED
+を使用するべきではありません。
+
+vim:ft=help:

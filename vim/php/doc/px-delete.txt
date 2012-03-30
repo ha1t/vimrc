@@ -1,0 +1,13 @@
+px_delete -- paradox データベースのリソースを削除する
+
+  bool px_delete(resource pxdoc)~
+
+paradox
+ファイルのリソースを削除し、メモリを開放します。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

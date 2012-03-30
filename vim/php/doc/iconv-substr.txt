@@ -1,0 +1,44 @@
+iconv_substr -- 文字列の一部を切り出す
+
+  string iconv_substr(string str, int offset [, int length [, string charset]])~
+
+文字列 {str} の、 {start} と {length}
+で指定された一部を返します。
+
+{str} 元の文字列。
+
+{offset} {start} が負でない場合、 |iconv_substr| は {str} の {start}
+番目の文字（ゼロから数えて）から切り出します。
+
+{start} が負の場合、 |iconv_substr| は {str} の最後から数えて
+{start} 番目の文字から切り出します。
+
+{length} {length} が指定され、かつ正である場合、
+返される文字列は {start} から数えて最大 {length}
+文字数分となります ({string} の長さに依存します)。
+
+もし負の {length} が渡された場合に |iconv_substr|
+が切り出す文字列は、 {str} の {start}
+番目の文字からはじまり、文字列の最後から数えて {length}
+文字分戻ったところまでとなります。 {start}
+も負の場合、開始位置は
+上で説明した方式で計算されます。
+
+{charset} {charset} が指定されなかった場合、文字セットは ini
+設定 iconv.internal_encoding で定義された値とみなされます。
+
+{offset} や {length} のパラメータは、常に {charset}
+で定義された
+文字セットにおける文字数と判断されることに注意してください。
+一方、|substr| の場合はこれらの値を常に
+バイト数として判断します。
+
+文字列 {str} の、 {offset} と {length}
+で指定された一部を返します。
+
+もし {str} が {start} の文字列長より短い場合は、FALSE
+が返されます。
+
+|substr| |mb_substr| |mb_strcut|
+
+vim:ft=help:

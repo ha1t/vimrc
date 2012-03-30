@@ -1,0 +1,21 @@
+DomNode->replace_node -- ノードを置換する
+
+  domelement DomNode->replace_node(domelement newnode)~
+
+(PHP 4.2)
+この関数は既存のノードを渡された新規ノードに置換します。
+文章にすでに存在しているノードが二度目に挿入されないようにするため、
+{newnode} は置換前にコピーされます。
+この動作は、置換前にノードに対して行う全ての修正、もしくは
+|domnode_first_child|, |domnode_child_nodes|
+などの関数を用いた後に挿入されたノードを再取得させることを強制します。
+
+(PHP 4.3)
+この関数は既存ノードを渡された新規ノードに置換します。
+もはやコピーはされません。もし {newnode}
+が文章に挿入されている場合、最初に既存のコンテキストから削除されます。
+もし置換が成功した場合、古いノードが返されます。
+
+|domnode_append_child| も参照ください。
+
+vim:ft=help:

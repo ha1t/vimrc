@@ -1,0 +1,50 @@
+pg_client_encoding --
+クライアントのエンコーディングを取得する
+
+  string pg_client_encoding([resource connection])~
+
+PostgreSQL
+は、ある種の文字セットについてはサーバとクライアントの間の
+自動文字コード変換をサポートしています。
+|pg_client_encoding| は、クライアントの
+エンコーディングを文字列として返します。返される値は、標準の
+PostgreSQL
+エンコーディング識別子のなかのひとつとなります。
+
+この関数を使用するには、PHP 4.0.3 以降と PostgreSQL 7.0
+以降が必要です。 libpq
+がマルチバイトエンコーディングのサポートを有効にせずに
+コンパイルされている場合、|pg_client_encoding| は常に
+SQL_ASCII を返します。サポートされる エンコーディングは
+PostgreSQL のバージョンに依存します。サポートされる
+エンコーディングの詳細については PostgreSQL
+のドキュメントを参照ください。
+
+この関数は、以前は |pg_clientencoding| と呼ばれていました。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+クライアントのエンコーディングを返します。エラー時には
+FALSE を返します。
+
+|pg_client_encoding| の例
+
+<?php >
+  // $conn の接続先のエンコーディングは ISO-8859-1 であるとする
+  $encoding = pg_client_encoding($conn);
+  
+  echo "Client encoding is: ", $encoding, "\n";
+?>
+
+上の例の出力は以下となります。
+
+  Client encoding is: ISO-8859-1
+
+
+
+|pg_set_client_encoding|
+
+vim:ft=help:

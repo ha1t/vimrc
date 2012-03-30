@@ -1,0 +1,48 @@
+ftp_chdir -- FTP サーバ上でディレクトリを移動する
+
+  bool ftp_chdir(resource ftp_stream, string directory)~
+
+カレントディレクトリを、指定した場所に移動します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{directory} 対象となるディレクトリ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 ディレクトリの変更に失敗した場合は、PHP
+は警告を出します。
+
+|ftp_chdir| の例
+
+<?php >
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server); 
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass); 
+  
+  // 接続できたか確認する
+  if ((!$conn_id) || (!$login_result)) {
+      die("FTP connection has failed !");
+  }
+  
+  echo "Current directory: " . ftp_pwd($conn_id) . "\n";
+  
+  // somedir に移動する
+  if (ftp_chdir($conn_id, "somedir")) {
+      echo "Current directory is now: " . ftp_pwd($conn_id) . "\n";
+  } else { 
+      echo "Couldn't change directory\n";
+  }
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_cdup| |ftp_pwd|
+
+vim:ft=help:

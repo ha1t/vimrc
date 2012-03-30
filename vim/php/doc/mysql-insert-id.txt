@@ -1,0 +1,55 @@
+mysql_insert_id -- 直近の INSERT 操作で生成された ID を得る
+
+  int mysql_insert_id([resource link_identifier])~
+
+直近の INSERT クエリにより AUTO_INCREMENT
+カラム用に生成された ID を取得します。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+直近の INSERT クエリにより AUTO_INCREMENT
+カラム用に生成された ID を返します。直近のクエリが
+AUTO_INCREMENT な値を生成しなかった 場合に 0、MySQL
+接続が確立されていなかった 場合に FALSE を返します。
+
+|mysql_insert_id| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('Could not connect: ' . mysql_error());
+  }
+  mysql_select_db('mydb');
+  
+  mysql_query("INSERT INTO mytable (product) values ('kossu')");
+  printf("最後に挿入されたレコードの ID は、%d\n", mysql_insert_id());
+?>
+
+
+
+
+
+|mysql_insert_id| は、MySQL C API 関数 mysql_insert_id()
+の返り値の型を long 型（PHP では int と呼ばれる）
+に変換します。 AUTO_INCREMENT カラムが BIGINT 型である場合、
+|mysql_insert_id| で返される型は不正確になります。
+かわりに、MySQL の SQL 内部関数 LAST_INSERT_ID()
+を使用してください。
+
+|mysql_insert_id| は直近のクエリに対して働くので、
+値を生成したクエリの直後に |mysql_insert_id|
+をコールすることを忘れないようにしてください。
+
+MySQL の SQL 関数 LAST_INSERT_ID() の値には、 常に直近の
+AUTO_INCREMENT の値が含まれており、クエリの間では
+リセットされません。
+
+|mysql_query| |mysql_info|
+
+vim:ft=help:

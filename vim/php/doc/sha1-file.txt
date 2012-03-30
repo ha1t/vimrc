@@ -1,0 +1,26 @@
+sha1_file -- ファイルの sha1 ハッシュを計算する
+
+  string sha1_file(string filename [, bool raw_output])~
+
+US Secure Hash Algorithm 1 を使用して {filename} の sha1
+ハッシュを計算し、そのハッシュを
+返します。ハッシュは 40 文字の 16 進数となります。
+
+{filename} ファイル名。
+
+{raw_output} TRUE を指定すると、長さ 20
+のバイナリフォーマットで
+ダイジェストを返します。デフォルトは FALSE です。
+
+成功した場合に文字列、それ以外の場合に FALSE
+を返します。
+
+バージョン 説明 5.0.0 {raw_output}
+パラメータが追加されました。 5.1.0 ストリーム API
+を使用するように変更しました。つまり、
+sha1_file('http://example.com/..') のように
+ラッパとともに使用できるということです。
+
+|sha1| |md5_file| |crc32|
+
+vim:ft=help:

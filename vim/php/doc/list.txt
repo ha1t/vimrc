@@ -1,0 +1,99 @@
+list -- 配列と同様の形式で、複数の変数への代入を行う
+
+  void list(mixed varname [, mixed ...])~
+
+|array| と同様に、
+この関数は実際には関数ではなく言語の構成要素です。
+|list| は、
+単一の操作で一連の変数に値を代入するために使われます。
+
+{varname} 変数。
+
+値を返しません。
+
+|list| の例
+
+<?php >
+  $info = array('コーヒー', '茶色', 'カフェイン');
+  
+  // すべての変数の取得
+  list($drink, $color, $power) = $info;
+  echo "$drink の色は $color で、$power が含まれています。\n";
+  
+  // 一部の変数の取得
+  list($drink, , $power) = $info;
+  echo "$drink には $power が含まれています。\n";
+  
+  // 三番目のみの取得
+  list( , , $power) = $info;
+  echo "$power 欲しい!\n";
+  
+  // list() は文字列では動作しません
+  list($bar) = "abcde";
+  var_dump($bar); // NULL
+?>
+
+
+
+
+
+|list| の使用法の例
+
+  <table>
+   <tr>
+    <th>社員氏名</th>
+    <th>給与</th>
+   </tr>
+<?php >
+  $result = mysql_query("SELECT id, name, salary FROM employees", $conn);
+  while (list($id, $name, $salary) = mysql_fetch_row($result)) {
+      echo " <tr>\n" .
+            "  <td><a href=\"info.php?id=$id\">$name</a></td>\n" .
+            "  <td>$salary</td>\n" .
+            " </tr>\n";
+  }
+?>
+  
+  </table>
+
+
+
+
+
+配列の添字を使用した |list| の例
+
+<?php >
+  $info = array('coffee', 'brown', 'caffeine');
+  
+  list($a[0], $a[1], $a[2]) = $info;
+  
+  var_dump($a);
+?>
+
+次のような出力になります(|list| の文法に書かれた
+順番と、要素の順番の違いに注意):
+
+  array(3) {
+    [2]=>
+    string(8) "caffeine"
+    [1]=>
+    string(5) "brown"
+    [0]=>
+    string(6) "coffee"
+  }
+
+
+
+|list|は、最も右のパラメータから値を代入します。
+プレーンな変数を使用している場合には、このことを気にする必要はありません。
+しかし、添字配列を使用している場合には、配列の添字の順番が
+|list|
+に書いたものと同じく左から右となることを通常は期待しますが、
+そうはなりません。この配列の添字は逆の順番となります。
+
+|list| は数値添字の配列のみを生成します。 添字は 0
+から始まります。
+
+|each| |array| |extract|
+
+vim:ft=help:

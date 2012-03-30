@@ -1,0 +1,13 @@
+newt_resume -- newt_suspend をコールした後に newt
+インターフェースの使用を再開する
+
+  void newt_resume()~
+
+|newt_suspend| をコールした後に newt
+インターフェースの使用を再開します。
+
+値を返しません。
+
+|newt_suspend|
+
+vim:ft=help:

@@ -1,0 +1,26 @@
+tidy_config_count -- 指定したドキュメントについて発生した
+Tidy 設定エラーの数を返す
+
+  int tidy_config_count(tidy object)~
+
+|tidy_config_count| は、 指定した Tidy オブジェクト {object}
+について発生した Tidy エラーの数を返します。
+
+|tidy_config_count| の例
+
+<?php >
+  $html = '<p>test</I>';
+  
+  $config = array('doctype' => 'bogus');
+  
+  $tidy = tidy_parse_string($html, $config);
+  
+  /* 'bogus' は有効な文章型でないので、1 を出力する */
+  echo tidy_config_count($tidy);
+?>
+
+
+
+
+
+vim:ft=help:

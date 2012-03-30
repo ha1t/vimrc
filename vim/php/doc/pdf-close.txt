@@ -1,0 +1,14 @@
+PDF_close -- pdf ドキュメントを閉じる [古い関数]
+
+  bool PDF_close(resource p)~
+
+生成された PDF
+ファイルを閉じ、ドキュメントの関係する全てのリソースを
+開放します。成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに |PDF_end_document|
+を使用してください。
+
+vim:ft=help:

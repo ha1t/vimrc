@@ -1,0 +1,36 @@
+geoip_isp_by_name -- インターネットサービスプロバイダ (ISP)
+名を取得する
+
+  string geoip_isp_by_name(string hostname)~
+
+|geoip_isp_by_name| 関数は、 IP
+アドレスに対応するインターネットサービスプロバイダ
+(ISP) 名を返します。
+
+現在この関数を使用できるのは、商用の GeoIP ISP Edition
+を購入した人だけです。
+適切なデータベースが見つからない場合には警告が発生します。
+
+{hostname} ホスト名あるいは IP アドレス。
+
+成功した場合には ISP 名、
+アドレスがデータベースで見つからない場合には FALSE
+を返します。
+
+|geoip_isp_by_name| の例 これは、ホスト example.com の ISP
+名を表示します。
+
+<?php >
+  $isp = geoip_isp_by_name('www.example.com');
+  if ($isp) {
+      echo 'This host IP is from ISP: ' . $isp;
+  }
+?>
+
+上の例の出力は以下となります。
+
+  This host IP is allocated to: ICANN c/o Internet Assigned Numbers Authority
+
+
+
+vim:ft=help:

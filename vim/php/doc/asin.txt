@@ -1,0 +1,15 @@
+asin -- 逆正弦（アークサイン）
+
+  float asin(float arg)~
+
+{arg} のアークサインをラジアンで返します。 |asin| は |sin|
+の逆関数で、 |asin| がとりうる範囲内のすべての a
+について a==sin(asin(a)) が成立します。
+
+{arg} 処理する角度。
+
+{arg} のアークサインをラジアンで返します。
+
+|sin| |asinh| |acos| |atan|
+
+vim:ft=help:

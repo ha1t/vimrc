@@ -1,0 +1,50 @@
+pg_get_notify -- SQL NOTIFY メッセージを取得する
+
+  array pg_get_notify(resource connection [, int result_type])~
+
+|pg_get_notify|は、NOTIFY SQL
+コマンドにより送信された通知メッセージを取得します。
+通知メッセージを取得するには、LISTEN SQL
+コマンドを発行する必要があります。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{result_type} {result_type} は、返り値の形式を制御する
+オプションのパラメータです。{result_type}
+は定数であり、次の値のどれかとすることが可能です。
+PGSQL_ASSOC、PGSQL_NUM および PGSQL_BOTH。 PGSQL_NUM
+を使用すると、|pg_get_notify|
+は数値添字の配列を返します。また、PGSQL_ASSOC
+を使用すると連想配列形式で返します。PGSQL_BOTH
+がデフォルト設定で、これは数値添字の配列と連想配列の両方を返します。
+
+NOTIFY メッセージ名とバックエンドの PID を含む
+配列を返します。もし待ち受ける NOTIFY が存在しない
+場合は then FALSE を返します。
+
+PostgreSQL NOTIFY メッセージ
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  // 他のプロセスからの 'author_updated' メッセージを監視する
+  pg_query($conn, 'LISTEN author_updated;');
+  $notify = pg_get_notify($conn);
+  if (!$notify) {
+    echo "No messages\n";
+  } else {
+    print_r($notify);
+  }
+?>
+
+
+
+
+
+|pg_get_pid|
+
+vim:ft=help:

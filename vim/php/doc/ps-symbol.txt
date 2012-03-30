@@ -1,0 +1,20 @@
+ps_symbol -- グリフを出力する
+
+  bool ps_symbol(resource psdoc, int ord)~
+
+現在のフォントのフォントエンコーディングベクタの中で
+{ord} 番目の位置にあるグリフを出力します。
+フォントエンコーディングは、|ps_findfont|
+でフォントを読み込む際に設定することができます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{ord}
+フォントエンコーディングベクタの中でのグリフの位置。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_symbol_name| |ps_symbol_width|
+
+vim:ft=help:

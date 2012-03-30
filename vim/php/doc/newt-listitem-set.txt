@@ -1,0 +1,15 @@
+newt_listitem_set --
+
+  void newt_listitem_set(resource item, string text)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{item}
+
+{text}
+
+値を返しません。
+
+vim:ft=help:

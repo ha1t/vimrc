@@ -1,0 +1,27 @@
+floatval -- 変数の float 値を取得する
+
+  float floatval(mixed var)~
+
+{var} の float 値を返します。
+
+{var}
+あらゆるスカラ型を指定できます。配列あるいはオブジェクトに
+|floatval| を使用することはできません。
+
+指定した変数の float 値を返します。
+
+|floatval| の例
+
+<?php >
+  $var = '122.34343The';
+  $float_value_of_var = floatval($var);
+  echo $float_value_of_var; // 122.34343
+?>
+
+
+
+
+
+|intval| |strval| |settype| 型の相互変換
+
+vim:ft=help:

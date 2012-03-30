@@ -1,0 +1,23 @@
+SDO_DAS_ChangeSummary::getOldValues -- 変更された SDO_DataObject
+の変更前の値を取得する
+
+  SDO_List SDO_DAS_ChangeSummary::getOldValues(SDO_DataObject data_object)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+変更された SDO_DataObject
+の変更前の値のリストを取得します。 SDO_DataObject
+で変更されたプロパティの、変更前の値を示す
+SDO_DAS_Settings のリストを返します。
+
+{data_object} 変更されたデータオブジェクト。
+
+SDO_DataObject で変更されたプロパティの、変更前の値を示す
+SDO_DAS_Settings のリストを返します。 変更の型が
+SDO_DAS_ChangeSummary::ADDITION の場合は、
+これは空のリストとなります。
+
+vim:ft=help:

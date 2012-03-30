@@ -1,0 +1,18 @@
+curl_multi_select -- cURL
+拡張モジュールに関連付けられているすべてのソケットを取得し、「選択可能な」状態にする
+
+  int curl_multi_select(resource mh [, float timeout])~
+
+cURL
+拡張モジュールに関連付けられているすべてのソケットを取得し、「選択可能な」状態にします。
+
+{mh} |curl_multi_init| が返す cURL マルチハンドル。
+
+{timeout} レスポンスを待つ秒数。
+
+成功した場合は、記述子セットに含まれる記述子の数を返します。
+失敗した場合は、この関数は FALSE を返します。
+
+|curl_multi_init|
+
+vim:ft=help:

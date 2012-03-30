@@ -1,0 +1,33 @@
+socket_connect -- ソケット上の接続を初期化する
+
+  bool socket_connect(resource socket, string address [, int port])~
+
+ソケットリソース {socket} を用いて、 {address}
+への接続を初期化します。 このリソースは、|socket_create|
+で作成した有効なソケットリソースである必要があります。
+
+{socket}
+
+{address} パラメータ {address} には、 {socket} の種類が AF_INET
+の場合はドット区切り表記の IPv4 アドレス (例: 127.0.0.1)、
+IPv6 サポートが有効で {socket} の種類が AF_INET6 の場合は IPv6
+アドレス (例: ::1)、 AF_UNIX の場合は Unix
+ドメインソケットのパス名を指定します。
+
+{port} パラメータ {port} は AF_INET ソケット あるいは AF_INET6
+に接続する場合にのみ必須となり、
+接続するリモートホストのポートを指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 エラーコードは、 |socket_last_error|
+により取得できます。 このコードを |socket_strerror|
+に渡すことにより、
+エラー内容を表すテキストを得ることができます。
+
+ソケットが非ブロッキングモードの場合、この関数は FALSE
+を返し、エラー Operation now in progress を発生させます。
+
+|socket_bind| |socket_listen| |socket_create| |socket_last_error|
+|socket_strerror|
+
+vim:ft=help:

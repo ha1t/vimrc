@@ -1,0 +1,15 @@
+rar_open -- Rar アーカイブをオープンする
+
+  resource rar_open(string filename [, string password])~
+
+指定した Rar アーカイブをオープンし、Rar
+ファイルリソースを返します。
+
+{filename} Rar アーカイブへのパス。
+
+{password} 必要に応じて、プレーンテキストのパスワード。
+
+|rar_open| は成功した場合に Rar ファイルリソース、
+エラー時には FALSE を返します。
+
+vim:ft=help:

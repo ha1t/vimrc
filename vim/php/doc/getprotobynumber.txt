@@ -1,0 +1,15 @@
+getprotobynumber --
+プロトコル番号が指すプロトコル名を取得する
+
+  string getprotobynumber(int number)~
+
+|getprotobynumber| は、 /etc/protocols に基づき プロトコル番号
+{number} が指すプロトコル名を返します。
+
+{number} プロトコル番号。
+
+プロトコル名を文字列で返します。
+
+|getprotobyname|
+
+vim:ft=help:

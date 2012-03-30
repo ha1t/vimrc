@@ -1,0 +1,70 @@
+readline_callback_handler_install -- readline
+コールバックインターフェースと端末を初期化し、
+プロンプトを表示して結果をすぐに返す
+
+  bool readline_callback_handler_install(string prompt, callback callback)~
+
+readline
+コールバックインターフェースを設定し、プロンプト
+{prompt} を表示して入力を受け取ります。
+コールバック関数 {callback} はひとつのパラメータを
+とり、そこにはユーザの入力内容が格納されます。一度登録したコールバック
+インターフェースを削除せずもういちどこの関数をコールした場合、もとの
+インターフェースは自動的に上書きされます。
+
+コールバック機能は |stream_select| と組み合わせると
+有用です。これは |readline| とは異なり、 IO
+とユーザの入力を交互に取り扱います。
+
+{prompt} 確認メッセージ。
+
+{callback} {callback} 関数が受け取るパラメータはひとつで、
+ユーザから返された入力です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+Readline コールバックインターフェースの例
+
+<?php >
+  function rl_callback($ret)
+  {
+      global $c, $prompting;
+  
+      echo "You entered: $ret\n";
+      $c++;
+  
+      if ($c > 10) {
+          $prompting = false;
+          readline_callback_handler_remove();
+      } else {
+          readline_callback_handler_install("[$c] Enter something: ", 'rl_callback');
+      }
+  }
+  
+  $c = 1;
+  $prompting = true;
+  
+  readline_callback_handler_install("[$c] Enter something: ", 'rl_callback');
+  
+  while ($prompting) {
+      $w = NULL;
+      $e = NULL;
+      $n = stream_select($r = array(STDIN), $w, $e, null);
+      if ($n &amp;& in_array(STDIN, $r)) {
+          // read a character, will call the callback when a newline is entered
+          readline_callback_read_char();
+      }
+  }
+  
+  echo "Prompting disabled. All done.\n";
+?>
+
+
+
+
+
+|readline_callback_handler_remove| |readline_callback_read_char|
+|stream_select|
+
+vim:ft=help:

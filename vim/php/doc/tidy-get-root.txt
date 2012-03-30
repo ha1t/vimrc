@@ -1,0 +1,57 @@
+tidy_get_root -- Tidy パースツリーのルートを表す tidyNode
+を返す
+
+手続き型:
+
+  tidyNode tidy_get_root(tidy object)~
+
+オブジェクト指向型:
+
+  tidyNode tidy->root(tidy object)~
+
+Tidy パースツリーのルートを表す tidyNode を返します。
+
+ノードをダンプする
+
+<?php >
+  $html = <<< HTML
+  <html><body>
+  
+  <p>paragraph</p>
+  <br/>
+  
+  </body></html>
+  HTML;
+  
+  $tidy = tidy_parse_string($html);
+  dump_nodes($tidy->root(), 1);
+  
+  
+  function dump_nodes($node, $indent) {
+  
+      if($node->hasChildren()) {
+          foreach($node->child as $child) {
+              echo str_repeat('.', $indent*2) . ($child->name ? $child->name : '"'.$child->value.'"'). "\n";
+  
+              dump_nodes($child, $indent+1);
+          }
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  ..html
+  ....head
+  ......title
+  ....body
+  ......p
+  ........"paragraph"
+  ......br
+
+
+
+この関数は、Zend Engine 2、つまり、PHP >=
+5.0.0でのみ利用可能です。
+
+vim:ft=help:

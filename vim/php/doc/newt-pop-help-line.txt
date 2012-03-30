@@ -1,0 +1,16 @@
+newt_pop_help_line --
+現在のヘルプ行をスタックの内容で置き換える
+
+  void newt_pop_help_line()~
+
+現在のヘルプ行を、スタックの内容で置き換えます。
+
+|newt_push_help_line| をコールした回数をこえて
+|newt_pop_help_line| をコールしないようにすることが
+重要です。
+
+値を返しません。
+
+|newt_push_help_line|
+
+vim:ft=help:

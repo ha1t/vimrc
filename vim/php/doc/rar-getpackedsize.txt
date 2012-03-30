@@ -1,0 +1,23 @@
+Rar::getPackedSize -- 圧縮後のエントリのサイズを取得する
+
+  int getPackedSize()~
+
+圧縮後のアーカイブエントリのサイズを取得します。
+
+圧縮後のサイズ、あるいはエラー時に FALSE を返します。
+
+|Rar::getPackedSize| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entry = rar_entry_get($rar_file, 'Dir/file.txt') or die("そのようなエントリは見つかりません");
+  
+  echo "圧縮後の " . $entry->getName() . " のサイズ = " . $entry->getPackedSize() . " バイト";
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+mcrypt_generic_deinit -- 暗号化モジュールを終了する
+
+  bool mcrypt_generic_deinit(resource td)~
+
+この関数は、暗号化記述子({td})で指定した
+暗号化を終了します。すべてのバッファを消去しますが、モジュールは
+閉じません。|mcrypt_module_close| をコールする
+必要があります(しかし、スクリプトの終了時に PHP
+が自動でこれを 行います)。エラー時に FALSE、成功時に
+TRUE を返します。
+
+|mcrypt_module_open| の例、および |mcrypt_generic_init|
+も参照ください。
+
+vim:ft=help:

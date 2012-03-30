@@ -1,0 +1,24 @@
+crack_check --
+指定したパスワードに関して強度チェックを行う
+
+  bool crack_check(resource dictionary, string password)~
+
+  bool crack_check(resource dictionary, string password, string password)~
+
+指定した辞書を用いて指定したパスワードの強度チェックを行います。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{dictionary}
+crackライブラリの辞書。指定しない場合は、直近にオープンされた辞書が
+使用されます。
+
+{password} チェックされるパスワード
+
+{password} が強い場合に、 TRUE、それ以外の場合に FALSE
+を返します。
+
+vim:ft=help:

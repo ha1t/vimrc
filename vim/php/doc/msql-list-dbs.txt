@@ -1,0 +1,20 @@
+msql_list_dbs -- サーバー上の mSQL
+データベースのリストを返す
+
+  resource msql_list_dbs([resource link_identifier])~
+
+|msql_list_dbs| は、指定した {link_identifier}
+上で使用可能なデータベースの 一覧を返します。
+
+{ link_identifier}mSQL 接続。 指定されない場合、|msql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、この関数は、
+|msql_connect|をコールした時と同様にリンクを確立し、使用します。
+
+結果セットを返します。これは |msql_fetch_array|
+のような結果セットを読み込む関数によって処理が可能です。失敗した場合は、
+この関数は FALSE を返します。
+
+|msql_list_tables| |msql_list_fields|
+
+vim:ft=help:

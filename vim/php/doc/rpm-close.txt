@@ -1,0 +1,27 @@
+rpm_close -- RPM ファイルを閉じる
+
+  bool rpm_close(resource rpmr)~
+
+|rpm_close| は RPM ファイルポインタを閉じます。
+
+{rpmr} |rpm_open| でオープンしたファイルポインタリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|rpm_close| の例
+
+<?php >
+  $file = "/path/to/file.rpm";
+  $rpmr = rpm_open($file);
+  
+  rpm_close($rpmr);
+?>
+
+
+
+
+
+|rpm_open|
+
+vim:ft=help:

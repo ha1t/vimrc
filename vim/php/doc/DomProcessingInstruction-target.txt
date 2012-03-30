@@ -1,0 +1,12 @@
+DomProcessingInstruction->target -- PI ノードのターゲットを返す
+
+  string target()~
+
+このメソッドは PI ノードのターゲットを取得します。
+
+PI ノードのターゲットを返します。
+
+DOMProcessingInstruction の target
+プロパティを使用してください。
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+openssl_csr_get_subject -- CERT の subject を返す
+
+  array openssl_csr_get_subject(mixed csr [, bool use_shortnames])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

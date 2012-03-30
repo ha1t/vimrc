@@ -1,0 +1,13 @@
+newt_redraw_help_line --
+
+  void newt_redraw_help_line()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+値を返しません。
+
+vim:ft=help:

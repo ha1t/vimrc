@@ -1,0 +1,27 @@
+mailparse_determine_best_xfer_encoding --
+最も適したエンコーディングを取得する
+
+  string mailparse_determine_best_xfer_encoding(resource fp)~
+
+ファイルポインタから内容を読み込む際に最も適したエンコーディングを調べます。
+
+{fp}
+有効なファイルポインタ。これはシーク可能である必要があります。
+
+mbstring
+モジュールがサポートする文字エンコーディングのいずれかを返します。
+
+|mailparse_determine_best_xfer_encoding| の例
+
+<?php >
+  $fp = fopen('somemail.eml', 'r');
+  echo 'Best encoding: ' . mailparse_determine_best_xfer_encoding($fp);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Best encoding: 7bit
+
+
+
+vim:ft=help:

@@ -1,0 +1,33 @@
+svn_auth_set_parameter -- 認証パラメータを設定する
+
+  void svn_auth_set_parameter(string key, string value)~
+
+認証パラメータ {key} の値を {value} に設定します。
+使用できるキーとその意味については 認証定数の一覧
+を参照ください。
+
+{key} キーの名前。認証に関する定数
+のいずれかを指定します。
+
+{value} そのパラメータに指定する値。
+値の書式は、パラメータによって異なります。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+デフォルトの認証の例 この例は、SVN
+のデフォルトのユーザ名を
+'Bob'、デフォルトのパスワードを 'abc123' に設定します。
+
+<?php >
+  svn_auth_set_parameter(SVN_AUTH_PARAM_DEFAULT_USERNAME, 'Bob');
+  svn_auth_set_parameter(SVN_AUTH_PARAM_DEFAULT_PASSWORD, 'abc123');
+?>
+
+
+
+|svn_auth_get_parameter| 認証定数
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+OCI-Lob->writeTemporary --
+一時的なラージオブジェクトを書き込む
+
+  bool writeTemporary(string data [, int lob_type])~
+
+一時的なラージオブジェクトを生成し、 {data}
+を書き込みます。
+
+オブジェクトの使用後、 を使用するべきです。
+
+{data} 書き込むデータ。
+
+{lob_type} 以下のいずれかです。 OCI_TEMP_BLOB は一時的な BLOB
+を生成するために使用します OCI_TEMP_CLOB (デフォルト値)
+は一時的な CLOB を生成するために使用します
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

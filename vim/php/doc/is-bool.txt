@@ -1,0 +1,35 @@
+is_bool -- 変数が boolean であるかを調べる
+
+  bool is_bool(mixed var)~
+
+指定した変数が boolean であるかどうかを調べます。
+
+{var} 評価する変数。
+
+{var} が boolean である場合に TRUE 、それ以外の場合に FALSE
+を返します。
+
+|is_bool| の例
+
+<?php >
+  $a = false;
+  $b = 0;
+  
+  // $a は boolean なので、これは true です
+  if (is_bool($a)) {
+      echo "Yes, this is a boolean";
+  }
+  
+  // $b は boolean ではないので、これは true ではありません
+  if (is_bool($b)) {
+      echo "Yes, this is a boolean";
+  }
+?>
+
+
+
+
+
+|is_float| |is_int| |is_string| |is_object| |is_array|
+
+vim:ft=help:

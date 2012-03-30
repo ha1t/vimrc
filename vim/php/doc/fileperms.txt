@@ -1,0 +1,96 @@
+fileperms -- ファイルのパーミッションを取得する
+
+  int fileperms(string filename)~
+
+指定したファイルのパーミッションを取得します。
+
+{filename} ファイルへのパス。
+
+ファイルのパーミッション、あるいはエラー時に FALSE
+を返します。
+
+八進形式でのパーミッションの表示
+
+<?php >
+  echo substr(sprintf('%o', fileperms('/tmp')), -4);
+  echo substr(sprintf('%o', fileperms('/etc/passwd')), -4);
+?>
+
+上の例の出力は以下となります。
+
+  1777
+  0644
+
+完全なパーミッションの表示
+
+<?php >
+  $perms = fileperms('/etc/passwd');
+  
+  if (($perms &amp; 0xC000) == 0xC000) {
+      // ソケット
+      $info = 's';
+  } elseif (($perms &amp; 0xA000) == 0xA000) {
+      // シンボリックリンク
+      $info = 'l';
+  } elseif (($perms &amp; 0x8000) == 0x8000) {
+      // 通常のファイル
+      $info = '-';
+  } elseif (($perms &amp; 0x6000) == 0x6000) {
+      // ブロックスペシャルファイル
+      $info = 'b';
+  } elseif (($perms &amp; 0x4000) == 0x4000) {
+      // ディレクトリ
+      $info = 'd';
+  } elseif (($perms &amp; 0x2000) == 0x2000) {
+      // キャラクタスペシャルファイル
+      $info = 'c';
+  } elseif (($perms &amp; 0x1000) == 0x1000) {
+      // FIFO パイプ
+      $info = 'p';
+  } else {
+      // 不明
+      $info = 'u';
+  }
+  
+  // 所有者
+  $info .= (($perms &amp; 0x0100) ? 'r' : '-');
+  $info .= (($perms &amp; 0x0080) ? 'w' : '-');
+  $info .= (($perms &amp; 0x0040) ?
+              (($perms & 0x0800) ? 's' : 'x' ) :
+              (($perms & 0x0800) ? 'S' : '-'));
+  
+  // グループ
+  $info .= (($perms &amp; 0x0020) ? 'r' : '-');
+  $info .= (($perms &amp; 0x0010) ? 'w' : '-');
+  $info .= (($perms &amp; 0x0008) ?
+              (($perms & 0x0400) ? 's' : 'x' ) :
+              (($perms & 0x0400) ? 'S' : '-'));
+  
+  // 全体
+  $info .= (($perms &amp; 0x0004) ? 'r' : '-');
+  $info .= (($perms &amp; 0x0002) ? 'w' : '-');
+  $info .= (($perms &amp; 0x0001) ?
+              (($perms & 0x0200) ? 't' : 'x' ) :
+              (($perms & 0x0200) ? 'T' : '-'));
+  
+  echo $info;
+?>
+
+上の例の出力は以下となります。
+
+  -rw-r--r--
+
+
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|is_readable| |stat|
+
+vim:ft=help:

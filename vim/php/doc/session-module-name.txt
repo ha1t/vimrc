@@ -1,0 +1,14 @@
+session_module_name --
+現在のセッションモジュールを取得または設定する
+
+  string session_module_name([string module])~
+
+|session_module_name|は、
+現在のセッションモジュールの名前を返します。
+
+{module} {module} が指定された場合、
+そのモジュールを代わりに使用します。
+
+現在のセッションモジュールの名前を返します。
+
+vim:ft=help:

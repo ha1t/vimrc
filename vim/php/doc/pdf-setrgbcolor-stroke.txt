@@ -1,0 +1,13 @@
+PDF_setrgbcolor_stroke -- 描画 RGB 色を設定する [古い関数]
+
+  bool PDF_setrgbcolor_stroke(resource p, float red, float green, float blue)~
+
+現在の輪郭色を指定した RGB
+値に設定します。成功した場合に TRUE を、失敗した場合に
+FALSE を返します。
+
+この関数は PDFlib バージョン 4
+で廃止されました。かわりに |PDF_setcolor|
+を使用してください。
+
+vim:ft=help:

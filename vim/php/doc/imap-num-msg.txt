@@ -1,0 +1,14 @@
+imap_num_msg --
+現在のメールボックスのメッセージ数を取得する
+
+  int imap_num_msg(resource imap_stream)~
+
+現在のメールボックスにあるメッセージ数を返します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+現在のメールボックスのメッセージ数を返します。
+
+|imap_num_recent| |imap_status|
+
+vim:ft=help:

@@ -1,0 +1,52 @@
+pg_insert -- テーブルに配列を挿入する
+
+  mixed pg_insert(resource connection, string table_name, array assoc_array [, int options])~
+
+|pg_insert| は、 table_name で指定したテーブルに assoc_array
+の値をを挿入します。 {options}
+が指定されている場合、そのオプションと ともに
+|pg_convert| が assoc_array に適用されます。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{table_name} 行を挿入するテーブルの名前。テーブル
+{table_name} は、少なくとも {assoc_array}
+の要素数ぶんのカラムを 保持している必要があります。
+
+{assoc_array} テーブル {table_name} のフィールド名をキーに、
+挿入する内容を値にもつ配列。
+
+{options} PGSQL_CONV_OPTS、 PGSQL_DML_NO_CONV、 PGSQL_DML_EXEC、
+PGSQL_DML_ASYNC あるいは PGSQL_DML_STRING を組み合わせた数。
+PGSQL_DML_STRING が {options} に含まれていた場合、
+クエリ文字列が返されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 {options} で PGSQL_DML_STRING
+が渡された場合は文字列を返します。
+
+|pg_insert| の例
+
+<?php >
+    $dbconn = pg_connect('dbname=foo');
+    // これは安全です。なぜなら $_POST は自動的に変換されるからです。
+    $res = pg_insert($dbconn, 'post_log', $_POST);
+    if ($res) {
+        echo "POST data is successfully logged\n";
+    } else {
+        echo "User must have sent wrong inputs\n";
+    }
+?>
+
+
+
+
+
+|pg_convert|
+
+vim:ft=help:

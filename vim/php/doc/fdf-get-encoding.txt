@@ -1,0 +1,16 @@
+fdf_get_encoding -- /Encoding キーの値を取得する
+
+  string fdf_get_encoding(resource fdf_document)~
+
+/Encoding キーの値を取得します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+エンコーディングを文字列で返します。 デフォルトの
+PDFDocEncoding/Unicode
+スキームを使用している場合は空の文字列を返します。
+
+|fdf_set_encoding|
+
+vim:ft=help:

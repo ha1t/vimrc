@@ -1,0 +1,19 @@
+mcal_date_compare -- 二つの日付を比較する
+
+  int mcal_date_compare(int a_year, int a_month, int a_day, int b_year, int b_month, int b_day)~
+
+二つの日付を比較します。
+
+{a_year} 最初の日付の年。
+
+{a_month} 最初の日付の月。
+
+{a_day} 最初の日付の日。
+
+{b_year} 2 番目の日付の年。
+
+{b_month} 2 番目の日付の月。
+
+{b_day} 2 番目の日付の日。
+
+vim:ft=help:

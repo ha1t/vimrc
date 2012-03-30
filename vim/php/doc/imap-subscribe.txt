@@ -1,0 +1,17 @@
+imap_subscribe -- メールボックスを購読する
+
+  bool imap_subscribe(resource imap_stream, string mailbox)~
+
+新規メールボックスを購読します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_unsubscribe|
+
+vim:ft=help:

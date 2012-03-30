@@ -1,0 +1,13 @@
+PDF_setrgbcolor_fill -- 塗りつぶし RGB 色の値を設定する
+
+  bool PDF_setrgbcolor_fill(resource p, float red, float green, float blue)~
+
+現在の塗りつぶし色を指定した RGB
+値に設定します。成功した場合に TRUE を、失敗した場合に
+FALSE を返します。
+
+この関数は PDFlib バージョン 4
+で廃止されました。かわりに |PDF_setcolor|
+を使用してください。
+
+vim:ft=help:

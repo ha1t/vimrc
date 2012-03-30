@@ -1,0 +1,31 @@
+imagecolorclosestalpha --
+指定した色+アルファ値に最も近い色のインデックスを取得する
+
+  int imagecolorclosestalpha(resource image, int red, int green, int blue, int alpha)~
+
+指定した RGB 値と {alpha} レベルに
+「近い」画像パレット中の色のインデックスを返します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{red} 赤コンポーネントの値。
+
+{green} 緑コンポーネントの値。
+
+{blue} 青コンポーネントの値。
+
+{alpha} 0 から 127 までの値。 0 は完全に不透明な状態。 127
+は完全に透明な状態を表します。
+
+色のパラメータは、0 から 255 までの整数値か 0x00 から 0xFF
+までの十六進値を指定します。
+
+画像パレット内で、指定した色にいちばん近い色のインデックスを返します。
+
+この関数は、GD 2.0.1 以降を必要とします (2.0.28
+以降を推奨します)。
+
+|imagecolorexactalpha|
+
+vim:ft=help:

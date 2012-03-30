@@ -1,0 +1,17 @@
+xdiff_string_patch_binary -- 文字列にバイナリ diff
+形式のパッチを適用する
+
+  string xdiff_string_patch_binary(string str, string patch)~
+
+文字列に、バイナリ形式のパッチ {patch} を適用します。
+
+{str} 元のバイナリ文字列。
+
+{patch} バイナリパッチ文字列。
+
+パッチ適用後の文字列、あるいはエラー時に FALSE
+を返します。
+
+|xdiff_file_patch_binary|
+
+vim:ft=help:

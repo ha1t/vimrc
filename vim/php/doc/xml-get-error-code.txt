@@ -1,0 +1,16 @@
+xml_get_error_code -- XML パーサのエラーコードを得る
+
+  int xml_get_error_code(resource parser)~
+
+XML パーサのエラーコードを取得します。
+
+{parser} エラーコードを得る XML パーサへのリファレンス。
+
+この関数は、{parser} が有効なパーサを参照していない
+場合に FALSE を返します。その他の場合、
+エラーコードセクション に
+一覧が示されたエラーコードを返します。
+
+|xml_error_string|
+
+vim:ft=help:

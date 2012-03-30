@@ -1,0 +1,51 @@
+pcntl_wait --
+待つかフォークした子プロセスのステータスを返す
+
+  int pcntl_wait(int status [, int options])~
+
+この関数は、子プロセスが終了する・
+カレントのプロセスを終了させるシグナルが送信される・シグナル処理関数を
+コールするシグナルが送信される
+のいずれかが発生するまでカレントのプロセスの実行を中断します。
+子プロセスが、 コール時に
+既に終了している場合("ゾンビ"プロセスと呼ばれます)、この関数は
+直ちに処理を返します。子プロセスにより使用される全てのシステム
+リソースは、解放されます。waitpid
+のシステムでの動作に関する詳細は、 システムの wait(2)
+についての man ページを参照ください。
+
+この関数は、{pid} に -1 を指定し、{options}
+を何も設定せずに |pcntl_waitpid|
+をコールするのと等価です。
+
+{status} |pcntl_wait| は、パラメータ {status}
+の中にステータス情報を保存します。
+このステータスは、次の関数を用いて評価可能です。
+|pcntl_wifexited|、 |pcntl_wifstopped|、 |pcntl_wifsignaled|、
+|pcntl_wexitstatus|、 |pcntl_wtermsig| および |pcntl_wstopsig| 。
+
+{options} システム上で wait3 が使用可能な場合 (ほとんどの
+BSD 系システムが 該当します)、オプションのパラメータ
+{options}
+を使用可能です。このパラメータが指定されない場合、wait
+はシステムコールに 対して使用されます。wait3
+が使用できない場合、{options }
+に値を設定しても何の影響も及ぼしません。 {options}
+の値は、次の 2 つのグローバル定数の
+ゼロまたはそれ以上の論理和です。 {options} のとりうる値
+WNOHANG
+子プロセスが終了していない場合に直ちに処理を返します。
+WUNTRACED 停止した子プロセスの場合に処理を返します。
+そして、ステータスは報告されません。
+
+|pcntl_wait| は、終了した子プロセスの プロセス ID
+を返します。エラーの場合は -1、(wait3
+が使用可能なシステムで) WNOHANG
+が使用され、子プロセスが利用できない場合に 0
+を返します。
+
+|pcntl_fork| |pcntl_signal| |pcntl_wifexited| |pcntl_wifstopped|
+|pcntl_wifsignaled| |pcntl_wexitstatus| |pcntl_wtermsig| |pcntl_wstopsig|
+|pcntl_waitpid|
+
+vim:ft=help:

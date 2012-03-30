@@ -1,0 +1,18 @@
+swf_definefont -- フォントを定義する
+
+  void swf_definefont(int fontid, string fontname)~
+
+関数 |swf_definefont| は、パラメータ {fontname}
+で指定したフォントを定義し、パラメータ {fontid}
+で指定した ID に設定します。この関数は、{fontname}
+で指定したフォントを 現在のフォントに設定します。
+
+{fontid} フォントに指定する ID。
+
+{fontname} 現在のフォントとして設定するフォント。
+
+値を返しません。
+
+|swf_definetext|
+
+vim:ft=help:

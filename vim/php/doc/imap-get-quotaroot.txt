@@ -1,0 +1,58 @@
+imap_get_quotaroot -- ユーザ単位のクォータ設定を取得する
+
+  array imap_get_quotaroot(resource imap_stream, string quota_root)~
+
+ユーザ単位のクォータ設定を取得します。 limit
+の値は、このユーザがメールボックスで使用可能な総容量を表します。
+usage
+の値は、ユーザが現在メールボックスで使用している容量を表します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{quota_root} {quota_root} はどのメールボックスを調べるかを
+指定します（例: INBOX）。
+
+指定したユーザのメールボックスに関連する整数値を配列で返します。
+すべての値にはリソース名に基づいたキーがつけられており、
+usage および limit
+値を保持する配列が関連付けられています。
+
+コールが失敗した場合、およびサーバからの応答内容をパースできなかった場合には
+この関数は FALSE を返します。
+
+|imap_get_quotaroot| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org}", "kalowsky", "password", OP_HALFOPEN)
+        or die("接続できません: " . imap_last_error());
+  
+  $quota = imap_get_quotaroot($mbox, "INBOX");
+  if (is_array($quota)) {
+     $storage = $quota_values['STORAGE'];
+     echo "STORAGE usage level is: " .  $storage['usage'];
+     echo "STORAGE limit level is: " .  $storage['limit'];
+  
+     $message = $quota_values['MESSAGE'];
+     echo "MESSAGE usage level is: " .  $message['usage'];
+     echo "MESSAGE limit level is: " .  $message['limit'];
+  
+     /* ...  */
+  
+  }
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+この関数は、現在は c-client2000
+以降のライブラリを使用しているユーザのみ利用可能です。
+
+{imap_stream} は、
+調べたいメールボックスを所有するユーザがオープンしなければなりません。
+
+|imap_open| |imap_set_quota| |imap_get_quota|
+
+vim:ft=help:

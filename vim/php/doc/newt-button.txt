@@ -1,0 +1,32 @@
+newt_button -- 新しいボタンを作成する
+
+  resource newt_button(int left, int top, string text)~
+
+新しいボタンを作成します。
+
+{left} ボタンの X 座標。
+
+{top} ボタンの Y 座標。
+
+{text} ボタンに表示するテキスト。
+
+作成したボタンコンポーネントへのリソースリンク、あるいはエラー時に
+FALSE を返します。
+
+|newt_button| の例
+
+<?php >
+  $form = newt_form();
+  
+  $ok_button = newt_button(5, 12, "Run Tool");
+      
+  newt_form_add_component($form, $ok_button);
+?>
+
+
+
+
+
+|newt_button_bar|
+
+vim:ft=help:

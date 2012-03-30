@@ -1,0 +1,117 @@
+sesam_fetch_array -- 連想配列としてレコードを 1 件取得する
+
+  array sesam_fetch_array(string result_id [, int whence [, int offset]])~
+
+|sesam_fetch_array| は、 |sesam_fetch_row|
+の連想配列版です。データを
+結果配列の数値添字に保存する代わりに、データをフィールド名を
+キーとして連想配列に保存します。
+
+|sesam_fetch_array| は、 指定した結果 ID が指す結果から 1
+件分のレコードを取得します。
+レコードは、連想配列として返されます。各結果カラムは、そのカラム
+(またはフィールド)
+名に等しい連想配列の要素に保存されます。カラム名は、
+小文字に変換されます。
+
+フィールド名がないカラム (例えば、数値演算の結果)
+および空の
+フィールドは、配列に保存されません。また、同じカラム名にが
+2
+つ以上ある場合、最後のカラムが優先されます。この場合、
+|sesam_fetch_row| をコールするかそのカラムへの
+エイリアスを作成してください。
+
+  SELECT TBL1.COL AS FOO, TBL2.COL AS BAR FROM TBL1, TBL2
+
+特別な処理により "複数フィールド" カラム
+(もしくは同じカラム名を 有するカラム)
+を取得することが可能になります。"複数フィールド" の
+各カラムに関して、添字名は、文字列 "(n)"
+を付加することにより 構築されます。ただし、n
+は複数フィールドのカラムの副添字であり、 1
+から宣言済みの反復数までの範囲となります。クエリ構文で使用される
+表記に一致させるために添字はゼロを基準にしていません。
+次のように宣言されているあるカラムの場合、
+
+  CREATE TABLE ... ( ... MULTI(3) INT )
+
+個々の "複数フィールド"
+カラムに関して連想添字は、それぞれ "multi(1)","multi(2)",
+"multi(3)" になります。
+
+|sesam_fetch_array| を続けてコールした場合、 結果集合の次の
+(スクロール属性に応じて前または n 番目の前/後)
+レコードまたはレコードがもうない場合に FALSE
+を返します。
+
+{result_id} |sesam_query| が返す結果 ID。
+
+{whence} {whence} は "スクロール型" カーソルで
+取得処理を行うためのオプションパラメータで、次のような定義済みの
+定数を設定することが可能です。 {"whence"}
+パラメータで有効な値 値 定数 意味 0 SESAM_SEEK_NEXT
+連続的に読み込む (取得後、内部デフォルト値は
+SESAM_SEEK_NEXT に設定されます)。 1 SESAM_SEEK_PRIOR
+連続的に後向きに読み込む (取得後、内部デフォルト値は
+SESAM_SEEK_PRIOR に設定されます)。 2 SESAM_SEEK_FIRST
+最初のレコードに移動する (取得後、デフォルト値は
+SESAM_SEEK_NEXT に設定されます)。 3 SESAM_SEEK_LAST
+最後のレコードに移動する (取得後、デフォルト値は
+SESAM_SEEK_PRIOR に設定されます)。 4 SESAM_SEEK_ABSOLUTE {offset} (0
+が先頭。取得後、内部 デフォルト値は SESAM_SEEK_ABSOLUTE
+に設定されます。内部のオフセット値は、自動的に増加します)
+で指定した絶対レコード番号に移動します。 5
+SESAM_SEEK_RELATIVE
+カレントのスクロール位置に対して相対位置に移動します。ただし、
+{offset} は正または負の値を指定可能です。
+このパラメータは、"スクロール型"
+カーソルでのみ有効です。
+
+"スクロール型"
+カーソルを使用している場合、カーソルは結果集合を
+自由に移動可能です。{whence} パラメータが
+省略された場合、スクロールの型には、グローバルなデフォルト値
+(SESAM_SEEK_NEXT に初期化されており、 |sesam_seek_row|
+で設定可能です) が使用されます。 {whence}
+が指定された場合、その値は
+グローバルデフォルト値に置換されます。
+
+{offset} {offset} は、オプションのパラメータであり、 {whence}
+が SESAM_SEEK_RELATIVE または SESAM_SEEK_ABSOLUTE
+のどちらかである場合にのみ 評価されます
+(そして必要とされます)。このパラメータは、
+"スクロール型" カーソルでのみ有効です。
+
+取得したレコードに対応する配列またはレコードがもうない場合には
+FALSE を返します。
+
+SESAM 配列の取得
+
+<?php >
+  $result = sesam_query("SELECT * FROM phone\n" .
+                         "  WHERE LASTNAME='" . strtoupper($name) . "'\n".
+                         "  ORDER BY FIRSTNAME", 1);
+  if (!$result) {
+      /* ... エラー ... */
+  }
+  // テーブルの表示
+  echo "<table border=\"1\">\n";
+  while (($row = sesam_fetch_array($result)) &amp;& count($row) > 0) {
+      echo "<tr>\n";
+      echo "<td>" . htmlspecialchars($row["firstname"]) . "</td>\n";
+      echo "<td>" . htmlspecialchars($row["lastname"]) . "</td>\n";
+      echo "<td>" . htmlspecialchars($row["phoneno"]) . "</td>\n";
+      echo "</tr>\n";
+  }
+  echo "</table>\n";
+  sesam_free_result($result);
+?>
+
+
+
+
+
+|sesam_fetch_row|
+
+vim:ft=help:

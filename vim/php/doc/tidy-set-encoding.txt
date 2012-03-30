@@ -1,0 +1,19 @@
+tidy_set_encoding --
+マークアップをパースする際の入力／出力エンコーディングを設定する
+
+  bool tidy_set_encoding(string encoding)~
+
+入力／出力ドキュメントのエンコーディングを設定します。
+
+{encoding} {encoding}に使用可能な値は、 ascii, latin0, latin1, raw,
+utf8, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5 および
+shiftjis です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、Tidy 1.0 でのみ利用可能です。
+この関数は、Tidy 2.0
+では古い関数として削除されているためです。
+
+vim:ft=help:

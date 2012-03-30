@@ -1,0 +1,52 @@
+highlight_string -- 文字列の構文ハイライト表示
+
+  mixed highlight_string(string str [, bool return])~
+
+PHP 組込みの
+構文ハイライタで定義されたカラーを使用して {str}
+を構文ハイライト表示したものを出力あるいは返します。
+
+{str} ハイライト表示する PHP
+コード。開始タグを含む必要があります。
+
+{return} このパラメータを TRUE
+にすると、この関数はハイライトされたコードを返します。
+
+{return} が TRUE の場合は、
+ハイライトされたコードを文字列として返し、表示しません。
+それ以外の場合は、成功した場合に TRUE、 失敗した場合に
+FALSE を返します。
+
+バージョン 説明 4.2.0 パラメータ {return}
+が追加されました。
+
+|highlight_string| の例
+
+<?php >
+  highlight_string('<?php phpinfo(); ?>');
+?>
+
+上の例の出力は（PHP 4 では）以下のようになります。
+
+  <code><font color="#000000">
+  <font color="#0000BB"><?php phpinfo</font><font color="#007700">(); </font><font color="#0000BB">?></font>
+  </font>
+  </code>
+
+上の例の出力は（PHP 5 では）以下のようになります。
+
+  <code><span style="color: #000000">
+  <span style="color: #0000BB"><?php phpinfo</span><span style="color: #007700">(); </span><span style="color: #0000BB">?></span>
+  </span>
+  </code>
+
+
+
+この関数は、
+このパラメータに対して内部的に出力バッファリングを使用しています。
+そのため、|ob_start|
+コールバック関数の中で使用することはできません。
+
+|highlight_file|
+
+vim:ft=help:

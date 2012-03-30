@@ -1,0 +1,6 @@
+maxdb_escape_string -- maxdb_real_escape_string のエイリアス
+
+この関数は次の関数のエイリアスです。
+|maxdb_real_escape_string|.
+
+vim:ft=help:

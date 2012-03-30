@@ -1,0 +1,34 @@
+getmxrr -- 指定したインターネットホスト名に対応する MX
+レコードを取得する
+
+  bool getmxrr(string hostname, array mxhosts [, array weight])~
+
+{hostname} に対応する MX レコードを DNS から探します。
+
+{hostname} インターネットホスト名。
+
+{mxhosts} 見つかった MX レコードのリストが、配列 {mxhosts}
+に格納されます。
+
+{weight} 配列 {weight} を指定すると、
+そこに重み情報が格納されます。
+
+何かレコードが見つかった場合に TRUE、
+何も見つからないかエラーが発生した場合に FALSE
+を返します。
+
+この関数をメールアドレスの確認の目的で使用すべきではありません。
+DNS
+が検出したメールエクスチェンジャーを返すだけです。
+しかし、RFC 2821 によれば、
+メールエクスチェンジャーがひとつも見つからなければ、
+{hostname} 自体が唯一のメールエクスチェンジャー
+であるとみなされ、その優先度は 0（最高）となります。
+
+この関数は Windows では実装されていません。 PEAR の Net_DNS
+クラスを試してみてください。
+
+|checkdnsrr| |dns_get_record| |gethostbyname| |gethostbynamel| |gethostbyaddr|
+named(8) のマニュアルページ
+
+vim:ft=help:

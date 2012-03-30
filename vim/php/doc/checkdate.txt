@@ -1,0 +1,35 @@
+checkdate -- グレグリオ歴の日付/時刻の妥当性を確認します
+
+  bool checkdate(int month, int day, int year)~
+
+引数で指定された日付の妥当性をチェックします。
+各パラメータが適切に指定されている場合に、妥当であると判断されます。
+
+{month} 月は 1 から 12 の間となります。
+
+{day} 日は、指定された {month}
+の日数の範囲内になります。{year}
+がうるう年の場合は、それも考慮されます。
+
+{year} 年は 1 から 32767 の間となります。
+
+指定した日付が有効な場合に TRUE、そうでない場合に FALSE
+を返します。
+
+|checkdate| の例
+
+<?php >
+  var_dump(checkdate(12, 31, 2000));
+  var_dump(checkdate(2, 29, 2001));
+?>
+
+上の例の出力は以下となります。
+
+  bool(true)
+  bool(false)
+
+
+
+|mktime| |strtotime|
+
+vim:ft=help:

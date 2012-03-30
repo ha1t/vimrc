@@ -1,0 +1,10 @@
+ncurses_reset_prog_mode -- def_prog_mode
+で保存したプログラムモードをリセットする
+
+  int ncurses_reset_prog_mode()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

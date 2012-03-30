@@ -1,0 +1,70 @@
+pg_send_prepare --
+指定したパラメータでプリペアドステートメントを作成するリクエストを
+送信し、その結果を待たない
+
+  bool pg_send_prepare(resource connection, string stmtname, string query)~
+
+指定したパラメータでプリペアドステートメントを作成するリクエストを
+送信し、その結果を待ちません。
+
+これは |pg_prepare| の非同期バージョンです。
+リクエストが受け付けられた場合に TRUE
+、そうでない場合に FALSE
+を返します。コールが成功した後、実際にプリペアドステートメントが
+作成されたかどうかを調べるには |pg_get_result|
+を使用します。関数のパラメータは |pg_prepare|
+と同じように処理されます。|pg_prepare| と同様、 7.4
+より前の PostgreSQL のバージョンでは正しく動作しません。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{stmtname}
+プリペアドステートメントにつける名前。接続内で一意である必要があります。
+""
+が指定された場合は無名ステートメントが作成され、以前に定義された
+無名ステートメントを上書きします。
+
+{query} パラメータ化した SQL
+文。ひとつの文のみである必要があります
+（複数の文をセミコロンで区切る形式は使用できません）。パラメータを
+使用する際は $1、$2 などの形式で参照されます。
+
+成功した場合に TRUE 、失敗した場合に FALSE を返します。
+クエリの結果を確かめるには |pg_get_result| を使用します。
+
+|pg_send_prepare| の使用法
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    // 実行するクエリを準備する
+    if (!pg_connection_busy($dbconn)) {
+      pg_send_prepare($dbconn, "my_query", 'SELECT * FROM shops WHERE name = $1');
+      $res1 = pg_get_result($dbconn);
+    }
+  
+    // プリペアドクエリを実行する。文字列 "Joe's Widgets" は
+    // エスケープの必要がないことに注意
+    if (!pg_connection_busy($dbconn)) {
+      pg_send_execute($dbconn, "my_query", array("Joe's Widgets"));
+      $res2 = pg_get_result($dbconn);
+    }
+    
+    // 同一プリペアドクエリを別のパラメータで実行する
+    if (!pg_connection_busy($dbconn)) {
+      pg_send_execute($dbconn, "my_query", array("Clothes Clothes Clothes"));
+      $res3 = pg_get_result($dbconn);
+    }
+?>
+
+
+
+
+
+|pg_connect| |pg_pconnect| |pg_execute| |pg_send_execute|
+|pg_send_query_params|
+
+vim:ft=help:

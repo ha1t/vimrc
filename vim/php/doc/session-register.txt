@@ -1,0 +1,12 @@
+session_register --
+現在のセッションに1つ以上の変数を登録する
+
+  bool session_register(mixed name [, mixed ...])~
+
+|session_register| の引数の数は可変であり、
+各引数は変数名を保持する文字列または変数名からなる配列
+とすることが可能です。
+各変数名が処理される毎に、|session_register|
+は、その変数名のグローバル変数を現在のセッションに登録します。
+
+vim:ft=help:

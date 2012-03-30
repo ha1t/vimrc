@@ -1,0 +1,32 @@
+shmop_read -- 共有メモリブロックからデータを読み込む
+
+  string shmop_read(int shmid, int start, int count)~
+
+|shmop_read| は共有メモリブロックから文字列を
+読み込みます。
+
+{shmid} |shmop_open| が作成した共有メモリブロックの識別子。
+
+{start} 読み込みを開始する位置。
+
+{count} 読み込むバイト数。
+
+データ、あるいは失敗した場合に FALSE を返します。
+
+共有メモリブロックを読み込む
+
+<?php >
+  $shm_data = shmop_read($shm_id, 0, 50);
+?>
+
+
+
+
+
+この例は共有メモリブロックから 50
+バイトを読み込んで、 $shm_data
+の中のデータに置くものです。
+
+|shmop_write|
+
+vim:ft=help:

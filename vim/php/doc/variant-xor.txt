@@ -1,0 +1,35 @@
+variant_xor -- 2 つの variant の排他的論理和を計算する
+
+  mixed variant_xor(mixed left, mixed right)~
+
+排他的論理和を計算します。
+
+{left} 左オペランド。
+
+{right} 右オペランド。
+
+variant
+に関するすべての計算用関数と同様、この関数のパラメータには
+PHP のネイティブ型 (整数、文字列、浮動小数点数、boolean
+あるいは NULL) あるいは COM、VARIANT、DOTNET
+クラスのインスタンスが使用できます。 PHP
+のネイティブ型は、
+クラスのコンストラクタと同じ方法で variant
+に変換されます。 COM オブジェクトおよび DOTNET
+オブジェクトはデフォルトプロパティの値を持っており、
+これを variant の値として使用します。
+
+variant に関する計算関数は、COM
+ライブラリの同名の関数のラッパーです。
+これらの関数についての詳細な情報は、MSDN
+ライブラリでご確認ください。 PHP
+での関数名は微妙に異なります。たとえば、PHP での関数
+|variant_add| に対応する関数は、MSDN のドキュメントでは
+VarAdd() となります。
+
+Variant の XOR 規則 {left} {right} 結果 TRUETRUEFALSE TRUEFALSETRUE
+FALSETRUETRUE FALSEFALSEFALSE NULLNULLNULL
+
+|variant_or| |variant_and|
+
+vim:ft=help:

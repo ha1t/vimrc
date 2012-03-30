@@ -1,0 +1,20 @@
+mb_ereg_search_getpos --
+次の正規表現検索を開始する位置を取得する
+
+  int mb_ereg_search_getpos()~
+
+次の正規表現マッチングを開始する位置を返します。
+
+この関数にはパラメータはありません。
+
+|mb_ereg_search_getpos| は、 |mb_ereg_search|, |mb_ereg_search_pos|,
+|mb_ereg_search_regs| で検索を開始する位置を返します。
+位置は、文字列の先頭からのバイト数で表した値です。
+
+内部エンコーディングあるいは |mb_regex_encoding|
+で指定した文字エンコーディングを、
+この関数の文字エンコーディングとして使用します。
+
+|mb_regex_encoding| |mb_ereg_search_setpos|
+
+vim:ft=help:

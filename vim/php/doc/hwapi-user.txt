@@ -1,0 +1,11 @@
+hw_api->user -- 自分自身のユーザオブジェクトを返す
+
+  hw_api_object user(array parameter)~
+
+自分自身のユーザオブジェクトを返します。
+
+{parameter}
+
+
+
+vim:ft=help:

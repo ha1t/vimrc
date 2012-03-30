@@ -1,0 +1,14 @@
+spl_autoload -- __autoload() のデフォルト実装
+
+  void spl_autoload(string class_name [, string file_extensions])~
+
+この関数は、__autoload()
+のデフォルト実装として使用されることを意図しています。
+ほかに何も指定されておらず、autoload_register()
+がパラメータなしでコールされた場合には、 その後の
+__autoload() のコール時にはこの関数が使用されます。
+デフォルトでは、クラス名を小文字にして .inc および .php
+を拡張子につけたファイル名のファイルが存在するかどうかを
+すべてのインクルードパスから探します。
+
+vim:ft=help:

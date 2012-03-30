@@ -1,0 +1,5 @@
+ocicancel -- oci_cancel のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_cancel|.
+
+vim:ft=help:

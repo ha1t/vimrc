@@ -1,0 +1,54 @@
+imagefilledellipse -- 塗りつぶされた楕円を描画する
+
+  bool imagefilledellipse(resource image, int cx, int cy, int width, int height, int color)~
+
+指定した {image}
+の指定した座標を中心として楕円を描画します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{cx} 中心の x 座標。
+
+{cy} 中心の y 座標。
+
+{width} 楕円の幅。
+
+{height} 楕円の高さ。
+
+{color} 塗りつぶし色。 |imagecolorallocate| で作成した色 ID
+です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imagefilledellipse| の例
+
+<?php >
+  // 空の画像を作成します
+  $image = imagecreatetruecolor(400, 300);
+  
+  // 背景色を塗ります
+  $bg = imagecolorallocate($image, 0, 0, 0);
+  
+  // 楕円の色を選択します
+  $col_ellipse = imagecolorallocate($image, 255, 255, 255);
+  
+  // 白い楕円を描画します
+  imagefilledellipse($image, 200, 150, 300, 200, $col_ellipse);
+  
+  // 画像を出力します
+  header("Content-type: image/png");
+  imagepng($image);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+この関数は、GD 2.0.1 以降を必要とします (2.0.28
+以降を推奨します)。
+
+|imageellipse| |imagefilledarc|
+
+vim:ft=help:

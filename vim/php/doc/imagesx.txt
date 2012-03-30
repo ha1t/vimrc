@@ -1,0 +1,27 @@
+imagesx -- 画像の幅を取得する
+
+  int imagesx(resource image)~
+
+指定した画像リソース {image} の幅を返します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{image} の幅、あるいはエラー時に FALSE を返します。
+
+|imagesx| の使用法
+
+<?php >
+  // 300*200 の画像を作成します
+  $img = imagecreatetruecolor(300, 200);
+  
+  echo imagesx($img); // 300
+?>
+
+
+
+
+
+|imagecreatetruecolor| |getimagesize| |imagesy|
+
+vim:ft=help:

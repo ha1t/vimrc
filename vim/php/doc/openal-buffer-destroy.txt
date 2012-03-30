@@ -1,0 +1,13 @@
+openal_buffer_destroy -- OpenAL バッファを削除する
+
+  bool openal_buffer_destroy(resource buffer)~
+
+Open AL (バッファ) リソース (事前に |openal_buffer_create|
+で作成したもの)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openal_buffer_create|
+
+vim:ft=help:

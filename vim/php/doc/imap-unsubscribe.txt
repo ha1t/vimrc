@@ -1,0 +1,17 @@
+imap_unsubscribe -- メールボックスの購読をやめる
+
+  bool imap_unsubscribe(string imap_stream, string mailbox)~
+
+指定されたメールボックス {mailbox} の購読を中止します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_subscribe|
+
+vim:ft=help:

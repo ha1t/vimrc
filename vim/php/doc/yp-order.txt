@@ -1,0 +1,27 @@
+yp_order -- マップの呼出番号を返す
+
+  int yp_order(string domain, string map)~
+
+マップの呼出番号を返します。
+
+{domain}
+
+{map}
+
+マップの呼出番号、あるいはエラー時に FALSE
+を返します。
+
+NIS 呼出番号の例
+
+<?php >
+      $number = yp_order($domain, $mapname);
+      echo "このマップの呼出番号は、" . $number;
+?>
+
+
+
+
+
+|yp_get_default_domain|
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+mcal_close -- MCAL ストリームを閉じる
+
+  bool mcal_close(int mcal_stream [, int flags])~
+
+指定した mcal ストリームを閉じます。
+
+{stream} MCAL ストリーム。
+
+{flags}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

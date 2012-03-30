@@ -1,0 +1,41 @@
+ftp_delete -- FTP サーバ上のファイルを削除する
+
+  bool ftp_delete(resource ftp_stream, string path)~
+
+|ftp_delete| は、{path} で指定したファイルを FTP
+サーバから削除します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{path} 削除するファイル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ftp_delete| の例
+
+<?php >
+  $file = 'public_html/old.txt';
+  
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // $file の削除を試みる
+  if (ftp_delete($conn_id, $file)) {
+   echo "$file deleted successful\n";
+  } else {
+   echo "could not delete $file\n";
+  }
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+vim:ft=help:

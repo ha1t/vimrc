@@ -1,0 +1,27 @@
+fam_monitor_directory -- ディレクトリの変更を監視する
+
+  resource fam_monitor_directory(resource fam, string dirname)~
+
+指定したディレクトリおよびそれに
+含まれる全てのファイルを監視するよう指示します。
+
+指定したディレクトリのステータス(すなわち、このディレクトリに関する
+|stat| の結果)またはその内容
+(すなわち、このディレクトリに関する |readdir| の結果)
+が変更される度に FAM イベントが生成されます。
+
+発生しうるイベントコードの詳細は、このセクションの
+定数 の欄にあります。
+
+{fam} |fam_open| が返す、 FAM
+サービスへの接続を表すリソース。
+
+{dirname} 監視するディレクトリへのパス。
+
+モニタリングリソース、あるいはエラー時に FALSE
+を返します。
+
+|fam_monitor_file| |fam_monitor_collection| |fam_cancel_monitor|
+|fam_suspend_monitor| |fam_resume_monitor|
+
+vim:ft=help:

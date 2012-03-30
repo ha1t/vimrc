@@ -1,0 +1,10 @@
+iis_get_script_map --
+指定した拡張子に関して仮想ディレクトリにおけるスクリプトマッピングを取得する
+
+  string iis_get_script_map(int server_instance, string virtual_path, string script_extension)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

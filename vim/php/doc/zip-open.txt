@@ -1,0 +1,16 @@
+zip_open -- Zip ファイルアーカイブをオープンする
+
+  mixed zip_open(string filename)~
+
+読み込み用に新規に Zip アーカイブをオープンします。
+
+{filename} オープンする ZIP アーカイブのファイル名。
+
+後で |zip_read| および |zip_close|
+で使用されるリソースハンドル、または、 {filename}
+が存在しない場合やその他のエラーが発生した場合は
+エラーの番号を返します。
+
+|zip_read| |zip_close|
+
+vim:ft=help:

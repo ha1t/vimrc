@@ -1,0 +1,148 @@
+stmt->execute -- プリペアドクエリを実行する
+
+手続き型
+
+  bool maxdb_stmt_execute(resource stmt)~
+
+オブジェクト指向型 (メソッド)
+
+  bool execute(resource stmt)~
+
+|maxdb_stmt_execute| 関数は、 {stmt} で表される、事前に
+|maxdb_prepare|
+で準備したクエリを実行します。実行の際には、
+すべてのパラメータマーカが適切な値に置き換えられます。
+
+UPDATE、DELETE あるいは INSERT 文の場合は、
+|maxdb_stmt_affected_rows| 関数を使用すると
+変更された行の総数が取得できます。同じく、
+結果セットを返すクエリの場合は |maxdb_fetch|
+関数を使用して結果を取得できます。
+
+|maxdb_stmt_execute| を使用する際は、
+他のクエリを実行する前に必ず |maxdb_fetch|
+でデータを取得しなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+     
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+     
+  $maxdb->query("CREATE TABLE temp.mycity LIKE hotel.city");
+   
+  /* insert 文を準備します */
+  $query = "INSERT INTO temp.mycity (zip, name, state) VALUES (?,?,?)";
+  $stmt = $maxdb->prepare($query);
+  
+  $stmt->bind_param("sss", $val1, $val2, $val3);
+  
+  $val1 = '11111';
+  $val2 = 'Georgetown';
+  $val3 = 'NY';
+     
+  /* ステートメントを実行します */
+  $stmt->execute();
+  
+  $val1 = '22222';
+  $val2 = 'Hubbatown';
+  $val3 = 'CA';
+     
+  /* ステートメントを実行します */
+  $stmt->execute();
+  
+  /* ステートメントを閉じます */
+  $stmt->close();
+  
+  /* myCity からすべての行を取得します */
+  $query = "SELECT zip, name, state FROM temp.mycity";
+  if ($result = $maxdb->query($query)) {
+     while ($row = $result->fetch_row()) {
+         printf("%s (%s,%s)\n", $row[0], $row[1], $row[2]);
+     }
+     /* 結果セットを開放します */
+     $result->close();
+  }
+  
+  /* テーブルを削除します */
+  $maxdb->query("DROP TABLE temp.mycity");
+  
+  /* 接続を閉じます */    
+  $maxdb->close(); 
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+     
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+     
+  maxdb_query($link, "CREATE TABLE temp.mycity LIKE hotel.city");
+   
+  /* insert 文を準備します */
+  $query = "INSERT INTO temp.mycity (zip, name, state) VALUES (?,?,?)";
+  $stmt = maxdb_prepare($link, $query);
+  
+  maxdb_stmt_bind_param($stmt, "sss", $val1, $val2, $val3);
+  
+  $val1 = '11111';
+  $val2 = 'Georgetown';
+  $val3 = 'NY';
+     
+  /* ステートメントを実行します */
+  maxdb_stmt_execute($stmt);
+  
+  $val1 = '22222';
+  $val2 = 'Hubbatown';
+  $val3 = 'CA';
+     
+  /* ステートメントを実行します */
+  maxdb_stmt_execute($stmt);
+  
+  /* ステートメントを閉じます */
+  maxdb_stmt_close($stmt);
+  
+  /* myCity からすべての行を取得します */
+  $query = "SELECT zip, name, state FROM temp.mycity";
+  if ($result = maxdb_query($link, $query)) {
+     while ($row = maxdb_fetch_row($result)) {
+         printf("%s (%s,%s)\n", $row[0], $row[1], $row[2]);
+     }
+     /* 結果セットを開放します */
+     maxdb_free_result($result);
+  }
+  
+  /* テーブルを削除します */
+  maxdb_query($link, "DROP TABLE temp.mycity");
+  
+  /* 接続を閉じます */    
+  maxdb_close($link); 
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  11111 (Georgetown,NY)
+  22222 (Hubbatown,CA)
+
+|maxdb_prepare| |maxdb_stmt_bind_param|
+
+vim:ft=help:

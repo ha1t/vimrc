@@ -1,0 +1,13 @@
+DomNode->first_child -- 最初の子ノードを返す
+
+  domelement DomNode->first_child()~
+
+最初の子ノードを返します。
+
+(PHP >= 4.3 のみ) 最初の子ノードが存在しない場合、NULL
+が返されます。
+
+|domnode_last_child|, |domnode_next_sibling|, |domnode_previous_sibling|
+も参照ください。
+
+vim:ft=help:

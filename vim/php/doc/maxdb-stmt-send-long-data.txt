@@ -1,0 +1,32 @@
+stmt->send_long_data -- データを複数ブロックで送信する
+
+手続き型
+
+  bool maxdb_stmt_send_long_data(resource stmt, int param_nr, string data)~
+
+オブジェクト指向型 (メソッド)
+
+  bool stmt_send_long_data(resource stmt, int param_nr, string data, int param_nr, string data)~
+
+パラメータのデータを、いくつかに分割してサーバに送信できるようにします。
+この関数は、文字データやバイナリデータをカラムに送信するために
+複数回コールすることができます。このカラムは TEXT
+型あるいは BLOB 型でなければなりません。
+
+{param_nr}
+は、データに関連付けるパラメータを指定します。
+パラメータは 0 から数え始めます。 {data}
+は、送信するデータを含む文字列です。
+
+効率を考えると、この関数は |maxdb_execute|
+をコールした後にコールすべきです。この場合、
+データはクライアント側には保存されません。このシーケンスを終える際には、
+最後に |maxdb_stmt_close_long_data|
+をコールしなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|maxdb_prepare| |maxdb_stmt_bind_param|
+
+vim:ft=help:

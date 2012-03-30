@@ -1,0 +1,9 @@
+fdf_get_opt -- フィールドのオプション配列から値を取得する
+
+  mixed fdf_get_opt(resource fdf_document, string fieldname [, int element])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

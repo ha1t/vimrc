@@ -1,0 +1,111 @@
+mysql_fetch_array --
+連想配列、添字配列、またはその両方として結果の行を取得する
+
+  array mysql_fetch_array(resource result [, int result_type])~
+
+取得した行に対応する配列を返し、内部のデータポインタを前に進めます。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{result_type}
+取得する配列の形式です。以下の定数値をとります。:
+MYSQL_ASSOC, MYSQL_NUM, そしてデフォルト値である MYSQL_BOTH
+
+取得した行をあらわす文字列の配列を返します。もし行が存在しない場合は
+FALSE を返します。返される配列の形式は、{result_type}
+がどのように指定されているかによります。MYSQL_BOTH（デフォルト）
+を利用すると、連想添字と数値添字を共に持つ配列を取得します。
+MYSQL_ASSOC を利用すると（| mysql_fetch_assoc|
+の動作と同様に）連想添字のみが取得され、 MYSQL_NUM
+を利用すると （|mysql_fetch_row|
+の動作と同様に）数値添字のみが 取得されます。
+
+結果の中で同じフィールド名のカラムが 2
+つ以上ある場合、 最後のカラムが優先されます。
+同名の他のカラムにアクセスするには、そのカラムの数値インデックスを
+使うかまたはカラムの別名を定義する必要があります。
+カラムの別名を定義した場合は、本来の列名でそのカラムにアクセスすることは
+できません。
+
+重複した列名に対して別名を定義する問い合わせ
+
+  SELECT table1.field AS foo, table2.field AS bar FROM table1, table2
+
+
+
+
+
+|mysql_fetch_array| を MYSQL_NUM とともに利用する
+
+<?php >
+  mysql_connect("localhost", "mysql_user", "mysql_password") or
+      die("Could not connect: " . mysql_error());
+  mysql_select_db("mydb");
+  
+  $result = mysql_query("SELECT id, name FROM mytable");
+  
+  while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
+      printf("ID: %s  Name: %s", $row[0], $row[1]);
+  }
+  
+  mysql_free_result($result);
+?>
+
+
+
+
+
+|mysql_fetch_array| を MYSQL_ASSOC とともに利用する
+
+<?php >
+  mysql_connect("localhost", "mysql_user", "mysql_password") or
+      die("Could not connect: " . mysql_error());
+  mysql_select_db("mydb");
+  
+  $result = mysql_query("SELECT id, name FROM mytable");
+  
+  while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+      printf("ID: %s  Name: %s", $row["id"], $row["name"]);
+  }
+  
+  mysql_free_result($result);
+?>
+
+
+
+
+
+|mysql_fetch_array| を MYSQL_BOTH とともに利用する
+
+<?php >
+  mysql_connect("localhost", "mysql_user", "mysql_password") or
+      die("Could not connect: " . mysql_error());
+  mysql_select_db("mydb");
+  
+  $result = mysql_query("SELECT id, name FROM mytable");
+  
+  while ($row = mysql_fetch_array($result, MYSQL_BOTH)) {
+      printf ("ID: %s  Name: %s", $row[0], $row["name"]);
+  }
+  
+  mysql_free_result($result);
+?>
+
+
+
+
+
+特筆すべき点として、|mysql_fetch_array| が
+著しい付加価値があるにもかかわらず、 |mysql_fetch_row|より
+それほど遅くはないということが言えます。
+
+この関数により返されるフィー ルド名は
+大文字小文字を区別 します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|mysql_fetch_row| |mysql_fetch_assoc| |mysql_data_seek| |mysql_query|
+
+vim:ft=help:

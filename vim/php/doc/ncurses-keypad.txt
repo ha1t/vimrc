@@ -1,0 +1,13 @@
+ncurses_keypad -- キーパッドを on あるいは off にする
+
+  int ncurses_keypad(resource window, bool bf)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{bf}
+
+vim:ft=help:

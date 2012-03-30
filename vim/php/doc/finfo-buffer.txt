@@ -1,0 +1,35 @@
+finfo_buffer -- 文字列バッファの情報を返す
+
+  string finfo_buffer(resource finfo, string string [, int options [, resource context]])~
+
+  string buffer(resource finfo, string string [, int options [, resource context, string string [, int options [, resource context]]]])~
+
+この関数は、バイナリデータの情報を文字列形式で返すために使用します。
+
+{finfo} |finfo_open| が返す fileinfo リソース。
+
+{string} 調べるファイルの内容。
+
+{options} ひとつあるいは複数のFileinfo 定数の組み合わせ。
+
+{context}
+
+{string} のテキスト表現、あるいはエラーが発生した場合に
+FALSE を返します。
+
+|finfo_buffer| の例
+
+<?php >
+  $finfo = new finfo(FILEINFO_MIME);
+  echo $finfo->buffer($_POST["script"]) . "\n";
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  application/x-sh
+
+
+
+|finfo_file|
+
+vim:ft=help:

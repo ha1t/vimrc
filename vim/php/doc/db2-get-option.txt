@@ -1,0 +1,153 @@
+db2_get_option --
+ステートメントリソースあるいは接続リソースからオプションの値を取得する
+
+  string db2_get_option(resource resource, string option)~
+
+ステートメントリソースあるいは接続リソースから、指定したオプションの値を取得します。
+
+{resource} A valid statement resource as returned from |db2_prepare|
+が返す有効なステートメントリソース、 あるいは
+|db2_connect| や |db2_pconnect| が返す有効な接続リソース。
+
+{option} ステートメントや接続の、有効なオプション。
+以下の新しいオプションが、ibm_db2 バージョン 1.6.0
+以降で使用可能です。
+これらは、有用な情報を提供します。これらの情報は、
+|db2_get_option| によって取得します。 注意
+以前のバージョンの ibm_db2
+では、これらの新しいオプションはサポートしていません。
+
+各オプションの値を設定する際、
+サーバによっては指定したすべての内容を処理できないことがあります。
+その場合、値が切り詰められます。
+
+指定したオプションが正しく変換されてホストシステムに送信されることを確実にするには、
+A から Z までの文字と 0 から 9
+までの数字、そしてアンダースコア (_) とピリオド (.)
+のみを使用するようにします。
+
+{userid} SQL_ATTR_INFO_USERID -
+ヌル終端の文字列へのポインタで、DB2
+接続の際にホストデータベースサーバに送信する
+クライアントのユーザ ID として使用します。 注意 z/OS
+および OS/390 サーバ版の DB2 は 16
+文字までの長さをサポートしています。 このユーザ ID
+を、認証時に使用するユーザ ID
+と混同しないでください。
+これは識別のためだけに使用するものであり、認証には用いられません。
+
+{acctstr} SQL_ATTR_INFO_ACCTSTR -
+ヌル終端の文字列へのポインタで、DB2
+接続の際にホストデータベースサーバに送信する
+クライアントのアカウンティング・ストリングとして使用します。
+注意 z/OS および OS/390 サーバ版の DB2 は 200
+文字までの長さをサポートしています。
+
+{applname} SQL_ATTR_INFO_APPLNAME -
+ヌル終端の文字列へのポインタで、DB2
+接続の際にホストデータベースサーバに送信する
+クライアントのアプリケーション名として使用します。
+注意 z/OS および OS/390 サーバ版の DB2 は 32
+文字までの長さをサポートしています。
+
+{wrkstnname} SQL_ATTR_INFO_WRKSTNNAME -
+ヌル終端の文字列へのポインタで、DB2
+接続の際にホストデータベースサーバに送信する
+クライアントのワークステーション名として使用します。
+注意 z/OS および OS/390 サーバ版の DB2 は 18
+文字までの長さをサポートしています。
+
+次の表は、どのオプションがどのリソース型で使用できるのかをまとめたものです。
+リソースとパラメータの対応 キー 値 リソース型 接続
+ステートメント 結果セット userid SQL_ATTR_INFO_USERID X X -
+acctstr SQL_ATTR_INFO_ACCTSTR X X - applname SQL_ATTR_INFO_APPLNAME X X -
+wrkstnname SQL_ATTR_INFO_WRKSTNNAME X X -
+
+成功した場合に接続属性の現在の設定内容、
+失敗した場合に FALSE を返します。
+
+接続リソースのパラメータの設定および取得
+
+<?php >
+  /* データベースへの接続パラメータ */
+  $database = 'SAMPLE';
+  $user     = 'db2inst1';
+  $password = 'ibmdb2';
+  
+  /* 接続リソースの取得 */
+  $conn = db2_connect($database, $user, $password);
+  
+  echo "Client attributes passed through conection string:\n";
+  
+  /* Create the associative options array with valid key-value pairs */
+  /* Assign the attributes through connection string */
+  /* Access the options specified */
+  $options1 = array('userid' => 'db2inst1');
+  $conn1 = db2_connect($database, $user, $password, $options1);
+  $val = db2_get_option($conn1, 'userid');
+  echo $val . "\n";
+  
+  $options2 = array('acctstr' => 'account');
+  $conn2 = db2_connect($database, $user, $password, $options2);
+  $val = db2_get_option($conn2, 'acctstr');
+  echo $val . "\n";
+  
+  $options3 = array('applname' => 'myapp');
+  $conn3 = db2_connect($database, $user, $password, $options3);
+  $val = db2_get_option($conn3, 'applname');
+  echo $val . "\n";
+  
+  $options4 = array('wrkstnname' => 'workstation');
+  $conn4 = db2_connect($database, $user, $password, $options4);
+  $val = db2_get_option($conn4, 'wrkstnname');
+  echo $val . "\n";
+  
+  echo "Client attributes passed post-conection:\n";
+  
+  /* Create the associative options array with valid key-value pairs */
+  /* Assign the attributes after a connection is made */
+  /* Access the options specified */
+  $options5 = array('userid' => 'db2inst1');
+  $conn5 = db2_connect($database, $user, $password);
+  $rc = db2_set_option($conn5, $options5, 1);
+  $val = db2_get_option($conn5, 'userid');
+  echo $val . "\n";
+  
+  $options6 = array('acctstr' => 'account');
+  $conn6 = db2_connect($database, $user, $password);
+  $rc = db2_set_option($conn6, $options6, 1);
+  $val = db2_get_option($conn6, 'acctstr');
+  echo $val . "\n";
+  
+  $options7 = array('applname' => 'myapp');
+  $conn7 = db2_connect($database, $user, $password);
+  $rc = db2_set_option($conn7, $options7, 1);
+  $val = db2_get_option($conn7, 'applname');
+  echo $val . "\n";
+  
+  $options8 = array('wrkstnname' => 'workstation');
+  $conn8 = db2_connect($database, $user, $password);
+  $rc = db2_set_option($conn8, $options8, 1);
+  $val = db2_get_option($conn8, 'wrkstnname');
+  echo $val . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  Client attributes passed through conection string:
+  db2inst1
+  account
+  myapp
+  workstation
+  Client attributes passed post-connection:
+  db2inst1
+  account
+  myapp
+  workstation
+
+
+
+|db2_connect| |db2_cursor_type| |db2_exec| |db2_set_option| |db2_pconnect|
+|db2_prepare|
+
+vim:ft=help:

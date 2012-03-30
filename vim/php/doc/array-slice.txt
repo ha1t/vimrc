@@ -1,0 +1,62 @@
+array_slice -- 配列の一部を展開する
+
+  array array_slice(array array, int offset [, int length [, bool preserve_keys]])~
+
+|array_slice|は、{array} から引数 {offset} および {length}
+で指定された連続する要素を返します。
+
+{array} 入力の配列。
+
+{offset} {offset} が負の値ではない場合、要素位置の計算は、
+配列 {array} の offset から始められます。 {offset}
+が負の場合、要素位置の計算は {array}
+の最後から行われます。
+
+{length} {length}が指定され、正の場合、
+連続する複数の要素が返されます。{length}
+が指定され、負の場合、配列の末尾から連続する複数の要素が返されます。
+省略された場合、{offset}
+から配列の最後までの全ての要素が返されます。
+
+{preserve_keys} |array_slice|
+はデフォルトで配列の数値キーを並べなおし、
+リセットすることに注意してください。 {preserve_keys} を
+TRUE にする事でこの動作を変更することができます。
+
+切り取った部分を返します。
+
+バージョン 説明 5.0.2 オプションのパラメータ {preserve_keys}
+が追加されました。
+
+|array_slice| の例
+
+<?php >
+  $input = array("a", "b", "c", "d", "e");
+  
+  $output = array_slice($input, 2);      // "c", "d", "e" を返す
+  $output = array_slice($input, -2, 1);  // "d" を返す
+  $output = array_slice($input, 0, 3);   // "a", "b", "c" を返す
+  
+  // 配列キーの違いに注意
+  print_r(array_slice($input, 2, -1));
+  print_r(array_slice($input, 2, -1, true));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => c
+      [1] => d
+  )
+  Array
+  (
+      [2] => c
+      [3] => d
+  )
+
+
+
+|array_splice| |unset|
+
+vim:ft=help:

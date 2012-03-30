@@ -1,0 +1,38 @@
+image2wbmp -- ブラウザまたはファイルにイメージを出力する
+
+  bool image2wbmp(resource image [, string filename [, int threshold]])~
+
+|image2wbmp| は、イメージ {im} から filename に WBMP
+ファイルを作成します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{filename}
+保存られるファイルへのパス。指定しなかった場合は、生の画像ストリームが直接出力されます。
+
+{threshold}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|image2wbmp| の例
+
+<?php >
+  $file = 'php.png';
+  $image = imagecreatefrompng($file);
+  
+  header('Content-type: ' . image_type_to_mime_type(IMAGETYPE_WBMP));
+  image2wbmp($image); // ストリームを直接出力します。
+?>
+
+
+
+
+
+WBMP サポートは、GD-1.8 以降で PHP
+をコンパイルした場合のみ利用可能です。
+
+|imagewbmp|
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+ps_show_xy -- 指定された位置にテキストを出力する
+
+  bool ps_show_xy(resource psdoc, string text, float x, float y)~
+
+指定された位置にテキストを出力します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{text} 出力するテキスト。
+
+{x} テキストを囲むボックスの左下角の x 座標。
+
+{y} テキストを囲むボックスの左下角の y 座標。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_continue_text| |ps_show|
+
+vim:ft=help:

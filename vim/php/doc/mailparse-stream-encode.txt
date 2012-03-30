@@ -1,0 +1,45 @@
+mailparse_stream_encode --
+ソースファイルポインタからストリームデータを取得し、
+エンコーディングを適用し、出力ファイルポインタに書き込む
+
+  bool mailparse_stream_encode(resource sourcefp, resource destfp, string encoding)~
+
+ソースファイルポインタからストリームデータを取得し、
+{encoding} を適用して
+それを出力ファイルポインタに書き込みます。
+
+{sourcefp}
+有効なファイルハンドル。このファイルからのストリームがパーサに流し込まれます。
+
+{destfp}
+エンコードしたデータを書き込むファイルハンドル。
+
+{encoding} mbstring
+モジュールがサポートする文字エンコーディングのいずれか。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mailparse_stream_encode| の例
+
+<?php >
+  // email.eml の中身は: hello, this is some text=hello.
+  $fp = fopen('email.eml', 'r');
+  
+  $dest = tmpfile();
+  
+  mailparse_stream_encode($fp, $dest, "quoted-printable");
+  
+  rewind($dest);
+  
+  // ファイルの内容を表示します
+  fpassthru($dest);
+?>
+
+上の例の出力は以下となります。
+
+  hello, this is some text=3Dhello.
+
+
+
+vim:ft=help:

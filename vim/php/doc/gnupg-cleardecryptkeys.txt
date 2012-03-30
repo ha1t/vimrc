@@ -1,0 +1,29 @@
+gnupg_cleardecryptkeys --
+事前に復号のために設定されたすべてのキーを削除する
+
+  bool gnupg_cleardecryptkeys(resource identifier)~
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+手続き型の |gnupg_cleardecryptkeys| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_cleardecryptkeys($res);
+?>
+
+
+
+オブジェクト指向の |gnupg_cleardecryptkeys| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> cleardecryptkeys();
+?>
+
+
+
+
+
+vim:ft=help:

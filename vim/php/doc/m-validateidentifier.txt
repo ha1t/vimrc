@@ -1,0 +1,16 @@
+m_validateidentifier -- 指定したトランザクションについて、ID
+の検証を行うかどうか
+
+  int m_validateidentifier(resource conn, int tf)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{tf}
+
+
+
+vim:ft=help:

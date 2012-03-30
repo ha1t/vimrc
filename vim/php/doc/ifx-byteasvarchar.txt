@@ -1,0 +1,16 @@
+ifx_byteasvarchar -- デフォルトのバイトモードを設定する
+
+  bool ifx_byteasvarchar(int mode)~
+
+全ての select
+クエリに関するデフォルトのバイトモードを設定します。
+
+{mode} モード "0" は BLOB ID を返し、モード "1"
+がテキストの内容を有する varchar を返します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ifx_textasvarchar|
+
+vim:ft=help:

@@ -1,0 +1,21 @@
+sybase_fetch_row -- 行を配列として取得する
+
+  array sybase_fetch_row(resource result)~
+
+|sybase_fetch_row| は、指定された結果 ID が指す結果から 1
+行分のデータを取り込みます。
+
+連続的に |sybase_fetch_rows| をコールした場合、
+結果セットにおける次の行が返されます。
+また、もう行がない場合は FALSE が返されます。
+
+{result}
+
+取り込まれた行に対応する配列を返します。もう行がない場合は
+FALSE を返します。 各結果カラムは 0
+から始まる配列オフセットに保持されます。
+
+|sybase_fetch_array| |sybase_fetch_assoc| |sybase_fetch_object|
+|sybase_data_seek| |sybase_result|
+
+vim:ft=help:

@@ -1,0 +1,29 @@
+SAMMessage->__construct() --
+新しいメッセージオブジェクトを作成する
+
+新しい SAMMessage オブジェクトを作成します。
+オプションでメッセージ本文を指定します。
+
+{body} オプションで指定するメッセージ本文。
+
+メッセージの作成
+
+<?php >
+  $msg = new SAMMessage();
+?>
+
+
+
+
+
+単純なテキストを含むメッセージの作成
+
+<?php >
+  $msg = new SAMMessage('This is a simple text message');
+?>
+
+
+
+
+
+vim:ft=help:

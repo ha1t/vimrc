@@ -1,0 +1,28 @@
+cal_days_in_month --
+指定した年とカレンダーについて、月の日数を返す
+
+  int cal_days_in_month(int calendar, int month, int year)~
+
+この関数は、指定した {calendar} について {year} 年 {month}
+月の日数を返します。
+
+{calendar} 計算に使用するカレンダー。
+
+{month} 選択したカレンダーにおける月。
+
+{year} 選択したカレンダーにおける年。
+
+指定したカレンダーの、その月の日数を返します。
+
+|cal_days_in_month| の例
+
+<?php >
+  $num = cal_days_in_month(CAL_GREGORIAN, 8, 2003); // 31
+  echo "2003 年 8 月の日数は $num 日です";
+?>
+
+
+
+
+
+vim:ft=help:

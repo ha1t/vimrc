@@ -1,0 +1,59 @@
+SimpleXMLElement->getDocNamespaces() --
+ドキュメントで宣言されている名前空間を返す
+
+  array getDocNamespaces([bool recursive])~
+
+ドキュメントで宣言されている名前空間を返します。
+
+{recursive}
+指定されている場合は、親ノードおよび子ノードで宣言されている全ての名前空間を返します。
+されていない場合は、ルートノードで宣言されている名前空間のみを返します。
+
+getDocNamespaces メソッドは、
+名前空間名および関連付けられた URI を配列で返します。
+
+ドキュメントの名前空間の取得
+
+<?php >
+  $xml = <<<XML
+  <?xml version="1.0" standalone="yes"?>
+  <people xmlns:p="http://example.org/ns">
+      <p:person id="1">John Doe</p:person>
+      <p:person id="2">Susie Q. Public</p:person>
+  </people>
+  XML;
+   
+  $sxe = new SimpleXMLElement($xml);
+  
+  $namespaces = $sxe->getDocNamespaces();
+  var_dump($namespaces);
+?>
+
+
+
+
+
+複数の名前空間の使用
+
+<?php >
+  $xml = <<<XML
+  <?xml version="1.0" standalone="yes"?>
+  <people xmlns:p="http://example.org/ns" xmlns:t="http://example.org/test">
+      <p:person t:id="1">John Doe</p:person>
+      <p:person t:id="2" a:addr="123 Street" xmlns:a="http://example.org/addr">
+          Susie Q. Public
+      </p:person>
+  </people>
+  XML;
+   
+  $sxe = new SimpleXMLElement($xml);
+  
+  $namespaces = $sxe->getDocNamespaces(TRUE);
+  var_dump($namespaces);
+?>
+
+
+
+
+
+vim:ft=help:

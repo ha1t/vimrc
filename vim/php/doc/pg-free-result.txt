@@ -1,0 +1,42 @@
+pg_free_result -- メモリを開放する
+
+  bool pg_free_result(resource result)~
+
+|pg_free_result| は、指定された PostgreSQL クエリ 結果 resource
+に関するメモリとデータを開放します。
+
+この関数は、スクリプト実行中のメモリ使用量を抑制したい場合にのみ
+コールする必要があります。それ以外の場合は、すべての結果保持用
+メモリは、スクリプトが終了する際に自動的に開放されます。
+
+この関数は、以前は |pg_freeresult| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_free_result| の例
+
+<?php >
+  $db = pg_connect("dbname=users user=me") || die();
+  
+  $res = pg_query($db, "SELECT 1 UNION ALL SELECT 2");
+  
+  $val = pg_fetch_result($res, 1, 0);
+  
+  echo "First field in the second row is: ", $val, "\n";
+  
+  pg_free_result($res);
+?>
+
+上の例の出力は以下となります。
+
+  First field in the second row is: 2
+
+
+
+|pg_query| |pg_query_params| |pg_execute|
+
+vim:ft=help:

@@ -1,0 +1,72 @@
+runkit_sandbox_output_handler --
+サンドボックス内での出力を取得・処理するための関数を指定する
+
+  mixed runkit_sandbox_output_handler(object sandbox [, mixed callback])~
+
+通常、（|echo| や |print| などの）
+あらゆる出力は、親のスコープから出力しているかのように出力されます。
+しかし、|runkit_sandbox_output_handler| を使用すると
+サンドボックス内の出力（エラーを含む）をサンドボックス外で受け取ることが
+可能です。
+
+サンドボックスのサポート (|runkit_lint|, |runkit_lint_file|,
+および Runkit_Sandbox クラスで使用)は、 PHP 5.1.0
+以降または特別なパッチを適用した PHP 5.0
+でのみ利用可能であり、スレッドセーフを有効にしておく必要があります。
+詳細については、runkit パッケージに含まれる README
+ファイルを参照してください。
+
+runkit バージョン 0.5
+以降この関数は非推奨となっており、1.0 が
+リリースされるまでに削除される予定です。指定した
+Runkit_Sandbox
+インスタンスの出力ハンドラは、配列オフセット構文を使用して
+取得/設定が可能です。この方法について、 Runkit_Sandbox
+のクラス定義で説明しています。
+
+{sandbox} 出力の処理を設定する Runkit_Sandbox
+クラスのインスタンス。
+
+{callback} ひとつのパラメータを受け取る関数の名前。
+{sandbox} による出力がこのコールバックに
+渡されます。コールバックが返す値は通常通り表示されます。
+このパラメータが渡されなかった場合、出力の操作方法は変わりません。
+真でない値が渡された場合、出力の操作は無効となり直接表示されます。
+
+前に定義されていた出力ハンドラコールバックの名前を返します。
+ハンドラが定義されていなかった場合は FALSE
+を返します。
+
+出力を変数に送る
+
+<?php >
+  function capture_output($str) {
+    $GLOBALS['sandbox_output'] .= $str;
+  
+    return '';
+  }
+  
+  $sandbox_output = '';
+  
+  $php = new Runkit_Sandbox();
+  runkit_sandbox_output_handler($php, 'capture_output');
+  $php->echo("Hello\n");
+  $php->eval('var_dump("Excuse me");');
+  $php->die("I lost myself.");
+  unset($php);
+  
+  echo "Sandbox Complete\n\n";
+  echo $sandbox_output;
+?>
+
+上の例の出力は以下となります。
+
+  Sandbox Complete
+  
+  Hello
+  string(9) "Excuse me"
+  I lost myself.
+
+
+
+vim:ft=help:

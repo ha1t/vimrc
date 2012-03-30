@@ -1,0 +1,33 @@
+fdf_next_field_name -- 次のフィールド名を得る
+
+  string fdf_next_field_name(resource fdf_document [, string fieldname])~
+
+指定したフィールドの後のフィールドの名前を返します。
+この名前をその他の関数で使用します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{fieldname} FDF フィールド名を表す文字列。
+省略した場合は最初のフィールドとみなされます。
+
+フィールド名を文字列で返します。
+
+FDF のすべてのフィールド名を検出する
+
+<?php >
+  $fdf = fdf_open($HTTP_FDF_DATA);
+  for ($field = fdf_next_field_name($fdf);
+      $field != "";
+      $field = fdf_next_field_name($fdf, $field)) {
+      echo "field: $field\n";
+  }
+?>
+
+
+
+
+
+|fdf_get_value|
+
+vim:ft=help:

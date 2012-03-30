@@ -1,0 +1,83 @@
+ircg_register_format_messages --
+フォーマットメッセージセットを登録する
+
+  bool ircg_register_format_messages(string name, array messages)~
+
+|ircg_register_format_messages| を使用することで、 IRC
+出力の見た目やクライアント側でどのスクリプトを起動させるかなどを
+カスタマイズすることが可能です。
+
+{name}
+
+{messages} Plain channel message
+
+Private message received
+
+Private message sent
+
+Some user leaves channel
+
+Some user enters channel
+
+Some user was kicked from the channel
+
+Topic has been changed
+
+Error
+
+Fatal error
+
+Join list end(?)
+
+Self part(?)
+
+Some user changes his nick
+
+Some user quits his connection
+
+Mass join begin
+
+Mass join element
+
+Mass join end
+
+Whois user
+
+Whois server
+
+Whois idle
+
+Whois channel
+
+Whois end
+
+Voice status change on user
+
+Operator status change on user
+
+Banlist
+
+Banlist end
+
+%f - from
+
+%t - to
+
+%c - channel
+
+%r - plain message
+
+%m - encoded message
+
+%j - js encoded message
+
+1 - mod encode
+
+2 - nickname decode
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ircg_lookup_format_messages|
+
+vim:ft=help:

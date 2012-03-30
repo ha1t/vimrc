@@ -1,0 +1,12 @@
+hw_api_object->assign -- オブジェクトを複製する
+
+  bool assign(array parameter)~
+
+オブジェクトの属性を複製します。
+
+{parameter}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+hw_api->setcommittedversion --
+最後のバージョン以外のバージョンをコミットする
+
+  hw_api_object setcommittedversion(array parameter)~
+
+文書をコミットします。コミットされたバージョンが、
+読み込みアクセス権を持つユーザから見えるものとなります。
+デフォルトでは、最後のバージョンがコミットされたバージョンとなります。
+
+{parameter}
+
+
+
+vim:ft=help:

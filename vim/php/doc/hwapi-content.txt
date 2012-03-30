@@ -1,0 +1,23 @@
+hw_api->content -- オブジェクトのコンテンツを返す
+
+  HW_API_Content content(array parameter)~
+
+この関数は、文書のコンテンツを hw_api_content
+型のオブジェクトとして返します。
+
+{parameter} パラメータの配列には、必須要素 'objectidentifier'
+およびオプションの要素 'mode' が含まれます。 mode は
+HW_API_CONTENT_ALLLINKS、 HW_API_CONTENT_REACHABLELINKS あるいは
+HW_API_CONTENT_PLAIN のうちのいずれかです。
+
+HW_API_CONTENT_ALLLINKS は、
+たとえそれが指している先が存在しない場合でもすべての対象アンカーを挿入します。
+
+HW_API_CONTENT_REACHABLELINKS は、
+到達可能なリンクのみを挿入するよう |hw_api_content|
+に指示し、 HW_API_CONTENT_PLAIN
+は文書にリンクを一切含めません。
+
+hw_api_content のインスタンスを返します。
+
+vim:ft=help:

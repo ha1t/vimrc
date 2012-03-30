@@ -1,0 +1,37 @@
+is_file -- 通常ファイルかどうかを調べる
+
+  bool is_file(string filename)~
+
+指定したファイルが通常のファイルかどうかを調べます。
+
+{filename} ファイルへのパス。
+
+ファイルが存在し、かつそれが通常のファイルである場合に
+TRUE、 それ以外の場合に FALSE を返します。
+
+|is_file| の例
+
+<?php >
+  var_dump(is_file('a_file.txt')) . "\n";
+  var_dump(is_file('/usr/bin/')) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  bool(true)
+  bool(false)
+
+
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|is_dir| |is_link|
+
+vim:ft=help:

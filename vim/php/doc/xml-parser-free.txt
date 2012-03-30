@@ -1,0 +1,13 @@
+xml_parser_free -- XML パーサを解放する
+
+  bool xml_parser_free(resource parser)~
+
+指定した XML パーサ {parser} を解放します。
+
+{parser} 解放したい XML パーサへのリファレンス。
+
+この関数は、{parser} が有効なパーサを 参照しない場合に
+FALSE、それ以外の場合にパーサを解放し、TRUE
+を返します。
+
+vim:ft=help:

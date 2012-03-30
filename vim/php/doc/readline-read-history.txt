@@ -1,0 +1,12 @@
+readline_read_history -- ヒストリを読み込む
+
+  bool readline_read_history([string filename])~
+
+この関数は、コマンドヒストリをファイルから読み込みます。
+
+{filename} コマンドヒストリを含むファイルへのパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

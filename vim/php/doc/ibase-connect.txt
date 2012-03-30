@@ -1,0 +1,76 @@
+ibase_connect -- InterBase データベースへの接続をオープンする
+
+  resource ibase_connect([string database [, string username [, string password [, string charset [, int buffers [, int dialect [, string role [, int sync]]]]]]]])~
+
+InterBaseサーバへの接続を確立します。
+
+同じ引数で |ibase_connect| が再度コールされた場合、
+新規のリンクは作成されず、代わりに既にオープンされているリンクの
+リンク ID が返されます。 |ibase_close|
+を明示的にコールしない限り、
+サーバへのリンクはスクリプトの実行終了時に閉じられます。
+
+{database} {database}は接続するサーバ上のデータベース
+ファイルへの正しいパスである必要があります。ローカルなサーバへの
+接続でない場合、使用する接続プロトコルに応じてこの引数の前に'
+hostname:' (TCP/IP)、'//hostname/' (NetBEUI)、'hostname@'
+(IPX/SPX)のどれかをつける必要があります。
+
+{username} ユーザ名。php.ini ディレクティブ ibase.default_user
+で設定します。
+
+{password} {username} のパスワード。 php.ini ディレクティブ
+ibase.default_password で設定します。
+
+{charset} {charset}
+はデータベースに関するデフォルトの文字セットです。
+
+{buffers} {buffers}
+はサーバ側のキャッシュに確保されるデータベースバッファの数です。0
+または省略された場合、サーバーはデフォルト値を用います。
+
+{dialect} {dialect} は、接続時に実行される全ての命令に
+関する SQL
+方言のデフォルト値を選択し、デフォルトではクライアント
+ライブラリでサポートされる方言のうち、最高位のものになります。
+InterBase 6 以降でのみ有効です。
+
+{role} InterBase 5 以降でのみ有効です。
+
+{sync}
+
+成功した場合に InterBase リンク ID、エラー時に FALSE
+を返します。
+
+この関数を使用して |ibase_query| をコールした後に "arithmetic
+exception, numeric overflow, or string truncation. Cannot transliterate
+character between character sets" のようなエラーが発生した場合
+(たとえばアクセント記号つきの文字を使用した場合などに発生します)、
+文字セットを指定する必要があります (例: ISO8859_1
+あるいは現在の文字セット)。
+
+バージョン 説明 4.0.0 {buffers}、{dialect} および {role}
+が追加されました。
+
+|ibase_connect| の例
+
+<?php >
+  $host = 'localhost:/path/to/your.gdb';
+  
+  $dbh = ibase_connect($host, $username, $password);
+  $stmt = 'SELECT * FROM tblname';
+  $sth = ibase_query($dbh, $stmt);
+  while ($row = ibase_fetch_object($sth)) {
+      echo $row->email, "\n";
+  }
+  ibase_free_result($sth);
+  ibase_close($dbh);
+?>
+
+
+
+
+
+|ibase_pconnect| |ibase_close|
+
+vim:ft=help:

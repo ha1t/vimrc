@@ -1,0 +1,33 @@
+kadm5_get_principals -- Kerberos
+データベースから、すべてのプリンシパルを取得する
+
+  array kadm5_get_principals(resource handle)~
+
+|kadm5_get_principals| は、プリンシパルの名前を含む
+配列を返します。
+
+{handle} KADM5 ハンドル。
+
+成功した場合はプリンシパルの配列、失敗した場合は FALSE
+を返します。
+
+|kadm5_get_principals| の例
+
+<?php >
+  $handle = kadm5_init_with_password("afs-1", "GONICUS.LOCAL", "admin/admin", "password");
+  
+  print "<h1>get_principals</h1>\n";
+  foreach (kadm5_get_principals($handle) as $principal) {
+      echo "$principal<br />\n";
+  }
+  
+  kadm5_destroy($handle);
+?>
+
+
+
+
+
+|kadm5_get_principal|
+
+vim:ft=help:

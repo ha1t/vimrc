@@ -1,0 +1,14 @@
+ircg_nick -- サーバ上のニックネームを変更する
+
+  bool ircg_nick(resource connection, string nick)~
+
+指定した {connection} 上でのニックネームを変更します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{nick} 現在のユーザの新しいニックネーム。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

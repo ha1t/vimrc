@@ -1,0 +1,20 @@
+ora_numrows -- レコード数を返す
+
+  int ora_numrows(resource cursor)~
+
+結果の行数を返します。
+
+{cursor} |ora_open| でオープンした Oracle カーソル。
+
+行の数を表す整数値、あるいはエラー時に FALSE
+を返します。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_num_rows|
+
+vim:ft=help:

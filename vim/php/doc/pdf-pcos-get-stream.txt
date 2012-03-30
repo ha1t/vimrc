@@ -1,0 +1,9 @@
+PDF_pcos_get_stream -- stream、fstream あるいは string 型の pCOS
+パスの内容を取得する
+
+  string PDF_pcos_get_stream(resource p, int doc, string optlist, string path)~
+
+stream、fstream あるいは string 型の pCOS
+パスの内容を取得します。
+
+vim:ft=help:

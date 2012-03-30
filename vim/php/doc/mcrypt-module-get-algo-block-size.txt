@@ -1,0 +1,15 @@
+mcrypt_module_get_algo_block_size --
+指定したアルゴリズムのブロック長を返す
+
+  int mcrypt_module_get_algo_block_size(string algorithm [, string lib_dir])~
+
+指定したアルゴリズムのブロック長を取得します。
+
+{algorithm} アルゴリズム名。
+
+{lib_dir} オプションのパラメータで、
+システム上でのモードモジュールの位置を指定することが可能です。
+
+指定したアルゴリズムでサポートされるブロック長をバイト単位で返します。
+
+vim:ft=help:

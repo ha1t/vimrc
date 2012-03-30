@@ -1,0 +1,19 @@
+apd_dump_function_table -- 現在の関数テーブルを出力する
+
+  void apd_dump_function_table()~
+
+現在の関数テーブルを出力します。
+
+値を返しません。
+
+|apd_dump_function_table| の例
+
+<?php >
+  apd_dump_function_table();
+?>
+
+
+
+
+
+vim:ft=help:

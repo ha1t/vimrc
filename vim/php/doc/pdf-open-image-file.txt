@@ -1,0 +1,13 @@
+PDF_open_image_file -- ファイルからイメージを読み込む
+[古い関数]
+
+  int PDF_open_image_file(resource p, string imagetype, string filename, string stringparam, int intparam)~
+
+イメージファイルをオープンします。
+
+この関数は PDFlib バージョン 5
+で廃止されました。かわりに
+colorize、ignoremask、invert、mask、masked および page を指定して
+|PDF_load_image| を使用してください。
+
+vim:ft=help:

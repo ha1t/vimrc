@@ -1,0 +1,40 @@
+ssh2_sftp_mkdir -- ディレクトリを作成する
+
+  bool ssh2_sftp_mkdir(resource sftp, string dirname [, int mode [, bool recursive]])~
+
+リモートファイルサーバに {mode}
+で指定された権限でディレクトリを作成します。
+
+この関数は ssh2.sftp:// ラッパーを使用した場合の |mkdir|
+と同様です。
+
+{sftp} |ssh2_sftp| でオープンした SSH2 SFTP リソース。
+
+{dirname} 新しいディレクトリへのパス。
+
+{mode} 新しいディレクトリのパーミッション。
+
+{recursive} もし {recursive} が TRUE の場合、 {dirname}
+に必要とされる全ての親ディレクトリは自動的に作成されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+リモートサーバ上へのディレクトリの作成
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  $sftp = ssh2_sftp($connection);
+  
+  ssh2_sftp_mkdir($sftp, '/home/username/newdir');
+  /* もしくは次の通り:  mkdir("ssh2.sftp://$sftp/home/username/newdir"); */
+?>
+
+
+
+
+
+|mkdir| |ssh2_sftp_rmdir|
+
+vim:ft=help:

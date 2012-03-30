@@ -1,0 +1,17 @@
+shm_get_var -- 共有メモリから変数を返す
+
+  mixed shm_get_var(int shm_identifier, int variable_key)~
+
+|shm_get_var| は、 {shm_identifier}
+で指定した共有メモリセグメントから 変数 {variable_key}
+を読みこみます。
+読み込んだ変数は、まだ共有メモリに存在します。
+
+{shm_identifier} 共有メモリセグメント。|shm_attach|
+から取得します。
+
+{variable_key} 変数のキー。
+
+指定したキーの変数を返します。
+
+vim:ft=help:

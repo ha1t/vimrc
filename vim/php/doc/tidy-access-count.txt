@@ -1,0 +1,50 @@
+tidy_access_count --
+指定したドキュメントについて発生したTidyアクセシビリティ警告の数を返す
+
+  int tidy_access_count(tidy object)~
+
+|tidy_access_count| は、
+指定したドキュメントについて発生した Tidy
+アクセシビリティ警告の数を返します。
+
+{object} Tidy オブジェクト。
+
+警告の数を返します。
+
+|tidy_access_count| の例
+
+<?php >
+  $html ='<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <html><head><title>Title</title></head>
+  <body>
+  
+  <p><img src="img.png"></p>
+  
+  </body></html>';
+  
+  
+  // アクセシビリティチェックのレベルを選択する: 1, 2 あるいは 3
+  $config = array('accessibility-check' => 3);
+  
+  $tidy = new tidy();
+  $tidy->parseString($html, $config);
+  $tidy->CleanRepair();
+  
+  /* これをコールすることを忘れないように! */
+  $tidy->diagnose();
+  
+  echo tidy_access_count($tidy); //5
+?>
+
+
+
+
+
+TidyLib の設計のため、|tidy_access_count| の前に |tidy_diagnose|
+をコールしなければなりません。 さもないと、常に 0
+が返されます。 また、accessibility-check
+オプションを有効にしなければなりません。
+
+|tidy_error_count| |tidy_warning_count|
+
+vim:ft=help:

@@ -1,0 +1,37 @@
+odbc_statistics -- テーブルに関する統計情報を取得する
+
+  resource odbc_statistics(resource connection_id, string qualifier, string owner, string table_name, int unique, int accuracy)~
+
+テーブルおよびインデックスに関する統計情報を取得します。ODBC
+結果 ID または失敗した場合に FALSE を返します。
+
+結果は以下のカラムを有します。 TABLE_QUALIFIER
+
+TABLE_OWNER
+
+TABLE_NAME
+
+NON_UNIQUE
+
+INDEX_QUALIFIER
+
+INDEX_NAME
+
+TYPE
+
+SEQ_IN_INDEX
+
+COLUMN_NAME
+
+COLLATION
+
+CARDINALITY
+
+PAGES
+
+FILTER_CONDITION
+
+結果セットは、NON_UNIQUE、TYPE、INDEX_QUALIFIER、
+INDEX_NAME、SEQ_IN_INDEX でソートされます。
+
+vim:ft=help:

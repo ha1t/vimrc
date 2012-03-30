@@ -1,0 +1,14 @@
+stats_rand_gen_ipoisson -- 平均 "mu" (mu >= 0.0)
+のポアソン分布から無作為な値を生成する
+
+  int stats_rand_gen_ipoisson(float mu)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{mu}
+
+
+
+vim:ft=help:

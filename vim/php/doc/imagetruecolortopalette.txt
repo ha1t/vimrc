@@ -1,0 +1,31 @@
+imagetruecolortopalette -- TrueColor
+イメージをパレットイメージに変換する
+
+  bool imagetruecolortopalette(resource image, bool dither, int ncolors)~
+
+|imagetruecolortopalette| は、TrueColorイメー
+ジをパレットイメージに変換します。この関数のコードは、元々
+Independent JPEG
+Groupライブラリ用に書かれたもので、素晴らしいも
+のです。このコードは、色をできる限り維持することに加えて、アルファ
+チャネルに関する情報を出力されるパレットにおいてできるだけ維持す
+るように修正されています。これは、期待通りにうまくいきません。通
+常は、最高の出力品質が保障されるTrueColor出力イメージを単に出力す
+るのが最良の方法です。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{dither} イメージにディザーをかけることを指定します。
+TRUE の場合はディザーが行われます。
+出力はぼやけますが、色の近似はより良くなります。
+
+{ncolors} パレットに保持される最大の色数を設定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、GD 2.0.1 以降を必要とします (2.0.28
+以降を推奨します)。
+
+vim:ft=help:

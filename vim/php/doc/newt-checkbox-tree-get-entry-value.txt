@@ -1,0 +1,15 @@
+newt_checkbox_tree_get_entry_value --
+
+  string newt_checkbox_tree_get_entry_value(resource checkboxtree, mixed data)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{checkboxtree}
+
+{data}
+
+
+
+vim:ft=help:

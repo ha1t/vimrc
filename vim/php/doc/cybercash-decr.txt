@@ -1,0 +1,19 @@
+cybercash_decr -- Cybercash の復号
+
+  array cybercash_decr(string wmk, string sk, string inbuff)~
+
+情報を復号します。
+
+{wmk} merchant キー。
+
+{sk} session キー。
+
+{inbuff}
+
+この関数は、要素 "errcode" を有する連想配列を返します。
+"errcode" が FALSE の場合、"outbuff"(文字列)、 "outLth" (long)
+および "macbuff" (文字列)が配列の要素として返されます。
+
+|cybercash_encr|
+
+vim:ft=help:

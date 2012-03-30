@@ -1,0 +1,102 @@
+ftp_nb_get -- FTP
+サーバからファイルを取得し、ローカルファイルに書き込む（非ブロッキング）
+
+  int ftp_nb_get(resource ftp_stream, string local_file, string remote_file, int mode [, int resumepos])~
+
+|ftp_nb_get| は FTP サーバからリモートファイルを取得し、
+それをローカルファイルに保存します。
+
+|ftp_get| との違いは、この関数が
+非同期処理でファイルを取得するということです。そのため、
+ファイルをダウンロードしている最中に別の処理を行うことができます。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{local_file}
+ローカルファイルのパス（ファイルがすでに存在する場合、上書きされます）。
+
+{remote_file} リモートファイルのパス。
+
+{mode} 転送モード。FTP_ASCII または FTP_BINARY
+のどちらかを指定する必要があります。
+
+{resumepos}
+
+FTP_FAILED、FTP_FINISHED あるいは FTP_MOREDATA を返します。
+
+|ftp_nb_get| の例
+
+<?php >
+  // ダウンロードを開始する
+  $ret = ftp_nb_get($my_connection, "test", "README", FTP_BINARY);
+  while ($ret == FTP_MOREDATA) {
+     
+     // 何かお好みの動作を
+     echo ".";
+  
+     // ダウンロードを継続する…
+     $ret = ftp_nb_continue($my_connection);
+  }
+  if ($ret != FTP_FINISHED) {
+     echo "There was an error downloading the file...";
+     exit(1);
+  }
+?>
+
+
+
+|ftp_nb_get| でダウンロードを再開する
+
+<?php >
+  // 開始
+  $ret = ftp_nb_get($my_connection, "test", "README", FTP_BINARY, 
+                        filesize("test"));
+  // あるいは: $ret = ftp_nb_get($my_connection, "test", "README", 
+  //                             FTP_BINARY, FTP_AUTORESUME);
+  while ($ret == FTP_MOREDATA) {
+     
+     // 何かお好みの動作を
+     echo ".";
+  
+     // ダウンロードを継続する…
+     $ret = ftp_nb_continue($my_connection);
+  }
+  if ($ret != FTP_FINISHED) {
+     echo "There was an error downloading the file...";
+     exit(1);
+  }
+?>
+
+
+
+|ftp_nb_get| を用い、ファイルの 100 バイト目以降から
+ダウンロードを再開する
+
+<?php >
+  // 自動シークを無効にする
+  ftp_set_option($my_connection, FTP_AUTOSEEK, false);
+  
+  // 開始
+  $ret = ftp_nb_get($my_connection, "newfile", "README", FTP_BINARY, 100);
+  while ($ret == FTP_MOREDATA) {
+  
+     /* ... */
+     
+     // ダウンロードを継続する…
+     $ret = ftp_nb_continue($my_connection);
+  }
+?>
+
+
+
+
+
+上の例では、newfile のサイズは FTP サーバ上の README より
+100 バイト小さくなります。なぜなら
+ダウンロードの開始位置を 100 バイトずらしたからです。
+もし FTP_AUTOSEEK を無効にしなければ、 newfile の最初の 100
+バイトは '\0' で埋められます。
+
+|ftp_nb_fget| |ftp_nb_continue| |ftp_fget| |ftp_get|
+
+vim:ft=help:

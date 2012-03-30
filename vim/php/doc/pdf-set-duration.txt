@@ -1,0 +1,8 @@
+PDF_set_duration -- ページ間隔を設定する [古い関数]
+
+この関数は PDFlib バージョン 3
+で廃止されました。かわりに {duration} オプションを
+|PDF_begin_page_ext| あるいは |PDF_end_page_ext|
+で使用してください。
+
+vim:ft=help:

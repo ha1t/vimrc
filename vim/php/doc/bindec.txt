@@ -1,0 +1,39 @@
+bindec -- 2 進数 を 10 進数に変換する
+
+  number bindec(string binary_string)~
+
+引数 {binary_string} により指定された 2 進数と等価な 10
+進数を返します。
+
+|bindec| は、2 進数を integer に変換します。
+サイズの問題により、必要に応じて float
+となることもあります。
+
+{binary_string} 変換したい 2 進数文字列。
+
+{binary_string} を 10 進に変換した値を返します。
+
+バージョン 説明 Since 4.1.0 この関数は、integer
+型の範囲をこえる大きな数値も変換できるようになりました。
+そのような値は、float で返します。
+
+|bindec| の例
+
+<?php >
+  echo bindec('110011') . "\n";
+  echo bindec('000110011') . "\n";
+  
+  echo bindec('111');
+?>
+
+上の例の出力は以下となります。
+
+  51
+  51
+  7
+
+
+
+|decbin| |octdec| |hexdec| |base_convert|
+
+vim:ft=help:

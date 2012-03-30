@@ -1,0 +1,28 @@
+printer_open -- プリンタへの接続をオープンする
+
+  resource printer_open([string printername])~
+
+この関数は、指定したプリンタへの接続を試みます。
+
+|printer_open| は、 デバイスコンテキストも開始します。
+
+{printername}
+プリンタ名。このパラメータが指定されない場合、
+この関数はデフォルトのプリンタへの接続をオープンします(php.ini
+に printer.default_printer として指定されていない場合は、 PHP
+はデフォルトのプリンタの検出を試みます)。
+
+成功時にハンドル、失敗時に FALSE を返します。
+
+|printer_open| の例
+
+<?php >
+  $handle = printer_open("HP Deskjet 930c");
+  $handle = printer_open();
+?>
+
+
+
+
+
+vim:ft=help:

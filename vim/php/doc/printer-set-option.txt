@@ -1,0 +1,127 @@
+printer_set_option -- プリンタの接続を設定する
+
+  bool printer_set_option(resource printer_handle, int option, mixed value)~
+
+この関数は、現在の接続のオプションを設定します。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{option}
+オプションに指定できるのは、以下の定数のいずれかです。
+PRINTER_COPIES: 印刷する部数を指定します。{value}
+は整数値である必要があります。
+
+PRINTER_MODE: データの種類 (text、raw あるいは emf)
+を指定します。 {value} は文字列である必要があります。
+
+PRINTER_TITLE: 文書の名前を指定します。{value}
+は文字列である必要があります。
+
+PRINTER_ORIENTATION: 用紙の向きを指定します。{value} は
+PRINTER_ORIENTATION_PORTRAIT あるいは PRINTER_ORIENTATION_LANDSCAPE
+のいずれかです。
+
+PRINTER_RESOLUTION_Y: y 方向の解像度を DPI で指定します。{value}
+は整数値である必要があります。
+
+PRINTER_RESOLUTION_X: x 方向の解像度を DPI で指定します。{value}
+は整数値である必要があります。
+
+PRINTER_PAPER_FORMAT:
+定義済みの用紙フォーマットを指定します。
+PRINTER_PAPER_WIDTH および PRINTER_PAPER_LENGTH
+を使用して独自の用紙を指定したい場合には、 {value} には
+PRINTER_FORMAT_CUSTOM を指定します。 {value}
+は、以下の定数のいずれかです。
+
+PRINTER_FORMAT_CUSTOM: 独自のフォーマットを指定します。
+
+PRINTER_FORMAT_LETTER: 標準 letter フォーマット (8 1/2 インチ x 11
+インチ) を指定します。
+
+PRINTER_FORMAT_LEGAL: 標準 legal フォーマット (8 1/2 インチ x 14
+インチ) を指定します。
+
+PRINTER_FORMAT_A3: 標準 A3 フォーマット (297 mm x 420 mm)
+を指定します。
+
+PRINTER_FORMAT_A4: 標準 A4 フォーマット (210 mm x 297 mm)
+を指定します。
+
+PRINTER_FORMAT_A5: 標準 A5 フォーマット (148 mm x 210 mm)
+を指定します。
+
+PRINTER_FORMAT_B4: 標準 B4 フォーマット (250 mm x 354 mm)
+を指定します。
+
+PRINTER_FORMAT_B5: 標準 B5 フォーマット (182 mm x 257 mm)
+を指定します。
+
+PRINTER_FORMAT_FOLIO: 標準 FOLIO フォーマット (8 1/2 インチ x 13
+インチ) を指定します。
+
+PRINTER_PAPER_LENGTH: PRINTER_PAPER_FORMAT が PRINTER_FORMAT_CUSTOM
+に指定されている場合、 ミリ単位での用紙の長さを
+PRINTER_PAPER_LENGTH で指定します。 {value}
+は整数値である必要があります。
+
+PRINTER_PAPER_WIDTH: PRINTER_PAPER_FORMAT が PRINTER_FORMAT_CUSTOM
+に指定されている場合、 ミリ単位での用紙の幅を
+PRINTER_PAPER_WIDTH で指定します。 {value}
+は整数値である必要があります。
+
+PRINTER_SCALE: 印刷時の倍率を指定します。実際の大きさに
+scale/100
+を掛けた大きさでページが印刷されます。例えば、値を 50
+に設定した場合には、出力内容は実際の大きさの半分となります。
+{value} は整数値である必要があります。
+
+PRINTER_BACKGROUND_COLOR:
+デバイスコンテキストの背景色を指定します。 {value} は
+rgb 情報を十六進表現で表した
+文字列である必要があります。つまり、"005533"
+のようになります。
+
+PRINTER_TEXT_COLOR:
+デバイスコンテキストの文字色を指定します。 {value} は
+rgb 情報を十六進表現で表した
+文字列である必要があります。つまり、"005533"
+のようになります。
+
+PRINTER_TEXT_ALIGN:
+デバイスコンテキストのテキストの配置を指定します。
+{value} には、 以下の定数を
+ORで組み合わせて指定することができます。
+
+PRINTER_TA_BASELINE: テキストをベースライン上に配置します。
+
+PRINTER_TA_BOTTOM: テキストを下詰めにします。
+
+PRINTER_TA_TOP: テキストを上詰めにします。
+
+PRINTER_TA_CENTER: テキストを中央揃えにします。
+
+PRINTER_TA_LEFT: テキストを左詰めにします。
+
+PRINTER_TA_RIGHT: テキストを右詰めにします。
+
+{value} {option} の値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|printer_set_option| の例
+
+<?php >
+  $handle = printer_open();
+  printer_set_option($handle, PRINTER_SCALE, 75);
+  printer_set_option($handle, PRINTER_TEXT_ALIGN, PRINTER_TA_LEFT);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

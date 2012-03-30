@@ -1,0 +1,67 @@
+mysql_list_tables -- MySQL
+データベース上のテーブルのリストを得る
+
+  resource mysql_list_tables(string database [, resource link_identifier])~
+
+MySQL
+データベースから、テーブル名のリストを取得します。
+
+この関数は廃止されました。かわりに |mysql_query|
+を利用して SHOW TABLES [FROM db_name] [LIKE 'pattern']
+文を発行することを推奨します。
+
+{database} データベース名。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に結果ポインタ resource 、 失敗した場合に
+FALSE を返します。
+
+結果ポインタの中身を調べるためには |mysql_tablename|
+関数を利用し、 取得したテーブルを利用するには
+|mysql_fetch_array| などの関数を利用してください。
+
+バージョン 説明 4.3.7 この関数は廃止されました。
+
+|mysql_list_tables| の別の例
+
+<?php >
+  $dbname = 'mysql_dbname';
+  
+  if (!mysql_connect('mysql_host', 'mysql_user', 'mysql_password')) {
+      echo 'Could not connect to mysql';
+      exit;
+  }
+  
+  $sql = "SHOW TABLES FROM $dbname";
+  $result = mysql_query($sql);
+  
+  if (!$result) {
+      echo "DB Error, could not list tables\n";
+      echo 'MySQL Error: ' . mysql_error();
+      exit;
+  }
+  
+  while ($row = mysql_fetch_row($result)) {
+      echo "Table: {$row[0]}\n";
+  }
+  
+  mysql_free_result($result);
+?>
+
+
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_listtables|
+
+|mysql_list_dbs| |mysql_tablename|
+
+vim:ft=help:

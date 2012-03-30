@@ -1,0 +1,26 @@
+rename_function --
+グローバルの関数テーブルで関数名を変更する
+
+  bool rename_function(string original_name, string new_name)~
+
+グローバルの関数テーブルで関数名を変更します。
+一時的に組み込み関数を上書きする際に有用です。
+
+{original_name} もとの関数名。
+
+{new_name} 関数 {original_name} の新しい名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|rename_function| の例
+
+<?php >
+  rename_function('mysql_connect', 'debug_mysql_connect' );
+?>
+
+
+
+
+
+vim:ft=help:

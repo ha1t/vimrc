@@ -1,0 +1,16 @@
+ibase_blob_add -- 生成された blob にデータを追加する
+
+  void ibase_blob_add(resource blob_handle, string data)~
+
+|ibase_blob_add| は、 |ibase_blob_create| で作成した blob
+にデータを追加します。
+
+{blob_handle} |ibase_blob_create| でオープンした blob ハンドル。
+
+{data} 追加するデータ。
+
+値を返しません。
+
+|ibase_blob_cancel| |ibase_blob_close| |ibase_blob_create| |ibase_blob_import|
+
+vim:ft=help:

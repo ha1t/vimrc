@@ -1,0 +1,36 @@
+pspell_add_to_personal -- ユーザの単語リストに単語を追加する
+
+  bool pspell_add_to_personal(int dictionary_link, string word)~
+
+|pspell_add_to_personal| はユーザの単語リスト
+に単語を追加します。ディレクトリをオープンするために
+|pspell_new_config| を |pspell_config_personal|
+とともに使用した場合、 |pspell_save_wordlist|
+で単語リストを保存することが可能です。
+
+{dictionary_link}
+
+{word} 追加する単語。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pspell_add_to_personal|
+
+<?php >
+  $pspell_config = pspell_config_create("en");
+  pspell_config_personal($pspell_config, "/var/dictionaries/custom.pws");
+  $pspell_link = pspell_new_config($pspell_config);
+  
+  pspell_add_to_personal($pspell_link, "Vlad");
+  pspell_save_wordlist($pspell_link);
+?>
+
+
+
+
+
+この関数は、pspell .11.2 と aspell .32.5
+以降でない限り動作しないことに注意してください。
+
+vim:ft=help:

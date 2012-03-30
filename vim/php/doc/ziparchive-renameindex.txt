@@ -1,0 +1,30 @@
+ZipArchive::renameIndex --
+インデックスを使用してエントリ名を変更する
+
+  bool ZipArchive::renameIndex(int index, string newname)~
+
+インデックスを使用して、エントリ名を変更します。
+
+{index} 名前を変更するエントリのインデックス。
+
+{newname} 新しい名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+エントリ名の変更
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip')
+  if ($res === TRUE) {
+      $zip->renameIndex(2,'newname.txt');
+      $zip->close();
+  } else {
+      echo '失敗、コード:' . $res;
+  }
+?>
+
+
+
+vim:ft=help:

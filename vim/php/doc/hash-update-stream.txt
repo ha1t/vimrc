@@ -1,0 +1,38 @@
+hash_update_stream --
+アクティブなハッシュコンテキストに、オープンしているストリームから
+データを投入する
+
+  int hash_update_stream(resource context, resource handle [, int length])~
+
+{context} |hash_init| が返すハッシュコンテキスト。
+
+{handle}
+ストリーム作成用の関数が返す、オープンしているファイルハンドル。
+
+{length} {handle} からハッシュコンテキストにコピーする
+最大文字数。
+
+{handle} からハッシュコンテキストに追加された
+実際のバイト数を返します。
+
+|hash_update_stream| の例
+
+<?php >
+  $fp = tmpfile();
+  fwrite($fp, 'The quick brown fox jumped over the lazy dog.');
+  rewind($fp);
+  
+  $ctx = hash_init('md5');
+  hash_update_stream($ctx, $fp);
+  echo hash_final($ctx);
+?>
+
+上の例の出力は以下となります。
+
+  5c6ffbdd40d9556b73a21e63c3e0e904
+
+
+
+|hash_init| |hash_update| |hash_final| |hash| |hash_file|
+
+vim:ft=help:

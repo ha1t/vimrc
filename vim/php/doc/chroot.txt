@@ -1,0 +1,14 @@
+chroot -- ルートディレクトリを変更する
+
+  bool chroot(string directory)~
+
+カレントのプロセスのルートディレクトリを
+{directory}に変更します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+使用しているシステムがサポートし、 かつCLI,CGI,Embed
+SAPIを使用している場合でのみ この関数は有効です。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+vim:ft=help:

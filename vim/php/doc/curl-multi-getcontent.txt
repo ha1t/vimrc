@@ -1,0 +1,18 @@
+curl_multi_getcontent -- CURLOPT_RETURNTRANSFER
+が設定されている場合に、cURL ハンドルの内容を返す
+
+  string curl_multi_getcontent(resource ch)~
+
+CURLOPT_RETURNTRANSFER
+に何らかのハンドルが設定されている場合に、
+この関数はその cURL
+ハンドルの内容を文字列形式で返します。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+CURLOPT_RETURNTRANSFER が設定されている場合に、 cURL
+ハンドルの内容を返します。
+
+|curl_multi_init|
+
+vim:ft=help:

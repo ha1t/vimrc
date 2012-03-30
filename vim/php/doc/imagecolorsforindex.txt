@@ -1,0 +1,49 @@
+imagecolorsforindex --
+カラーインデックスからカラーを取得する
+
+  array imagecolorsforindex(resource image, int index)~
+
+指定したインデックスに対する色を取得します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{index}
+
+指定したカラーインデックス index
+に対して適当な値からなる red、green、blue
+をキーとする連想配列を返します。
+
+|imagecolorsforindex| の例
+
+<?php >
+  // 画像をオープンします
+  $im = imagecreatefrompng('nexen.png');
+  
+  // 色を取得します
+  $start_x = 40;
+  $start_y = 50;
+  $color_index = imagecolorat($im, $start_x, $start_y);
+  
+  // 可読形式にします
+  $color_tran = imagecolorsforindex($im, $color_index);
+  
+  // どんな内容でしょう?
+  print_r($color_tran);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+     [red] => 226
+     [green] => 222
+     [blue] => 252
+     [alpha] => 0
+  )
+
+
+
+|imagecolorat| |imagecolorexact|
+
+vim:ft=help:

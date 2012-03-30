@@ -1,0 +1,35 @@
+tidy_get_error_buffer --
+指定したドキュメントのパースで発生した警告とエラーを返す
+
+手続き型:
+
+  string tidy_get_error_buffer(tidy object)~
+
+オブジェクト指向型 (プロパティ):
+
+|tidy_get_error_buffer| は、
+指定したドキュメントのパースで発生した警告とエラーを返します。
+
+|tidy_get_error_buffer| の例
+
+<?php >
+  $html = '<p>paragraph</p>';
+  
+  $tidy = tidy_parse_string($html);
+  
+  echo tidy_get_error_buffer($tidy);
+  /* オブジェクト指向の場合 */
+  echo $tidy->errorBuffer;
+?>
+
+上の例の出力は以下となります。
+
+  line 1 column 1 - Warning: missing <!DOCTYPE> declaration
+  line 1 column 1 - Warning: inserting missing 'title' element
+
+
+
+|tidy_access_count|, |tidy_error_count|, |tidy_warning_count|
+も参照ください。
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+cpdf_stroke -- パスに沿って線を描く
+
+  bool cpdf_stroke(int pdf_document)~
+
+現在のパスに沿って線を描きます。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_closepath| |cpdf_closepath_stroke|
+
+vim:ft=help:

@@ -1,0 +1,71 @@
+sqlite_udf_decode_binary --
+UDFにパラメータとして渡されたバイナリデータをデコードする
+
+  string sqlite_udf_decode_binary(string data)~
+
+パラメータで渡されたバイナリデータを UDF
+にデコードします。
+
+バイナリデータをUDFにより処理させる必要がある場合、UDFに渡されたパ
+ラメータに関してこの関数をコールする必要があります。
+これは、PHPにより適用されたバイナリエンコーディングが内容と元のパラ
+メータを隠蔽するためです。
+
+PHP
+は、自動的にエンコード/デコード処理を行いません。これは、これを
+行うと著しい性能劣化を生じる可能性があるためです。
+
+{data}
+デコード対象となる、エンコードされたデータ。これは
+|sqlite_udf_encode_binary| あるいは |sqlite_escape_string|
+で作成したものです。
+
+デコードされた文字列を返します。
+
+バイナリ対応 max_length 集約関数の例
+
+<?php >
+  $data = array(
+     'one',
+     'two',
+     'three',
+     'four',
+     'five',
+     'six',
+     'seven',
+     'eight',
+     'nine',
+     'ten',
+     );
+  $db = sqlite_open(':memory:');
+  sqlite_query($db, "CREATE TABLE strings(a)");
+  foreach ($data as $str) {
+      $str = sqlite_escape_string($str);
+      sqlite_query($db, "INSERT INTO strings VALUES ('$str')");
+  }
+  
+  function max_len_step(&amp;$context, $string)
+  {
+      $string = sqlite_udf_decode_binary($string);
+      if (strlen($string) > $context) {
+          $context = strlen($string);
+      }
+  }
+  
+  function max_len_finalize(&amp;$context)
+  {
+      return $context;
+  }
+  
+  sqlite_create_aggregate($db, 'max_len', 'max_len_step', 'max_len_finalize');
+  
+  var_dump(sqlite_array_query($db, 'SELECT max_len(a) from strings'));
+?>
+
+
+
+
+
+|sqlite_udf_encode_binary| |sqlite_create_function| |sqlite_create_aggregate|
+
+vim:ft=help:

@@ -1,0 +1,36 @@
+apache_get_modules -- ロードされた Apache
+モジュールのリストを取得する
+
+  array apache_get_modules()~
+
+ロードされた Apache モジュールのリストを取得します。
+
+ロードされた Apache モジュールの配列 array を返します。
+
+バージョン 説明 5.0.0 Apache 1 を使用している、もしくは
+Apache 2 で フィルター API
+として使用している場合に利用可能です。 以前は、Apache 2
+の ハンドラ API
+として使用している場合にのみ利用可能でした。
+
+|apache_get_modules| の例
+
+<?php >
+  print_r(apache_get_modules());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => core
+      [1] => http_core
+      [2] => mod_so
+      [3] => sapi_apache2
+      [4] => mod_mime
+      [5] => mod_rewrite
+  )
+
+
+
+vim:ft=help:

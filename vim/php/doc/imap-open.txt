@@ -1,0 +1,168 @@
+imap_open -- メールボックスへの IMAP
+ストリームをオープンする
+
+  resource imap_open(string mailbox, string username, string password [, int options [, int n_retries]])~
+
+{mailbox} への IMAP ストリームをオープンします。
+
+この関数は、POP3 や NNTP
+サーバへのストリームをオープンする際にも使用可能です。
+しかし、いくつかの関数および機能は IMAP
+サーバでしか利用できません。
+
+{mailbox}
+メールボックス名(mailbox)は、サーバ名の部分と使用するサーバにおける
+メールボックスへのパスから構成されます。特別な名前
+INBOX は、
+カレントユーザの個人メールボックスを意味します。 ASCII
+空間で出力可能な文字以外の外国文字を含むメールボックス名は
+|imap_utf7_encode| でエンコードする必要があります。
+
+サーバ部は '{' および '}' で括られ、サーバ名または IP
+アドレス、オプションの ':' から始まるポート指定子、('/'
+で始まる)オプションのプロトコル指定子
+から構成されます。
+
+サーバ部は、全ての mailbox パラメータで必須です。
+
+{ で始まる名前はすべてリモート名で、 "{" remote_system_name
+[":" port] [flags] "}" [mailbox_name] のような形式となります。
+remote_system_name - Internet ドメイン名
+あるいは括弧でかこまれたサーバの IP アドレス。
+
+port - オプションの TCP ポート番号。デフォルトは
+そのサービスのデフォルトポート。
+
+flags - オプションのフラグ。以下の表を参照ください。
+
+mailbox_name - リモートメールボックス名。デフォルトは INBOX
+。
+
+オプションのフラグ名 フラグ 説明 /service=service
+メールボックスにアクセスするサービス。デフォルトは
+"imap" 。 /user=user サーバへのログイン時のユーザ名。
+/authuser=user
+リモートの認証ユーザ。指定されていた場合は、このユーザのパスワードが
+認証に使用されます（例: administrator）。 /anonymous
+匿名ユーザとしてアクセスします。 /debug
+プロトコルの通信内容をアプリケーションのデバッグログに記録します。
+/secure
+ネットワーク越しにプレーンテキストのパスワードを送信しません。
+/imap, /imap2, /imap2bis, /imap4, /imap4rev1 /service=imap と同じです。
+/pop3 /service=pop3 と同じです。 /nntp /service=nntp と同じです。
+/norsh 事前に認証済みの IMAP
+セッションを確立する際に、rsh や ssh を使用しません。
+/ssl セッションの暗号化に SSL（Secure Socket
+Layer）を使用します。 /validate-cert TLS/SSL
+サーバの証明書を検証します（デフォルトの挙動です）。
+/novalidate-cert TLS/SSL
+サーバの証明書を検証しません。サーバが自己証明の
+証明書を使用している際に必要となります。 /tls
+セッションの暗号化に start-TLS の使用を強制し、それを
+サポートしていないサーバとの接続を拒否します。 /notls
+たとえサーバがそれをサポートしていたとしても、
+セッションで start-TLS による暗号化を使用しません。
+/readonly
+読み込み専用でのメールボックスのオープンを要求します（IMAP
+のみ。 NNTP では無視され、SMTP および POP3
+ではエラーとなります）。
+
+{username} ユーザ名。
+
+{password} {username} のパスワード。
+
+{options} {options}
+はビットマスクであり、以下の組み合わせとなります。
+OP_READONLY -
+メールボックスを読み込み専用でオープンします。
+
+OP_ANONYMOUS - news に関して .newsrc
+を使用せず、更新もしません（NNTP のみ）。
+
+OP_HALFOPEN - IMAP 及び NNTP 名について、
+接続をオープンしますがメールボックスはオープンしません。
+
+CL_EXPUNGE - メールボックスを閉じる際に、
+自動的にメールボックスを削除します（|imap_delete| および
+|imap_expunge| も参照ください）。
+
+OP_DEBUG - プロトコルネゴシエーションをデバッグします。
+
+OP_SHORTCACHE - 短い（elt-only）キャッシングを行います。
+
+OP_SILENT - イベントを受信しません（内部で使用します）。
+
+OP_PROTOTYPE - ドライバのプロトタイプを返します。
+
+OP_SECURE - セキュアでない認証を行いません。
+
+{n_retries} 接続試行の最大数。
+
+成功した場合は IMAP ストリームを、失敗した場合は FALSE
+を返します。
+
+バージョン 説明 5.2.0 {n_retries} が追加されました。
+
+|imap_open| のさまざまな使用例
+
+<?php >
+  // ローカルマシンのポート 143 で稼動している IMAP サーバに接続するには
+  // 以下のようにします。
+  $mbox = imap_open("{localhost:143}INBOX", "user_id", "password");
+  
+  // ローカルマシンのポート 110 で稼動している POP3 サーバに接続するには、
+  $mbox = imap_open ("{localhost:110/pop3}INBOX", "user_id", "password");
+  
+  // SSL IMAP あるいは POP3 サーバに接続するには、プロトコル指定のあとに
+  // /ssl を追加します。
+  $mbox = imap_open ("{localhost:993/imap/ssl}INBOX", "user_id", "password");
+  
+  // 自分でサインした証明書で SSL IMAP あるいは POP3 サーバに接続するには、
+  // プロトコル指定のあとに /ssl/novalidate-cert を追加します。
+  $mbox = imap_open ("{localhost:995/pop3/ssl/novalidate-cert}", "user_id", "password");
+  
+  // ローカルマシンのポート 119 で稼動している NNTP サーバに接続するには、
+  $nntp = imap_open ("{localhost:119/nntp}comp.test", "", "");
+  // リモートサーバに接続する際は、"localhost" を接続したいサーバの
+  // 名前または IP アドレスに置き換えます。
+?>
+
+
+
+|imap_open| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org:143}", "username", "password");
+  
+  echo "<h1>Mailboxes</h1>\n";
+  $folders = imap_listmailbox($mbox, "{imap.example.org:143}", "*");
+  
+  if ($folders == false) {
+      echo "コールが失敗しました<br />\n";
+  } else {
+      foreach ($folders as $val) {
+          echo $val . "<br />\n";
+      }
+  }
+  
+  echo "<h1>INBOX のヘッダ</h1>\n";
+  $headers = imap_headers($mbox);
+  
+  if ($headers == false) {
+      echo "コールが失敗しました<br />\n";
+  } else {
+      foreach ($headers as $val) {
+          echo $val . "<br />\n";
+      }
+  }
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+|imap_close|
+
+vim:ft=help:

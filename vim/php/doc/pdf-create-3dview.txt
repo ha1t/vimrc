@@ -1,0 +1,9 @@
+PDF_create_3dview -- 3D ビューを作成する
+
+  int PDF_create_3dview(resource pdfdoc, string username, string optlist)~
+
+3D ビューを作成します。
+
+この関数は PDF 1.6 を必要とします。
+
+vim:ft=help:

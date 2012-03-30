@@ -1,0 +1,30 @@
+DomElement->set_attribute() -- 属性値を設定する
+
+  DomAttribute set_attribute(string name, string value)~
+
+名前 {name} を持つ属性値を {value} に設定します。
+
+{name}
+属性名。もし属性が存在しない場合、新たに作成されます。
+
+{value} 属性値
+
+古い DomAttribute ノード、
+もしくは最初に属性が作成された場合は新しいノードを返します。
+
+属性を設定する
+
+<?php >
+  $doc = domxml_new_doc("1.0");
+  $node = $doc->create_element("para");
+  $newnode = $doc->append_child($node);
+  $newnode->set_attribute("align", "left");
+?>
+
+
+
+
+
+を使用してください。
+
+vim:ft=help:

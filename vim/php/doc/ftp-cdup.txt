@@ -1,0 +1,44 @@
+ftp_cdup -- 親ディレクトリに移動する
+
+  bool ftp_cdup(resource ftp_stream)~
+
+親ディレクトリに移動します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ftp_cdup| の例
+
+<?php >
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // html ディレクトリに移動する
+  ftp_chdir($conn_id, 'html');
+  
+  echo ftp_pwd($conn_id); // /html 
+  
+  // 親ディレクトリに戻る
+  if (ftp_cdup($conn_id)) { 
+    echo "cdup successful\n";
+  } else {
+    echo "cdup not successful\n";
+  }
+  
+  echo ftp_pwd($conn_id); // /
+  
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_chdir| |ftp_pwd|
+
+vim:ft=help:

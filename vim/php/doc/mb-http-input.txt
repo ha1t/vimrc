@@ -1,0 +1,20 @@
+mb_http_input -- HTTP 入力文字エンコーディングを検出する
+
+  mixed mb_http_input([string type])~
+
+HTTP 入力文字エンコーディングを検出します。
+
+{type} HTTP 入力の型を表す文字列を入力してください。 GET
+の場合は "G"、POST の場合は "P"、 COOKIE の場合は
+"C"、文字列の場合は "S" 、 リストの場合は "L"
+、リスト全体（array を返す） の場合は "I" です。 {type}
+が省略された場合、
+直近に処理された入力型が返されます。
+
+{type} の文字エンコーディング名を返します。 |mb_http_input|
+が指定した HTTP 入力の処理を行っていない場合、FALSE
+を返します。
+
+|mb_internal_encoding| |mb_http_output| |mb_detect_order|
+
+vim:ft=help:

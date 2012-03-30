@@ -1,0 +1,11 @@
+tidyNode->isAsp -- このノードが ASP コードの場合 true を返す
+
+  bool tidyNode->isAsp()~
+
+現在のノードが ASP コードの場合、この関数は TRUE
+を返します。 それ以外の場合 FALSE を返します。
+
+この関数は、PHP 4/Tidy 1 では |tidy_node->is_asp|
+という名前でした。
+
+vim:ft=help:

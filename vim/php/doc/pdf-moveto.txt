@@ -1,0 +1,8 @@
+PDF_moveto -- 現在の位置を設定する
+
+  bool PDF_moveto(resource p, float x, float y)~
+
+描画出力のための現在の点を設定します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

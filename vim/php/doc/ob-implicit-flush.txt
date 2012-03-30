@@ -1,0 +1,18 @@
+ob_implicit_flush -- 自動フラッシュをオンまたはオフにする
+
+  void ob_implicit_flush([int flag])~
+
+|ob_implicit_flush| は、
+自動フラッシュをオンまたはオフに切替えます。
+自動フラッシュにより、出力関数のコールが行われるたびに
+フラッシュ操作が行われるようになります。このため、|flush|
+を明示的にコールする必要はなくなります。
+
+{flag} TRUE で自動フラッシュをオンに、FALSE
+でオフにします。 デフォルトは TRUE です。
+
+値を返しません。
+
+|flush| |ob_start| |ob_end_flush|
+
+vim:ft=help:

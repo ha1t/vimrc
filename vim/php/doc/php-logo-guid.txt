@@ -1,0 +1,24 @@
+php_logo_guid -- ロゴの guid を取得する
+
+  string php_logo_guid()~
+
+ビルトインされている画像を使って PHP
+ロゴを表示する際に使用できる ID を返します。
+ロゴが表示されるのは、expose_php が On の場合のみです。
+
+PHPE9568F34-D428-11d2-A769-00AA001ACF42 を返します。
+
+|php_logo_guid| の例
+
+<?php >
+  echo '<img src="' . $_SERVER['PHP_SELF'] .
+       '?=' . php_logo_guid() . '" alt="PHP Logo !" />';
+?>
+
+
+
+
+
+|phpinfo| |phpversion| |phpcredits| |zend_logo_guid|
+
+vim:ft=help:

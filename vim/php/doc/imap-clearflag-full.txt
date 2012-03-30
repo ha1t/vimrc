@@ -1,0 +1,29 @@
+imap_clearflag_full -- メッセージのフラグをクリアする
+
+  bool imap_clearflag_full(resource imap_stream, string sequence, string flag [, string options])~
+
+この関数は、指定したシーケンス {sequence}
+のメッセージのフラグから、指定したフラグ {flag}
+を削除します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{sequence} メッセージ番号のシーケンス。 X,Y
+のようにメッセージを列挙したり、 X:Y
+のようにしてその間のすべてのメッセージを指定したりできます。
+
+{flag} 設定可能なフラグは "\\Seen"、
+"\\Answered"、"\\Flagged"、"\\Deleted" および "\\Draft" です (RFC2060
+で定義されています)。
+
+{options} オプション {options} はビットマスクであり、
+以下の組み合わせとなります。 ST_UID -
+シーケンス引数はシーケンス番号の代わりに UID
+を含みます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_setflag_full|
+
+vim:ft=help:

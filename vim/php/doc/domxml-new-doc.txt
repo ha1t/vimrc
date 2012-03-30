@@ -1,0 +1,12 @@
+domxml_new_doc -- 空の新規 XMLドキュメントを作成する
+
+  DomDocument domxml_new_doc(string version)~
+
+スクラッチから新規 DOM
+ドキュメントを作成し、返します。
+
+{version} 文章の XML バージョン番号
+
+新規 DomDocument インスタンスを返します。
+
+vim:ft=help:

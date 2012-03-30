@@ -1,0 +1,28 @@
+apd_set_pprof_trace -- セッションのデバッグを開始する
+
+  string apd_set_pprof_trace([string dump_directory [, string fragment]])~
+
+ダンプディレクトリの pprof_{process_id}
+へのデバッグを開始します。
+
+{dump_directory}
+プロファイルのダンプファイルを書き込むディレクトリ。
+指定しない場合は、php.ini の設定 apd.dumpdir を使用します。
+
+{fragment}
+
+対象となるファイルへのパスを返します。
+
+|apd_set_pprof_trace| の例
+
+<?php >
+  apd_set_pprof_trace();
+?>
+
+
+
+
+
+|apd_set_session_trace|
+
+vim:ft=help:

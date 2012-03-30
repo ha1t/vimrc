@@ -1,0 +1,65 @@
+dbx_compare -- ソートするために二つのレコードを比較する
+
+  int dbx_compare(array row_a, array row_b, string column_key [, int flags])~
+
+|dbx_compare| は |dbx_sort| のヘルパ関数で、
+独自のソート関数を作成しやすくします。
+
+{row_a} 最初の行。
+
+{row_b} 二番目の行。
+
+{column_key} 比較するカラム。
+
+{flags} {flags} によって比較の方向を指定します。 DBX_CMP_ASC -
+昇順
+
+DBX_CMP_DESC - 降順
+
+また、比較の型についても指定します。 DBX_CMP_NATIVE -
+型の変換を行いません
+
+DBX_CMP_TEXT - 文字列として比較します
+
+DBX_CMP_NUMBER - 数値として比較します
+
+方向からひとつ、型の定数からひとつを選び、ビット OR
+演算子 (|) で 組み合わせます。{flags}
+パラメータのデフォルト値は DBX_CMP_ASC | DBX_CMP_NATIVE です。
+
+row_a[$column_key] が row_b[$column_key] に等しい場合に 0、
+前者が後者より大きいかあるいは小さい場合にそれぞれ 1
+あるいは -1、 もし DBX_CMP_DESC
+が設定されていればその逆を返します。
+
+|dbx_compare| の例
+
+<?php >
+  function user_re_order($a, $b) 
+  {
+      $rv = dbx_compare($a, $b, "parentid", DBX_CMP_DESC);
+      if (!$rv) {
+          $rv = dbx_compare($a, $b, "id", DBX_CMP_NUMBER);
+      }
+      return $rv;
+  }
+  
+  $link   = dbx_connect(DBX_ODBC, "", "db", "username", "password")
+      or die("接続できませんでした");
+  
+  $result = dbx_query($link, "SELECT id, parentid, description FROM table ORDER BY id");
+      // $result のデータは id で並べ替えられます
+  
+  dbx_sort($result, "user_re_order");
+      // $result のデータは、まず parentid の降順で並べ替えられ、次に id で並べ替えられます
+  
+  dbx_close($link);
+?>
+
+
+
+
+
+|dbx_sort|
+
+vim:ft=help:

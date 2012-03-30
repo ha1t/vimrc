@@ -1,0 +1,19 @@
+imap_close -- IMAP ストリームをクローズする
+
+  bool imap_close(resource imap_stream [, int flag])~
+
+IMAP ストリームをクローズします。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{flag} CL_EXPUNGE
+を指定した場合、メールボックスを閉じる前に暗黙のうちに
+削除マークがついた全てのメッセージを削除します。
+|imap_expunge| を使用して、同じことを行うこともできます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_open|
+
+vim:ft=help:

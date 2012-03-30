@@ -1,0 +1,16 @@
+odbc_field_name -- カラム名を得る
+
+  string odbc_field_name(resource result_id, int field_number)~
+
+指定された ODBC 結果 ID
+において指定されたカラム番号にあるフィールドの名前を取得します。
+
+{result_id} 結果 ID。
+
+{field_number} フィールド番号。フィールド番号は、1
+から始まります。
+
+フィールド名を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

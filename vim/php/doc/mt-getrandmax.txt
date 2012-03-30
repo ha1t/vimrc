@@ -1,0 +1,11 @@
+mt_getrandmax -- 乱数値の最大値を表示する
+
+  int mt_getrandmax()~
+
+|mt_rand| のコールにより返される最大の値を返します。
+
+|mt_rand| が返す乱数の最大値を返します。
+
+|mt_rand| |mt_srand| |getrandmax|
+
+vim:ft=help:

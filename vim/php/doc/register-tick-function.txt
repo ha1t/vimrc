@@ -1,0 +1,40 @@
+register_tick_function -- 各 tick で実行する関数を登録する
+
+  bool register_tick_function(callback function [, mixed arg [, mixed ...]])~
+
+tick がコールされた際に実行される {func}
+という名前の関数を登録します。
+
+{function}
+関数名を表す文字列、あるいはオブジェクトとメソッドを指定した配列。
+
+{arg}
+
+{...}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|register_tick_function| の例
+
+<?php >
+  // 関数をコールバックとして使用します
+  register_tick_function('my_function', true);
+  
+  // オブジェクトのメソッドを使用します
+  $object = new my_class();
+  register_tick_function(array(&amp;$object, 'my_method'), true);
+?>
+
+
+
+
+
+|register_tick_function| はスレッド化された Web
+サーバモジュールとともに使用することはできません。ZTS
+モードでは Tick は動作せず、Web
+サーバがクラッシュしてしまいます。
+
+declare |unregister_tick_function|
+
+vim:ft=help:

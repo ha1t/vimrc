@@ -1,0 +1,21 @@
+mailparse_msg_extract_whole_part_file --
+ヘッダを含むメッセージセクションを、transfer encoding
+をデコードせずに展開する
+
+  string mailparse_msg_extract_whole_part_file(resource mimemail, string filename [, callback callbackfunc])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{mimemail} 有効な MIME リソース。
+
+{filename}
+
+{callbackfunc}
+
+
+
+|mailparse_msg_extract_part| |mailparse_msg_extract_part_file|
+
+vim:ft=help:

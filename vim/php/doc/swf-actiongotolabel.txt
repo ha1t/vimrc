@@ -1,0 +1,14 @@
+swf_actiongotolabel --
+指定したラベルを有するフレームを表示する
+
+  void swf_actiongotolabel(string label)~
+
+関数 |swf_actiongotolabel| は、 {label}
+で指定したラベルを有するフレームを
+表示した後で停止します。
+
+{label} フレームのラベル。
+
+値を返しません。
+
+vim:ft=help:

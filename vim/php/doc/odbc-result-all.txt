@@ -1,0 +1,16 @@
+odbc_result_all -- HTML テーブルとして結果を出力する
+
+  int odbc_result_all(resource result_id [, string format])~
+
+|odbc_exec| により作成された結果 ID
+から全ての行を出力します。結果は、HTML
+テーブル形式で出力されます。
+
+{result_id} 結果 ID。
+
+{format} テーブルのフォーマット指定。
+
+成功の場合に結果の行数、エラーの場合に FALSE
+を返します。
+
+vim:ft=help:

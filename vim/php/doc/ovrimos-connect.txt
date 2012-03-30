@@ -1,0 +1,40 @@
+ovrimos_connect -- 指定したデータベースに接続する
+
+  int ovrimos_connect(string host, string dborport, string user, string password)~
+
+指定したデータベースに接続します。
+
+{host} ホスト名あるいは IP アドレス。
+
+{dborport} データベース名、あるいは接続するポート番号。
+
+{user} ユーザ名。
+
+{password} {user} のパスワード。
+
+成功した場合に接続 ID (0 より大きい値)、 失敗した場合に
+0 を返します。
+
+|ovrimos_connect| の例
+
+<?php >
+  $conn = ovrimos_connect("server.example.com", "8001", "admin", "password");
+  if ($conn != 0) {
+      echo "Connection ok!";
+      $res = ovrimos_exec($conn, "select table_id, table_name from sys.tables");
+      if ($res != 0) {
+          echo "Statement ok!";
+          ovrimos_result_all($res);
+          ovrimos_free_result($res);
+      }
+      ovrimos_close($conn);
+  }
+?>
+
+
+
+
+
+|ovrimos_close|
+
+vim:ft=help:

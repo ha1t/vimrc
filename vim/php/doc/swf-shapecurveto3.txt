@@ -1,0 +1,26 @@
+swf_shapecurveto3 -- 三次ベジエ曲線を描画する
+
+  void swf_shapecurveto3(float x1, float y1, float x2, float y2, float x3, float y3)~
+
+指定した座標を使用して、三次ベジエ曲線を描画します。
+
+その後、現在の位置は {x3} および {y3}
+が指す場所となります。
+
+{x1} 最初の曲線外制御点の x 座標。
+
+{y1} 最初の曲線外制御点の y 座標。
+
+{x2} 二番目の曲線外制御点の x 座標。
+
+{y2} 二番目の曲線外制御点の y 座標。
+
+{x3} 終点の x 座標。
+
+{y3} 終点の y 座標。
+
+値を返しません。
+
+|swf_shapecurveto|
+
+vim:ft=help:

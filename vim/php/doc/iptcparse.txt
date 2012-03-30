@@ -1,0 +1,15 @@
+iptcparse -- バイナリの IPTC ブロックのタグをパースする
+
+  array iptcparse(string iptcblock)~
+
+IPTC ブロックをパースします。
+
+{iptcblock} バイナリ IPTC ブロック。
+
+タグマーカーをインデックスとし、その値を保持する配列を返します。
+エラー時や IPTC データが見つからなかったときは FALSE
+を返します。
+
+|getimagesize| の例
+
+vim:ft=help:

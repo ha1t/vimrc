@@ -1,0 +1,33 @@
+SoapServer->handle() -- SOAP リクエストを処理する
+
+  void handle([string soap_request])~
+
+SOAP
+リクエストを処理し、必要な関数をコールし、レスポンスを返送します。
+back.
+
+{soap_request} SOAP
+リクエスト。もし引数が省略された場合、リクエストは
+$HTTP_RAW_POST_DATA PHP
+変数の中にリクエストがあると仮定します。
+
+値を返しません。
+
+いくつかの例
+
+<?php >
+  function test($x)
+  {
+      return $x;
+  }
+  
+  $server = new SoapServer(null, array('uri' => "http://test-uri/"));
+  $server->addFunction("test");
+  $server->handle();
+?>
+
+
+
+
+
+vim:ft=help:

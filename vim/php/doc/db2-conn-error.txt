@@ -1,0 +1,51 @@
+db2_conn_error -- 直近の接続から返された SQLSTATE
+を含む文字列を返す
+
+  string db2_conn_error([resource connection])~
+
+|db2_conn_error| は、データベースへの直近の接続が
+失敗した原因を表す SQLSTATE
+を返します。接続が失敗した場合には、 |db2_connect| は FALSE
+を返します。 この場合、SQLSTATE の値を取得するために
+|db2_conn_error| に何もパラメータを渡す必要はありません。
+
+しかし、接続は成功したもののその後に無効になった場合は、
+パラメータ {connection} を指定することで
+特定の接続についての SQLSTATE
+を取得することができます。
+
+SQLSTATE の値の意味を調べるには、DB2
+コマンドラインプロセッサのプロンプトで
+次のコマンドを発行します。 db2 '? {sqlstate-value}'
+また、|db2_conn_errormsg| をコールして、
+明示的なエラーメッセージと、それに関連する SQLCODE
+の値を取得することも可能です。
+
+{connection}
+当初は成功したものの、その後に無効になった接続に
+関連付けられた接続リソース。
+
+失敗した接続試行の結果を表す SQLSTATE を返します。
+直近の接続試行に関連するエラーがない場合には空の文字列を返します。
+
+失敗した接続試行からの SQLSTATE の取得
+以下の例では、|db2_connect| に
+わざと無効なパラメータを渡し、SQLSTATE
+を取得しています。
+
+<?php >
+  $conn = db2_connect('badname', 'baduser', 'badpassword');
+  if (!$conn) {
+      print "SQLSTATE の値: " . db2_conn_error();
+  }
+?>
+
+上の例の出力は以下となります。
+
+  SQLSTATE の値: 08001
+
+
+
+|db2_conn_errormsg| |db2_connect| |db2_stmt_error| |db2_stmt_errormsg|
+
+vim:ft=help:

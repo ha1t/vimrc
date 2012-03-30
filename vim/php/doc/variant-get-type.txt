@@ -1,0 +1,26 @@
+variant_get_type -- variant オブジェクトの型を返す
+
+  int variant_get_type(variant variant)~
+
+variant オブジェクトの型を返します。
+
+{variant} variant オブジェクト。
+
+この関数は、{variant} の型を表す整数値を返します。
+{variant} は 、 あるいは クラスのインスタンスです。
+返される値は、VT_XXX
+定数のいずれかと比較することが可能です。
+
+COM および DOTNET オブジェクトの返す値は、通常 VT_DISPATCH
+です。これらのクラスに対して
+この関数が動作する理由は、単に COM および DOTNET が VARIANT
+を 継承しているからというだけのことです。
+
+PHP のバージョン 5 より前では、この情報は VARIANT
+クラスの
+インスタンスからしか取得できません。そのためには
+擬似プロパティ {type} の値を読み取ります。
+これについてのより詳細な情報は
+クラスを参照ください。
+
+vim:ft=help:

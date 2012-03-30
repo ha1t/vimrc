@@ -1,0 +1,16 @@
+atan -- 逆正接（アークタンジェント）
+
+  float atan(float arg)~
+
+{arg} のアークタンジェントをラジアンで返します。 |atan|
+is the は |tan| の逆関数で、 |atan|
+がとりうる範囲内のすべての a について a==tan(atan(a))
+が成立します。
+
+{arg} 処理する引数。
+
+{arg} のアークタンジェントをラジアンで返します。
+
+|tan| |atanh| |asin| |acos|
+
+vim:ft=help:

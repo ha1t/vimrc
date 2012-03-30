@@ -1,0 +1,20 @@
+setrawcookie -- 値を URL エンコードせずにクッキーを送信する
+
+  bool setrawcookie(string name [, string value [, int expire [, string path [, string domain [, bool secure [, bool httponly]]]]]])~
+
+|setrawcookie| は、
+ブラウザに送信される際クッキーの値が自動的に URL
+エンコードされないことを除き、 |setcookie| と等価です。
+
+パラメータについての情報は |setcookie|
+のドキュメントを参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.2.0 {httponly}
+パラメータが追加されました。
+
+|setcookie|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+is_binary --
+変数がネイティブバイナリ文字列かどうかを調べる
+
+  bool is_binary(mixed var)~
+
+指定した変数が、ネイティブのバイナリ文字列かどうかを調べます。
+
+{var} 調べる変数。
+
+{var} がネイティブバイナリ文字列である場合に
+TRUE、それ以外の場合に FALSE を返します。
+
+|is_buffer| |is_string| |is_unicode|
+
+vim:ft=help:

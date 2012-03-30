@@ -1,0 +1,36 @@
+ob_get_clean --
+現在のバッファの内容を取得し、出力バッファを削除する
+
+  string ob_get_clean()~
+
+現在のバッファの中身を取得し、出力バッファを削除します。
+
+|ob_get_clean| は、基本的に |ob_get_contents| および |ob_end_clean|
+を同時に実行するのと同じです。
+
+出力バッファの内容を返した後で出力のバッファリングを終了します。
+出力バッファリングが開始されていない場合は FALSE
+が返されます。
+
+単純な |ob_get_clean| の例
+
+<?php >
+  ob_start();
+  
+  echo "Hello World";
+  
+  $out = ob_get_clean();
+  $out = strtolower($out);
+  
+  var_dump($out);
+?>
+
+上の例の出力は以下となります。
+
+  string(11) "hello world"
+
+
+
+|ob_get_contents| |ob_start|
+
+vim:ft=help:

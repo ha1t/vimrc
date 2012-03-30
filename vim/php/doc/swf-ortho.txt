@@ -1,0 +1,25 @@
+swf_ortho --
+現在のビューポートにおけるユーザー座標の直交マッピングを定義する
+
+  void swf_ortho(float xmin, float xmax, float ymin, float ymax, float zmin, float zmax)~
+
+ユーザ座標の三次元直交マッピングを
+現在のビューポートに定義します。
+
+{xmin}
+
+{xmax}
+
+{ymin}
+
+{ymax}
+
+{zmin}
+
+{zmax}
+
+値を返しません。
+
+|swf_ortho2|
+
+vim:ft=help:

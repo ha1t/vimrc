@@ -1,0 +1,21 @@
+odbc_pconnect -- 持続的なデータベース接続を開く
+
+  resource odbc_pconnect(string dsn, string user, string password [, int cursor_type])~
+
+ODBC 接続 ID またはエラー時に 0 (FALSE) を返します。
+この関数は、スクリプトが終了した時に接続が閉じられないということ以外は
+|odbc_connect| に非常に似ています。 同じ {dsn}、{user}、
+{password} の組み合わせ （|odbc_connect| および |odbc_pconnect|
+による）接続の場合は、
+持続的な接続を再利用することが可能です。
+
+持続的な接続 は、PHP が CGI
+プログラムとして使用される場合は使用できません。
+
+オプションの cursor_type
+パラメータに関する情報については、 |odbc_connect|
+関数を参照ください。
+持続的接続に関する更に詳細な情報については、PHP FAQ
+を参照ください。
+
+vim:ft=help:

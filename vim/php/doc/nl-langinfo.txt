@@ -1,0 +1,75 @@
+nl_langinfo -- 言語およびロケール情報を検索する
+
+  string nl_langinfo(int item)~
+
+|nl_langinfo|
+はロケールカテゴリの独立した要素にアクセスするために使用されます。
+|localeconv| と異なり、全ての要素を返します。 |nl_langinfo|
+はいかなる特定要素も取得可能です。
+
+{item} {item} は要素の整数値、もしくは要素の定数名です。
+以下は、使用される {item}
+に対する定数名と説明の一覧です。
+これらの定数のいくつかは特定のロケールに対して未定義、
+もしくは値がありません。 nl_langinfo 定数 定数 説明 LC_TIME
+カテゴリの定数 ABDAY_(1-7) 一週間中の n
+番目の曜日名の略式表記 DAY_(1-7) 一週間中の n
+番目の曜日名 (DAY_1 = 日曜日) ABMON_(1-12) n
+番目の月の名前の略式表記 MON_(1-12) n 番目の月の名前 AM_STR
+午前を表す文字列 PM_STR 午後を表す文字列 D_T_FMT |strftime|
+で日時を表すためのフォーマット文字列として使用することが可能な文字列
+D_FMT |strftime|
+で日付を表すためのフォーマット文字列として使用することが可能な文字列
+T_FMT |strftime|
+で時刻を表すためのフォーマット文字列として使用することが可能な文字列
+T_FMT_AMPM |strftime| でAM/PM付き 12
+時間表記を表すためのフォーマット文字列として使用することが可能な文字列
+ERA ロケール固有の元号付きフォーマット ERA_YEAR
+ロケール固有の元号付きフォーマットでの年 ERA_D_T_FMT
+ロケール固有の元号付きフォーマットでの日時 (|strftime|
+で使用可能な文字列) ERA_D_FMT
+ロケール固有の元号付きフォーマットでの日付 (|strftime|
+で使用可能な文字列) ERA_T_FMT
+ロケール固有の元号付きフォーマットでの時刻 (|strftime|
+で使用可能な文字列) LC_MONETARY カテゴリの定数 INT_CURR_SYMBOL
+国際通貨記号 CURRENCY_SYMBOL 地域通貨記号 CRNCYSTR CURRENCY_SYMBOL
+と同じ値 MON_DECIMAL_POINT 小数点文字 MON_THOUSANDS_SEP 1000
+単位桁区切り (3 桁ごとのグループ化) の区切り文字
+MON_GROUPING 'grouping' と同じ POSITIVE_SIGN
+正値の表示に使用される記号 NEGATIVE_SIGN
+負値の表示に使用される記号 INT_FRAC_DIGITS
+国際的な方法で表現する際の小数点以下の桁数 FRAC_DIGITS
+地域的な方法で表現する際の小数点以下の桁数 P_CS_PRECEDES
+CURRENCY_SYMBOL の前に正値がある場合 1 を返す P_SEP_BY_SPACE
+CURRENCY_SYMBOL と正値がスペースで区切られる場合 1 を返す
+N_CS_PRECEDES CURRENCY_SYMBOL の前に負値がある場合 1 を返す
+N_SEP_BY_SPACE CURRENCY_SYMBOL
+と負値がスペースで区切られる場合 1 を返す P_SIGN_POSN
+量および通貨記号を括弧で括る場合、0 を返す
+
+量および通貨記号の前に符号文字列を置く場合、1 を返す
+
+量および通貨記号の後に符号文字列を置く場合、2 を返す
+
+通貨記号の直前に符号文字列を置く場合、3 を返す
+
+通貨記号の直後に符号文字列を置く場合、4 を返す
+
+N_SIGN_POSN LC_NUMERIC カテゴリの定数 DECIMAL_POINT 小数点文字
+RADIXCHAR DECIMAL_POINT と同じ値 THOUSANDS_SEP 1000 単位桁区切り (3
+桁ごとのグループ化) の区切り文字 THOUSEP THOUSANDS_SEP
+と同じ値 GROUPING LC_MESSAGES カテゴリの定数 YESEXPR 'はい'
+の入力にマッチさせるための正規表現 NOEXPR 'いいえ'
+の入力にマッチさせるための正規表現 YESSTR 'はい'
+のための出力文字列 NOSTR 'いいえ' のための出力文字列
+LC_CTYPE カテゴリの定数 CODESET
+文字エンコーディング名の文字列を返す
+
+要素を文字列で返します。{item} が有効でない場合は FALSE
+を返します。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|setlocale| |localeconv|
+
+vim:ft=help:

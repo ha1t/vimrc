@@ -1,0 +1,18 @@
+ircg_oper -- 権限を IRC OPER に昇格させる
+
+  bool ircg_oper(resource connection, string name, string password)~
+
+|ircg_oper| は、{connection} 上にログインしているユーザに IRC
+オペレータの権限を与えます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{name} オペレータのアカウント名。登録されている IRC
+アカウントと一致する必要があります。
+
+{password} {name} のパスワード。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+swf_actionwaitforframe --
+フレームがロードされていない場合にアクションをスキップする
+
+  void swf_actionwaitforframe(int framenumber, int skipcount)~
+
+関数 |swf_actionwaitforframe| は、パラメータ {framenumber}
+で指定したフレームがロードされているか
+どうかを確認し、ロードされていない場合はパラメータ
+{skipcount} で指定したアクションの数だけスキップ
+します。この関数は "Loading..."
+型のアニメーションの場合に有用です。
+
+{framenumber} フレーム番号。
+
+{skipcount} スキップするアクションの番号。
+
+値を返しません。
+
+vim:ft=help:

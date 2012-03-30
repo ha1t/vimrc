@@ -1,0 +1,39 @@
+openssl_pkcs7_verify -- S/MIME
+でサインされたメッセージの署名を検証する
+
+  mixed openssl_pkcs7_verify(string filename, int flags [, string outfilename [, array cainfo [, string extracerts [, string content]]]])~
+
+|openssl_pkcs7_verify| は、 指定したファイルの S/MIME
+メッセージを読み込み、デジタル署名を評価します。
+
+{filename} メッセージへのパス。
+
+{flags} {flags}
+により署名の検証方法を指定することが可能です。
+詳細については、PKCS7 定数 を参照ください。
+
+{outfilename} {outfilename} を指定する場合、
+メッセージに署名した人の証明書が PEM
+形式で保存されたファイルの名前をこの変数に指定する必要があります。
+
+{cainfo} {cainfo} が指定された場合、
+検証処理で使用するために認証済みの CA
+証明書に関する情報を保持する必要があります。
+このパラメータに関するより詳細な情報については、
+証明書の検証 を参照ください。
+
+{extracerts} {extracerts} が指定された場合、 これは未認証の CA
+として一連の証明書を使用するためのファイルの名前となります。
+
+{content} ファイル名とともに {content}
+を指定すると、検証したデータがここに格納されます。
+格納する際に、署名情報は除去されます。
+
+署名が検証された場合は TRUE、正しくない場合
+(メッセージが改暫されたか署名に用いられた証明書が無効)
+は FALSE、 エラーの場合に -1 を返します。
+
+バージョン 説明 5.1.0 {content}
+パラメータが追加されました。
+
+vim:ft=help:

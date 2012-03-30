@@ -1,0 +1,42 @@
+bcompiler_write_file -- php
+ソースファイルをバイトコードとして書き込む
+
+  bool bcompiler_write_file(resource filehandle, string filename)~
+
+この関数は、指定したソースファイルをバイトコードにコンパイルし、
+開かれているファイルハンドルに書き込みます。
+
+{filehandle} |fopen| が返すファイルハンドル。
+
+{filename} ソースファイルのパスを表す文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_write_file| の例
+
+<?php >
+  $fh = fopen("example.phb", "w");
+  bcompiler_write_header($fh);
+  bcompiler_write_file($fh, "example.php");
+  bcompiler_write_footer($fh);
+  fclose($fh);
+  /* 以下はまったく同等となります。
+  include "example.php";
+     および
+  include "example.phb";
+  */
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|bcompiler_write_header| |bcompiler_write_footer|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+dba_insert -- エントリを挿入する
+
+  bool dba_insert(string key, string value, resource handle)~
+
+|dba_insert| は、 データベースに {key} および {value}
+で記述されるエントリを挿入します。
+
+{key}
+挿入するエントリのキー。もしこのキーが既にデータベースに存在する場合、
+この関数は失敗します。既存のキーを置き換える場合は、
+|dba_replace| を使用してください。
+
+{value} 挿入する値。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dba_exists| |dba_delete| |dba_fetch| |dba_replace|
+
+vim:ft=help:

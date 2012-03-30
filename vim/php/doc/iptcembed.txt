@@ -1,0 +1,17 @@
+iptcembed -- バイナリ IPTC データを JPEG イメージに埋めこむ
+
+  mixed iptcembed(string iptcdata, string jpeg_file_name [, int spool])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+{iptcdata}
+
+{jpeg_file_name}
+
+{spool}
+
+vim:ft=help:

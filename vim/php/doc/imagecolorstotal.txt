@@ -1,0 +1,15 @@
+imagecolorstotal -- 画像パレットの色数を検出する
+
+  int imagecolorstotal(resource image)~
+
+指定した画像パレットの色数を返します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+指定した画像パレットの色数を返します。 truecolor
+画像の場合は 0 を返します。
+
+|imagecolorat| |imagecolorsforindex| |imageistruecolor|
+
+vim:ft=help:

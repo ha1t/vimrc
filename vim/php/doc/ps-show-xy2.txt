@@ -1,0 +1,14 @@
+ps_show_xy2 -- テキストを指定した位置に出力する
+
+  bool ps_show_xy2(resource psdoc, string text, int len, float xcoor, float ycoor)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

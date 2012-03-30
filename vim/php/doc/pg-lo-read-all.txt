@@ -1,0 +1,40 @@
+pg_lo_read_all --
+ラージオブジェクト全体を読み込みブラウザに直接送信する
+
+  int pg_lo_read_all(resource large_object)~
+
+|pg_lo_read_all| は、ラージオブジェクトを読み込み
+未送信のヘッダを全て送信した後、ブラウザに直接ラージオブジェクトを
+送信します。これは主に、イメージや音などのバイナリデータを送信するために
+使用します。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+この関数は、以前は |pg_loreadall| と呼ばれていました。
+
+{large_object} |pg_lo_open| によって返された PostgreSQL
+ラージオブジェクト (LOB) リソース。
+
+読み込んだバイト数を返します。エラー時には FALSE
+を返します。
+
+|pg_lo_read_all| の例
+
+<?php >
+     header('Content-type: image/jpeg');
+     $image_oid = 189762345;
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     $handle = pg_lo_open($database, $image_oid, "r");
+     pg_lo_read_all($handle);
+     pg_query($database, "commit");
+?>
+
+
+
+
+
+|pg_lo_read|
+
+vim:ft=help:

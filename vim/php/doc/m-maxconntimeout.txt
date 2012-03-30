@@ -1,0 +1,15 @@
+m_maxconntimeout -- API が MCVE への接続を試みる時間の最大値
+
+  bool m_maxconntimeout(resource conn, int secs)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{secs}
+
+
+
+vim:ft=help:

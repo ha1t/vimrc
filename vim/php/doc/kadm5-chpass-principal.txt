@@ -1,0 +1,31 @@
+kadm5_chpass_principal -- プリンシパルのパスワードを変更する
+
+  bool kadm5_chpass_principal(resource handle, string principal, string password)~
+
+|kadm5_chpass_principal| は、 {principal} の新しいパスワードを
+{password} に設定します。
+
+{handle} KADM5 ハンドル。
+
+{principal} プリンシパル。
+
+{password} 新しいパスワード。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+プリンシパルのパスワードを変更する例
+
+<?php >
+  $handle = kadm5_init_with_password("afs-1", "GONICUS.LOCAL", "admin/admin", "password");
+  
+  kadm5_chpass_principal($handle, "burbach@GONICUS.LOCAL", "newpassword");
+  
+  kadm5_destroy($handle);
+?>
+
+
+
+
+
+vim:ft=help:

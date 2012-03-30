@@ -1,0 +1,17 @@
+openal_listener_set -- リスナーのプロパティを設定する
+
+  bool openal_listener_set(int property, mixed setting)~
+
+設定するプロパティ。 AL_GAIN (float)、 AL_POSITION
+(array(float,float,float))、 AL_VELOCITY (array(float,float,float)) そして
+AL_ORIENTATION (array(float,float,float)) のいずれか。
+
+設定する値。float あるいは float
+の配列のうち適切なもの。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openal_listener_get|
+
+vim:ft=help:

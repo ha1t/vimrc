@@ -1,0 +1,15 @@
+JDToGregorian -- ユリウス積算日をグレゴリウス日に変換する
+
+  string jdtogregorian(int julianday)~
+
+ユリウス積算日を "月/日/年"
+の形式でグレゴリウス日を含む文字列に変換します。
+
+{julianday} ユリウス積算日を表す整数値。
+
+グレゴリウス暦の日付を "月/日/年"
+形式の文字列で返します。
+
+|gregoriantojd| |cal_from_jd|
+
+vim:ft=help:

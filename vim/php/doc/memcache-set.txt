@@ -1,0 +1,87 @@
+Memcache::set -- データをサーバに格納する
+
+  bool Memcache::set(string key, mixed var [, int flag [, int expire]])~
+
+|Memcache::set| は、キー {key} に {var} という値を
+関連付け、memcached サーバに格納します。パラメータ
+{expire} は、データの有効期限を秒単位で指定します。もし
+0 を指定した場合は
+その項目が期限切れになることはありません
+(これは、その項目のデータが memcached
+サーバ上にずっと残り続けることを保証するものではありません。
+他の項目をキャッシュするための場所を確保するためにサーバから
+削除されてしまうこともあります)。 (zlib を使用して)
+その場でのデータの圧縮を行いたい場合は、 {flag}
+の値として、定数 MEMCACHE_COMPRESSED を指定します。
+リソース型の変数
+(たとえばファイル記述子や接続記述子など)
+はキャッシュに保存できないことを覚えておきましょう。これは、
+シリアライズした状態ではそれらのデータを適切に表すことが
+できないためです。
+
+|memcache_set| 関数を使用することも可能です。
+
+{key} 項目に関連付けられたキー。
+
+{var}
+格納する値。文字列および整数値はそのままの形式で、それ以外の型は
+シリアライズされて格納されます。
+
+{flag} 項目を圧縮して格納する場合に MEMCACHE_COMPRESSED
+を使用します (zlib を使用します)。
+
+{expire} 項目の有効期限。ゼロの場合は有効期限なし
+(いつまでも有効) となります。Unix
+タイムスタンプ形式、あるいは現在からの
+秒数で指定することが可能ですが、後者の場合は秒数が
+2592000 (30 日) を超えることはできません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Memcache::set| の例
+
+<?php >
+  /* 手続き型の API */
+  
+  /* memcached サーバに接続します */
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  
+  /*
+  キー 'var_key' の項目の値を設定します。
+  flag の値として 0 を使用し、圧縮は使用しません。
+  有効期限は 30 秒です。
+  */
+  memcache_set($memcache_obj, 'var_key', 'some variable', 0, 30);
+  
+  echo memcache_get($memcache_obj, 'var_key');
+?>
+
+
+
+|Memcache::set| の例
+
+<?php >
+  /* オブジェクト指向の API */
+  
+  $memcache_obj = new Memcache;
+  
+  /* memcached サーバに接続します */
+  $memcache_obj->connect('memcache_host', 11211);
+  
+  /*
+  キー 'var_key' に対応する値を設定します。その際、データの圧縮を行います。
+  有効期限は 50 秒です。
+  */
+  $memcache_obj->set('var_key', 'some really big variable', MEMCACHE_COMPRESSED, 50);
+  
+  echo $memcache_obj->get('var_key');
+?>
+
+
+
+
+
+|Memcache::add| |Memcache::replace|
+
+vim:ft=help:

@@ -1,0 +1,73 @@
+array_diff_assoc --
+追加された添字の確認を含めて配列の差を計算する
+
+  array array_diff_assoc(array array1, array array2 [, array ...])~
+
+{array1} を {array2} と比較し、 その差を返します。|array_diff|
+とは異なり、 配列のキーを用いて比較を行います。
+
+{array1} 比較元の配列。
+
+{array2} 比較する対象となる配列。
+
+{...} さらに比較する対象となる配列。
+
+{array1} の要素のうち、
+その他の配列のいずれにも含まれないものだけを残した配列を返します。
+
+|array_diff_assoc| の例 この例で、"a" => "green"
+の組が両方の配列に現れており、
+このため、この関数の出力には含まれていません。
+これとは異なり、0 => "red" は出力の中にありますが、
+これは、二番目の引数において "red" が 1
+というキーを有しているためです。
+
+<?php >
+  $array1 = array("a" => "green", "b" => "brown", "c" => "blue", "red");
+  $array2 = array("a" => "green", "yellow", "red");
+  $result = array_diff_assoc($array1, $array2);
+  print_r($result);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [b] => brown
+      [c] => blue
+      [0] => red
+  )
+
+
+
+|array_diff_assoc| の例 key => value の組からの二つの値は、
+(string) $elem1 === (string) $elem2
+が成り立つ場合のみ等しいと見なされます。
+言い替えると、厳密なチェックが行われるため、
+文字列表現が同じである必要があります。
+
+<?php >
+  $array1 = array(0, 1, 2);
+  $array2 = array("00", "01", "2");
+  $result = array_diff_assoc($array1, $array2);
+  print_r($result);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => 0
+      [1] => 1
+      )
+
+
+
+この関数は、N
+次元配列の一次元だけを調べます。もちろん、例えば
+array_diff_assoc($array1[0], $array2[0]);
+とすることにより、より深い次元でチェックを行うことも可能です。
+
+|array_diff| |array_intersect| |array_intersect_assoc|
+
+vim:ft=help:

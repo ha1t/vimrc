@@ -1,0 +1,13 @@
+m_connectionerror -- 接続が失敗した理由をテキストで取得する
+
+  string m_connectionerror(resource conn)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+
+
+vim:ft=help:

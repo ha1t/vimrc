@@ -1,0 +1,34 @@
+ssh2_sftp_rmdir -- ディレクトリを削除する
+
+  bool ssh2_sftp_rmdir(resource sftp, string dirname)~
+
+リモートのファイルサーバからディレクトリを削除します。
+
+この関数は ssh2.sftp:// ラッパーを使用した場合の |rmdir|
+と同様です。
+
+{sftp} |ssh2_sftp| でオープンした SSH2 SFTP リソース。
+
+{dirname}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+リモートサーバ上のディレクトリの削除
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  $sftp = ssh2_sftp($connection);
+  
+  ssh2_sftp_rmdir($sftp, '/home/username/deltodel');
+  /* もしくは次の通り:  rmdir("ssh2.sftp://$sftp/home/username/dirtodel"); */
+?>
+
+
+
+
+
+|rmdir| |ssh2_sftp_mkdir|
+
+vim:ft=help:

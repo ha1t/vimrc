@@ -1,0 +1,17 @@
+ibase_affected_rows -- 直近のクエリで変更された行の数を返す
+
+  int ibase_affected_rows([resource link_identifier])~
+
+この関数は、{link_identifier} で指定された
+トランザクション内で実行された直近のクエリ(INSERT、UPDATE
+あるいは DELETE)によって変更された行の数を返します。
+
+{link_identifier} トランザクションのコンテキスト。
+{link_identifier} が接続リソースの場合、
+そのデフォルトのトランザクションが使用されます。
+
+変更された行数を整数値で返します。
+
+|ibase_query| |ibase_execute|
+
+vim:ft=help:

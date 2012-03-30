@@ -1,0 +1,45 @@
+radius_get_vendor_attr -- ベンダ固有の属性を取得する
+
+  array radius_get_vendor_attr(string data)~
+
+|radius_get_attr| が RADIUS_VENDOR_SPECIFIC を返す場合に、
+ベンダを特定するために |radius_get_vendor_attr|
+をコールします。
+
+属性の型、ベンダおよびデータを含む連想配列か、エラー時には
+FALSE を返します。
+
+|radius_get_vendor_attr| の例
+
+<?php >
+  while ($resa = radius_get_attr($res)) {
+  
+      if (!is_array($resa)) {
+          printf ("属性取得エラー: %s\n",  radius_strerror($res));
+          exit;
+      }
+  
+      $attr = $resa['attr'];
+      $data = $resa['data'];
+      printf("属性を取得:%d %d Bytes %s\n", $attr, strlen($data), bin2hex($data));
+      if ($attr == RADIUS_VENDOR_SPECIFIC) {
+  
+          $resv = radius_get_vendor_attr($data);
+          if (is_array($resv)) {
+              $vendor = $resv['vendor'];
+              $attrv = $resv['attr'];
+              $datav = $resv['data'];    
+              printf("ベンダ属性を取得:%d %d Bytes %s\n", $attrv, strlen($datav), bin2hex($datav));
+          }
+          
+      }
+  }
+?>
+
+
+
+
+
+|radius_get_attr| |radius_put_vendor_attr|
+
+vim:ft=help:

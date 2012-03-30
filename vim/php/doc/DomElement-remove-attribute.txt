@@ -1,0 +1,14 @@
+DomElement->remove_attribute() -- 属性を削除する
+
+  bool remove_attribute(string name)~
+
+現在の DomElement ノードから属性を削除します。
+
+{name} 削除する属性名
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+を使用してください。
+
+vim:ft=help:

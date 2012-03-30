@@ -1,0 +1,32 @@
+imap_rfc822_write_address --
+指定したメールボックス、ホスト、個人情報を、
+電子メールアドレスとして適当な形式にして返す
+
+  string imap_rfc822_write_address(string mailbox, string host, string personal)~
+
+指定された情報を RFC822 の定義に基づき
+適切にフォーマットされた電子メールアドレスにして返します。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+{host} email のホスト部分。
+
+{personal} アカウント所有者の名前。
+
+RFC822 の定義に基づき
+適切にフォーマットされた電子メールアドレスを返します。
+
+|imap_rfc822_write_address| の例
+
+<?php >
+  echo imap_rfc822_write_address("hartmut", "example.com", "Hartmut Holzgraefe");
+?>
+
+上の例の出力は以下となります。
+
+  Hartmut Holzgraefe <hartmut@example.com>
+
+
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+swf_definepoly -- 多角形を定義する
+
+  void swf_definepoly(int objid, array coords, int npoints, float width)~
+
+x, y 座標の配列で指定した多角形を定義します
+
+{objid} オブジェクト ID。
+
+{coords} x, y 座標の配列。
+
+{npoints} {coords}
+で指定した配列に含まれる全ての点の数です。
+
+{width} 多角形の輪郭の幅。0.0 を設定した場合、
+多角形は塗りつぶされます。
+
+値を返しません。
+
+vim:ft=help:

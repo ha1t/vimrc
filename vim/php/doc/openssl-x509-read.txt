@@ -1,0 +1,15 @@
+openssl_x509_read -- X.509 証明書をパースし、リソース ID
+を返す
+
+  resource openssl_x509_read(mixed x509certdata)~
+
+|openssl_x509_read| は、 {x509certdata}
+で指定した証明書をパースし、
+その証明書用のリソースIDを返します。
+
+{x509certdata}
+
+成功した場合にリソース ID、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

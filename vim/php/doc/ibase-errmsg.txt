@@ -1,0 +1,13 @@
+ibase_errmsg -- エラーメッセージを返す
+
+  string ibase_errmsg()~
+
+直近の InterBase
+関数コールの結果として得られるエラーメッセージを返します。
+
+エラーメッセージを表す文字列、あるいはエラーが発生しなかった場合は
+FALSE を返します。
+
+|ibase_errcode|
+
+vim:ft=help:

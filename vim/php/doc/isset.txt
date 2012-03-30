@@ -1,0 +1,84 @@
+isset -- 変数がセットされているかどうかを検査する
+
+  bool isset(mixed var [, mixed var [, mixed ...]])~
+
+変数がセットされているかどうかを調べます。
+
+変数が、|unset| により割当を解除された場合、
+何も値が設定されていない状態になります。
+NULLに設定されている変数を調べた場合、 |isset|
+はFALSEを返します。 NULLバイト("\0")はPHPの定数
+NULLと等価ではないことにも注意してください。
+
+複数のパラメータを渡した場合は、|isset|
+はそれらすべてがセットされている場合にのみ TRUE
+を返します。
+左から順に評価を行い、セットされていない変数があった時点で処理を終了します。
+
+{var} 調べたい変数。
+
+{var} 別の変数。
+
+{...}
+
+{var} が存在すればTRUE、 そうでなければFALSEを返します。
+
+|isset| の例
+
+<?php >
+  $var = '';
+  
+  // これは TRUE と評価されるので、テキストが出力される
+  if (isset($var)) {
+      echo "This var is set so I will print.";
+  }
+  
+  // 次の例では、isset() の戻り値を出力するため var_dump を
+  // 使用している
+  
+  $a = "test";
+  $b = "anothertest";
+  
+  var_dump(isset($a));      // TRUE
+  var_dump(isset($a, $b)); // TRUE
+  
+  unset ($a);
+  
+  var_dump(isset($a));     // FALSE
+  var_dump(isset($a, $b)); // FALSE
+  
+  $foo = NULL;
+  var_dump(isset($foo));   // FALSE
+?>
+
+
+
+
+
+この関数は配列の要素に対しても動作します:
+
+<?php >
+  $a = array ('test' => 1, 'hello' => NULL);
+  
+  var_dump(isset($a['test']));            // TRUE
+  var_dump(isset($a['foo']));             // FALSE
+  var_dump(isset($a['hello']));           // FALSE
+  
+  // キー 'hello' は NULL と等しいのでセットされていないと見なされる。
+  // もし NULL なキー値に対してチェックを行いたい場合、次を試してみること:
+  var_dump(array_key_exists('hello', $a)); // TRUE
+?>
+
+|isset| は何らかの値が渡された
+変数の場合のみ動作します。そうでない場合、パースエラーとなります。
+もし 定数
+が設定されているかどうかをチェックする場合は、
+|defined| を使用してください。
+
+これは、関数ではなく 言語構造のため、可変関数
+を用いて コールすることはできません。
+
+|empty| |unset| |defined| PHP 型の比較表 |array_key_exists| |is_null|
+エラー制御演算子 @
+
+vim:ft=help:

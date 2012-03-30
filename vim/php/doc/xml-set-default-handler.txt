@@ -1,0 +1,34 @@
+xml_set_default_handler -- デフォルトのハンドラを設定する
+
+  bool xml_set_default_handler(resource parser, callback handler)~
+
+XMLパーサ {parser}
+のデフォルトのハンドラ関数を設定します。
+
+{parser}
+
+{handler} {handler} は、 {parser} に関して |xml_parse|
+がコールされた際に必要な関数の名前を有する文字列です。
+
+  bool (resource parser, callback handler, resource parser, string data)~
+
+{handler} という名前の関数は、 次の 2
+つのパラメータをとる必要があります。 {parser}
+最初のパラメータである parser は、 ハンドラをコールした
+XML パーサへのリファレンスです。
+
+{data} 2 番目のパラメータである {data} は、
+文字データを有しています。これは、XML
+宣言またはドキュメント型宣言、エンティティ、
+他にハンドラがない別のデータとすることが可能です。
+
+ハンドラ関数が空の文字列または、FALSE
+に設定されている場合、そのハンドラは無効です。
+
+関数名の代わりに、オブジェクトへの
+リファレンスを格納した配列とメソッド名を指定することもできます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

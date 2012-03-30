@@ -1,0 +1,82 @@
+pg_query -- クエリを実行する
+
+  resource pg_query(string query)~
+
+  resource pg_query(string query, resource connection, string query)~
+
+|pg_query| 指定したデータベース {connection} 上で {query}
+を実行します。
+
+エラーが発生して FALSE
+が返された場合、もし接続が正常なら |pg_last_error|
+関数を使用してエラーの詳細情報が 取得可能です。
+
+{connection}は省略可能ですが、それは推奨されません。
+なぜならスクリプトのバグが発見しにくくなるためです。
+
+この関数は、以前は |pg_exec| と呼ばれていました。 |pg_exec|
+は互換性確保のためにまだ使用可能ですが、
+新しい名前を使用することが推奨されています。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{query} 実行する 1 つまたは複数の SQL
+文。複数の文が関数に渡された場合は、 明示的に
+BEGIN/COMMIT コマンドを指定していない限りはそれらの文は
+ひとつのトランザクションとして実行されます。しかし、1
+回のコールで
+複数のトランザクションを実行することは推奨されません。
+
+成功した場合にクエリ結果リソース、失敗した場合に FALSE
+を返します。
+
+|pg_query| の例
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  $result = pg_query($conn, "SELECT author, email FROM authors");
+  if (!$result) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  while ($row = pg_fetch_row($result)) {
+    echo "Author: $row[0]  E-mail: $row[1]";
+    echo "<br />\n";
+  }
+?>
+
+
+
+
+
+|pg_query| で複数の文を使用する例
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  
+  // これらの文がひとつのトランザクションとして実行されます
+  
+  $query = "UPDATE authors SET author=UPPER(author) WHERE id=1;";
+  $query .= "UPDATE authors SET author=LOWER(author) WHERE id=2;";
+  $query .= "UPDATE authors SET author=NULL WHERE id=3;";
+  
+  pg_query($conn, $query);
+?>
+
+
+
+
+
+|pg_connect| |pg_pconnect| |pg_fetch_array| |pg_fetch_object| |pg_num_rows|
+|pg_affected_rows|
+
+vim:ft=help:

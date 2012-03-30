@@ -1,0 +1,29 @@
+decbin -- 10 進数を 2 進数に変換する
+
+  string decbin(int number)~
+
+引数 {number} を 2 進数表現した文字列を返します。
+変換することが出来る最大の数は 10 進数の 4294967295
+であり、1 が 32 ビット並んだ 2 進数となります。
+
+{number} 変換したい 10 進数値。
+
+{binary_string} を 2 進文字列で表した値を返します。
+
+|decbin| の例
+
+<?php >
+  echo decbin(12) . "\n";
+  echo decbin(26);
+?>
+
+上の例の出力は以下となります。
+
+  1100
+  11010
+
+
+
+|bindec| |decoct| |dechex| |base_convert|
+
+vim:ft=help:

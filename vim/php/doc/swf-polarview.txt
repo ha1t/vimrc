@@ -1,0 +1,21 @@
+swf_polarview -- 極座標で視点を定義する
+
+  void swf_polarview(float dist, float azimuth, float incidence, float twist)~
+
+|swf_polarview| 関数は、極座標で視点を定義します。
+
+{dist} 視点とワールド空間の原点との距離。
+
+{azimuth} x,y 座標平面におけるアジマス角。 y
+軸からの距離で表します。
+
+{incidence} y,z 平面における傾斜角を定義します。 z
+軸からの距離で表します。傾斜角とは、 z
+軸を基準としたビューポートの角度です。
+
+{twist}
+右手則を用いて、視線方向に関して視点を回転させる量を指定します。
+
+値を返しません。
+
+vim:ft=help:

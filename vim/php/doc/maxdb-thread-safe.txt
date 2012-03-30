@@ -1,0 +1,13 @@
+maxdb_thread_safe -- スレッドセーフであるかどうかを返す
+
+手続き型
+
+  bool maxdb_thread_safe()~
+
+|maxdb_thread_safe| は、
+クライアントライブラリがスレッドセーフにコンパイルされているかどうかを示します。
+
+クライアントライブラリがスレッドセーフである場合に
+TRUE、 それ以外の場合に FALSE を返します。
+
+vim:ft=help:

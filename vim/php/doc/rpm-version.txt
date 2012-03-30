@@ -1,0 +1,24 @@
+rpm_version -- rpmreader
+拡張モジュールの現在のバージョンを表す文字列を返す
+
+  string rpm_version()~
+
+|rpm_version| は、rpmreader 拡張モジュールの
+現在のバージョンを返します。
+
+|rpm_version| は、現在 PHP に読み込まれている rpmreader
+のバージョンを表す文字列を返します。
+
+|rpm_version| の例
+
+<?php >
+  $rpmr_ver = rpm_version();
+  
+  echo "$rpmr_ver<br />\n";
+?>
+
+
+
+
+
+vim:ft=help:

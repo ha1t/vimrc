@@ -1,0 +1,64 @@
+SoapFault->__construct() -- SoapFault コンストラクタ
+
+このクラスは、PHP ハンドラから SOAP
+フォールトレスポンスを送信した場合に有用です。
+{faultcode}, {faultstring}, {faultactor} および {details} は SOAP
+フォールトの標準的な要素です。
+
+{faultcode} SoapFault のエラーコード
+
+{faultstring} SoapFault のエラーメッセージ
+
+{faultactor}
+エラーの原因となったアクターを識別する文字列
+
+{detail}
+
+{faultname} WSDL
+からの厳密なフォールトエンコーディングを取得するために利用可能
+
+{headerfault} レスポンスヘッダにおいて SOAP
+ハンドラがエラーの報告処理を行っている間に利用可能
+Can be used during SOAP header handling to report an error in the response
+header.
+
+いくつかの例
+
+<?php >
+  function test($x)
+  {
+      return new SoapFault("Server", "Some error message");
+  }
+  
+  $server = new SoapServer(null, array('uri' => "http://test-uri/"));
+  $server->addFunction("test");
+  $server->handle();
+?>
+
+
+
+
+
+SOAP フォールトを投げるために PHP
+の例外機構を使用することができます。
+
+いくつかの例
+
+<?php >
+  function test($x)
+  {
+      throw new SoapFault("Server", "Some error message");
+  }
+  
+  $server = new SoapServer(null, array('uri' => "http://test-uri/"));
+  $server->addFunction("test");
+  $server->handle();
+?>
+
+
+
+
+
+|is_soap_fault|
+
+vim:ft=help:

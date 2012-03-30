@@ -1,0 +1,52 @@
+fbsql_fetch_array --
+連想配列、数値配列、またはその両方として結果レコードを取得する
+
+  array fbsql_fetch_array(resource result [, int result_type])~
+
+|fbsql_fetch_array| は |fbsql_fetch_row| と |fbsql_fetch_assoc|
+を組み合わせたものです。
+
+注意してほしいのは、 |fbsql_fetch_array| は |fbsql_fetch_row|
+と比べてそれほど遅くはないのに
+その追加機能がとても優れているということです。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+{result_type} FBSQL_ASSOC、FBSQL_NUM あるいは FBSQL_BOTH
+のいずれかの定数値。
+
+FBSQL_BOTH を使用すると、
+数値添字の結果配列にデータを格納するだけでなく、フィールド名を
+キーとする連想配列にもデータを格納します。
+
+取得した行に対応する配列を返します。行がもうない場合には
+FALSE を返します。
+
+2
+つ以上のカラムが同じ名前を持っている場合、最後にあらわれたカラムが
+優先されます。他のカラムにアクセスするには、カラムの数値インデックスを
+使用するか、カラムに別名をつける必要があります。
+
+  select t1.f1 as foo t2.f1 as bar from t1, t2
+
+|fbsql_fetch_array| の例
+
+<?php >
+  fbsql_connect($host, $user, $password);
+  $result = fbsql_db_query("database", "select user_id, fullname from table");
+  while ($row = fbsql_fetch_array($result)) {
+      echo "user_id: " . $row["user_id"] . "<br />\n";
+      echo "user_id: " . $row[0] . "<br />\n";
+      echo "fullname: " . $row["fullname"] . "<br />\n";
+      echo "fullname: " . $row[1] . "<br />\n";
+  }
+  fbsql_free_result($result);
+?>
+
+
+
+
+
+|fbsql_fetch_row| |fbsql_fetch_assoc| |fbsql_fetch_object|
+
+vim:ft=help:

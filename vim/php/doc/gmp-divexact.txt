@@ -1,0 +1,36 @@
+gmp_divexact -- 正確な除算
+
+  resource gmp_divexact(resource n, resource d)~
+
+高速な "exact division" アルゴリズムを使用して {n} を {d}
+で割ります。 この関数は、{n} が {d}
+で割り切れることがわかっている場合にのみ正確な結果を出力します。
+
+{n} 割られる数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{d} {a} を割る数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+GMP 数リソースを返します。
+
+|gmp_divexact| の例
+
+<?php >
+  $div1 = gmp_divexact("10", "2");
+  echo gmp_strval($div1) . "\n";
+  
+  $div2 = gmp_divexact("10", "3"); // 間違った結果となります
+  echo gmp_strval($div2) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  5
+  2863311534
+
+
+
+vim:ft=help:

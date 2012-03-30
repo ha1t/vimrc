@@ -1,0 +1,15 @@
+mcal_day_of_year -- 指定した日の年間積算日を返す
+
+  int mcal_day_of_year(int year, int month, int day)~
+
+指定した日の年間積算日を返します。
+
+{year} 年。
+
+{month} 月。
+
+{day} 日。
+
+日数を整数値で返します。
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+newt_scrollbar_set --
+
+  void newt_scrollbar_set(resource scrollbar, int where, int total)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{scrollbar}
+
+{where}
+
+{total}
+
+値を返しません。
+
+vim:ft=help:

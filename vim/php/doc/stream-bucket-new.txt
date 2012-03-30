@@ -1,0 +1,10 @@
+stream_bucket_new -- 現在のストリームで使用する新しい bucket
+を作成する
+
+  object stream_bucket_new(resource stream, string buffer)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

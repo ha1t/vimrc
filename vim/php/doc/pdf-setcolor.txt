@@ -1,0 +1,8 @@
+PDF_setcolor -- 塗りつぶし色および輪郭色を設定する
+
+  bool PDF_setcolor(resource p, string fstype, string colorspace, float c1, float c2, float c3, float c4)~
+
+現在の色空間と色を設定します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+session_is_registered --
+変数がセッションに登録されているかどうかを調べる
+
+  bool session_is_registered(string name)~
+
+グローバル変数がセッションに登録されているかどうかを調べます。
+
+{name} 変数名。
+
+|session_is_registered| は、 {name}
+という名前のグローバル変数が現在のセッションに登録されている場合に
+TRUE、それ以外の場合に FALSE を返します。
+
+$_SESSION (または PHP 4.0.6 以前の場合は $HTTP_SESSION_VARS)
+が使用されている場合、ある変数が $_SESSION
+に登録されているかを確認するために |isset|
+を使用してください。
+
+$_SESSION (もしくは $HTTP_SESSION_VARS) を使用している場合、
+|session_register|, |session_is_registered|, |session_unregister|
+を使用しないでください。
+
+vim:ft=help:

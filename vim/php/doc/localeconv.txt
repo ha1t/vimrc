@@ -1,0 +1,95 @@
+localeconv -- 数値に関するフォーマット情報を得る
+
+  array localeconv()~
+
+ローカルな数値および通貨フォーマット情報を有する連想配列を返します。
+
+|localeconv| は、 |setlocale|
+で設定された現在のロケールに基づきデータを返します。
+返される連想配列は、次のフィールドを有します。
+配列要素 説明 decimal_point 小数点文字 thousands_sep
+千毎の区切り文字 grouping 数値集合を有する配列
+int_curr_symbol 国際通貨記号 (すなわち、USD) currency_symbol
+ローカルな通貨記号 (すなわち、$) mon_decimal_point
+通貨用の小数点文字 mon_thousands_sep
+通貨用の千毎の区切り文字 mon_grouping
+通貨集合を有する配列 positive_sign 正の値を表す記号
+negative_sign 負の値を表す記号 int_frac_digits 国際分割桁
+frac_digits ローカルな分割桁 p_cs_precedes currency_symbol
+が正の値を前に置く場合にTRUE、後に置く場合に FALSE
+p_sep_by_space 正の値から currency_symbol
+を1文字の空白で区切る場合にTRUE、 そうでない場合にFALSE
+n_cs_precedes currency_symbol
+が負の値を前に置く場合にTRUE、後に置く場合に FALSE
+n_sep_by_space 負の値から currency_symbol
+を1文字の空白で区切る場合にTRUE、 そうでない場合にFALSE
+p_sign_posn 0 - 量および通貨記号を括る括弧 1 -
+量および通貨記号の前に置く符号文字列 2 -
+量および通貨記号の後に置く符号文字列 3 -
+通貨記号の直前に置く符号文字列 4 -
+通貨記号の直後に置く符号文字列 n_sign_posn 0 -
+量および通貨記号を括る括弧 1 -
+量および通貨記号の前に置く符号文字列 2 -
+量および通貨記号の後に置く符号文字列 3 -
+通貨記号の直前に置く符号文字列 4 -
+通貨記号の直後に置く符号文字列
+
+n_sign_posn や n_sign_posn
+は、フォーマッタオプションの文字列を含みます。それぞれの数字は
+上に一覧されている条件の 1 つを表します。
+
+groupingフィールドには、グループ化する方法を表す数字を定義する配
+列が含まれます。例えば、nl_NL ロケール用の通貨
+groupingフィールド (UTF-8 モードでのユーロ記号) には、
+3、3を値とする要素数2の配列が含まれます。この配列のより高い添字に
+は、より左側のグループに関するものが含まれます。
+ある配列要素が、CHAR_MAX に等しい場合、
+さらにグループは行われません。配列要素が0に等しい場合、
+前の要素が使用されています。
+
+|localeconv| の例
+
+<?php >
+  if (false !== setlocale(LC_ALL, 'nl_NL.UTF-8@euro')) {
+      $locale_info = localeconv();
+      print_r($locale_info);
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [decimal_point] => .
+      [thousands_sep] =>
+      [int_curr_symbol] => EUR
+      [currency_symbol] => €
+      [mon_decimal_point] => ,
+      [mon_thousands_sep] =>
+      [positive_sign] =>
+      [negative_sign] => -
+      [int_frac_digits] => 2
+      [frac_digits] => 2
+      [p_cs_precedes] => 1
+      [p_sep_by_space] => 1
+      [n_cs_precedes] => 1
+      [n_sep_by_space] => 1
+      [p_sign_posn] => 1
+      [n_sign_posn] => 2
+      [grouping] => Array
+          (
+          )
+  
+      [mon_grouping] => Array
+          (
+              [0] => 3
+              [1] => 3
+          )
+  
+  )
+
+
+
+|setlocale|
+
+vim:ft=help:

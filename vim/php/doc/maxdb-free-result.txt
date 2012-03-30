@@ -1,0 +1,24 @@
+result->free -- 結果に関連付けられたメモリを開放する
+
+手続き型
+
+  void maxdb_free_result(resource result)~
+
+オブジェクト指向型 (メソッド)
+
+  void free(resource result)~
+
+|maxdb_free_result| 関数は、 {result}
+が表す結果に関連付けられたメモリを開放します。
+このメモリは、|maxdb_query|、 |maxdb_store_result| あるいは
+|maxdb_use_result| で割り当てられたものです。
+
+結果リソースが必要なくなった際には、常に
+|maxdb_free_result| で結果を開放すべきです。
+
+この関数は値を返しません。
+
+|maxdb_query| |maxdb_stmt_store_result| |maxdb_store_result|
+|maxdb_use_result|
+
+vim:ft=help:

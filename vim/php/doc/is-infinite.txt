@@ -1,0 +1,17 @@
+is_infinite -- 値が無限大であるかどうかを判定する
+
+  bool is_infinite(float val)~
+
+{val} が（正または負の）無限大である場合に TRUE
+を返します。たとえば log(0) の結果、
+あるいはこのプラットフォーム上で扱える float
+の範囲を超えた数などが あてはまります。
+
+{val} 調べる値。
+
+{val} が無限大である場合に TRUE、 そうでない場合に FALSE
+を返します。
+
+|is_finite| |is_nan|
+
+vim:ft=help:

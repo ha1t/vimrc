@@ -1,0 +1,22 @@
+radius_acct_open -- 課金用の Radius ハンドルを作成する
+
+  resource radius_acct_open()~
+
+
+
+成功した場合にハンドル、エラー時に FALSE を返します。
+この関数が失敗するのは、無効なメモリを使用した場合のみです。
+
+|radius_acct_open| の例
+
+<?php >
+  $res = radius_acct_open ()
+      or die ("ハンドルを作成できませんでした");
+  print("ハンドルの作成に成功しました");
+?>
+
+
+
+
+
+vim:ft=help:

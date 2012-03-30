@@ -1,0 +1,21 @@
+swf_defineline -- 線を定義する
+
+  void swf_defineline(int objid, float x1, float y1, float x2, float y2, float width)~
+
+線を定義します。
+
+{objid} オブジェクト ID。
+
+{x1} 開始位置の x 座標。
+
+{y1} 開始位置の y 座標。
+
+{x2} 終了位置の x 座標。
+
+{y2} 終了位置の y 座標。
+
+{width} 線の幅。
+
+値を返しません。
+
+vim:ft=help:

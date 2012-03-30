@@ -1,0 +1,10 @@
+readline_clear_history -- ヒストリをクリアする
+
+  bool readline_clear_history()~
+
+この関数はコマンドラインヒストリ全体をクリアします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

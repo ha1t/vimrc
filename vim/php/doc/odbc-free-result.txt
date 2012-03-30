@@ -1,0 +1,20 @@
+odbc_free_result -- 結果を保持するリソースを開放する
+
+  bool odbc_free_result(resource result_id)~
+
+結果を保持するリソースを開放します。
+
+|odbc_free_result|は、スクリプトのメモリ消費量が
+多すぎることが懸念される場合にのみコールする必要があります。
+全ての結果保持用メモリは、スクリプト実行が終了した際に自動的に開放されます。
+
+{result_id} 結果 ID。
+
+常に TRUE を返します。
+
+自動コミットが無効（|odbc_autocommit| を
+参照ください）な時にコミットの前に |odbc_free_result|
+をコールすると、全ての
+未解決のトランザクションは、ロールバックされます。
+
+vim:ft=help:

@@ -1,0 +1,41 @@
+openssl_pkcs7_decrypt -- S/MIME
+暗号化されたメッセージを復号する
+
+  bool openssl_pkcs7_decrypt(string infilename, string outfilename, mixed recipcert [, mixed recipkey])~
+
+{infilename} で指定したファイル中の S/MIME
+暗号化されたメッセージを、{recipcert} および {recipkey}
+で指定した証明書と公開鍵を用いて復号します。
+
+{infilename}
+
+{outfilename} 復号したメッセージは、{outfilename}
+で指定したファイルに出力されます。
+
+{recipcert}
+
+{recipkey}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openssl_pkcs7_decrypt| の例
+
+<?php >
+  // $cert および $key にはあなたの個人証明書と公開鍵が含まれており、
+  // あなたはS/MIMEメッセージの受信者であると仮定します。
+  $infilename = "encrypted.msg";  // 暗号化されたメッセージを含むファイル
+  $outfilename = "decrypted.msg"; // このファイルへの書き込み権限が必要
+  
+  if (openssl_pkcs7_decrypt($infilename, $outfilename, $cert, $key)) {
+      echo "復号しました!";
+  } else {
+      echo "復号に失敗しました!";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

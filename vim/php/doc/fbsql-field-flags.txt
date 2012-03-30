@@ -1,0 +1,20 @@
+fbsql_field_flags --
+クエリ結果において指定したフィールドに関するフラグを得る
+
+  string fbsql_field_flags(resource result [, int field_offset])~
+
+結果の指定したフィールドに関連付けられたフラグを取得します。
+
+{result} |fbsql_list_fields| が返す結果ポインタ。
+
+{field_offset}
+フィールドの数値オフセット。フィールドのインデックスは
+0 からはじまります。
+
+指定したフィールドの
+フィールドフラグを返します。フラグは、単語ごとに空白
+1 文字で
+区切られた形式で報告されます。そのため、|explode|
+を使用して返り値を分割することが可能です。
+
+vim:ft=help:

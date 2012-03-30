@@ -1,0 +1,56 @@
+pg_last_notice -- PostgreSQL
+サーバからの直近の通知メッセージを返す
+
+  string pg_last_notice(resource connection)~
+
+|pg_last_notice| は、{connection} で指定した PostgreSQL
+サーバからの直近の通知メッセージを返します。
+たとえば、テーブルに SERIAL カラムを作成する場合などに
+PostgreSQL サーバは通知メッセージを送信します。
+
+|pg_last_notice| でトランザクションに関連する通知
+メッセージがあるかないかをチェックすることで、無意味なクエリの発行を
+避けることが可能です。
+
+php.ini で pgsql.ignore_notice に 1
+を指定することで、通知メッセージの追跡をしないようにすることが可能です。
+
+php.ini で pgsql.log_notice に 0
+を指定することで、通知メッセージをログに記録しないようにすることが可能です。
+pgsql.ignore_notice が 0 に設定されていない限り、
+通知メッセージをログに記録することはできません。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+指定された {connection} の直近の通知を文字列で
+返します。エラー時には FALSE を返します。
+
+バージョン 説明 4.3.0 この関数の実装が完成しました。
+以前のバージョンではデータベースの接続パラメータを無視していました。
+4.3.0 php.ini の設定 pgsql.ignore_notice および pgsql.log_notice
+が追加されました。 4.0.6 PHP 4.0.6
+には通知メッセージ処理の問題があります。 |pg_last_notice|
+を使用しない場合でも PHP 4.0.6 で PostgreSQL
+モジュールを使用することは推奨されません。
+
+|pg_last_error| の例
+
+<?php >
+    $pgsql_conn = pg_connect("dbname=mark host=localhost");
+    
+    $res = pg_query("CREATE TABLE test (id SERIAL)");
+    
+    $notice = pg_last_notice($pgsql_conn);
+    
+    echo $notice;
+?>
+
+上の例の出力は以下となります。
+
+  CREATE TABLE will create implicit sequence "test_id_seq" for "serial" column "test.id"
+
+
+
+|pg_query| |pg_last_error|
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+swf_textwidth -- 文字列の幅を得る
+
+  float swf_textwidth(string str)~
+
+現在のフォントおよびフォントサイズを用いて、
+文字列の幅をピクセル値で返します。
+
+{str} 文字列。
+
+文字列の幅を表す float 値を返します。
+
+vim:ft=help:

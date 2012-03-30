@@ -1,0 +1,48 @@
+fdf_add_doc_javascript -- FDF ドキュメントに javascript
+コードを追加する
+
+  bool fdf_add_doc_javascript(resource fdf_document, string script_name, string script_code)~
+
+スクリプトを FDF に追加します。Acrobat は、FDF
+が読み込まれた際に
+それをドキュメントレベルのスクリプトとして追加します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{script_name} スクリプト名。
+
+{script_code}
+スクリプトのコード。コード内での改行は、できるだけ
+'\r' を使用するようにしてください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+JavaScript コードを FDF に追加する
+
+<?php >
+  $fdf = fdf_create();
+  fdf_add_doc_javascript($fdf, "PlusOne", "function PlusOne(x)\r{\r  return x+1;\r}\r");
+  fdf_save($fdf);
+?>
+
+これは、以下のような FDF を出力します。
+
+  %FDF-1.2
+  %âãÏÓ
+  1 0 obj
+  <<
+  /FDF << /JavaScript << /Doc [ (PlusOne)(function PlusOne\(x\)\r{\r  return x+1;\r}\r)] >> >>
+  >>
+  endobj
+  trailer
+  <<
+  /Root 1 0 R
+  
+  >>
+  %%EOF
+
+
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+ibase_blob_close -- blob を閉じる
+
+  mixed ibase_blob_close(resource blob_handle)~
+
+この関数は、読み込み用に |ibase_open_blob|
+でオープンされたかあるいは書き込み用に |ibase_create_blob|
+でオープンされた BLOB を閉じます。
+
+{blob_handle} |ibase_blob_create| あるいは |ibase_open_blob|
+でオープンした blob ハンドル。
+
+BLOB が読み込み用であった場合、 この関数は成功時に TRUE
+を返します。一方 BLOB が書き込み用であった場合、
+データベースによって割り当てられた BLOB ID
+を文字列で返します。 失敗した場合は、この関数は FALSE
+を返します。
+
+|ibase_blob_cancel| |ibase_blob_open|
+
+vim:ft=help:

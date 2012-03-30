@@ -1,0 +1,35 @@
+pg_affected_rows -- 変更されたレコード(タプル)の数を返す
+
+  int pg_affected_rows(resource result)~
+
+|pg_affected_rows| は、INSERT, UPDATE, DELETE
+クエリにより変更されたタプル(インスタンス/レコード/行)の数を
+返します。
+
+この関数は、以前は |pg_cmdtuples| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+クエリによって変更された行の数を返します。もし変更されたタプルがない場合は
+0 を返します。
+
+|pg_affected_rows| の例
+
+<?php >
+  $result = pg_query($conn, "INSERT INTO authors VALUES ('オーウェル', 2002, '動物農場')");
+  
+  $cmdtuples = pg_affected_rows($result);
+  
+  echo $cmdtuples . " タプルが変更されました。\n";
+?>
+
+上の例の出力は以下となります。
+
+  1 タプルが変更されました。
+
+
+
+|pg_query| |pg_query_params| |pg_execute| |pg_num_rows|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+ncurses_waddstr --
+ウィンドウ内の現在位置にテキストを出力する
+
+  int ncurses_waddstr(resource window, string str [, int n])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{str}
+
+{n}
+
+vim:ft=help:

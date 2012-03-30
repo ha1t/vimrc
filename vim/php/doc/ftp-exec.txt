@@ -1,0 +1,44 @@
+ftp_exec -- FTP
+サーバ上でのコマンドの実行をリクエストする
+
+  bool ftp_exec(resource ftp_stream, string command)~
+
+FTP サーバに SITE EXEC {command} リクエストを 送信します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{command} 実行したいコマンド。
+
+コマンドが成功した（サーバの応答コードが 200） 場合に
+TRUE を、それ以外の場合に FALSE を返します。
+
+|ftp_exec| の例
+
+<?php >
+  // 変数を初期化します。
+  $command = 'ls -al >files.txt';
+  
+  // 接続を確立します。
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードを指定してログインします。
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // コマンドを実行します。
+  if (ftp_exec($conn_id, $command)) {
+      echo "$command の実行に成功しました\n";
+  } else {
+      echo "$command の実行に失敗しました\n";
+  }
+  
+  // 接続を閉じます。
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_raw|
+
+vim:ft=help:

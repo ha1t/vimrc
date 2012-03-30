@@ -1,0 +1,174 @@
+udm_load_ispell_data -- ispell データを読み込む
+
+  bool udm_load_ispell_data(resource agent, int var, string val1, string val2, int flag)~
+
+|udm_load_ispell_data| は、 ispell データを読み込みます。
+
+この関数を使用した後に ispell
+データに割り当てられていたメモリを
+開放するには、|udm_free_ispell_data| を使用します。 たとえ
+UDM_ISPELL_TYPE_SERVER
+モードを使用していたとしても同様です。
+
+{agent} |udm_alloc_agent| のコールにより取得した、
+エージェントのリンク ID。
+
+{var} ispell
+データの取得元を示すパラメータ。とりうる値は以下のとおりです。
+UDM_ISPELL_TYPE_DB - ispell データを SQL によって読み込むことを
+示します。この場合、パラメータ {val1} および {val2}
+は無視されるので空白にしておきます。 {flag} は 1
+に設定します。
+
+{flag} は、指定した場所から ispell データを
+読み込んだ後でそれを並べ替えることを示します (ispell
+を正常に 機能させるために必要です)。ispell
+データをファイルから読み込む 場合は |udm_load_ispell_data|
+を何度かコールする
+ことになりますが、並べ替えを毎回行う必要はなく、最後にコールした
+後にのみ行います。DB モードではすべてのデータが 1
+度のコールで 読み込まれるので、このパラメータは 1 で
+なければなりません。このモードでエラーが発生した場合
+(たとえば ispell テーブルが存在しないなど)、この関数は
+FALSE を返し、 エラーコードとエラーメッセージは
+|udm_error| および |udm_errno| で取得できます。
+
+UDM_ISPELL_TYPE_AFFIX - ispell
+データをファイルから読み込み、また
+接辞ファイルを読み込むことを指定します。この場合、{val1}
+はどの接辞を読み込むかを表す 2
+文字の言語コードとなります。 また {val2}
+はファイルのパスです。
+相対パスが指定された場合は、このモジュールは
+UDM_CONF_DIR でなく
+現在のパス、つまりスクリプトの実行パスからの相対パスとして検索する
+ことに注意しましょう。ファイルが存在しないなどの理由でエラーが
+発生した場合、この関数は FALSE
+を返し、エラーメッセージが
+表示されます。エラーメッセージの内容を |udm_error|
+および |udm_errno|
+で取得することはできません。なぜなら、これらの関数は
+SQL に
+関連付けられたメッセージを返すものだからです。UDM_ISPELL_TYPE_DB
+における {flag} パラメータの説明を参照ください。
+
+|udm_load_ispell_data| の例
+
+<?php >
+  if ((! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_AFFIX, 'en', '/opt/ispell/en.aff', 0)) ||
+      (! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_AFFIX, 'ru', '/opt/ispell/ru.aff', 0)) ||
+      (! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_SPELL, 'en', '/opt/ispell/en.dict', 0)) ||
+      (! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_SPELL, 'ru', '/opt/ispell/ru.dict', 1))) {
+      exit;
+  }
+?>
+
+
+
+
+
+最後のコール時にのみ {flag} を 1 とします。
+
+UDM_ISPELL_TYPE_SPELL - ispell データをファイルから読み込み、
+ispell
+ディレクトリファイルを読み込むことを指定します。この場合、
+{val1} はどの接辞を読み込むかを表す 2
+文字の言語コードとなります。また {val2}
+はファイルのパスです。
+相対パスが指定された場合は、このモジュールは
+UDM_CONF_DIR でなく
+現在のパス、つまりスクリプトの実行パスからの相対パスとして検索する
+ことに注意しましょう。ファイルが存在しないなどの理由でエラーが
+発生した場合、この関数は FALSE
+を返し、エラーメッセージが
+表示されます。エラーメッセージの内容を |udm_error|
+および |udm_errno|
+で取得することはできません。なぜなら、これらの関数は
+SQL に
+関連付けられたメッセージを返すものだからです。UDM_ISPELL_TYPE_DB
+における {flag} パラメータの説明を参照ください。
+
+<?php >
+  if ((! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_AFFIX, 'en', '/opt/ispell/en.aff', 0)) ||
+     (! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_AFFIX, 'ru', '/opt/ispell/ru.aff', 0)) ||
+     (! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_SPELL, 'en', '/opt/ispell/en.dict', 0)) ||
+     (! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_SPELL, 'ru', '/opt/ispell/ru.dict', 1))) {
+   exit;
+   }
+?>
+
+最後のコール時にのみ {flag} を 1 とします。
+
+UDM_ISPELL_TYPE_SERVER - spell
+サーバのサポートを有効にします。 {val1}
+パラメータで、spell サーバが
+稼動しているホストのアドレスを指定します。{val2}
+は現在は使われていません。しかし将来のリリースでは
+spell サーバの
+ポート番号を指定するようになります。{flag}
+はこの場合は必要ありません。なぜなら spell
+サーバに保存されている
+データは既に並べ替えられているからです。
+
+spelld サーバは、設定ファイル (デフォルトは
+/usr/local/mnogosearch/etc/spelld.conf) から
+スペルデータを読み込み、それを並び替えた上でメモリに保存します。
+クライアントとサーバの間の通信方法は 2 通りあります。
+インデクサは search.cgi サーバから
+(インデクサを高速に開始するため)
+全データを受け取り、それを正規化した形式でクライアント
+(search.cgi) に渡します。 DB モードや TEXT
+モードに比べ、これは (全スペルデータの読み込みや
+並べ替えをしないことで) 一番高速に検索を実行します。
+
+UDM_ISPELL_TYPE_SERVER モードでは、 |udm_load_ispell_data|
+関数は実際には ispell
+データを読み込みません。単にサーバのアドレスを定義する
+だけです。実際には、|udm_find| 関数で検索を
+行う際にこのサーバが自動的に使用されます。spell
+サーバが
+稼動していなかったりホストの指定が間違っていたりなどの理由で
+エラーが発生した場合、メッセージは何も返されず、ispell
+による 変換は動作しません。
+
+この関数は、mnoGoSearch 3.1.12以降でのみ利用可能です。
+
+例
+
+<?php >
+  if (!udm_load_ispell_data($udm, UDM_ISPELL_TYPE_SERVER, '', '', 1)) {
+      echo "Error loading ispell data from server<br />\n";
+      exit;
+  }
+?>
+
+いちばん高速なモードは UDM_ISPELL_TYPE_SERVER
+です。UDM_ISPELL_TYPE_TEXT はそれより遅く、UDM_ISPELL_TYPE_DB
+が一番遅くなります。この関係は mnoGoSearch 3.1.10 - 3.1.11
+において成り立ちます。 将来のバージョンでは DB
+モードの高速化を行い、TEXT モードより
+高速になる予定です。
+
+{val1}
+
+{val2}
+
+{flag}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|udm_load_ispell_data| の例
+
+<?php >
+  if (! udm_load_ispell_data($udm, UDM_ISPELL_TYPE_DB, '', '', 1)) {
+    printf("Error #%d: '%s'\n", udm_errno($udm), udm_error($udm));
+    exit;
+  }
+?>
+
+
+
+
+
+vim:ft=help:

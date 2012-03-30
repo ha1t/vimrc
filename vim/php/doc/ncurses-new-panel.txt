@@ -1,0 +1,12 @@
+ncurses_new_panel --
+新しいパネルを作成し、それをウィンドウに関連づける
+
+  resource ncurses_new_panel(resource window)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+vim:ft=help:

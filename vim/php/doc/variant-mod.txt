@@ -1,0 +1,34 @@
+variant_mod -- 2 つの variant の除算を行い、剰余を返す
+
+  mixed variant_mod(mixed left, mixed right)~
+
+{left} を {right} で除算し、剰余を返します。
+
+{left} 左オペランド。
+
+{right} 右オペランド。
+
+variant
+に関するすべての計算用関数と同様、この関数のパラメータには
+PHP のネイティブ型 (整数、文字列、浮動小数点数、boolean
+あるいは NULL) あるいは COM、VARIANT、DOTNET
+クラスのインスタンスが使用できます。 PHP
+のネイティブ型は、
+クラスのコンストラクタと同じ方法で variant
+に変換されます。 COM オブジェクトおよび DOTNET
+オブジェクトはデフォルトプロパティの値を持っており、
+これを variant の値として使用します。
+
+variant に関する計算関数は、COM
+ライブラリの同名の関数のラッパーです。
+これらの関数についての詳細な情報は、MSDN
+ライブラリでご確認ください。 PHP
+での関数名は微妙に異なります。たとえば、PHP での関数
+|variant_add| に対応する関数は、MSDN のドキュメントでは
+VarAdd() となります。
+
+除算の剰余を返します。
+
+|variant_div| |variant_idiv|
+
+vim:ft=help:

@@ -1,0 +1,28 @@
+oci_fetch_object -- 結果の次の行をオブジェクトとして返す
+
+  object oci_fetch_object(resource statement)~
+
+次の結果行をオブジェクトとして返します。
+
+続けて |oci_fetch_object| をコールすると、
+次の行を返します。行がない場合は FALSE を返します。
+
+oci8 ドライバによるデータ型マッピングの
+詳細については、ドライバが サポートするデータ型
+を参照ください。
+
+{statement} 有効な OCI ステートメント ID。
+
+オブジェクトを返します。
+オブジェクトの属性は文中のフィールドと一致しています。
+{statement} にもう行がない場合は FALSE を返します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+Oracle は全てのフィールド名を大文字で返し、
+結果オブジェクトの属性名も同様に大文字になります。
+
+|oci_fetch_array| |oci_fetch_assoc| |oci_fetch_row| |oci_fetch_all|
+
+vim:ft=help:

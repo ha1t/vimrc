@@ -1,0 +1,63 @@
+ftp_nb_fget -- FTP
+サーバからファイルをダウンロードし、オープン中のファイルに保存する（非ブロッキング）
+
+  int ftp_nb_fget(resource ftp_stream, resource handle, string remote_file, int mode [, int resumepos])~
+
+|ftp_nb_fget| は、FTP
+サーバからリモートファイルを取得します。
+
+|ftp_fget| との違いは、この関数が
+非同期処理でファイルを取得するということです。そのため、
+ファイルをダウンロードしている最中に別の処理を行うことができます。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{handle}
+オープンされているファイルのポインタ。ここにデータが保存されます。
+
+{remote_file} リモートファイルのパス。
+
+{mode} 転送モード。FTP_ASCII または FTP_BINARY
+のどちらかを指定する必要があります。
+
+{resumepos}
+
+FTP_FAILED、FTP_FINISHED あるいは FTP_MOREDATA を返します。
+
+|ftp_nb_fget| の例
+
+<?php >
+  // ファイルをオープンする
+  $file = 'index.php';
+  $fp = fopen($file, 'w');
+  
+  $conn_id = ftp_connect($ftp_server);
+  
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // ダウンロードを開始する
+  $ret = ftp_nb_fget($conn_id, $fp, $file, FTP_BINARY);
+  while ($ret == FTP_MOREDATA) {
+  
+     // 何かお好みの動作を
+     echo ".";
+  
+     // ダウンロードを継続する…
+     $ret = ftp_nb_continue($conn_id);
+  }
+  if ($ret != FTP_FINISHED) {
+     echo "There was an error downloading the file...";
+     exit(1);
+  }
+  
+  // ファイルポインタを閉じる
+  fclose($fp);
+?>
+
+
+
+
+
+|ftp_nb_get| |ftp_nb_continue| |ftp_fget| |ftp_get|
+
+vim:ft=help:

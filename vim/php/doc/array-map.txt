@@ -1,0 +1,236 @@
+array_map --
+指定した配列の要素にコールバック関数を適用する
+
+  array array_map(callback callback, array arr1 [, array ...])~
+
+|array_map| は、{arr1} の各要素に {callback}
+関数を適用した後、
+その全ての要素を含む配列を返します。 {callback}
+関数が受け付けるパラメータの数は、 |array_map|
+に渡される配列の数に一致している必要があります。
+
+{callback} 配列の各要素に適用するコールバック関数。
+
+{arr1} コールバック関数を適用する配列。
+
+{array}
+コールバック関数に渡す引数を指定する配列の可変リスト。
+
+{arr1} の各要素に {callback} 関数を適用した後、
+その全ての要素を含む配列を返します。
+
+|array_map| の例
+
+<?php >
+  function cube($n)
+  {
+      return($n * $n * $n);
+  }
+  
+  $a = array(1, 2, 3, 4, 5);
+  $b = array_map("cube", $a);
+  print_r($b);
+?>
+
+この例では、$b の内容は以下のようになります。
+
+  Array
+  (
+      [0] => 1
+      [1] => 8
+      [2] => 27
+      [3] => 64
+      [4] => 125
+  )
+
+
+
+|array_map| - もっと配列を使ってみる例
+
+<?php >
+  function show_Spanish($n, $m)
+  {
+      return("The number $n is called $m in Spanish");
+  }
+  
+  function map_Spanish($n, $m)
+  {
+      return(array($n => $m));
+  }
+  
+  $a = array(1, 2, 3, 4, 5);
+  $b = array("uno", "dos", "tres", "cuatro", "cinco");
+  
+  $c = array_map("show_Spanish", $a, $b);
+  print_r($c);
+  
+  $d = array_map("map_Spanish", $a , $b);
+  print_r($d);
+?>
+
+上の例の出力は以下となります。
+
+  // printout of $c
+  Array
+  (
+      [0] => The number 1 is called uno in Spanish
+      [1] => The number 2 is called dos in Spanish
+      [2] => The number 3 is called tres in Spanish
+      [3] => The number 4 is called cuatro in Spanish
+      [4] => The number 5 is called cinco in Spanish
+  )
+  
+  // printout of $d
+  Array
+  (
+      [0] => Array
+          (
+              [1] => uno
+          )
+  
+      [1] => Array
+          (
+              [2] => dos
+          )
+  
+      [2] => Array
+          (
+              [3] => tres
+          )
+  
+      [3] => Array
+          (
+              [4] => cuatro
+          )
+  
+      [4] => Array
+          (
+              [5] => cinco
+          )
+  
+  )
+
+
+
+通常、二つ以上の配列を使用する場合、
+それらの長さは等しい必要があります。 これは、
+コールバック関数が対応する要素に対して並行して適用されるためです。
+配列の長さが等しくない場合、最も短い配列は空の要素で拡張されます。
+
+この関数の面白い使用方法として、
+配列の配列を構築するというものがあります。
+これは、コールバック関数の名前として NULL
+を使用することにより、簡単に実行できるものです。
+
+配列の配列を生成する
+
+<?php >
+  $a = array(1, 2, 3, 4, 5);
+  $b = array("one", "two", "three", "four", "five");
+  $c = array("uno", "dos", "tres", "cuatro", "cinco");
+  
+  $d = array_map(null, $a, $b, $c);
+  print_r($d);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => Array
+          (
+              [0] => 1
+              [1] => one
+              [2] => uno
+          )
+  
+      [1] => Array
+          (
+              [0] => 2
+              [1] => two
+              [2] => dos
+          )
+  
+      [2] => Array
+          (
+              [0] => 3
+              [1] => three
+              [2] => tres
+          )
+  
+      [3] => Array
+          (
+              [0] => 4
+              [1] => four
+              [2] => cuatro
+          )
+  
+      [4] => Array
+          (
+              [0] => 5
+              [1] => five
+              [2] => cinco
+          )
+  
+  )
+
+
+
+配列引数に文字列のキーが含まれる場合は、
+渡した配列がひとつだけなら返される配列に文字列キーが含まれることになります。
+複数の引数を渡した場合は、返される配列は常に整数キーとなります。
+
+|array_map| - 文字列キーの例
+
+<?php >
+  $arr = array("stringkey" => "value");
+  function cb1($a) {
+      return array ($a);
+  }
+  function cb2($a, $b) {
+      return array ($a, $b);
+  }
+  var_dump(array_map("cb1", $arr));
+  var_dump(array_map("cb2", $arr, $arr));
+  var_dump(array_map(null,  $arr));
+  var_dump(array_map(null, $arr, $arr));
+?>
+
+上の例の出力は以下となります。
+
+  array(1) {
+    ["stringkey"]=>
+    array(1) {
+      [0]=>
+      string(5) "value"
+    }
+  }
+  array(1) {
+    [0]=>
+    array(2) {
+      [0]=>
+      string(5) "value"
+      [1]=>
+      string(5) "value"
+    }
+  }
+  array(1) {
+    ["stringkey"]=>
+    string(5) "value"
+  }
+  array(1) {
+    [0]=>
+    array(2) {
+      [0]=>
+      string(5) "value"
+      [1]=>
+      string(5) "value"
+    }
+  }
+
+
+
+|array_filter| |array_reduce| |array_walk| |create_function| callback
+型に関する情報
+
+vim:ft=help:

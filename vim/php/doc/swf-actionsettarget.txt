@@ -1,0 +1,13 @@
+swf_actionsettarget -- アクションのコンテキストを設定する
+
+  void swf_actionsettarget(string target)~
+
+全てのアクションのコンテキストを設定します。
+この関数を、現在実行中の他の flash ムービーを
+制御するために使用することが可能です。
+
+{target} 対象を表す文字列。
+
+値を返しません。
+
+vim:ft=help:

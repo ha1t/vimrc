@@ -1,0 +1,20 @@
+msql_data_seek -- 行に関する内部ポインタを移動する
+
+  bool msql_data_seek(resource result, int row_number)~
+
+|msql_data_seek| は、指定したクエリー ID (query_identfier)が指す
+mSQL の結果行への内部ポインタが指定した行番号
+(row_number)を指すようにします。 次に |msql_fetch_row|
+をコールした際には、 その行を返します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+{row_number} 指定する行番号。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msql_fetch_array| |msql_fetch_object| |msql_fetch_row| |msql_result|
+
+vim:ft=help:

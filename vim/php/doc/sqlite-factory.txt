@@ -1,0 +1,46 @@
+sqlite_factory -- SQLite データベースをオープンし、SQLiteDatabse
+オブジェクトを返す
+
+  SQLiteDatabase sqlite_factory(string filename [, int mode [, string error_message]])~
+
+|sqlite_factory| は |sqlite_open| と同様に SQLite
+データベースをオープン、もしくはデータベースが存在しない場合は生成しようと試みます。しかしながら、リソースの代わりに
+SQLiteDatabase
+オブジェクトが返されます。詳細な使用法と注意事項については、
+|sqlite_open| を参照ください。
+
+{filename} SQLite データベースのファイル名
+
+{mode}
+ファイルのモード。読み込み専用モードでデータベースをオープンするために
+使用することを目的としています。現在、このパラメータは
+SQLite
+ライブラリに無視されます。このモードのデフォルト値は、
+8 進数値 0666 で、これは推奨される値です。
+
+{error_message} 参照として渡され、エラーが発生した場合に
+データベースがオープンできなかった原因を説明する
+記述的なエラーメッセージを保持するために設定されます。
+
+成功時に SQLiteDatabase オブジェクト、失敗時に NULL
+を返します。
+
+|sqlite_factory| の例
+
+<?php >
+  $dbhandle = sqlite_factory('sqlitedb');
+  $dbhandle->query('SELECT user_id, username FROM users');
+  
+  /* functionally equivalent to: */
+  
+  $dbhandle = new SQLiteDatabase('sqlitedb');
+  $dbhandle->query('SELECT user_id, username FROM users');
+?>
+
+
+
+
+
+|sqlite_open| |sqlite_popen|
+
+vim:ft=help:

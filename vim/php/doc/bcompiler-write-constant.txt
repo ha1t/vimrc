@@ -1,0 +1,40 @@
+bcompiler_write_constant --
+定義した定数をバイトコードとして書き込む
+
+  bool bcompiler_write_constant(resource filehandle, string constantName)~
+
+この関数は、PHP
+から既存の定数をバイトコードとして読み込み、
+開かれているファイルハンドルに書き込みます。
+
+{filehandle} |fopen| が返すファイルハンドル。
+
+{constantName} 定義済みの定数名を表す文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_write_constant| の例
+
+<?php >
+  define("MODULE_MAX", 30);
+  
+  $fh = fopen("/tmp/example","w");
+  bcompiler_write_header($fh);
+  bcompiler_write_constant($fh,"MODULE_MAX");
+  bcompiler_write_footer($fh);
+  fclose($fh);
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|bcompiler_write_header| |bcompiler_write_footer|
+
+vim:ft=help:

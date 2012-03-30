@@ -1,0 +1,15 @@
+openal_buffer_loadwav -- .wav ファイルをバッファに読み込む
+
+  bool openal_buffer_loadwav(resource buffer, string wavfile)~
+
+Open AL (バッファ) リソース (事前に |openal_buffer_create|
+で作成したもの)。
+
+ローカルファイルシステム上の .WAV ファイルへのパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openal_buffer_data| |openal_stream|
+
+vim:ft=help:

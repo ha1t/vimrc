@@ -1,0 +1,46 @@
+pg_field_is_null -- フィールドが SQL の NULL かどうか調べる
+
+  int pg_field_is_null(resource result, int row, mixed field)~
+
+  int pg_field_is_null(resource result, int row, mixed field, resource result, mixed field)~
+
+|pg_field_is_null| は、PostgreSQL 結果リソースの フィールドが
+SQL の NULL であるかどうかを調べます。
+
+この関数は、以前は |pg_fieldisnull| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{row} 取得する結果の行番号。行番号は 0
+から始まります。指定しなかった場合は
+カレントの行を取得します。
+
+{field} （0 から始まる）フィールド番号を表す数値、
+あるいはフィールド名を表す文字列。
+
+指定した行のフィールドが SQL の NULL だった場合に
+1、そうでない場合に 0 を返します。
+もし範囲外の行を指定したりその他のエラーが発生したりした場合には
+FALSE を返します。
+
+|pg_field_is_null| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die ("Could not connect");
+    $res = pg_query($dbconn, "select * from authors where author = 'Orwell'");
+    if ($res) {
+        if (pg_field_is_null($res, 0, "year") == 1) {
+            echo "The value of the field year is null.\n";
+        }
+        if (pg_field_is_null($res, 0, "year") == 0) {
+            echo "The value of the field year is not null.\n";
+      }
+   }
+?>
+
+
+
+
+
+vim:ft=help:

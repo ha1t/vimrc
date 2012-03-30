@@ -1,0 +1,34 @@
+sesam_disconnect -- SESAM 接続から切り離す
+
+  bool sesam_disconnect()~
+
+(実際に接続を断にしたり、ドライバをアンロードすることなく)
+SESAM データベースへの論理リンクを閉じます。
+
+オープンされた接続はスクリプトの実行終了時に閉じられるため、
+この関数は通常不要です。コミットされていないデータは、暗黙のうちに
+|sesam_rollback| が実行されるため、破棄されます。
+
+|sesam_disconnect| は、持続的なリンクを閉じず、
+現在、定義されている {"catalog"}、 {"schema"}、{"user"} の
+組を無効にするだけです。このため、 |sesam_disconnect|
+の後でコールされた SESAM 関数は失敗します。
+
+常に TRUE を返します。
+
+SESAM 接続を閉じる
+
+<?php >
+  if (sesam_connect ("mycatalog", "myschema", "otto")) {
+      /* ... クエリなどの処理 ... */
+      sesam_disconnect();
+  }
+?>
+
+
+
+
+
+|sesam_connect|
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+enchant_dict_is_in_session -- このスペリングセッションに '単語'
+が存在するかどうかを調べる
+
+  bool enchant_dict_is_in_session(resource dict, string word)~
+
+ある単語が、現在のセッション内に既に存在するかどうかを調べます。
+
+{dict} 辞書リソース。
+
+{word} 探す単語。
+
+単語が存在する場合に TRUE、それ以外の場合に FALSE
+を返します。
+
+|enchant_dict_add_to_session|
+
+vim:ft=help:

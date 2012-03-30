@@ -1,0 +1,45 @@
+pspell_store_replacement -- 単語を置換する組を保存する
+
+  bool pspell_store_replacement(int dictionary_link, string misspelled, string correct)~
+
+|pspell_store_replacement| は、単語の置換候補を
+保存します。これにより、この後の |pspell_suggest|
+で置換候補を返すことが可能と
+なります。この関数の利点を活かすためには、辞書をオープンする際に
+|pspell_new_personal| を使用する必要があります。
+置換候補を恒久的に保存するためには |pspell_config_personal|
+を使用する必要があり、 |pspell_config_repl|
+によりカスタム単語リストを
+保存するパスを設定し、この後、変更点をディスクへ書き込むために
+|pspell_save_wordlist| を使用する必要があります。
+
+{dictionary_link} |pspell_new_personal| でオープンした辞書リンク
+ID。
+
+{misspelled} まちがったスペルの単語。
+
+{correct} {misspelled} を修正した単語。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pspell_store_replacement|
+
+<?php >
+  $pspell_config = pspell_config_create("en");
+  pspell_config_personal($pspell_config, "/var/dictionaries/custom.pws");
+  pspell_config_repl($pspell_config, "/var/dictionaries/custom.repl");
+  $pspell_link = pspell_new_config($pspell_config);
+  
+  pspell_store_replacement($pspell_link, $misspelled, $correct);
+  pspell_save_wordlist($pspell_link);
+?>
+
+
+
+
+
+この関数は、pspell .11.2 および aspell .32.5 以降でない限り
+動作しないことに注意してください。
+
+vim:ft=help:

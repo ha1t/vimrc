@@ -1,0 +1,16 @@
+is_finite -- 値が有限の数値であるかどうかを判定する
+
+  bool is_finite(float val)~
+
+{val} が
+このプラットフォーム上で有効な有限値であるかどうかを調べます。
+
+{val} 調べる値。
+
+{val} が このプラットフォーム上の PHP の float
+型で有効な範囲内の数である場合に TRUE、
+それ以外の場合に FALSE を返します。
+
+|is_infinite| |is_nan|
+
+vim:ft=help:

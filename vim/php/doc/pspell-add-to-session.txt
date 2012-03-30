@@ -1,0 +1,17 @@
+pspell_add_to_session --
+現在のセッションの単語リストに単語を追加する
+
+  bool pspell_add_to_session(int dictionary_link, string word)~
+
+|pspell_add_to_session| は、
+現在のセッションに関連する単語リストに単語を追加します。この関数は、
+|pspell_add_to_personal| に似ています。
+
+{dictionary_link}
+
+{word} 追加する単語。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

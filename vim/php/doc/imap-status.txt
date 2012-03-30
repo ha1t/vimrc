@@ -1,0 +1,63 @@
+imap_status --
+現在のメールボックス以外のメールボックスのステータス情報を返す
+
+  object imap_status(resource imap_stream, string mailbox, int options)~
+
+指定したメールボックス {mailbox}
+についてのステータス情報を取得します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+{options} 以下のフラグが使用できます。 SA_MESSAGES -
+status->messages にメールボックスのメッセージ数を設定する
+
+SA_RECENT - status->recent
+にメールボックスの最近のメッセージ数を設定する
+
+SA_UNSEEN - status->unseen
+にメールボックスの未読の(新規)メッセージ数を設定する
+
+SA_UIDNEXT - status->uidnext にメールボックスの次の UID
+を設定する
+
+SA_UIDVALIDITY - メールボックスの UID
+がもはや有効ではない場合に変化する定数を
+status->uidvalidity に設定する
+
+SA_ALL - 上記のものをすべて設定する
+
+この関数は、ステータス情報を含むオブジェクトを返します。このオブジェクトには
+messages、 recent、unseen、 uidnext および uidvalidity
+というプロパティが含まれます。
+
+flags にも、
+上の各定数に対応するビットマスクを設定することができます。
+
+|imap_status| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.com}", "username", "password", OP_HALFOPEN)
+        or die("接続できません: " . imap_last_error());
+  
+  $status = imap_status($mbox, "{imap.example.org}INBOX", SA_ALL);
+  if ($status) {
+    echo "Messages:   " . $status->messages    . "<br />\n";
+    echo "Recent:     " . $status->recent      . "<br />\n";
+    echo "Unseen:     " . $status->unseen      . "<br />\n";
+    echo "UIDnext:    " . $status->uidnext     . "<br />\n";
+    echo "UIDvalidity:" . $status->uidvalidity . "<br />\n";
+  } else {
+    echo "imap_status failed: " . imap_last_error() . "\n";
+  }
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+vim:ft=help:

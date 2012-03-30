@@ -1,0 +1,27 @@
+printer_logical_fontheight -- 論理フォントの高さを取得する
+
+  int printer_logical_fontheight(resource printer_handle, int height)~
+
+この関数は {height} の論理フォントの高さを計算します。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{height} フォントの高さ。
+
+論理フォントの高さ、あるいは失敗した場合に FALSE
+を返します。
+
+|printer_logical_fontheight| の例
+
+<?php >
+  $handle = printer_open();
+  echo printer_logical_fontheight($handle, 72);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

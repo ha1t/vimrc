@@ -1,0 +1,52 @@
+get_class -- オブジェクトのクラス名を返す
+
+  string get_class([object object])~
+
+指定した {object} のクラス名を取得します。
+
+{object} 調べるオブジェクト。
+
+オブジェクト {object} がインスタンス
+であるクラスの名前を返します。{object}
+がオブジェクトでない場合にはFALSEが返されます。
+
+バージョン 説明 5.0.0 以降
+クラス名はその本来の表記で返されます。 5.0.0 以降
+{object} パラメータは、
+オブジェクトのメソッドからコールされた場合はオプションとなります。
+
+|get_class| の使用例
+
+<?php >
+  class foo {
+      function foo()
+      {
+      // ここにロジックを書く
+      }
+  
+      function name()
+      {
+          echo "My name is " , get_class($this) , "\n";
+      }
+  }
+  
+  // オブジェクトを生成
+  $bar = new foo();
+  
+  // 外部からコール
+  echo "Its name is " , get_class($bar) , "\n";
+  
+  // 内部からコール
+  $bar->name();
+?>
+
+上の例の出力は以下となります。
+
+  Its name is foo
+  My name is foo
+
+
+
+|get_parent_class| |gettype| |is_subclass_of|
+
+vim:ft=help:

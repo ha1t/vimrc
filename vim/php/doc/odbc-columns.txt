@@ -1,0 +1,53 @@
+odbc_columns --
+指定したテーブルにあるカラム名のリストを取得する
+
+  resource odbc_columns(resource connection_id [, string qualifier [, string schema [, string table_name [, string column_name]]]])~
+
+指定したテーブルにあるカラム名のリストを取得します。
+
+{connection_id} 接続 ID。
+
+{qualifier} 修飾子。
+
+{schema} 所有者。
+
+{table_name} テーブル名。
+
+{column_name} カラム名。
+
+{schema}, {table_name} および {column_name} には検索パターン
+(ゼロ以上の文字にマッチする '%'
+や単一の文字にマッチする '_') を使用可能です。
+
+ODBC 結果 ID または失敗した場合に FALSE を返します。
+
+結果セットは以下のカラムを有しています。 TABLE_QUALIFIER
+
+TABLE_SCHEM
+
+TABLE_NAME
+
+COLUMN_NAME
+
+DATA_TYPE
+
+TYPE_NAME
+
+PRECISION
+
+LENGTH
+
+SCALE
+
+RADIX
+
+NULLABLE
+
+REMARKS
+
+結果セットは TABLE_QUALIFIER、TABLE_SCHEM、TABLE_NAME
+でソートされます。
+
+付随する権限を取得するには |odbc_columnprivileges|
+
+vim:ft=help:

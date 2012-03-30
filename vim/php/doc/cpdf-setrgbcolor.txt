@@ -1,0 +1,22 @@
+cpdf_setrgbcolor -- 描画色および塗りつぶし色を RGB
+値に設定する
+
+  bool cpdf_setrgbcolor(int pdf_document, float red_value, float green_value, float blue_value)~
+
+指定した RGB
+カラー値を現在の描画色および塗りつぶし色として設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{red_value} 赤の値。0.0 (黒) から 1.0 (赤) までの float 値。
+
+{green_value} 緑の値。0.0 (黒) から 1.0 (緑) までの float 値。
+
+{blue_value} 青の値。0.0 (黒) から 1.0 (青) までの float 値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_setrgbcolor_stroke| |cpdf_setrgbcolor_fill|
+
+vim:ft=help:

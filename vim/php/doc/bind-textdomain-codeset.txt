@@ -1,0 +1,17 @@
+bind_textdomain_codeset -- DOMAIN
+メッセージカタログから返されるメッセージの文字エンコーディングを指定する
+
+  string bind_textdomain_codeset(string domain, string codeset)~
+
+|bind_textdomain_codeset| を使用することで、 |gettext|
+やその類似の関数において返される、 {domain}
+からのメッセージの文字エンコーディングを
+設定することが可能です。
+
+{domain} ドメイン。
+
+{codeset} コードセット。
+
+成功した場合に文字列を返します。
+
+vim:ft=help:

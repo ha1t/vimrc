@@ -1,0 +1,13 @@
+newt_resize_screen --
+
+  void newt_resize_screen([bool redraw])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{redraw}
+
+値を返しません。
+
+vim:ft=help:

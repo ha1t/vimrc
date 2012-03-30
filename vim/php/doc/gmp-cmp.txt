@@ -1,0 +1,13 @@
+gmp_cmp -- 数を比較する
+
+  int gmp_cmp(resource a, resource b)~
+
+ふたつの数を比較します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{b} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+vim:ft=help:

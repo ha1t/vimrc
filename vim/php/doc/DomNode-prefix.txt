@@ -1,0 +1,7 @@
+DomNode->prefix -- ノードの名前空間接頭辞を返す
+
+  string DomNode->prefix()~
+
+ノードの名前空間接頭辞を返します。
+
+vim:ft=help:

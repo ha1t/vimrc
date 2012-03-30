@@ -1,0 +1,10 @@
+fdf_enum_values --
+各ドキュメントの値に対してユーザ定義関数をコールする
+
+  bool fdf_enum_values(resource fdf_document, callback function [, mixed userdata])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

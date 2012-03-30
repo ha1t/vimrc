@@ -1,0 +1,36 @@
+maxdb_connect_errno -- 直近の接続コールのエラーコードを返す
+
+  int maxdb_connect_errno()~
+
+|maxdb_connect_errno| 関数は、 直近の |maxdb_connect|
+のコールのエラーコードを返します。
+エラーが発生しなかった場合は、この関数はゼロを返します。
+
+直近の |maxdb_connect| のコールのエラーコードを返します。
+ゼロの場合は、エラーが発生しなかったことを意味します。
+
+maxdb_connect_errno の例
+
+<?php >
+  $link = maxdb_connect("localhost", "XXXXXXXX", "YYYYYYYYY");
+  
+  if (!$link) {
+     printf("localhost に接続できません。エラーコード: %d\n", maxdb_connect_errno());
+  }
+?>
+
+
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  PHP Warning:  maxdb_connect(): -4008 POS(1) Unknown user name/password combination [08004] <...>
+  localhost に接続できません。エラーコード: -4008
+
+|maxdb_connect| |maxdb_connect_error| |maxdb_errno| |maxdb_error|
+|maxdb_sqlstate|
+
+vim:ft=help:

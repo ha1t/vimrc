@@ -1,0 +1,32 @@
+ftp_nb_continue --
+ファイルの取得/送信を継続する（非ブロッキング）
+
+  int ftp_nb_continue(resource ftp_stream)~
+
+非ブロッキングモードで、ファイルの取得/送信を継続します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+FTP_FAILED、FTP_FINISHED あるいは FTP_MOREDATA を返します。
+
+|ftp_nb_continue| の例
+
+<?php >
+  // ダウンロードを開始する
+  $ret = ftp_nb_get($my_connection, "test", "README", FTP_BINARY);
+  while ($ret == FTP_MOREDATA) {
+  
+     // ダウンロードを継続する…
+     $ret = ftp_nb_continue($my_connection);
+  }
+  if ($ret != FTP_FINISHED) {
+     echo "There was an error downloading the file...";
+     exit(1);
+  }
+?>
+
+
+
+
+
+vim:ft=help:

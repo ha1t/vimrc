@@ -1,0 +1,10 @@
+maxdb_master_query --
+マスタ/スレーブ構成において、クエリをマスタ側で実行することを強制する
+
+  bool maxdb_master_query(resource link, string query)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

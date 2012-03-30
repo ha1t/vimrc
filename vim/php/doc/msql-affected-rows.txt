@@ -1,0 +1,16 @@
+msql_affected_rows -- 変更された行の数を返す
+
+  int msql_affected_rows(resource result)~
+
+{result} に関連する直近の SELECT、UPDATE あるいは DELETE
+クエリにより変更された行の数を返します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+成功した場合には変更された行の数、エラー時に FALSE
+を返します。
+
+|msql_query|
+
+vim:ft=help:

@@ -1,0 +1,29 @@
+msql_fetch_field -- フィールド情報を得る
+
+  object msql_fetch_field(resource result [, int field_offset])~
+
+|msql_fetch_field| はあるクエリ結果に含まれる
+フィールドの情報を取得する際に使用することができます。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+{field_offset}
+フィールドオフセット。指定されていない場合は、まだ
+|msql_fetch_field| で取得されていない
+次のフィールドが返されます。
+
+フィールド情報を含むオブジェクトを返します。プロパティは以下のとおりです。
+name - カラム名
+
+table - カラムが属するテーブル名
+
+not_null - カラムが NULL になることができない場合に 1
+
+unique - カラムがユニークキーである場合に 1
+
+type - カラムの型
+
+|msql_field_seek|
+
+vim:ft=help:

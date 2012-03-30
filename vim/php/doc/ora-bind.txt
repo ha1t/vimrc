@@ -1,0 +1,60 @@
+ora_bind -- PHP 変数を Oracle パラメータにバインドする
+
+  bool ora_bind(resource cursor, string phpvar, string sqlparam, int length [, int type])~
+
+指定した名前の PHP 変数を SQL
+パラメータとバインドします。
+
+|ora_bind| は |ora_parse| の後でかつ |ora_exec|
+の前に呼び出されなくてはなりません。
+入力値はバインドされた PHP
+変数に代入することにより指定することが可能です。
+|ora_exec| のコールによりバインド先の SQL
+パラメータに値が出力される場合には、バインドされた
+PHP 変数に出力値が代入されます。
+
+{cursor} |ora_open| でオープンした Oracle カーソル。
+
+{phpvar} バインドする PHP 変数。
+
+{sqlparam} SQL パラメータ。:name 形式でなければなりません。
+
+{length}
+
+{type} パラメータの型を指定します。デフォルトは
+ORA_BIND_INOUT です。とりうる値を以下にまとめます。 定数
+値 ORA_BIND_INOUT 0 ORA_BIND_IN 1 ORA_BIND_OUT 2
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 エラーについての詳細は、|ora_error| および
+|ora_errorcode| 関数を用いて調べられます。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+3.0.1 {type} 用の定数が追加されました。
+以前のバージョンでは、数値を指定する必要がありました。
+
+|ora_bind| の例
+
+<?php >
+    ora_parse($curs, "declare tmp INTEGER; begin tmp := :in; :out := tmp; :x := 7.77; end;");
+    ora_bind($curs, "result", ":x", $len, 2);
+    ora_bind($curs, "input", ":in", 5, 1);
+    ora_bind($curs, "output", ":out", 5, 2);
+    $input = 765;
+    ora_exec($curs);
+    echo "Result: $result<br />Out: $output<br />In: $input";
+?>
+
+
+
+
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_bind_by_name|
+|oci_bind_array_by_name|
+
+vim:ft=help:

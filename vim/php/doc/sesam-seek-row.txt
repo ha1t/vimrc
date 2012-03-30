@@ -1,0 +1,39 @@
+sesam_seek_row --
+連続的に取得する際にスクロール可能なカーソルモードに設定する
+
+  bool sesam_seek_row(string result_id, int whence [, int offset])~
+
+スクロール可能なカーソルを、それ以降のフェッチのために設定します。
+
+{result_id} {result_id} は有効な結果 ID です (select
+型のクエリで、かつ、|sesam_query| を
+コールした際に"スクロール可能な"カーソルが要求された場合のみ)。
+
+{whence} {whence} は、この後の"スクロール型"カーソルの
+取得処理で使用されるスクロールの型を指定する、スクロール型の
+グローバルなデフォルト値を設定し、次のような定義済みの定数を
+設定します。 {"whence"} パラメータの有効な値 値 定数 意味
+0 SESAM_SEEK_NEXT 連続的に読み込む 1 SESAM_SEEK_PRIOR
+連続的に後向きに読む 2 SESAM_SEEK_FIRST
+最初のレコードに移動する (取得後、デフォルト値は
+SESAM_SEEK_NEXT に設定されます) 3 SESAM_SEEK_LAST
+最後のレコードに移動する (取得後、デフォルト値は
+SESAM_SEEK_PRIOR に設定されます) 4 SESAM_SEEK_ABSOLUTE {offset} (0
+が先頭。取得後、 内部デフォルト値は SESAM_SEEK_ABSOLUTE
+に設定されます。内部のオフセット値は、自動的に増加します)
+で指定した絶対レコード番号に移動します。 5
+SESAM_SEEK_RELATIVE
+カレントのスクロール位置に対して相対位置に移動。ただし、
+{offset} は正または負の値を指定可能です
+(これは、以降の取得の際のデフォルトの "offset"
+も設定します)。
+
+{offset} オプションのパラメータであり、 {whence} が
+SESAM_SEEK_RELATIVE または SESAM_SEEK_ABSOLUTE
+のどちらかである場合にのみ 評価されます
+(また必要とされます)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

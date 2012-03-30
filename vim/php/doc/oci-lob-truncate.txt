@@ -1,0 +1,15 @@
+OCI-Lob->truncate -- ラージオブジェクトを切りつめる
+
+  bool truncate([int length])~
+
+LOB を切りつめます。
+
+{length}
+指定した場合は、このメソッドはラージオブジェクトを
+{length} バイトに切りつめます。 そうでない場合は、LOB
+を完全に消去します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

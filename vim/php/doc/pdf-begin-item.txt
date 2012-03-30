@@ -1,0 +1,9 @@
+PDF_begin_item --
+構造体要素あるいはその他の内容をオープンする
+
+  int PDF_begin_item(resource pdfdoc, string tag, string optlist)~
+
+オプションで指定した属性を使用して、
+構造体要素あるいはその他の内容をオープンします。
+
+vim:ft=help:

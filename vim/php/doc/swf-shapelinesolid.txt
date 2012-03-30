@@ -1,0 +1,20 @@
+swf_shapelinesolid -- 現在の行のスタイルを設定する
+
+  void swf_shapelinesolid(float r, float g, float b, float a, float width)~
+
+現在の線のスタイルを、指定した色と幅に設定します。
+
+{r} 赤の値。
+
+{g} 緑の値。
+
+{b} 青の値。
+
+{a} アルファ値。
+
+{width} 線の幅。0.0
+が設定された場合、線は描画されません。
+
+値を返しません。
+
+vim:ft=help:

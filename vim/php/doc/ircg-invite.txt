@@ -1,0 +1,17 @@
+ircg_invite -- ユーザをチャンネルに招待する
+
+  bool ircg_invite(resource connection, string channel, string nickname)~
+
+|ircg_invite| は、ユーザ {nickname} に対してチャンネル {channel}
+に参加する招待状を送ります。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{channel} #name 形式のチャンネル名。
+
+{nickname} ユーザのニックネーム。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

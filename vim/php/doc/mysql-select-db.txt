@@ -1,0 +1,48 @@
+mysql_select_db -- MySQL データベースを選択する
+
+  bool mysql_select_db(string database_name [, resource link_identifier])~
+
+指定したリンク ID
+が指すサーバ上のデータベースを、アクティブな
+データベースに設定します。それ以降にコールされる
+|mysql_query| は、すべてアクティブなデータベース上で
+実行されます。
+
+{database_name} 選択するデータベース名。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mysql_select_db| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('Not connected : ' . mysql_error());
+  }
+  
+  // foo をカレントの db に指定する
+  $db_selected = mysql_select_db('foo', $link);
+  if (!$db_selected) {
+      die ('Can\'t use foo : ' . mysql_error());
+  }
+?>
+
+
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_selectdb|
+
+|mysql_connect| |mysql_pconnect| |mysql_query|
+
+vim:ft=help:

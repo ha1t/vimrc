@@ -1,0 +1,41 @@
+curl_exec -- cURL セッションを実行する
+
+  mixed curl_exec(resource ch)~
+
+指定した cURL セッションを実行します。
+
+この関数は、cURL セッションを初期化し、
+オプションを全て設定した後にコールする必要があります。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 しかし、オプション CURLOPT_RETURNTRANSFER
+が設定されていると、
+成功した場合に取得結果、失敗した場合に FALSE
+を返します。
+
+ウェブページの取得
+
+<?php >
+  // 新規 cURL リソースを作成します
+  $ch = curl_init();
+  
+  // URL や他の適当なオプションを設定します
+  curl_setopt($ch, CURLOPT_URL, "http://www.example.com/");
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+  
+  // URL を取得し、ブラウザに渡します
+  curl_exec($ch);
+  
+  // cURL リソースを閉じ、システムリソースを解放します
+  curl_close($ch);
+?>
+
+
+
+
+
+|curl_multi_exec|
+
+vim:ft=help:

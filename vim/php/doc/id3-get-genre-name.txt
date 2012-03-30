@@ -1,0 +1,27 @@
+id3_get_genre_name -- ジャンル ID に対応する名前を取得する
+
+  string id3_get_genre_name(int genre_id)~
+
+|id3_get_genre_name| は、ジャンル ID
+に対応する名前を返します。
+
+{genre_id} 0 から 147 までの整数値。
+
+名前を文字列で返します。
+
+|id3_get_genre_name| の例
+
+<?php >
+  $genre = id3_get_genre_name(20);
+  echo $genre;
+?>
+
+上の例の出力は以下となります。
+
+  Alternative
+
+
+
+|id3_get_genre_list| |id3_get_genre_id|
+
+vim:ft=help:

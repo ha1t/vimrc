@@ -1,0 +1,18 @@
+odbc_field_len -- フィールドの長さ (精度) を得る
+
+  int odbc_field_len(resource result_id, int field_number)~
+
+指定した ODBC 結果 ID
+の番号で参照されるフィールドの長さを取得します。
+
+{result_id} 結果 ID。
+
+{field_number} フィールド番号。フィールド番号は 1
+から始まります。
+
+フィールド名を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+浮動小数点の精度を得るには |odbc_field_scale|
+
+vim:ft=help:

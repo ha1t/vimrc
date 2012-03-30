@@ -1,0 +1,12 @@
+swf_labelframe -- 現在のフレームにラベルを付ける
+
+  void swf_labelframe(string name)~
+
+現在のフレームにパラメータ {name} で
+指定した名前を付けます。
+
+{name} フレームのラベル。
+
+値を返しません。
+
+vim:ft=help:

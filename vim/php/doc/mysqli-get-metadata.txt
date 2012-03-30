@@ -1,0 +1,9 @@
+mysqli_get_metadata -- mysqli_stmt_result_metadata のエイリアス
+
+この関数は |mysqli_stmt_result_metadata| のエイリアスです。
+
+|mysqli_get_metadata| は非推奨で、廃止予定です。
+
+|mysqli_stmt_result_metadata|
+
+vim:ft=help:

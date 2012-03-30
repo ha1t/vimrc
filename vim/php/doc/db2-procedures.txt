@@ -1,0 +1,44 @@
+db2_procedures --
+データベース内に登録されているストアドプロシージャの一覧を含む結果セットを返す
+
+  resource db2_procedures(resource connection, string qualifier, string schema, string procedure)~
+
+データベース内に登録されているストアドプロシージャの一覧を含む結果セットを返します。
+
+{connection} IBM DB2、Cloudscape あるいは Apache Derby
+データベースへの有効な接続。
+
+{qualifier} OS/390 あるいは z/OS サーバ上で稼動している DB2
+データベースの修飾子。
+その他のデータベースの場合には NULL
+あるいは空の文字列を渡します。
+
+{schema}
+プロシージャを含むスキーマ。このパラメータでは、ワイルドカードとして
+_ および % を含む検索パターンを使用可能です。
+
+{procedure}
+プロシージャの名前。このパラメータでは、ワイルドカードとして
+_ および % を含む検索パターンを使用可能です。
+
+指定したパラメータに一致するストアドプロシージャの情報を含む結果セットの
+ステートメントリソースを返します。
+行の内容は、以下のカラムで構成されています。
+カラム名 説明 PROCEDURE_CAT
+プロシージャを含むカタログ。テーブルがカタログを保持していない場合は
+NULL。 PROCEDURE_SCHEM
+ストアドプロシージャを含むスキーマの名前。 PROCEDURE_NAME
+プロシージャの名前。 NUM_INPUT_PARAMS
+ストアドプロシージャの入力 (IN) パラメータの数。
+NUM_OUTPUT_PARAMS ストアドプロシージャの出力 (OUT)
+パラメータの数。 NUM_RESULT_SETS
+ストアドプロシージャが返す結果セットの数。 REMARKS
+ストアドプロシージャのコメント。 PROCEDURE_TYPE 常に 1
+を返します。これは、
+ストアドプロシージャが返り値を返さないことを意味します。
+
+|db2_column_privileges| |db2_columns| |db2_foreign_keys| |db2_primary_keys|
+|db2_procedure_columns| |db2_special_columns| |db2_statistics|
+|db2_table_privileges| |db2_tables|
+
+vim:ft=help:

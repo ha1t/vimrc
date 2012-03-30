@@ -1,0 +1,40 @@
+com_get_active_object -- すでに実行中の COM
+オブジェクトのインスタンスへのハンドルを返す
+
+  variant com_get_active_object(string progid [, int code_page])~
+
+|com_get_active_object| は、新しい
+オブジェクトのインスタンスを作成することに
+似ています。しかし、オブジェクトがすでに実行中の場合には
+そのオブジェクトが返されるという点が違います。 OLE
+アプリケーションは、既知のアプリケーションを一度だけ起動させる
+ことを許可するために、Running Object Table
+というものを使用します。
+この関数は、実行中のインスタンスのハンドルを取得するために
+COM ライブラリ関数 GetActiveObject() を公開します。
+
+{progid} {progid} は、アクセスしたいオブジェクトの ProgID
+あるいは CLSID (たとえば Word.Application)
+である必要があります。
+
+{code_page} クラスの場合と同様の働きをします。
+
+要求されたオブジェクトが実行中の場合は、他の COM
+オブジェクトと 同様にスクリプトへ返されます。
+
+この関数が失敗する
+理由はさまざまなものが考えられますが、最も一般的なのは
+オブジェクトがまだ起動していないことです。そのような場合、
+例外のエラーコードは MK_E_UNAVAILABLE
+となります。例外オブジェクトの getCode
+メソッドを使用することで、例外コードの内容を調べることが可能です。
+
+Web 環境で |com_get_active_object| を使用する
+ことは、あまり良い考えではありません。ほとんどの
+COM/OLE
+アプリケーションは複数のクライアントから同時に利用されることを
+考慮していないのです。(あの) Microsoft Office でさえもです!
+この件に関する一般的な問題についての詳細な情報は、Considerations
+for Server-Side Automation of Office を参照ください。
+
+vim:ft=help:

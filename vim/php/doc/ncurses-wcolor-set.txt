@@ -1,0 +1,13 @@
+ncurses_wcolor_set -- ウィンドウの色の組み合わせを設定する
+
+  int ncurses_wcolor_set(resource window, int color_pair)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{color_pair}
+
+vim:ft=help:

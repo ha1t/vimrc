@@ -1,0 +1,55 @@
+mqseries_inq -- MQSeries MQINQ
+
+   mqseries_inq(resource hconn, resource hobj, int selectorCount, array selectors, int intAttrCount, resourceref intAttr, int charAttrLength, resourceref charAttr, resourceref compCode, resourceref reason)~
+
+|mqseries_inq| (MQINQ) は、整数の配列と文字列を返します。
+これはオブジェクトの属性を表します。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{hObj} オブジェクトハンドル。
+
+このハンドルは、使用するオブジェクトを表します。
+
+{selectorCount} セレクタの数。
+
+{selectors} 属性セレクタの配列。
+
+{intAttrLength} 整数属性の数。
+
+{intAttr} 整数属性の配列。
+
+{charAttrLength} 文字属性バッファの長さ。
+
+{charAttr} 文字属性。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_inq| の例
+
+<?php >
+      $int_attr = array();
+      $char_attr = "";
+      
+      mqseries_inq($conn, $obj, 1, array(MQSERIES_MQCA_Q_MGR_NAME), 0, $int_attr, 48, $char_attr, $comp_code, $reason);
+      
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("INQ CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+      } else {
+          echo "INQ QManager name result ".$char_attr."<br>\n";
+      }
+?>
+
+
+
+
+
+|mqseries_conn| |mqseries_connx| |mqseries_open|
+
+vim:ft=help:

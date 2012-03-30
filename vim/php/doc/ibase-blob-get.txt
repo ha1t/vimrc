@@ -1,0 +1,37 @@
+ibase_blob_get -- オープンした blob から len
+バイト分のデータを取得する
+
+  string ibase_blob_get(resource blob_handle, int len)~
+
+この関数は、|ibase_blob_open| によって読み込み用に
+オープンした BLOB から最大 {len} バイトを返します。
+
+|ibase_blob_create| で書き込み用にオープンした BLOB
+から読み込むことはできません。
+
+{blob_handle} |ibase_blob_open| でオープンした BLOB ハンドル。
+
+{len} 返されるデータのサイズ。
+
+BLOB から最大 {len} バイトを返します。 失敗した場合は
+FALSE を返します。
+
+|ibase_blob_get| の例
+
+<?php >
+  $result    = ibase_query("SELECT blob_value FROM table");
+  $data      = ibase_fetch_object($result);
+  $blob_data = ibase_blob_info($data->BLOB_VALUE);
+  $blob_hndl = ibase_blob_open($data->BLOB_VALUE);
+  echo         ibase_blob_get($blob_hndl, $blob_data[0]);
+?>
+
+
+
+この例では 'ibase_blob_echo($data->BLOB_VALUE)'
+が行う以上のことは
+行っていませんが、結果を変数に代入して操作する方法を示しています。
+
+|ibase_blob_open| |ibase_blob_close| |ibase_blob_echo|
+
+vim:ft=help:

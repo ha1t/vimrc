@@ -1,0 +1,39 @@
+soundex -- 文字列の soundex キーを計算する
+
+  string soundex(string str)~
+
+{str} の soundex キーを計算します。
+
+soundex キーには、似たような発音の単語に関して同じ
+soundex キーが生成されるという特性があります。
+このため、発音は知っているが、スペルがわからない場合に、
+データベースを検索することを容易にすることができます。
+soundex 関数は、ある文字から始まる 4
+文字の文字列を返します。
+
+この soundex 関数についての説明は、Donald Knuth の "The Art Of
+Computer Programming, vol. 3: Sorting And Searching", Addison-Wesley (1973),
+pp. 391-392 にあります。
+
+{str} 入力文字列。
+
+soundex キーを文字列で返します。
+
+Soundex の例
+
+<?php >
+  soundex("Euler")       == soundex("Ellery");    // E460
+  soundex("Gauss")       == soundex("Ghosh");     // G200
+  soundex("Hilbert")     == soundex("Heilbronn"); // H416
+  soundex("Knuth")       == soundex("Kant");      // K530
+  soundex("Lloyd")       == soundex("Ladd");      // L300
+  soundex("Lukasiewicz") == soundex("Lissajous"); // L222
+?>
+
+
+
+
+
+|levenshtein| |metaphone| |similar_text|
+
+vim:ft=help:

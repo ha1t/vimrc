@@ -1,0 +1,32 @@
+mssql_fetch_batch -- レコードの次のバッチを返す
+
+  int mssql_fetch_batch(resource result)~
+
+レコードの次のバッチを返します。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+バッチ番号を整数値で返します。
+
+|mssql_fetch_batch| の例
+
+<?php >
+  $resDb = mssql_connect('localhost', 'user', 'name');
+  $result = mssql_query('SELECT * FROM MYTABLE', $resDb, 10000);
+  
+  $intNumRows = mssql_num_rows($result);
+  
+  while ($intNumRows > 0) {
+      while ($arrRow = mssql_fetch_assoc($result)) {
+          // 何らかの処理 ...
+      }
+      $intNumRows = mssql_fetch_batch($result);
+  }
+?>
+
+
+
+
+
+vim:ft=help:

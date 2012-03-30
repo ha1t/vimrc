@@ -1,0 +1,58 @@
+class_implements --
+与えられたクラスが実装しているインターフェースを返す
+
+  array class_implements(mixed class [, bool autoload])~
+
+この関数は、与えられたクラス {class}
+とその親が実装しているインターフェースを配列で返します。
+
+{class} オブジェクト (クラスインターフェース)
+もしくは文字列 (クラス名) を指定します。
+
+{autoload} __autoload マジックメソッドを通じて、
+この関数にクラスを自動的にロードさせるかどうかを指定します。
+デフォルトは TRUE です。
+
+配列もしくはエラー時に FALSE を返します。
+
+バージョン 説明 5.1.0 文字列として {class}
+パラメータを渡すオプションが追加されました。 {autoload}
+パラメータが追加されました。
+
+|class_implements| の例
+
+<?php >
+  interface foo { }
+  class bar implements foo {}
+  
+  print_r(class_implements(new bar));
+  
+  // PHP 5.1.0 以降、パラメータを文字列として指定しても良い
+  print_r(class_implements('bar'));
+  
+  
+  function __autoload($class_name) {
+     require_once $class_name . '.php';
+  }
+  
+  // 'not_loaded' クラスをロードするために __autoload を使用する
+  print_r(class_implements('not_loaded', true));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [foo] => foo
+  )
+  
+  Array
+  (
+      [interface_of_not_loaded] => interface_of_not_loaded
+  )
+
+
+
+|class_parents| |get_declared_interfaces|
+
+vim:ft=help:

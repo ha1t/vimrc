@@ -1,0 +1,85 @@
+explode -- 文字列を文字列により分割する
+
+  array explode(string delimiter, string string [, int limit])~
+
+文字列の配列を返します。この配列の各要素は、 {string}
+を文字列 {delimiter} で区切った部分文字列となります。
+
+{delimiter} 区切り文字列。
+
+{string} 入力文字列。
+
+{limit} {limit} が指定された場合、返される配列には 最大
+{limit} の要素が含まれ、その最後の要素には {string}
+の残りの部分が全て含まれます。
+
+もし {limit} パラメータが負の場合、 最後の -{limit}
+個の要素を除く全ての構成要素が返されます。
+
+歴史的理由により、|implode|
+はいずれのパラメータ順も受け入れることができますが、
+|explode| はそうできません。 {string} 引数の前に必ず
+{delimiter} 引数がくるように確認する必要があります。
+
+空の文字列 ("") が {delimiter} として使用された場合、
+|explode| は FALSE を返します。{delimiter} に引数 {string}
+に含まれていない値が含まれている場合、 |explode|
+は、引数 {string} を含む配列を返します。
+
+バージョン 説明 5.1.0 {limit}
+に負の数を指定できるようになりました。 4.0.1 {limit}
+パラメータが追加されました。
+
+|explode| の例
+
+<?php >
+  // 例 1
+  $pizza  = "piece1 piece2 piece3 piece4 piece5 piece6";
+  $pieces = explode(" ", $pizza);
+  echo $pieces[0]; // piece1
+  echo $pieces[1]; // piece2
+  
+  // 例 2
+  $data = "foo:*:1023:1000::/home/foo:/bin/sh";
+  list($user, $pass, $uid, $gid, $gecos, $home, $shell) = explode(":", $data);
+  echo $user; // foo
+  echo $pass; // *
+?>
+
+
+
+
+
+{limit} パラメータの例
+
+<?php >
+  $str = 'one|two|three|four';
+  
+  // 正の値を持つ limit
+  print_r(explode('|', $str, 2));
+  
+  // 負の値を持つ limit (PHP 5.1 以降)
+  print_r(explode('|', $str, -1));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => one
+      [1] => two|three|four
+  )
+  Array
+  (
+      [0] => one
+      [1] => two
+      [2] => three
+  )
+
+
+
+この関数はバイナリデータに対応しています。
+
+|preg_split| |str_split| |str_word_count| |strtok| |implode|
+
+vim:ft=help:

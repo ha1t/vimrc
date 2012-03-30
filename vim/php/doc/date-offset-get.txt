@@ -1,0 +1,12 @@
+date_offset_get -- 夏時間のオフセットを返す
+
+  int date_offset_get(DateTime object)~
+
+  int DateTime::getOffset(DateTime object)~
+
+{object} DateTime オブジェクト。
+
+成功した場合に DST オフセット秒数、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

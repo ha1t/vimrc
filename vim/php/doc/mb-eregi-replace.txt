@@ -1,0 +1,27 @@
+mb_eregi_replace --
+マルチバイト文字列に大文字小文字を区別せずに正規表現による置換を行う
+
+  string mb_eregi_replace(string pattern, string replace, string string [, string option])~
+
+{string} において、 正規表現 {pattern} にマッチする文字列を
+{replacement} に置換します。
+
+{pattern}
+正規表現パターン。マルチバイト文字を使用できます。
+大文字小文字は区別しません。
+
+{replace} 置換する文字列。
+
+{string} 検索対象となる文字列。
+
+{option} {option} の意味は、|mb_ereg_replace| の場合と同じです。
+
+結果の文字列、あるいはエラー時に FALSE を返します。
+
+内部エンコーディングあるいは |mb_regex_encoding|
+で指定した文字エンコーディングを、
+この関数の文字エンコーディングとして使用します。
+
+|mb_regex_encoding| |mb_ereg_replace|
+
+vim:ft=help:

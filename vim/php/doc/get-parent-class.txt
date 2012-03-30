@@ -1,0 +1,61 @@
+get_parent_class -- オブジェクトの親クラスの名前を取得する
+
+  string get_parent_class([mixed object])~
+
+オブジェクトあるいはクラスの親クラスの名前を取得します。
+
+{object} 調べたいオブジェクトあるいはクラスの名前。
+
+{object}
+がインスタンスあるいは名前であるクラスの親クラス名を返します。
+
+オブジェクトの外部からこのパラメータを省略してコールすると、
+この関数は FALSE を返します
+
+バージョン 説明 5.1.0 より前
+オブジェクトの外部からパラメータなしでコールすると、
+この関数は警告を発生したうえで NULL を返します。 5.0.0
+以降
+オブジェクトのメソッドからコールされた場合、パラメータ
+{object} はオプションとなります。 4.0.5 以降 {object}
+が文字列の場合、
+その名前のクラスの親クラスの名前を返します。
+
+|get_parent_class| の使用例
+
+<?php >
+  class dad {
+      function dad()
+      {
+      // ロジックを実装する
+      }
+  }
+  
+  class child extends dad {
+      function child()
+      {
+          echo "I'm " , get_parent_class($this) , "'s son\n";
+      }
+  }
+  
+  class child2 extends dad {
+      function child2()
+      {
+          echo "I'm " , get_parent_class('child2') , "'s son too\n";
+      }
+  }
+  
+  $foo = new child();
+  $bar = new child2();
+?>
+
+上の例の出力は以下となります。
+
+  I'm dad's son
+  I'm dad's son too
+
+
+
+|get_class| |is_subclass_of|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+OCI-Lob->save -- データをラージオブジェクトに保存する
+
+  bool save(string data [, int offset])~
+
+{data} をラージオブジェクトに保存します。
+
+{data} 保存するデータ。
+
+{offset}
+ラージオブジェクトの先頭からのオフセットを指定するために利用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

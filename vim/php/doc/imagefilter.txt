@@ -1,0 +1,114 @@
+imagefilter -- 画像にフィルタを適用する
+
+  bool imagefilter(resource image, int filtertype [, int arg1 [, int arg2 [, int arg3 [, int arg4]]]])~
+
+|imagefilter| は、指定したフィルタ {filtertype} を {image}
+に適用します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{filtertype} {filtertype} は、以下のいずれかです。
+IMG_FILTER_NEGATE: 画像の色を反転させます。
+
+IMG_FILTER_GRAYSCALE: 画像をグレースケールに変換します。
+
+IMG_FILTER_BRIGHTNESS: 画像の輝度を変更します。 輝度レベルを
+{arg1} で設定します。
+
+IMG_FILTER_CONTRAST: 画像のコントラストを
+変更します。コントラストのレベルを {arg1}
+で設定します。
+
+IMG_FILTER_COLORIZE: IMG_FILTER_GRAYSCALE と似ていますが、
+色を指定することが可能です。 {arg1}、{arg2} および {arg3}
+を使用して {red}、{blue}、 {green} の値を指定します。また
+{arg4} を使用して {alpha} チャネルの値を指定します。
+各値の範囲は 0 から 255 までです。
+
+IMG_FILTER_EDGEDETECT: エッジを検出し、
+画像のエッジを強調します。
+
+IMG_FILTER_EMBOSS: 画像にエンボス処理を行います。
+
+IMG_FILTER_GAUSSIAN_BLUR: ガウス分布を
+使用して画像をぼかします。
+
+IMG_FILTER_SELECTIVE_BLUR: 画像をぼかします。
+
+IMG_FILTER_MEAN_REMOVAL: 平均を除去し、
+「スケッチ風の」効果を得ます。
+
+IMG_FILTER_SMOOTH: 画像を滑らかにします。
+滑らかさのレベルを {arg1} で指定します。
+
+{arg1}
+
+{arg2}
+
+{arg3}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.2.5 IMG_FILTER_COLORIZE
+でアルファチャネルをサポートするようになりました。
+
+|imagefilter| グレースケールの例
+
+<?php >
+  $im = imagecreatefrompng('dave.png');
+  if ($im &amp;& imagefilter($im, IMG_FILTER_GRAYSCALE)) {
+      echo 'Image converted to grayscale.';
+      imagepng($im, 'dave.png');
+  } else {
+      echo 'Conversion to grayscale failed.';
+  }
+  
+  imagedestroy($im);
+?>
+
+
+
+|imagefilter| 輝度の例
+
+<?php >
+  $im = imagecreatefrompng('sean.png');
+  if ($im &amp;& imagefilter($im, IMG_FILTER_BRIGHTNESS, 20)) {
+      echo 'Image brightness changed.';
+      imagepng($im, 'sean.png');
+  } else {
+      echo 'Image brightness change failed.';
+  }
+  
+  imagedestroy($im);
+?>
+
+
+
+|imagefilter| 単色化の例
+
+<?php >
+  $im = imagecreatefrompng('philip.png');
+  
+  /* R, G, B, so 0, 255, 0 is green */
+  if ($im &amp;& imagefilter($im, IMG_FILTER_COLORIZE, 0, 255, 0)) {
+      echo 'Image successfully shaded green.';
+      imagepng($im, 'philip.png');
+  } else {
+      echo 'Green shading failed.';
+  }
+  
+  imagedestroy($im);
+?>
+
+
+
+
+
+この関数は、PHP がバンドル版の GD ライブラリで
+コンパイルされている場合のみ使用可能です。
+
+|imageconvolution|
+
+vim:ft=help:

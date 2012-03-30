@@ -1,0 +1,50 @@
+ob_list_handlers -- 使用中の出力ハンドラの一覧を取得する
+
+  array ob_list_handlers()~
+
+使用中の出力ハンドラの一覧を返します。
+
+これは、使用中の出力ハンドラを（もし存在すれば）配列で返します。もし
+output_buffering が 有効になっているか、あるいは |ob_start| で
+無名関数が使用されている場合、|ob_list_handlers| は "default
+output handler" を返します。
+
+|ob_list_handlers| の例
+
+<?php >
+  // 出力バッファリングを On にします
+  print_r(ob_list_handlers());
+  ob_end_flush();
+  
+  ob_start("ob_gzhandler");
+  print_r(ob_list_handlers());
+  ob_end_flush();
+  
+  // 無名関数
+  ob_start(create_function('$string', 'return $string;'));
+  print_r(ob_list_handlers());
+  ob_end_flush();
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => default output handler
+  )
+  
+  Array
+  (
+      [0] => ob_gzhandler
+  )
+  
+  Array
+  (
+      [0] => default output handler
+  )
+
+
+
+|ob_end_clean| |ob_end_flush| |ob_get_flush| |ob_start|
+
+vim:ft=help:

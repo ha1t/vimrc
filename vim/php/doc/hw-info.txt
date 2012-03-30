@@ -1,0 +1,9 @@
+hw_Info -- 接続に関する情報
+
+  string hw_info(int connection)~
+
+現在の接続に関する情報を返します。
+
+{connection} 接続 ID。
+
+vim:ft=help:

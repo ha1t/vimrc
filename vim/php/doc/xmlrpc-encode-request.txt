@@ -1,0 +1,53 @@
+xmlrpc_encode_request -- メソッドリクエスト用の XML を生成する
+
+  string xmlrpc_encode_request(string method, mixed params [, array output_options])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{method} コールするメソッドの名前。
+
+{params} メソッドのシグネチャに対応したパラメータ。
+
+{output_options}
+出力オプションを指定する配列。以下の内容が指定できます
+(強調してあるものがデフォルトです)。 output_type: php, xml
+
+verbosity: no_white_space, newlines_only, pretty
+
+escaping: cdata, non-ascii, non-print, markup
+(単一の値を表す文字列、あるいは複数の値の配列となります)
+
+version: simple, xmlrpc, soap 1.1, auto
+
+encoding: iso-8859-1, その他 iconv がサポートする文字セット
+
+リクエストを表す XML 文字列を返します。
+
+XMLRPC クライアント関数の例
+
+<?php >
+  $request = xmlrpc_encode_request("method", array(1, 2, 3));
+  $context = stream_context_create(array('http' => array(
+      'method' => "POST",
+      'header' => "Content-Type: text/xml",
+      'content' => $request
+  )));
+  $file = file_get_contents("http://www.example.com/xmlrpc", false, $context);
+  $response = xmlrpc_decode($file);
+  if (xmlrpc_is_fault($response)) {
+      trigger_error("xmlrpc: $response[faultString] ($response[faultCode])");
+  } else {
+      print_r($response);
+  }
+?>
+
+
+
+
+
+|stream_context_create| |file_get_contents| |xmlrpc_decode|
+
+vim:ft=help:

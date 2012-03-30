@@ -1,0 +1,28 @@
+ifx_num_fields -- クエリのカラム数を返す
+
+  int ifx_num_fields(resource result_id)~
+
+クエリを準備または実行された後、この関数をコールすることにより、
+クエリ結果中でカラム数が得られます。
+
+{result_id} {result_id} は、 |ifx_query| または |ifx_prepare| (select
+型のクエリのみ!) により返された有効な結果 ID です。
+
+{result_id} に関するクエリ結果のカラム数、
+あるいはエラーの場合にFALSEを返します。
+
+|ifx_num_fields| の例
+
+<?php >
+  $conn_id = ifx_connect("db", "user", "password");
+  $res_id = ifx_query("select * from systables", $conn_id);
+  echo ifx_num_fields($res_id);
+?>
+
+
+
+
+
+|ifx_num_rows|
+
+vim:ft=help:

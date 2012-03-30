@@ -1,0 +1,38 @@
+bcompiler_write_header -- bcompiler のヘッダを書き込む
+
+  bool bcompiler_write_header(resource filehandle [, string write_ver])~
+
+bcompiler ファイルのヘッダを書き込みます。
+
+{filehandle} |fopen| が返すファイルハンドル。
+
+{write_ver}
+以前に使われていたフォーマットでバイトコードを書き込む際に使用します。
+これにより、古いバージョンの bcompiler
+でバイトコードを使用することが可能となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_write_header| の例
+
+<?php >
+  $fh = fopen("/tmp/example","w");
+  bcompiler_write_header($fh);
+  bcompiler_write_class($fh,"DB");
+  bcompiler_write_footer($fh);
+  fclose($fh);
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|bcompiler_write_footer|
+
+vim:ft=help:

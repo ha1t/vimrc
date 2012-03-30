@@ -1,0 +1,28 @@
+stream_socket_accept -- stream_socket_server
+で作られたソケットの接続を受け入れる
+
+  resource stream_socket_accept(resource server_socket [, float timeout [, string peername]])~
+
+以前に |stream_socket_server| によって作られた
+ソケットの接続を受け入れます。もし、{timeout}
+が指定されていると、通常の接続待ちタイムアウトは、秒数で表された
+その値で上書きされます。接続元のクライアントの名前
+(アドレス) は
+パラメータが指定されていて、かつトランスポートにおいて有効であった場合のみ、
+{peername} に返します。
+
+{peername} は、 後で、|stream_socket_get_name| を使っても
+取得できます。
+
+実行に失敗すると、FALSE を返します。
+
+この関数は UDP
+サーバソケットとともに使用すべきではありません。
+代わりに |stream_socket_recvfrom| および |stream_socket_sendto|
+を使用します。
+
+|stream_socket_server|, |stream_socket_get_name|, |stream_set_blocking|,
+|stream_set_timeout|, |fgets|, |fgetss|, |fwrite|, |fclose|, |feof|, Curl
+拡張モジュール も参照ください。
+
+vim:ft=help:

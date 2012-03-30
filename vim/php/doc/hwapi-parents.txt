@@ -1,0 +1,15 @@
+hw_api->parents -- オブジェクトの親を返す
+
+  array parents(array parameter)~
+
+オブジェクトの親を取得します。オブジェクトクエリを指定することにより、
+親をさらに絞り込むことが可能です。
+
+{parameter} パラメータの配列には、必須要素
+'objectidentifier'、 そしてオプションの要素 'attributeselector'
+および 'objectquery' が含まれます。
+
+返される値は、 HW_API_Object オブジェクトの配列あるいは
+HW_API_Error となります。
+
+vim:ft=help:

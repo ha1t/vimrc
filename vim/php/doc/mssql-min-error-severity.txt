@@ -1,0 +1,13 @@
+mssql_min_error_severity -- エラー判定基準を小さく設定する
+
+  void mssql_min_error_severity(int severity)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{severity}
+
+値を返しません。
+
+vim:ft=help:

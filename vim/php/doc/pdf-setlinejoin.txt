@@ -1,0 +1,9 @@
+PDF_setlinejoin -- linejoin パラメータを設定する
+
+  bool PDF_setlinejoin(resource p, int value)~
+
+{linejoin} パラメータを設定し、
+パスを描画する際の角の形状を指定します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

@@ -1,0 +1,55 @@
+array_merge_recursive -- 二つ以上の配列を再帰的にマージする
+
+  array array_merge_recursive(array array1 [, array ...])~
+
+|array_merge_recursive| は、
+一つ以上の配列の要素をマージし、
+前の配列の最後にもう一つの配列の値を追加します。
+マージした後の配列を返します。
+
+入力配列が同じ文字列のキーを有している場合、
+これらのキーの値は配列に一つのマージされます。これは再帰的に行われます。
+このため、値の一つが配列自体を指している場合、
+この関数は別の配列の対応するエントリもマージします。
+しかし、配列が同じ数値キーを有している場合、
+後の値は元の値を上書せず、追加されます。
+
+{array1} マージするもとの配列。
+
+{array} 再帰的にマージしていく配列の可変リスト。
+
+すべての引数の配列をマージした結果の配列を返します。
+
+|array_merge_recursive| の例
+
+<?php >
+  $ar1 = array("color" => array("favorite" => "red"), 5);
+  $ar2 = array(10, "color" => array("favorite" => "green", "blue"));
+  $result = array_merge_recursive($ar1, $ar2);
+  print_r($result);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [color] => Array
+          (
+              [favorite] => Array
+                  (
+                      [0] => red
+                      [1] => green
+                  )
+  
+              [0] => blue
+          )
+  
+      [0] => 5
+      [1] => 10
+  )
+
+
+
+|array_merge|
+
+vim:ft=help:

@@ -1,0 +1,122 @@
+oci_fetch_array --
+結果データからの次の行を連想配列または配列、またはその両方で返す
+
+  array oci_fetch_array(resource statement [, int mode])~
+
+次の結果行に相当する配列を返します。
+
+oci8 ドライバによるデータ型マッピングの
+詳細については、ドライバが サポートするデータ型
+を参照ください。
+
+ここで言っておくべき事は、|oci_fetch_array| は |oci_fetch_row|
+よりも 無意味に
+遅い、ということですが、非常に使いやすい関数です。
+
+{statement} 有効な OCI ステートメント ID。
+
+{statement}
+オプションの第2引数は、次の定数の組み合わせが可能です。
+OCI_BOTH - 連想配列と配列の両方を返します (OCI_ASSOC + OCI_NUM
+と同等)。 これはデフォルトの動作です。 OCI_ASSOC -
+連想配列を返します (|oci_fetch_assoc| と同等)。 OCI_NUM -
+配列を返します (|oci_fetch_row| と同等)。 OCI_RETURN_NULLS -
+フィールドが NULL の場合、 空の要素を返します。
+OCI_RETURN_LOBS - ディスクリプタの LOB の値を返します。
+デフォルトの {mode} は OCI_BOTH です。
+
+連想配列あるいは配列の両方を返します。
+失敗時あるいは結果行がない場合は FALSE を返します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+Oracle は全てのフィールド名を大文字で返し、
+結果の連想配列のインデックスも大文字になります。
+
+OCI_BOTH を使った |oci_fetch_array| の例
+
+<?php >
+  $connection = oci_connect("apelsin", "kanistra");
+  
+  $query = "SELECT id, name FROM fruits";
+  
+  $statement = oci_parse ($connection, $query);
+  oci_execute ($statement);
+  
+  while ($row = oci_fetch_array ($statement, OCI_BOTH)) {
+      echo $row[0]." and ".$row['ID']." is the same<br>";
+      echo $row[1]." and ".$row['NAME']." is the same<br>";
+  }
+?>
+
+
+
+
+
+OCI_NUM を使った |oci_fetch_array| の例
+
+<?php >
+  $connection = oci_connect("user", "password");
+  
+  $query = "SELECT id, name, lob_field FROM fruits";
+  
+  $statement = oci_parse ($connection, $query);
+  oci_execute ($statement);
+  
+  while ($row = oci_fetch_array ($statement, OCI_NUM)) {
+      echo $row[0]."<br>";
+      echo $row[1]."<br>";
+      echo $row[2]->read(100)."<br>";  //this will output first 100 bytes from LOB
+  }
+?>
+
+
+
+
+
+OCI_ASSOC を使った |oci_fetch_array| の例
+
+<?php >
+  $connection = oci_connect("user", "password");
+  
+  $query = "SELECT id, name, lob_field FROM fruits";
+  
+  $statement = oci_parse ($connection, $query);
+  oci_execute ($statement);
+  
+  while ($row = oci_fetch_array ($statement, OCI_ASSOC)) {
+      echo $row['ID']."<br>";
+      echo $row['NAME']."<br>";
+      echo $row['LOB_FIELD']."<br>";  //this will output "Object id #1"
+  }
+?>
+
+
+
+
+
+OCI_RETURN_LOBS を使った |oci_fetch_array| の例
+
+<?php >
+  $connection = oci_connect("user", "password");
+  
+  $query = "SELECT id, name, lob_field FROM fruits";
+  
+  $statement = oci_parse ($connection, $query);
+  oci_execute ($statement);
+  
+  while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
+      echo $row[0]."<br>";
+      echo $row[1]."<br>";
+      echo $row['LOB_FIELD']."<br>";  //this will output LOB's content
+  }
+?>
+
+
+
+
+
+|oci_fetch_assoc| |oci_fetch_object| |oci_fetch_row| |oci_fetch_all|
+
+vim:ft=help:

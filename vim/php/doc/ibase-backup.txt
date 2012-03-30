@@ -1,0 +1,10 @@
+ibase_backup --
+サービスマネージャのバックアップタスクを起動し、すぐに結果を返す
+
+  mixed ibase_backup(resource service_handle, string source_db, string dest_file [, int options [, bool verbose]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

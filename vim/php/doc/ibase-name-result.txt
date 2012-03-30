@@ -1,0 +1,34 @@
+ibase_name_result -- 結果セットに名前を割り当てる
+
+  bool ibase_name_result(resource result, string name)~
+
+この関数は、結果セットに新しい名前を割り当てます。この名前は、後で
+UPDATE|DELETE ... WHERE CURRENT OF {name} 文で使用します。
+
+{result} InterBase 結果セット。
+
+{name} 割り当てる名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_name_result| の例
+
+<?php >
+  $result = ibase_query("SELECT field1,field2 FROM table FOR UPDATE");
+  ibase_name_result($result, "my_cursor");
+  
+  $updateqry = ibase_prepare("UPDATE table SET field2 = ? WHERE CURRENT OF my_cursor");
+  
+  for ($i = 0; ibase_fetch_row($result); ++$i) {
+      ibase_execute($updateqry, $i);
+  }
+?>
+
+
+
+
+
+|ibase_prepare| |ibase_execute|
+
+vim:ft=help:

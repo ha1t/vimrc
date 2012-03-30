@@ -1,0 +1,12 @@
+cyrus_close -- Cyrus IMAP サーバへの接続を閉じる
+
+  bool cyrus_close(resource connection)~
+
+Cyrus IMAP サーバへの接続を閉じます。
+
+{connection} 接続ハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

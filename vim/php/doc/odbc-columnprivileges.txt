@@ -1,0 +1,45 @@
+odbc_columnprivileges --
+指定したテーブルに関するカラムおよび付随する権限のリストを取得する
+
+  resource odbc_columnprivileges(resource connection_id, string qualifier, string owner, string table_name, string column_name)~
+
+指定したテーブルに関するカラムおよび付随する権限のリストを取得します。
+
+{connection_id} 接続 ID。
+
+{qualifier} 修飾子。
+
+{owner} 所有者。
+
+{table_name} テーブル名。
+
+{column_name} 引数 {column_name} には検索パターン
+(ゼロ以上の文字にマッチする '%'
+や単一の文字にマッチする '_') を使用可能です。
+
+{owner}, {table_name} および {column_name} には検索パターン
+(ゼロ以上の文字にマッチする '%'
+や単一の文字にマッチする '_') を使用可能です。
+
+ODBC 結果 ID または失敗した場合に FALSE を返します。
+この結果 ID
+を使用して、カラムや関連する権限の一覧を取得します。
+
+結果は以下のカラムを有します。 TABLE_QUALIFIER
+
+TABLE_OWNER
+
+TABLE_NAME
+
+GRANTOR
+
+GRANTEE
+
+PRIVILEGE
+
+IS_GRANTABLE
+
+結果セットは TABLE_QUALIFIER、TABLE_OWNER、TABLE_NAME
+でソートされます。
+
+vim:ft=help:

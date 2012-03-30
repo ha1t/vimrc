@@ -1,0 +1,26 @@
+ZipArchive::getArchiveComment -- ZIP アーカイブのコメントを返す
+
+  string ZipArchive::getArchiveComment()~
+
+Zip アーカイブのコメントを返します。
+
+Zip アーカイブのコメント、あるいは失敗した場合に FALSE
+を返します。
+
+アーカイブのコメントの出力
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test_with_comment.zip')
+  if ($res === TRUE) {
+      var_dump($zip->getArchiveComment());
+      /* あるいはアーカイブのプロパティを使用します */
+      var_dump($zip->comment);
+  } else {
+      echo '失敗、コード:' . $res;
+  }
+?>
+
+
+
+vim:ft=help:

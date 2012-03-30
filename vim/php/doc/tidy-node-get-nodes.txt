@@ -1,0 +1,10 @@
+tidy_node->get_nodes -- 指定された ID
+を持つノード以下のノードの配列を返す
+
+  array tidy_node->get_nodes(int node_id)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

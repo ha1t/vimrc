@@ -1,0 +1,19 @@
+oci_internal_debug --
+内部デバッグ用出力有効または無効にする
+
+  void oci_internal_debug(bool onoff)~
+
+内部デバッグ用出力を有効あるいは無効にします。
+
+{onoff} これを FALSE にするとデバッグ出力をオフにし、 TRUE
+にするとオンになります。
+
+値を返しません。
+
+PHP バージョン 5.0.0 以前では、代わりに |ociinternaldebug|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_internal_debug| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

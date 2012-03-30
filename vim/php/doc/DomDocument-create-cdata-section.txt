@@ -1,0 +1,19 @@
+DomDocument->create_cdata_section -- 新規 cdata ノードを作成する
+
+  domcdata DomDocument->create_cdata_section(string content)~
+
+この関数は DomCData
+クラスの新規インスタンスを返します。 cdata
+の内容は渡されたパラメータの値です。
+このノードは、(たとえば) |domnode_append_child|
+などで挿入されない限り、ドキュメント内に現われません。
+
+エラーが発生した場合、戻り値は FALSE です。
+
+|domnode_append_child|, |domdocument_create_element|,
+|domdocument_create_text|, |domdocument_create_attribute|,
+|domdocument_create_processing_instruction|,
+|domdocument_create_entity_reference|, |domnode_insert_before|
+も参照ください。
+
+vim:ft=help:

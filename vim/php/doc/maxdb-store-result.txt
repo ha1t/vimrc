@@ -1,0 +1,20 @@
+maxdb->store_result -- 直近のクエリから結果セットを転送する
+
+手続き型
+
+  resource maxdb_store_result(resource link)~
+
+オブジェクト指向型 (メソッド)
+
+  object store_result(resource link)~
+
+この関数は、何の機能も持ちません。
+
+結果リソース、あるいはエラーが発生した場合に FALSE
+を返します。
+
+|maxdb_multi_query| を参照ください。
+
+|maxdb_real_query| |maxdb_use_result|
+
+vim:ft=help:

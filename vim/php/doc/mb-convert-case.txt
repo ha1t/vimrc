@@ -1,0 +1,46 @@
+mb_convert_case --
+文字列に対してケースフォルディングを行う
+
+  string mb_convert_case(string str, int mode [, string encoding])~
+
+{mode} で指定された方法で {string}
+に対してケースフォルディングを行います。
+
+{str} 変換される文字列。
+
+{mode} 変換モード。 MB_CASE_UPPER、 MB_CASE_LOWER あるいは
+MB_CASE_TITLE のいずれかです。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+{mode} で指定された方法で {string}
+に対してケースフォルディングを行った結果を返します。
+
+標準のケースフォルディング関数である |strtolower| や
+|strtoupper| と違い、ケースフォルディングは Unicode
+文字属性を基準に行われます。したがって、この関数の挙動は
+ロケールの設定に影響されず、また、すべてのアルファベット、
+例えば A ウムラウト (&Auml;) を変換することができます。
+
+Unicode 文字属性についての詳細は
+http://www.unicode.org/unicode/reports/tr21/ を参照してください。
+
+|mb_convert_case| の例
+
+<?php >
+  $str = "mary had a Little lamb and she loved it so";
+  $str = mb_convert_case($str, MB_CASE_UPPER, "UTF-8");
+  echo $str; // Prints MARY HAD A LITTLE LAMB AND SHE LOVED IT SO
+  $str = mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
+  echo $str; // Prints Mary Had A Little Lamb And She Loved It So
+?>
+
+
+
+
+
+|mb_strtolower| |mb_strtoupper| |strtolower| |strtoupper| |ucfirst| |ucwords|
+
+vim:ft=help:

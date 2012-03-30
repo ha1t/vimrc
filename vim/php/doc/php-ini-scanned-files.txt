@@ -1,0 +1,43 @@
+php_ini_scanned_files -- 追加の ini ディレクトリにある .ini
+ファイルのリストを取得する
+
+  string php_ini_scanned_files()~
+
+|php_ini_scanned_files|は、php.iniをパースした
+後で、設定ファイルのリストをカンマ区切りで返します。
+これらのファイルは、PHPのコンパイル時に
+--with-config-file-scan-dir
+オプションを使って指定されたディレクトリから取得されます。
+
+戻り値のファイル名には --with-config-file-scan-dir
+オプションで 指定されたパスが含まれます。
+
+成功すると、.iniファイルをカンマ区切りにした文字列が返されます。
+--with-config-file-scan-dir がセットされていなければ、
+FALSEを返します。指定されたディレクトリが空であれば、
+空文字列が返されます。ファイルが認識できないものであれば、
+そのファイルは文字列には含まれますが同時にPHPがエラーを起こします。
+このエラーはコンパイルの時と、|php_ini_scanned_files|
+関数を使用したときの両方で発生します。
+
+返される ini ファイルを一覧する例
+
+<?php >
+  if ($filelist = php_ini_scanned_files()) {
+      if (strlen($filelist) > 0) {
+          $files = explode(',', $filelist);
+  
+          foreach ($files as $file) {
+              echo "<li>" . trim($file) . "</li>\n";
+          }
+      }
+  }
+?>
+
+
+
+
+
+|ini_set| |phpinfo|
+
+vim:ft=help:

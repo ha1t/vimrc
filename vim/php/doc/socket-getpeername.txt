@@ -1,0 +1,41 @@
+socket_getpeername --
+指定したソケットのリモート側に問い合わせ、その型に応じてホスト/ポート、あるいは
+Unix ファイルシステムのパスを返す
+
+  bool socket_getpeername(resource socket, string address [, int port])~
+
+指定したソケットのリモート側に問い合わせ、
+その型に応じてホスト/ポート、あるいは Unix
+ファイルシステムのパスを返します。
+
+{socket} |socket_create| あるいは |socket_accept|
+で作成したソケットリソース。
+
+{address} 指定されたソケットの型が AF_INET あるいは AF_INET6
+であった場合、|socket_getpeername| はピア（リモート）の IP
+アドレス を適切な書式（例: 127.0.0.1 あるいは fe80::1）に
+したものを {address} パラメータに、そしてもし
+オプションの {port} パラメータが指定されていれば
+そこにポートを格納します。
+
+指定されたソケットの型が AF_UNIX であった場合、
+|socket_getpeername| は Unix ファイルシステムの パス（例:
+/var/run/daemon.sock）を {address} パラメータに格納します。
+
+{port} 指定した場合は、 {address}
+に関連付けるポートを保持します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 |socket_getpeername| は、 ソケットの型が
+AF_INET、 AF_INET6 あるいは AF_UNIX のいずれでもない場合にも
+FALSE を返します。この場合には、
+直近のソケットエラーコードは更新されません。
+
+|socket_getpeername| は、 |socket_accept| で作成した AF_UNIX
+ソケットとともに使用することはできません。意味のある値が返されるのは、
+|socket_connect| で作成したソケットか |socket_bind|
+に続くプライマリサーバソケットのみです。
+
+|socket_getsockname| |socket_last_error| |socket_strerror|
+
+vim:ft=help:

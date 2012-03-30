@@ -1,0 +1,35 @@
+ifx_close -- Informix 接続を閉じる
+
+  bool ifx_close([resource link_identifier])~
+
+|ifx_close| は、 指定したリンク ID に関連づけられた Informix
+データベースへの接続を閉じます。
+
+非持続的接続としてオープンされたリンクはスクリプトの実行終了時に
+自動的に閉じられるため、
+この関数は通常は必要ではないことに注意してください。
+
+|ifx_close| は、|ifx_pconnect|
+により作成された持続的リンクは閉じません。
+
+{link_identifier} リンク
+ID。指定しなかった場合は、最後にオープンされたリンクが仮定されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+Informix 接続を閉じる
+
+<?php >
+  $conn_id = ifx_connect ("mydb@ol_srv", "itsme", "mypassword");
+  /* ... クエリ等を実行 ... */
+  ifx_close($conn_id);
+?>
+
+
+
+
+
+|ifx_connect| |ifx_pconnect|
+
+vim:ft=help:

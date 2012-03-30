@@ -1,0 +1,18 @@
+imagefontwidth -- フォントの幅を取得する
+
+  int imagefontwidth(int font)~
+
+指定されたフォントの文字の幅をピクセル単位で返します。
+
+{ font}latin2
+エンコーディングの組み込みのフォントの場合は 1, 2, 3, 4,
+5 のいずれか
+(数字が大きなほうが、より大きいフォントに対応します)、
+あるいは |imageloadfont|
+で登録したフォントの識別子のいずれか。
+
+幅をピクセルで返します。
+
+|imagefontheight| |imageloadfont|
+
+vim:ft=help:

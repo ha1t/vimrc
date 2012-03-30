@@ -1,0 +1,19 @@
+quoted_printable_decode -- quoted-printable 文字列を 8
+ビット文字列に変換する
+
+  string quoted_printable_decode(string str)~
+
+この関数は、quoted printable 文字列をデコードし、 8
+ビットバイナリ文字列を返します (RFC2821 の section 4.5.2
+ではなく RFC2045 の section 6.7
+によれば、付随するピリオドは行の開始から削除されません)
+。
+
+この関数は |imap_qprint| に似ていますが、 動作に IMAP
+モジュールを必要としないという違いがあります。
+
+{str} 入力文字列。
+
+8 ビットバイナリ文字列を返します。
+
+vim:ft=help:

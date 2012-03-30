@@ -1,0 +1,51 @@
+pg_fetch_all_columns --
+指定したカラムの全ての行を配列として取得する
+
+  array pg_fetch_all_columns(resource result [, int column])~
+
+|pg_fetch_all_columns| は、結果リソースの
+指定したカラムについて全ての行（レコード）を含む配列を返します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{column} 結果リソースから取得するカラムの番号。0
+から始まります。
+指定しない場合のデフォルトは最初のカラムです。
+
+結果カラムの全ての値を配列で返します。
+
+{column} が結果のカラム数より大きい場合や
+その他のエラーが発生した場合に FALSE を返します。
+
+|pg_fetch_all_columns| の例
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  $result = pg_query($conn, "SELECT title, name, address FROM authors");
+  if (!$result) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  // 全ての著者名を配列で得る
+  $arr = pg_fetch_all_columns($result, 1);
+  
+  var_dump($arr);
+?>
+
+
+
+
+
+|pg_fetch_all|
+
+vim:ft=help:

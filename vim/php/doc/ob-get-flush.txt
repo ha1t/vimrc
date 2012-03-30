@@ -1,0 +1,43 @@
+ob_get_flush --
+出力バッファをフラッシュし、その内容を文字列として返した後で出力バッファリングを終了する
+
+  string ob_get_flush()~
+
+|ob_get_flush| は、
+出力バッファをフラッシュしてその内容を文字列として返した後、
+出力バッファリングを終了します。
+
+この関数は |ob_end_flush| と似ていますが、
+この関数はバッファの内容を文字列として返します。
+
+出力バッファを返します。バッファリングが開始されていない場合は
+FALSE を返します。
+
+|ob_get_flush| の例
+
+<?php >
+  // 出力バッファリングを On にします
+  print_r(ob_list_handlers());
+  
+  // バッファをファイルに保存します
+  $buffer = ob_get_flush();
+  file_put_contents('buffer.txt', $buffer);
+  
+  print_r(ob_list_handlers());
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => default output handler
+  )
+  Array
+  (
+  )
+
+
+
+|ob_end_clean| |ob_end_flush| |ob_list_handlers|
+
+vim:ft=help:

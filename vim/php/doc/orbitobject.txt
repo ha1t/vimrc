@@ -1,0 +1,47 @@
+OrbitObject -- CORBA オブジェクトにアクセスする
+
+  new OrbitObject(string ior)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+このクラスは CORBA
+オブジェクトへのアクセス機能を提供します。
+
+{ior} リモートオブジェクトを指す IOR（Interoperable Object
+Reference） を文字列で指定します。
+
+IDL ファイルの例
+
+  interface MyInterface {
+      void SetInfo (string info);
+      string GetInfo();
+  
+      attribute int value;
+  }
+
+
+
+
+
+MyInterface にアクセスするための PHP コード
+
+<?php >
+  $obj = new OrbitObject ($ior);
+  
+  $obj->SetInfo ("A 2GooD object");
+  
+  echo $obj->GetInfo();
+  
+  $obj->value = 42;
+  
+  echo $obj->value;
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,28 @@
+gmp_popcount -- セットされているビットの数
+
+  int gmp_popcount(resource a)~
+
+セットされているビットの数を返します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{a} にセットされているビットの数を返します。
+
+|gmp_popcount| の例
+
+<?php >
+  $pop1 = gmp_init("10000101", 2); // 1 が 3 つ
+  echo gmp_popcount($pop1) . "\n";
+  $pop2 = gmp_init("11111110", 2); // 1 が 7 つ
+  echo gmp_popcount($pop2) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  3
+  7
+
+
+
+vim:ft=help:

@@ -1,0 +1,70 @@
+odbc_fetch_into -- 一行ぶんの結果を配列に取り込む
+
+  int odbc_fetch_into(resource result_id, array result_array [, int rownumber])~
+
+  bool odbc_fetch_into(resource result_id, array result_array [, int rownumber, resource result_id [, int rownumber, array result_array]])~
+
+結果におけるカラム番号を返します。また、エラーの場合に
+FALSE を返します。{result_array}
+は参照渡しとする必要があります。
+しかし、このポインタは配列型に変換されるので、どんな型であっても構いません。
+この配列には、添字 0
+から始まるカラム番号が代入されます。
+
+PHP 4.0.5 以降、{result_array}
+は参照渡しとする必要がなくなりました。
+
+PHP 4.0.6 以降、{rownumber}
+は定数として渡すことはできず、変数として渡します。
+
+PHP 4.2.0 以降、{result_array} と {rownumber}
+が交換されています。これにより、 再び rownumber
+を定数とすることができるようになりました。この変更は、
+この関数の変更としては最後のものになるでしょう。
+
+|odbc_fetch_into| 4.0.6 以前の例
+
+<?php >
+  $rc = odbc_fetch_into($res_id, $my_array);
+?>
+
+または
+
+<?php >
+  $rc = odbc_fetch_into($res_id, $row, $my_array);
+  
+  $rc = odbc_fetch_into($res_id, 1, $my_array);
+?>
+
+
+
+|odbc_fetch_into| 4.0.6 での例
+
+<?php >
+  $rc = odbc_fetch_into($res_id, $my_array);
+?>
+
+または
+
+<?php >
+  $row = 1;
+  $rc = odbc_fetch_into($res_id, $row, $my_array);
+?>
+
+
+
+|odbc_fetch_into| 4.2.0 での例
+
+<?php >
+  $rc = odbc_fetch_into($res_id, $my_array);
+?>
+
+または
+
+<?php >
+  $rc = odbc_fetch_into($res_id, $my_array, 2);
+?>
+
+
+
+vim:ft=help:

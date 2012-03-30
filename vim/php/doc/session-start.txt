@@ -1,0 +1,87 @@
+session_start -- セッションデータを初期化する
+
+  bool session_start()~
+
+|session_start| は、セッションを作成します。
+もしくは、リクエスト上で GET, POST
+またはクッキーにより渡されたセッション ID
+に基づき現在のセッションを復帰します。
+
+名前付きのセッションを使用したい場合、 |session_start|
+の前に |session_name| をコールする必要があります。
+
+|session_start| は、 trans-sid が有効の場合に URL
+書換え用の内部出力ハンドラを登録します。ユーザが
+|ob_start| と共に ob_gzhandler
+または類似のものを使用している場合、
+出力ハンドラの順番は正しく出力を行うために重要です。例えば、
+セッション開始時にユーザは ob_gzhandler
+を登録する必要があります。
+
+この関数は常に TRUE を返します。
+
+バージョン 説明 4.3.3
+セッションが既に開始されている状態で |session_start|
+をコールすると E_NOTICE レベルのエラーを発生させます。
+またその場合二度目のセッションスタートは単に無視されます。
+
+セッションの例 page1.php
+
+<?php >
+  // page1.php
+  
+  session_start();
+  
+  echo 'Welcome to page #1';
+  
+  $_SESSION['favcolor'] = 'green';
+  $_SESSION['animal']   = 'cat';
+  $_SESSION['time']     = time();
+  
+  // セッションクッキーが有効なら動作します
+  echo '<br /><a href="page2.php">page 2</a>';
+  
+  // あるいは必要に応じてセッション ID を渡します
+  echo '<br /><a href="page2.php?' . SID . '">page 2</a>';
+?>
+
+
+
+
+
+page1.php を表示した後なら、 page2.php
+はセッション上の情報を含んでいるはずです。
+セッションについてのリファレンス を読むと、
+セッションIDの伝達 に関する情報が得られます。
+例えば、SID とは何かといったことです。
+
+セッションの例: page2.php
+
+<?php >
+  // page2.php
+  
+  session_start();
+  
+  echo 'Welcome to page #2<br />';
+  
+  echo $_SESSION['favcolor']; // green
+  echo $_SESSION['animal'];   // cat
+  echo date('Y m d H:i:s', $_SESSION['time']);
+  
+  // page1.php と同様に、ここで SID を使うこともできます
+  echo '<br /><a href="page1.php">page 1</a>';
+?>
+
+
+
+
+
+クッキーに基づくセッションを使用している場合、ブラウザに何か出力を行う前に
+|session_start| をコールする必要があります。
+
+|ob_gzhandler| よりも zlib.output_compression
+の使用が推奨されています。
+
+$_SESSION 設定ディレクティブ session.auto_start |session_id|
+
+vim:ft=help:

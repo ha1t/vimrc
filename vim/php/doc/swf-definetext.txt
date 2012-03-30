@@ -1,0 +1,45 @@
+swf_definetext -- テキスト文字列を定義する
+
+  void swf_definetext(int objid, string str, int docenter)~
+
+現在のフォントおよびフォントサイズを使用して、テキスト文字列を定義します。
+
+{objid} オブジェクト ID。
+
+{str} テキストを表す文字列。
+
+{docenter} {docenter} は単語のセンタリングを定義します。
+{docenter} が 1 の場合、単語は x
+方向にセンタリングされます。
+
+値を返しません。
+
+水平方向のテキストの例
+
+<?php >
+  $Xposition = 50;
+  $Yposition = 50;
+  $Zposition = 0;
+  $Obj_depth = 1;
+  
+  $char = 'THIS IS THE TEXT';
+  
+  swf_pushmatrix();
+  
+  swf_definefont (swf_nextid(), "Mod");
+  swf_fontsize(10);
+  
+  $secondid = swf_nextid();
+  swf_definetext($secondid, $char, 1);
+  swf_translate($Xposition, $Yposition, Zposition);
+  swf_placeobject($secondid, $Obj_depth);
+  swf_popmatrix();
+?>
+
+
+
+
+
+|swf_definefont|
+
+vim:ft=help:

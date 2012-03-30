@@ -1,0 +1,5 @@
+ociplogon -- oci_pconnect のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_pconnect|.
+
+vim:ft=help:

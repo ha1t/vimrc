@@ -1,0 +1,28 @@
+shell_exec --
+シェルによりコマンドを実行し、文字列として出力全体を返す
+
+  string shell_exec(string cmd)~
+
+この関数は バックティック演算子 と等価です。
+
+{cmd} 実行するコマンド
+
+実行されたコマンドからの出力
+
+|shell_exec| の例
+
+<?php >
+  $output = shell_exec('ls -lart');
+  echo "<pre>$output</pre>";
+?>
+
+
+
+
+
+この関数は、PHP が safe-mode
+で動作している場合は無効となります。
+
+|exec| |escapeshellcmd|
+
+vim:ft=help:

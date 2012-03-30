@@ -1,0 +1,45 @@
+xml_set_start_namespace_decl_handler --
+名前空間開始ハンドラを設定する
+
+  bool xml_set_start_namespace_decl_handler(resource parser, callback handler)~
+
+名前空間を宣言したところでコールされるハンドラを設定します。
+名前空間の宣言は、開始タグの中で行います。
+しかし、名前空間宣言の開始ハンドラがコールされるのは、
+その開始タグのハンドラがコールされるより前になります。
+
+{parser} XML パーサへの参照。
+
+{handler} {handler} には、関数名を文字列で指定します。
+これは、{parser} に対して |xml_parse|
+がコールされたときに存在しなければなりません。
+
+  bool (resource parser, callback handler, resource parser, string user_data, string prefix, string uri)~
+
+{handler} で指定した関数は、 4
+つのパラメータを受け取って整数値を返すものでなければなりません。
+返り値が FALSE
+(何も値を返さなかったときもこれにあてはまります)
+の場合、XML パーサはパースを停止し、 |xml_get_error_code| は
+XML_ERROR_EXTERNAL_ENTITY_HANDLING を返します。 {parser}
+最初のパラメータ parser は、ハンドラをコールした XML
+パーサへの参照です。
+
+{user_data}
+
+{prefix}
+
+{uri}
+
+ハンドラ関数に空文字列や FALSE を設定すると、
+そのハンドラは無効になります。
+
+関数名の代わりに、オブジェクトへの
+リファレンスを格納した配列とメソッド名を指定することもできます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|xml_set_end_namespace_decl_handler|
+
+vim:ft=help:

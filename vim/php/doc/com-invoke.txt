@@ -1,0 +1,30 @@
+com_invoke -- COM コンポーネントのメソッドをコールする
+[非推奨]
+
+  mixed com_invoke(resource com_object, string function_name [, mixed function_parameters])~
+
+|com_invoke| は、 {com_object} が指す COM コンポーネントの
+メソッド {function_name} をコールします。 |com_invoke|
+はエラーの場合に FALSE を返し、 成功時に {function_name}
+の返り値を返します。 追加パラメータ {function_parameters}
+の値が メソッド {function_name} に渡されます。
+
+com_invoke()
+を使用せず、かわりにオブジェクト指向の構文を使用する
+
+<?php >
+  // こちらを使用します
+  $val = $obj->method($one, $two);
+  // こちらは推奨しません
+  $val = com_invoke($obj, 'method', $one, $two);
+?>
+
+
+
+
+
+この関数は PHP 5 には存在しません。
+より自然なオブジェクト指向形式の構文で、
+プロパティにアクセスしたりメソッドをコールしたりすることになります。
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+dba_sync -- データベースを同期する
+
+  bool dba_sync(resource handle)~
+
+|dba_sync| は
+データベースを同期します。サポートされる場合には、
+おそらくディスクへの物理的アクセスへのきっかけとなることでしょう。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dba_optimize|
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+rar_entry_get -- Rar
+アーカイブからエントリオブジェクトを取得する
+
+  RarEntry rar_entry_get(resource rar_file, string entry_name)~
+
+Rar
+アーカイブから、エントリオブジェクトを取得します。
+
+{rar_file} |rar_open| でオープンした Rar ファイルリソース。
+
+{entry_name} Rar アーカイブ内のエントリへのパス。
+
+|rar_get_entry| は、成功した場合にエントリオブジェクト、
+エラー時には FALSE を返します。
+
+|rar_entry_get| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entry = rar_entry_get($rar_file, 'Dir/file.txt') or die("そのようなエントリは見つかりません");
+  
+  print_r($entry);
+?>
+
+
+
+
+
+vim:ft=help:

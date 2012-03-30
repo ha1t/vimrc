@@ -1,0 +1,21 @@
+aggregate_properties --
+クラスのプロパティを、動的にオブジェクトに集約する
+
+  void aggregate_properties(object object, string class_name)~
+
+クラスで定義されているすべてのプロパティを既存のオブジェクトに
+集約します。ただし、名前がアンダースコア文字 (_)
+で始まる
+プロパティは、プライベートとみなされて例外となります。
+
+{object}
+
+{class_name}
+
+値を返しません。
+
+|aggregate| |aggregate_methods| |aggregate_methods_by_list|
+|aggregate_methods_by_regexp| |aggregate_properties|
+|aggregate_properties_by_list| |aggregate_properties_by_regexp| |deaggregate|
+
+vim:ft=help:

@@ -1,0 +1,42 @@
+base_convert -- 数値の基数を任意に変換する
+
+  string base_convert(string number, int frombase, int tobase)~
+
+{number} を基数 {tobase} で表した文字列を返します。 {number}
+の基数は、 {frombase} で指定します。 {frombase} および {tobase}
+は、ともに 2 から 36 までである必要があります。 10
+より大きな基数を有する数の各桁は、文字 a-z
+で表されます。 この場合、a は 10、b は 11、z は 35
+を意味します。
+
+大きな数値で |base_convert| を使用すると、
+精度が失われてしまうことがあります。これは、内部で使用している
+"double" や "float"
+の性質によるものです。詳細な情報や制限については
+マニュアルの浮動小数点数
+のセクションを参照ください。
+
+{number} 変換する数値。
+
+{frombase} 返還前の {number} の基数。
+
+{tobase} 変換後の {number} の基数。
+
+{number} を基数 {tobase} で表した値を返します。
+
+|base_convert| の例
+
+<?php >
+  $hexadecimal = 'A37334';
+  echo base_convert($hexadecimal, 16, 2);
+?>
+
+上の例の出力は以下となります。
+
+  101000110111001100110100
+
+
+
+|intval|
+
+vim:ft=help:

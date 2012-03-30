@@ -1,0 +1,25 @@
+msg_get_queue --
+メッセージキューを作成またはそれにアタッチする
+
+  resource msg_get_queue(int key [, int perms])~
+
+|msg_get_queue| は、指定した {key} で System V
+メッセージキューにアクセスするために使用される ID
+を返します。 最初にコールされた際には、オプションの
+{perms} でメッセージキューを作成します。同じ {key} で 2
+度目に |msg_get_queue| がコールされると別の ID
+が返されますが、どちらの ID
+も同じメッセージキューを指します。
+
+{key}
+
+{perms} キューのパーミッション。デフォルトは 0666 です。
+メッセージキューがすでに存在する場合には、{perms}
+は無視されます。
+
+ID を返します。これを使用して、System V
+メッセージキューにアクセスします。
+
+|msg_remove_queue| |msg_receive| |msg_send| |msg_stat_queue| |msg_set_queue|
+
+vim:ft=help:

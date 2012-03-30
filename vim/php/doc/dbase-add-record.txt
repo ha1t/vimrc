@@ -1,0 +1,45 @@
+dbase_add_record -- データベースにレコードを追加する
+
+  bool dbase_add_record(int dbase_identifier, array record)~
+
+与えられたデータをデータベースに追加します。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+{record}
+データの配列。要素の数がデータベースのフィールド数と一致している
+必要があります。それ以外の場合は|dbase_add_record|
+は失敗します。
+
+|dbase_get_record| が返す値をこのパラメータに
+使用する際は、deleted という名前のキーを
+リセットすることを忘れないでください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+dBase データベースにレコードを追加する
+
+<?php >
+  // read-write モードでオープンする
+  $db = dbase_open('/tmp/test.dbf', 2);
+  
+  if ($db) {
+    dbase_add_record($db, array(
+        date('Ymd'), 
+        'Maxim Topolov', 
+        '23', 
+        'max@example.com',
+        'T'));   
+    dbase_close($db);
+  }
+?>
+
+
+
+
+
+|dbase_delete_record| |dbase_replace_record|
+
+vim:ft=help:

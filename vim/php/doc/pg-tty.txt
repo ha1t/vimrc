@@ -1,0 +1,38 @@
+pg_tty -- 接続に関する TTY 名を返す
+
+  string pg_tty([resource connection])~
+
+|pg_tty| は、指定した PostgreSQL {connection}
+リソースで、サーバ側のデバッグ出力が 送られる tty
+名を返します。
+
+|pg_tty| は現在は使用されません。今はサーバが TTY
+設定を気にする必要がないからです。しかし、過去との互換性を
+保持するためにこの関数は残されています。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{connection} のデバッグ TTY を文字列で返します。
+エラー時には FALSE を返します。
+
+|pg_tty| の例
+
+<?php >
+  $pgsql_conn = pg_connect("dbname=mark host=localhost");
+  
+  if ($pgsql_conn) {
+     print "Server debug TTY is: " . pg_tty($pgsql_conn) . "<br/>\n";
+  } else {
+     print pg_last_error($pgsql_conn);
+     exit;
+  }
+?>
+
+
+
+
+
+vim:ft=help:

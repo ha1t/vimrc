@@ -1,0 +1,15 @@
+odbc_field_num -- カラム番号を返す
+
+  int odbc_field_num(resource result_id, string field_name)~
+
+指定したODBC 結果 ID
+におけるフィールド名に対応するカラムスロットの数を取得します。
+
+{result_id} 結果 ID。
+
+{field_name} フィールド名。
+
+フィールド番号、あるいはエラー時に FALSE を返します。
+フィールド番号は、1 から始まります。
+
+vim:ft=help:

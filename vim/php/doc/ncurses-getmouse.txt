@@ -1,0 +1,54 @@
+ncurses_getmouse -- マウスイベントを読みこむ
+
+  bool ncurses_getmouse(array mevent)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|ncurses_getmouse| は、
+キューからマウスイベントを読み込みます。
+
+{mevent} イベントのオプションを指定します。
+これは配列への参照として渡されます(以下の例を参照ください)。
+
+成功した場合、以下のキーを持つ連想配列が返されます。
+"id" : 複数デバイスを識別する ID。
+
+"x" : 画面上の相対的な x 位置(文字単位)。
+
+"y" : 画面上の相対的な y 位置(文字単位)。
+
+"z" : 現在はサポートされていません。
+
+"mmask" : マウスアクション。
+
+指定したウィンドウでマウスイベントが実際に見える場合に
+FALSE、そうでない場合に TRUE を返します。
+
+|ncurses_getmouse| の例
+
+<?php >
+  switch (ncurses_getch()){
+    case NCURSES_KEY_MOUSE:
+      if (!ncurses_getmouse(&amp;$mevent)){
+        if ($mevent["mmask"] & NCURSES_MOUSE_BUTTON1_PRESSED){
+          $mouse_x = $mevent["x"]; // マウスの位置を保存します
+          $mouse_y = $mevent["y"];
+        }
+      }
+    break;
+  
+    default:
+      /* .... */
+  }
+?>
+
+
+
+
+
+|ncurses_ungetmouse|
+
+vim:ft=help:

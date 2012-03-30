@@ -1,0 +1,72 @@
+mysql_list_fields -- MySQL テーブルのフィールドのリストを得る
+
+  resource mysql_list_fields(string database_name, string table_name [, resource link_identifier])~
+
+指定された名前のテーブルについての情報を取得します。
+
+この関数は非推奨です。かわりに |mysql_query| を利用して
+SHOW COLUMNS FROM table [LIKE 'name']
+文を発行することを推奨します。
+
+{database_name} クエリの対象となるデータベース名。
+
+{table_name} クエリの対象となるテーブル名。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に結果ポインタ resource 、失敗した場合に
+FALSE を返します。
+
+返された結果は |mysql_field_flags|, |mysql_field_len|,
+|mysql_field_name| そして |mysql_field_type| で利用可能です。
+
+非推奨である |mysql_list_fields| の代替例
+
+<?php >
+  $result = mysql_query("SHOW COLUMNS FROM sometable");
+  if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
+      exit;
+  }
+  if (mysql_num_rows($result) > 0) {
+      while ($row = mysql_fetch_assoc($result)) {
+          print_r($row);
+      }
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [Field] => id
+      [Type] => int(7)
+      [Null] =>  
+      [Key] => PRI
+      [Default] =>
+      [Extra] => auto_increment
+  )
+  Array
+  (
+      [Field] => email
+      [Type] => varchar(100)
+      [Null] =>
+      [Key] =>
+      [Default] =>
+      [Extra] =>
+  )
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_listfields|
+
+|mysql_field_flags| |mysql_info|
+
+vim:ft=help:

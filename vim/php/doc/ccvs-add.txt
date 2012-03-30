@@ -1,0 +1,9 @@
+ccvs_add -- トランザクションにデータを追加する
+
+  string ccvs_add(string session, string invoice, string argtype, string argval)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

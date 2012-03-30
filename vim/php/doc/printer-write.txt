@@ -1,0 +1,27 @@
+printer_write -- プリンタへデータを書き込む
+
+  bool printer_write(resource printer_handle, string content)~
+
+{content} を直接プリンタに書き込みます。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{content} 書き込むデータ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|printer_write| の例
+
+<?php >
+  $handle = printer_open();
+  printer_write($handle, "Text to print");
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

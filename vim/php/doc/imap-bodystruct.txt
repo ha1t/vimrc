@@ -1,0 +1,20 @@
+imap_bodystruct -- 指定したメッセージの指定した body
+セクションの構造を読み込む
+
+  object imap_bodystruct(resource imap_stream, int msg_number, string section)~
+
+指定したメッセージの指定した body
+セクションの構造を読み込みます。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+{section} 読み込む body セクション。
+
+オブジェクトの情報を返します。オブジェクトの構造やプロパティについての詳細は
+|imap_fetchstructure| を参照ください。
+
+|imap_fetchstructure|
+
+vim:ft=help:

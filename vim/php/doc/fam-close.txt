@@ -1,0 +1,14 @@
+fam_close -- FAM 接続を閉じる
+
+  void fam_close(resource fam)~
+
+FAM サービスへの接続をクローズします。
+
+{fam} |fam_open| が返す、 FAM
+サービスへの接続を表すリソース。
+
+値を返しません。
+
+|fam_monitor_open|
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+ming_setswfcompression -- SWF 出力の圧縮を設定する
+
+  void ming_setswfcompression(int level)~
+
+SWF 出力の圧縮レベルを設定する。
+
+{level} 新しい圧縮レベル。1 から 9
+までの値でなければなりません。
+
+値を返しません。
+
+vim:ft=help:

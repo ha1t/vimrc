@@ -1,0 +1,15 @@
+mcrypt_module_get_algo_key_size --
+オープンされたモードでサポートされる最大キー長を返す
+
+  int mcrypt_module_get_algo_key_size(string algorithm [, string lib_dir])~
+
+オープンされたモードでサポートされる最大キー長を取得します。
+
+{algorithm} アルゴリズム名。
+
+{lib_dir} オプションのパラメータで、
+システム上でのモードモジュールの位置を指定することが可能です。
+
+この関数は、指定したアルゴリズムでサポートされる最大キー長をバイト単位で返します。
+
+vim:ft=help:

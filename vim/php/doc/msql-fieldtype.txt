@@ -1,0 +1,5 @@
+msql_fieldtype -- msql_field_type のエイリアス
+
+この関数は次の関数のエイリアスです。 |msql_field_type|
+
+vim:ft=help:

@@ -1,0 +1,10 @@
+iis_remove_server -- サーバインスタンスで指定した仮想 Web
+サーバを削除する
+
+  int iis_remove_server(int server_instance)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

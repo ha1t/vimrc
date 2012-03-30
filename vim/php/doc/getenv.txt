@@ -1,0 +1,33 @@
+getenv -- 環境変数の値を取得する
+
+  string getenv(string varname)~
+
+環境変数の値を取得します。
+
+|phpinfo| を使用して全ての環境変数の一覧を見る
+ことができます。 CGI specification 、特に
+環境変数のページを参照すること
+により、それらの参照する環境変数の役割の多くを知ることができます。
+
+{varname} 変数の名前。
+
+{varname} が示す環境変数の値を返し、
+エラーの場合はFALSEを返します。
+
+|getenv| の例
+
+<?php >
+  // getenv() の使用例
+  $ip = getenv('REMOTE_ADDR');
+  
+  // または単純にスーパーグローバル（$_SERVER または $_ENV）を使用します
+  $ip = $_SERVER['REMOTE_ADDR'];
+?>
+
+
+
+
+
+|putenv| |apache_getenv| スーパーグローバル
+
+vim:ft=help:

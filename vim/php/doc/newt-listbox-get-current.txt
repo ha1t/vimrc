@@ -1,0 +1,13 @@
+newt_listbox_get_current --
+
+  string newt_listbox_get_current(resource listbox)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{listbox}
+
+
+
+vim:ft=help:

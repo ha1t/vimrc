@@ -1,0 +1,31 @@
+radius_put_attr -- バイナリ属性を設定する
+
+  bool radius_put_attr(resource radius_handle, int type, string value)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|radius_put_attr| の例
+
+<?php >
+  mt_srand(time());
+  $chall = mt_rand();
+  $chapval = md5(pack('Ca*',1 , 'sepp' . $chall));
+  $pass = pack('CH*', 1, $chapval);
+  if (!radius_put_attr($res, RADIUS_CHAP_PASSWORD, $pass)) {
+      echo 'RadiusError:' . radius_strerror($res). "\n<br />";
+      exit;
+  }
+?>
+
+
+
+
+
+|radius_get_attr| |radius_get_vendor_attr| |radius_put_vendor_attr|
+
+vim:ft=help:

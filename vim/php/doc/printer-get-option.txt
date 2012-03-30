@@ -1,0 +1,31 @@
+printer_get_option -- プリンタ設定データを取得する
+
+  mixed printer_get_option(resource printer_handle, string option)~
+
+この関数は、{option} の設定値を取得します。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{option} 取得可能な設定については |printer_set_option|
+を参照ください。それに加えてさらに以下の設定も取得可能です。
+PRINTER_DEVICENAME プリンタのデバイス名を返します。
+
+PRINTER_DRIVERVERSION
+プリンタドライバのバージョンを返します。
+
+{option} の値を返します。
+
+|printer_get_option| の例
+
+<?php >
+  $handle = printer_open();
+  echo printer_get_option($handle, PRINTER_DRIVERVERSION);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

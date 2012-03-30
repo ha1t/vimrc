@@ -1,0 +1,16 @@
+newt_push_help_line --
+現在のヘルプ行をスタックに保存し、新しい行を表示する
+
+  void newt_push_help_line([string text])~
+
+現在のヘルプ行をスタックに保存し、新しい行を表示します。
+
+{text} 新しいヘルプメッセージ。
+
+指定しなかった場合、ヘルプ行はクリアされます。
+
+値を返しません。
+
+|newt_pop_help_line|
+
+vim:ft=help:

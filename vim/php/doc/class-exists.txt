@@ -1,0 +1,57 @@
+class_exists -- クラスが定義済みかどうかを確認する
+
+  bool class_exists(string class_name [, bool autoload])~
+
+この関数は指定したクラスが定義されているかどうかを調べます。
+
+{class_name} クラス名。大文字小文字は区別しません。
+
+{autoload} デフォルトで __autoload をコールするかしないか。
+デフォルトは TRUE です。
+
+クラス {class_name} が定義されている場合に TRUE、
+それ以外の場合に FALSE を返します。
+
+バージョン 説明 5.0.2
+定義済みのインターフェイスに対しては TRUE
+を返さないようになりました。
+インターフェイスについては |interface_exists|
+を使用します。 5.0.0 {autoload}
+パラメータが追加されました。
+
+|class_exists| の例
+
+<?php >
+  // クラスを使用する前に、それが存在するかどうかを調べます
+  if (class_exists('MyClass')) {
+      $myclass = new MyClass();
+  }
+?>
+
+
+
+{autoload} パラメータの例
+
+<?php >
+  function __autoload($class)
+  {
+      include($class . '.php');
+  
+      // クラス宣言を含むかどうか確認する
+      if (!class_exists($class, false)) {
+          trigger_error("Unable to load class: $class", E_USER_WARNING);
+      }
+  }
+  
+  if (class_exists('MyClass')) {
+      $myclass = new MyClass();
+  }
+?>
+
+
+
+
+
+|function_exists| |interface_exists| |get_declared_classes|
+
+vim:ft=help:

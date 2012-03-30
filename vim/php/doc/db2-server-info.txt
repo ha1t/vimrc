@@ -1,0 +1,163 @@
+db2_server_info -- DB2
+データベースサーバの情報をプロパティに保持するオブジェクトを返す
+
+  object db2_server_info(resource connection)~
+
+この関数は、IBM DB2、Cloudscape あるいは Apache Derby
+データベースサーバについての情報を
+読み取り専用のプロパティに保持するオブジェクトを返します。
+以下の表は、データベースサーバのプロパティの一覧です。
+データベースサーバのプロパティ プロパティ名
+返り値の型 説明 DBMS_NAME string
+接続中のデータベースサーバの名前。DB2
+サーバの場合は、 DB2 の後にサーバが稼動している OS
+の名前が続きます。 DBMS_VER string
+データベースサーバのバージョン。"MM.mm.uuuu"
+という形式の文字列で、 MM がメジャーバージョン、 mm
+がマイナーバージョン、 そして uuuu
+がアップデートを表します。 例えば "08.02.0001" は
+メジャーバージョン 8、マイナーバージョン
+2、アップデート 1 を表します。 DB_CODEPAGE int
+接続中のデータベースのコードページ。 DB_NAME string
+接続中のデータベースの名前。 DFT_ISOLATION string
+サーバがサポートしているデフォルトのトランザクション分離レベル。
+UR Uncommitted read: 変更内容は、他のトランザクションからも
+すぐに見えるようになります。
+
+CS Cursor stability:
+あるトランザクションで読み込まれた行を、
+別のトランザクションから変更してコミットすることができます。
+
+RS Read stability:
+検索条件あるいは実行中のトランザクションに
+一致する行を、トランザクションから追加したり削除したりできます。
+
+RR Repeatable read:
+実行中のトランザクションに影響を受けるデータは、
+他のトランザクションからは見えません。
+
+NC No commit:
+変更内容は、操作が終了した時点で見えるようになります。
+明示的なコミットやロールバックはできません。
+
+IDENTIFIER_QUOTE_CHAR string 識別子を区切るための文字。 INST_NAME
+string
+データベースを含むデータベースサーバのインスタンス名。
+ISOLATION_OPTION array
+データベースサーバがサポートする分離オプション。
+分離オプションについては DFT_ISOLATION
+プロパティの説明を参照ください。 KEYWORDS array
+データベースサーバの予約語の配列。 LIKE_ESCAPE_CLAUSE bool
+データベースサーバがワイルドカード文字 % および _
+の使用をサポートしている場合に TRUE、
+これらのワイルドカードをサポートしていない場合に
+FALSE。 MAX_COL_NAME_LEN int
+データベースサーバがサポートするカラム名の最大バイト数。
+MAX_IDENTIFIER_LEN int データベースサーバがサポートする SQL
+識別子の最大文字数。 MAX_INDEX_SIZE int
+データベースサーバがサポートするインデックスつきカラムの最大バイト数。
+MAX_PROC_NAME_LEN int
+データベースサーバがサポートするプロシージャ名の最大バイト数。
+MAX_ROW_SIZE int
+データベースサーバがサポートするベーステーブルの行の最大バイト数。
+MAX_SCHEMA_NAME_LEN int
+データベースサーバがサポートするスキーマ名の最大バイト数。
+MAX_STATEMENT_LEN int データベースサーバがサポートする SQL
+文の最大バイト数。 MAX_TABLE_NAME_LEN int
+データベースサーバがサポートするテーブル名の最大バイト数。
+NON_NULLABLE_COLUMNS bool データベースサーバがカラムの NOT NULL
+定義をサポートしている場合に
+TRUE、サポートしていない場合に FALSE。 PROCEDURES bool
+データベースサーバがストアドプロシージャをコールするための
+CALL 文をサポートしている場合に
+TRUE、サポートしていない場合に FALSE。 SPECIAL_CHARS string
+識別子として使用可能な文字のうち、 a-Z、0-9
+およびアンダースコア以外の文字。 SQL_CONFORMANCE string
+データベースサーバの ANSI/ISO SQL-92 仕様への対応レベル。
+ENTRY SQL-92 エントリレベルに準拠しています。
+
+FIPS127 FIPS-127-2 transitional に準拠しています。
+
+FULL SQL-92 完全レベルに準拠しています。
+
+INTERMEDIATE SQL-92 中間レベルに準拠しています。
+
+{connection} アクティブな DB2
+クライアント接続を指定します。
+
+成功した場合にオブジェクト、失敗した場合に FALSE
+を返します。
+
+|db2_server_info| の例
+サーバの情報を取得するには、有効なデータベース接続リソースを
+|db2_server_info| に渡す必要があります。
+
+<?php >
+  $conn = db2_connect('sample', 'db2inst1', 'ibmdb2');
+  
+  $server = db2_server_info( $conn );
+  
+  if ($server) {
+      echo "DBMS_NAME: ";                 var_dump( $server->DBMS_NAME );
+      echo "DBMS_VER: ";                  var_dump( $server->DBMS_VER );
+      echo "DB_CODEPAGE: ";               var_dump( $server->DB_CODEPAGE );
+      echo "DB_NAME: ";                   var_dump( $server->DB_NAME );
+      echo "INST_NAME: ";                 var_dump( $server->INST_NAME );
+      echo "SPECIAL_CHARS: ";             var_dump( $server->SPECIAL_CHARS );
+      echo "KEYWORDS: ";                  var_dump( sizeof($server->KEYWORDS) );
+      echo "DFT_ISOLATION: ";             var_dump( $server->DFT_ISOLATION );
+      echo "ISOLATION_OPTION: ";
+      $il = '';
+      foreach( $server->ISOLATION_OPTION as $opt )
+      {
+         $il .= $opt." ";
+      }
+      var_dump( $il );
+      echo "SQL_CONFORMANCE: ";           var_dump( $server->SQL_CONFORMANCE );
+      echo "PROCEDURES: ";                var_dump( $server->PROCEDURES );
+      echo "IDENTIFIER_QUOTE_CHAR: ";     var_dump( $server->IDENTIFIER_QUOTE_CHAR );
+      echo "LIKE_ESCAPE_CLAUSE: ";        var_dump( $server->LIKE_ESCAPE_CLAUSE );
+      echo "MAX_COL_NAME_LEN: ";          var_dump( $server->MAX_COL_NAME_LEN );
+      echo "MAX_ROW_SIZE: ";              var_dump( $server->MAX_ROW_SIZE );
+      echo "MAX_IDENTIFIER_LEN: ";        var_dump( $server->MAX_IDENTIFIER_LEN );
+      echo "MAX_INDEX_SIZE: ";            var_dump( $server->MAX_INDEX_SIZE );
+      echo "MAX_PROC_NAME_LEN: ";         var_dump( $server->MAX_PROC_NAME_LEN );
+      echo "MAX_SCHEMA_NAME_LEN: ";       var_dump( $server->MAX_SCHEMA_NAME_LEN );
+      echo "MAX_STATEMENT_LEN: ";         var_dump( $server->MAX_STATEMENT_LEN );
+      echo "MAX_TABLE_NAME_LEN: ";        var_dump( $server->MAX_TABLE_NAME_LEN );
+      echo "NON_NULLABLE_COLUMNS: ";      var_dump( $server->NON_NULLABLE_COLUMNS );
+  
+      db2_close($conn);
+  }
+?>
+
+上の例の出力は以下となります。
+
+  DBMS_NAME: string(9) "DB2/LINUX"
+  DBMS_VER: string(10) "08.02.0000"
+  DB_CODEPAGE: int(1208)
+  DB_NAME: string(6) "SAMPLE"
+  INST_NAME: string(8) "db2inst1"
+  SPECIAL_CHARS: string(2) "@#"
+  KEYWORDS: int(179)
+  DFT_ISOLATION: string(2) "CS"
+  ISOLATION_OPTION: string(12) "UR CS RS RR "
+  SQL_CONFORMANCE: string(7) "FIPS127"
+  PROCEDURES: bool(true)
+  IDENTIFIER_QUOTE_CHAR: string(1) """
+  LIKE_ESCAPE_CLAUSE: bool(true)
+  MAX_COL_NAME_LEN: int(30)
+  MAX_ROW_SIZE: int(32677)
+  MAX_IDENTIFIER_LEN: int(18)
+  MAX_INDEX_SIZE: int(1024)
+  MAX_PROC_NAME_LEN: int(128)
+  MAX_SCHEMA_NAME_LEN: int(30)
+  MAX_STATEMENT_LEN: int(2097152)
+  MAX_TABLE_NAME_LEN: int(128)
+  NON_NULLABLE_COLUMNS: bool(true)
+
+
+
+|db2_client_info|
+
+vim:ft=help:

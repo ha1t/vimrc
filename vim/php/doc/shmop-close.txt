@@ -1,0 +1,27 @@
+shmop_close -- 共有メモリブロックを閉じる
+
+  void shmop_close(int shmid)~
+
+|shmop_close| は共有メモリブロックを閉じるために
+使用されます。
+
+{shmid} |shmop_open| が作成した共有メモリブロックの識別子。
+
+値を返しません。
+
+共有メモリブロックを閉じる
+
+<?php >
+  shmop_close($shm_id);
+?>
+
+
+
+
+
+この例は、$shm_id を ID
+とする共有メモリブロックを閉じます。
+
+|shmop_open|
+
+vim:ft=help:

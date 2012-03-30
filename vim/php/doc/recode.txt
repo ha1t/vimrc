@@ -1,0 +1,5 @@
+recode -- recode_string のエイリアス
+
+この関数は次の関数のエイリアスです。 |recode_string|.
+
+vim:ft=help:

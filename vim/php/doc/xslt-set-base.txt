@@ -1,0 +1,5 @@
+xslt_set_base -- 全ての XSLT 変換用の基準 URI を設定する
+
+  void xslt_set_base(resource xh, string uri)~
+
+vim:ft=help:

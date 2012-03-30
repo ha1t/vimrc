@@ -1,0 +1,43 @@
+strrchr -- 文字列中に文字が最後に現れる場所を取得する
+
+  string strrchr(string haystack, mixed needle)~
+
+この関数は、文字列 {haystack} の中で {needle}
+が最後に現れた位置から、 {haystack}
+の終わりまでを返します。
+
+{haystack} 検索を行う文字列。
+
+{needle} {needle} がひとつ以上の文字を含んでいる場合は、
+最初のもののみが使われます。この動作は、 |strstr|
+とは異なります。
+
+{needle} が文字列でない場合は、
+それを整数に変換し、その番号に対応する文字として扱います。
+
+この関数は、部分文字列を返します。 {needle}
+が見つからない場合は FALSE を返します。
+
+バージョン 説明 4.3.0
+この関数はバイナリセーフとなりました。
+
+|strrchr| の例
+
+<?php >
+  // $PATH 中の最後のディレクトリを取得
+  $dir = substr(strrchr($PATH, ":"), 1);
+  
+  // 最後の改行文字以降をすべて取得
+  $text = "Line 1\nLine 2\nLine 3";
+  $last = substr(strrchr($text, 10), 1 );
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|strstr| |substr| |stristr|
+
+vim:ft=help:

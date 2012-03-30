@@ -1,0 +1,117 @@
+http_build_query -- URL
+エンコードされたクエリ文字列を生成する
+
+  string http_build_query(array formdata [, string numeric_prefix [, string arg_separator]])~
+
+与えられた連想配列 (もしくは添字配列) から URL
+エンコードされたクエリ文字列を生成します。
+
+{formdata} プロパティを含む配列もしくはオブジェクト。
+
+配列の形式は、単純な一次元構造、 もしくは配列の配列
+(言い換えると、他の配列を含む配列) となります。
+
+{numeric_prefix}
+もし数値インデックスが基底となる配列に使用されたり
+{numeric_prefix} が指定された場合、
+基底となる配列の要素に対する数値インデックスの前にこれが追加されます。
+
+これは、後で PHP や他の CGI
+アプリケーションによってデータがデコードされる際、
+正当な変数名になるよう考慮したものです。
+
+{arg_separator} arg_separator.output
+が区分のためのセパレータとして使用されます。ただし、
+このパラメータが指定されていた場合は
+それが使用されます。
+
+URL エンコードされた文字列を返します。
+
+バージョン 説明 5.1.2 パラメータ {arg_separator}
+が追加されました。 5.1.3
+角括弧がエスケープされるようになりました。
+
+|http_build_query| の簡単な使用法
+
+<?php >
+  $data = array('foo'=>'bar',
+                'baz'=>'boom',
+                'cow'=>'milk',
+                'php'=>'hypertext processor');
+  
+  echo http_build_query($data); // foo=bar&amp;baz=boom&cow=milk&php=hypertext+processor
+  echo http_build_query($data, '', '&'); // foo=bar&amp;baz=boom&cow=milk&php=hypertext+processor
+?>
+
+
+
+数値インデックス要素の場合での |http_build_query|
+
+<?php >
+  $data = array('foo', 'bar', 'baz', 'boom', 'cow' => 'milk', 'php' =>'hypertext processor');
+  
+  echo http_build_query($data) . "\n";
+  echo http_build_query($data, 'myvar_');
+?>
+
+上の例の出力は以下となります。
+
+  0=foo&amp;1=bar&2=baz&3=boom&cow=milk&php=hypertext+processor
+  myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&cow=milk&php=hypertext+processor
+
+複雑な配列の場合での |http_build_query|
+
+<?php >
+  $data = array('user'=>array('name'=>'Bob Smith',
+                              'age'=>47,
+                              'sex'=>'M',
+                              'dob'=>'5/12/1956'),
+                'pastimes'=>array('golf', 'opera', 'poker', 'rap'),
+                'children'=>array('bobby'=>array('age'=>12,
+                                                 'sex'=>'M'),
+                                  'sally'=>array('age'=>8,
+                                                 'sex'=>'F')),
+                'CEO');
+  
+  echo http_build_query($data, 'flags_');
+?>
+
+この例は以下を出力します:
+(可読性のため適宜折り返しています)
+
+  user%5Bname%5D=Bob+Smith&amp;user%5Bage%5D=47&user%5Bsex%5D=M&
+  user%5Bdob%5D=5%2F12%2F1956&pastimes%5B0%5D=golf&pastimes%5B1%5D=opera&
+  pastimes%5B2%5D=poker&pastimes%5B3%5D=rap&children%5Bbobby%5D%5Bage%5D=12&
+  children%5Bbobby%5D%5Bsex%5D=M&children%5Bsally%5D%5Bage%5D=8&
+  children%5Bsally%5D%5Bsex%5D=F&flags_0=CEO
+
+基底の配列内の数値インデックス要素 "CEO" のみ、
+接頭辞を受け取ります。pastimes
+以下にある他の数値インデックスは、
+正当な変数名にするための文字列の接頭辞を要求しません。
+
+
+
+オブジェクトの場合の |http_build_query| の使用
+
+<?php >
+  class myClass {
+      var $foo;
+      var $baz;
+  
+      function myClass() {
+          $this->foo = 'bar';
+          $this->baz = 'boom';
+      }
+  }
+  
+  $data = new myClass();
+  
+  echo http_build_query($data); // foo=bar&baz=boom
+?>
+
+
+
+|parse_str| |parse_url| |urlencode| |array_walk|
+
+vim:ft=help:

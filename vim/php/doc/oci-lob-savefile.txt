@@ -1,0 +1,5 @@
+OCI-Lob->saveFile -- oci_lob_import のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_lob_import|.
+
+vim:ft=help:

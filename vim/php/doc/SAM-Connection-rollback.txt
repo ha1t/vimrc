@@ -1,0 +1,24 @@
+SAMConnection->rollback() -- 現在作業中の内容をキャンセル
+(ロールバック) する
+
+  bool rollback()~
+
+現在作業中の内容をロールバックします。
+
+このメソッドは、エラーが発生した場合に FALSE
+を返します。
+
+作業中の処理のキャンセル
+
+<?php >
+  if (!$conn->rollback()) {
+    // ロールバックに失敗しました!
+    echo "Rollback failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

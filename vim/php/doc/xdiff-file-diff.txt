@@ -1,0 +1,41 @@
+xdiff_file_diff -- 2 つのファイルの unified diff を作成する
+
+  bool xdiff_file_diff(string file1, string file2, string dest [, int context [, bool minimal]])~
+
+ふたつのファイルの diff
+を作成し、結果をファイルに保存します。
+
+{file1}
+
+{file2}
+
+{dest} 結果のファイルへのパス。
+
+{context} diff の結果の前後に含める行の数を指定します。
+
+{minimal} このパラメータを TRUE にすると、diff
+のファイルが最小になります
+(非常に時間がかかります)。結果のファイルは可読形式となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|xdiff_file_diff| の例 以下のコードは 2 つの php ファイルの
+unified diff を作成します。
+
+<?php >
+  $old_version = 'my_script.php';
+  $new_version = 'my_new_script.php';
+  
+  xdiff_file_diff($old_version, $new_version, 'my_script.diff', 2);
+?>
+
+
+
+この関数はバイナリファイルに対しては動作しません。バイナリファイルの
+差分を作成するには |xdiff_file_diff_binary|
+を使用してください。
+
+|xdiff_string_diff|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+dba_close -- DBA データベースを閉じる
+
+  void dba_close(resource handle)~
+
+|dba_close| は確立されたデータベースを閉じ、
+により指定したデータベースハンドルの全てのリソースを開放します。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+値を返しません。
+
+|dba_open| |dba_popen|
+
+vim:ft=help:

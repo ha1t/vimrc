@@ -1,0 +1,64 @@
+number_format --
+数字を千位毎にグループ化してフォーマットする
+
+  string number_format(float number [, int decimals])~
+
+  string number_format(float number [, int decimals, float number, int decimals, string dec_point, string thousands_sep])~
+
+|number_format| は {number} をフォーマットして返します。
+この関数は 1 つか 2 つもしくは 4
+つのパラメータを受け取ります (3 つはありません) :
+
+パラメータが 1 つだけ渡された場合、 {number}
+は千位毎にカンマ (",") が追加され、
+小数なしでフォーマットされます。
+
+パラメータが 2 つ渡された場合、{number} は {decimals}
+桁の小数の前にドット (".") 、 千位毎にカンマ (",")
+が追加されてフォーマットされます。
+
+パラメータが 4 つ全て渡された場合、{number} はドット (".")
+の代わりに {dec_point} が {decimals}
+桁の小数の前に、千位毎にカンマ (",") の代わりに
+{thousands_sep} が追加されてフォーマットされます。
+
+{number} フォーマットする数値。
+
+{decimals} 小数点以下の桁数。
+
+{dec_point} 小数点を表す区切り文字。
+
+{thousands_sep} 千位毎の区切り文字。
+
+{thousands_sep} は最初の文字だけが使用されます。
+例えば、数字の 1000 に対する {thousands_sep} として bar
+を使用した場合、|number_format| は 1b000 を返します。
+
+|number_format| の例
+例えばフランスの表記法では、通常カンマ (',')
+を小数の区切りとした二桁の小数と、千位毎の区切りとしてスペース
+(' ') を用います。これを実現するには次のようにします。
+
+<?php >
+  $number = 1234.56;
+  
+  // 英語での表記 (デフォルト)
+  $english_format_number = number_format($number);
+  // 1,235
+  
+  // フランスの表記
+  $nombre_format_francais = number_format($number, 2, ',', ' ');
+  // 1 234,56
+  
+  $number = 1234.5678;
+  
+  // 千位毎の区切りがない英語での表記
+  $english_format_number = number_format($number, 2, '.', '');
+  // 1234.57
+?>
+
+
+
+|money_format| |sprintf| |printf| |sscanf|
+
+vim:ft=help:

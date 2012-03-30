@@ -1,0 +1,40 @@
+stream_filter_remove -- ストリームからフィルタを取り除く
+
+  bool stream_filter_remove(resource stream_filter)~
+
+事前に |stream_filter_prepend| あるいは |stream_filter_append|
+でストリームに追加した
+フィルタを削除します。フィルタの内部バッファに残っているデータは
+削除前にフラッシュされ、次のフィルタに渡されます。
+
+ストリームの再フィルタリングを動的に行う
+
+<?php >
+  /* テストファイルを読み込み/書き込みモードでオープンします */
+  $fp = fopen("test.txt", "rw");
+  
+  $rot13_filter = stream_filter_append($fp, "string.rot13", STREAM_FILTER_WRITE);
+  fwrite($fp, "This is ");
+  stream_filter_remove($rot13_filter);
+  fwrite($fp, "a test\n");
+  
+  rewind($fp);
+  fpassthru($fp);
+  fclose($fp);
+  
+  /* 想定される出力
+     ---------------
+  
+  Guvf vf a test
+  
+   */
+?>
+
+
+
+
+
+|stream_filter_register|、 |stream_filter_append| および
+|stream_filter_prepend| も参照ください。
+
+vim:ft=help:

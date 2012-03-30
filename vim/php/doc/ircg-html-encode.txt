@@ -1,0 +1,22 @@
+ircg_html_encode -- HTML で保存された文字列をエンコードする
+
+  string ircg_html_encode(string html_string [, bool auto_links [, bool conv_br]])~
+
+HTML 文字列 {html_string} を、
+出力用にエンコードします。これは、 IRC
+リンクからやってくるデータを再フォーマットするために
+IRCG
+拡張モジュールで内部的に使用されているインターフェースを公開したものです。
+この関数は IRC の色/フォントコードを HTML
+形式にエンコードし、
+適切なエンティティにエスケープします。
+
+{html_string} エンコードしたい HTML 文字列。
+
+{auto_links}
+
+{conv_br}
+
+エンコードした HTML 文字列を返します。
+
+vim:ft=help:

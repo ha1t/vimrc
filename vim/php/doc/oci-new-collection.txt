@@ -1,0 +1,26 @@
+oci_new_collection --
+新しいコレクションオブジェクトを割り当てる
+
+  OCI-Collection oci_new_collection(resource connection, string tdo [, string schema])~
+
+新しいコレクションオブジェクトを割り当てます。
+
+{connection} |oci_connect| あるいは |oci_pconnect| が返す Oracle 接続
+ID。
+
+{tdo} 有効な型名 (大文字)。
+
+{schema}
+型を作成したスキーマを指定しなければなりません。
+現在のユーザ名がデフォルト値となります。
+
+新しい OCICollection オブジェクト、 あるいはエラー時に
+FALSE を返します。
+
+PHP バージョン 5.0.0 以前では、代わりに |ocinewcollection|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_new_collection| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

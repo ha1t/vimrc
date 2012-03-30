@@ -1,0 +1,28 @@
+ibase_fetch_row -- InterBase データベースから 1
+行分の結果を取得する
+
+  array ibase_fetch_row(resource result_identifier [, int fetch_flag])~
+
+|ibase_fetch_row| は、指定した {result_identifier}
+に関連付けられた結果からデータを 1 行取得します。
+
+|ibase_fetch_row| を続けてコールすると、
+結果セットの次の行を返します。行がもうない場合には
+FALSE を返します。
+
+{result_identifier} InterBase 結果 ID。
+
+{fetch_flag} {fetch_flag} は、定数 IBASE_TEXT および IBASE_UNIXTIME
+を論理和で指定します。IBASE_TEXT を渡すと、BLOB ID
+のかわりに BLOB の内容自体を返します。IBASE_UNIXTIME
+を渡すと、日付/時刻の値を文字列ではなく Unix
+タイムスタンプで返します。
+
+取得した行に対応する配列を返します。行がもうない場合には
+FALSE を返します。
+結果の各行は配列のオフセットに格納され、
+このオフセットは 0 から始まります。
+
+|ibase_fetch_assoc| |ibase_fetch_object|
+
+vim:ft=help:

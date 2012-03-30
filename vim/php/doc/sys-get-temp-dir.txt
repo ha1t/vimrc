@@ -1,0 +1,13 @@
+sys_get_temp_dir --
+一時ファイル用に使用されるディレクトリのパスを返す
+
+  string sys_get_temp_dir()~
+
+PHP
+が一時ファイルを保存するデフォルトのディレクトリのパスを返します。
+
+一時ディレクトリのパスを返します。
+
+|tmpfile| |tempnam|
+
+vim:ft=help:

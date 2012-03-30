@@ -1,0 +1,29 @@
+posix_getegid -- 現在のプロセスの有効なグループ ID を返す
+
+  int posix_getegid()~
+
+現在のプロセスの有効なグループ ID を返します。
+
+実効グループ ID を表す整数値を返します。
+
+|posix_getegid| example この例は、実効グループ ID
+を表示し、それを |posix_setegid| で変更します。
+
+<?php >
+  echo '実グループ ID は '.posix_getgid(); //20
+  posix_setegid(40);
+  echo '実グループ ID は '.posix_getgid(); //20
+  echo '実効グループ ID は '.posix_getegid(); //40
+?>
+
+
+
+|posix_getegid| は |posix_getgid| と異なります。 実効グループ ID
+は、コール元のプロセスから |posix_setegid|
+で変更できるからです。
+
+|posix_getgrgid| は、これをグループ名に変換します
+|posix_getgid| は、実グループ ID を取得します |posix_setgid|
+は、実効グループ ID を変更します
+
+vim:ft=help:

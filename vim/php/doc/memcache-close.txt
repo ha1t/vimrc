@@ -1,0 +1,39 @@
+Memcache::close -- memcached サーバとの接続を閉じる
+
+  bool Memcache::close()~
+
+|Memcache::close| は、memcached サーバとの接続を閉じます。
+この関数は、持続的な接続については閉じません。持続的な接続が
+閉じられるのは、Web
+サーバのシャットダウン/再起動のときだけです。
+|memcache_close| 関数を使用することも可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Memcache::close| の例
+
+<?php >
+  /* 手続き型の API */
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  /* 
+  ここで何かを行います ..
+  */
+  memcache_close($memcache_obj);
+  
+  /* オブジェクト指向の API */
+  $memcache_obj = new Memcache;
+  $memcache_obj->connect('memcache_host', 11211);
+  /* 
+  ここで何かを行います ..
+  */
+  $memcache_obj->close();
+?>
+
+
+
+
+
+|Memcache::connect| |Memcache::pconnect|
+
+vim:ft=help:

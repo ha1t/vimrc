@@ -1,0 +1,37 @@
+bcompiler_parse_class --
+クラスのバイトコードを読み込み、ユーザ関数をコールする
+
+  bool bcompiler_parse_class(string class, string callback)~
+
+クラスのバイトコードを読み込み、ユーザ関数をコールします。
+
+{class} クラス名を表す文字列。
+
+{callback}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_parse_class| の例
+
+<?php >
+  function readByteCodes($data) {
+      print_r($data);
+  }
+  
+  bcompiler_parse_class("DB","readByteCodes");
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+bcompiler 0.5 以降ではこの関数は削除されており、
+もはや使用することはできません。
+
+vim:ft=help:

@@ -1,0 +1,52 @@
+dbase_get_header_info -- データベースのヘッダ情報を得る
+
+  array dbase_get_header_info(int dbase_identifier)~
+
+指定したデータベースリンク ID
+のカラム構造についての情報を返します。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+データベースの各カラムについての要素を格納した配列を返します。
+配列の添字は 0 から始まります。
+
+配列の各要素には、以下に述べるような形式の連想配列で
+カラムの情報が格納されます。 name カラム名。
+
+type カラムのデータ型を可読形式（例: date、boolean
+など）で格納。
+
+length カラムのバイト数。
+
+precision カラムの数値の精度。
+
+format カラムに対して推奨される |printf|
+でのフォーマット指定。
+
+offset 行の最初からのバイトオフセット。
+
+ヘッダ情報が読み込めない場合には FALSE を返します。
+
+dBase データベースファイルの情報の表示
+
+<?php >
+  // dbase ファイルのパス
+  $db_path = "/tmp/test.dbf";
+  
+  // dbase ファイルのオープン
+  $dbh = dbase_open($db_path, 0)
+    or die("Error! Could not open dbase database file '$db_path'.");
+  
+  // カラム情報の取得
+  $column_info = dbase_get_header_info($dbh);
+  
+  // 情報の表示
+  print_r($column_info);
+?>
+
+
+
+
+
+vim:ft=help:

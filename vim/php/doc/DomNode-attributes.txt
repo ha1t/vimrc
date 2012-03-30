@@ -1,0 +1,11 @@
+DomNode->attributes -- 属性の一覧を返す
+
+  array DomNode->attributes()~
+
+この関数は、ノードが XML_ELEMENT_NODE
+型の場合に属性の配列を返すだけです。
+
+(PHP >= 4.3 のみ) 属性が存在しない場合、NULL
+が返されます。
+
+vim:ft=help:

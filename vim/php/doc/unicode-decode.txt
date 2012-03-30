@@ -1,0 +1,31 @@
+unicode_decode -- バイナリ文字列を Unicode 文字列に変換する
+
+  unicode unicode_decode(string input, string encoding [, int errmode])~
+
+{encoding} でエンコードされたバイナリ文字列を unicode
+文字列に変換します。
+
+{input} 変換する文字列。
+
+{encoding} {input} のエンコード方式。
+
+{errmode} 変換エラーモード。このパラメータで、
+コンバータが文字を変換できなかったときの動作を指定します。
+使用できるモードについては |unicode_set_error_mode|
+を参照ください。このパラメータを省略した場合は、グローバルなエラーモードを使用します。
+
+unicode 文字列を返します。失敗した場合は FALSE
+を返します。
+
+指定した {encoding}
+に対応するコンバータが作成できない場合は E_WARNING
+レベルのエラーが発生します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|unicode_set_error_mode| |unicode_semantics| |unicode_encode|
+
+vim:ft=help:

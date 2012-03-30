@@ -1,0 +1,75 @@
+apc_cache_info -- APC
+のデータから、キャッシュされた情報を取得する
+
+  array apc_cache_info([string cache_type])~
+
+APC
+のデータから、キャッシュされた情報およびメタデータを取得します。
+
+キャッシュされたデータ（およびメタデータ）の配列を返します。
+失敗した場合には FALSE を返します。
+
+もし APC キャッシュのデータを取得できなかった場合、
+|apc_cache_info| は警告を発生します。これが起こるのは、
+一般的には APC が有効になっていない場合などです。
+
+{cache_type} {cache_type} が "user"
+の場合はユーザキャッシュの情報を返します。
+
+{cache_type} が "filehits"
+の場合は、現在のリクエストにおいて
+バイトコードキャッシュから提供したファイルがどれなのかについての情報を返します。
+この機能を使用するには、コンパイル時に --enable-filehits
+を指定する必要があります。
+
+{cache_type} に無効な値を指定したり、
+値を指定しなかったりした場合は、 システムキャッシュ
+(キャッシュされたファイル) の情報を返します。
+
+{limited} {limited} が TRUE の場合は、
+返り値にキャッシュエントリの個々の一覧が含まれません。
+これは、統計情報の収集時に呼び出しを最適化したい場合などに有用です。
+
+バージョン 説明 3.0.11 パラメータ {limited}
+が追加されました。 3.0.16 "filehits" オプションが {cache_type}
+パラメータに追加されました。
+
+|apc_cache_info| の例
+
+<?php >
+  print_r(apc_cache_info());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [num_slots] => 2000
+      [ttl] => 0
+      [num_hits] => 9
+      [num_misses] => 3
+      [start_time] => 1123958803
+      [cache_list] => Array
+          (
+              [0] => Array
+                  (
+                      [filename] => /path/to/apc_test.php
+                      [device] => 29954
+                      [inode] => 1130511
+                      [type] => file
+                      [num_hits] => 1
+                      [mtime] => 1123960686
+                      [creation_time] => 1123960696
+                      [deletion_time] => 0
+                      [access_time] => 1123962864
+                      [ref_count] => 1
+                      [mem_size] => 677
+                  )
+              [1] => Array (...iterates for each cached file)
+  )
+
+
+
+APC 設定ディレクティブ
+
+vim:ft=help:

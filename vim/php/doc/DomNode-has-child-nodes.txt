@@ -1,0 +1,10 @@
+DomNode->has_child_nodes --
+ノードが子ノードを有しているかを調べる
+
+  bool DomNode->has_child_nodes()~
+
+この関数は、ノードが子ノードを有しているかを調べます。
+
+|domnode_child_nodes| も参照ください。
+
+vim:ft=help:

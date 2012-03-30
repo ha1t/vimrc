@@ -1,0 +1,74 @@
+imap_getmailboxes --
+メールボックスのリストを読み込み、各ボックスに関する詳細な情報を返す
+
+  array imap_getmailboxes(resource imap_stream, string ref, string pattern)~
+
+メールボックスの情報を取得します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{ref} 通常、{ref} は |imap_open|
+で述べられているサーバ定義です。
+
+{pattern}
+検索を開始するメールボックスの階層を指定します。
+
+{pattern} の中で使用できる特別な文字として '*' および '%'
+があります。'*'
+は、全てのメールボックスを意味します。 {pattern} に '*'
+を指定した場合、メールボックス
+階層全体のリストが得られます。'%'
+は現在のレベルのみを意味します。 '%' を {pattern}
+に指定した場合、
+トップレベルのメールボックスのみが返されます。UW_IMAPD
+を使用した場合、 '~/mail/%' は ~/mail
+ディレクトリの全てのメールボックスを返しますが、
+そのディレクトリのサブフォルダーにあるメールボックスは返しません。
+
+メールボックス情報を有するオブジェクトの配列を返します。各オブジェクトには、
+メールボックスの完全な名前である {name}、
+このメールボックスの階層の区切りを示す属性 {delimiter}、
+そして {attributes} が存在します。 {attributes}
+はビットマスクであり、
+次のものについて調べることができます。 LATT_NOINFERIORS -
+このメールボックスには
+「子供」はいません（このボックスの中にメールボックスはありません）。
+
+LATT_NOSELECT - 単なるコンテナであり、
+メールボックスではありません -
+これをオープンすることはできません。
+
+LATT_MARKED - このメールボックスにはマークが
+つけられています。UW-IMAPD でのみ使用されます。
+
+LATT_UNMARKED - このメールボックスにはマークが
+つけられていません。UW-IMAPD でのみ使用されます。
+
+|imap_getmailboxes| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org}", "username", "password", OP_HALFOPEN)
+        or die("接続できません: " . imap_last_error());
+  
+  $list = imap_getmailboxes($mbox, "{imap.example.org}", "*");
+  if (is_array($list)) {
+      foreach ($list as $key => $val) {
+          echo "($key) ";
+          echo imap_utf7_decode($val->name) . ",";
+          echo "'" . $val->delimiter . "',";
+          echo $val->attributes . "<br />\n";
+      }
+  } else {
+      echo "imap_getmailboxes failed: " . imap_last_error() . "\n";
+  }
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+|imap_getsubscribed|
+
+vim:ft=help:

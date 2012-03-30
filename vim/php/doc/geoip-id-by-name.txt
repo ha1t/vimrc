@@ -1,0 +1,54 @@
+geoip_id_by_name -- インターネット接続のスピードを取得する
+
+  int geoip_id_by_name(string hostname)~
+
+|geoip_id_by_name| 関数は、 ホスト名あるいは IP
+アドレスに対応する国および地域を返します。
+
+返り値は数値で、以下の定数と比較できます。
+
+GEOIP_UNKNOWN_SPEED
+
+GEOIP_DIALUP_SPEED
+
+GEOIP_CABLEDSL_SPEED
+
+GEOIP_CORPORATE_SPEED
+
+{hostname}
+ネット接続のスピードを探す対象となるホスト名あるいは
+IP アドレス。
+
+ネット接続のスピードを返します。
+
+|geoip_id_by_name| の例 これは、ホスト example.com
+のネット接続のスピードを返します。
+
+<?php >
+  $netspeed = geoip_id_by_name('www.example.com');
+  
+  echo 'The connection type is ';
+  
+  switch ($netspeed) {
+      case GEOIP_DIALUP_SPEED:
+          echo 'dial-up';
+          break;
+      case GEOIP_CABLEDSL_SPEED:
+          echo 'cable or DSL';
+          break;
+      case GEOIP_CORPORATE_SPEED:
+          echo 'corporate';
+          break;
+      case GEOIP_UNKNOWN_SPEED:
+      default:
+          echo 'unknown';
+  }
+?>
+
+上の例の出力は以下となります。
+
+  The connection type is corporate
+
+
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+dbmclose -- dbm データベースを閉じる
+
+  bool dbmclose(resource dbm_identifier)~
+
+指定したデータベースをアンロックして閉じます。
+
+{ dbm_identifier}|dbmopen| が返す DBM リンク識別子。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dbmopen|
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+pspell_new_config --
+指定した設定に基づき新規辞書をロードする
+
+  int pspell_new_config(int config)~
+
+|pspell_new_config| は、 |pspell_config_create| で作成され、 関数
+|pspell_config_*| で修正された設定を使用して
+新規辞書をオープンします。この方法は最も柔軟で、
+|pspell_new| および |pspell_new_personal|
+で提供された全ての機能を有しています。
+
+{config} パラメータ {config} は、config が作成された際に
+|pspell_config_create| により返されたパラメータです。
+
+成功した場合に辞書リンク ID を返します。
+
+|pspell_new_config|
+
+<?php >
+  $pspell_config = pspell_config_create("en");
+  pspell_config_personal($pspell_config, "/var/dictionaries/custom.pws");
+  pspell_config_repl($pspell_config, "/var/dictionaries/custom.repl");
+  $pspell_link = pspell_new_config($pspell_config);
+?>
+
+
+
+
+
+vim:ft=help:

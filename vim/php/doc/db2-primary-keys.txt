@@ -1,0 +1,36 @@
+db2_primary_keys -- テーブルの主キーを含む結果セットを返す
+
+  resource db2_primary_keys(resource connection, string qualifier, string schema, string table-name)~
+
+テーブルの主キーを含む結果セットを返します。
+
+{connection} IBM DB2、Cloudscape あるいは Apache Derby
+データベースへの有効な接続。
+
+{qualifier} OS/390 あるいは z/OS サーバ上で稼動している DB2
+データベースの修飾子。
+その他のデータベースの場合には NULL
+あるいは空の文字列を渡します。
+
+{schema} テーブルを含むスキーマ。{schema} が NULL
+の場合、|db2_primary_keys|
+は現在の接続のスキーマを使用します。
+
+{table-name} テーブルの名前。
+
+指定したテーブルの主キーを含む結果セットのステートメントリソースを返します。
+結果セットは、以下のカラムで構成されています。
+カラム名 説明 TABLE_CAT
+主キーを含むテーブルのカタログの名前。
+テーブルがカタログを保持していない場合は NULL。
+TABLE_SCHEM 主キーを含むテーブルのスキーマの名前。
+TABLE_NAME 主キーを含むテーブルの名前。 COLUMN_NAME
+主キーを含むカラムの名前。 KEY_SEQ 1
+から始まる数字で表した、キー内のカラムの位置。 PK_NAME
+主キーの名前。
+
+|db2_column_privileges| |db2_columns| |db2_foreign_keys|
+|db2_procedure_columns| |db2_procedures| |db2_special_columns|
+|db2_statistics| |db2_table_privileges| |db2_tables|
+
+vim:ft=help:

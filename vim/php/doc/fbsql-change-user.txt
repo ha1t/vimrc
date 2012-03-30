@@ -1,0 +1,28 @@
+fbsql_change_user --
+アクティブな接続にログインしているユーザを変更する
+
+  bool fbsql_change_user(string user, string password [, string database [, resource link_identifier]])~
+
+|fbsql_change_user|
+は、指定した接続にログインするユーザを変更します。
+ユーザおよびパスワードの認証に失敗した場合は、現在の接続ユーザがアクティブなままとなります。
+
+{user} 新しいユーザ名。
+
+{password} 新しいユーザのパスワード。
+
+{database}
+指定した場合、これがユーザ変更後のデフォルトまたはカレントデータベースとなります。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

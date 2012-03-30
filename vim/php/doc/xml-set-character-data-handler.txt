@@ -1,0 +1,37 @@
+xml_set_character_data_handler -- 文字データハンドラを設定する
+
+  bool xml_set_character_data_handler(resource parser, callback handler)~
+
+XML パーサ {parser}
+の文字データ用ハンドラ関数を設定します。
+
+{parser}
+
+{handler} {handler} は、{parser} に関して |xml_parse|
+がコールされた際に必要な関数の名前を有する文字列です。
+
+  bool (resource parser, callback handler, resource parser, string data)~
+
+{handler} という名前の関数は、次の 2
+つのパラメータをとります。 {parser}
+最初のパラメータである parser は、 ハンドラをコールする
+XML パーサへのリファレンスです。
+
+{data} 2番目のパラメータである {data} は、
+文字データを文字列として有しています。
+
+文字データハンドラは、XML
+ドキュメントのすべてのテキストに対してコールされます。
+(たとえば非 ASCII 文字列などで)
+ひとつのフラグメント内で複数回コールされることもあります。
+
+ハンドラ関数が空の文字列または、 FALSE
+に設定されている場合、そのハンドラは無効です。
+
+関数名の代わりに、オブジェクトへの
+リファレンスを格納した配列とメソッド名を指定することもできます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

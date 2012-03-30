@@ -1,0 +1,15 @@
+stats_rand_setall -- 未ドキュメント化
+
+  void stats_rand_setall(int iseed1, int iseed2)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{iseed1}
+
+{iseed2}
+
+
+
+vim:ft=help:

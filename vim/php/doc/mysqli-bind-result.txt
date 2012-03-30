@@ -1,0 +1,9 @@
+mysqli_bind_result -- mysqli_stmt_bind_result のエイリアス
+
+この関数は |mysqli_stmt_bind_result| のエイリアスです。
+
+|mysqli_bind_result| は非推奨で、廃止予定です。
+
+|mysqli_stmt_bind_result|
+
+vim:ft=help:

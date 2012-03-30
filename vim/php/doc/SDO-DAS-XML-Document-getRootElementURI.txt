@@ -1,0 +1,12 @@
+SDO_DAS_XML_Document::getRootElementURI -- ルート要素の URI
+文字列を返す
+
+  string SDO_DAS_XML_Document::getRootElementURI()~
+
+ルート要素の URI 文字列を返します。
+
+
+
+ルート要素の URI 文字列を返します。
+
+vim:ft=help:

@@ -1,0 +1,122 @@
+ob_start -- 出力のバッファリングを有効にする
+
+  bool ob_start([callback output_callback [, int chunk_size [, bool erase]]])~
+
+この関数は出力のバッファリングをオンにします。
+出力のバッファリングを有効にすると、 (ヘッダ以外の)
+スクリプトからの出力は実際には行われず、
+代わりに内部バッファに保存されます。
+
+この内部バッファの内容は、|ob_get_contents|
+を用いて文字列変数にコピーされます。
+内部バッファの内容を出力するには |ob_end_flush|
+を使用します。 |ob_end_clean|
+は、バッファの内容を出力せずに消去します。
+
+web サーバによっては (例:
+Apache)、コールバック関数からコールされた際に、
+スクリプトの実行ディレクトリを変更するものがあります。
+コールバック関数の内部で
+chdir(dirname($_SERVER['SCRIPT_FILENAME']))
+などと指定することで、これをもとに戻すことが可能です。
+
+出力バッファはスタッカブルであり、このため、他の
+|ob_start| がアクティブの間に |ob_start|
+をコールすることが可能です。この場合、 |ob_end_flush|
+を適切な回数コールするようにしてください。
+複数の出力コールバック関数がアクティブの場合、
+ネストした順番で逐次連続的に出力がフィルタ処理されます。
+
+{output_callback} オプションの引数 {output_callback}
+関数を指定することが可能です。この関数は、パラメータとして文字列をとり、
+文字列を返します。このコールバック関数は、 |ob_end_flush|
+がコールされた際、
+またはリクエストの最後にブラウザに出力をフラッシュする際にコールされます。
+{output_callback} がコールされた際に、
+この関数は出力バッファの内容をパラメータとして受け取ります。このコールバック関数は、
+新規の出力バッファを実際に出力される結果として返す必要があり、
+この結果はブラウザに送信されます。 {output_callback}
+がコール可能な関数ではない場合は FALSE を返します。
+
+コールバック関数が 2 つの引数をとる場合、 2
+番目のパラメータは以下のビットフィールド
+PHP_OUTPUT_HANDLER_START、 PHP_OUTPUT_HANDLER_CONT および
+PHP_OUTPUT_HANDLER_END を含みます。
+
+{output_callback} が FALSE
+を返すと、元の入力がそのままブラウザに送信されます。
+
+{output_callback} パラメータに NULL 値を渡すと、
+これをバイパスすることができます。
+
+|ob_end_clean|、 |ob_end_flush|、|ob_clean|、 |ob_flush| および
+|ob_start|
+をコールバック関数の内部からコールすることはできません。
+実際にコールした際の挙動は未定義です。バッファの内容を消去したい際には、
+コールバック関数から "" (空文字列) を返してください。
+同じく、print_r($expression, true) や highlight_file($filename, true)
+のような 出力バッファリング関数も、
+コールバック関数の内部からコールすることはできません。
+
+PHP 4.0.4 において、Web ページの圧縮をサポートする圧縮 gz
+エンコード されたデータの Web
+ブラウザへの送信を容易にするために |ob_gzhandler|
+がサポートされています。 |ob_gzhandler|
+は、ブラウザが受け入れる content encoding
+の型を調べ、それに基づいて出力を返します。
+
+{chunk_size} オプションのパラメータ {chunk_size}
+が渡された場合、 バッファの長さが {chunk_size}
+バイトを超えるたびに、
+出力の後でバッファがフラッシュされます。
+デフォルト値は 0
+で、これはこの関数が最後に一度だけコールされることを意味します。
+また、もうひとつの特別な値は 1 で、これを指定すると
+{chunk_size} が 4096 となります。
+
+{erase} オプションのパラメータ {erase} に FALSE
+を指定すると、
+スクリプトが終了するまでバッファは削除されません (PHP
+4.3.0 以降で対応)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.3.2 {output_callback}
+を実行することができない場合に FALSE
+を返すように変更されました。
+
+ユーザ定義のコールバック関数の例
+
+<?php >
+  function callback($buffer)
+  {
+    // apples を全て oranges に置換する
+    return (str_replace("apples", "oranges", $buffer));
+  }
+  
+  ob_start("callback");
+?>
+  <html>
+  <body>
+  <p>It's like comparing apples to oranges.</p>
+  </body>
+  </html>
+<?php >
+  ob_end_flush();
+?>
+
+上の例の出力は以下となります。
+
+  <html>
+  <body>
+  <p>It's like comparing oranges to oranges.</p>
+  </body>
+  </html>
+
+
+
+|ob_get_contents| |ob_end_clean| |ob_end_flush| |ob_implicit_flush|
+|ob_gzhandler| |ob_iconv_handler| |mb_output_handler| |ob_tidyhandler|
+
+vim:ft=help:

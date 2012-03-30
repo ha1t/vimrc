@@ -1,0 +1,53 @@
+runkit_method_copy --
+あるクラスのメソッドを別のクラスにコピーする
+
+  bool runkit_method_copy(string dClass, string dMethod, string sClass [, string sMethod])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{dClass} メソッドのコピー先のクラス。
+
+{dMethod} コピー先のメソッド名。
+
+{sClass} メソッドのコピー元のクラス。
+
+{sMethod}
+元のクラスからコピーするメソッドの名前。指定されなかった場合は
+{dMethod} と同じであるとみなされます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_method_copy| の例
+
+<?php >
+  class Foo {
+      function example() {
+          return "foo!\n";
+      }
+  }
+  
+  class Bar {
+      // 最初は、何もメソッドがない
+  }
+  
+  // Foo クラスの example() メソッドを Bar クラスに baz() という名前でコピーする
+  runkit_method_copy('Bar', 'baz', 'Foo', 'example');
+  
+  // コピーされた関数の出力
+  echo Bar::baz();
+?>
+
+上の例の出力は以下となります。
+
+  foo!
+
+
+
+|runkit_method_add| |runkit_method_redefine| |runkit_method_remove|
+|runkit_method_rename| |runkit_function_copy|
+
+vim:ft=help:

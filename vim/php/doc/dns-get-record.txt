@@ -1,0 +1,267 @@
+dns_get_record -- ホスト名に関連する DNS
+リソースレコードを取得する
+
+  array dns_get_record(string hostname [, int type [, array authns, array addtl]])~
+
+指定した {hostname} に関連づけられた DNS
+リソースレコードを取得します。
+
+{hostname} {hostname} は、正しい DNS ホスト名、すなわち
+"www.example.com" のようなものでなければなりません。
+in-addr.arpa 形式の表記を用いた逆引き検索は可能ですが、
+たいていは |gethostbyaddr| を用いるほうが適当です。
+
+DNS の標準規格により、メールアドレスは user.host
+形式で渡されます （たとえば、hostmaster.example.com が
+hostmaster@example.com の代わりとなります）。
+この値をしっかり確認し、|mail| のような関数で
+利用する前には必要なら変更を加えることを忘れないようにしてください。
+
+{type} デフォルトでは、|dns_get_record| は {hostname}
+に関連するすべてのリソースレコードを検索します。
+これを制限するには、オプションの {type}
+パラメータを指定してください。 {type}
+は以下のうちのいずれかです。 DNS_A, DNS_CNAME, DNS_HINFO,
+DNS_MX, DNS_NS, DNS_PTR, DNS_SOA, DNS_TXT, DNS_AAAA, DNS_SRV, DNS_NAPTR,
+DNS_A6, DNS_ALL or DNS_ANY。 デフォルトは DNS_ANY です。
+
+プラットフォーム依存の libresolv
+のおかしな挙動のせいで、 DNS_ANY
+が常にすべてのレコードを返すとは
+限りません。速度は遅くなりますが、DNS_ALL
+のほうがより確実にすべてのレコードを取得できます。
+
+{authns} 参照で渡し、 Authoritative Name Servers
+のリソースレコードが格納されます。
+
+{addtl} 参照で渡し、 Additional Records が格納されます。
+
+この関数は、連想配列を要素にもつ配列を返します。それぞれの連想配列には
+少なくとも 以下のキーが含まれています: 基本 DNS 属性
+属性 意味 host これ以降の関連するデータが参照する DNS
+名。 class |dns_get_record| は Internet
+クラスのレコードのみを返すので、このパラメータは常に
+IN を返します。 type レコード型を表す文字列。type
+の値に応じて、
+結果の配列には追加の属性が含まれます。以下の表を参照ください。
+ttl このレコードの有効期限。レコードの本来の ttl
+と一致するとは 限りません。むしろ、
+ネームサーバへのクエリにかかった時間をそこから引いたものに一致します。
+
+'type' に応じて連想配列に追加される項目 レコード型
+追加項目 A ip: ドット区切り 10 進数形式の IPv4 アドレス。
+MX pri: メールエクスチェンジャの優先度。
+数字が小さいほど優先度が高い。 target:
+メールエクスチェンジャの FQDN 。 |dns_get_mx|
+も参照ください。 CNAME target:
+レコードのエイリアスの対象となっている場所の FQDN 。 NS
+target:
+このホスト名に対する権威をもっているネームサーバの
+FQDN 。 PTR target: レコードが指している、DNS
+名前空間内の場所 TXT txt:
+このレコードに関連付けられている任意の文字列。 HINFO
+cpu: このレコードが参照しているマシンの CPU を識別する
+IANA 番号。 os: このレコードが参照しているマシン上の OS
+を識別する IANA 番号。 これらの値の意味については、IANA
+の Operating System Names を参照ください。 SOA mname:
+リソースレコードの元となるマシンの FQDN 。 rname:
+このドメインの管理責任者の Email アドレス。 serial:
+ドメインのシリアル番号。 refresh:
+セカンダリネームサーバがこのドメインのコピーを更新する際に参照するリフレッシュ間隔（秒単位）。
+retry: リフレッシュが失敗した際に 2
+度目のリフレッシュを試みるまでの間隔（秒単位） expire:
+セカンダリネームサーバが、ゾーンデータの
+リフレッシュに失敗した場合にコピーのデータを破棄せず持ち続ける期間
+（秒単位）。 minimum-ttl: クライアントが、
+一度取得したデータを再リクエストすることなしに利用できる最小期間（秒単位）。
+個々のリソースレコードによって上書きが可能。 AAAA ipv6:
+IPv6 アドレス。 A6(PHP >= 5.1.0) masklen: {chain}
+で指定された対象から引き継ぐビット長。 ipv6: {chain}
+とマージするためのこのレコードのアドレス。 chain: {ipv6}
+データとマージするための親レコード。 SRV pri: (Priority)
+値が小さいものが優先されます。 weight: 同じ優先順位の
+{targets} からランダムに選択する際の重み。 target および
+port:
+リクエストされたサービスが存在するホスト名とポート。
+詳細は RFC 2782 を参照ください。 NAPTR order および pref: 上の
+{pri} および {weight} と同じ。 flags, services, regex, および
+replacement: RFC 2915 で定義されるパラメータ。
+
+|dns_get_record| の使用
+
+<?php >
+  $result = dns_get_record("php.net");
+  print_r($result);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => Array
+          (
+              [host] => php.net
+              [type] => MX
+              [pri] => 5
+              [target] => pair2.php.net
+              [class] => IN
+              [ttl] => 6765
+          )
+  
+      [1] => Array
+          (
+              [host] => php.net
+              [type] => A
+              [ip] => 64.246.30.37
+              [class] => IN
+              [ttl] => 8125
+          )
+  
+  )
+
+|dns_get_record| と DNS_ANY の使用 MX
+レコードが解決されれば、たいていはメールサーバの IP
+アドレスを
+取得したくなるものです。そのため、|dns_get_record| は
+{addtl} に関連するレコードを含めて返します。
+また、{authns} には
+権威のあるネームサーバのリストを含めて返します。
+
+<?php >
+  /* php.net の "ANY" レコードを要求し、
+     それに付随する情報を格納した配列を
+     作成する。
+     $authns にはネームサーバの一覧が、
+     また $addtl には追加レコードが
+     それぞれ格納される。 */
+  $result = dns_get_record("php.net", DNS_ANY, $authns, $addtl);
+  echo "Result = ";
+  print_r($result);
+  echo "Auth NS = ";
+  print_r($authns);
+  echo "Additional = ";
+  print_r($addtl);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Result = Array
+  (
+      [0] => Array
+          (
+              [host] => php.net
+              [type] => MX
+              [pri] => 5
+              [target] => pair2.php.net
+              [class] => IN
+              [ttl] => 6765
+          )
+  
+      [1] => Array
+          (
+              [host] => php.net
+              [type] => A
+              [ip] => 64.246.30.37
+              [class] => IN
+              [ttl] => 8125
+          )
+  
+  )
+  Auth NS = Array
+  (
+      [0] => Array
+          (
+              [host] => php.net
+              [type] => NS
+              [target] => remote1.easydns.com
+              [class] => IN
+              [ttl] => 10722
+          )
+  
+      [1] => Array
+          (
+              [host] => php.net
+              [type] => NS
+              [target] => remote2.easydns.com
+              [class] => IN
+              [ttl] => 10722
+          )
+  
+      [2] => Array
+          (
+              [host] => php.net
+              [type] => NS
+              [target] => ns1.easydns.com
+              [class] => IN
+              [ttl] => 10722
+          )
+  
+      [3] => Array
+          (
+              [host] => php.net
+              [type] => NS
+              [target] => ns2.easydns.com
+              [class] => IN
+              [ttl] => 10722
+          )
+  
+  )
+  Additional = Array
+  (
+      [0] => Array
+          (
+              [host] => pair2.php.net
+              [type] => A
+              [ip] => 216.92.131.5
+              [class] => IN
+              [ttl] => 6766
+          )
+  
+      [1] => Array
+          (
+              [host] => remote1.easydns.com
+              [type] => A
+              [ip] => 64.39.29.212
+              [class] => IN
+              [ttl] => 100384
+          )
+  
+      [2] => Array
+          (
+              [host] => remote2.easydns.com
+              [type] => A
+              [ip] => 212.100.224.80
+              [class] => IN
+              [ttl] => 81241
+          )
+  
+      [3] => Array
+          (
+              [host] => ns1.easydns.com
+              [type] => A
+              [ip] => 216.220.40.243
+              [class] => IN
+              [ttl] => 81241
+          )
+  
+      [4] => Array
+          (
+              [host] => ns2.easydns.com
+              [type] => A
+              [ip] => 216.220.40.244
+              [class] => IN
+              [ttl] => 81241
+          )
+  
+  )
+
+
+
+この関数は Windows
+プラットフォームでは実装されていません。 また、(Mac
+を含む) *BSD システムでも (現時点では) 動作しません。
+PEAR の Net_DNS クラスを試してみてください。
+
+|dns_get_mx| |dns_check_record|
+
+vim:ft=help:

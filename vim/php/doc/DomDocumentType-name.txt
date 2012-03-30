@@ -1,0 +1,30 @@
+DomDocumentType->name() -- 文章型の名前を返す
+
+  string name()~
+
+この関数は文章型の名前を返します。
+
+DomDocumentType の名前を文字列として返します。
+
+文章型の名前を取得する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+      echo "Error while parsing the document\n";
+      exit;
+  }
+  
+  $doctype = $dom->doctype();
+  echo $doctype->name(); // chapter
+?>
+
+
+
+
+
+DOMDocumentType オブジェクトの name
+プロパティを使用してください。
+
+vim:ft=help:

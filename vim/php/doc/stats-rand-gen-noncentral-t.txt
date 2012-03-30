@@ -1,0 +1,16 @@
+stats_rand_gen_noncentral_t -- 非心 T
+分布から無作為な値を生成する
+
+  float stats_rand_gen_noncentral_t(float df, float xnonc)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{df}
+
+{xnonc}
+
+
+
+vim:ft=help:

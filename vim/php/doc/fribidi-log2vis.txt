@@ -1,0 +1,17 @@
+fribidi_log2vis -- 論理表記を物理表記に変換する
+
+  string fribidi_log2vis(string str, string direction, int charset)~
+
+論理表記を物理表記に変換します。
+
+{str} 論理表記の文字列。
+
+{direction} FRIBIDI_RTL、 FRIBIDI_LTR あるいは FRIBIDI_AUTO
+のいずれかひとつ。
+
+{charset} FRIBIDI_CHARSET_XXX のいずれかひとつ。
+
+成功した場合に物理表記の文字列、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

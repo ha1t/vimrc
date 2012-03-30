@@ -1,0 +1,48 @@
+snmpwalk -- エージェントから全ての SNMP
+オブジェクトを取得する
+
+  array snmpwalk(string hostname, string community, string object_id [, int timeout [, int retries]])~
+
+|snmpwalk| 関数は、{hostname} で指定した SNMP
+エージェントから全ての値を読みとるのに使用します。
+
+{hostname} SNMP エージェント。
+
+{community} リードコミュニティ。
+
+{object_id} NULL の場合は、{object_id} が SNMP
+オブジェクトツリーのルートとして解釈され、
+ツリーの配下のすべてのオブジェクトを配列として返します。
+
+{object_id} を指定した場合は、 その {object_id}
+の配下のすべての SNMP オブジェクトを返します。
+
+{timeout}
+
+{retries}
+
+|object_id| からの SNMP
+オブジェクトの値の配列をルートとして返します。
+エラーの場合に FALSE を返します。
+
+|snmpwalk| の例
+
+<?php >
+  $a = snmpwalk("127.0.0.1", "public", ""); 
+  
+  foreach ($a as $val) {
+      echo "$val\n";
+  }
+?>
+
+
+
+
+
+上記の関数コールは、ローカルホスト上で稼働する SNMP
+エージェントからすべての SNMP オブジェクトを返します。
+ループ処理により値を一つずつとりだすことができます。
+
+|snmpwalkoid|
+
+vim:ft=help:

@@ -1,0 +1,71 @@
+is_subclass_of --
+あるオブジェクトが指定したクラスのサブクラスに属するかどうかを調べる
+
+  bool is_subclass_of(mixed object, string class_name)~
+
+指定した {object} が、その親のひとつに {class_name}
+を持つかどうかを調べます。
+
+{object} クラス名あるいはオブジェクトのインスタンス。
+
+{class_name} クラス名。
+
+この関数は、オブジェクト {object} が {superclass}
+のサブクラスであるクラスに属する場合に
+TRUE、その他の場合に FALSE を返します。
+
+バージョン 説明 5.0.3 {object} パラメータに文字列
+(クラス名) を指定可能です。
+
+|is_subclass_of| の例
+
+<?php >
+  // クラスを定義する
+  class WidgetFactory
+  {
+    var $oink = 'moo';
+  }
+  
+  // 子クラスを定義する
+  class WidgetFactory_Child extends WidgetFactory
+  {
+    var $oink = 'oink';
+  }
+  
+  // 新規オブジェクトを生成する
+  $WF = new WidgetFactory();
+  $WFC = new WidgetFactory_Child();
+  
+  if (is_subclass_of($WFC, 'WidgetFactory')) {
+    echo "yes, \$WFC is a subclass of WidgetFactory\n";
+  } else {
+    echo "no, \$WFC is not a subclass of WidgetFactory\n";
+  }
+  
+  
+  if (is_subclass_of($WF, 'WidgetFactory')) {
+    echo "yes, \$WF is a subclass of WidgetFactory\n";
+  } else {
+    echo "no, \$WF is not a subclass of WidgetFactory\n";
+  }
+  
+  
+  // PHP 5.0.3 以降で使用可能
+  if (is_subclass_of('WidgetFactory_Child', 'WidgetFactory')) {
+    echo "yes, WidgetFactory_Child is a subclass of WidgetFactory\n";
+  } else {
+    echo "no, WidgetFactory_Child is not a subclass of WidgetFactory\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  yes, $WFC is a subclass of WidgetFactory
+  no, $WF is not a subclass of WidgetFactory
+  yes, WidgetFactory_Child is a subclass of WidgetFactory
+
+
+
+|get_class| |get_parent_class| |is_a|
+
+vim:ft=help:

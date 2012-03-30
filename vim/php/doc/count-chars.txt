@@ -1,0 +1,57 @@
+count_chars --
+文字列で使用されている文字に関する情報を返す
+
+  mixed count_chars(string string [, int mode])~
+
+{string} において各バイト値 (0..255)
+が存在する数をかぞえ、様々な手法で返します。
+
+{string} 調べたい文字列。
+
+{mode} オプションのパラメータ {mode} のデフォルトは 0
+です。
+
+{mode} の値により、 |count_chars|
+は以下の値のどれかを返します。 0 -
+各バイト値をキー、各バイトの出現回数を値とする配列。
+
+1 -
+0と同じですが、各バイト値の出現回数がゼロより大きいものの一覧となります。
+
+2 -
+0と同じですが、各バイト値の出現回数がゼロであるものの一覧となります。
+
+3 - すべての一意な文字を含む文字列を返します。
+
+4 -
+使用されていない全ての文字を含む文字列を返します。
+
+|count_chars| の例
+
+<?php >
+  $data = "Two Ts and one F.";
+  
+  foreach (count_chars($data, 1) as $i => $val) {
+     echo "There were $val instance(s) of \"" , chr($i) , "\" in the string.\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  There were 4 instance(s) of " " in the string.
+  There were 1 instance(s) of "." in the string.
+  There were 1 instance(s) of "F" in the string.
+  There were 2 instance(s) of "T" in the string.
+  There were 1 instance(s) of "a" in the string.
+  There were 1 instance(s) of "d" in the string.
+  There were 1 instance(s) of "e" in the string.
+  There were 2 instance(s) of "n" in the string.
+  There were 2 instance(s) of "o" in the string.
+  There were 1 instance(s) of "s" in the string.
+  There were 1 instance(s) of "w" in the string.
+
+
+
+|strpos| |substr_count|
+
+vim:ft=help:

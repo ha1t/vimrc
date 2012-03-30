@@ -1,0 +1,28 @@
+ps_string_geometry -- 文字列のジオメトリを取得する
+
+  array ps_string_geometry(resource psdoc, string text [, int fontid [, float size]])~
+
+この関数は |ps_stringwidth| と似ていますが、
+返り値は、テキストの幅、ascender および descender
+を含む配列形式になります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{text} ジオメトリを計算するテキスト。
+
+{fontid} 使用するフォントの
+ID。フォントが指定されていない場合は、
+現在のフォントが使用されます。
+
+{size}
+フォントのサイズ。指定されていない場合は現在のサイズが使用されます。
+
+文字の寸法を格納した配列です。'width' には |ps_stringwidth|
+で返される文字列の幅が入ります。
+下に突き出している部分の長さの最大値が 'descender' に、
+また上に突き出している部分の長さの最大値が 'ascender'
+に入ります。
+
+|ps_continue_text| |ps_stringwidth|
+
+vim:ft=help:

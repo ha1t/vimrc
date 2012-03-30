@@ -1,0 +1,11 @@
+hw_api->hwstat -- Hyperwave サーバについての統計情報を返す
+
+  hw_api_object hwstat(array parameter)~
+
+Hyperwave サーバについての統計情報を返します。
+
+{parameter}
+
+
+
+vim:ft=help:

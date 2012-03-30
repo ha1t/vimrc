@@ -1,0 +1,27 @@
+apache_get_version -- Apache のバージョンを取得する
+
+  string apache_get_version()~
+
+Apache のバージョンを取得します。
+
+成功時は Apache のバージョン、失敗時は FALSE を返します。
+
+バージョン 説明 4.3.4 Apache 1 で利用可能です。 5.0.0 Apache 2
+の フィルター API で利用可能です。
+
+|apache_get_version| の例
+
+<?php >
+  $version = apache_get_version();
+  echo "$version\n";
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Apache/1.3.29 (Unix) PHP/4.3.4
+
+
+
+|phpinfo|
+
+vim:ft=help:

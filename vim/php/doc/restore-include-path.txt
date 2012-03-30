@@ -1,0 +1,35 @@
+restore_include_path -- include_path
+設定オプションの値を元に戻す
+
+  void restore_include_path()~
+
+include_path 設定値を php.ini
+でセットされたオリジナルの設定に戻します。
+
+値を返しません。
+
+|restore_include_path| の例
+
+<?php >
+  echo get_include_path();  // .:/usr/local/lib/php
+  
+  set_include_path('/inc');
+  
+  echo get_include_path();  // /inc
+  
+  // PHP 4.3.0 以降で動作します
+  restore_include_path();
+  
+  // すべてのバージョンの PHP で動作します
+  ini_restore('include_path');
+  
+  echo get_include_path();  // .:/usr/local/lib/php
+?>
+
+
+
+
+
+|ini_restore| |get_include_path| |set_include_path| |include|
+
+vim:ft=help:

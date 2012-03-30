@@ -1,0 +1,23 @@
+fam_next_event -- 次の待機中の FAM イベントを返す
+
+  array fam_next_event(resource fam)~
+
+次の待機中の FAM イベントを返します。
+
+この関数は、|fam_pending| を用いてチェックできる
+イベントが検出されるまでブロックします。
+
+{fam} |fam_open| が返す、 FAM
+サービスへの接続を表すリソース。
+
+FAM イベントコードを要素 'code'
+に、このイベントが適用されるファイルのパスを 要素
+'filename' に、 オプションでホスト名を要素 'hostname' に
+含む配列を返します。
+
+発生しうるイベントコードの詳細は、このセクションの
+定数 の欄にあります。
+
+|fam_pending|
+
+vim:ft=help:

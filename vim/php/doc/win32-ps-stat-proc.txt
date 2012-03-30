@@ -1,0 +1,30 @@
+win32_ps_stat_proc -- プロセスの統計情報を取得する
+
+  array win32_ps_stat_proc([int pid])~
+
+プロセス ID {pid} のプロセスについての
+統計情報を取得します。
+
+{pid} 統計情報を取得するプロセスの ID。
+指定しなかった場合は、現在のプロセスの ID
+が使用されます。
+
+失敗した場合は、FALSE を返します。
+成功した場合は、以下の情報を含む配列を返します。
+
+{pid} プロセス ID。
+
+{exe} 実行イメージへのパス。
+
+{mem} メモリの使用量を示す以下の情報を含む配列。
+{page_fault_count}、 {peak_working_set_size}、 {working_set_size}、
+{quota_peak_paged_pool_usage}、 {quota_paged_pool_usage}、
+{quota_peak_non_paged_pool_usage}、 {quota_non_paged_pool_usage}、
+{pagefile_usage} および {peak_pagefile_usage}。
+
+{tms} CPU 時間の使用状況を示す以下の情報を含む配列。
+{created}、 {kernel} および {user}。
+
+|win32_ps_list_procs|
+
+vim:ft=help:

@@ -1,0 +1,32 @@
+dbase_numfields -- データベースのフィールド数を得る
+
+  int dbase_numfields(int dbase_identifier)~
+
+指定したデータベースにおけるフィールド（カラム）数を取得します。
+
+フィールド番号は 0 から dbase_numfields($db)-1 までで、
+一方レコード番号は 1 から dbase_numrecords($db) までです。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+データベースのフィールド数を返します。エラーが発生した場合には
+FALSE を返します。
+
+|dbase_numfields| の例
+
+<?php >
+  $rec = dbase_get_record($db, $recno);
+  $nf  = dbase_numfields($db);
+  for ($i = 0; $i < $nf; $i++) {
+    echo $rec[$i], "\n";
+  }
+?>
+
+
+
+
+
+|dbase_numrecords|
+
+vim:ft=help:

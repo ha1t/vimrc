@@ -1,0 +1,37 @@
+crack_getlastmessage --
+直近の強度チェックからのメッセージを返す
+
+  string crack_getlastmessage()~
+
+|crack_getlastmessage| は、
+直近の強度チェックからのメッセージを返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+直近の強度チェックによるメッセージ、あるいはチェックがまだ行われていない場合は
+FALSE を返します。
+
+メッセージは以下のいずれかです。 it's WAY too short
+
+it is too short
+
+it does not contain enough DIFFERENT characters
+
+it is all whitespace
+
+it is too simplistic/systematic
+
+it looks like a National Insurance number.
+
+it is based on a dictionary word
+
+it is based on a (reversed) dictionary word
+
+strong password
+
+|crack_check|
+
+vim:ft=help:

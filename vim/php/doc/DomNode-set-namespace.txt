@@ -1,0 +1,15 @@
+DomNode->set_namespace -- ノードの名前空間を設定する
+
+  void DomNode->set_namespace(string uri [, string prefix])~
+
+ノードの名前空間を {uri} に設定します。
+もしこのノードの親ノードの一つに同じ URI
+で名前空間が宣言されている場合、
+名前空間の接頭辞が使用されます。そうでない場合、オプションパラメータ
+{prefix} で指定された接頭辞、
+もしくはランダムに設定された接頭辞が使用されます。
+
+|domdocument_create_element_ns|, |domnode_add_namespace|
+も参照ください。
+
+vim:ft=help:

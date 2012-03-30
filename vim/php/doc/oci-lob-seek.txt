@@ -1,0 +1,20 @@
+OCI-Lob->seek --
+ラージオブジェクトの内部ポインタをセットする
+
+  bool seek(int offset [, int whence])~
+
+ラージオブジェクトの内部ポインタをセットします。
+
+{offset} 内部ポインタを {whence}
+で示された位置から移動させるバイト数を表します。
+
+{whence} 以下のいずれかです。 OCI_SEEK_SET - {offset}
+と等しい位置にセットします OCI_SEEK_CUR - 現在の位置に
+{offset} バイト追加します OCI_SEEK_END -
+ラージオブジェクトの終端に {offset} バイト追加します
+(ラージオブジェクトの終端より前の位置に移動するには負の値を指定します)
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,63 @@
+tidyNode->isPhp -- このノードが PHP コードの場合 true を返す
+
+  bool tidyNode->isPhp()~
+
+もし現在のノードが PHP コードであれば TRUE を返します。
+そうでない場合は FALSE を返します。
+
+HTML と PHP が混ざったドキュメントから PHP
+コードを取得する
+
+<?php >
+  $html = <<< HTML
+  <html><head>
+  <?php echo '<title>title</title>'; ?>
+  </head>
+  <body>
+<?php >
+  echo 'hello world!';
+?>
+  
+  </body></html>
+  HTML;
+  
+  
+  $tidy = tidy_parse_string($html);
+  $num = 0;
+  
+  get_php($tidy->html());
+  
+  
+  function get_php($node) {
+  
+      // 現在のノードが PHP コードかどうかをチェックする
+      if($node->isPhp()) {
+          echo "\n\n# PHP node #" . ++$GLOBALS['num'] . "\n";
+          echo $node->value;
+      }
+  
+      // 現在のノードが子を持つかどうかをチェックする
+      if($node->hasChildren()) {
+          foreach($node->child as $child) {
+              get_php($child);
+          }
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  # PHP node #1
+  <?php echo '<title>title</title>'; ?>
+  
+  # PHP node #2
+<?php >
+  echo 'hello world!';
+?>
+
+
+
+この関数は、PHP 4/Tidy 1 では |tidy_node->is_php|
+という名前でした。
+
+vim:ft=help:

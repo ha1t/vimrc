@@ -1,0 +1,31 @@
+convert_uuencode -- 文字列を uuencode する
+
+  string convert_uuencode(string data)~
+
+|convert_uuencode| は、uuencode
+アルゴリズムを使用して文字列をエンコードします。
+
+uuencode
+はすべての文字(バイナリを含む)を表示可能な文字に変換し、
+ネットワーク上での転送を可能にします。uuencode
+されたデータは、 元のデータより約 35% 大きくなります。
+
+{data} エンコードしたいデータ。
+
+uuencode されたデータを返します。
+
+|convert_uuencode| の例
+
+<?php >
+  $some_string = "test\ntext text\r\n";
+  
+  echo convert_uuencode($some_string);
+?>
+
+
+
+
+
+|convert_uudecode| |base64_encode|
+
+vim:ft=help:

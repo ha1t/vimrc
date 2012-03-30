@@ -1,0 +1,21 @@
+radius_send_request -- リクエストを送信し、応答を待つ
+
+  int radius_send_request(resource radius_handle)~
+
+Radius リクエストを作成した後は、 |radius_send_request|
+でそれを送信します。
+
+|radius_send_request| 関数は、リクエストを送信して
+応答を待ちます。定義されているサーバ間で、必要に応じてラウンドロビン
+形式で再試行します。
+
+有効な応答を受信したら、|radius_send_request|
+は応答の型を示す Radius
+コードを返します。一般的なコードは RADIUS_ACCESS_ACCEPT、
+RADIUS_ACCESS_REJECT あるいは RADIUS_ACCESS_CHALLENGE です。
+有効な応答を受信できなかった場合は、 |radius_send_request|
+は FALSE を返します。
+
+|radius_create_request|
+
+vim:ft=help:

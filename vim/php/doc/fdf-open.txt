@@ -1,0 +1,37 @@
+fdf_open -- FDF ドキュメントをオープンする
+
+  resource fdf_open(string filename)~
+
+フォームデータを含むファイルをオープンします。
+
+|fdf_open_string| を用いて、 PDF フォームの POST
+リクエストを処理することもできます。
+
+{filename} FDF ファイルへのパス。このファイルは、PDF
+フォームから返されたものか、 |fdf_create| および |fdf_save|
+で作成したものである必要があります。
+
+FDF ドキュメントのハンドル、あるいはエラー時に FALSE
+を返します。
+
+フォームデータへのアクセス
+
+<?php >
+  // FDF データをテンポラリファイルに保存します
+  $fdffp = fopen("test.fdf", "w");
+  fwrite($fdffp, $HTTP_FDF_DATA, strlen($HTTP_FDF_DATA));
+  fclose($fdffp);
+  
+  // テンポラリファイルをオープンし、データを評価します
+  $fdf = fdf_open("test.fdf");
+  /* ... */
+  fdf_close($fdf);
+?>
+
+
+
+
+
+|fdf_open_string| |fdf_close| |fdf_create| |fdf_save|
+
+vim:ft=help:

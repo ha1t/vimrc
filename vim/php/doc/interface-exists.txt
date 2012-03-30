@@ -1,0 +1,34 @@
+interface_exists --
+インターフェースが宣言されているかどうかを確認する
+
+  bool interface_exists(string interface_name [, bool autoload])~
+
+指定したインターフェイスが定義されているかどうかを調べます。
+
+{interface_name} インターフェイス名。
+
+{autoload} デフォルトで __autoload をコールするかどうか。
+
+{interface_name}
+で与えられたインターフェースが宣言されていれば TRUE
+を返します。 そうでなければ FALSE を返します。
+
+|interface_exists| の例
+
+<?php >
+  // 使用する前にインターフェースが存在するかどうかを確認する
+  if (interface_exists('MyInterface')) {
+      class MyClass implements MyInterface
+      {
+          // メソッド
+      }
+  }
+?>
+
+
+
+
+
+|class_exists|
+
+vim:ft=help:

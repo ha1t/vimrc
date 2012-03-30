@@ -1,0 +1,41 @@
+pg_copy_to -- 配列にテーブルをコピーする
+
+  array pg_copy_to(resource connection, string table_name [, string delimiter [, string null_as]])~
+
+|pg_copy_to| は、テーブルを配列にコピーします。
+レコードを取得するために、内部では COPY TO SQL
+コマンドを発行します。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{table_name} データを {rows} にコピーするテーブルの名前。
+
+{delimiter} {rows} の要素内で、各フィールドに対応する値を
+区切る文字。デフォルトは TAB です。
+
+{null_as} {rows} の中で、SQL の NULL
+をどのように表現するか。デフォルトは \N ("\\N") です。
+
+COPY されたデータが 1 行ごとにひとつの要素と
+なっている配列を返します。失敗した場合には FALSE
+を返します。
+
+|pg_copy_to| の例
+
+<?php >
+     $db = pg_connect("dbname=publisher") or die("Could not connect");
+     
+     $rows = pg_copy_to($db, $table_name);
+     
+     pg_query($db, "DELETE FROM $table_name");
+     
+     pg_copy_from($db, $table_name, $rows);
+?>
+
+
+
+
+
+|pg_copy_from|
+
+vim:ft=help:

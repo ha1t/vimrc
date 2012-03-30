@@ -1,0 +1,138 @@
+parsekit_compile_string -- PHP
+コードの文字列をコンパイルし、結果を op
+コードの配列で返す
+
+  array parsekit_compile_string(string phpcode [, array errors [, int options]])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{phpcode} php コードを含む文字列。|eval|
+の引数と同じ形式です。
+
+{errors} コンパイル時に発生したエラー
+(致命的なエラーを含む)
+の二次元配列。参照で返されます。
+
+{options} PARSEKIT_QUIET あるいは PARSEKIT_SIMPLE のいずれかです。
+返される出力の冗長性を設定します。
+
+複雑な形式の配列を返します。詳細は以下に示します。
+
+|parsekit_compile_string| の例
+
+<?php >
+    $ops = parsekit_compile_string('
+  echo "Foo\n";
+  ', $errors, PARSEKIT_QUIET);
+  
+    var_dump($ops);
+?>
+
+上の例の出力は以下となります。
+
+  array(20) {
+    ["type"]=>
+    int(4)
+    ["type_name"]=>
+    string(14) "ZEND_EVAL_CODE"
+    ["fn_flags"]=>
+    int(0)
+    ["num_args"]=>
+    int(0)
+    ["required_num_args"]=>
+    int(0)
+    ["pass_rest_by_reference"]=>
+    bool(false)
+    ["uses_this"]=>
+    bool(false)
+    ["line_start"]=>
+    int(0)
+    ["line_end"]=>
+    int(0)
+    ["return_reference"]=>
+    bool(false)
+    ["refcount"]=>
+    int(1)
+    ["last"]=>
+    int(3)
+    ["size"]=>
+    int(3)
+    ["T"]=>
+    int(0)
+    ["last_brk_cont"]=>
+    int(0)
+    ["current_brk_cont"]=>
+    int(-1)
+    ["backpatch_count"]=>
+    int(0)
+    ["done_pass_two"]=>
+    bool(true)
+    ["filename"]=>
+    string(17) "Parsekit Compiler"
+    ["opcodes"]=>
+    array(3) {
+      [8594800]=>
+      array(5) {
+        ["opcode"]=>
+        int(40)
+        ["opcode_name"]=>
+        string(9) "ZEND_ECHO"
+        ["flags"]=>
+        int(768)
+        ["op1"]=>
+        array(3) {
+          ["type"]=>
+          int(1)
+          ["type_name"]=>
+          string(8) "IS_CONST"
+          ["constant"]=>
+          &string(4) "Foo
+  "
+        }
+        ["lineno"]=>
+        int(2)
+      }
+      ["859484C"]=>
+      array(6) {
+        ["opcode"]=>
+        int(62)
+        ["opcode_name"]=>
+        string(11) "ZEND_RETURN"
+        ["flags"]=>
+        int(16777984)
+        ["op1"]=>
+        array(3) {
+          ["type"]=>
+          int(1)
+          ["type_name"]=>
+          string(8) "IS_CONST"
+          ["constant"]=>
+          &NULL
+        }
+        ["extended_value"]=>
+        int(0)
+        ["lineno"]=>
+        int(3)
+      }
+      [8594898]=>
+      array(4) {
+        ["opcode"]=>
+        int(149)
+        ["opcode_name"]=>
+        string(21) "ZEND_HANDLE_EXCEPTION"
+        ["flags"]=>
+        int(0)
+        ["lineno"]=>
+        int(3)
+      }
+    }
+  }
+
+
+
+|parsekit_compile_file|
+
+vim:ft=help:

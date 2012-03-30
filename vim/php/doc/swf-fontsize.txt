@@ -1,0 +1,12 @@
+swf_fontsize -- フォントの大きさを変更する
+
+  void swf_fontsize(float size)~
+
+フォントの大きさを、 パラメータ {size}
+で指定した値に変更します。
+
+{size} フォントの大きさを表す整数値。
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+odbc_field_type -- フィールドのデータ型を返す
+
+  string odbc_field_type(resource result_id, int field_number)~
+
+指定された ODBC 結果 ID
+において指定番号で参照されるフィールドの SQL
+型を取得します。
+
+{result_id} 結果 ID。
+
+{field_number} フィールド番号。フィールド番号は 1
+から始まります。
+
+フィールドの型を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

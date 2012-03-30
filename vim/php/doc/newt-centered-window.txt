@@ -1,0 +1,18 @@
+newt_centered_window --
+画面の中央に指定したサイズのウィンドウをオープンする
+
+  int newt_centered_window(int width, int height [, string title])~
+
+画面の中央に、指定したサイズのウィンドウをオープンします。
+
+{width} ウィンドウの幅。
+
+{height} ウィンドウの高さ。
+
+{title} ウィンドウのタイトル。
+
+未定義です。
+
+|newt_pop_window| |newt_open_window|
+
+vim:ft=help:

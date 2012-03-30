@@ -1,0 +1,86 @@
+maxdb->real_connect -- MaxDB サーバへの接続をオープンする
+
+手続き型
+
+  bool maxdb_real_connect(resource link [, string hostname [, string username [, string passwd [, string dbname [, int port [, string socket]]]]]])~
+
+オブジェクト指向型 (メソッド)
+
+  bool real_connect(resource link [, string hostname [, string username [, string passwd [, string dbname [, int port [, string socket [, string hostname [, string username [, string passwd [, string dbname [, int port [, string socket]]]]]]]]]]]])~
+
+|maxdb_real_connect| は、 {hostname} で稼動中の MaxDB
+データベースエンジンに対して、
+接続の確立を試みます。
+
+この関数は、|maxdb_connect| とは以下の点で違います。
+
+|maxdb_real_connect| には、 |maxdb_init|
+で作成した有効なリソースが必要です。
+
+|maxdb_options| 関数により、
+接続の際のさまざまなオプションを設定することが可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  /* 接続オブジェクトを作成しますが、まだ接続していません */
+  $maxdb = maxdb_init();
+  
+  /* 接続オプションを設定します */
+  $maxdb->options(MAXDB_UNICODE, "FALSE");
+  $maxdb->options(MAXDB_TIMEOUT, 5);
+  
+  /* サーバに接続します */
+  $maxdb->real_connect('localhost', 'MONA', 'RED', 'DEMODB');
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  printf ("接続: %s\n.", $maxdb->host_info);
+  
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  /* 接続オブジェクトを作成しますが、まだ接続していません */
+  $link = maxdb_init();
+  
+  /* 接続オプションを設定します */
+  maxdb_options($link, MAXDB_UNICODE, "FALSE");
+  maxdb_options($link, MAXDB_TIMEOUT, 5);
+  
+  /* サーバに接続します */
+  maxdb_real_connect($link, 'localhost', 'MONA', 'RED', 'DEMODB');
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  printf ("接続: %s\n.", maxdb_get_host_info($link));
+  
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  接続: localhost <...>
+
+|maxdb_connect| |maxdb_init| |maxdb_options| |maxdb_ssl_set| |maxdb_close|
+
+vim:ft=help:

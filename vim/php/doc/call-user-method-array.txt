@@ -1,0 +1,23 @@
+call_user_method_array --
+パラメータの配列を指定してユーザメソッドをコールする
+[古い関数]
+
+  mixed call_user_method_array(string method_name, object obj, array params)~
+
+PHP 4.1.0 以降、|call_user_method|
+関数は非推奨となっています。
+
+|call_user_method_array| の代替策
+
+<?php >
+  call_user_func_array(array($obj, $method_name), $params);
+  call_user_func_array(array(&amp;$obj, $method_name), $params); // PHP 4
+?>
+
+
+
+
+
+|call_user_func_array| |call_user_func|
+
+vim:ft=help:

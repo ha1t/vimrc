@@ -1,0 +1,34 @@
+geoip_database_info -- GeoIP データベースの情報を取得する
+
+  string geoip_database_info([int database])~
+
+|geoip_database_info| 関数は、 GeoIP
+データベースのバージョンを返します。
+このバージョンはバイナリファイルの内部で定義されています。
+
+この関数を引数なしでコールすると、GeoIP Free Country Edition
+のバージョンを返します。 ents, it returns the version of the GeoIP
+Free Country Edition.
+
+{database}
+データベースの型を整数値で指定します。この拡張モジュールで定義されている
+さまざまな定数 (例: GEOIP_*_EDITION)
+を使用することができます。
+
+対応するデータベースのバージョン、あるいはエラー時に
+NULL を返します。
+
+|geoip_region_by_name| の例
+これは、現在のデータベースのバージョンを文字列で返します。
+
+<?php >
+  print geoip_database_info(GEOIP_COUNTRY_EDITION);
+?>
+
+上の例の出力は以下となります。
+
+  GEO-106FREE 20060801 Build 1 Copyright (c) 2006 MaxMind LLC All Rights Reserved
+
+
+
+vim:ft=help:

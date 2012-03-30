@@ -1,0 +1,8 @@
+PDF_continue_text -- 次の行にテキストを出力する
+
+  bool PDF_continue_text(resource p, string text)~
+
+次の行に {text} を出力します。 成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

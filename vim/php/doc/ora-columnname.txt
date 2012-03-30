@@ -1,0 +1,21 @@
+ora_columnname -- Oracle 結果カラムの名前を取得する
+
+  string ora_columnname(resource cursor, int column)~
+
+カーソル {cursor} 上のカラムの名前を返します。
+
+{cursor} |ora_open| でオープンした Oracle カーソル。
+
+{column} カラム番号。最初は 0 です。
+
+名前を表す文字列を返します。この値はすべて大文字となります。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_field_name|
+
+vim:ft=help:

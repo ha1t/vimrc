@@ -1,0 +1,40 @@
+gmp_setbit -- ビットを設定する
+
+  void gmp_setbit(resource a, int index [, bool set_clear])~
+
+{a} のビット {index} を設定します。
+
+{a} ビットをセットしたい数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{index} 設定するビット。
+
+{set_clear} そのビットを 0 または 1
+のどちらにするかを定義します。デフォルトで、ビットは
+1 に設定されます。
+
+GMP 数リソースを返します。
+
+|gmp_setbit| の例
+
+<?php >
+  $a = gmp_init("0xfd");
+  gmp_setbit($a, 1); // インデックスは 0 から始まります
+  echo gmp_strval($a) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  255
+
+
+
+他の大半の GMP 関数とは異なり、|gmp_setbit| は必ず既存の
+GMP リソース (例えば |gmp_init| を使用して取得したもの)
+を使用してコールしなければなりません。
+リソースは自動的には作成されません。
+
+|gmp_clrbit| |gmp_testbit|
+
+vim:ft=help:

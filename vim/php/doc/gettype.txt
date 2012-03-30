@@ -1,0 +1,39 @@
+gettype -- 変数の型を取得する
+
+  string gettype(mixed var)~
+
+PHP 変数 {var} の型を返します。
+
+返された文字列は将来のバージョンで変更される可能性があるので、
+|gettype| を使用して型を調べることはしないでください。
+更に、この関数は文字列比較を行うため、処理が遅くなります。
+
+代わりに is_* 関数を使用してください。
+
+{var} 型を調べたい変数。
+
+返された文字列は、以下のいずれかの値を持ちます。
+"boolean"
+
+"integer"
+
+"double" (歴史的な理由により、float の場合には
+"double"が返されます。"float" とはなりません)
+
+"string"
+
+"array"
+
+"object"
+
+"resource"
+
+"NULL"
+
+"unknown type"
+
+|settype| |is_array| |is_bool| |is_float| |is_int| |is_null| |is_numeric|
+|is_object| |is_resource| |is_scalar| |is_string| |function_exists|
+|method_exists|
+
+vim:ft=help:

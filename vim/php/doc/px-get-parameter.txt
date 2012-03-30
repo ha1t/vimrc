@@ -1,0 +1,27 @@
+px_get_parameter -- パラメータを取得する
+
+  string px_get_parameter(resource pxdoc, string name)~
+
+さまざまなパラメータを取得します。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+{name} {name} は、以下のいずれかです。
+
+tablename データベースヘッダに格納されるテーブル名。
+
+targetencoding 出力用のエンコーディング。 |px_get_record|
+あるいは |px_retrieve_record|
+で文字フィールドから読み込まれたデータは、 targetencoding
+で記録されます。指定されていない場合は、
+データベースファイルに保存されている形式が使用されます。
+
+inputencoding
+入力データをデータベースに保存する際のエンコーディング。
+文字フィールドのデータをデータベースに保存する際には、
+データをこのエンコーディングに変換することになります。
+
+パラメータの値、あるいは失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

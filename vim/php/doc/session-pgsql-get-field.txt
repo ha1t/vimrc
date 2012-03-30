@@ -1,0 +1,11 @@
+session_pgsql_get_field -- カスタムフィールドの値を取得する
+
+  string session_pgsql_get_field()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+|session_pgsql_set_field|
+
+vim:ft=help:

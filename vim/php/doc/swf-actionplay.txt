@@ -1,0 +1,12 @@
+swf_actionplay -- 現在のフレームから flash
+ムービーの実行を開始する
+
+  void swf_actionplay()~
+
+現在のフレームから flash ムービーを開始します。
+
+値を返しません。
+
+|swf_actionstop|
+
+vim:ft=help:

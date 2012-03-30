@@ -1,0 +1,16 @@
+dba_firstkey -- 最初のキーを取得する
+
+  string dba_firstkey(resource handle)~
+
+|dba_firstkey| はデータベースの最初のキーを返し、
+内部キーポインタをリセットします。
+この関数によりデータベース全体を連続的にサーチすることが可能になります。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+成功した場合にキー、失敗した場合に FALSE を返します。
+
+|dba_nextkey| |dba_key_split| DBA の例の例 2
+
+vim:ft=help:

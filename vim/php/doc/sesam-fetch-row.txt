@@ -1,0 +1,97 @@
+sesam_fetch_row -- 1 件分のレコードを配列として取得する
+
+  array sesam_fetch_row(string result_id [, int whence [, int offset]])~
+
+指定した結果 ID が指す 結果から 1
+件分のレコードのデータを取得します。レコードは、( 0
+から $array["count"]-1 を 添字とした)
+配列として返されます。フィールドは空である可能性が
+あるため、PHP の |isset| 関数を使用して
+フィールドの存在を確認する必要があります。返されるフィールドの型は、
+そのカラムを宣言した SQL 型に依存します
+(適用される変換については、 SESAMの概要
+を参照ください)。 SESAM "複数フィールド" は
+"インライン化" されており、連続する
+カラムのように処理されます。
+
+結果集合のカラム数が連想配列の要素 $array["count"]
+で返されます。
+いくつかのカラムは空である可能性があるため、
+|sesam_fetch_row| により返された結果レコードに 対して |count|
+関数を使用することはできません。
+
+|sesam_fetch_row| を連けてコールした場合、 結果集合の次の
+(スクロール属性に応じて前または n 番目の前/後)
+レコードまたはレコードがもうない場合に FALSE
+を返します。
+
+{result_id} |sesam_query| が返す結果 ID。
+
+{whence} {whence} は "スクロール型" カーソルで
+取得処理を行うためのオプションパラメータで、次のような定義済みの
+定数を設定することが可能です。 {"whence"}
+パラメータで有効な値 値 定数 意味 0 SESAM_SEEK_NEXT
+連続的に読み込む (取得後、内部デフォルト値は
+SESAM_SEEK_NEXT に設定されます)。 1 SESAM_SEEK_PRIOR
+連続的に後向きに読み込む (取得後、内部デフォルト値は
+SESAM_SEEK_PRIOR に設定されます)。 2 SESAM_SEEK_FIRST
+最初のレコードに移動する (取得後、デフォルト値は
+SESAM_SEEK_NEXT に設定されます)。 3 SESAM_SEEK_LAST
+最後のレコードに移動する (取得後、デフォルト値は
+SESAM_SEEK_PRIOR に設定されます)。 4 SESAM_SEEK_ABSOLUTE {offset} (0
+が先頭。取得後、内部 デフォルト値は SESAM_SEEK_ABSOLUTE
+に設定されます。内部のオフセット値は、自動的に増加します)
+で指定した絶対レコード番号に移動します。 5
+SESAM_SEEK_RELATIVE
+カレントのスクロール位置に対して相対位置に移動します。ただし、
+{offset} は正または負の値を指定可能です。
+このパラメータは、"スクロール型"
+カーソルでのみ有効です。
+
+"スクロール型"
+カーソルを使用している場合、カーソルは結果集合を
+自由に移動可能です。{whence} パラメータが
+省略された場合、スクロールの型には、グローバルなデフォルト値
+(SESAM_SEEK_NEXT に初期化されており、 |sesam_seek_row|
+で設定可能です) が使用されます。 {whence}
+が指定された場合、その値は
+グローバルデフォルト値に置換されます。
+
+{offset} {whence} が SESAM_SEEK_RELATIVE または SESAM_SEEK_ABSOLUTE
+のどちらかである場合にのみ 評価されます
+(そして必要とされます)。このパラメータは、
+"スクロール型" カーソルでのみ有効です。
+
+取得したレコードを含む配列、
+またはもうレコードがない場合に FALSE を返します。
+
+SESAM レコードを取得
+
+<?php >
+  $result = sesam_query("SELECT * FROM phone\n" .
+                         "  WHERE LASTNAME='" . strtoupper($name) . "'\n" .
+                         "  ORDER BY FIRSTNAME", 1);
+  if (!$result) {
+      /* ... エラー ... */
+  }
+  // 逆順にテーブルを出力する
+  echo "<table border=\"1\">\n";
+  $row = sesam_fetch_row($result, SESAM_SEEK_LAST);
+  while (is_array($row)) {
+      echo "<tr>\n";
+      for ($col = 0; $col < $row["count"]; ++$col) {
+          echo "<td>" . htmlspecialchars($row[$col]) . "</td>\n";
+      }
+      echo "</tr>\n";
+      // 暗黙のうちに SESAM_SEEK_PRIOR が使用される
+      $row = sesam_fetch_row($result);
+  }
+  echo "</table>\n";
+  sesam_free_result($result);
+?>
+
+
+
+|sesam_fetch_array| |sesam_fetch_result|
+
+vim:ft=help:

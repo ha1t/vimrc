@@ -1,0 +1,16 @@
+fbsql_field_table --
+指定したフィールドがあるテーブルの名前を得る
+
+  string fbsql_field_table(resource result [, int field_offset])~
+
+指定したフィールドがあるテーブルの名前を返します。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+{field_offset}
+フィールドの数値オフセット。フィールドのインデックスは
+0 からはじまります。
+
+テーブル名を文字列で返します。
+
+vim:ft=help:

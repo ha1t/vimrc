@@ -1,0 +1,13 @@
+runkit_superglobals --
+登録されているスーパーグローバルを、数値添字の配列で返す
+
+  array runkit_superglobals()~
+
+登録されているスーパーグローバルを、数値添字の配列で返します。
+スーパーグローバルとは、例えば
+_GET、_POST、_REQUEST、_COOKIE、_SESSION、_SERVER、_ENV、_FILES
+などです。
+
+変数のスコープ
+
+vim:ft=help:

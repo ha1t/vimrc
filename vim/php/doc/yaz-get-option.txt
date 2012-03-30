@@ -1,0 +1,17 @@
+yaz_get_option -- 接続に関するオプションの値を返す
+
+  string yaz_get_option(resource id, string name)~
+
+{name} で指定したオプションの値を返します。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{name} オプションの名前。
+
+指定したオプションの値を返します。オプションが設定されていない場合は
+空文字列を返します。
+
+使用可能なオプションについては、|yaz_set_option|
+を参照ください。
+
+vim:ft=help:

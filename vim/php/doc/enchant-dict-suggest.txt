@@ -1,0 +1,39 @@
+enchant_dict_suggest -- 修正候補となる値の一覧を返す
+
+  array enchant_dict_suggest(resource dict, string word)~
+
+
+
+{dict} 辞書リソース。
+
+{word} 修正候補を調べる単語。
+
+単語のスペルが間違っている場合に、修正候補の配列を返します。
+
+|enchant_dict_suggest| の例
+
+<?php >
+  $tag = 'en_US';
+  $r = enchant_broker_init();
+  if (enchant_broker_dict_exists($r,$tag)) {
+      $d = enchant_broker_request_dict($r, $tag);
+  
+      $spellerrors = enchant_dict_check($d, "soong");
+      echo "found $spellerrors spell errors\n";
+      if ($spellerrors) {
+          $suggs = enchant_dict_suggest($d, "soong");
+          echo "'soong' の修正候補:";
+          print_r($suggs);
+      }
+      enchant_broker_free_dict($d);
+  }
+  enchant_broker_free($r);
+?>
+
+
+
+
+
+|enchant_dict_check| |enchant_dict_quick_check|
+
+vim:ft=help:

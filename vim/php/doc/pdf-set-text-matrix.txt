@@ -1,0 +1,8 @@
+PDF_set_text_matrix -- テキストの行列を設定する [古い関数]
+
+PDFlib バージョン 3
+以降、この関数は非推奨です。かわりに
+|PDF_scale|、|PDF_translate|、 |PDF_rotate| あるいは |PDF_skew|
+を使用してください。
+
+vim:ft=help:

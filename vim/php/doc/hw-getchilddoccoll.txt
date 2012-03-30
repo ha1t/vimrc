@@ -1,0 +1,17 @@
+hw_GetChildDocColl --
+コレクションの子ドキュメントのオブジェクト ID
+
+  array hw_getchilddoccoll(int connection, int objectID)~
+
+コレクションの子ドキュメントに関するオブジェクト ID
+の配列を返します。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+オブジェクト ID の配列を返します。
+
+|hw_children| |hw_getchildcoll|
+
+vim:ft=help:

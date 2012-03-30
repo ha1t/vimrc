@@ -1,0 +1,21 @@
+XMLWriter::endPI -- 現在の PI (処理命令) を終了する
+
+オブジェクト指向型
+
+  bool endPI()~
+
+手続き型
+
+  bool xmlwriter_end_pi(resource xmlwriter)~
+
+現在の処理命令を終了します。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,40 @@
+DomDocument->html_dump_mem -- HTML として文字列に内部 XML
+ツリーをダンプする
+
+  string DomDocument->html_dump_mem()~
+
+DOM 表現から HTML
+文章を生成します。この関数は以下の例のように、
+通常スクラッチから新規 DOM
+文章を生成した後にコールされます。
+
+簡単な HTML 文章のヘッダを生成する
+
+<?php >
+  // 文章を生成する
+  $doc = domxml_new_doc("1.0");
+  
+  $root = $doc->create_element("html");
+  $root = $doc->append_child($root);
+  
+  $head = $doc->create_element("head");
+  $head = $root->append_child($head);
+  
+  $title = $doc->create_element("title");
+  $title = $head->append_child($title);
+  
+  $text = $doc->create_text_node("This is the title");
+  $text = $title->append_child($text);
+  
+  echo $doc->html_dump_mem();
+?>
+
+上の例の出力は以下となります。
+
+  <html><head><title>This is the title</title></head></html>
+
+
+
+|domdocument_dump_file|, |domdocument_html_dump_mem| も参照ください。
+
+vim:ft=help:

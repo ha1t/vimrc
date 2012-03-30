@@ -1,0 +1,16 @@
+ibase_blob_create -- データを追加するために blob を生成する
+
+  resource ibase_blob_create([resource link_identifier])~
+
+|ibase_blob_create| は、 データを書き込むための新しい BLOB
+を生成します。
+
+{link_identifier} InterBase リンク ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+|ibase_blob_add| で使用するための BLOB
+ハンドルを返します。失敗した場合は FALSE を返します。
+
+|ibase_blob_add| |ibase_blob_cancel| |ibase_blob_close| |ibase_blob_import|
+
+vim:ft=help:

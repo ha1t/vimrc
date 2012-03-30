@@ -1,0 +1,11 @@
+simplexml_load_file --
+XMLファイルをパースし、オブジェクトに代入する
+
+  object simplexml_load_file(string filename [, string class_name [, int options [, string ns [, bool is_prefix]]]])~
+
+指定したファイルの中の整形式 XML
+ドキュメントをオブジェクトに変換します。
+
+{filename} XML ファイルへのパス。
+
+vim:ft=help:

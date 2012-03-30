@@ -1,0 +1,39 @@
+mqseries_put1 -- MQSeries MQPUT1
+
+   mqseries_put1(resource hconn, resourceref objDesc, resourceref msgDesc, resourceref pmo, string buffer, resourceref compCode, resourceref reason)~
+
+|mqseries_put1| (MQPUT1)
+は、ひとつのメッセージをキューに置きます。
+キューがオープンされている必要はありません。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{objDesc} オブジェクト記述子 (MQOD)。
+
+これは、メッセージを追加したいキューを表す構造体です。
+
+{msgDesc} メッセージ記述子 (MQMD)。
+
+{pmo} Put メッセージのオプション (MQPMO)。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_put1| の例
+
+<?php >
+  TODO:
+?>
+
+
+
+
+
+|mqseries_conn| |mqseries_connx| |mqseries_open| |mqseries_get|
+
+vim:ft=help:

@@ -1,0 +1,54 @@
+ircg_list -- チャンネル内のトピック/ユーザの数を取得する
+
+  bool ircg_list(resource connection, string channel)~
+
+|ircg_list| は、{channel}
+の中のユーザ数を要求します。結果は、 |ircg_set_file|
+あるいは |ircg_set_current| で定義した出力に返されます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{channel} #name 形式のチャンネル名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ircg_list| の例
+
+<?php >
+  // サーバに接続します
+  $id = ircg_pconnect($nickname, $ip, $port);
+  
+  // 出力をファイルに設定します
+  ircg_set_file($id, 'irc_output.html');
+  
+  // チャンネルに参加します
+  if (!ircg_join($id, $channel)) {
+      echo "Cannot /join $channel<br />";
+  }
+  
+  // list コマンドを送信します
+  ircg_list($id, $channel);
+  
+  // 出力が返されるのを待ちます
+  sleep(5);
+  
+  // 切断します
+  ircg_disconnect($id,'Bye World');
+  
+  // すべてを出力します
+  readfile('irc_output.html');
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  ...
+  Channel #channel has n users and the topic is 'Topic'
+  End of LIST
+  ...
+
+
+
+|ircg_set_file| |ircg_set_current| |ircg_who|
+
+vim:ft=help:

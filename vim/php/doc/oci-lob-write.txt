@@ -1,0 +1,17 @@
+OCI-Lob->write -- データをラージオブジェクトに書き込む
+
+  int write(string data [, int length])~
+
+パラメータ {data} からのデータを LOB
+の内部ポインタの現在位置に書き込みます。
+
+{data} LOB に書き込むデータ。
+
+{length} このパラメータを指定すると、 {length}
+バイト書き込むか {data} の終端に達するか、
+いずれか早い方の後に書き込みが停止します。
+
+書き込んだバイト数、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

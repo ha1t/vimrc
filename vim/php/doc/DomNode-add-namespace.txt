@@ -1,0 +1,22 @@
+DomNode->add_namespace -- ノードに名前空間宣言を追加する
+
+  bool add_namespace(string uri, string prefix)~
+
+このメソッドはノードに名前空間宣言を追加します。
+
+このメソッドは DOM 規格の一部ではありません。
+
+{uri} ノードの名前空間 URI
+
+{prefix} ノードの名前空間の接頭辞
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+DOMElement の名前空間 URI と接頭辞を設定する、
+もしくは生成時に か を使用して DOMAttr
+を設定してください。
+
+属性は追加される要素からの名前空間を継承しないことを覚えておいてください。
+
+vim:ft=help:

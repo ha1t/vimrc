@@ -1,0 +1,18 @@
+finfo_set_flags -- libmagic のオプションを設定する
+
+  bool finfo_set_flags(resource finfo, int options)~
+
+  bool set_flags(resource finfo, int options, int options)~
+
+この関数は、さまざまな Fileinfo
+オプションを設定します。 |finfo_open| やその他の Fileinfo
+関数で、 オプションを直接指定することも可能です。
+
+{finfo} |finfo_open| が返す fileinfo リソース。
+
+{options} ひとつあるいは複数のFileinfo 定数の組み合わせ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

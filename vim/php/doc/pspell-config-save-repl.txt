@@ -1,0 +1,28 @@
+pspell_config_save_repl --
+単語リストと共に置換リストを保存するかどうかを定義する
+
+  bool pspell_config_save_repl(int dictionary_link, bool flag)~
+
+|pspell_config_save_repl| は、 |pspell_save_wordlist|
+が単語リストと共に置換リストを保存するかどうかを定義します。
+通常はこの関数を使用する必要はありません。なぜなら、
+|pspell_config_repl| を使用した場合は置換の組は
+|pspell_save_wordlist| により保存され、
+そうでない場合には置換の組は保存されないためです。
+
+|pspell_config_save_repl| は、 |pspell_new_config|
+のコール前に設定を行う際に使用します。
+
+{dictionary_link}
+
+{flag} 置換リストを保存する場合に TRUE、それ以外の場合に
+FALSE。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、pspell .11.2およびaspell .32.5
+以降を有していない場合には
+動作しないことに注意してください。
+
+vim:ft=help:

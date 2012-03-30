@@ -1,0 +1,27 @@
+sqlite_close -- オープンされたSQLiteデータベースを閉じる
+
+  void sqlite_close(resource dbhandle)~
+
+指定したデータベースハンドル {database} を閉じます。
+このデータベースに持続性がある場合、このデータベースは閉じられ、
+持続的データベースリストから削除されます。
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。
+
+値を返しません。
+
+|sqlite_close| の例
+
+<?php >
+  $dbhandle = sqlite_open('sqlitedb');
+  sqlite_close($dbhandle);
+?>
+
+
+
+
+
+|sqlite_open| |sqlite_popen|
+
+vim:ft=help:

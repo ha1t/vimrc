@@ -1,0 +1,25 @@
+oci_field_type_raw -- Oracle
+におけるフィールドの型を問い合わせる
+
+  int oci_field_type_raw(resource statement, int field)~
+
+フィールド {field} の、Oracle における型を返します。
+
+しかしながら、フィールドの方を取得したい場合、
+|oci_field_type| の方が良いでしょう。
+
+{statement} 有効な OCI ステートメント ID。
+
+{field} フィールド番号 (1 から始まる)
+あるいは名前のいずれか。
+
+Oracle のデータ型を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+PHP バージョン 5.0.0 以前では、代わりに |ocicolumntyperaw|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_field_type_raw| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

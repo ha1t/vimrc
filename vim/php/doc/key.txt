@@ -1,0 +1,42 @@
+key -- 配列からキーを取り出す
+
+  mixed key(array array)~
+
+|key| は、
+現在の配列位置における連想配列要素のキーを返します。
+
+{array} 配列。
+
+インデックスを返します。
+
+|key| の例
+
+<?php >
+  $array = array(
+      'fruit1' => 'リンゴ',
+      'fruit2' => 'オレンジ',
+      'fruit3' => 'ブドウ',
+      'fruit4' => 'リンゴ',
+      'fruit5' => 'リンゴ');
+  
+  // このループは値が "リンゴ" である
+  // 全ての連想配列のキーを表示します
+  while ($fruit_name = current($array)) {
+      if ($fruit_name == 'リンゴ') {
+          echo key($array).'<br />';
+      }
+      next($array);
+  }
+?>
+
+上の例の出力は以下となります。
+
+  fruit1<br />
+  fruit4<br />
+  fruit5<br />
+
+
+
+|current| |next|
+
+vim:ft=help:

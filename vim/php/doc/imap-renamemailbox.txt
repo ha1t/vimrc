@@ -1,0 +1,22 @@
+imap_renamemailbox -- メールボックスの名前を変更する
+
+  bool imap_renamemailbox(resource imap_stream, string old_mbox, string new_mbox)~
+
+この関数は、古いメールボックスを新しいメールボックスにリネーム
+します（{mbox} 名のフォーマットについては |imap_open|
+を参照ください）。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{old_mbox} 古いメールボックス名。詳細は |imap_open|
+を参照ください。
+
+{new_mbox} 新しいメールボックス名。詳細は |imap_open|
+を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_createmailbox| |imap_deletemailbox|
+
+vim:ft=help:

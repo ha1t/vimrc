@@ -1,0 +1,63 @@
+sscanf -- フォーマット文字列に基づき入力を処理する
+
+  mixed sscanf(string str, string format [, mixed ...])~
+
+関数 |sscanf| は、|printf| の入力版です。|sscanf| は、文字列
+{str} を読み込み、これを指定したフォーマット {format}
+に基づき解釈します。
+このフォーマットは、|sprintf|のマニュアルに記述されています。
+
+フォーマット文字列の中のあらゆる空白文字は、入力文字列の中の
+空白文字列にマッチします。つまり、フォーマット文字列の中にタブ文字
+\t
+が含まれていても、それは入力中の半角スペースにマッチしてしまうということです。
+
+{str} 入力文字列。
+
+{format} {str} を解釈するフォーマット。 |sprintf|
+のドキュメントを参照ください。
+
+{...} オプションで指定する参照渡しの変数に、
+パースされた値が格納されます。
+
+この関数のパラメータが二つだけの場合、処理された値は配列として返されます。
+それ以外の場合は、もしオプションのパラメータが渡されればこの関数は
+割り当てられた値の数を返します。オプションのパラメータは
+参照渡しにする必要があります。
+
+|sscanf| の例
+
+<?php >
+  // シリアル番号を得る
+  list($serial) = sscanf("SN/2350001", "SN/%d");
+  // 続いて製造日を得る
+  $mandate = "January 01 2000";
+  list($month, $day, $year) = sscanf($mandate, "%s %d %d");
+  echo "Item $serial was manufactured on: $year-" . substr($month, 0, 3) . "-$day\n";
+?>
+
+
+
+
+
+オプションのパラメータが指定された場合、この関数は、代入された値の数を返します。
+
+|sscanf| - オプションパラメータの使用法
+
+<?php >
+  // author 情報を取得し、DocBook エントリを生成
+  $auth = "24\tLewis Carroll";
+  $n = sscanf($auth, "%d\t%s %s", $id, $first, $last);
+  echo "<author id='$id'>
+      <firstname>$first</firstname>
+      <surname>$last</surname>
+  </author>\n";
+?>
+
+
+
+
+
+|fscanf| |printf| |sprintf|
+
+vim:ft=help:

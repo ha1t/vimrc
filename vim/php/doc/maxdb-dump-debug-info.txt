@@ -1,0 +1,9 @@
+maxdb_dump_debug_info -- デバッグ情報をログに出力する
+
+  bool maxdb_dump_debug_info(resource link)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

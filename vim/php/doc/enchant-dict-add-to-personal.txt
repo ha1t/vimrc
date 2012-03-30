@@ -1,0 +1,17 @@
+enchant_dict_add_to_personal --
+パーソナル単語リストに単語を追加する
+
+  void enchant_dict_add_to_personal(resource dict, string word)~
+
+指定した辞書のパーソナル単語リストに、単語を追加します。
+
+{dict} 辞書リソース。
+
+{word} 追加する単語。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|enchant_broker_request_pwl_dict| |enchant_broker_request_dict|
+
+vim:ft=help:

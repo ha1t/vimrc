@@ -1,0 +1,23 @@
+hw_api->find -- オブジェクトを検索する
+
+  array find(array parameter)~
+
+この関数は、キーやフルテキストクエリを使用してオブジェクトを検索します。
+見つかったオブジェクトは、オプションのオブジェクトクエリによって
+さらに絞り込むことができます。また、その重要性の順に並べ替えられます。
+2
+回目の検索は相対的に遅くなり、その結果はある程度絞り込まれます。
+これによりインクリメンタルな検索ができ、前の検索の結果をもとに
+検索を進めていくことが可能となります。
+
+{parameter} パラメータの配列には、
+検索したい方法に応じて 'keyquery' や 'fulltextquery'
+が含まれます。オプションのパラメータは
+'objectquery'、'scope'、'languages' および 'attributeselector'
+です。インクリメンタルな検索の場合、オプションのパラメータ
+'startIndex'、'numberOfObjectsToGet' および 'exactMatchUnit'
+が渡されます。
+
+
+
+vim:ft=help:

@@ -1,0 +1,37 @@
+ctype_graph -- 空白以外の印字可能な文字かどうかを調べる
+
+  bool ctype_graph(string text)~
+
+与えられた文字列 {text} のすべての文字が
+実際に目に見える出力を行うかどうかを調べます。
+
+{text} 調べる文字列。
+
+{text} のすべての文字が印字可能で実際に目に見える
+出力を行う（空白でない）場合に TRUE 、そうでない場合に
+FALSE を返します。
+
+|ctype_graph| の例
+
+<?php >
+  $strings = array('string1' => "asdf\n\r\t", 'string2' => 'arf12', 'string3' => 'LKA#@%.54');
+  foreach ($strings as $name => $testcase) {
+      if (ctype_graph($testcase)) {
+          echo "The string '$name' consists of all (visibly) printable characters.\n";
+      } else {
+          echo "The string '$name' does not consist of all (visibly) printable characters.\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  The string 'string1' does not consist of all (visibly) printable characters.
+  The string 'string2' consists of all (visibly) printable characters.
+  The string 'string3' consists of all (visibly) printable characters.
+
+
+
+|ctype_alnum| |ctype_print| |ctype_punct|
+
+vim:ft=help:

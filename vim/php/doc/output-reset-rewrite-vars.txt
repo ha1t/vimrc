@@ -1,0 +1,35 @@
+output_reset_rewrite_vars -- URL リライタの値をリセットする
+
+  bool output_reset_rewrite_vars()~
+
+この関数は URL リライタをリセットし、 |output_add_rewrite_var|
+関数や セッション管理機構 (session.use_trans_sid が
+|session_start| に設定されている場合)
+によって事前に設定されたリライト変数を削除します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|output_reset_rewrite_vars| の例
+
+<?php >
+  session_start();
+  output_add_rewrite_var('var', 'value');
+  
+  echo '<a href="file.php">link</a>';
+  ob_flush();
+  
+  output_reset_rewrite_vars();
+  echo '<a href="file.php">link</a>';
+?>
+
+上の例の出力は以下となります。
+
+  <a href="file.php?PHPSESSID=xxx&var=value">link</a>
+  <a href="file.php">link</a>
+
+
+
+|output_add_rewrite_var| |ob_flush| |ob_list_handlers| |session_start|
+
+vim:ft=help:

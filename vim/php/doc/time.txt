@@ -1,0 +1,32 @@
+time -- 現在の Unix タイムスタンプを返す
+
+  int time()~
+
+現在時刻を Unix エポック (1970 年 1 月 1 日 00:00:00 GMT)
+からの通算秒として返します。
+
+|time| の例
+
+<?php >
+  $nextWeek = time() + (7 * 24 * 60 * 60);
+                     // 7 日 * 24 時間 * 60 分 * 60 秒
+  echo 'Now:       '. date('Y-m-d') ."\n";
+  echo 'Next Week: '. date('Y-m-d', $nextWeek) ."\n";
+  // あるいは strtotime() を使用します
+  echo 'Next Week: '. date('Y-m-d', strtotime('+1 week')) ."\n";
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Now:       2005-03-30
+  Next Week: 2005-04-06
+  Next Week: 2005-04-06
+
+
+
+PHP 5.1 以降、$_SERVER['REQUEST_TIME']
+によってリクエスト開始時のタイムスタンプが取得できるようになりました。
+
+|date| |microtime|
+
+vim:ft=help:

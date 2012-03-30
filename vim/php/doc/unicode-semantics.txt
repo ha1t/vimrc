@@ -1,0 +1,17 @@
+unicode_semantics -- unicode 機能が使用可能かどうかを調べる
+
+  bool unicode_semantics()~
+
+|unicode_semantics| は、 unicode
+機能が使用可能かどうかを調べます。
+
+TRUE あるいは FALSE を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|unicode_encode| |unicode_decode|
+
+vim:ft=help:

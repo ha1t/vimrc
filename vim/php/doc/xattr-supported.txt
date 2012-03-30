@@ -1,0 +1,36 @@
+xattr_supported --
+ファイルシステムが拡張属性をサポートしているかどうかを調べる
+
+  bool xattr_supported(string filename [, int flags])~
+
+この関数は、指定したファイルを保持するファイルシステムが
+拡張属性をサポートしているかどうかを調べます。ファイルに対する
+読み込みアクセス権限を必要とします。
+
+{filename} 調べるファイルのパス。
+
+{flags} サポートされる xattr のフラグ XATTR_DONTFOLLOW
+シンボリックリンクのリンク先をたどらず、リンクそのものを操作します。
+
+この関数は、ファイルシステムが拡張属性をサポートしている場合に
+TRUE、 していない場合に FALSE、そして判断できない場合
+(たとえばパスが
+間違っていたりファイルへのアクセス権限がない場合)
+には NULL を返します。
+
+|xattr_supported| の例
+以下のコードは、拡張属性が使用可能かどうかを調べます。
+
+<?php >
+  $file = 'some_file';
+  
+  if (xattr_supported($file)) {
+      /* ... xattr_* 関数が使用できます ... */
+  }
+?>
+
+
+
+|xattr_get| |xattr_list|
+
+vim:ft=help:

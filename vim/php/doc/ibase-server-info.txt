@@ -1,0 +1,10 @@
+ibase_server_info --
+データベースサーバについての情報を要求する
+
+  string ibase_server_info(resource service_handle, int action)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

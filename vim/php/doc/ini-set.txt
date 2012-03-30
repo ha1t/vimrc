@@ -1,0 +1,23 @@
+ini_set -- 設定オプションの値を設定する
+
+  string ini_set(string varname, string newvalue)~
+
+指定した設定オプションの値を設定します。
+設定オプションは、スクリプトの実行中は新しい値を保持し、
+スクリプト終了時に元の値へ戻されます。
+
+{varname}
+
+全てのオプションが |ini_set| を使用して変更することが
+可能なわけではありません。有効なオプションの完全な一覧は
+付録 を参照ください。
+
+{newvalue} オプションの新しい値。
+
+成功した場合に元の値、失敗した場合に FALSE
+を返します。
+
+|get_cfg_var| |ini_get| |ini_get_all| |ini_restore|
+設定を変更するには
+
+vim:ft=help:

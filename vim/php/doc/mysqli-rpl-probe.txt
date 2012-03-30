@@ -1,0 +1,11 @@
+mysqli_rpl_probe -- RPL の調査
+
+  bool mysqli_rpl_probe(mysqli link)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+この関数は 非推奨 であり、PHP 5.3.0 で 削除 されます。
+
+vim:ft=help:

@@ -1,0 +1,31 @@
+gzeof -- gz ファイルポインタがファイル終端かどうか調べる
+
+  int gzeof(resource zp)~
+
+与えられた GZ ファイルポインタが EOF (ファイル終端)
+を指すかどうかを調べます。
+
+{zp}
+gzファイルポインタは、有効なファイルポインタであり、かつ、
+|gzopen|によりオープンできたファイルを指している
+必要があります。
+
+gz ファイルポインタが EOF
+を指す、もしくはエラーが発生した場合 TRUE、
+そうでなければ FALSE を返します。
+
+|gzeof| の例
+
+<?php >
+  $gz = gzopen('somefile.gz', 'r');
+  while (!gzeof($gz)) {
+    echo gzgetc($gz);
+  }
+  gzclose($gz);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,90 @@
+maxdb->thread_id -- 現在の接続のスレッド ID を返す
+
+手続き型
+
+  int maxdb_thread_id(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_thread_id| 関数は、現在の接続のスレッド ID
+を返します。|maxdb_kill| 関数を使用することで、
+この接続を殺すことが可能です。接続を見失ったあとで
+|maxdb_ping| を使用して再接続した場合には、 スレッド ID
+は別の値になります。そのため、スレッド ID
+は、必要になった時点でのみ取得すべきです。
+
+スレッド ID
+は、接続ごとに割り当てられます。したがって、
+接続が壊れてしまい改めて確立しなおした場合には、スレッド
+ID は別の値が割り当てられます。
+
+|maxdb_thread_id| は、 現在の接続のスレッド ID を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* スレッド ID を調べます */
+  $thread_id = $maxdb->thread_id;
+  
+  /* 接続を殺します */
+  $maxdb->kill($thread_id);
+  
+  /* これは、エラーとなります */
+  if (!$maxdb->query("CREATE TABLE mycity LIKE hotel.city")) {
+     printf("エラー: %s\n", $maxdb->error);
+     exit;
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* スレッド ID を調べます */
+  $thread_id = maxdb_thread_id($link);
+  
+  /* 接続を殺します */
+  maxdb_kill($link, $thread_id);
+  
+  /* これは、エラーとなります */
+  if (!maxdb_query($link, "CREATE TABLE mycity LIKE hotel.city")) {
+     printf("エラー: %s\n", maxdb_error($link));
+     exit;
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Warning: maxdb_query(): -10821 Session not connected <...>
+  エラー: Session not connected
+
+|maxdb_kill|
+
+vim:ft=help:

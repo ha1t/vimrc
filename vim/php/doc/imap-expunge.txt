@@ -1,0 +1,13 @@
+imap_expunge --
+削除用にマークされたすべてのメッセージを削除する
+
+  bool imap_expunge(resource imap_stream)~
+
+|imap_delete|、|imap_mail_move|、 あるいは |imap_setflag_full|
+で削除用マークを設定されたすべてのメッセージを削除します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+TRUE を返します。
+
+vim:ft=help:

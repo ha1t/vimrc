@@ -1,0 +1,21 @@
+dba_replace -- エントリを置換または挿入する
+
+  bool dba_replace(string key, string value, resource handle)~
+
+|dba_replace| は、{handle} で 指定したデータベースに {key}
+および {value} で記述されるエントリを
+置換または挿入します。
+
+{key} 置換するエントリのキー。
+
+{value} 置換される値。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dba_exists| |dba_delete| |dba_fetch| |dba_insert|
+
+vim:ft=help:

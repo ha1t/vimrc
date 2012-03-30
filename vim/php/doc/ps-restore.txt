@@ -1,0 +1,18 @@
+ps_restore -- 以前に保存されたコンテキストを復元する
+
+  bool ps_restore(resource psdoc)~
+
+以前に保存されている描画コンテキストを復元します。
+すべての |ps_save| 呼び出しには、対応する |ps_restore|
+の呼び出しが必要です。
+座標系変換、線の設定、色の設定などは、すべて |ps_save|
+のコール前の状態に戻ります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_save|
+
+vim:ft=help:

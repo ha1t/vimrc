@@ -1,0 +1,27 @@
+readlink -- シンボリックリンク先を返す
+
+  string readlink(string path)~
+
+|readlink| は同名の C 関数と同じ動作をします。
+
+{path} シンボリックリンクのパス。
+
+シンボリックリンク・パスの内容を返します。エラーの場合は
+FALSE を返します。
+
+|readlink| の例
+
+<?php >
+  // 出力例 /boot/vmlinux-2.4.20-xfs
+  echo readlink('/vmlinuz');
+?>
+
+
+
+
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|is_link| |symlink| |linkinfo|
+
+vim:ft=help:

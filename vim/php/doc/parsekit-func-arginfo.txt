@@ -1,0 +1,69 @@
+parsekit_func_arginfo -- 関数の引数に関する情報を返す
+
+  array parsekit_func_arginfo(mixed function)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{function}
+関数を表す文字列、あるいはクラス/メソッドを表す配列。
+
+引数の情報を含む配列を返します。
+
+|parsekit_func_arginfo| の例
+
+<?php >
+  function foo($bar, stdClass $baz, &amp;$bomb, $bling = false) {
+  }
+  
+  var_dump(parsekit_func_arginfo('foo'));
+?>
+
+上の例の出力は以下となります。
+
+  array(4) {
+    [0]=>
+    array(3) {
+      ["name"]=>
+      string(3) "bar"
+      ["allow_null"]=>
+      bool(true)
+      ["pass_by_reference"]=>
+      bool(false)
+    }
+    [1]=>
+    array(4) {
+      ["name"]=>
+      string(3) "baz"
+      ["class_name"]=>
+      string(8) "stdClass"
+      ["allow_null"]=>
+      bool(false)
+      ["pass_by_reference"]=>
+      bool(false)
+    }
+    [2]=>
+    array(3) {
+      ["name"]=>
+      string(4) "bomb"
+      ["allow_null"]=>
+      bool(true)
+      ["pass_by_reference"]=>
+      bool(true)
+    }
+    [3]=>
+    array(3) {
+      ["name"]=>
+      string(5) "bling"
+      ["allow_null"]=>
+      bool(true)
+      ["pass_by_reference"]=>
+      bool(false)
+    }
+  }
+
+
+
+vim:ft=help:

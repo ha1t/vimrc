@@ -1,0 +1,68 @@
+array_diff_ukey --
+キーを基準にし、コールバック関数を用いて配列の差を計算する
+
+  array array_diff_ukey(array array1, array array2 [, array ..., callback key_compare_func])~
+
+{array1} のキーを {array2}
+のキーと比較し、その差を返します。 この関数は
+|array_diff| に似ていますが、
+値ではなくキーを用いて比較するという点が異なります。
+
+|array_diff_key| とは異なり、
+内部関数ではなくユーザが指定したコールバック関数を用いて添字を比較します。
+
+{array1} 比較元の配列。
+
+{array2} 比較する対象となる配列。
+
+{...} さらに比較する対象となる配列。
+
+{key_compare_func} 使用するコールバック関数。 この関数は、1
+つめの引数が 2 つめより小さい / 等しい / 大きい
+場合にそれぞれ 負の数 / ゼロ / 正の数
+を返す必要があります。
+
+{array1} の要素のうち、
+その他の配列のいずれにも含まれないものだけを残した配列を返します。
+
+|array_diff_ukey| の例
+
+<?php >
+  function key_compare_func($key1, $key2)
+  {
+      if ($key1 == $key2)
+          return 0;
+      else if ($key1 > $key2)
+          return 1;
+      else
+          return -1;
+  }
+  
+  $array1 = array('blue'  => 1, 'red'  => 2, 'green'  => 3, 'purple' => 4);
+  $array2 = array('green' => 5, 'blue' => 6, 'yellow' => 7, 'cyan'   => 8);
+  
+  var_dump(array_diff_ukey($array1, $array2, 'key_compare_func'));
+?>
+
+上の例の出力は以下となります。
+
+  array(2) {
+    ["red"]=>
+    int(2)
+    ["purple"]=>
+    int(4)
+  }
+
+
+
+この関数は n
+次元配列の一つの次元しかチェックしません。
+もちろん、array_diff_ukey($array1[0], $array2[0], 'callback_func');
+のようにすることでより深い次元でのチェックもできます。
+
+|array_diff| |array_udiff| |array_diff_assoc| |array_diff_uassoc|
+|array_udiff_assoc| |array_udiff_uassoc| |array_diff_key| |array_intersect|
+|array_intersect_assoc| |array_intersect_uassoc| |array_intersect_key|
+|array_intersect_ukey|
+
+vim:ft=help:

@@ -1,0 +1,24 @@
+SQLiteResult->prev --
+結果セットの前のレコード番号へシークする
+
+  bool sqlite_prev(resource result)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  bool prev(resource result)~
+
+|sqlite_prev| は、結果ハンドル {result}
+を前のレコードに戻します。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+この関数は、
+バッファなしの結果ハンドルで使用することはできません。
+
+成功時は TRUE、もしレコードがない場合は FALSE
+を返します。
+
+|sqlite_has_prev| |sqlite_rewind| |sqlite_next|
+
+vim:ft=help:

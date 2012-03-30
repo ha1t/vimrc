@@ -1,0 +1,27 @@
+zip_entry_open --
+読込み用にディレクトリエントリをオープンする
+
+  bool zip_entry_open(resource zip, resource zip_entry [, string mode])~
+
+読込み用にzipファイルの中にディレクトリエントリをオープンします。
+
+{zip} |zip_open|により返された有効なリソースハンドル
+
+{zip_entry} |zip_read|により返されたディレクトリエントリ
+
+{mode} |fopen|のマニュアルで指定されたモードのどれか
+
+現在、{mode}は無視され、 常に"rb"となります。
+これは、PHPのzipサポートが読み込みのみのアクセスであるためです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fopen|や他の同種の関数と異なり、
+|zip_entry_open|の戻り値は、
+処理の結果のみを示し、ディレクトリエントリの読み込みやクローズの際には
+必要とされません。
+
+|zip_entry_close| |zip_entry_read|
+
+vim:ft=help:

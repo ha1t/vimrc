@@ -1,0 +1,67 @@
+swf_lookat -- 視点変換を定義する
+
+  void swf_lookat(float view_x, float view_y, float view_z, float reference_x, float reference_y, float reference_z, float twist)~
+
+視点の位置およびシーンの基準点の座標を定義することにより、
+視点変換を定義します。
+
+{view_x} 視点位置の x 座標。
+
+{view_y} 視点位置の y 座標。
+
+{view_z} 視点位置の z 座標。
+
+{reference_x} 基準点の x 座標。
+
+{reference_y} 基準点の y 座標。
+
+{reference_z} 基準点の z 座標。
+
+{twist} 視点の z 軸に関する回転を制御します。
+
+値を返しません。
+
+シンプルな、テキストのまわりの三次元回転
+
+<?php >
+  header('Content-type: application/x-shockwave-flash');
+  
+  swf_openfile("php://stdout", 320, 200, 25, 1, 1, 1);
+  
+  swf_ortho(-100, 100, -100, 100, -100, 100); // 三次元の座標系を作成します
+  
+  swf_definefont(0, "Pix3");
+  swf_addcolor(0, 0, 0, 1);
+  swf_fontsize(10);
+  swf_fonttracking(0.2);
+  
+  for ($i = 0; $i < 628; $i += 8) {
+      $j = $i / 100;
+      swf_pushmatrix();
+      swf_translate(0, 0, 0);
+      swf_perspective(100, 1, 0, 10);
+      swf_lookat(sin($j) * 60, 50, cos($j) * 60, 0, 0, 0, 0);
+  
+      swf_definetext (1, 'HotKey@', 0);
+      swf_translate(-50,0,0);
+  
+      swf_placeobject(1,10);
+  
+      swf_definetext(2, 'example.com', 0);
+      swf_translate(55, 0, 0);
+      swf_placeobject(2, 11);
+  
+      swf_showframe();
+      swf_removeobject(10);
+      swf_removeobject(11);
+      swf_popmatrix();
+  }
+  
+  swf_closefile();
+?>
+
+
+
+
+
+vim:ft=help:

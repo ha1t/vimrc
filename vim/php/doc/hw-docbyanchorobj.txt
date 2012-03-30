@@ -1,0 +1,14 @@
+hw_DocByAnchorObj -- アンカーが指すオブジェクトレコード
+
+  string hw_docbyanchorobj(int connection, int anchorID)~
+
+{anchorID} が指す
+ドキュメントのオブジェクトレコードを返します。
+
+{connection} 接続 ID。
+
+{anchorID} アンカー ID。
+
+オブジェクトレコードを返します。
+
+vim:ft=help:

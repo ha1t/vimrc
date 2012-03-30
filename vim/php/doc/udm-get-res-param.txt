@@ -1,0 +1,32 @@
+udm_get_res_param -- mnoGoSearch 結果パラメータを取得する
+
+  string udm_get_res_param(resource res, int param)~
+
+mnoGoSearch 結果パラメータを取得します。
+
+{res} {res} - |udm_find| から返された結果 ID へのリンク。
+
+{param} {param} - パラメータ ID
+であり、次の値のどれかとなります。 UDM_PARAM_NUM_ROWS -
+カレントのページで見付かったリンクの数。
+全ての検索ページでの最後のページでの
+UDM_PARAM_PAGE_SIZE、残りの リンクに等しい。
+
+UDM_PARAM_FOUND - クエリにマッチする結果の合計の数。
+
+UDM_PARAM_WORDINFO - 見付かった単語に関する情報。例えば、"a
+good book" に関するクエリは "a: stopword, good:5637, book: 120"
+を返します。
+
+UDM_PARAM_SEARCHTIME - 秒単位の検索時間。
+
+UDM_PARAM_FIRST_DOC - カレントのページに表示される最初の
+ドキュメントの数。
+
+UDM_PARAM_LAST_DOC - カレントのページに表示される最後の
+ドキュメントの数。
+
+|udm_get_res_param| は成功時に結果パラメータを返します。
+エラー時に FALSE を返します。
+
+vim:ft=help:

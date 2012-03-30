@@ -1,0 +1,29 @@
+posix_setuid -- 現在のプロセスの UID を設定する
+
+  bool posix_setuid(int uid)~
+
+現在のプロセスの実際のユーザ ID を設定します。
+この関数は特権関数であり、実行するにはシステム上において適当な権限
+(通常は root) が必要です。
+
+{uid} ユーザ ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|posix_setuid| の例 この例は、現在のユーザ ID
+を表示し、それを別のものに変更します。
+
+<?php >
+  echo posix_getuid()."\n"; //10001
+  echo posix_geteuid()."\n"; //10001
+  posix_setuid(10000);
+  echo posix_getuid()."\n"; //10000
+  echo posix_geteuid()."\n"; //10000
+?>
+
+
+
+|posix_setgid| |posix_seteuid| |posix_getuid| |posix_geteuid|
+
+vim:ft=help:

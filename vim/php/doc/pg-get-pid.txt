@@ -1,0 +1,33 @@
+pg_get_pid -- バックエンドのプロセス ID を得る
+
+  int pg_get_pid(resource connection)~
+
+|pg_get_pid| は、バックエンド(データベースサーバ
+のプロセス)のプロセス ID を取得します。プロセス ID は、
+NOTIFY メッセージが他のプロセスから送信されている
+かどうかを調べるために有用です。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+バックエンドのデータベースのプロセス ID 。
+
+PostgreSQL バックエンドの PID
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  // バックエンドのプロセスIDを取得。このプロセスIDをpg_get_notify()で使用
+  $pid = pg_get_pid($conn);
+?>
+
+
+
+
+
+|pg_get_notify|
+
+vim:ft=help:

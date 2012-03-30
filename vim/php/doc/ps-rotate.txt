@@ -1,0 +1,74 @@
+ps_rotate -- 回転の程度を設定する
+
+  bool ps_rotate(resource psdoc, float rot)~
+
+座標系の回転を設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{rot} 回転角度を度単位で指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+座標系の回転
+
+<?php >
+  function rectangle($ps) {
+      ps_moveto($ps, 0, 0);
+      ps_lineto($ps, 0, 50);
+      ps_lineto($ps, 50, 50);
+      ps_lineto($ps, 50, 0);
+      ps_lineto($ps, 0, 0);
+      ps_stroke($ps);
+  }
+  
+  $ps = ps_new();
+  if (!ps_open_file($ps, "rotation.ps")) {
+    print "PostScript ファイルをオープンできません\n";
+    exit;
+  }
+  
+  ps_set_info($ps, "Creator", "rotation.php");
+  ps_set_info($ps, "Author", "Uwe Steinmann");
+  ps_set_info($ps, "Title", "Rotation example");
+  ps_set_info($ps, "BoundingBox", "0 0 596 842");
+  
+  $psfont = ps_findfont($ps, "Helvetica", "", 0);
+  
+  ps_begin_page($ps, 596, 842);
+  ps_set_text_pos($ps, 100, 100);
+  ps_save($ps);
+  ps_translate($ps, 100, 100);
+  ps_rotate($ps, 45);
+  rectangle($ps);
+  ps_restore($ps);
+  ps_setfont($ps, $psfont, 8.0);
+  ps_show($ps, "Text without rotation");
+  ps_end_page($ps);
+  
+  ps_delete($ps);
+?>
+
+上の例では、座標系を回転させることによって、図形
+(ここでは単なる矩形)
+を回転させるという一般的な方法を説明しています。
+図形の座標系は (0,0) を起点とみなしているため、
+図形がページの端にない場合には座標系の変換も行います。
+|ps_translate| および |ps_rotate|
+の順番には気をつけてください。
+上の例では、変換前の座標系での (100, 100)
+を基準として矩形を回転させています。 2
+つの文の順序を入れ替えると、まったく異なる結果となります。
+
+これ以降のテキストをもとの位置に出力させるには、
+|ps_save| および |ps_restore|
+を使用して、座標系に関する変更内容をカプセル化します。
+
+
+
+
+
+|ps_scale| |ps_translate|
+
+vim:ft=help:

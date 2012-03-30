@@ -1,0 +1,20 @@
+imap_undelete --
+削除マークがついているメッセージのマークをはずす
+
+  bool imap_undelete(resource imap_stream, int msg_number [, int flags])~
+
+指定したメッセージについて、 |imap_delete| または
+|imap_mail_move| で設定された削除フラグをはずします。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+{flags}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_delete| |imap_mail_move|
+
+vim:ft=help:

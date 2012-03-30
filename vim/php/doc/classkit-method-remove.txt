@@ -1,0 +1,51 @@
+classkit_method_remove -- 指定したメソッドを動的に削除する
+
+  bool classkit_method_remove(string classname, string methodname)~
+
+この関数により現在実行中
+(もしくはチェーンド)のメソッドを操作することはできません。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{classname} メソッドを削除するクラス。
+
+{methodname} 削除するメソッドの名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|classkit_method_remove| の例
+
+<?php >
+  class Example {
+      function foo() {
+          return "foo!\n";
+      }
+      
+      function bar() {
+          return "bar!\n";
+      }
+  }
+  
+  // 'foo' メソッドを削除する
+  classkit_method_remove(
+      'Example',
+      'foo'
+  );
+  
+  echo implode(' ', get_class_methods('Example'));
+?>
+
+上の例の出力は以下となります。
+
+  bar
+
+
+
+|classkit_method_add| |classkit_method_copy| |classkit_method_redefine|
+|classkit_method_rename|
+
+vim:ft=help:

@@ -1,0 +1,56 @@
+imap_mail_compose --
+指定したエンベロープおよびボディセクションに基づいて
+MIME メッセージを作成する
+
+  string imap_mail_compose(array envelope, array body)~
+
+指定したエンベロープ {envelope} およびボディセクション
+{body} に基づいて MIME メッセージを作成します。
+
+{envelope} ヘッダフィールドの連想配列。
+
+{body} 本文の配列。
+
+本文は、以下のキー "type"、"encoding"、"subtype"、"description"
+および "contents.data" からなる連想配列です。
+
+MIME メッセージを返します。
+
+|imap_mail_compose| の例
+
+<?php >
+  $envelope["from"]= "joe@example.com";
+  $envelope["to"]  = "foo@example.com";
+  $envelope["cc"]  = "bar@example.com";
+  
+  $part1["type"] = TYPEMULTIPART;
+  $part1["subtype"] = "mixed";
+  
+  $filename = "/tmp/imap.c.gz";
+  $fp = fopen($filename, "r");
+  $contents = fread($fp, filesize($filename));
+  fclose($fp);
+  
+  $part2["type"] = TYPEAPPLICATION;
+  $part2["encoding"] = ENCBINARY;
+  $part2["subtype"] = "octet-stream";
+  $part2["description"] = basename($filename);
+  $part2["contents.data"] = $contents;
+  
+  $part3["type"] = TYPETEXT;
+  $part3["subtype"] = "plain";
+  $part3["description"] = "description3";
+  $part3["contents.data"] = "contents.data3\n\n\n\t";
+  
+  $body[1] = $part1;
+  $body[2] = $part2;
+  $body[3] = $part3;
+  
+  echo nl2br(imap_mail_compose($envelope, $body));
+?>
+
+
+
+
+
+vim:ft=help:

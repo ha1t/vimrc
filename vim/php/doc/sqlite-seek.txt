@@ -1,0 +1,29 @@
+SQLiteResult->seek -- 特定のレコード番号へシークする
+
+  bool sqlite_seek(resource result, int rownum)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  bool seek(resource result, int rownum, int rownum)~
+
+|sqlite_seek|は、パラメータ
+{rownum}で指定したレコードにシークします。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+この関数は、
+バッファなしの結果ハンドルで使用することはできません。
+
+{rownum} シークするオリジナルのレコード番号。
+レコード番号は 0 から始まります (0 が先頭レコード) 。
+
+この関数は、
+バッファなしの結果ハンドルで使用することはできません。
+
+レコードが存在しない場合は FALSE、それ以外の場合に TRUE
+を返します。
+
+|sqlite_next| |sqlite_current| |sqlite_rewind|
+
+vim:ft=help:

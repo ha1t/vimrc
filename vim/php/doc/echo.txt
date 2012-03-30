@@ -1,0 +1,94 @@
+echo -- 1 つ以上の文字列を出力する
+
+  void echo(string arg1 [, string ...])~
+
+すべてのパラメータを出力します。
+
+|echo| は実際には関数ではありません
+(言語構造です)。このため、使用する際に括弧は必要ありません。
+(いくつかの他の言語構造と異なり) |echo|
+は関数のように動作しません。そのため、
+関数のコンテキスト中では常に使用することができません。
+加えて、複数のパラメータを指定して |echo|
+をコールしたい場合、括弧の中にパラメータを記述してはいけません。
+
+|echo|
+には、開始タグの直後に等号を付ける短縮構文もあります。
+この短縮構文は、設定オプションshort_open_tag
+が有効な場合のみ使用可能です。
+
+  I have <?=$foo?> foo.
+
+{arg1} 出力したいパラメータ。
+
+{...}
+
+値を返しません。
+
+|echo| の例
+
+<?php >
+  echo "Hello World";
+  
+  echo "This spans
+  multiple lines. The newlines will be
+  output as well";
+  
+  echo "This spans\nmultiple lines. The newlines will be\noutput as well.";
+  
+  echo "Escaping characters is done \"Like this\".";
+  
+  // echo 命令の中で変数を使用することが可能です
+  $foo = "foobar";
+  $bar = "barbaz";
+  
+  echo "foo is $foo"; // foo is foobar
+  
+  // 配列を使用することもできます
+  $baz = array("value" => "foo");
+  
+  echo "this is {$baz['value']} !"; // this is foo !
+  
+  // 値ではなく変数名を出力するシングルクオートを使用します
+  echo 'foo is $foo'; // foo is $foo
+  
+  // 他の文字を全く使用しない場合、echo 変数を使用可能です
+  echo $foo;          // foobar
+  echo $foo,$bar;     // foobarbarbaz
+  
+  // 複数のパラメータを結合してechoに渡そうとする人もいます
+  echo 'This ', 'string ', 'was ', 'made ', 'with multiple parameters.', chr(10);
+  echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\n";
+  
+  echo <<<END
+  This uses the "here document" syntax to output
+  multiple lines with $variable interpolation. Note
+  that the here document terminator must appear on a
+  line with just a semicolon. no extra whitespace!
+  END;
+  
+  // echo は関数のように動作しないので、以下のコードは正しくありません
+  ($some_var) ? echo 'true' : echo 'false';
+  
+  // しかし、次の例は動作します
+  ($some_var) ? print 'true' : print 'false'; // print も言語構造ですが、
+                                              // 関数のように動作します。なので、
+                                              // このコンテキスト中で使用できます
+  echo $some_var ? 'true': 'false'; // 命令を変更
+?>
+
+
+
+
+
+|print| と |echo| の違いに関する簡単な議論については、FAQTs
+Knowledge Base Article:
+http://www.faqts.com/knowledge_base/view.phtml/aid/1/fid/40
+を参照してください。
+
+これは、関数ではなく 言語構造のため、可変関数
+を用いて コールすることはできません。
+
+|print| |printf| |flush|
+
+vim:ft=help:

@@ -1,0 +1,21 @@
+dbplus_resolve -- リレーションのホスト情報を取得する
+
+  array dbplus_resolve(string relation_name)~
+
+|dbplus_resolve| は指定された {relation_name}
+を解決し、内部サーバ ID・
+実際のホスト名およびホスト上のデータベースのパスを取得します。
+
+{relation_name} リレーション名。
+
+キー sid、host および host_path
+を含む配列、あるいはエラー時に FALSE を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|dbplus_tcl|
+
+vim:ft=help:

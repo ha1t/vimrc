@@ -1,0 +1,43 @@
+filter_list -- サポートされるフィルタの一覧を返す
+
+  array filter_list()~
+
+サポートされる全フィルタの名前の配列を返します。
+フィルタが存在しない場合は空の配列を返します。
+この配列のインデックスはフィルタの ID
+ではありません。 ID を取得するには |filter_id|
+にフィルタ名を渡します。
+
+|filter_list| の例
+
+<?php >
+  print_r(filter_list());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => int
+      [1] => boolean
+      [2] => float
+      [3] => validate_regexp
+      [4] => validate_url
+      [5] => validate_email
+      [6] => validate_ip
+      [7] => string
+      [8] => stripped
+      [9] => encoded
+      [10] => special_chars
+      [11] => unsafe_raw
+      [12] => email
+      [13] => url
+      [14] => number_int
+      [15] => number_float
+      [16] => magic_quotes
+      [17] => callback
+  )
+
+
+
+vim:ft=help:

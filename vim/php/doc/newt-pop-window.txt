@@ -1,0 +1,12 @@
+newt_pop_window -- トップウィンドウを画面から消去する
+
+  void newt_pop_window()~
+
+トップウィンドウを画面から消去し、ウィンドウが覆っていた部分を
+再描画します。
+
+値を返しません。
+
+|newt_open_window| |newt_centered_window|
+
+vim:ft=help:

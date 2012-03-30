@@ -1,0 +1,61 @@
+strpos -- 文字列が最初に現れる場所を見つける
+
+  int strpos(string haystack, mixed needle [, int offset])~
+
+文字列 {haystack} の中で、 {needle}
+が最初に現れた位置を数字で返します。 PHP 5 以前の
+|strrpos| とは異なり、この関数は {needle}
+パラメータとして文字列全体をとり、
+その文字列全体が検索対象となります。
+
+{haystack} 検索を行う文字列。
+
+{needle} {needle} が文字列でない場合は、
+それを整数に変換し、その番号に対応する文字として扱います。
+
+{offset} オプションのパラメータ {offset} により、
+検索を開始する {haystack}
+の文字を指定することができます。
+この場合でも、返される位置は {haystack}
+の先頭からの相対位置となります。
+
+位置を表す整数値を返します。 {needle}
+が見つからない場合、 |strpos| は boolean FALSE を返します。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|strpos| の例
+
+<?php >
+  $mystring = 'abc';
+  $findme   = 'a';
+  $pos = strpos($mystring, $findme);
+  
+  // === を使用していることに注目しましょう。単純に == を使ったのでは
+  // 期待通りに動作しません。なぜなら 'a' が 0 番目 (最初) の文字だからです。
+  if ($pos === false) {
+      echo "文字列 '$findme' は、文字列 '$mystring' の中で見つかりませんでした";
+  } else {
+      echo "文字列 '$findme' が文字列 '$mystring' の中で見つかりました";
+      echo " 見つかった位置は $pos です";
+  }
+  
+  // オフセット以前の内容を無視して文字を探すこともできます。
+  $newstring = 'abcdef abcdef';
+  $pos = strpos($newstring, 'a', 1); // $pos は 0 ではなく 7 となります。
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|strrpos| |stripos| |strripos| |strrchr| |substr| |stristr| |strstr|
+
+vim:ft=help:

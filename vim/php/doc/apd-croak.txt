@@ -1,0 +1,27 @@
+apd_croak -- エラーとコールスタックをスローし、終了する
+
+  void apd_croak(string warning [, string delimiter])~
+
+perl の Carp::croak
+と同じように動作します。エラーとコールバックをスローし、
+終了します。
+
+{warning} スローする警告。
+
+{delimiter} 区切り文字。デフォルトは 。
+
+値を返しません。
+
+|apd_croak| の例
+
+<?php >
+  apd_croak("Some Warning","<P>");
+?>
+
+
+
+
+
+|apd_clunk|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+ldap_mod_add -- 現在の属性に属性を追加する
+
+  bool ldap_mod_add(resource link_identifier, string dn, array entry)~
+
+指定した {dn} に属性を追加します。
+この関数は、オブジェクトレベルではなく属性レベルで修正を行います。
+オブジェクトレベルの追加は、|ldap_add|
+関数により行います。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{dn} LDAP エンティティの識別名。
+
+{entry}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数はバイナリデータに対応しています。
+
+|ldap_mod_del| |ldap_mod_replace|
+
+vim:ft=help:

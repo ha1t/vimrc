@@ -1,0 +1,9 @@
+ccvs_reverse -- 処理済みの認証を完全に取り消す
+
+  string ccvs_reverse(string session, string invoice)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

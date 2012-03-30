@@ -1,0 +1,24 @@
+mb_http_output -- HTTP
+出力文字エンコーディングを設定あるいは取得する
+
+  mixed mb_http_output([string encoding])~
+
+HTTP
+出力文字エンコーディングを設定あるいは取得します。
+この関数を実行した後、 出力は {encoding}
+に変換されます。
+
+{encoding} {encoding} が設定された場合、 |mb_http_output| は HTTP
+出力文字エンコーディングを {encoding}に設定します。
+
+{encoding} が省略された場合、 |mb_http_output| は現在の HTTP
+出力文字エンコーディングを返します。
+
+{encoding} が省略された場合、 |mb_http_output| は現在の HTTP
+出力文字エンコーディングを返します。それ以外の場合、
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mb_internal_encoding| |mb_http_input| |mb_detect_order|
+
+vim:ft=help:

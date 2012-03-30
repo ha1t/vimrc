@@ -1,0 +1,26 @@
+mb_preferred_mime_name -- MIME 文字設定を文字列で得る
+
+  string mb_preferred_mime_name(string encoding)~
+
+指定したエンコーディングの MIME charset
+文字列を取得します。
+
+{encoding} 調べるエンコーディング。
+
+文字エンコーディング {encoding} 用の MIME charset
+文字列を返します。
+
+|mb_preferred_mime_string| の例
+
+<?php >
+  $outputenc = "sjis-win";
+  mb_http_output($outputenc);
+  ob_start("mb_output_handler");
+  header("Content-Type: text/html; charset=" . mb_preferred_mime_name($outputenc));
+?>
+
+
+
+
+
+vim:ft=help:

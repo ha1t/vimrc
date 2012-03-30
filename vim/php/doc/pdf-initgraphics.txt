@@ -1,0 +1,9 @@
+PDF_initgraphics -- 描画状態をリセットする
+
+  bool PDF_initgraphics(resource p)~
+
+色および描画状態パラメータを全てデフォルト値にリセットします。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

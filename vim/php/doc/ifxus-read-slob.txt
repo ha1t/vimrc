@@ -1,0 +1,16 @@
+ifxus_read_slob -- SLOB オブジェクトから n バイト読みこむ
+
+  string ifxus_read_slob(int bid, int nbytes)~
+
+SLOB オブジェクトから {nbytes} バイトを読みこみます。
+
+{bid} 既存の SLOB の ID。
+
+{nbytes} 読み込むバイト数。
+
+SLOB の内容を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+|ifxus_write_slob|
+
+vim:ft=help:

@@ -1,0 +1,29 @@
+px_set_blob_file -- blob を読み込むファイル名を設定する
+
+  bool px_set_blob_file(resource pxdoc, string filename)~
+
+blob
+の読み込みあるいは書き込みを行おうとしているファイルの名前を設定します。
+この関数をコールしていない場合、もしデータがレコードの一部であるが
+blob ファイルに保存されていないときには、 |px_get_record|
+あるいは |px_retrieve_record| は blob
+フィールドのデータのみを返します。 blob データが blob
+フィールドのサイズに収まるほど小さい場合は、
+それはレコード内に保存されます。
+
+|px_set_blob_file| をコールせずに |px_put_record|、 |px_insert_record|
+あるいは |px_update_record| をコールすると、
+データベースファイルに収まらない場合にデータが切り詰められます。
+
+この関数を 2 度コールすると、 最初の blob
+ファイルを閉じて新しいほうをオープンします。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+{filename} ファイルの名前。拡張子は .MB
+でなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

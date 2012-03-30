@@ -1,0 +1,46 @@
+substr_compare -- 指定した位置から指定した長さの 2
+つの文字列について、バイナリ対応で比較する
+
+  int substr_compare(string main_str, string str, int offset [, int length [, bool case_insensitivity]])~
+
+|substr_compare| は、{main_str} の {offset} 文字目以降の最大
+{length} 文字を、{str} と比較します。
+
+{main_str}
+
+{str}
+
+{offset} 比較を開始する位置。
+負の値を指定した場合は、文字列の最後から数えます。
+
+{length} 比較する長さ。
+
+{case_insensitivity} {case_insensitivity} が TRUE の場合、
+大文字小文字を区別せずに比較します。
+
+{main_str} の {offset} 以降が {str} より小さい場合に負の数、
+{str} より大きい場合に正の数、 等しい場合に 0
+を返します。{offset} が {main_str} の長さ以上であり、かつ
+{length} が設定されている場合、|substr_compare|
+は警告を表示して FALSE を返します。
+
+バージョン 説明 5.1.0 負の {offset}
+を使用できるようになりました。
+
+|substr_compare| の例
+
+<?php >
+  echo substr_compare("abcde", "bc", 1, 2); // 0
+  echo substr_compare("abcde", "de", -2, 2); // 0
+  echo substr_compare("abcde", "bcg", 1, 2); // 0
+  echo substr_compare("abcde", "BC", 1, 2, true); // 0
+  echo substr_compare("abcde", "bc", 1, 3); // 1
+  echo substr_compare("abcde", "cd", 1, 2); // -1
+  echo substr_compare("abcde", "abc", 5, 1); // 警告
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+swf_actiongotoframe -- フレームを実行した後、停止する
+
+  void swf_actiongotoframe(int framenumber)~
+
+関数 |swf_actiongotoframe| は、 {framenumber}
+で指定したフレームまで移動し、
+実行した後で停止します。
+
+{framenumber} フレーム番号。
+
+値を返しません。
+
+vim:ft=help:

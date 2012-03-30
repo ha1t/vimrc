@@ -1,0 +1,43 @@
+mysql_change_user --
+アクティブな接続でログイン中のユーザーを変更する
+
+  int mysql_change_user(string user, string password [, string database [, resource link_identifier]])~
+
+|mysql_change_user| は、現在アクティブな接続
+またはオプションのパラメータ {link_identifier}
+が指定された場合にはその接続にログイン中のユーザーを変更します。
+database が指定された場合、ユーザーが変更された後
+このデータベースがカレントのデータベースとなります。
+新規の user/password の組み合わせの認証に失敗した場合、
+現在接続中のユーザーがアクティブなままとなります。
+
+この関数は廃止されており、もはや PHP
+には存在しません。
+
+{user} 新しい MySQL ユーザー名です。
+
+{password} 新しい MySQL パスワードです。
+
+{database} MySQL
+データベース名です。指定しなかった場合は、
+現在選択されているデータベースが利用されます。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 3.0.14 この関数は PHP
+から取り除かれました。
+
+この関数は MySQL 3.23.3 以降が必要です。
+
+|mysql_connect| |mysql_select_db| |mysql_query|
+
+vim:ft=help:

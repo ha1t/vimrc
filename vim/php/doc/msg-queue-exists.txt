@@ -1,0 +1,16 @@
+msg_queue_exists --
+メッセージキューが存在するかどうかを調べる
+
+  bool msg_queue_exists(int key)~
+
+{key}
+で指定したメッセージキューが存在するかどうかを調べます。
+
+{key} キューのキー。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msg_remove_queue| |msg_receive| |msg_stat_queue|
+
+vim:ft=help:

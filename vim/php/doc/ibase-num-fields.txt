@@ -1,0 +1,32 @@
+ibase_num_fields -- 結果セットにおけるフィールド数を得る
+
+  int ibase_num_fields(resource result_id)~
+
+結果セットにおけるフィールド数を整数として返します。
+
+{result_id} InterBase 結果 ID。
+
+フィールドの数を整数値で返します。
+
+|ibase_num_fields| の例
+
+<?php >
+  $rs = ibase_query("SELECT * FROM tablename");
+  $coln = ibase_num_fields($rs);
+  for ($i = 0; $i < $coln; $i++) {
+      $col_info = ibase_field_info($rs, $i);
+      echo "name: " . $col_info['name'] . "\n";
+      echo "alias: " . $col_info['alias'] . "\n";
+      echo "relation: " . $col_info['relation'] . "\n";
+      echo "length: " . $col_info['length'] . "\n";
+      echo "type: " . $col_info['type'] . "\n";
+  }
+?>
+
+
+
+
+
+|ibase_field_info|
+
+vim:ft=help:

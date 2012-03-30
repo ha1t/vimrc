@@ -1,0 +1,35 @@
+odbc_prepare -- 実行用に文を準備する
+
+  resource odbc_prepare(resource connection_id, string query_string)~
+
+エラー時には、FALSE を返します。
+
+SQL コマンドの準備に成功した場合は、ODBC 結果 ID
+を返します。 結果 ID は、この後 |odbc_execute|
+で命令を実行する際に使用することができます。
+
+(IBM DB2、MS SQL Server および Oracle のように)
+ストアドプロシージャが利用可能で、ODBC
+仕様で定義されている IN、INOUT および OUT
+が利用できるものもあります。 しかし、Unified ODBC
+ドライバでは現在 IN
+型のパラメータしかサポートしていません。
+
+以下のコードでは、$res が有効な値になるのは myproc
+のすべてのパラメータが IN パラメータの場合のみです。
+
+<?php >
+  $a = 1;
+  $b = 2;
+  $c = 3;
+  $stmt = odbc_prepare($conn, 'CALL myproc(?,?,?)');
+  $res = odbc_execute($stmt, array($a, $b, $c));
+?>
+
+INOUT や OUT
+型のパラメータを持つストアドプロシージャをコールする必要がある場合に推奨される方法は、
+データベースのネイティブ拡張モジュール (例: MS SQL Server
+なら mssql、 あるいは Oracle なら oci8)
+を使用することです。
+
+vim:ft=help:

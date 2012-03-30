@@ -1,0 +1,77 @@
+ldap_bind -- LDAP ディレクトリにバインドする
+
+  bool ldap_bind(resource link_identifier [, string bind_rdn [, string bind_password]])~
+
+指定した RDN およびパスワードを用いて LDAP
+ディレクトリにバインドします。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{bind_rdn}
+
+{bind_password}
+
+{bind_rdn} および {bind_password}
+を省略した場合は匿名バインドを試みます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+LDAP バインドの使用
+
+<?php >
+  // ldap バインドを使用する
+  $ldaprdn  = 'uname';     // ldap rdn あるいは dn
+  $ldappass = 'password';  // パスワード
+  
+  // ldap サーバに接続する
+  $ldapconn = ldap_connect("ldap.example.com")
+      or die("Could not connect to LDAP server.");
+  
+  if ($ldapconn) {
+  
+      // ldap サーバにバインドする
+      $ldapbind = ldap_bind($ldapconn, $ldaprdn, $ldappass);
+  
+      // バインド結果を検証する
+      if ($ldapbind) {
+          echo "LDAP bind successful...";
+      } else {
+          echo "LDAP bind failed...";
+      }
+  
+  }
+?>
+
+
+
+LDAP 匿名バインドの使用
+
+<?php >
+  // ldap 匿名バインドを使用する
+  
+  // ldap サーバに接続する
+  $ldapconn = ldap_connect("ldap.example.com")
+      or die("Could not connect to LDAP server.");
+  
+  if ($ldapconn) {
+  
+      // 匿名でバインドする
+      $ldapbind = ldap_bind($ldapconn);
+  
+      if ($ldapbind) {
+          echo "LDAP bind anonymous successful...";
+      } else {
+          echo "LDAP bind anonymous failed...";
+      }
+  
+  }
+?>
+
+
+
+
+
+|ldap_unbind|
+
+vim:ft=help:

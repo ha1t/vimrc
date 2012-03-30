@@ -1,0 +1,50 @@
+array_uintersect_uassoc --
+データと添字の比較にコールバック関数を用い、
+追加された添字の確認も含めて配列の共通項を計算する
+
+  array array_uintersect_uassoc(array array1, array array2 [, array ..., callback data_compare_func, callback key_compare_func])~
+
+データと添字の比較にコールバック関数を用い、
+追加された添字の確認も含めて配列の共通項を計算します。
+|array_uintersect|と異なり、
+キーが比較に使用されることに注意してください。
+データと添字は、それぞれ個別のコールバック関数を用いて比較されます。
+
+{array1} 最初の配列。
+
+{array2} 2 番目の配列。
+
+{data_compare_func}
+比較は、ユーザが指定したコールバック関数を利用して行われます。
+この関数は、1 つめの引数が 2 つめより小さい / 等しい /
+大きい 場合にそれぞれ 負の数 / ゼロ / 正の数
+を返す必要があります。
+
+{key_compare_func} キーの比較用のコールバック関数。
+
+全ての引数に現れる {array1}
+の全ての値を含む配列を返します。
+
+|array_uintersect_uassoc| の例
+
+<?php >
+  $array1 = array("a" => "green", "b" => "brown", "c" => "blue", "red");
+  $array2 = array("a" => "GREEN", "B" => "brown", "yellow", "red");
+  
+  print_r(array_uintersect_uassoc($array1, $array2, "strcasecmp", "strcasecmp"));
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [a] => green
+      [b] => brown
+  )
+
+
+
+|array_uintersect| |array_intersect_assoc| |array_intersect_uassoc|
+|array_uintersect_assoc|
+
+vim:ft=help:

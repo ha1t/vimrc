@@ -1,0 +1,25 @@
+bcmod -- 2 つの任意精度数値の剰余を取得する
+
+  string bcmod(string left_operand, string modulus)~
+
+{left_operand} の、 {modulus} を法とする剰余を取得します。
+
+{left_operand} 左オペランドを表す文字列。
+
+{modulus} 法を表す文字列。
+
+剰余を文字列で返します。 {modulus} が 0 の場合は NULL
+を返します。
+
+|bcmod| の例
+
+<?php >
+  echo bcmod('4', '2'); // 0
+  echo bcmod('2', '4'); // 2
+?>
+
+
+
+|bcdiv|
+
+vim:ft=help:

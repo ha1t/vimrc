@@ -1,0 +1,17 @@
+stats_rand_gen_funiform -- low (それ自身は含まない) と high
+(それ自身は含まない)
+の間の一様な浮動小数点数値を生成する
+
+  float stats_rand_gen_funiform(float low, float high)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{low}
+
+{high}
+
+
+
+vim:ft=help:

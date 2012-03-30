@@ -1,0 +1,35 @@
+xml_parser_set_option -- XML パーサのオプションを設定する
+
+  bool xml_parser_set_option(resource parser, int option, mixed value)~
+
+XML パーサのオプションを設定します。
+
+{parser} オプションを設定する XML
+パーサへのリファレンス。
+
+{option} 設定するオプション。以下を参照してください。
+
+次のオプションが利用可能です。 XML パーサオプション
+オプション定数 データ型 説明 XML_OPTION_CASE_FOLDING integer
+XMLパーサの大文字変換
+を有効にするかどうかを制御する。デフォルトで有効。
+XML_OPTION_SKIP_TAGSTART integer
+タグ名の最初の何文字を読み飛ばすかどうかを設定する。
+XML_OPTION_SKIP_WHITE integer
+空白文字からなる値を読み飛ばすかどうかを設定する。
+XML_OPTION_TARGET_ENCODING string XML パーサについてどの
+ターゲット エンコーディング
+を使用するかを設定する。デフォルトでは、
+|xml_parser_create| により使用されたソース
+エンコーディングと同じエンコーディングが設定されます。
+サポートされるターゲットエンコーディングは、 ISO-8859-1,
+US-ASCII, UTF-8 です。
+
+{value} そのオプションの新しい設定値。
+
+この関数は、{parser} が有効なパーサを参照しないか、
+オプションが設定出来なかった場合に FALSE を返します。
+それ以外の場合、そのオプションが設定され、TRUE
+が返されます。
+
+vim:ft=help:

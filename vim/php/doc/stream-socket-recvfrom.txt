@@ -1,0 +1,56 @@
+stream_socket_recvfrom --
+接続されているかどうかにかかわらず、ソケットからのデータを受信する
+
+  string stream_socket_recvfrom(resource socket, int length [, int flags [, string address]])~
+
+関数 |stream_socket_recvfrom| は、 リモートソケットから最大
+{length} バイトのデータを 受け取ります。{address}
+が指定された場合、
+そこにはリモートソケットのアドレスが保存されます。
+
+{flags} は以下の値の組み合わせです。 {flags} でとりうる値
+STREAM_OOB OOB (out-of-band) データを処理します。 STREAM_PEEK
+ソケットからデータを取得しますが、バッファを消費しません。
+|fread| あるいは |stream_socket_recvfrom| を続けてコールした
+際には、同じデータが読み込まれます。
+
+|stream_socket_recvfrom| の例
+
+<?php >
+  /* localhost のポート 1234 へのサーバソケットをオープンします */
+  $server = stream_socket_server('tcp://127.0.0.1:1234');
+  
+  /* 接続を受け付けます */
+  $socket = stream_socket_accept($server);
+  
+  /* OOB データのパケットを取得します（1500 は典型的な MTU のサイズです） */
+  echo "Received Out-Of-Band: '" . stream_socket_recvfrom($socket, 1500, STREAM_OOB) . "'\n";
+  
+  /* 通常の帯域内のデータを読み込みますが、バッファを消費しません */
+  echo "Data: '" . stream_socket_recvfrom($socket, 1500, STREAM_PEEK) . "'\n";
+  
+  /* 同じパケットをもう一度読み込みます。今度はバッファからそれを削除します */
+  echo "Data: '" . stream_socket_recvfrom($socket, 1500) . "'\n";
+  
+  /* ソケットを閉じます */
+  fclose($socket);
+  fclose($server);
+?>
+
+
+
+受信したメッセージが {length} パラメータより
+長かった場合、ソケットの型によっては（例えば UDP
+など）超過分の
+バイトデータが捨てられてしまう可能性があります。
+
+バッファベースのストリーム関数 (|fread| あるいは
+|stream_get_line| など) をコールした後に
+ソケットベースのストリームで |stream_socket_recvfrom|
+をコールすると、ストリームバッファを経由せず、データをソケットから
+直接読み込みます。
+
+|stream_socket_sendto|、 |stream_socket_client| および
+|stream_socket_server| も参照ください。
+
+vim:ft=help:

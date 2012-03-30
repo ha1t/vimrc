@@ -1,0 +1,27 @@
+msg_set_queue --
+メッセージキューデータ構造体の情報を設定する
+
+  bool msg_set_queue(resource queue, array data)~
+
+|msg_set_queue| により、メッセージキューデータ構造体の
+msg_perm.uid、msg_perm.gid、msg_perm.mode および msg_qbytes
+フィールドを 変更することが可能です。
+
+データ構造体を変更するには、PHP
+の実行ユーザがキューの作成者あるいは (現在の msg_perm.xxx
+フィールドで指定されている)キューの所有者であるか、
+あるいは root 権限を有している必要があります。msg_qbytes
+の値を
+システムで定義した制限をこえて設定するには、root
+権限が必要です。
+
+{queue}
+
+{data} 設定したい値を、{data} 配列に設定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msg_remove_queue| |msg_receive| |msg_stat_queue| |msg_get_queue|
+
+vim:ft=help:

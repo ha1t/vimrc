@@ -1,0 +1,8 @@
+PDF_lineto -- 線を描く
+
+  bool PDF_lineto(resource p, float x, float y)~
+
+現在の点から別の点まで線を描画します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

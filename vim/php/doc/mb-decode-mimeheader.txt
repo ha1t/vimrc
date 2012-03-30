@@ -1,0 +1,15 @@
+mb_decode_mimeheader -- MIME
+ヘッダフィールドの文字列をデコードする
+
+  string mb_decode_mimeheader(string str)~
+
+エンコードされた MIME ヘッダの文字列 {str}
+をデコードします。
+
+{str} デコードする文字列。
+
+内部文字エンコーディングでデコードされた文字列を返します。
+
+|mb_encode_mimeheader|
+
+vim:ft=help:

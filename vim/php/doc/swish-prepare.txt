@@ -1,0 +1,46 @@
+Swish->prepare -- 検索クエリを準備する
+
+  object Swish->prepare([string query])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+準備した検索オブジェクトを返します。
+後でこれを使用して何度でもクエリを実行することができます。
+
+{query}
+オプションのクエリ文字列。クエリは、|SwishSearch->execute|
+メソッドで設定することもできます。
+
+SwishSearch オブジェクトを返します。
+
+エラー時に SwishException をスローします。
+
+基本的な |Swish->prepare| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $search = $swish->prepare("search query");
+      $results = $search->execute();
+      echo "Found: ", $results->hits, " hits\n";
+  
+      $results = $search->execute("new search");
+  
+      echo "Found: ", $results->hits, " hits\n";
+  } catch (SwishException $e) {
+      echo $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Found: 2 hits
+  Found: 5 hits
+
+
+
+vim:ft=help:

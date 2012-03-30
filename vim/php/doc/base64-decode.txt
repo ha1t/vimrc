@@ -1,0 +1,34 @@
+base64_decode -- MIME base64
+方式によりエンコードされたデータをデコードする
+
+  string base64_decode(string data [, bool strict])~
+
+base64 でエンコードされた {data} をデコードします。
+
+{data} デコードされるデータ。
+
+{strict}
+入力に空白あるいはその他の区切り文字が含まれる場合に
+FALSE を返す。
+
+もとのデータを返します。失敗した場合は FALSE
+を返します。 返り値はバイナリになることもあります。
+
+バージョン 説明 5.2.0 {strict} が追加されました。
+
+|base64_decode| の例
+
+<?php >
+  $str = 'VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw==';
+  echo base64_decode($str);
+?>
+
+上の例の出力は以下となります。
+
+  This is an encoded string
+
+
+
+|base64_encode| RFC 2045 6.8 節
+
+vim:ft=help:

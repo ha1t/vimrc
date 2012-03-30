@@ -1,0 +1,14 @@
+m_sslcert_gen_hash -- SSL
+クライアント証明書の検証のためのハッシュを作成する
+
+  string m_sslcert_gen_hash(string filename)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{filename}
+
+
+
+vim:ft=help:

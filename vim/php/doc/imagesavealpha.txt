@@ -1,0 +1,32 @@
+imagesavealpha -- PNG
+画像を保存する際に（単一色の透過設定ではない）完全な
+アルファチャネル情報を保存するフラグを設定する
+
+  bool imagesavealpha(resource image, bool saveflag)~
+
+|imagesavealpha| は PNG
+画像を保存する際に（単一色の透過設定ではない）完全な
+アルファチャネル情報を保存するフラグを設定します。
+
+これを使用するためには、アルファブレンディングを解除する必要があります
+(imagealphablending($im, false))。
+
+アルファチャネルはすべてのブラウザでサポートされているわけではありません。
+ブラウザ上での表示で問題が発生した場合は、アルファチャネルに対応している
+ブラウザ（例: 最新の
+Mozilla）でスクリプトを実行しなおしてみましょう。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{saveflag}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、GD 2.0.1 以降を必要とします (2.0.28
+以降を推奨します)。
+
+|imagealphablending|
+
+vim:ft=help:

@@ -1,0 +1,82 @@
+expect_expectl --
+プロセスの出力がパターンに一致する・指定した時間が経過する・
+あるいは EOF
+に達するのいずれかにあてはまるまで待ち続ける
+
+  int expect_expectl(resource expect, array cases [, array match])~
+
+プロセスの出力がパターンに一致する・指定した時間が経過する・
+あるいは EOF
+に達するのいずれかにあてはまるまで待ち続けます。
+
+{match} を指定すると、検索結果がそこに保存されます。
+一致した文字列が {match[0]} に保存され、
+元のパターンの中の (括弧で囲まれた)
+部分に一致する文字列が {match[1]}、{match[2]}、
+と順に、最大 {match[9]} まで (libexpect の制限です)
+保存されます。
+
+{expect} 事前に |expect_popen| でオープンした Expect
+ストリーム。
+
+{cases} expect case の配列。個々の expect case
+は数値添字の配列で、 以下のような形式となります。
+Expect Case の配列 添字 値の型 説明 必須かどうか
+デフォルト値 0 string
+ストリームからの出力との比較対象となるパターン。 yes 1
+mixed パターンに一致した場合にこの関数が返す値。 yes 2
+integer パターンの形式。 EXP_GLOB、 EXP_EXACT あるいは EXP_REGEXP
+のいずれかひとつです。 no EXP_GLOB
+
+一致したパターンに関連付けられた値を返します。
+
+この関数の実行に失敗した場合は、 EXP_EOF、 EXP_TIMEOUT
+あるいは EXP_FULLBUFFER を返します。
+
+バージョン 説明 0.2.1 バージョン 0.2.1 より前では、{match}
+パラメータに返されるのはマッチした文字列であり、
+部分文字列の配列ではありませんでした。
+
+|expect_expectl| の例
+
+<?php >
+  // ファイルをリモートホストにコピーします
+  ini_set ("expect.timeout", 30);
+  
+  $stream = fopen ("expect://scp user@remotehost:/var/log/messages /home/user/messages.txt", "r");
+  
+  $cases = array (
+    array (0 => "password:", 1 => PASSWORD),
+    array (0 => "yes/no)?", 1 => YESNO)
+  );
+  
+  while (true) {
+   switch (expect_expectl ($stream, $cases))
+   {
+    case PASSWORD:
+     fwrite ($stream, "password\n");
+     break;
+  
+    case YESNO:
+     fwrite ($stream, "yes\n");
+     break;
+  
+    case EXP_TIMEOUT:
+    case EXP_EOF:
+     break 2;
+    
+    default:
+     die ("エラーが発生しました!\n");
+   }
+  }
+  
+  fclose ($stream);
+?>
+
+
+
+
+
+|expect_popen|
+
+vim:ft=help:

@@ -1,0 +1,26 @@
+ora_fetch -- カーソルから一行分のデータを取得する
+
+  bool ora_fetch(resource cursor)~
+
+指定した {cursor} から一行分のデータを取得します。
+
+{cursor} |ora_open| でオープンした Oracle カーソル。
+
+(列が取り出されれば) TRUE もしくは
+(取り出す列がもうないか、 エラーが発生した場合) FALSE
+を返します。エラーが発生した場合、 詳細は |ora_error|
+および |ora_errorcode|関数を用いて調べることが
+できます。エラーがない場合、|ora_errorcode| は 0
+を返します。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_fetch|
+
+|ora_parse| |ora_exec| |ora_do|
+
+vim:ft=help:

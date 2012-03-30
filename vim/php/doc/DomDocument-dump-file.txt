@@ -1,0 +1,35 @@
+DomDocument->dump_file -- 内部 XML
+ツリーをファイルにダンプする
+
+  string DomDocument->dump_file(string filename [, bool compressionmode [, bool format]])~
+
+DOM 表現から XML
+文章を生成します。この関数は以下の例のように、
+通常スクラッチから新規 DOM
+文章を生成した後にコールされます。 {format} により、
+きちんと整形するかどうかを指定します。 第 1
+パラメータはファイル名、第 2
+パラメータは圧縮するかどうかを指定します。
+
+簡単な HTML 文章のヘッダを生成する
+
+<?php >
+  $doc = domxml_new_doc("1.0");
+  $root = $doc->create_element("HTML");
+  $root = $doc->append_child($root);
+  $head = $doc->create_element("HEAD");
+  $head = $root->append_child($head);
+  $title = $doc->create_element("TITLE");
+  $title = $head->append_child($title);
+  $text = $doc->create_text_node("This is the title");
+  $text = $title->append_child($text);
+  $doc->dump_file("/tmp/test.xml", false, true);
+?>
+
+
+
+
+
+|domdocument_dump_mem|, |domdocument_html_dump_mem| も参照ください。
+
+vim:ft=help:

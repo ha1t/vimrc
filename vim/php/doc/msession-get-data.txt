@@ -1,0 +1,10 @@
+msession_get_data --
+データセッションの、構造化されていないデータを取得する
+
+  string msession_get_data(string session)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

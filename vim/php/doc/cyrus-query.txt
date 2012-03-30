@@ -1,0 +1,14 @@
+cyrus_query -- Cyrus IMAP サーバへクエリを送信する
+
+  array cyrus_query(resource connection, string query)~
+
+Cyrus IMAP サーバへクエリを送信します。
+
+{connection} 接続ハンドル。
+
+{query} クエリ文字列。
+
+text、msgno、 そして keyword
+のキーを持つ連想配列を返します。
+
+vim:ft=help:

@@ -1,0 +1,46 @@
+rsort -- 配列を逆順にソートする
+
+  bool rsort(array array [, int sort_flags])~
+
+この関数は、配列を逆順に(高位から低位に)ソートします。
+
+{array} 入力の配列。
+
+{sort_flags} オプションのパラメータ {sort_flags}
+によりソートの動作を修正可能です。詳細については、
+|sort| を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|rsort| の例
+
+<?php >
+  $fruits = array("lemon", "orange", "banana", "apple");
+  rsort($fruits);
+  foreach ($fruits as $key => $val) {
+      echo "$key = $val\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  0 = orange
+  1 = lemon
+  2 = banana
+  3 = apple
+
+fruits はアルファベットの逆順にソートされました。
+
+
+
+
+
+この関数は、 {array}
+パラメータの要素に対して新しいキーを割り当てます。
+その際、単純にキーを並べ替える代わりに、
+すでに割り当てられている既存のキーを削除してしまいます。
+
+|arsort| |asort| |ksort| |krsort| |sort| |usort|
+
+vim:ft=help:

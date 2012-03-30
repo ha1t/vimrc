@@ -1,0 +1,35 @@
+DomElement->tagname() -- 現在の要素名を返す
+
+  string tagname()~
+
+現在のノードの名前を返します。この関数をコールすることは、
+tagname プロパティにアクセスする、
+もしくは現在のノードに対して
+をコールすることと等価です。
+
+現在の DomElement ノードの名前を返します。
+
+ノード名を取得する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+      echo "Error while parsing the document\n";
+      exit;
+  }
+  
+  $root = $dom->document_element();
+  echo $root->tagname();   // chapter
+  echo $root->tagname;     // chapter
+  echo $root->node_name(); // chapter
+?>
+
+
+
+
+
+DOMElement オブジェクトの tagName
+プロパティを使用してください。
+
+vim:ft=help:

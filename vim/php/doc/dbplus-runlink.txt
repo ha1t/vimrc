@@ -1,0 +1,17 @@
+dbplus_runlink --
+ファイルシステムからリレーションを削除する
+
+  int dbplus_runlink(resource relation)~
+
+|dbplus_unlink| は、 {relation} を閉じて削除します。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

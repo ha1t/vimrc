@@ -1,0 +1,37 @@
+fbsql_pconnect -- FrontBase
+サーバへの持続的接続をオープンする
+
+  resource fbsql_pconnect([string hostname [, string username [, string password]]])~
+
+FrontBase サーバへの持続的な接続を確立します。
+
+サーバのポート番号を指定するには |fbsql_select_db|
+を使用します。
+
+|fbsql_pconnect| は |fbsql_connect|
+とほとんど同じように動作しますが、 2
+つの大きな違いがあります。
+
+まず、接続の際に、この関数は事前に同じホスト・ユーザ名・パスワードで
+オープンされている (持続的) リンクを探そうとします。
+見つかった場合には、新しい接続をオープンせずにその接続の
+ID を 返します。
+
+次に、SQL
+サーバへの接続はスクリプトが終了しても閉じられません。
+その代わりに、今後利用されるときのためにオープンされたままとなります。
+
+これらにより、この形式のリンクは「持続的(persistent)」と呼ばれます。
+
+{hostname} ホスト名。デフォルトは localhost。
+
+{username} 接続時のユーザ名。デフォルトは _SYSTEM。
+
+{password} 接続時のパスワード。デフォルトは空の文字列。
+
+成功した場合には正の FrontBase 持続的リンク ID、
+エラー時には FALSE を返します。
+
+|fbsql_connect|
+
+vim:ft=help:

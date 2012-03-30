@@ -1,0 +1,15 @@
+odbc_close -- ODBC 接続を閉じる
+
+  void odbc_close(resource connection_id)~
+
+指定された接続 ID
+が指すデータベースサーバへの接続を閉じます。
+
+{connection_id} 接続 ID。
+
+値を返しません。
+
+この関数の処理は、この接続に関してオープンされたトランザクションがある場合に失敗します。
+この場合、接続はオープンされたままとなります。
+
+vim:ft=help:

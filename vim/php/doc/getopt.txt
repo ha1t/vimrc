@@ -1,0 +1,142 @@
+getopt --
+コマンドライン引数のリストからオプションを取得する
+
+  array getopt(string options [, array longopts])~
+
+スクリプトに渡されたオプションをパースします。
+
+{options}
+この文字列の各文字をオプション文字として使用し、
+スクリプトにハイフンひとつ (-)
+で始まるオプションとして渡された内容とマッチさせます。
+
+たとえば、オプション文字列 "x" は -x
+というオプションを認識します。
+
+{longopts} オプションの配列。
+この配列の各要素をオプション文字列として使用し、
+スクリプトにハイフンふたつ (--)
+で始まるオプションとして渡された内容とマッチさせます。
+
+たとえば、longopts の要素 "opt" は --opt
+というオプションを認識します。
+
+PHP5.3.0 より前のバージョンでは、
+このパラメータは一部のシステムでしか使用できません。
+
+{options}
+パラメータに含まれる要素には次のようなものがあります。
+単一の文字 (値を受け付けない)
+文字の後にコロンをひとつ続けたもの
+(値が必須であるパラメータ)
+文字の後にコロンをふたつ続けたもの
+(値がオプションであるパラメータ)
+オプションの値は、文字列の後の最初の引数となります。
+値の前に空白があるかどうかは関係ありません。
+オプションの値で、" " (空白)
+を区切り文字として使用することはできません。
+
+{options} と {longopts}
+の書式はほぼ同じです。唯一の違いは、 {longopts}
+はオプションの配列 (その各要素がオプションとなる)
+を受け取るけれども {options} は文字列
+(その各文字がオプションとなる)
+を受け取るということです。
+
+この関数はオプション/引数のペアを連想配列で返します。
+失敗した場合は FALSE を返します。
+
+バージョン 説明 5.3.0 "="
+を引数/値の区切り文字として使用できるようになりました。
+5.3.0 オプションの値 ("::" で指定します) に対応しました。
+5.3.0 この関数はシステムに依存しなくなり、 Windows
+でも動作するようになりました。
+
+|getopt| の例
+
+<?php >
+  $options = getopt("f:hp:");
+  var_dump($options);
+?>
+
+上のスクリプトを php script.php -fvalue -h
+として実行すると、次のようになります。
+
+  array(2) {
+    ["f"]=>
+    string(5) "value"
+    ["h"]=>
+    bool(false)
+  }
+
+
+
+|getopt| の例 その2
+
+<?php >
+  $shortopts  = "";
+  $shortopts .= "f:";  // 値が必須
+  $shortopts .= "v::"; // 値がオプション
+  $shortopts .= "abc"; // これらのオプションは値を受け取りません
+  
+  $longopts  = array(
+      "required:",     // 値が必須
+      "optional::",    // 値がオプション
+      "option",        // 値なし
+      "opt",           // 値なし
+  );
+  $options = getopt($shortopts, $longopts);
+  var_dump($options);
+?>
+
+上のスクリプトを php script.php -f "value for f" -v -a --required
+value --optional="optional value" --option
+として実行すると、次のようになります。
+
+  array(6) {
+    ["f"]=>
+    string(11) "value for f"
+    ["v"]=>
+    bool(false)
+    ["a"]=>
+    bool(false)
+    ["required"]=>
+    string(5) "value"
+    ["optional"]=>
+    string(14) "optional value"
+    ["option"]=>
+    bool(false)
+  }
+
+
+
+|getopt| の例 その3 複数のオプションを一度に渡す例
+
+<?php >
+  $options = getopt("abc");
+  var_dump($options);
+?>
+
+上のスクリプトを php script.php -aaac
+として実行すると、次のようになります。
+
+  array(2) {
+    ["a"]=>
+    array(3) {
+      [0]=>
+      bool(false)
+      [1]=>
+      bool(false)
+      [2]=>
+      bool(false)
+    }
+    ["c"]=>
+    bool(false)
+  }
+
+
+
+register_argc_argv
+オプションを有効にしないと、この館数は動作しません。
+
+vim:ft=help:
