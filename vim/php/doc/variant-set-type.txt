@@ -1,0 +1,19 @@
+variant_set_type -- variant を「その場で」別の型に変換する
+
+  void variant_set_type(variant variant, int type)~
+
+この関数は |variant_cast| に似ていますが、
+「その場で」変換されるという点が異なります。新しい
+variant は
+作成されません。この関数に渡すパラメータの意味は
+|variant_cast| の場合と同じです。
+
+{variant} variant。
+
+{type}
+
+値を返しません。
+
+|variant_cast|
+
+vim:ft=help:

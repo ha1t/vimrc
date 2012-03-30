@@ -1,0 +1,27 @@
+dbx_close -- オープンされた接続/データベースを閉じる
+
+  int dbx_close(object link_identifier)~
+
+{link_identifier} 閉じたい DBX リンクオブジェクト。
+
+成功した場合に 1、エラーの場合に 0 を返します。
+
+|dbx_close| の例
+
+<?php >
+  $link = dbx_connect(DBX_MYSQL, "localhost", "db", "username", "password")
+      or die("接続できませんでした");
+  
+  echo "接続に成功しました";
+  dbx_close($link);
+?>
+
+
+
+
+
+モジュール固有のドキュメントも参照ください。
+
+|dbx_connect|
+
+vim:ft=help:

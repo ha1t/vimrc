@@ -1,0 +1,14 @@
+imap_8bit -- 8 ビット文字列を quoted-printable 文字列に変換する
+
+  string imap_8bit(string string)~
+
+(RFC2045, section 6.7 に基づき) 8 ビット文字列を quoted-printable
+文字列に変換します。
+
+{string} 変換する 8 ビット文字列。
+
+quoted-printable 文字列を返します。
+
+|imap_qprint|
+
+vim:ft=help:

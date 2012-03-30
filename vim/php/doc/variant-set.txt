@@ -1,0 +1,16 @@
+variant_set -- variant オブジェクトに新しい値を代入する
+
+  void variant_set(variant variant, mixed value)~
+
+{value} を variant に変換し、それを {variant}
+オブジェクトに代入します。 新しい variant
+オブジェクトは作成されず、 {variant}
+の元の値は開放されます。
+
+{variant} variant。
+
+{value}
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,27 @@
+ps_place_image -- 画像をページに配置する
+
+  bool ps_place_image(resource psdoc, int imageid, float x, float y, float scale)~
+
+以前に読み込まれている画像をページに配置します。画像の縮尺は変更できます。
+画像を回転させる場合は、事前に |ps_rotate|
+で座標系を回転させておきます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{imageid} |ps_open_image| あるいは |ps_open_image_file| が返す、
+画像のリソース ID。
+
+{x} 画像の左下角の x 座標。
+
+{y} 画像の左下角の y 座標。
+
+{scale} 画像の拡大率。1.0 を指定すると、解像度は 72 dpi
+となります。 これにより、各ピクセルが 1
+ポイントと等しくなるからです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_open_image| |ps_open_image_file|
+
+vim:ft=help:

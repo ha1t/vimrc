@@ -1,0 +1,13 @@
+hw_Free_Document -- hw_document を解放する
+
+  bool hw_free_document(int hw_document)~
+
+Hyperwave
+ドキュメントにより占有されたメモリを解放します。
+
+{hw_document} ドキュメント ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

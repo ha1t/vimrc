@@ -1,0 +1,42 @@
+ifx_pconnect -- 持続的 Informix 接続をオープンする
+
+  resource ifx_pconnect([string database [, string userid [, string password]]])~
+
+|ifx_pconnect| は、二つの大きな違いはあるものの、
+|ifx_connect| と非常に似た動作をします。
+
+まず、接続時に、関数は、既にオープンされている同じホスト、ユーザ名、
+パスワードの (持続的) リンクを探します。
+そのリンクが見つかった場合、新規に接続をオープンする代わりに
+その ID が返されます。
+
+第二に、SQL
+サーバーへの接続は、スクリプトの実行終了時に閉じられません。
+代わりにリンクは、後の使用のためにオープンされたままとなります。
+(|ifx_close| は |ifx_pconnect|
+により確立されたリンクを閉じません。)
+
+この型のリンクは、このため、'持続的'
+であると呼ばれます。
+
+全ての引数はオプションであり、指定されない場合には、
+設定ファイルにて指定された値
+がデフォルト値として設定されます。 (ホストに関して
+ifx.default_host (定義されていない場合、Informix
+ライブラリは、環境変数INFORMIXSERVERを参照します) ,
+ユーザーに関して ifx.default_user, パスワードに関して
+ifx.default_password (定義されていない場合は無し)
+となります。
+
+{database} データベース名を表す文字列。
+
+{userid} ユーザ名を表す文字列。
+
+{password} パスワードを表す文字列。
+
+返り値: 成功時に有効な Informix 持続的リンク ID
+、エラー時に FALSE
+
+|ifx_connect|
+
+vim:ft=help:

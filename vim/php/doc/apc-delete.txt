@@ -1,0 +1,28 @@
+apc_delete -- 格納されている変数をキャッシュから取り除く
+
+  bool apc_delete(string key)~
+
+格納されている変数をキャッシュから取り除きます。
+
+{key} （|apc_store| を用いて）値を格納する際に 使用された
+{key} 。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|apc_delete| の例
+
+<?php >
+  $bar = 'BAR';
+  apc_store('foo', $bar);
+  apc_delete('foo');
+  // もちろん、このような使い方は無意味
+?>
+
+
+
+
+
+|apc_store| |apc_fetch|
+
+vim:ft=help:

@@ -1,0 +1,42 @@
+implode -- 配列要素を文字列により連結する
+
+  string implode(string glue, array pieces)~
+
+配列の要素を {glue} 文字列で連結します。
+
+|implode|は、歴史的な理由により、引数をどちら
+の順番でも受けつけることが可能です。しかし、 |explode|
+との統一性の観点からは、
+ドキュメントに記述された引数の順番を使用する方が混乱が少なくなるでしょう。
+
+{glue} デフォルトは空文字 ('') です。 これは |implode|
+の好ましい使用法ではありません。
+下位互換性のため、常に 2
+つのパラメータを使用することが推奨されています。
+
+{pieces}
+
+すべての配列要素の順序を変えずに、各要素間に {glue}
+文字列をはさんで 1 つの文字列にして返します。
+
+バージョン 説明 4.3.0 {glue}
+パラメータがオプションとなりました。
+
+|implode| の例
+
+<?php >
+  $array = array('lastname', 'email', 'phone');
+  $comma_separated = implode(",", $array);
+  
+  echo $comma_separated; // lastname,email,phone
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|explode| |split|
+
+vim:ft=help:

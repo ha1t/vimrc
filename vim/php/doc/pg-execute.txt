@@ -1,0 +1,70 @@
+pg_execute --
+指定したパラメータを用いてプリペアドステートメントを実行するリクエストを
+送信し、その結果を待つ
+
+  resource pg_execute(resource connection, string stmtname, array params)~
+
+  resource pg_execute(resource connection, string stmtname, array params, string stmtname, array params)~
+
+指定したパラメータを用いてプリペアドステートメントを実行するリクエストを
+送信し、その結果を待ちます。
+
+|pg_execute| は |pg_query_params|
+と似ています。しかし、実行するコマンドはクエリを指定することで
+決まるのではなく、事前に準備されたステートメントに値を指定する
+ことによって決まります。この機能のおかげで、繰り返し使用される
+コマンドに構文解析や実行計画作成が最初の一度だけで済みます。
+実行するステートメントは、カレントのセッションで事前に準備しておく
+必要があります。|pg_execute| は、PostgreSQL 7.4
+以降のバージョンの接続にのみ対応しています。それ以前のバージョンでは
+失敗します。
+
+パラメータは |pg_query_params| と同じですが、
+クエリ文字列のかわりにプリペアドステートメントの名前を指定する
+という点だけが違います。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{stmtname} 実行するプリペアドステートメントの名前。""
+が指定された場合は
+無名ステートメントが実行されます。名前は、事前に
+|pg_prepare|・|pg_send_prepare| あるいは PREPARE SQL
+コマンドで準備されたものである 必要があります。
+
+{params} プリペアドステートメント中の $1、$2
+などのプレースホルダを
+置き換えるパラメータの配列。配列の要素数はプレースホルダの
+数と一致する必要があります。
+
+この関数をコールする際に、要素の内容は文字列に変換されます。
+
+成功した場合にクエリ結果リソース、失敗した場合に FALSE
+を返します。
+
+|pg_execute| の使用法
+
+<?php >
+  // "mary"という名前のデータベースに接続
+  $dbconn = pg_connect("dbname=mary");
+  
+  // 実行するクエリを準備
+  $result = pg_prepare($dbconn, "my_query", 'SELECT * FROM shops WHERE name = $1');
+  
+  // プリペアドクエリの実行。文字列 "Joe's Widgets" のエスケープ処理は
+  // 一切必要ないことに注意
+  $result = pg_execute($dbconn, "my_query", array("Joe's Widgets"));
+  
+  // 同じプリペアドクエリを違うパラメータで実行
+  $result = pg_execute($dbconn, "my_query", array("Clothes Clothes Clothes"));
+?>
+
+
+
+
+
+|pg_prepare| |pg_send_prepare| |pg_query_params|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+sybase_query -- Sybase クエリを送信する
+
+  mixed sybase_query(string query [, resource link_identifier])~
+
+|sybase_query|は、指定されたリンク ID
+が指すサーバ上で現在アクティブなデータベースにクエリを送信します。
+
+{query}
+
+{link_identifier} リンク ID
+が指定されない場合、最後にオープンされたリンクが指定されたと
+仮定されます。リンクがオープンされていない場合、この関数は、
+|sybase_connect| がコールされた時と同様にリンクを
+確立しようと試み、これを使用します。
+
+成功時に正の Sybase 結果 ID を、エラー時に FALSE
+を返します。
+クエリは成功したが、結果としてカラムを何も返さなかった場合は
+TRUE を返します。
+
+|sybase_select_db| |sybase_connect|
+
+vim:ft=help:

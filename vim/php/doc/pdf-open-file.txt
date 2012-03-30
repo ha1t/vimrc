@@ -1,0 +1,13 @@
+PDF_open_file -- PDF ファイルを作成する [古い関数]
+
+  bool PDF_open_file(resource p, string filename)~
+
+新規の PDF ファイルを指定したファイル名で作成します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに |PDF_begin_document|
+を使用してください。
+
+vim:ft=help:

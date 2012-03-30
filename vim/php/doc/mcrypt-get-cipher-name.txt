@@ -1,0 +1,29 @@
+mcrypt_get_cipher_name -- 指定した暗号の名前を得る
+
+  string mcrypt_get_cipher_name(int cipher)~
+
+  string mcrypt_get_cipher_name(int cipher, string cipher)~
+
+|mcrypt_get_cipher_name| は、指定した暗号(cipher)
+の名前を得るために使用されます。
+
+|mcrypt_get_cipher_name| は、暗号の番号 (libmcrypt
+2.2.x)または暗号名(libmcrypt 2.4.x 以降)を引数とし、
+暗号名を返します。指定した暗号が存在しない場合は FALSE
+を返します。
+
+|mcrypt_get_cipher_name| の例
+
+<?php >
+     $cipher = MCRYPT_TripleDES;
+  
+     echo mcrypt_get_cipher_name($cipher);
+?>
+
+上の例の出力は以下となります。
+
+  3DES
+
+
+
+vim:ft=help:

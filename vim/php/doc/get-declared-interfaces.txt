@@ -1,0 +1,33 @@
+get_declared_interfaces --
+宣言されている全てのインターフェースの配列を返す
+
+  array get_declared_interfaces()~
+
+宣言されているインターフェイスを取得します。
+
+現在のスクリプトで宣言されているインターフェース名の配列を返します。
+
+|get_declared_interfaces| の例
+
+<?php >
+  print_r(get_declared_interfaces());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => Traversable
+      [1] => IteratorAggregate
+      [2] => Iterator
+      [3] => ArrayAccess
+      [4] => reflector
+      [5] => RecursiveIterator
+      [6] => SeekableIterator
+  )
+
+
+
+|get_declared_classes| |class_implements|
+
+vim:ft=help:

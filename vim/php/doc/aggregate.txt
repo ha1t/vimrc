@@ -1,0 +1,22 @@
+aggregate --
+メソッドおよびプロパティの動的なクラス/オブジェクト集約を行う
+
+  void aggregate(object object, string class_name)~
+
+既存のオブジェクトにあるクラスで定義されたメソッドとプロパティを集約します。
+アンダースコア文字 (_)
+で始まるメソッドとプロパティは、
+集約されたクラスではプライベートとみなされ、使用されません。
+コンストラクタも集約処理から除外されます。
+
+{object}
+
+{class_name}
+
+値を返しません。
+
+|aggregate_info| |aggregate_methods| |aggregate_methods_by_list|
+|aggregate_methods_by_regexp| |aggregate_properties|
+|aggregate_properties_by_list| |aggregate_properties_by_regexp| |deaggregate|
+
+vim:ft=help:

@@ -1,0 +1,42 @@
+libxml_use_internal_errors --
+libxmlエラーを無効にし、ユーザが必要に応じてエラー情報を取得できるようにする
+
+  bool libxml_use_internal_errors([bool use_errors])~
+
+|libxml_use_internal_errors| により、
+標準のlibxmlエラーを無効にし、ユーザによるエラー処理を有効にすることができます。
+
+{use_errors}
+ユーザによるエラー処理を有効または無効にする。デフォルトは、FALSEです。
+
+この関数は、 {use_errors}の前の値を返します。
+
+|libxml_use_internal_errors|の例
+この例は、libxmlエラーとこの関数により返された値の
+貴本的な使用方法に示すものです。
+
+<?php >
+  // ユーザによるエラー処理を有効にする
+  var_dump(libxml_use_internal_errors(true));
+  
+  $doc = DOMDocument::load('file.xml');
+  
+  if (!$doc) {
+      $errors = libxml_get_errors();
+      foreach ($errors as $error) {
+          // handle errors here
+      }
+  
+      libxml_clear_errors();
+  }
+?>
+
+上の例の出力は以下となります。
+
+  bool(false)
+
+
+
+|libxml_clear_errors| |libxml_get_errors|
+
+vim:ft=help:

@@ -1,0 +1,5 @@
+user_error -- trigger_error のエイリアス
+
+この関数は次の関数のエイリアスです。 |trigger_error|.
+
+vim:ft=help:

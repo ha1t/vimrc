@@ -1,0 +1,31 @@
+gzuncompress -- 圧縮された文字列を解凍する
+
+  string gzuncompress(string data [, int length])~
+
+この関数は圧縮された文字列を解凍します。
+
+{data} |gzcompress| によって圧縮されたデータを指定します。
+
+{length} デコードするデータの最大長を指定します。
+
+オリジナルの無圧縮なデータ、もしくはエラー時に FALSE
+
+この関数は、もし無圧縮なデータが圧縮された入力 {data}
+の 32768 倍、もしくはオプションのパラメータ {length}
+以上の場合、エラーを返します。
+
+|gzuncompress| の例
+
+<?php >
+  $compressed   = gzcompress('Compress me', 9);
+  $uncompressed = gzuncompress($compressed);
+  echo $uncompressed;
+?>
+
+
+
+
+
+|gzcompress| |gzinflate| |gzdeflate| |gzencode|
+
+vim:ft=help:

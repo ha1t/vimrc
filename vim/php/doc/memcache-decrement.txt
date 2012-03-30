@@ -1,0 +1,46 @@
+Memcache::decrement -- 項目の値を減らす
+
+  int Memcache::decrement(string key [, int value])~
+
+|Memcache::decrement| は、項目の値を {value} だけ減らします。
+|Memcache::increment| と同様、項目の現在の値が
+まず数値に変換されてから {value} を引きます。
+項目の新しい値をゼロより小さくすることはできません。
+
+圧縮して格納されている項目に対して |Memcache::decrement|
+を使用しないでください。 なぜなら、それ以降の
+|Memcache::get| のコールが 失敗してしまうからです。
+
+|Memcache::decrement| は、指定した項目が
+存在しない場合に項目を作成することは ありません。
+|memcache_decrement| 関数を使用することも可能です。
+
+{key} 値を減らす項目のキー。
+
+{value} 項目の値を {value} だけ減らします。
+オプションのパラメータで、デフォルトは 1。
+
+項目の新しい値か、失敗した場合は FALSE を返します。
+
+|Memcache::decrement| の例
+
+<?php >
+  /* 手続き型の API */
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  /* 項目の値を 2 減らします */
+  $new_value = memcache_decrement($memcache_obj, 'test_item', 2);
+  
+  /* オブジェクト指向の API */
+  $memcache_obj = new Memcache;
+  $memcache_obj->connect('memcache_host', 11211);
+  /* 項目の値を 3 減らします */
+  $new_value = $memcache_obj->decrement('test_item', 3);
+?>
+
+
+
+
+
+|Memcache::increment| |Memcache::replace|
+
+vim:ft=help:

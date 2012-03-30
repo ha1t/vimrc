@@ -1,0 +1,49 @@
+stream_get_contents -- 残りのストリームを文字列に読み込む
+
+  string stream_get_contents(resource handle [, int maxlength [, int offset]])~
+
+|file_get_contents| と似ていますが、 |stream_get_contents|
+は既にオープンしている
+ストリームリソースに対して操作を行います。そして、指定した
+{offset} から始まる最大 {maxlength}
+バイトのデータを取得して文字列に 保存します。
+
+{handle} (resource) ストリームリソース（例: |fopen|
+の返す値）。
+
+{maxlength} (integer) 読み込む最大バイト数。デフォルトは -1
+（バッファの残りのデータをすべて読み込む）。
+
+{offset} (integer) 読み込みを開始する前に移動する位置。PHP
+5.1.0 で追加されました。
+
+文字列を返します。失敗した場合は FALSE を返します。
+
+|stream_get_contents| の例
+
+<?php >
+  if ($stream = fopen('http://www.example.com', 'r')) {
+      // オフセット 10 から開始して、残りのすべてのページを表示します
+      echo stream_get_contents($stream, -1, 10);
+  
+      fclose($stream);
+  }
+  
+  
+  if ($stream = fopen('http://www.example.net', 'r')) {
+      // 最初の 5 バイトを表示します
+      echo stream_get_contents($stream, 5);
+  
+      fclose($stream);
+  }
+?>
+
+
+
+
+
+|fgets| |fread| |fpassthru|
+
+この関数はバイナリデータに対応しています。
+
+vim:ft=help:

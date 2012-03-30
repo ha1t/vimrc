@@ -1,0 +1,51 @@
+ps_hyphenate -- 単語をハイフネーションする
+
+  array ps_hyphenate(resource psdoc, string text)~
+
+渡された単語をハイフネーションします。|ps_hyphenate|
+は、(|ps_set_value| で設定した) hyphenminchars の値と
+(|ps_set_parameter| で設定した) hyphendict
+パラメータの内容を評価します。 hyphendict
+は、この関数を呼ぶ前に必ず設定しておかなければなりません。
+
+この関数を利用するためには、LC_CTYPE
+が適切に設定されている必要があります。 PostScript
+拡張が初期化される際、環境変数の値が利用されます。
+Unix 環境を利用している方は、詳細な情報は locale の man
+ページを見てください。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{text} {text} にはアルファベット以外の文字を
+含むべきではありません。ハイフンで分割できる位置が、
+整数値の配列として返されます。配列の個々の要素の内容は、
+{text} 内でハイフンを入れられる場所の
+次の文字の位置を表します。
+
+テキスト内で改行を入れられる位置を表す整数値の配列、
+あるいはエラー時には FALSE を返します。
+
+テキストのハイフネーション
+
+<?php >
+  $word = "Koordinatensystem";
+  $psdoc = ps_new();
+  ps_set_parameter($psdoc, "hyphendict", "hyph_de.dic");
+  $hyphens = ps_hyphenate($psdoc, $word);
+  for($i=0; $i<strlen($word); $i++) {
+    echo $word[$i];
+    if(in_array($i, $hyphens))
+      echo "-";
+  }
+  ps_delete($psdoc);
+?>
+
+上の例の出力は以下となります。
+
+  Ko-ordi-na-ten-sys-tem
+
+
+
+|ps_show_boxed| locale(1)
+
+vim:ft=help:

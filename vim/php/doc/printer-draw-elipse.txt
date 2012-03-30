@@ -1,0 +1,47 @@
+printer_draw_elipse -- 楕円を描画する
+
+  void printer_draw_elipse(resource printer_handle, int ul_x, int ul_y, int lr_x, int lr_y)~
+
+この関数は、楕円を描画します。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{ul_x} {ul_x} は、楕円の左上の x 座標です。
+
+{ul_y} {ul_y} は、楕円の左上の y 座標です。
+
+{lr_x} {lr_x} は、楕円の右下の x 座標です。
+
+{lr_y} {lr_y} は、楕円の右下の y 座標です。
+
+値を返しません。
+
+|printer_draw_elipse| の例
+
+<?php >
+  $handle = printer_open();
+  printer_start_doc($handle, "My Document");
+  printer_start_page($handle);
+  
+  $pen = printer_create_pen(PRINTER_PEN_SOLID, 2, "000000");
+  printer_select_pen($handle, $pen);
+  
+  $brush = printer_create_brush(PRINTER_BRUSH_SOLID, "2222FF");
+  printer_select_brush($handle, $brush);
+  
+  printer_draw_elipse($handle, 1, 1, 500, 500);
+  
+  printer_delete_brush($brush);
+  printer_delete_pen($pen);
+  
+  printer_end_page($handle);
+  printer_end_doc($handle);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

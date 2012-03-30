@@ -1,0 +1,50 @@
+array_intersect_assoc --
+追加された添字の確認も含めて配列の共通項を確認する
+
+  array array_intersect_assoc(array array1, array array2 [, array ...])~
+
+|array_intersect_assoc| は、全ての引数に現れる {array1}
+の全ての値を含む配列を返します。 |array_intersect|
+と異なり、
+キーが比較に使用されることに注意してください。
+
+{array1} 値を調べるもととなる配列。
+
+{array2} 値を比較する対象となる配列。
+
+{array} さらにそれ以外の配列。
+
+{array1}
+の値のうち、すべての引数に存在するものを含む連想配列を返します。
+
+|array_intersect_assoc| の例
+
+<?php >
+  $array1 = array("a" => "green", "b" => "brown", "c" => "blue", "red");
+  $array2 = array("a" => "green", "yellow", "red");
+  $result_array = array_intersect_assoc($array1, $array2);
+  print_r($result_array);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [a] => green
+  )
+
+
+
+上の例で、"a" => "green"
+の組のみが両方の配列に現れており、
+よって配列として返されていることがわかります。 値
+"red" は返されません。これは、 $array1
+においてはそのキーが 0 であり、一方、$array2
+においてはキーが 1 であるためです。
+
+key => value の組からの二つの値は、 (string) $elem1 === (string)
+$elem2 が成り立つ場合にのみ等しいと見なされます。
+言い替えると、厳密なチェックが行われるため、
+文字列表現が同じである必要があります。
+
+vim:ft=help:

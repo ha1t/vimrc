@@ -1,0 +1,54 @@
+array_intersect_key --
+キーを基準にして配列の共通項を計算する
+
+  array array_intersect_key(array array1, array array2 [, array ...])~
+
+|array_intersect_key| は、他の全ての引数に存在する {array1}
+の値を全て有する配列を返します。
+
+{array1} 値を調べるもととなる配列。
+
+{array2} 値を比較する対象となる配列。
+
+{array} さらにそれ以外の配列。
+
+{array1} の値のうち、
+すべての引数に存在するキーのものを含む連想配列を返します。
+
+|array_intersect_key| の例
+
+<?php >
+  $array1 = array('blue'  => 1, 'red'  => 2, 'green'  => 3, 'purple' => 4);
+  $array2 = array('green' => 5, 'blue' => 6, 'yellow' => 7, 'cyan'   => 8);
+  
+  var_dump(array_intersect_key($array1, $array2));
+?>
+
+上の例の出力は以下となります。
+
+  array(2) {
+    ["blue"]=>
+    int(1)
+    ["green"]=>
+    int(3)
+  }
+
+
+
+この例では、両方の配列に存在するキーが 'blue' と 'green'
+だけであり、それが返されていることが
+わかります。また、ふたつの配列の間で 'blue' と 'green'
+に対応する値が違うことにも注意しましょう。
+それでも一致していると判定されるのは、ただキーだけがチェックされているからです。
+返される値は {array1} のものです。
+
+二つの要素は、 (string) $elem1 === (string) $elem2
+の場合のみ等しいとみなされます。言い換えると、
+文字列表現が同じ場合となります。
+
+|array_diff| |array_udiff| |array_diff_assoc| |array_diff_uassoc|
+|array_udiff_assoc| |array_udiff_uassoc| |array_diff_key| |array_diff_ukey|
+|array_intersect| |array_intersect_assoc| |array_intersect_uassoc|
+|array_intersect_ukey|
+
+vim:ft=help:

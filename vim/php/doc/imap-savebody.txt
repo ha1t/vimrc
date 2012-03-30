@@ -1,0 +1,34 @@
+imap_savebody -- 指定した本文部をファイルに保存する
+
+  bool imap_savebody(resource imap_stream, mixed file, int msg_number [, string part_number [, int options]])~
+
+指定したメッセージの本文全体、あるいはその一部を保存します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{file} 保存先ファイルへのパスを表す文字列、あるいは
+|fopen| が返すファイル記述子。
+
+{msg_number} メッセージ番号。
+
+{part_number}
+パート番号。ピリオドで区切られた整数文字列を指定します。
+これは、IMAP4
+仕様における本文パートのリストへのインデックスとなります。
+
+{options}
+ビットマスクであり、以下の組合わせとなります。 FT_UID -
+{msg_number}は UID である
+
+FT_PEEK - 既に設定されていない場合、 \Seen
+フラグを設定しない
+
+FT_INTERNAL - 内部フォーマットで文字列を返す。CRLF
+は正規化しない。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_fetchbody|
+
+vim:ft=help:

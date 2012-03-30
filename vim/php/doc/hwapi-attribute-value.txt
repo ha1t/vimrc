@@ -1,0 +1,9 @@
+hw_api_attribute->value -- 属性の値を返す
+
+  string value()~
+
+属性の値を取得します。
+
+属性の値を表す文字列を返します。
+
+vim:ft=help:

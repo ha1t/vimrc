@@ -1,0 +1,69 @@
+mb_detect_order --
+文字エンコーディング検出順序を設定あるいは取得する
+
+  mixed mb_detect_order([mixed encoding_list])~
+
+自動文字エンコーディング検出の順番を {encoding_list}
+に設定します。
+
+{encoding_list} {encoding_list} は、
+配列またはカンマ区切りの文字エンコーディングのリストです（"auto"
+は、 "ASCII, JIS, UTF-8, EUC-JP, SJIS"に展開されます）。
+
+{encoding_list} が省略された場合は、
+現在の文字エンコーディング検出順を配列で返します。
+
+この設定は、|mb_detect_encoding| および |mb_send_mail|
+に影響します。
+
+mbstring が現在実装しているのは、
+以下のエンコーディングを検出するフィルタです。
+以下のエンコーディングにおいて無効なバイトシーケンスがあった場合、
+エンコーディング検出は失敗します。
+
+UTF-8, UTF-7, ASCII, EUC-JP,SJIS, eucJP-win, SJIS-win, JIS, ISO-2022-JP
+
+ISO-8859-*の場合、mbstring は常に ISO-8859-*
+として検出します。
+
+UTF-16, UTF-32, UCS2, UCS4 の場合、
+エンコーディング検出は常に失敗します。
+
+無意味な順番の例
+
+  ; 常に ISO-8859-1 として検出されます
+  detect_order = ISO-8859-1, UTF-8
+  
+  ; ASCII/UTF-7 の値は UTF-8 として有効なため、常に UTF-8 として検出されます
+  detect_order = UTF-8, ASCII, UTF-7
+
+
+
+
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mb_detect_order| の例
+
+<?php >
+  /* リストで検出順を設定 */
+  mb_detect_order("eucjp-win,sjis-win,UTF-8");
+  
+  /* 配列で検出順を設定 */
+  $ary[] = "ASCII";
+  $ary[] = "JIS";
+  $ary[] = "EUC-JP";
+  mb_detect_order($ary);
+  
+  /* 現在の検出順を表示 */
+  echo implode(", ", mb_detect_order());
+?>
+
+
+
+
+
+|mb_internal_encoding| |mb_http_input| |mb_http_output| |mb_send_mail|
+
+vim:ft=help:

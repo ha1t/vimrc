@@ -1,0 +1,24 @@
+mcal_event_set_start --
+グローバルイベント構造体ストリームの開始日を設定する
+
+  void mcal_event_set_start(int stream, int year, int month, int day [, int hour [, int minutes [, int seconds]]])~
+
+グローバルイベント構造体ストリームの開始日を指定した値に設定します。
+
+{stream} MCAL ストリーム。
+
+{year} 年。
+
+{month} 月。
+
+{day} 日。
+
+{hour} 時間。
+
+{minutes} 分。
+
+{seconds} 秒。
+
+値を返しません。
+
+vim:ft=help:

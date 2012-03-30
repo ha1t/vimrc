@@ -1,0 +1,16 @@
+wddx_serialize_value -- 単一の値を WDDX
+パケットにシリアライズする
+
+  string wddx_serialize_value(mixed var [, string comment])~
+
+指定した単一の値をもとにして WDDX
+パケットを作成します。
+
+{var} シリアライズする値。
+
+{comment}
+オプションのコメント文字列。これはヘッダ内で用いられます。
+
+WDDX パケット、あるいはエラー時に FALSE を返します。
+
+vim:ft=help:

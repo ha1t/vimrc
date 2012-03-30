@@ -1,0 +1,12 @@
+odbc_cursor -- カーソル名を得る
+
+  string odbc_cursor(resource result_id)~
+
+指定された接続 ID に関するカーソル名を返します。 Gets
+the cursorname for the given result_id.
+
+{result_id} 結果 ID。
+
+カーソル名を文字列で返します。
+
+vim:ft=help:

@@ -1,0 +1,95 @@
+maxdb->insert_id -- 直近のクエリで使用した、自動生成 ID
+を返す
+
+手続き型
+
+  mixed maxdb_insert_id(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_insert_id| 関数は、DEFAULT SERIAL
+属性をもつカラムが存在するテーブルに対するクエリが生成した
+ID を返します。 直近のクエリが INSERT や UPDATE
+でなかった場合、 あるいは対象のテーブルに DEFAULT SERIAL
+属性をもつカラムが存在しなかった場合は、
+この関数はゼロを返します。
+
+直近のクエリによって更新された DEFAULT SERIAL
+フィールドの値を返します。直近のクエリがない場合、
+あるいは直近のクエリが DEFAULT_SERIAL
+を更新しなかった場合はゼロを返します。
+
+結果の数値が int の最大値をこえる場合は、|maxdb_insert_id|
+は文字列を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  maxdb_report (MAXDB_REPORT_OFF);
+  $maxdb->query("DROP TABLE mycity");
+  maxdb_report (MAXDB_REPORT_ERROR);
+  
+  $maxdb->query("CREATE TABLE mycity LIKE hotel.city");
+  $maxdb->query("ALTER TABLE mycity ADD id FIXED(11) DEFAULT SERIAL");
+  
+  $query = "INSERT INTO mycity (zip,name,state) VALUES ('12203','Albany' ,'NY')";
+  $maxdb->query($query);
+  
+  printf ("新しいレコードの ID は、%d です。\n", $maxdb->insert_id);
+  
+  /* テーブルを削除します */
+  $maxdb->query("DROP TABLE mycity");
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  maxdb_report (MAXDB_REPORT_OFF);
+  maxdb_query($link,"DROP TABLE mycity");
+  maxdb_report (MAXDB_REPORT_ERROR);
+  
+  maxdb_query($link, "CREATE TABLE mycity LIKE hotel.city");
+  maxdb_query($link, "ALTER TABLE mycity ADD id FIXED(11) DEFAULT SERIAL");
+  
+  $query = "INSERT INTO mycity (zip,name,state) VALUES ('12203','Albany' ,'NY')";
+  maxdb_query($link, $query);
+  
+  printf ("新しいレコードの ID は、%d です。\n", $maxdb->insert_id);
+  
+  /* テーブルを削除します */
+  maxdb_query($link, "DROP TABLE mycity");
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  新しいレコードの ID は、1 です。
+
+vim:ft=help:

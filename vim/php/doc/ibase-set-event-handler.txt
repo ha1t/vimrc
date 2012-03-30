@@ -1,0 +1,53 @@
+ibase_set_event_handler --
+イベントが発生した際にコールされるコールバック関数を登録する
+
+  resource ibase_set_event_handler(callback event_handler, string event_name1 [, string event_name2 [, string ...]])~
+
+  resource ibase_set_event_handler(callback event_handler, string event_name1 [, string event_name2 [, string ..., resource connection, callback event_handler, string event_name1 [, string event_name2 [, string ...]]]])~
+
+この関数は、指定したイベントのハンドラとして PHP
+ユーザ関数を登録します。
+
+{event_handler}
+コールバックは、データベースから特定のイベントが送信された場合に、
+イベント名とリンクリソースを引数としてコールされます。
+
+イベントハンドラがキャンセルされた場合は、
+コールバックは FALSE を返す必要があります。
+その他の返り値は無視されます。 この関数は、最大 15
+のイベントを引数として受け取ります。
+
+{event_name1} イベントの名前。
+
+{event_name2}
+
+{...}
+
+返される値はイベントのリソースです。このリソースは、
+|ibase_free_event_handler|
+でイベントハンドラを開放する際に使用可能です。
+
+|ibase_set_event_handler| の例
+
+<?php >
+  function event_handler($event_name, $link)
+  {
+      if ($event_name == "NEW ORDER") {
+          // 新しい注文を処理します
+          ibase_query($link, "UPDATE orders SET status='handled'");
+      } else if ($event_name == "DB_SHUTDOWN") {
+          // イベントハンドラを解放します
+          return false;
+      }
+  }
+  
+  ibase_set_event_handler($link, "event_handler", "NEW_ORDER", "DB_SHUTDOWN");
+?>
+
+
+
+
+
+|ibase_free_event_handler| |ibase_wait_event|
+
+vim:ft=help:

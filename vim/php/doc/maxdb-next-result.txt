@@ -1,0 +1,13 @@
+maxdb->next_result -- multi_query の、次の結果を準備する
+
+  bool maxdb_next_result(resource link)~
+
+複数クエリはまだサポートされていないので、|maxdb_next_result|
+は常に FALSE を返します。
+
+FALSE を返します。
+
+|maxdb_multi_query| |maxdb_more_results| |maxdb_store_result|
+|maxdb_use_result|
+
+vim:ft=help:

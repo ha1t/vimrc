@@ -1,0 +1,26 @@
+SDO_Model_ReflectionDataObject::__construct -- SDO_Model_ReflectionDataObject
+を作成する
+
+  SDO_Model_ReflectionDataObject SDO_Model_ReflectionDataObject::__construct(SDO_DataObject data_object)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+SDO_DataObject へのリフレクションのための
+SDO_Model_ReflectionDataObject を作成します。 SDO_DataObject
+へのリフレクションにより、モデル自身の情報への
+アクセスが可能になります。モデルに含まれる情報には、
+データオブジェクトの型・シーケンス型
+(プロパティを超えた並び順を 保持する)
+かどうか・オープン型 (個々のインスタンスがモデルを
+拡張できる)
+かどうかなどがあります。また、データオブジェクトの
+プロパティやデフォルト値などの情報も含みます。
+
+{data_object} リフレクションの対象となる SDO_DataObject。
+
+何も値を返しません。
+
+vim:ft=help:

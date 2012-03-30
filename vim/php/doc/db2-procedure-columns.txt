@@ -1,0 +1,74 @@
+db2_procedure_columns --
+ストアドプロシージャのパラメータを含む結果セットを返す
+
+  resource db2_procedure_columns(resource connection, string qualifier, string schema, string procedure, string parameter)~
+
+ストアドプロシージャのパラメータを含む結果セットを返します。
+
+{connection} IBM DB2、Cloudscape あるいは Apache Derby
+データベースへの有効な接続。
+
+{qualifier} OS/390 あるいは z/OS サーバ上で稼動している DB2
+データベースの修飾子。
+その他のデータベースの場合には NULL
+あるいは空の文字列を渡します。
+
+{schema}
+プロシージャを含むスキーマ。このパラメータでは、ワイルドカードとして
+_ および % を含む検索パターンを使用可能です。
+
+{procedure}
+プロシージャの名前。このパラメータでは、ワイルドカードとして
+_ および % を含む検索パターンを使用可能です。
+
+{parameter}
+パラメータの名前。このパラメータでは、ワイルドカードとして
+_ および % を含む検索パターンを使用可能です。
+このパラメータが NULL
+の場合、指定したストアドプロシージャの
+すべてのパラメータが返されます。
+
+指定したパラメータに一致するストアドプロシージャのパラメータ情報を含む結果セットの
+ステートメントリソースを返します。
+行の内容は、以下のカラムで構成されています。
+カラム名 説明 PROCEDURE_CAT
+プロシージャを含むカタログ。テーブルがカタログを保持していない場合は
+NULL。 PROCEDURE_SCHEM
+ストアドプロシージャを含むスキーマの名前。 PROCEDURE_NAME
+プロシージャの名前。 COLUMN_NAME パラメータの名前。
+COLUMN_TYPE パラメータの型を表す整数値。 返される値
+パラメータの型 1 (SQL_PARAM_INPUT) 入力 (IN) パラメータ。 2
+(SQL_PARAM_INPUT_OUTPUT) 入力/出力 (INOUT) パラメータ。 3
+(SQL_PARAM_OUTPUT) 出力 (OUT) パラメータ。
+
+DATA_TYPE パラメータの SQL データ型を表す整数値。 TYPE_NAME
+パラメータのデータ型を表す文字列。 COLUMN_SIZE
+パラメータのサイズを表す整数値。 BUFFER_LENGTH
+このパラメータのデータを保存するために必要な最大バイト数。
+DECIMAL_DIGITS
+パラメータの位取り。位取りが適用できない場合は NULL。
+NUM_PREC_RADIX 10 (正確な数値データ型を表す)、 2
+(概数データ型を表す)、 あるいは NULL
+(基数が適用できないデータ型を表す) のいずれか。 NULLABLE
+パラメータが null
+値をとることができるかどうかを表す整数値。 REMARKS
+パラメータの説明。 COLUMN_DEF パラメータのデフォルト値。
+SQL_DATA_TYPE パラメータのサイズを表す整数値。
+SQL_DATETIME_SUB datetime 型のコードを表す整数値、
+あるいはこれが適用できない SQL データ型である場合に
+NULL。 CHAR_OCTET_LENGTH
+文字型のパラメータにおける最大のオクテット数。
+シングルバイト文字セットのデータの場合、これは
+COLUMN_SIZE に一致します。文字型でないカラムの場合は NULL
+となります。 ORDINAL_POSITION CALL
+文の中でのパラメータの位置を表す、1
+から始まるインデックス。 IS_NULLABLE パラメータが null
+値をとることができるかどうかを表す文字列。 'YES'
+の場合は null 値をとることができ、 'NO'
+の場合はできません。
+
+|db2_column_privileges| |db2_columns| |db2_foreign_keys| |db2_primary_keys|
+|db2_procedures| |db2_special_columns| |db2_statistics| |db2_table_privileges|
+|db2_tables|
+
+vim:ft=help:

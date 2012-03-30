@@ -1,0 +1,19 @@
+ldap_explode_dn -- DN を構成要素ごとに分割する
+
+  array ldap_explode_dn(string dn, int with_attrib)~
+
+|ldap_get_dn| により返された DN を分割し、
+複数の要素に分けます。各部分は、相対区分名 (Relative
+Distinguished Name または RDN) と呼ばれます。
+
+{dn} LDAP エンティティの識別名。
+
+{with_attrib} RDN が値のみを返すのか、
+あるいは、属性を同時に返すのかを指定するために使用します。
+属性を有する RDN (属性=値 フォーマットで)
+を得るためには {with_attrib} を 0 とし、
+値のみを得るためには 1 に設定します。
+
+すべての DN 要素を配列で返します。
+
+vim:ft=help:

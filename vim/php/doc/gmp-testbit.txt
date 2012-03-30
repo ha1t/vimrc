@@ -1,0 +1,35 @@
+gmp_testbit -- ビットが設定されているかどうかを調べる
+
+  bool gmp_testbit(resource a, int index)~
+
+指定したビットが設定されているかどうかを調べます。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{index} 調べたいビット。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+{index} に負の数を指定すると E_WARNING が発生します。
+
+|gmp_testbit| の例
+
+<?php >
+  $n = gmp_init("1000000");
+  var_dump(gmp_testbit($n, 1));
+  gmp_setbit($n, 1);
+  var_dump(gmp_testbit($n, 1));
+?>
+
+上の例の出力は以下となります。
+
+  bool(false)
+  bool(true)
+
+
+
+|gmp_setbit| |gmp_clrbit|
+
+vim:ft=help:

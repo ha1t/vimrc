@@ -1,0 +1,16 @@
+openal_buffer_get -- OpenAL バッファのプロパティを取得する
+
+  int openal_buffer_get(resource buffer, int property)~
+
+Open AL (バッファ) リソース (事前に |openal_buffer_create|
+で作成したもの)。
+
+特定のプロパティ。 AL_FREQUENCY、 AL_BITS、 AL_CHANNELS そして
+AL_SIZE のいずれか。
+
+要求された {property} の値を整数で返します。
+失敗した場合には FALSE を返します。
+
+|openal_buffer_create|
+
+vim:ft=help:

@@ -1,0 +1,5 @@
+ocifreecursor -- oci_free_statement のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_free_statement|.
+
+vim:ft=help:

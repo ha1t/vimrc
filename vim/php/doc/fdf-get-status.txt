@@ -1,0 +1,14 @@
+fdf_get_status -- /STATUS キーの値を得る
+
+  string fdf_get_status(resource fdf_document)~
+
+/STATUS キーの値を取得します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+キーの値を文字列で返します。
+
+|fdf_set_status|
+
+vim:ft=help:

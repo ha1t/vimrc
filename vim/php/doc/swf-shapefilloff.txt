@@ -1,0 +1,9 @@
+swf_shapefilloff -- 塗りつぶしをオフにする
+
+  void swf_shapefilloff()~
+
+現在の形状において塗りつぶしをオフにします。
+
+値を返しません。
+
+vim:ft=help:

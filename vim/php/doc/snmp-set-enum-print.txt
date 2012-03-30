@@ -1,0 +1,15 @@
+snmp_set_enum_print -- すべての enum を、実際の整数値ではなく
+enum 値とともに返す
+
+  void snmp_set_enum_print(int enum_print)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+|snmp_set_enum_print| は、 UCB SNMP
+ライブラリを使用している場合のみ利用可能です。
+この関数は、Windows SNMP
+ライブラリを使用している場合は利用できません。
+
+vim:ft=help:

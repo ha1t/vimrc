@@ -1,0 +1,110 @@
+fsockopen -- インターネット接続もしくはUnix
+ドメインソケット接続をオープンする
+
+  resource fsockopen(string hostname [, int port [, int errno [, string errstr [, float timeout]]]])~
+
+{hostname}
+で指定したリソースへのソケット接続を開始します。
+
+に記述されているように、PHP は Internet ドメインまたは
+Unix ドメインをサポートします。
+サポートされるトランスポートのリストは、|stream_get_transports|
+を使って取得することもできます。
+
+ソケットはデフォルトでブロックモードで開かれます。
+|socket_set_blocking| を使用して、
+非ブロックモードに切換えることができます。
+
+{hostname} OpenSSL
+サポートを有効にしてコンパイルした場合、 {hostname}
+の前に 'ssl://' または 'tls://' を付加することにより、TCP/IP
+経由でリモートホストに接続する際に SSL または TLS
+クライアント接続を使用することができます。
+
+{port} ポート番号。
+
+{errno} 指定した場合は、システムコール connect()
+で発生したエラーのエラー番号が格納されます。
+
+{errno}は0 なのに関数が FALSE を返す場合、connect()
+をコールする前にエラーを発生したことを示します。
+この場合、おそらくはソケットの初期化に原因があります。
+
+{errstr} エラーメッセージを表す文字列。
+
+{timeout} 接続タイムアウト秒数。
+
+ソケット経由でデータを読み書きする際のタイムアウトを設定する必要がある場合、
+|fsockopen| の {timeout} パラメータは、
+ソケットに接続する間にだけ適用されるため、
+|socket_set_timeout|を使用してください。
+
+|fsockopen|は、ファイルポインタを返します。
+このファイルポインタは、 (|fgets|, |fgetss|, |fputs|, |fclose|,
+|feof| のような) 他のファイル関数で使用可能です。
+失敗した場合は FALSE を返します。
+
+バージョン 説明 4.3.0 {timeout} パラメータが win32
+もサポートするようになりました。 4.3.0 TCP/IP 上での SSL
+および TLS のサポートが追加されました。 4.0.0 UDP
+のサポートが追加されました。 3.0.9 {timeout}
+パラメータが追加されました。
+
+|fsockopen| の例
+
+<?php >
+  $fp = fsockopen("www.example.com", 80, $errno, $errstr, 30);
+  if (!$fp) {
+      echo "$errstr ($errno)<br />\n";
+  } else {
+      $out = "GET / HTTP/1.1\r\n";
+      $out .= "Host: www.example.com\r\n";
+      $out .= "Connection: Close\r\n\r\n";
+  
+      fwrite($fp, $out);
+      while (!feof($fp)) {
+          echo fgets($fp, 128);
+      }
+      fclose($fp);
+  }
+?>
+
+
+
+
+
+UDP 接続の使用法 以下の例は、自分のマシンの UDP
+サービス "daytime" (ポート13)
+から日付と時間を取得する方法を示すものです。
+
+<?php >
+  $fp = fsockopen("udp://127.0.0.1", 13, $errno, $errstr);
+  if (!$fp) {
+      echo "ERROR: $errno - $errstr<br />\n";
+  } else {
+      fwrite($fp, "\n");
+      echo fread($fp, 26);
+      fclose($fp);
+  }
+?>
+
+
+
+環境によっては Unix ドメインまたは
+オプションの接続タイムアウトが利用できないこともあります。
+
+UDPソケットは、リモートホストとの接続が確立されていない場合でも、
+エラーを発生せずにオープンされたように見えることが時々あります。
+このエラーは、そのソケットでデータを読み書きした際にのみ明らかになります。
+この原因は、UDPが"コネクションレス"のプロトコルであり、
+実際にデータを送受信する必要が生じるまで、
+オペレーションシステムがソケット用のリンクを確立しようとしないためです。
+
+数値で IPv6 アドレスを指定するときは、 (例 fe80::1)
+アドレスを角カッコでくくらなくてはなりません。たとえば、
+tcp://[fe80::1]:80.
+
+|pfsockopen| |stream_set_blocking| |stream_set_timeout| |fgets| |fgetss|
+|fwrite| |fclose| |feof| Curl 拡張モジュール
+
+vim:ft=help:

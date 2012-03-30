@@ -1,0 +1,5 @@
+msql_fieldname -- msql_field_name のエイリアス
+
+この関数は次の関数のエイリアスです。 |msql_field_name|
+
+vim:ft=help:

@@ -1,0 +1,35 @@
+Memcache::flush -- サーバ上のすべての既存項目を消去する
+
+  bool Memcache::flush()~
+
+|Memcache::flush| は、すべての既存項目を直ちに
+無効にします。|Memcache::flush| は
+実際にリソースを開放するわけではなく、単にすべての項目に
+有効期限切れのマークをつけるだけです。それらの項目が使用していた
+メモリは、新しい項目で上書きされるようになります。
+|memcache_flush| 関数を使用することも可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Memcache::flush| の例
+
+<?php >
+  /* 手続き型の API */
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  
+  memcache_flush($memcache_obj);
+  
+  /* オブジェクト指向の API */
+  
+  $memcache_obj = new Memcache;
+  $memcache_obj->connect('memcache_host', 11211);
+  
+  $memcache_obj->flush();
+?>
+
+
+
+
+
+vim:ft=help:

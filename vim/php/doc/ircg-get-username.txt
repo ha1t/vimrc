@@ -1,0 +1,12 @@
+ircg_get_username -- 接続用にユーザ名を取得する
+
+  string ircg_get_username(resource connection)~
+
+関数 |ircg_get_username| は、 指定した接続 {connection}
+のユーザ名を返します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+ユーザ名、あるいはエラー時に FALSE を返します。
+
+vim:ft=help:

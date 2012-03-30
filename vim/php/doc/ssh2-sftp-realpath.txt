@@ -1,0 +1,32 @@
+ssh2_sftp_realpath --
+指定されたパス文字列の実パスを解決する
+
+  string ssh2_sftp_realpath(resource sftp, string filename)~
+
+{filename}
+をリモートファイルシステム上の有効な実パスに変換します。
+
+{sftp} |ssh2_sftp| でオープンした SSH2 SFTP リソース。
+
+{filename}
+
+実際のパスを表す文字列を返します。
+
+パス名の解決
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  $sftp = ssh2_sftp($connection);
+  
+  $realpath = ssh2_sftp_realpath($sftp, '/home/username/../../../..//./usr/../etc/passwd');
+  /* $realpath は次の通り: '/etc/passwd' */
+?>
+
+
+
+
+
+|realpath| |ssh2_sftp_symlink| |ssh2_sftp_readlink|
+
+vim:ft=help:

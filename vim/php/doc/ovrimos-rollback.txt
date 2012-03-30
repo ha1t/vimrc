@@ -1,0 +1,14 @@
+ovrimos_rollback -- トランザクションをロールバックする
+
+  bool ovrimos_rollback(int connection_id)~
+
+トランザクションをロールバックします。
+
+{connection_id} |ovrimos_connect| が返す Ovrimos 接続 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ovrimos_commit|
+
+vim:ft=help:

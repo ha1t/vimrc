@@ -1,0 +1,13 @@
+mssql_rows_affected --
+クエリにより変更されたレコード数を返す
+
+  int mssql_rows_affected(resource link_identifier)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{link_identifier} |mssql_connect| あるいは |mssql_pconnect| が返す MS
+SQL リンク ID。
+
+vim:ft=help:

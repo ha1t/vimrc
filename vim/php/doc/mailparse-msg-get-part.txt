@@ -1,0 +1,14 @@
+mailparse_msg_get_part -- MIME
+メッセージの指定したセクションに関するハンドルを返す
+
+  resource mailparse_msg_get_part(resource mimemail, string mimesection)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{mimemail} 有効な MIME リソース。
+
+{mimesection}
+
+vim:ft=help:

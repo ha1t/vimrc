@@ -1,0 +1,9 @@
+PDF_shading_pattern -- シェーディングパターンを定義する
+
+  int PDF_shading_pattern(resource pdfdoc, int shading, string optlist)~
+
+シェーディングオブジェクトを使用して、シェーディングパターンを定義します。
+
+この関数は、PDF 1.4 以降で使用可能です。
+
+vim:ft=help:

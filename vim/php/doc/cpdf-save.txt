@@ -1,0 +1,17 @@
+cpdf_save -- 現在の環境を保存する
+
+  bool cpdf_save(int pdf_document)~
+
+現在の環境を保存します。 ポストスクリプトのコマンド
+gsave と同様に動作します。
+他のオブジェクトに影響を与えずに、
+あるオブジェクトを変換または回転したい場合に非常に便利です。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_restore|
+
+vim:ft=help:

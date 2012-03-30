@@ -1,0 +1,16 @@
+posix_seteuid -- 現在のプロセスの実効 UID を設定する
+
+  bool posix_seteuid(int uid)~
+
+現在のプロセスの実効ユーザ ID を設定します。
+この関数は特権関数であり、実行するにはシステム上において適当な権限
+(通常は root) が必要です。
+
+{uid} ユーザ ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|posix_setgid|
+
+vim:ft=help:

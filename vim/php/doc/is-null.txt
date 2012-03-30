@@ -1,0 +1,15 @@
+is_null -- 変数が NULL かどうか調べる
+
+  bool is_null(mixed var)~
+
+指定した変数が NULL かどうかを調べます。
+
+{var} 評価する変数。
+
+{var} が null の場合に TRUE、 それ以外の場合に FALSE
+を返します。
+
+NULL 型 |isset| |is_bool| |is_numeric| |is_float| |is_int| |is_string|
+|is_object| |is_array|
+
+vim:ft=help:

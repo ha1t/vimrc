@@ -1,0 +1,88 @@
+each --
+配列から現在のキーと値のペアを返して、カーソルを進める
+
+  array each(array array)~
+
+配列から現在のキーと値のペアを返して、カーソルを進めます。
+
+|each| を実行した後、配列カーソルは、
+配列の次の要素に移動します。配列の最終要素にカーソルがある場合は、
+最終要素にとどまります。再度 each
+を使用して配列を走査するには、 |reset|
+を使用する必要があります。
+
+{array} 入力の配列。
+
+配列 {array} から現在のキーと値のペアを返します。
+このペアは 4 つの要素を持つ配列で、 それぞれの要素は
+0, 1, key, value というキーを有しています。 要素 0とkey
+の各々は配列要素のキー名称を保持しており、1 と value
+の各々はそのデータを保持しています。
+
+配列の内部ポインタが配列の最終要素以降を指す場合、
+|each| は FALSE を返します。
+
+|each| の例
+
+<?php >
+  $foo = array("bob", "fred", "jussi", "jouni", "egon", "marliese");
+  $bar = each($foo);
+  print_r($bar);
+?>
+
+$bar は、ここでは以下のキー/値のペアを保持しています。
+
+  Array
+  (
+      [1] => bob
+      [value] => bob
+      [0] => 0
+      [key] => 0
+  )
+
+
+
+<?php >
+  $foo = array("Robert" => "Bob", "Seppo" => "Sepi");
+  $bar = each($foo);
+  print_r($bar);
+?>
+
+$bar は次のようなキー/値のペアを持つようになります。
+
+  Array
+  (
+      [1] => Bob
+      [value] => Bob
+      [0] => Robert
+      [key] => Robert
+  )
+
+通常 |each| は、配列の走査をするために |list|
+と共に使用します。 例えばこのようになります。 |each|
+によって配列を走査する
+
+<?php >
+  $fruit = array('a' => 'apple', 'b' => 'banana', 'c' => 'cranberry');
+  
+  reset($fruit);
+  while (list($key, $val) = each($fruit)) {
+      echo "$key => $val\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  a => apple
+  b => banana
+  c => cranberry
+
+
+
+配列を他の変数に代入すると、もとの配列の内部ポインタがリセットされます。
+そのため、上の例のループ内で $fruit
+を他の変数に代入すると、無限ループを引き起こしてしまいます。
+
+|key| |list| |current| |reset| |next| |prev| foreach
+
+vim:ft=help:

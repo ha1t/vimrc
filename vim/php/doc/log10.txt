@@ -1,0 +1,13 @@
+log10 -- 底が 10 の対数
+
+  float log10(float arg)~
+
+底を 10 とする {arg} の対数を返します。
+
+{arg} 処理する引数。
+
+底を 10 とする {arg} の対数を返します。
+
+|log|
+
+vim:ft=help:

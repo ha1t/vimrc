@@ -1,0 +1,18 @@
+mcal_next_recurrence -- 次に発生するイベントを返す
+
+  object mcal_next_recurrence(int stream, int weekstart, array next)~
+
+次に発生するイベントを取得します。
+
+{stream} MCAL ストリーム。
+
+{weekstart} weekstart
+を使用して、週の初めとなる曜日を指定します。
+
+{next}
+
+指定した日以降に次のイベントが発生する日を有するオブジェクトを返します。
+イベントが発生しないか、何か問題がある場合は空の date
+フィールドを返します。
+
+vim:ft=help:

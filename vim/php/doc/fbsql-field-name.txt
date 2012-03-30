@@ -1,0 +1,39 @@
+fbsql_field_name -- 結果の指定したフィールドの名前を得る
+
+  string fbsql_field_name(resource result [, int field_index])~
+
+指定したフィールドインデックスの名前を返します。
+
+{result} |fbsql_list_fields| が返す結果ポインタ。
+
+{field_index}
+フィールドの数値オフセット。フィールドのインデックスは
+0 からはじまります。
+
+名前を表す文字列、あるいはフィールドが存在しない場合に
+FALSE を返します。
+
+|fbsql_field_name| の例
+
+<?php >
+  // users テーブルには以下の 3 つのフィールドがあります
+  //   user_id
+  //   username
+  //   password.
+  
+  $res = fbsql_db_query("users", "select * from users", $link);
+  
+  echo fbsql_field_name($res, 0) . "\n";
+  echo fbsql_field_name($res, 2);
+?>
+
+上の例の出力は以下となります。
+
+  user_id
+  password
+
+
+
+|fbsql_field_type|
+
+vim:ft=help:

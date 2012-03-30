@@ -1,0 +1,27 @@
+sesam_errormsg -- 直近の SESAM
+コールのエラーメッセージを返す
+
+  string sesam_errormsg()~
+
+直近の SESAM エラーに関連する SESAM
+エラーメッセージを取得します。
+
+直近の SESAM エラーに関連する SESAM
+エラーメッセージを返します。
+空の文字列の場合は、エラーが発生しなかったことを表します。
+
+|sesam_errormsg| の例
+
+<?php >
+  if (!sesam_execimm($stmt)) {
+    echo sesam_errormsg() . "<br />\n";
+  }
+?>
+
+
+
+
+
+|sesam_diagnostic|
+
+vim:ft=help:

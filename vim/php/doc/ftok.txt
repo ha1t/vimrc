@@ -1,0 +1,21 @@
+ftok -- パス名とプロジェクト ID を、System V IPC
+キーに変換する
+
+  int ftok(string pathname, string proj)~
+
+この関数は、{pathname}
+で表される既存のアクセス可能なファイルおよびプロジェクト
+ID ({proj}) を、|shmop_open| やその他で使用する System V IPC
+キーに変換します。
+
+{pathname} アクセ宇可能なファイルへのパス。
+
+{proj} プロジェクト
+ID。一文字からなる文字列でなければなりません。
+
+成功した場合には作成されたキーの値を、それ以外の場合には
+-1 を返します。
+
+|shmop_open| |sem_get|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+hw_Document_Content -- hw_document の内容を返す
+
+  string hw_document_content(int hw_document)~
+
+ドキュメントの内容を取得します。
+
+{hw_document} ドキュメント ID。
+
+ドキュメントの内容を返します。ドキュメントが HTML
+ドキュメントの場合、 内容は、全て BODY
+タグの後になります。HEAD および BODY タグからの情報は、
+オブジェクトレコードに保存されます。
+
+|hw_document_attributes| |hw_document_size| |hw_document_setcontent|
+
+vim:ft=help:

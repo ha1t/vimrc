@@ -1,0 +1,9 @@
+PDF_set_info -- ドキュメント情報のフィールドを設定する
+
+  bool PDF_set_info(resource p, string key, string value)~
+
+ドキュメント情報フィールド {key} に {value}
+を設定します。成功した場合に TRUE を、失敗した場合に
+FALSE を返します。
+
+vim:ft=help:

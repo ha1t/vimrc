@@ -1,0 +1,31 @@
+inet_pton -- 人間が読める形式の IP
+アドレスを、パックされた in_addr 形式に変換する
+
+  string inet_pton(string address)~
+
+この関数は、人間が読める形式の IPv4 あるいは IPv6 (PHP が
+IPv6 サポートを有効にしてビルドされている場合)
+のアドレスを 32 ビットあるいは 128
+ビットのバイナリ形式に変換します。
+
+{address} 可読形式の IPv4 アドレスあるいは IPv6 アドレス。
+
+指定した {address} を in_addr 形式で表したものを返します。
+
+|inet_pton| の例
+
+<?php >
+   $in_addr = inet_pton('127.0.0.1');
+   
+   $in6_addr = inet_pton('::1');
+?>
+
+
+
+
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|ip2long| |long2ip| |inet_ntop|
+
+vim:ft=help:

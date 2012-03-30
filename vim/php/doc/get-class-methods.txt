@@ -1,0 +1,61 @@
+get_class_methods -- クラスメソッドの名前を取得する
+
+  array get_class_methods(mixed class_name)~
+
+クラスメソッドの名前を取得します。
+
+{class_name} オブジェクトのインスタンスのクラス名。
+
+この関数は、指定したクラス {class_name}
+についてメソッドの名前を配列として返します。
+エラー時には NULL を返します。
+
+バージョン 説明 5.0.0 PHP 5
+以降、この関数は宣言されているままのメソッド名
+(大文字小文字を区別) を返します。PHP 4
+では、小文字で返されます。 4.0.6
+オブジェクト自身を指定することが可能となりました。
+
+|get_class_methods| の例
+
+<?php >
+  class myclass {
+      // コンストラクタ
+      function myclass()
+      {
+          return(true);
+      }
+  
+      // メソッド1
+      function myfunc1()
+      {
+          return(true);
+      }
+  
+      // メソッド2
+      function myfunc2()
+      {
+          return(true);
+      }
+  }
+  
+  $class_methods = get_class_methods('myclass');
+  // あるいは
+  $class_methods = get_class_methods(new myclass());
+  
+  foreach ($class_methods as $method_name) {
+      echo "$method_name\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  myclass
+  myfunc1
+  myfunc2
+
+
+
+|get_class| |get_class_vars| |get_object_vars|
+
+vim:ft=help:

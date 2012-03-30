@@ -1,0 +1,9 @@
+PDF_show -- 現在の位置にテキストを出力する
+
+  bool PDF_show(resource pdfdoc, string text)~
+
+現在の位置に現在のフォントとサイズで {text}
+を出力します。成功した場合に TRUE を、失敗した場合に
+FALSE を返します。
+
+vim:ft=help:

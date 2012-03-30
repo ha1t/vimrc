@@ -1,0 +1,44 @@
+printer_create_dc -- 新規デバイスコンテキストを作成する
+
+  void printer_create_dc(resource printer_handle)~
+
+この関数は、新しいデバイスコンテキストを作成します。
+デバイスコンテキストは、ドキュメントのグラフィックオブジェクトを
+カスタマイズするために使用されます。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+値を返しません。
+
+|printer_create_dc| の例
+
+<?php >
+  $handle = printer_open();
+  printer_start_doc($handle);
+  printer_start_page($handle);
+  
+  printer_create_dc($handle);
+  /* dc に関する操作を行います */
+  printer_set_option($handle, PRINTER_TEXT_COLOR, "333333");
+  printer_draw_text($handle, 1, 1, "text");
+  printer_delete_dc($handle);
+  
+  /* 別の dc を作成します */
+  printer_create_dc($handle);
+  printer_set_option($handle, PRINTER_TEXT_COLOR, "000000");
+  printer_draw_text($handle, 1, 1, "text");
+  /* dc に関する操作を行います */
+  
+  printer_delete_dc($handle);
+  
+  printer_end_page($handle);
+  printer_end_doc($handle);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

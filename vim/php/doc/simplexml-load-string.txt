@@ -1,0 +1,64 @@
+simplexml_load_string -- XML 文字列をオブジェクトに代入する
+
+  object simplexml_load_string(string data [, string class_name [, int options [, string ns [, bool is_prefix]]]])~
+
+整形式 XML 文字列をオブジェクトとして返します。
+
+{data} 整形式 XML 文字列。
+
+{class_name} このオプションのパラメータを使用して、
+|simplexml_load_file|
+が指定されたクラスのオブジェクトを返すようにします。
+このクラスは、SimpleXMLElement
+クラスを継承していなければなりません。
+
+{options} PHP 5.1.0 と Libxml 2.6.0 から、追加の Libxml パラメータ
+を指定するために {options} を使用することもできます。
+
+{ns}
+
+{is_prefix}
+
+SimpleXMLElement クラスのオブジェクトを返します。 XML
+ドキュメント内のデータをプロパティに含みます。
+エラー時には FALSE を返します。
+
+XML 文字列をパースする
+
+<?php >
+  $string = <<<XML
+  <?xml version='1.0'?> 
+  <document>
+   <title>Forty What?</title>
+   <from>Joe</from>
+   <to>Jane</to>
+   <body>
+    I know that's the answer -- but what's the question?
+   </body>
+  </document>
+  XML;
+  
+  $xml = simplexml_load_string($string);
+  
+  var_dump($xml);
+?>
+
+上の例の出力は以下となります。
+
+  SimpleXMLElement Object
+  (
+    [title] => Forty What?
+    [from] => Joe
+    [to] => Jane
+    [body] =>
+     I know that's the answer -- but what's the question?
+  )
+
+この時点で、$xml->body
+のようにアクセスすることができます。
+
+
+
+
+
+vim:ft=help:

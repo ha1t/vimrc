@@ -1,0 +1,21 @@
+msql_field_seek -- フィールドオフセットを設定する
+
+  bool msql_field_seek(resource result, int field_offset)~
+
+指定されたフィールドオフセットに移動します。
+この後で |msql_fetch_field| を
+フィールドオフセットを指定せずにコールした場合は、
+ここで指定したフィールドが返されます。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset}
+は、1から始まります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msql_fetch_field|
+
+vim:ft=help:

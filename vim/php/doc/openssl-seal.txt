@@ -1,0 +1,58 @@
+openssl_seal -- データをシール(暗号化)する
+
+  int openssl_seal(string data, string sealed_data, array env_keys, array pub_key_ids)~
+
+|openssl_seal| は、ランダムに生成された秘密鍵により RC4
+を使用して {data} をシール(暗号化)
+します。このキーは、{pub_key_ids} を ID とする
+公開鍵で暗号化されます。これは、暗号化されたデータを複数の受信者に
+送信できることを意味します（この際、各受信者は送信側に公開鍵を
+提供します）。各受信者は、暗号化されたデータとその受信者の
+公開鍵で暗号化されたエンベロープキーを受け取る必要があります。
+
+{data}
+
+{sealed_data}
+
+{env_keys}
+
+{pub_key_ids}
+
+成功時にシール(暗号化)されたデータの長さ、エラー時に
+FALSE を返します。成功時には、暗号化されたデータが
+{sealed_data} に、エンベロープキーが {env_keys}
+に返されます。
+
+|openssl_seal| の例
+
+<?php >
+  // $data には、暗号化されるデータが含まれていると仮定
+  
+  // 受信者の公開鍵を取得し、使用可能にする
+  $fp = fopen("/src/openssl-0.9.6/demos/maurice/cert.pem", "r");
+  $cert = fread($fp, 8192);
+  fclose($fp);
+  $pk1 = openssl_get_publickey($cert);
+  // 2 番目の受信者についても同様
+  $fp = fopen("/src/openssl-0.9.6/demos/sign/cert.pem", "r");
+  $cert = fread($fp, 8192);
+  fclose($fp);
+  $pk2 = openssl_get_publickey($cert);
+  
+  // メッセージを暗号化。$pk1 および $pk2 の所有者のみが、$sealed を
+  // データをそれぞれ $ekeys[0] および $ekeys[1] で復号化することが
+  // 可能
+  openssl_seal($data, $sealed, $ekeys, array($pk1, $pk2));
+  
+  // キーをメモリから開放する
+  openssl_free_key($pk1);
+  openssl_free_key($pk2);
+?>
+
+
+
+
+
+|openssl_open|
+
+vim:ft=help:

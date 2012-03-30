@@ -1,0 +1,48 @@
+array_pad -- 指定長、指定した値で配列を埋める
+
+  array array_pad(array input, int pad_size, mixed pad_value)~
+
+|array_pad| は、{pad_size} で指定した長さになるように値
+{pad_value} で埋めて {input} のコピーを返します。 {pad_size}
+が正の場合、配列の右側が埋められます。
+負の場合、配列の左側が埋められます。 {pad_size}
+の絶対値が {input}
+の長さ以下の場合、埋める処理は行われません。
+一度に追加できる要素の最大数は 1048576 です。
+
+{input} 値を埋めるもととなる配列。
+
+{pad_size} 新しい配列のサイズ。
+
+{pad_value} {input} が {pad_size} より小さいときに、
+埋めるために使用する値。
+
+{pad_size} で指定した長さになるように値 {pad_value} で埋めて
+{input} のコピーを返します。 {pad_size}
+が正の場合、配列の右側が埋められます。
+負の場合、配列の左側が埋められます。 {pad_size}
+の絶対値が {input}
+の長さ以下の場合、埋める処理は行われません。
+
+|array_pad| の例
+
+<?php >
+  $input = array(12, 10, 9);
+  
+  $result = array_pad($input, 5, 0);
+  // 結果は、array(12, 10, 9, 0, 0) です。
+  
+  $result = array_pad($input, -7, -1);
+  // 結果は、array(-1, -1, -1, -1, 12, 10, 9) です。
+  
+  $result = array_pad($input, 2, "noop");
+  // 埋める処理は行われません。
+?>
+
+
+
+
+
+|array_fill| |range|
+
+vim:ft=help:

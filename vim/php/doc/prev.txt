@@ -1,0 +1,45 @@
+prev -- 内部の配列ポインタをひとつ前に戻す
+
+  mixed prev(array array)~
+
+内部の配列ポインタをひとつ前に戻します。
+
+|prev| は、
+内部の配列ポインタを進めるのではなく戻すということを除けば
+|next| と同じです。
+
+{array} 入力の配列。
+
+内部の配列ポインタが指している前の場所の配列値を返します。
+もう要素がない場合は FALSE を返します。
+
+|prev| および類似関数の使用例
+
+<?php >
+  $transport = array('foot', 'bike', 'car', 'plane');
+  $mode = current($transport); // $mode = 'foot';
+  $mode = next($transport);    // $mode = 'bike';
+  $mode = next($transport);    // $mode = 'car';
+  $mode = prev($transport);    // $mode = 'bike';
+  $mode = end($transport);     // $mode = 'plane';
+?>
+
+
+
+
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+配列中に boolean FALSE の要素が含まれていると、
+それを配列の先頭と区別することができません。FALSE
+要素を含む配列を順に処理するには、|each|
+関数を参照ください。
+
+|current| |end| |next| |reset| |each|
+
+vim:ft=help:

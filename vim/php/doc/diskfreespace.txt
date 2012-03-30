@@ -1,0 +1,6 @@
+diskfreespace -- disk_free_space ã®ã¨ã¤ãªã¢ã¹
+
+ãã®é¢æ°ã¯æ¬¡ã®é¢æ°ã®ã¨ã¤ãªã¢ã¹ã§ãã
+|disk_free_space|.
+
+vim:ft=help:

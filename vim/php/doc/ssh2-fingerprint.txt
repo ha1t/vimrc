@@ -1,0 +1,38 @@
+ssh2_fingerprint --
+リモートサーバのフィンガープリントを処理する
+
+  string ssh2_fingerprint(resource session [, int flags])~
+
+アクティブなセッションからサーバホスト鍵のハッシュを返します。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{flags} {flags} は SSH2_FINGERPRINT_MD5、 SSH2_FINGERPRINT_HEX
+で論理和された SSH2_FINGERPRINT_SHA1、 SSH2_FINGERPRINT_RAW
+のいずれかです。 デフォルトは SSH2_FINGERPRINT_MD5 |
+SSH2_FINGERPRINT_HEX です。
+
+ホストキーのハッシュを文字列で返します。
+
+既知の値に対するフィンガープリントのチェック
+
+<?php >
+  $known_host = '6F89C2F0A719B30CC38ABDF90755F2E4';
+  
+  $connection = ssh2_connect('shell.example.com', 22);
+  
+  $fingerprint = ssh2_fingerprint($connection,
+                 SSH2_FINGERPRINT_MD5 | SSH2_FINGERPRINT_HEX);
+  
+  if ($fingerprint != $known_host) {
+    die("HOSTKEY MISMATCH!\n" .
+        "Possible Man-In-The-Middle Attack?");
+  }
+?>
+
+
+
+
+
+vim:ft=help:

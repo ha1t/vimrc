@@ -1,0 +1,14 @@
+DomAttribute->set_value -- 属性の値を設定する
+
+  bool set_value(string content)~
+
+この関数は属性の値を設定します。
+
+{content} 新しい値
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+DOMAttr の value プロパティを設定してください。
+
+vim:ft=help:

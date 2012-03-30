@@ -1,0 +1,32 @@
+stream_get_filters --
+登録されているフィルタのリストを取得する
+
+  array stream_get_filters()~
+
+すべてのランタイムにおいて有効なストリームフィルタの名前を含む
+配列を返します。
+
+|stream_get_filters| を使用する
+
+<?php >
+  $streamlist = stream_get_filters();
+  print_r($streamlist);
+?>
+
+出力は以下のようになります。 注意: PHP
+のバージョンによって、フィルタの数は増減します。
+
+  Array (
+    [0] => string.rot13
+    [1] => string.toupper
+    [2] => string.tolower
+    [3] => string.base64
+    [4] => string.quoted-printable
+  )
+
+
+
+|stream_filter_register| および |stream_get_wrappers|
+も参照ください。
+
+vim:ft=help:

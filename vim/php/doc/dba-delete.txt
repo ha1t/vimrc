@@ -1,0 +1,18 @@
+dba_delete -- キーが指す DBA エントリを削除する
+
+  bool dba_delete(string key, resource handle)~
+
+|dba_delete| は、指定されたエントリを
+データベースから削除します。
+
+{key} 削除するエントリのキー。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dba_exists| |dba_fetch| |dba_insert| |dba_replace|
+
+vim:ft=help:

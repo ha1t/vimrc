@@ -1,0 +1,38 @@
+socket_last_error -- ソケットの直近のエラーを返す
+
+  int socket_last_error([resource socket])~
+
+ソケットリソースがこの関数に渡された場合、この特定のソケットに発生した
+直近のエラーが返されます。ソケットリソースが省略された場合、
+直近にエラーを発生したソケット関数のエラーコードが返されます。
+後者は、失敗した場合にソケットを返さない |socket_create|
+のような関数や
+特定のソケットに直接関係ない理由で失敗する可能性がある
+|socket_select| で特に有用です。
+このエラーコードは、指定したエラーコードを表す文字列を得るために
+
+{socket} |socket_create| で作成したソケットリソース。
+
+この関数は、ソケットのエラーコードを返します。
+
+|socket_last_error| の例
+
+<?php >
+  $socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+  
+  if ($socket === false) {
+      $errorcode = socket_last_error();
+      $errormsg = socket_strerror($errorcode);
+      
+      die("ソケットを作成できません: [$errorcode] $errormsg");
+  }
+?>
+
+
+
+
+
+|socket_last_error| はエラーコードをクリアしません。
+クリアするには |socket_clear_error| を使用してください。
+
+vim:ft=help:

@@ -1,0 +1,41 @@
+SimpleXMLElement->getNamespaces() --
+ドキュメントで使用している名前空間を返す
+
+  array getNamespaces([bool recursive])~
+
+ドキュメントで使用している名前空間を返します。
+
+{recursive}
+指定されている場合は、親ノードおよび子ノードで使用している全ての名前空間を返します。
+されていない場合は、ルートノードで使用している名前空間のみを返します。
+
+getNamespaces メソッドは、 名前空間名および関連付けられた
+URI を配列で返します。
+
+ドキュメントで使用している名前空間の取得
+
+<?php >
+  $xml = <<<XML
+  <?xml version="1.0" standalone="yes"?>
+  <people xmlns:p="http://example.org/ns" xmlns:t="http://example.org/test">
+      <p:person id="1">John Doe</p:person>
+      <p:person id="2">Susie Q. Public</p:person>
+  </people>
+  XML;
+   
+  $sxe = new SimpleXMLElement($xml);
+  
+  $namespaces = $sxe->getNamespaces(true);
+  var_dump($namespaces);
+?>
+
+上の例の出力は以下となります。
+
+  array(1) {
+    ["p"]=>
+    string(21) "http://example.org/ns"
+  }
+
+
+
+vim:ft=help:

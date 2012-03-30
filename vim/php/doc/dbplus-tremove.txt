@@ -1,0 +1,24 @@
+dbplus_tremove -- タプルを削除し、新規カレントタプルを返す
+
+  int dbplus_tremove(resource relation, array tuple [, array current])~
+
+|dbplus_tremove| は、関係の中のタプルに完全に
+一致する場合、{tuple} を削除します。 {current}
+が指定された場合、 |dbplus_tremove|
+をコールした後、新規のカレントの
+タプルのデータが代入されます。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+{tuple}
+
+{current}
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

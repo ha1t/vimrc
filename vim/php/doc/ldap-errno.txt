@@ -1,0 +1,43 @@
+ldap_errno -- 直近の LDAP コマンドの LDAP エラー番号を返す
+
+  int ldap_errno(resource link_identifier)~
+
+直近の LDAP
+コマンドにより返された、標準化されたエラー番号を返します。
+この番号は、|ldap_err2str| を用いてエラーメッセージ
+文字列に変換することができます。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+このリンクに関する直近の LDAP コマンドの LDAP
+エラー番号を返します。
+
+php.ini
+で警告レベルを十分に下げるか、警告出力を抑制するために
+LDAP コマンドに @
+文字をつけない限り、発生したエラーは、HTML 出力
+にも表示されます。 エラーを生成し、取得する
+
+<?php >
+  // この例には、エラーがあり、これを取得します。
+  $ld = ldap_connect("localhost");
+  $bind = ldap_bind($ld);
+  // フィルタ式に構文エラーがあります（errno 87）。
+  // 動作させるには、"objectclass=*" とする必要があります。
+  $res =  @ldap_search($ld, "o=Myorg, c=DE", "objectclass");
+  if (!$res) {
+      echo "LDAP-Errno: " . ldap_errno($ld) . "<br />\n";
+      echo "LDAP-Error: " . ldap_error($ld) . "<br />\n";
+      die("Argh!<br />\n");
+  }
+  $info = ldap_get_entries($ld, $res);
+  echo $info["count"] . " matching entries.<br />\n";
+?>
+
+
+
+
+
+|ldap_err2str| |ldap_error|
+
+vim:ft=help:

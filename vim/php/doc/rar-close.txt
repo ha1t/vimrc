@@ -1,0 +1,14 @@
+rar_close -- Rar
+アーカイブをクローズし、全リソースを開放する
+
+  bool rar_close(resource rar_file)~
+
+Rar
+アーカイブをクローズし、割り当てられた全リソースを開放します。
+
+{rar_file} |rar_open| でオープンした Rar ファイルリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

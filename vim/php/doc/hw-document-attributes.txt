@@ -1,0 +1,16 @@
+hw_Document_Attributes -- hw_document のオブジェクトレコード
+
+  string hw_document_attributes(int hw_document)~
+
+ドキュメントのオブジェクトレコードを返します。
+
+下位互換性のために|hw_DocumentAttributes| も
+使用可能です。しかし、この関数の使用は推奨されません。
+
+{hw_document} ドキュメント ID。
+
+ドキュメントのオブジェクトレコードを返します。
+
+|hw_document_bodytag| |hw_document_size|
+
+vim:ft=help:

@@ -1,0 +1,31 @@
+sqlite_udf_encode_binary --
+UDFから返す前にバイナリデータをエンコードする
+
+  string sqlite_udf_encode_binary(string data)~
+
+|sqlite_udf_encode_binary| は、 (元のlibsqlite
+APIはバイナリ対応ではないため、)
+クエリから安全に値を返せるように{data} にバイ
+ナリエンコーディングを適用します。
+
+バイナリセーフでないと思われるデータ(例:
+ヌルバイトを末尾以外の場所
+に含むデータや先頭文字に0x01を含むデータ)の場合、
+UDFからの返り値をエンコードするために、この関数をコールする必要があ
+ります。
+
+PHPは、このエンコード/デコード処理を自動的に行いません。
+これは、性能上著しい影響があるためです。
+
+UDFから返す文字列をクオートするために
+|sqlite_escape_string|を使用しないでください。
+代わりにこの関数を使用してください。
+
+{data} エンコードしたい文字列。
+
+エンコードされた文字列を返します。
+
+|sqlite_udf_decode_binary| |sqlite_escape_string| |sqlite_create_function|
+|sqlite_create_aggregate|
+
+vim:ft=help:

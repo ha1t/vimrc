@@ -1,0 +1,35 @@
+xml_parser_create_ns -- 名前空間をサポートした XML
+パーサを生成する
+
+  resource xml_parser_create_ns([string encoding [, string separator]])~
+
+|xml_parser_create_ns| は XML 名前空間をサポートした 新しい XML
+パーサを作成し、他の XML
+関数が使用するハンドルを返します。
+
+{encoding} PHP 4 では、オプションの {encoding} で入出力の
+エンコーディングを指定します。PHP 5
+以降では入力のエンコーディングは
+自動判定されるので、{encoding} パラメータは
+出力のエンコーディングのみを指定することになります。PHP
+4 では、
+デフォルトの出力エンコーディングは入力の文字セットと同じです。
+もし空の文字列が渡された場合、先頭の 3 あるいは 4
+バイトの内容をもとに
+パーサがエンコーディングの判別を試みます。PHP 5.0.0
+および 5.0.1 ではデフォルトの出力文字セットは ISO-8859-1
+で、PHP 5.0.2 以降では UTF-8
+です。サポートされるエンコーディングは ISO-8859-1、UTF-8
+および US-ASCII です。
+
+{separator}
+名前空間を含めたタグパラメータをハンドラ関数に渡す際には、
+名前空間名とタグ名を文字列 {seperator}
+でつなげたものが使用されます。{seperator} のデフォルトは
+':' です。
+
+新しい XML パーサのリソースハンドルを返します。
+
+|xml_parser_create| |xml_parser_free|
+
+vim:ft=help:

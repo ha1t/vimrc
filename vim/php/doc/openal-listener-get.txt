@@ -1,0 +1,14 @@
+openal_listener_get -- リスナーのプロパティを取得する
+
+  mixed openal_listener_get(int property)~
+
+取得するプロパティ。 AL_GAIN (float)、 AL_POSITION
+(array(float,float,float))、 AL_VELOCITY (array(float,float,float)) そして
+AL_ORIENTATION (array(float,float,float)) のいずれか。
+
+float あるいは float の配列 (どちらか適切なほう)、
+あるいは失敗した場合に, FALSE を返します。
+
+|openal_listener_set|
+
+vim:ft=help:

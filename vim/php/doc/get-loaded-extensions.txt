@@ -1,0 +1,46 @@
+get_loaded_extensions --
+コンパイル/ロードされている全てのモジュールの名前を配列として返す
+
+  array get_loaded_extensions([bool zend_extensions])~
+
+この関数は、PHPインタプリタにコンパイル、
+ロードされている全てのモジュールの名前を返します。
+
+{zend_extensions} Zend エクステンションを返すかどうか。
+デフォルトは FALSE (Zend
+エクステンションは一覧に含めない) です。
+
+モジュール名の配列を返します。
+
+バージョン 説明 5.2.4 オプションの {zend_extensions}
+パラメータが追加されました。
+
+|get_loaded_extensions| の例
+
+<?php >
+  print_r(get_loaded_extensions());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+     [0] => xml
+     [1] => wddx
+     [2] => standard
+     [3] => session
+     [4] => posix
+     [5] => pgsql
+     [6] => pcre
+     [7] => gd
+     [8] => ftp
+     [9] => db
+     [10] => calendar
+     [11] => bcmath
+  )
+
+
+
+|get_extension_funcs| |extension_loaded| |dl| |phpinfo|
+
+vim:ft=help:

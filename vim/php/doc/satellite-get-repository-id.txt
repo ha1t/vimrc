@@ -1,0 +1,7 @@
+satellite_get_repository_id -- 未実装
+
+  int satellite_get_repository_id(object obj)~
+
+実装されていません。
+
+vim:ft=help:

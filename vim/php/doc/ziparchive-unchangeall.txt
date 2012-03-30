@@ -1,0 +1,11 @@
+ZipArchive::unchangeAll --
+アーカイブに対するすべての変更を取り消す
+
+  mixed ZipArchive::unchangeAll()~
+
+アーカイブに対するすべての変更を取り消します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

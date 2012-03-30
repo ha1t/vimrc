@@ -1,0 +1,26 @@
+SDO_DataObject::createDataObject -- 新しい子 SDO_DataObject
+を作成する
+
+  SDO_DataObject SDO_DataObject::createDataObject(mixed identifier)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+指定したプロパティのデフォルト型で、子データオブジェクト
+SDO_DataObject を作成します。データオブジェクトは
+自動的にツリーに挿入され、オブジェクトへのリファレンスが返されます。
+
+{identifier}
+作成されるデータオブジェクト型のプロパティを指定します。
+プロパティ名 (string) 、プロパティのインデックス (int)
+あるいは SDO_Model_Property のいずれかが指定可能です。
+
+新しく作成した SDO_DataObject を返します。
+
+{SDO_PropertyNotFoundException} identifier
+に対応するデータオブジェクトのプロパティが
+存在しない場合にスローされます。
+
+vim:ft=help:

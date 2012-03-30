@@ -1,0 +1,23 @@
+xml_get_current_byte_index -- XML
+パーサのカレントのバイトインデックスを得る
+
+  int xml_get_current_byte_index(resource parser)~
+
+指定した XML
+パーサのカレントのバイトインデックスを取得します。
+
+{parser} バイトインデックスを得る XML
+パーサへのリファレンス。
+
+この関数は、{parser} が有効なパーサを参照しない場合に
+FALSE、そうでない場合に
+データバッファにおいてパーサが現在処理中のバイトインデックス
+(先頭が 0) を返します。
+
+この関数は、UTF-8
+エンコードされたテキストに基づいたバイトインデックスを返します。
+入力が他のエンコーディングであっても無視します。
+
+|xml_get_current_column_index| |xml_get_current_line_index|
+
+vim:ft=help:

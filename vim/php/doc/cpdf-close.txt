@@ -1,0 +1,17 @@
+cpdf_close -- pdf ドキュメントを閉じる
+
+  bool cpdf_close(int pdf_document)~
+
+PDF ドキュメントを閉じます。
+
+この関数は、 |cpdf_finalize|, |cpdf_output_buffer|, |cpdf_save_to_file|
+の後で、最後にコールする必要があります。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_open|
+
+vim:ft=help:

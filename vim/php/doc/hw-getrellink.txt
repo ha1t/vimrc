@@ -1,0 +1,12 @@
+hw_getrellink -- rootid に相対的な source から dest
+へのリンクを得る
+
+  string hw_getrellink(int link, int rootid, int sourceid, int destid)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

@@ -1,0 +1,41 @@
+curl_init -- cURL セッションを初期化する
+
+  resource curl_init([string url])~
+
+新規セッションを初期化し、cURL
+ハンドルを返します。このハンドルは、関数 |curl_setopt|,
+|curl_exec|, |curl_close| で使用します。
+
+{url} {url}を指定した場合、オプション CURLOPT_URL
+がそのパラメータの値に設定されます。関数 |curl_setopt|
+により、
+この値をマニュアルで設定することも可能です。
+
+成功した場合に cURL ハンドル、エラー時に FALSE
+を返します。
+
+新しい cURL
+セッションを初期化し、ウェブページを取得する
+
+<?php >
+  // 新しい cURL リソースを作成します
+  $ch = curl_init();
+  
+  // URL や他の適当なオプションを設定します
+  curl_setopt($ch, CURLOPT_URL, "http://www.example.com/");
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+  
+  // URL を取得し、ブラウザに渡します
+  curl_exec($ch);
+  
+  // cURL リソースを閉じ、システムリソースを解放します
+  curl_close($ch);
+?>
+
+
+
+
+
+|curl_close| |curl_multi_init|
+
+vim:ft=help:

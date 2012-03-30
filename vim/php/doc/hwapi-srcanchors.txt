@@ -1,0 +1,13 @@
+hw_api->srcanchors -- ソースアンカーの一覧を返す
+
+  array srcanchors(array parameter)~
+
+オブジェクトの全てのソースアンカーを取得します。
+
+{parameter} パラメータの配列には、必須要素
+'objectIdentifier'、 そしてオプションの要素 'attributeSelector'
+および 'objectQuery' が含まれます。
+
+
+
+vim:ft=help:

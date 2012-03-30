@@ -1,0 +1,32 @@
+runkit_function_add -- 新しい関数を追加する。create_function
+と同じ
+
+  bool runkit_function_add(string funcname, string arglist, string code)~
+
+{funcname} 作成する関数の名前。
+
+{arglist} カンマ区切りの引数のリスト。
+
+{code} 関数のコード。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_function_add| の例
+
+<?php >
+  runkit_function_add('testme','$a,$b','echo "The value of a is $a\n"; echo "The value of b is $b\n";');
+  testme(1,2);
+?>
+
+上の例の出力は以下となります。
+
+  The value of a is 1
+  The value of b is 2
+
+
+
+|create_function| |runkit_function_redefine| |runkit_function_copy|
+|runkit_function_rename| |runkit_function_remove| |runkit_method_add|
+
+vim:ft=help:

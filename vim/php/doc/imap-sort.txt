@@ -1,0 +1,41 @@
+imap_sort -- メッセージヘッダの配列をソートする
+
+  array imap_sort(resource imap_stream, int criteria, int reverse [, int options [, string search_criteria [, string charset]]])~
+
+指定したパラメータにより取得したメッセージ番号をソートします。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{criteria} criteria は、次のどれかとします (ひとつのみ)。
+SORTDATE - メッセージの日付
+
+SORTARRIVAL - 到着日付
+
+SORTFROM - 最初の From アドレスのメールボックス
+
+SORTSUBJECT - メッセージ Subject
+
+SORTTO - 最初の To アドレスのメールボックス
+
+SORTCC - 最初の cc アドレスのメールボックス
+
+SORTSIZE - メッセージのサイズ（バイト単位）
+
+{reverse} これを 1 にすると、逆順にソートします。
+
+{options} {options}
+はビットマスクで、以下の組み合わせとなります。 SE_UID -
+シーケンス番号の変わりに UID を返す
+
+SE_NOPREFETCH - 検索したメッセージを事前取得しない
+
+{search_criteria}
+
+{charset}
+
+指定したパラメータでソートしたメッセージ番号の配列を返します。
+
+バージョン 説明 4.3.3 パラメータ {charset}
+が追加されました。
+
+vim:ft=help:

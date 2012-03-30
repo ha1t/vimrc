@@ -1,0 +1,57 @@
+msql_fetch_array -- 結果の行を配列として取得する
+
+  array msql_fetch_array(resource result [, int result_type])~
+
+|msql_fetch_array| は、 |msql_fetch_row| の拡張版です。
+結果配列のデータを数値インデックスに格納することに加え、
+フィールド名をキーとして連想配列にも格納します。
+
+|msql_fetch_array| の使用に際して注意すべきことは、
+かなりの付加機能を提供するにもかかわらず、
+|msql_fetch_row| を使用する場合より
+そんなに遅くないということです。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+{result_type} 以下の定数 MSQL_ASSOC、MSQL_NUM、および MSQL_BOTH
+のうちのいずれか。 MSQL_BOTH がデフォルト。
+
+取得した行に対応する配列を返します。行が残っていない場合には
+FALSE を返します。
+
+|msql_fetch_array| の例
+
+<?php >
+  $con = msql_connect();
+  if (!$con) {
+      die('Server connection problem: ' . msql_error());
+  }
+  
+  if (!msql_select_db('test', $con)) {
+      die('Database connection problem: ' . msql_error());
+  }
+  
+  $result = msql_query('SELECT id, name FROM people', $con);
+  if (!$result) {
+      die('Query execution problem: ' . msql_error());
+  }
+  
+  while ($row = msql_fetch_array($result, MSQL_ASSOC)) {
+      echo $row['id'] . ': ' . $row['name'] . "\n";
+  }
+  
+  msql_free_result($result);
+?>
+
+
+
+
+
+バージョン 説明 4.3.11 および 5.0.4 NULL
+値を含むカラムからデータを取得する際のバグが修正されました。
+そのようなカラムは結果の配列に含まれていませんでした。
+
+|msql_fetch_row| |msql_fetch_object| |msql_data_seek| |msql_result|
+
+vim:ft=help:

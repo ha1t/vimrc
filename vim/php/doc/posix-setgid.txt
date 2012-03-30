@@ -1,0 +1,35 @@
+posix_setgid -- 現在のプロセスの GID を設定する
+
+  bool posix_setgid(int gid)~
+
+現在のプロセスのグループ ID を設定します。
+この関数は特権関数であり、実行するにはシステム上において適当な権限
+(通常は root) が必要です。 |posix_setgid| を最初に、
+|posix_setuid| を最後にコールするのが、
+関数コールの正しい順序となります。
+
+コール元がスーバーユーザの場合は、実効グループ ID
+も設定します。
+
+{gid} グループ ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|posix_setgid| の例
+この例は、いったん変更した後で実効グループ ID
+を表示します。
+
+<?php >
+  echo '実グループ ID は '.posix_getgid(); //20
+  posix_setgid(40);
+  echo '実グループ ID は '.posix_getgid(); //40
+  echo '実効グループ ID は '.posix_getegid(); //40
+?>
+
+
+
+|posix_getgrgid| は、この情報からグループ名を取得します
+|posix_getgid| は、実グループ ID を取得します
+
+vim:ft=help:

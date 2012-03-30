@@ -1,0 +1,24 @@
+mysql_get_client_info -- MySQL クライアント情報を取得する
+
+  string mysql_get_client_info()~
+
+|mysql_get_client_info| は、
+クライアントライブラリのバージョンを表す文字列を返します。
+
+MySQL クライアントのバージョンを返します。
+
+|mysql_get_client_info| の例
+
+<?php >
+  printf("MySQL client info: %s\n", mysql_get_client_info());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  MySQL client info: 3.23.39
+
+
+
+|mysql_get_host_info| |mysql_get_proto_info| |mysql_get_server_info|
+
+vim:ft=help:

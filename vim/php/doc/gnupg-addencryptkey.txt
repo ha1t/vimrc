@@ -1,0 +1,28 @@
+gnupg_addencryptkey -- 暗号化のためのキーを追加する
+
+  bool gnupg_addencryptkey(resource identifier, string fingerprint)~
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+手続き型の |gnupg_addencryptkey| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_addencryptkey($res,"8660281B6051D071D94B5B230549F9DC851566DC");
+?>
+
+
+
+オブジェクト指向の |gnupg_addencryptkey| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> addencryptkey("8660281B6051D071D94B5B230549F9DC851566DC");
+?>
+
+
+
+
+
+vim:ft=help:

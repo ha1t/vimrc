@@ -1,0 +1,15 @@
+newt_create_grid --
+
+  resource newt_create_grid(int cols, int rows)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{cols}
+
+{rows}
+
+
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+dbplus_find -- リレーションに拘束を設定する
+
+  int dbplus_find(resource relation, array constraints, mixed tuple)~
+
+指定したリレーション {relation} に拘束を設定します。
+
+この後、|dbplus_curr| または |dbplus_next|
+のような関数をコールすると、
+指定した拘束にマッチするタプルのみが取得されます。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+{constraints}
+拘束は、ドメイン名、比較演算子、比較値を含む複合文字列です。
+パラメータ配列 {constraints} は文字列の配列で、
+この各要素は、ドメイン、演算子、値を含むか、
+複数の三要素からなる文字列の配列です。
+
+vim:ft=help:

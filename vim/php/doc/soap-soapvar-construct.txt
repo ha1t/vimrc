@@ -1,0 +1,39 @@
+SoapVar->__construct() -- SoapVar コンストラクタ
+
+新規 SoapVar オブジェクトを生成します。
+
+{data} 渡すもしくは返すデータ
+
+{encoding} エンコーディング ID。XSD_... 定数のうちの一つ。
+
+{type_name} 型名
+
+{type_namespace} 型の名前空間
+
+{node_name} XML ノードの名前
+
+{node_namespace} XML ノードの名前空間
+
+いくつかの例
+
+<?php >
+  class SOAPStruct {
+      function SOAPStruct($s, $i, $f)
+      {
+          $this->varString = $s;
+          $this->varInt = $i;
+          $this->varFloat = $f;
+      }
+  }
+  $client = new SoapClient(null, array('location' => "http://localhost/soap.php",
+                                       'uri'      => "http://test-uri/"));
+  $struct = new SOAPStruct('arg', 34, 325.325);
+  $soapstruct = new SoapVar($struct, SOAP_ENC_OBJECT, "SOAPStruct", "http://soapinterop.org/xsd");
+  $client->echoStruct(new SoapParam($soapstruct, "inputStruct"));
+?>
+
+
+
+
+
+vim:ft=help:

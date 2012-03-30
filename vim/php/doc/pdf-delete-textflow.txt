@@ -1,0 +1,7 @@
+PDF_delete_textflow -- textflow オブジェクトを削除する
+
+  bool PDF_delete_textflow(resource pdfdoc, int textflow)~
+
+textflow および関連付けられたデータ構造体を削除します。
+
+vim:ft=help:

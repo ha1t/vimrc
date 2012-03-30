@@ -1,0 +1,41 @@
+is_dir -- ファイルがディレクトリかどうかを調べる
+
+  bool is_dir(string filename)~
+
+指定したファイルがディレクトリかどうかを調べます。
+
+{filename} ファイルへのパス。{filename}
+が相対パスの場合は、現在の作業ディレクトリからの相対パスとして処理します。
+
+ファイルがが存在して、かつそれがディレクトリであれば
+TRUE、それ以外の場合は FALSE を返します。
+
+|is_dir| の例
+
+<?php >
+  var_dump(is_dir('a_file.txt')) . "\n";
+  var_dump(is_dir('bogus_dir/abc')) . "\n";
+  
+  var_dump(is_dir('..')); //一つ上のディレクトリ
+?>
+
+上の例の出力は以下となります。
+
+  bool(false)
+  bool(false)
+  bool(true)
+
+
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|chdir| dir |opendir| |is_file| |is_link|
+
+vim:ft=help:

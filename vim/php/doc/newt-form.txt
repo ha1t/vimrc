@@ -1,0 +1,40 @@
+newt_form -- フォームを作成する
+
+  resource newt_form([resource vert_bar [, string help [, int flags]]])~
+
+新しいフォームを作成します。
+
+{vert_bar} フォームに関連付けられる垂直スクロールバー。
+
+{help} ヘルプ文字列。
+
+{flags} さまざまなフラグ。
+
+作成されたフォームコンポーネントのリソースリンク、
+あるいはエラー時に FALSE を返します。
+
+|newt_form| の例 "Quit"
+ボタンを表示し、それが押されるとアプリケーションを
+終了させます。
+
+<?php >
+  newt_init();
+  newt_cls();
+  
+  $myform = newt_form();
+  $button = newt_button (5, 12, "Quit");
+  
+  newt_form_add_component ($myform, $button);
+  newt_refresh ();
+  newt_run_form ($myform);
+  
+  newt_finished ();
+  newt_form_destroy ($myform);
+?>
+
+
+
+|newt_form_run| |newt_run_form| |newt_form_add_component|
+|newt_form_add_components| |newt_form_destroy|
+
+vim:ft=help:

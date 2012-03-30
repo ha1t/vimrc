@@ -1,0 +1,22 @@
+assert_options -- 様々な assert フラグを設定/取得する
+
+  mixed assert_options(int what [, mixed value])~
+
+種々の |assert| 制御オプションを設定したり、
+単に現在の設定を調べたりします。
+
+{what} assert オプション オプション ini パラメータ
+デフォルト 説明 ASSERT_ACTIVE assert.active 1 |assert|
+による評価を有効にする ASSERT_WARNING assert.warning 1 assersion
+に失敗した場合に PHP 警告を発生する ASSERT_BAIL assert.bail 0
+assersion に失敗した場合に実行を終了する ASSERT_QUIET_EVAL
+assert.quiet_eval 0 assersion 式については error_reporting
+を無効にする ASSERT_CALLBACK assert.callback (NULL) assertion
+に失敗した場合にコールされるユーザ関数
+
+{value} オプションに指定する新しい値。
+
+そのオプションの元の値、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

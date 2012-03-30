@@ -1,0 +1,22 @@
+posix_getuid -- 現在のプロセスの実際のユーザ ID を返す
+
+  int posix_getuid()~
+
+現在のプロセスの実際のユーザ ID を返します。
+
+ID を表す整数値を返します。
+
+|posix_getuid| の使用例
+
+<?php >
+  echo posix_getuid(); //10000
+?>
+
+
+
+
+
+使用可能なユーザ名に変換する方法に関する情報については、
+|posix_getpwuid| も参照ください。 POSIX man ページ GETUID(2)
+
+vim:ft=help:

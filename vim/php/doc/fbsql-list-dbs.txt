@@ -1,0 +1,44 @@
+fbsql_list_dbs -- FrontBase
+サーバで利用可能なデータベースの一覧を得る
+
+  resource fbsql_list_dbs([resource link_identifier])~
+
+fbsql
+デーモンで現在使用可能なデータベースを含む結果ポインタを返します。
+この結果ポインタの内容を取得するには |fbsql_tablename|
+関数を使用します。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+結果ポインタあるいはエラー時に FALSE を返します。
+
+|fbsql_list_dbs| の例
+
+  $link = fbsql_connect('localhost', 'myname', 'secret');
+  $db_list = fbsql_list_dbs($link);
+  
+  while ($row = fbsql_fetch_object($db_list)) {
+      echo $row->Database . "\n";
+  }
+
+上の例の出力は、たとえば 以下のようになります。
+
+  database1
+  database2
+  database3
+  ...
+
+
+
+上記のコードは、|fbsql_fetch_row| または他の
+類似の関数でも簡単に同じことが可能です。
+
+|fbsql_list_fields| |fbsql_list_tables|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+openssl_x509_check_private_key --
+秘密鍵が証明書に対応するかを確認する
+
+  bool openssl_x509_check_private_key(mixed cert, mixed key)~
+
+{key} が {cert} に対応する秘密鍵かどうかを調べます。
+
+{cert} 証明書。
+
+{key} 秘密鍵。
+
+{key} が {cert} に対応する秘密鍵の場合に
+TRUE、それ以外の場合に FALSE を返します。
+
+vim:ft=help:

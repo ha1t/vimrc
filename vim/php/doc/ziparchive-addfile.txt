@@ -1,0 +1,35 @@
+ZipArchive::addFile -- 指定したパスからファイルを ZIP
+アーカイブに追加する
+
+  bool ZipArchive::addFile(string filename [, string localname])~
+
+指定したパスから、ファイルを ZIP
+アーカイブに追加します。
+
+{filename} 追加するファイルへのパス。
+
+{localname} ZIP アーカイブ内部での名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この例は、ZIP ファイルアーカイブ test.zip
+をオープンし、ファイル /path/to/index.txt を newname.txt
+という名前で追加します。
+
+オープンおよび抽出
+
+<?php >
+  $zip = new ZipArchive;
+  if ($zip->open('test.zip') === TRUE) {
+      $zip->addFile('/path/to/index.txt', 'newname.txt');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

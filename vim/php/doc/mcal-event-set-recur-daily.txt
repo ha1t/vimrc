@@ -1,0 +1,22 @@
+mcal_event_set_recur_daily --
+グローバルイベント構造体ストリームの反復を設定する
+
+  void mcal_event_set_recur_daily(int stream, int year, int month, int day, int interval)~
+
+グローバルイベント構造体ストリームが次に発生する日を
+指定した値に設定します。イベントが、
+指定した日まで毎日発生するものとして設定します。
+
+{stream} MCAL ストリーム。
+
+{year} 年。
+
+{month} 月。
+
+{day} 日。
+
+{interval} 間隔。
+
+値を返しません。
+
+vim:ft=help:

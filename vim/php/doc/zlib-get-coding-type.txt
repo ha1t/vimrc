@@ -1,0 +1,12 @@
+zlib_get_coding_type --
+出力圧縮に使用されたコーディングの種類を返す
+
+  string zlib_get_coding_type()~
+
+出力圧縮に使用されたコーディングの種類を返します。
+
+返される値は gzip, deflate, もしくは FALSE です。
+
+zlib.output_compression ディレクティブ
+
+vim:ft=help:

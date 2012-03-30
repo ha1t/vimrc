@@ -1,0 +1,37 @@
+DomElement->get_attribute() -- 与えられた属性の値を返す
+
+  string get_attribute(string name)~
+
+現在の要素中の与えられた属性の値を返します。
+
+PHP 4.3 以降、与えられた名前 {name}
+を持つ属性がない場合、空文字列が返されます。
+
+{name}
+検索する属性の名前。このパラメータは大文字小文字を区別します。
+
+属性の名前を文字列として返す、もしくは与えられた名前
+{name} を持つ属性がない場合、空文字列が返されます。
+
+属性の値を取得する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+      echo "Error while parsing the document\n";
+      exit;
+  }
+  
+  // chapter を取得する
+  $root = $dom->document_element();
+  echo $root->get_attribute('language'); // en
+?>
+
+
+
+
+
+を使用してください。
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+vprintf -- フォーマットされた文字列を出力する
+
+  int vprintf(string format, array args)~
+
+{format}に基づき文字列フォーマットされた文字列を出力します
+(フォーマットは |sprintf|
+のドキュメントに既述されています)。
+
+|printf| と動作は同じですが、可変長の引数ではなく、
+配列を引数として受け取ります。
+
+{format}
+
+{args}
+
+出力された文字列の長さを返します。
+
+|printf| |sprintf| |vsprintf|
+
+vim:ft=help:

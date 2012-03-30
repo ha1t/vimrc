@@ -1,0 +1,13 @@
+udm_free_agent -- mnoGoSearch セッションを開放する
+
+  int udm_free_agent(resource agent)~
+
+エージェントセッション用に確保されたメモリを開放します。
+
+{agent} |udm_alloc_agent| から返されたエージェント ID
+へのリンク。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,46 @@
+stream_get_wrappers --
+登録されているストリームのラッパのリストを取得する
+
+  array stream_get_wrappers()~
+
+スクリプトを走らせているシステム上で使うことのできるすべてのストリーム
+ラッパの名前を配列の形で返します。
+
+|stream_get_wrappers| の例
+
+<?php >
+  print_r(stream_get_wrappers());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => php
+      [1] => file
+      [2] => http
+      [3] => ftp
+      [4] => compress.bzip2
+      [5] => compress.zlib
+  )
+
+
+
+ストリームラッパのが存在するかどうかを調べる
+
+<?php >
+  // bzip2 ストリームラッパが存在するかどうかを調べます
+  if (in_array('compress.bzip2', stream_get_wrappers())) {
+      echo 'compress.bzip2:// サポートが有効です。';
+  } else {
+      echo 'compress.bzip2:// サポートは有効ではありません。';
+  }
+?>
+
+
+
+
+
+|stream_wrapper_register| も参照ください。
+
+vim:ft=help:

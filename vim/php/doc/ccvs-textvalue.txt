@@ -1,0 +1,9 @@
+ccvs_textvalue -- 前の関数コールに関する返り値を取得する
+
+  string ccvs_textvalue(string session)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

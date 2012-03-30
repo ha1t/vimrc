@@ -1,0 +1,61 @@
+gd_info --
+現在インストールされているGDライブラリに関する情報を取得する
+
+  array gd_info()~
+
+インストールされている GD
+ライブラリのバージョンとスペックに関する情報を取得します。
+
+連想配列を返します。
+
+|gd_info| が返す配列の要素 属性 意味 GD Version
+string。インストールされている libgdのバージョン Freetype
+Support boolean value. TRUE
+の場合Freetypeサポートはインストールされている Freetype
+Linkage string値。Freetypeのリンク方法の情報。 'with freetype',
+'with TTF library', 'with unknown library'など。 Freetype
+SupportがTRUEにセットされている場合にのみ
+この要素が定義されます。 T1Lib Support boolean値。
+T1Libサポートが含まれている場合にTRUE GIF Read Support
+boolean値。 GIF画像の読み込み
+がサポートされている場合にTRUE GIF Create Support boolean値。
+GIF画像の生成 がサポートされている場合にTRUE JPG Support
+boolean値。 JPGサポートが含まれている場合にTRUE PNG Support
+boolean値。 PNGサポートが含まれている場合にTRUE WBMP Support
+boolean値。 WBMPサポートが含まれている場合にTRUE XBM Support
+boolean値。 XBMサポートが含まれている倍にTRUE
+
+|gd_info| の使用法
+
+<?php >
+  var_dump(gd_info());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  array(9) {
+    ["GD Version"]=>
+    string(24) "bundled (2.0 compatible)"
+    ["FreeType Support"]=>
+    bool(false)
+    ["T1Lib Support"]=>
+    bool(false)
+    ["GIF Read Support"]=>
+    bool(true)
+    ["GIF Create Support"]=>
+    bool(false)
+    ["JPG Support"]=>
+    bool(false)
+    ["PNG Support"]=>
+    bool(true)
+    ["WBMP Support"]=>
+    bool(true)
+    ["XBM Support"]=>
+    bool(false)
+  }
+
+
+
+|imagepng| |imagejpeg| |imagegif| |imagewbmp| |imagetypes|
+
+vim:ft=help:

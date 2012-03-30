@@ -1,0 +1,13 @@
+stats_harmonic_mean -- 値の配列の調和平均を返す
+
+  number stats_harmonic_mean(array a)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{a}
+
+
+
+vim:ft=help:

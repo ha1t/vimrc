@@ -1,0 +1,20 @@
+odbc_error -- 直近のエラーコードを得る
+
+  string odbc_error([resource connection_id])~
+
+6 桁の ODBC
+ステートを返します。エラーがない場合には、空の文字列を返します。
+
+{connection_id} 接続 ID。
+
+{connection_id} が指定された場合、
+その接続の直近の状態が返されます。そうでない場合、
+他の接続の直近の状態が返されます。
+
+この関数の返り値が意味を持つのは、直近の odbc
+クエリが失敗した場合 (すなわち |odbc_exec| が FALSE
+を返した場合) のみです。
+
+|odbc_errormsg| |odbc_exec|
+
+vim:ft=help:

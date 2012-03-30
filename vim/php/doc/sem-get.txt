@@ -1,0 +1,34 @@
+sem_get -- セマフォ ID を得る
+
+  resource sem_get(int key [, int max_acquire [, int perm [, int auto_release]]])~
+
+|sem_get| は、 System V
+セマフォを指定したキーでアクセスするために使用可能な
+ID を返します。
+
+同じキーで |sem_get| を 2 度コールした場合、 別のセマフォ
+ID が返されます。 しかし、どちらの ID
+も同じそのセマフォをアクセスします。
+
+{key}
+
+{max_acquire}
+同時にセマフォを得ることが可能なプロセス数を
+{max_acquire} (デフォルトは 1) にセットします。
+
+{perm} セマフォのパーミッション。デフォルトは 0666
+です。
+実際には、この値はプロセスが現在そのセマフォに付随している
+唯一のプロセスであることがわかった場合にのみセットされます。
+
+{auto_release}
+リクエストの終了時に自動的にセマフォを開放するかどうかを指定します。
+
+成功した場合に正のセマフォ ID、エラー時には FALSE
+を返します。
+
+バージョン 説明 4.3.0 {auto_release} が追加されました。
+
+|sem_acquire| |sem_release| |ftok|
+
+vim:ft=help:

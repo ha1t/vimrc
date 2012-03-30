@@ -1,0 +1,83 @@
+SQLiteDatabase->exec --
+与えられたデータベースに対して結果を伴わないクエリを実行する
+
+  bool sqlite_exec(resource dbhandle, string query [, string error_msg])~
+
+  bool sqlite_exec(resource dbhandle, string query [, string error_msg, string query, resource dbhandle])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  bool queryExec(resource dbhandle, string query [, string error_msg, string query, resource dbhandle, string query [, string error_msg]])~
+
+与えられたデータベースハンドル ({dbhandle}
+パラメータで指定される) に対して {query}
+によって指定される SQL ステートメントを実行します。
+
+SQLiteは、セミコロンで区切られた複数のクエリを実行します。
+これにより、ファイルからロードするかスクリプトに埋め込んだ
+SQL をバッチ実行することができます。
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{query} 実行するクエリを指定します。
+
+{error_msg}
+エラーが発生した場合、指定された変数に詰め込まれます。
+SQL 文法エラーは |sqlite_last_error|
+関数では取得できないので、これは特に重要です。
+
+(MySQL
+のような)他のデータベースエクステンションとの互換性のため、
+2 種類の構文がサポートされています。
+推奨されるのは最初の構文で、{dbhandle} パラメータを
+関数の最初のパラメータとするものです。
+
+この関数はブール型の結果を返します。 成功時は
+TRUE、失敗時は FALSE を返します。
+もしレコードを返すクエリを実行する必要がある場合は
+|sqlite_query| を参照ください。
+
+SQLITE_ASSOC および SQLITE_BOTH で
+返されるカラム名は、設定オプション sqlite.assoc_case
+の値に基づき、 大文字小文字が変換されます。
+
+バージョン 説明 5.1.0 {error_msg}
+パラメータが追加されました。
+
+手続き型言語スタイルでの例
+
+<?php >
+  $dbhandle = sqlite_open('mysqlitedb');
+  $query = sqlite_exec($dbhandle, "UPDATE users SET email='jDoe@example.com' WHERE username='jDoe'", $error);
+  if (!$query) {
+      exit("Error in query: '$error'");
+  } else {
+      echo 'Number of rows modified: ', sqlite_changes($dbhandle);
+  }
+?>
+
+
+
+
+
+オブジェクト指向言語型スタイルでの例
+
+<?php >
+  $dbhandle = new SQLiteDatabase('mysqlitedb');
+  $query = $dbhandle->queryExec("UPDATE users SET email='jDoe@example.com' WHERE username='jDoe'", $error);
+  if (!$query) {
+      exit("Error in query: '$error'");
+  } else {
+      echo 'Number of rows modified: ', $dbhandle->changes();
+  }
+?>
+
+
+
+
+
+|sqlite_query| |sqlite_unbuffered_query| |sqlite_array_query|
+
+vim:ft=help:

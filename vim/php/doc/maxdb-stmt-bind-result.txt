@@ -1,0 +1,130 @@
+stmt->bind_result --
+結果を保存するために、変数をプリペアドステートメントにバインドする
+
+手続き型
+
+  bool maxdb_stmt_bind_result(resource stmt, mixed var1 [, mixed ...])~
+
+オブジェクト指向型 (メソッド)
+
+  bool bind_result(resource stmt, mixed var1 [, mixed ..., mixed var1 [, mixed ...]])~
+
+|maxdb_stmt_bind_result| は、
+結果セット内のカラムを変数に関連付ける (バインドする)
+ために使用されます。 データを取得するために
+|maxdb_stmt_fetch| をコールすると、MaxDB
+クライアント/サーバプロトコルが、
+バインドされたカラムのデータを指定した変数 {var1, ...}
+に保存します。
+
+すべてのカラムは、|maxdb_stmt_fetch|
+のコール前にバインドされなければならないことに注意しましょう。
+バインド変数は、カラムの型に応じて自動的に対応する
+PHP 型に変換されます。
+
+結果セットが部分的に取得された後であっても、カラムはいつでも
+バインド/再バインドできます。新しいバインド内容は、次に
+|maxdb_stmt_fetch| がコールされた時点で反映されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* ステートメントを準備します */
+  if ($stmt = $maxdb->prepare("SELECT zip, name FROM hotel.city ORDER BY name")) {
+     $stmt->execute();
+  
+     /* 変数をプリペアドステートメントにバインドします */
+     $stmt->bind_result($col1, $col2);
+  
+     /* 値を取得します */
+     while ($stmt->fetch()) {
+         printf("%s %s\n", $col1, $col2);
+     }
+  
+     /* ステートメントを閉じます */
+     $stmt->close();
+  }
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (!$link) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* ステートメントを準備します */
+  if ($stmt = maxdb_prepare($link, "SELECT zip, name FROM hotel.city ORDER BY name")) {
+     maxdb_stmt_execute($stmt);
+  
+     /* 変数をプリペアドステートメントにバインドします */
+     maxdb_stmt_bind_result($stmt, $col1, $col2);
+  
+     /* 値を取得します */
+     while (maxdb_stmt_fetch($stmt)) {
+         printf("%s %s\n", $col1, $col2);
+     }
+  
+     /* ステートメントを閉じます */
+     maxdb_stmt_close($stmt);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  12203 Albany
+  60601 Chicago
+  60615 Chicago
+  45211 Cincinnati
+  33575 Clearwater
+  75243 Dallas
+  32018 Daytona Beach
+  33441 Deerfield Beach
+  48226 Detroit
+  90029 Hollywood
+  92714 Irvine
+  90804 Long Beach
+  11788 Long Island
+  90018 Los Angeles
+  70112 New Orleans
+  10019 New York
+  10580 New York
+  92262 Palm Springs
+  97213 Portland
+  60018 Rosemont
+  95054 Santa Clara
+  20903 Silver Spring
+  20005 Washington
+  20019 Washington
+  20037 Washington
+
+|maxdb_stmt_bind_param| |maxdb_stmt_execute| |maxdb_stmt_fetch|
+|maxdb_prepare| |maxdb_stmt_prepare| |maxdb_stmt_init| |maxdb_stmt_errno|
+|maxdb_stmt_error|
+
+vim:ft=help:

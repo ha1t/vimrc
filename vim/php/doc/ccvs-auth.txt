@@ -1,0 +1,10 @@
+ccvs_auth --
+あるトランザクションにおいてクレジット認証を行う
+
+  string ccvs_auth(string session, string invoice)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

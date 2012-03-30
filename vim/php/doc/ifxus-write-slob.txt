@@ -1,0 +1,16 @@
+ifxus_write_slob -- SLOB オブジェクトに文字列を書きこむ
+
+  int ifxus_write_slob(int bid, string content)~
+
+SLOB オブジェクトを文字列に書きこみます。
+
+{bid} 既存の SLOB の ID。
+
+{content} 書き込む内容を表す文字列。
+
+書き込んだバイト数を表す整数値、あるいはエラー時に
+FALSE を返します。
+
+|ifxus_read_slob|
+
+vim:ft=help:

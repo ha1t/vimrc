@@ -1,0 +1,10 @@
+openal_source_create -- ソースリソースを生成する
+
+  resource openal_source_create()~
+
+成功した場合に Open AL (ソース) リソース、
+失敗した場合に FALSE を返します。
+
+|openal_source_set| |openal_source_play| |openal_source_destroy|
+
+vim:ft=help:

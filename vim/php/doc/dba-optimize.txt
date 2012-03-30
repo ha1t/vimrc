@@ -1,0 +1,15 @@
+dba_optimize -- データベースを最適化する
+
+  bool dba_optimize(resource handle)~
+
+|dba_optimize| は、指定されたデータベースを最適化します。
+
+{handle} |dba_open| あるいは |dba_popen|
+によって返されたデータベースハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dba_sync|
+
+vim:ft=help:

@@ -1,0 +1,52 @@
+dbx_sort -- カスタマイズされたソート関数により、dbx_query
+から結果をソートする
+
+  bool dbx_sort(object result, string user_compare_function)~
+
+|dbx_query| のコール結果を、
+独自のソート関数で並べ替えます。
+
+{result} |dbx_query| が返す結果セット。
+
+{user_compare_function}
+ユーザ定義の比較関数。二つの引数を受け取り、
+第一引数が第二引数より小さい場合に負の数、等しい場合にゼロ、
+大きい場合に正の数を返すものでなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dbx_sort| の例
+
+<?php >
+  function user_re_order($a, $b) 
+  {
+      $rv = dbx_compare($a, $b, "parentid", DBX_CMP_DESC);
+      if (!$rv) {
+          $rv = dbx_compare($a, $b, "id", DBX_CMP_NUMBER);
+      }
+      return $rv;
+  }
+  
+  $link   = dbx_connect(DBX_ODBC, "", "db", "username", "password")
+      or die("接続できませんでした");
+  
+  $result = dbx_query($link, "SELECT id, parentid, description FROM tbl ORDER BY id");
+      // $result のデータは id で並べ替えられます
+  
+  dbx_sort($result, "user_re_order");
+      // $result のデータは、まず parentid の降順で並べ替えられ、次に id で並べ替えられます
+  
+  dbx_close($link);
+?>
+
+
+
+
+
+可能ならば、|dbx_sort| を使用するよりも SQL の ORDER BY
+句を使用することを推奨します。
+
+|dbx_compare|
+
+vim:ft=help:

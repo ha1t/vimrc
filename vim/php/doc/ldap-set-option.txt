@@ -1,0 +1,72 @@
+ldap_set_option -- 指定したオプションの値を設定する
+
+  bool ldap_set_option(resource link_identifier, int option, mixed newval)~
+
+指定したオプションの値を {newval} に設定します。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{option} パラメータ {option} は以下のいずれかとなります。
+オプション 型 LDAP_OPT_DEREF integer LDAP_OPT_SIZELIMIT integer
+LDAP_OPT_TIMELIMIT integer LDAP_OPT_NETWORK_TIMEOUT integer
+LDAP_OPT_PROTOCOL_VERSION integer LDAP_OPT_ERROR_NUMBER integer
+LDAP_OPT_REFERRALS bool LDAP_OPT_RESTART bool LDAP_OPT_HOST_NAME string
+LDAP_OPT_ERROR_STRING string LDAP_OPT_MATCHED_DN string
+LDAP_OPT_SERVER_CONTROLS array LDAP_OPT_CLIENT_CONTROLS array
+
+LDAP_OPT_SERVER_CONTROLS および LDAP_OPT_CLIENT_CONTROLS
+はコントロールのリストを必要とします。
+これは、値がコントロールの配列である必要があることです。
+コントロールは、そのコントロールの ID である
+oid、オプションの value、オプションのフラグ criticality
+からなります。PHP において、 コントロールはキーが oid
+で値が文字列、
+二つのオプションの要素からなる配列で指定されます。オプションの要素は、
+キーが value で値が文字列、そしてキーが iscritical
+で値が論理値となります。 iscritical
+を省略した場合のデフォルトは FALSE です。詳細は
+draft-ietf-ldapext-ldap-c-api-xx.txt
+を参照ください。また以下の二番目の例も参照ください。
+
+{newval} 指定したオプション {option} の新しい値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+プロトコルバージョンの設定
+
+<?php >
+  // $ds はディレクトリサーバーへの有効なリンクIDです
+  if (ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
+      echo "LDAPv3 を使用します";
+  } else {
+      echo "プロトコルバージョンを 3 に設定できませんでした";
+  }
+?>
+
+
+
+サーバコントロールの設定
+
+<?php >
+  // $ds は値を持たないディレクトリサーバコントロールへの有効なリンクID
+  // です。
+  $ctrl1 = array("oid" => "1.2.752.58.10.1", "iscritical" => true);
+  // iscritical のデフォルトは、FALSE です。
+  $ctrl2 = array("oid" => "1.2.752.58.1.10", "value" => "magic");
+  // 両方のコントロールを試します
+  if (!ldap_set_option($ds, LDAP_OPT_SERVER_CONTROLS, array($ctrl1, $ctrl2))) {
+      echo "サーバコントロールの設定に失敗しました。";
+  }
+?>
+
+
+
+
+
+この関数は、OpenLDAP 2.x.x または Netscape Directory SDK x.x
+を使用している場合のみ利用可能です。
+
+|ldap_get_option|
+
+vim:ft=help:

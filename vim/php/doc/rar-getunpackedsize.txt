@@ -1,0 +1,23 @@
+Rar::getUnpackedSize -- 展開後のエントリのサイズを取得する
+
+  int getUnpackedSize()~
+
+展開後のアーカイブエントリのサイズを取得します。
+
+展開後のサイズ、あるいはエラー時に FALSE を返します。
+
+|Rar::getUnpackedSize| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entry = rar_entry_get($rar_file, 'Dir/file.txt') or die("そのようなエントリは見つかりません");
+  
+  echo "展開後の " . $entry->getName() . " のサイズ = " . $entry->getUnpackedSize() . " バイト";
+?>
+
+
+
+
+
+vim:ft=help:

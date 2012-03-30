@@ -1,0 +1,13 @@
+tidyNode->hasSiblings -- このノードが兄弟ノードを持つ場合 true
+を返す
+
+  bool tidyNode->hasSiblings()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+この関数は、PHP 4/Tidy 1 では |tidy_node->has_siblings|
+という名前でした。
+
+vim:ft=help:

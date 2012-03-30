@@ -1,0 +1,40 @@
+inet_ntop --
+パックされたインターネットアドレスを、人間が読める形式に変換する
+
+  string inet_ntop(string in_addr)~
+
+この関数は 32 ビット IPv4 形式あるいは 128 ビット IPv6 形式
+(PHP が IPv6 サポートを有効にしてビルドされている場合)
+のアドレスを文字列表現のアドレスに変換します。
+
+{in_addr} 32 ビット IPv4、あるいは 128b ビット IPv6
+形式のアドレス。
+
+アドレスを文字列で表したもの、あるいは失敗した場合に
+FALSE を返します。
+
+|inet_ntop| の例
+
+<?php >
+  $packed = chr(127) . chr(0) . chr(0) . chr(1);
+  $expanded = inet_ntop($packed);
+  
+  /* 出力: 127.0.0.1 */
+  echo $expanded;
+  
+  $packed = str_repeat(chr(0), 15) . chr(1);
+  $expanded = inet_ntop($packed);
+  
+  /* 出力: ::1 */
+  echo $expanded;
+?>
+
+
+
+
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|long2ip| |ip2long| |inet_pton|
+
+vim:ft=help:

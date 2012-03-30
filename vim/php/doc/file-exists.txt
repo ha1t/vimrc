@@ -1,0 +1,54 @@
+file_exists --
+ファイルまたはディレクトリが存在するかどうか調べる
+
+  bool file_exists(string filename)~
+
+ファイルあるいはディレクトリが存在するかどうかを調べます。
+
+{filename} ファイルあるいはディレクトリへのパス。
+
+Windows 上でネットワーク共有上のファイルを調べるには、
+//computername/share/filename または \\computername\share\filename
+のように指定してください。
+
+{filename}
+で指定したファイルまたはディレクトリが存在すれば TRUE
+を返し、そうでなければ FALSE を返します。
+
+この関数は セーフモード
+の制限のためファイルにアクセスできない場合 FALSE
+を返します。 しかし safe_mode_include_dir
+で指定されたディレクトリに存在する場合は include
+することができます。
+
+チェックは、実効ユーザではなく実ユーザの UID/GID
+で行います。
+
+あるファイルが存在するかどうか調べる
+
+<?php >
+  $filename = '/path/to/foo.txt';
+  
+  if (file_exists($filename)) {
+      echo "$filename が存在します";
+  } else {
+      echo "$filename は存在しません";
+  }
+?>
+
+
+
+
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|is_readable| |is_writable| |is_file| |file|
+
+vim:ft=help:

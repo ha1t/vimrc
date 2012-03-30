@@ -1,0 +1,10 @@
+PDF_set_layer_dependency -- レイヤー間の関係を定義する
+
+  bool PDF_set_layer_dependency(resource pdfdoc, string type, string optlist)~
+
+レイヤー間の階層やグループ関係を定義します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+この関数は、PDF 1.5 で使用可能です。
+
+vim:ft=help:

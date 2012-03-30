@@ -1,0 +1,38 @@
+mb_ereg_replace --
+マルチバイト文字列に正規表現による置換を行う
+
+  string mb_ereg_replace(string pattern, string replacement, string string [, string option])~
+
+{string} から {pattern} にマッチする文字列を探し、
+見つかった文字列を {replacement} で置換します。
+
+{pattern} 正規表現パターン。
+
+マルチバイト文字を {pattern} で使用することができます。
+
+{replacement} 置換文字列。
+
+{string} 調べたい文字列。
+
+{option} {option}
+パラメータで、マッチングの動作を変更可能です。 i
+を指定した場合、大文字・小文字が
+区別されなくなります。 x
+を指定した場合、空白が無視されます。 m
+を指定した場合、マルチラインモードとなり、
+改行文字も "." に含まれるようになります。 p
+を指定した場合、POSIX モードとなり、
+改行も通常文字とみなされるようになります。 e
+を指定した場合、文字列 {replacement}
+がPHPの式として評価されます。
+
+成功した場合に結果の文字列、エラー時に FALSE
+を返します。
+
+内部エンコーディングあるいは |mb_regex_encoding|
+で指定した文字エンコーディングを、
+この関数の文字エンコーディングとして使用します。
+
+|mb_regex_encoding| |mb_eregi_replace|
+
+vim:ft=help:

@@ -1,0 +1,51 @@
+mb_encode_mimeheader -- MIMEヘッダの文字列をエンコードする
+
+  string mb_encode_mimeheader(string str [, string charset [, string transfer_encoding [, string linefeed [, int indent]]]])~
+
+MIME ヘッダエンコーディング方式によって文字列 {str}
+をエンコードします。
+
+{str} エンコードする文字列。
+
+{charset} {charset} は、{str}
+の文字セット名です。デフォルトは、現在の NLS 設定
+(mbstring.language) によって決まります。
+
+{transfer_encoding} {transfer_encoding} は MIME エンコーディングの
+方式を指定します。"B" (Base64) または "Q" (Quoted-Printable)
+のどちらかでなければなりません。 デフォルトは "B"
+です。
+
+{linefeed} {linefeed} は EOL (行末) のマーカで、
+|mb_encode_mimeheader| が行を折りたたむ (RFC 用語で、
+ある一定より長い行を複数行に分割することを言います。
+分割する長さは、現在 74 文字に固定されています)
+際に利用します。 デフォルトは "\r\n" (CRLF) です。
+
+{indent}
+
+文字列を ASCII 表現に変換したものを返します。
+
+バージョン 説明 5.0.0 {indent}
+パラメータが追加されました。
+
+|mb_encode_mimeheader| の例
+
+<?php >
+  $name = "太郎"; // 漢字
+  $mbox = "kru";
+  $doma = "gtinn.mon";
+  $addr = mb_encode_mimeheader($name, "UTF-7", "Q") . " <" . $mbox . "@" . $doma . ">";
+  echo $addr;
+?>
+
+
+
+
+
+この関数は、行を分割する際に特別な配慮（単語の区切りなど）を行いません。
+このせいで、もとの文字列に予期せぬ空白が入ってしまう可能性があります。
+
+|mb_decode_mimeheader|
+
+vim:ft=help:

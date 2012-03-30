@@ -1,0 +1,20 @@
+mailparse_msg_extract_part --
+メッセージセクションを展開/デコードする
+
+  void mailparse_msg_extract_part(resource mimemail, string msgbody [, callback callbackfunc])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{mimemail} 有効な MIME リソース。
+
+{msgbody}
+
+{callbackfunc}
+
+値を返しません。
+
+|mailparse_msg_extract_part_file| |mailparse_msg_extract_whole_part_file|
+
+vim:ft=help:

@@ -1,0 +1,57 @@
+udm_cat_list --
+現在のカテゴリと同じレベルのカテゴリを全て取得する
+
+  array udm_cat_list(resource agent, string category)~
+
+現在のカテゴリと同じレベルの全てのカテゴリの一覧を配列として返します。
+
+この関数は、カテゴリツリーのブラウザを開発する際に有用です。
+
+{agent} 事前の |>udm_alloc_agent|
+のコールにより返されたエージェント ID。
+
+{category}
+
+カテゴリツリーにおける現在の {category}
+と同レベルのカテゴリの一覧を配列で返します。
+
+返される配列は、組で構成されています。偶数添字番号の要素にはカテゴリパス、
+奇数要素には、対応するカテゴリ名が含まれます。
+
+
+
+  $array[0] will contain '020300'
+    $array[1] will contain 'Audi'
+    $array[2] will contain '020301'
+    $array[3] will contain 'BMW'
+    $array[4] will contain '020302'
+    $array[5] will contain 'Opel'
+    ...
+   etc.
+
+以下は、現在のレベルのリンクをこの形式で表示する例です。
+
+  Audi
+    BMW
+    Opel
+    ...
+
+|udm_cat_list| の例
+
+<?php >
+   $cat_list_arr = udm_cat_list($udm_agent, $cat);
+   $cat_list = '';
+   for ($i=0; $i<count($cat_list_arr); $i+=2) {
+      $path = $cat_list_arr[$i];
+      $name = $cat_list_arr[$i+1];
+      $cat_list .= "<a href=\"$_SERVER[PHP_SELF]?cat=$path\">$name</a><br />";
+   }
+?>
+
+
+
+
+
+|udm_cat_path|
+
+vim:ft=help:

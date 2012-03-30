@@ -1,0 +1,49 @@
+xslt_set_object --
+コールバック関数を解決するためのオブジェクトを設定する
+
+  bool xslt_set_object(resource processor, object obj)~
+
+この関数は、全てのコールバック関数を解決するため、
+{processor} に {object}
+の内部情報を利用できるようにします。
+
+コールバック関数の宣言は |xml_set_sax_handlers|,
+|xslt_set_scheme_handlers|, |xslt_set_error_handler| で行い、それが
+{object} のメソッドとみなされます。
+
+{processor} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+{obj} オブジェクト。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+独自のエラーハンドラとしてメソッドを使用する
+
+<?php >
+  class my_xslt_processor {
+  
+      var $_xh; // XSLT プロセッサ
+  
+      function my_xslt_processor()
+      {
+          $this->_xh = xslt_create();
+  
+          // $this オブジェクトをコールバックリゾルバにする
+          xslt_set_object($this->_xh, $this);
+  
+          // エラーを処理させる
+          xslt_set_error_handler($this->_xh, "my_xslt_error_handler");
+      }
+  
+      function my_xslt_error_handler($handler, $errno, $level, $info)
+      {
+          // 差し当たり、引数を見るだけ
+          var_dump(func_get_args());
+      }
+  }
+?>
+
+
+
+vim:ft=help:

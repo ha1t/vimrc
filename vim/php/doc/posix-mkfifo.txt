@@ -1,0 +1,12 @@
+posix_mkfifo -- fifo
+スペシャルファイル(名前付きパイプ)を作成する
+
+  bool posix_mkfifo(string pathname, int mode)~
+
+|posix_mkfifo| は、 FIFO スペシャルファイルを作成します。
+これはファイルシステム内に存在し、プロセス間の双方向通信の末端として
+動作します。
+
+{pathname} FIFO ファイルへのパス。
+
+vim:ft=help:

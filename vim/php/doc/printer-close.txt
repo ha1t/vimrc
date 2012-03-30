@@ -1,0 +1,25 @@
+printer_close -- プリンタへの接続を閉じる
+
+  void printer_close(resource printer_handle)~
+
+この関数は、プリンタへの接続をクローズします。
+|printer_close| は、アクティブな
+デバイスコンテキストもクローズします。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+値を返しません。
+
+|printer_close| の例
+
+<?php >
+  $handle = printer_open();
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

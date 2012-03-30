@@ -1,0 +1,10 @@
+stream_context_set_params -- ストリーム / ラッパ /
+コンテキストのパラメータを設定する
+
+  bool stream_context_set_params(resource stream_or_context, array params)~
+
+{params}
+は、次のような形式の連想配列でなくてはなりません:
+$params['paramname'] = "paramvalue";.
+
+vim:ft=help:

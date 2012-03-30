@@ -1,0 +1,23 @@
+dbplus_rquery -- ローカル (raw) AQL クエリを実行する
+
+  resource dbplus_rquery(string query [, string dbpath])~
+
+|dbplus_rquery| は、db++
+クライアントライブラリに組み込まれた AQL
+インタプリタを使用してローカル(raw) AQL
+クエリを実行します。 |dbplus_rquery| は |dbplus_aql|
+より高速ですが、
+ローカルのデータについてのみしか実行できません。
+
+{query}
+
+{dbpath}
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

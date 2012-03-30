@@ -1,0 +1,16 @@
+xslt_set_encoding -- XML
+ドキュメントをパースするエンコーディングを設定する
+
+  void xslt_set_encoding(resource xh, string encoding)~
+
+XSLT 変換の出力エンコーディングを設定します。 Sablotron
+バックエンドを使用する際、 このオプションは、Sablotron
+にエンコーディングサポートを付けてコンパイルした場合のみ利用可能です。
+
+{xh} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+{encoding} 出力エンコーディング。たとえば iso-8859-1 など。
+
+値を返しません。
+
+vim:ft=help:

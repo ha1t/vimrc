@@ -1,0 +1,52 @@
+xattr_set -- 拡張属性を設定する
+
+  bool xattr_set(string filename, string name, string value [, int flags])~
+
+この関数は、ファイルの拡張属性の値を設定します。
+
+拡張属性には二種類の異なる名前空間、つまり、ユーザとルートがあります。
+ユーザ名前空間は、すべてのユーザで利用可能ですが、ルート名前空間は、ルート権限を有するユーザのみ利用可能です。
+xattr はデフォルトでユーザ名前空間で処理を行いますが、
+{flags} 引数によりこれを変更することができます。
+
+{filename} 属性を設定するファイル。
+
+{name}
+拡張属性の名前。もし属性が存在しない場合は新しく作成され、
+存在する場合は上書きされます。この振る舞いは、 {flags}
+パラメータを使用することで変更可能です。
+
+{value} 属性の値。
+
+{flags} サポートされる xattr のフラグ XATTR_CREATE
+拡張属性が既に存在する場合、関数は失敗します。
+XATTR_REPLACE
+拡張属性が存在しない場合、関数は失敗します。
+XATTR_DONTFOLLOW
+シンボリックリンクのリンク先をたどらず、リンクそのものを操作します。
+XATTR_ROOT root (信頼された)
+名前空間に属性を設定します。root 権限が必要です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+.wav ファイルに拡張属性を設定する
+
+<?php >
+  $file = 'my_favourite_song.wav';
+  xattr_set($file, 'Artist', 'Someone');
+  xattr_set($file, 'My ranking', 'Good');
+  xattr_set($file, 'Listen count', '34');
+  
+  /* ... その他のコード ... */
+  
+  printf("あなたは、この曲を %d 回再生しました", xattr_get($file, 'Listen count')); 
+?>
+
+
+
+
+
+|xattr_get| |xattr_remove|
+
+vim:ft=help:

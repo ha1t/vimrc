@@ -1,0 +1,40 @@
+OrbitEnum -- CORBA enums を使用する
+
+  new OrbitEnum(string id)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+このクラスは、パラメータ {id} で指定した連番を
+表します。
+
+{id} 連番の名前（例: "MyEnum"）あるいは
+完全なレポジトリID（例:"IDL:MyEnum:1.0"）のどちらかです。
+
+IDL ファイルの例
+
+  enum MyEnum {
+      a,b,c,d,e
+  };
+
+
+
+
+
+MyEnum にアクセスするための PHP コード
+
+<?php >
+  $enum = new OrbitEnum ("MyEnum");
+  
+  echo $enum->a;    /* 0 を出力 */
+  echo $enum->c;    /* 2 を出力 */
+  echo $enum->e;    /* 4 を出力 */
+?>
+
+
+
+
+
+vim:ft=help:

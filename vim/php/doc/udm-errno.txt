@@ -1,0 +1,13 @@
+udm_errno -- mnoGoSearch エラー番号を取得する
+
+  int udm_errno(resource agent)~
+
+数字のエージェントエラーコードを受信します。
+
+{agent} |udm_alloc_agent| へのコールから返されるエージェント
+ID へのリンク。
+
+mnoGoSearch エラー番号を返します。
+エラーがない場合にゼロを返します。
+
+vim:ft=help:

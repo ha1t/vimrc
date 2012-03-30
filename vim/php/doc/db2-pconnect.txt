@@ -1,0 +1,94 @@
+db2_pconnect -- データベースへの持続的接続を返す
+
+  resource db2_pconnect(string database, string username, string password [, array options])~
+
+IBM DB2 Universal Database、IBM Cloudscape あるいは Apache Derby
+データベースへの持続的接続を返します。
+持続的接続についての詳細な情報は、 を参照ください。
+
+持続的接続に対して |db2_close| をコールすると、 常に TRUE
+を返します。しかし DB2
+クライアント接続はオープンされたままであり、
+条件に一致する次の |db2_pconnect|
+リクエストを待ち続けます。
+
+{database} DB2
+クライアントカタログ内のデータベースエイリアス。
+
+{username} データベースに接続するユーザ名。
+
+{password} データベースに接続するパスワード。
+
+{options}
+接続の振る舞いを指定する接続オプションの連想配列。
+使用可能なキーは以下のとおりです。 {autocommit}
+DB2_AUTOCOMMIT_ON を渡すと、
+この接続ハンドルで自動コミットを有効にします。
+
+DB2_AUTOCOMMIT_OFF を渡すと、
+この接続ハンドルで自動コミットを無効にします。
+
+{DB2_ATTR_CASE} DB2_CASE_NATURAL を渡すと、
+カラム名の大文字小文字を変換せずに返します。
+
+DB2_CASE_LOWER を渡すと、
+カラム名を小文字に変換して返します。
+
+DB2_CASE_UPPER を渡すと、
+カラム名を大文字に変換して返します。
+
+{CURSOR} DB2_FORWARD_ONLY を渡すと、
+ステートメントリソースで前進のみのカーソルを使用します。
+これはデフォルトのカーソル型であり、
+すべてのデータベースサーバでサポートされています。
+
+DB2_SCROLLABLE を渡すと、
+ステートメントリソースでスクロール可能なカーソルを使用します。
+このモードでは結果セット内の行へのランダムアクセスが可能となりますが、
+現在は IBM DB2 Universal Database
+でしかサポートされていません。
+
+接続に成功した場合は接続ハンドルリソースを返します。
+パラメータ {database}、{username} および {password}
+に完全に一致する接続が 既に存在した場合、|db2_pconnect|
+はそれを再利用します。接続に失敗した場合は |db2_pconnect|
+は FALSE を返します。
+
+|db2_pconnect| の例 以下の例で、最初に |db2_pconnect|
+をコールした際には新しい持続的接続リソースを返します。
+二度目に |db2_pconnect| をコールすると、
+最初の持続的接続のリソースが再利用されます。
+
+<?php >
+  $database = 'SAMPLE';
+  $user = 'db2inst1';
+  $password = 'ibmdb2';
+  
+  $pconn = db2_pconnect($database, $user, $password);
+  
+  if ($pconn) {
+      echo "持続的接続に成功しました。";
+  }
+  else {
+      echo "持続的接続に失敗しました。";
+  }
+  
+  $pconn2 = db2_pconnect($database, $user, $password);
+  if ($pconn) {
+      echo "2 回目の持続的接続に成功しました。";
+  }
+  else {
+      echo "2 回目の持続的接続に失敗しました。";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  持続的接続に成功しました。
+  2 回目の持続的接続に成功しました。
+
+
+
+|db2_connect|
+
+vim:ft=help:

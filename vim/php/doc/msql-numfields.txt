@@ -1,0 +1,5 @@
+msql_numfields -- msql_num_fields のエイリアス
+
+この関数は次の関数のエイリアスです。 |msql_num_fields|
+
+vim:ft=help:

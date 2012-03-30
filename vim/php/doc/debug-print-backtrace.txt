@@ -1,0 +1,56 @@
+debug_print_backtrace -- バックトレースを表示する
+
+  void debug_print_backtrace()~
+
+|debug_print_backtrace| は PHP バックトレースを
+表示します。関数のコール、include / require
+されているファイル、 そして |eval|
+された内容などが表示されます。
+
+この関数はパラメータを使用しません。
+
+値を返しません。
+
+|debug_print_backtrace| の例
+
+<?php >
+  // ファイル名: include.php
+  
+  function a() {
+      b();
+  }
+  
+  function b() {
+      c();
+  }
+  
+  function c(){
+      debug_print_backtrace();
+  }
+  
+  a();
+?>
+
+<?php >
+  // ファイル名: test.php
+  // このファイルを実行する
+  
+  include 'include.php';
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  #0  eval() called at [/tmp/include.php:5]
+  #1  a() called at [/tmp/include.php:17]
+  #2  include(/tmp/include.php) called at [/tmp/test.php:3]
+  
+  #0  c() called at [/tmp/include.php:10]
+  #1  b() called at [/tmp/include.php:6]
+  #2  a() called at [/tmp/include.php:17]
+  #3  include(/tmp/include.php) called at [/tmp/test.php:3]
+
+
+
+|debug_backtrace|
+
+vim:ft=help:

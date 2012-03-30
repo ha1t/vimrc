@@ -1,0 +1,16 @@
+cpdf_set_char_spacing -- 文字間隔を設定する
+
+  bool cpdf_set_char_spacing(int pdf_document, float space)~
+
+文字の間隔を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{space} 文字列内の個々の文字の間隔。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_word_spacing| |cpdf_set_leading|
+
+vim:ft=help:

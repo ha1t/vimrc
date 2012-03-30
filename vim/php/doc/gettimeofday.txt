@@ -1,0 +1,47 @@
+gettimeofday -- 現在の時間を得る
+
+  mixed gettimeofday([bool return_float])~
+
+この関数は、gettimeofday(2) へのインターフェイスです。
+この関数は、システムコールから返されたデータを有する連想配列を返します。
+
+{return_float} TRUE を指定すると、配列ではなく float
+で返します。
+
+デフォルトでは配列を返します。{return_float}
+が設定されている場合は float を返します。
+
+配列のキー: "sec" - UNIX エポックからの秒
+
+"usec" - マイクロ秒
+
+"minuteswest" - グリニッジ基準の分
+
+"dsttime" - 夏時間補正の型
+
+バージョン 説明 5.1.0 {return_float}
+パラメータが追加されました。
+
+|gettimeofday| の例
+
+<?php >
+  print_r(gettimeofday());
+  
+  echo gettimeofday(true);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [sec] => 1073504408
+      [usec] => 238215
+      [minuteswest] => 0
+      [dsttime] => 1
+  )
+  
+  1073504408.23910
+
+
+
+vim:ft=help:

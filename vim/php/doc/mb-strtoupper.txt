@@ -1,0 +1,38 @@
+mb_strtoupper -- 文字列を大文字にする
+
+  string mb_strtoupper(string str [, string encoding])~
+
+{str} のすべてのアルファベットを大文字にして返します。
+
+{str} 大文字に変換したい文字列。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+{str}
+のすべてのアルファベットを大文字にしたものを返します。
+
+Unicode 文字属性についての詳細は
+http://www.unicode.org/unicode/reports/tr21/ を参照してください。
+
+|strtoupper|と違い、アルファベットであるかどうかは Unicode
+文字属性をもとに決定されます。したがって、この関数の挙動は
+ロケールの設定に影響されず、すべてのアルファベット、
+例えば A ウムラウト (&Auml;) を変換することができます。
+
+|mb_strtoupper| の例
+
+<?php >
+  $str = "Mary Had A Little Lamb and She LOVED It So";
+  $str = mb_strtoupper($str);
+  echo $str; // 結果は MARY HAD A LITTLE LAMB AND SHE LOVED IT SO となります
+?>
+
+
+
+
+
+|mb_strtolower| |mb_convert_case| |strtoupper|
+
+vim:ft=help:

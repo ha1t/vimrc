@@ -1,0 +1,39 @@
+array_unshift -- 一つ以上の要素を配列の最初に加える
+
+  int array_unshift(array array, mixed var [, mixed ...])~
+
+|array_unshift| は、{array}
+の先頭に指定された要素を加えます。リストの要素は全体として加えられるため、
+加えられた要素の順番は変わらないことに注意してください。
+配列の数値添字はすべて新たにゼロから振りなおされます。
+リテラルのキーについては変更されません。
+
+{array} 入力の配列。
+
+{var} 加える変数。
+
+処理後の {array} の要素の数を返します。
+
+|array_unshift| の例
+
+<?php >
+  $queue = array("orange", "banana");
+  array_unshift($queue, "apple", "raspberry");
+  print_r($queue);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => apple
+      [1] => raspberry
+      [2] => orange
+      [3] => banana
+  )
+
+
+
+|array_shift| |array_push| |array_pop|
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+imageinterlace -- インターレースを有効もしくは無効にする
+
+  int imageinterlace(resource image [, int interlace])~
+
+|imageinterlace| は、インターレースビットをon
+またはoffに切り替えます。
+
+インターレースビットがonでかつその画像がJPEGの場合、
+その画像はプログレッシブJPEGとして生成されています。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{interlace} ゼロ以外の場合はインターレース画像となり、
+ゼロの場合はインターレースビットを off にします。
+
+画像のインターレースビットが設定されている場合に 1、
+それ以外の場合に 0 を返します。
+
+vim:ft=help:

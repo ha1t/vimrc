@@ -1,0 +1,29 @@
+SAMConnection->subscribe() -- 指定したトピックの購読を作成する
+
+  string subscribe(string targetTopic)~
+
+"subscribe"
+メソッドを使用して、指定したトピックを購読します。
+
+{targetTopic} 購読するトピックの識別子 (topic://topicname)。
+
+購読の識別子を返します。これを、それ以降にデータを取得する際に
+トピックのデータを取得するためのセレクタとして使用します。
+エラーが発生した場合には FALSE を返します。
+この識別子を使用して、特定のトピック名の受信コールを行います。
+
+トピックの購読
+
+<?php >
+  $subid = $conn->subscribe('topic://A');
+  if (!$subid) {
+    // 購読に失敗しました!
+    echo "Subscribe failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

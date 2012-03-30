@@ -1,0 +1,49 @@
+parsekit_compile_file -- PHP
+コードの文字列をコンパイルし、結果を op
+コードの配列で返す
+
+  array parsekit_compile_file(string filename [, array errors [, int options]])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{filename} コンパイルするファイル名を含む文字列。 |include|
+の引数と同じ形式です。
+
+{errors} コンパイル時に発生したエラー
+(致命的なエラーを含む)
+の二次元配列。参照で返されます。
+
+{options} PARSEKIT_QUIET あるいは PARSEKIT_SIMPLE のいずれかです。
+返される出力の冗長性を設定します。
+
+複雑な形式の配列を返します。詳細は以下に示します。
+
+|parsekit_compile_file| の例
+
+<?php >
+  var_dump(parsekit_compile_file('hello_world.php', $errors, PARSEKIT_SIMPLE));
+?>
+
+上の例の出力は以下となります。
+
+  array(5) {
+    [0]=>
+    string(37) "ZEND_ECHO UNUSED 'Hello World' UNUSED"
+    [1]=>
+    string(30) "ZEND_RETURN UNUSED NULL UNUSED"
+    [2]=>
+    string(42) "ZEND_HANDLE_EXCEPTION UNUSED UNUSED UNUSED"
+    ["function_table"]=>
+    NULL
+    ["class_table"]=>
+    NULL
+  }
+
+
+
+|parsekit_compile_string|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+fdf_set_version -- FDF ファイルのバージョン番号を設定する
+
+  bool fdf_set_version(resource fdf_document, string version)~
+
+指定したドキュメントの FDF バージョンを {version}
+に設定します。
+
+この拡張モジュールが提供する機能のうちのいくつかは、新しいバージョンの
+FDF でのみ動作します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{version} バージョンを表す文字列。 現在の FDF
+ツールキット 5.0 では、これは 1.2、 1.3 あるいは 1.4
+となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fdf_get_version|
+
+vim:ft=help:

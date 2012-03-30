@@ -1,0 +1,31 @@
+gzinflate -- deflate圧縮された文字列を解凍する
+
+  string gzinflate(string data [, int length])~
+
+この関数は収縮された文字列を伸長します。
+
+{data} |gzdeflate| により圧縮されたデータを指定します
+
+{length} デコードする最大データ長を指定します
+
+オリジナルの無圧縮なデータ、もしくはエラー時に FALSE
+
+この関数は、もし無圧縮なデータが圧縮された入力 {data}
+の 32768 倍、もしくはオプションのパラメータ {length}
+以上の場合、エラーを返します。
+
+|gzinflate| の例
+
+<?php >
+  $compressed   = gzdeflate('Compress me', 9);
+  $uncompressed = gzinflate($compressed);
+  echo $uncompressed;
+?>
+
+
+
+
+
+|gzdeflate| |gzcompress| |gzuncompress| |gzencode|
+
+vim:ft=help:

@@ -1,0 +1,53 @@
+sybase_fetch_array -- 行を配列として取り込む
+
+  array sybase_fetch_array(resource result)~
+
+|sybase_fetch_array| は |sybase_fetch_row|
+の拡張版です。データを結果配列の
+数値インデックスに保存するのに加えて、フィールド名をキーとした
+連想インデックスにもデータを保存します。
+
+|sybase_fetch_array| を使用した場合でも、
+かなりの機能が付加されるにもかかわらず、
+|sybase_fetch_row| を使用した場合に比べて著しく
+遅くなるということはないということを重要なこととして記しておきます。
+
+{result}
+
+取り込んだ行を表す配列を返します。もう行がない場合には
+FALSE を返します。
+
+同じ名前のフィールドを選択する場合（たとえば join
+を行った場合など）、
+連想インデックスは順に番号を付加します。
+詳細は例を参照ください。
+
+同一フィールド名
+
+<?php >
+  $dbh = sybase_connect('SYBASE', '', '');
+  $q = sybase_query('SELECT * FROM p, a WHERE p.person_id= a.person_id');
+  var_dump(sybase_fetch_array($q));
+  sybase_close($dbh);
+?>
+
+上の例の出力は以下のようになります（2
+つのテーブルには、ともに "person_id"
+という名前のカラムがあると仮定します）。
+
+  array(4) {
+    [0]=>
+    int(1)
+    ["person_id"]=>
+    int(1)
+    [1]=>
+    int(1)
+    ["person_id1"]=>
+    int(1)
+  }
+
+
+
+|sybase_fetch_row| |sybase_fetch_assoc| |sybase_fetch_object|
+
+vim:ft=help:

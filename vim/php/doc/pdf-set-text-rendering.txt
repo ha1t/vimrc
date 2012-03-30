@@ -1,0 +1,8 @@
+PDF_set_text_rendering -- テキストの描画方法を設定する
+[古い関数]
+
+この関数は PDFlib バージョン 3
+で廃止されました。かわりに |PDF_set_value| でパラメータ
+{textrendering} を使用してください。
+
+vim:ft=help:

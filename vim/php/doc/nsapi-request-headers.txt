@@ -1,0 +1,36 @@
+nsapi_request_headers -- HTTP リクエストヘッダを全て取得する
+
+  array nsapi_request_headers()~
+
+|nsapi_request_headers| は、カレントの リクエストの HTTP
+ヘッダを連想配列で返します。 この関数は、PHP を NSAPI
+モジュールとして
+実行している場合にのみサポートされます。
+
+PHP 4.3.3 未満では、|getallheaders| は Apache
+サーバでのみ使用可能でした。 PHP 4.3.3 以降では、NSAPI
+モジュールを使用している場合、 |getallheaders| は
+|nsapi_request_headers| へのエイリアスとなります。
+
+$_SERVER スーパーグローバル変数を使うことによって Common
+CGI 変数を取得することも可能です。この変数は PHP を NSAPI
+モジュールとして実行しているか
+どうかにかかわらず利用できます。
+
+HTTP ヘッダを連想配列で返します。
+
+|nsapi_request_headers| の例
+
+<?php >
+  $headers = nsapi_request_headers();
+  
+  foreach ($headers as $header => $value) {
+    echo "$header: $value <br />\n";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

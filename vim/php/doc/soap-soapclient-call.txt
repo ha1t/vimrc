@@ -1,0 +1,8 @@
+SoapClient->__call() -- SOAP 関数をコールする (推奨されません)
+
+  mixed __call(string function_name, array arguments [, array options [, array input_headers [, array output_headers]]])~
+
+このメソッドは推奨されません。代わりに
+を使用してください。
+
+vim:ft=help:

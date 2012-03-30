@@ -1,0 +1,39 @@
+DomElement->has_attribute() --
+現在のノードに属性があるかどうかを調べる
+
+  bool has_attribute(string name)~
+
+この関数は、現在のノードに名前 {name}
+を持つ属性があるかどうかを調べます。
+
+{name} 検査する属性名
+
+もし問い合わせた属性が存在する場合
+TRUE、そうでない場合 FALSE を返します。
+
+属性の存在を調べる
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+      echo "Error while parsing the document\n";
+      exit;
+  }
+  
+  $root = $dom->document_element();
+  
+  $buffer = '<html';
+  if ($root->has_attribute('language')) {
+      $buffer .= 'lang="' . $root->get_attribute('language') . '"';
+  }
+  $buffer .= '>';
+?>
+
+
+
+
+
+を使用してください。
+
+vim:ft=help:

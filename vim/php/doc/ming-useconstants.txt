@@ -1,0 +1,11 @@
+ming_useconstants -- 定数プールを使用する
+
+  void ming_useconstants(int use)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+値を返しません。
+
+vim:ft=help:

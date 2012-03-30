@@ -1,0 +1,13 @@
+ibase_maintain_db --
+データベースサーバでメンテナンスコマンドを実行する
+
+  bool ibase_maintain_db(resource service_handle, string db, int action [, int argument])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

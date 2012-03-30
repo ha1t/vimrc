@@ -1,0 +1,30 @@
+ircg_fetch_error_msg -- 直前の IRCG 処理からエラーを返す
+
+  array ircg_fetch_error_msg(resource connection)~
+
+|ircg_fetch_error_msg| は、
+接続が失敗した際のエラーを返します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+配列の最初の要素がエラーコード、2
+番目の要素がエラー文字列となります。
+
+エラーコードの内容は、RFC 2812 で定義されている IRC
+応答コードと同じです。
+
+|ircg_fetch_error_msg| の例
+
+<?php >
+  if (!ircg_join ($id, "#php")) {
+      $error = ircg_fetch_error_msg($id);
+      echo "チャンネル #php に参加できません。エラーコード: 
+            $error[0] Description: $error[1]";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

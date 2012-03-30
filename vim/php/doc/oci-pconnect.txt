@@ -1,0 +1,28 @@
+oci_pconnect -- 持続的接続を使用してOracle
+データベースに接続する
+
+  resource oci_pconnect(string username, string password [, string db [, string charset [, int session_mode]]])~
+
+Oracle サーバへの持続的接続を生成し、ログオンします。
+
+持続的接続はキャッシュされ、リクエスト間で再利用されることで、
+各ページロードのオーバーヘッドを軽減します。
+典型的な PHP アプリケーションでは、Apache の子プロセス
+(もしくは PHP FastCGI/CGI プロセス) ごとに Oracle
+サーバに対してオープンされた単一の持続的接続を有します。
+より詳細な情報については、持続的データベース接続
+のセクションを参照してください。
+
+{username} Oracle のユーザ名。
+
+{password} {username} のパスワード。
+
+{db} このオプションのパラメータには、ローカル Oracle
+インスタンスの名前か tnsnames.ora
+における接続先のエントリ名を指定することができます。
+
+指定しない場合は、PHP は環境変数 ORACLE_SID および TWO_TASK
+を用いてローカルの Oracle インスタンス名および tnsnames.ora
+の場所を見つけます。
+
+vim:ft=help:

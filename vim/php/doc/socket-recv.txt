@@ -1,0 +1,11 @@
+socket_recv -- 接続したソケットからデータを受信する
+
+  int socket_recv(resource socket, string buf, int len, int flags)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

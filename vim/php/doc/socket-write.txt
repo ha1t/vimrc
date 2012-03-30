@@ -1,0 +1,36 @@
+socket_write -- ソケットに書き込む
+
+  int socket_write(resource socket, string buffer [, int length])~
+
+関数 |socket_write| は、 {buffer} の内容をソケット {socket}
+に書き込みます。
+
+{socket}
+
+{buffer} 書き込まれるバッファ。
+
+{length} オプションのパラメータ {length} で、
+ソケットに書き込むバイト数を指定することが可能です。
+この値がバッファの長さより大きい場合、自動的にバッファのサイズに切り詰められます。
+
+ソケットへの書き込みに成功したデータのバイト数を返します。エラー時には
+FALSE を返します。エラーコードは |socket_last_error|
+を用いて取得することができ、この値を |socket_strerror|
+に渡すことでエラー情報を文字列で取得可能です。
+
+|socket_write| がゼロを返すことも十分ありえます。
+これは、書き込むデータが存在しなかったことを意味します。
+エラーをチェックするために FALSE
+かどうかを調べる際には、必ず ===
+演算子を使用しましょう。
+
+|socket_write| は、バッファの内容を必ずしもすべて
+書き込むとは限りません。ネットワークバッファの状態にもよりますが、
+たとえ 1
+バイトだけ書き込まれたのであったとしても、それはエラーではなく正常な動作です。
+そのため、データがすべて書き込まれたのかどうかに注意する必要があります。
+
+|socket_accept| |socket_bind| |socket_connect| |socket_listen| |socket_read|
+|socket_strerror|
+
+vim:ft=help:

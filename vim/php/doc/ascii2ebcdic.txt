@@ -1,0 +1,17 @@
+ascii2ebcdic -- ASCIIからEBCDICに文字列を変換する
+
+  int ascii2ebcdic(string ascii_str)~
+
+|ascii2ebcdic| は、EBCDICに基づくオペレーティング システム
+(OS/390, BS2000)でのみ使用可能なApache専用の関数です。
+この関数は、ASCIIエンコードされた文字列
+{ascii_str}を等価なEBCDIC表現(バイナリ対応)に
+変換し、結果を返します。
+
+{ascii_str} 変換される ASCII 文字列
+
+ASCII 文字列を表す EBCDIC を返します。
+
+|ebcdic2ascii|
+
+vim:ft=help:

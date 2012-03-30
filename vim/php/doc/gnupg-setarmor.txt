@@ -1,0 +1,34 @@
+gnupg_setarmor -- armor 形式を切り替える
+
+  bool gnupg_setarmor(resource identifier, int armor)~
+
+ゼロ以外の整数値をこの関数に渡すと、armor
+形式の出力を有効にします (デフォルト)。 0
+を渡すと、armor 形式の出力を無効にします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+手続き型の |gnupg_setarmor| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_setarmor($res,1); // enable armored output;
+  gnupg_setarmor($res,0); // disable armored output;
+?>
+
+
+
+オブジェクト指向の |gnupg_setarmor| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> setarmor(1); // enable armored output;
+  $gpg -> setarmor(0); // disable armored output;
+?>
+
+
+
+
+
+vim:ft=help:

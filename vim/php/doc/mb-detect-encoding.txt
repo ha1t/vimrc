@@ -1,0 +1,47 @@
+mb_detect_encoding -- 文字エンコーディングを検出する
+
+  string mb_detect_encoding(string str [, mixed encoding_list [, bool strict]])~
+
+文字列 {str} の文字エンコーディングを検出します。
+
+{str} 検出する文字列。
+
+{encoding_list} {encoding_list}
+は文字エンコーディングのリストで、
+エンコーディング検出の順番を配列またはカンマ区切りのリストで指定します。
+
+{encoding_list} が省略された場合、 detect_order
+が使用されます。
+
+{strict} {strict} は、
+厳格なエンコーディング検出を行うかどうかを指定します。
+デフォルトは FALSE です。
+
+検出した文字エンコーディングを返します。
+
+|mb_detect_encoding| の例
+
+<?php >
+  /* 現在のdetect_orderで文字エンコーディングを検出 */
+  echo mb_detect_encoding($str);
+  
+  /* "auto" は "ASCII,JIS,UTF-8,EUC-JP,SJIS"に展開されます */
+  echo mb_detect_encoding($str, "auto");
+  
+  /* カンマ区切りのリストで encoding_list 文字エンコーディングを指定 */
+  echo mb_detect_encoding($str, "JIS, eucjp-win, sjis-win");
+  
+  /* encoding_list を指定するために配列を使用 */
+  $ary[] = "ASCII";
+  $ary[] = "JIS";
+  $ary[] = "EUC-JP";
+  echo mb_detect_encoding($str, $ary);
+?>
+
+
+
+
+
+|mb_detect_order|
+
+vim:ft=help:

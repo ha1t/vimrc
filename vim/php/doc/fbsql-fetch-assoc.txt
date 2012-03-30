@@ -1,0 +1,48 @@
+fbsql_fetch_assoc -- 連想配列として結果レコードを取得する
+
+  array fbsql_fetch_assoc(resource result)~
+
+|fbsql_fetch_assoc| は、 |fbsql_fetch_array| のオプションの第 2
+引数に FBSQL_ASSOC
+を指定してコールするのと等価です。この関数は
+連想配列のみを返します。
+
+|fbsql_fetch_array|
+も、当初はこのように動作していました。もし連想配列だけでなく
+数値添字の配列も必要な場合は |fbsql_fetch_array|
+を使用してください。
+
+注意してほしいのは、 |fbsql_fetch_assoc| は |fbsql_fetch_row|
+と比べてそれほど遅くはないのに
+その追加機能がとても優れているということです。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+取得した行に対応する連想配列を返します。行がもうない場合には
+FALSE を返します。
+
+2
+つ以上のカラムが同じ名前を持っている場合、最後にあらわれたカラムが
+優先されます。他のカラムにアクセスするには、
+|fbsql_fetch_array| を使用して数値添字の配列を
+取得する必要があります。
+
+|fbsql_fetch_assoc| の例
+
+<?php >
+  fbsql_connect($host, $user, $password);
+  $result = fbsql_db_query("database", "select * from table");
+  while ($row = fbsql_fetch_assoc($result)) {
+      echo $row["user_id"];
+      echo $row["fullname"];
+  }
+  fbsql_free_result($result);
+?>
+
+
+
+
+
+|fbsql_fetch_row| |fbsql_fetch_array| |fbsql_fetch_object|
+
+vim:ft=help:

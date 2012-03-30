@@ -1,0 +1,36 @@
+hexdec -- 16 進数を 10 進数に変換する
+
+  number hexdec(string hex_string)~
+
+引数 {hex_string} により指定された 16 進数に 等価な 10
+進数を返します。|hexdec| は、16 進数を 表す文字列を 10
+進数に変換します。
+
+|hexdec| は、16 進数以外の文字を一切無視します。
+
+{hex_string} 変換したい 16 進文字列。
+
+{hex_string} を 10 進で表した値を返します。
+
+バージョン 説明 4.1.0 以降 この関数は、integer
+型の範囲をこえる大きな数値も変換できるようになりました。
+そのような値は、float で返します。
+
+|hexdec| の例
+
+<?php >
+  var_dump(hexdec("See"));
+  var_dump(hexdec("ee"));
+  // 共に "int(238)" を出力
+  
+  var_dump(hexdec("that")); // "int(10)" を出力
+  var_dump(hexdec("a0")); // "int(160)" を出力
+?>
+
+
+
+
+
+|dechex| |bindec| |octdec| |base_convert|
+
+vim:ft=help:

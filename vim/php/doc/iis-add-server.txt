@@ -1,0 +1,9 @@
+iis_add_server -- 新規に仮想 Web サーバを作成する
+
+  int iis_add_server(string path, string comment, string server_ip, int port, string host_name, int rights, int start_server)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

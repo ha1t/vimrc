@@ -1,0 +1,29 @@
+SoapServer->setPersistence() -- SoapServer の持続モードを設定する
+
+  void setPersistence(int mode)~
+
+この関数により、ある PHP
+セッションにおいて複数のリクエスト間でデータを保持することが可能になります。
+この関数は、サーバが
+によりクラスから関数をエクスポートした場合のみ使用可能です。
+
+{mode} SOAP_PERSISTENCE_XXX 定数のうちの一つ
+
+値を返しません。
+
+いくつかの例
+
+<?php >
+  $server->setPersistence(SOAP_PERSISTENCE_SESSION);
+  
+  $server->setPersistence(SOAP_PERSISTENCE_REQUEST);
+?>
+
+
+
+持続モード SOAP_PERSISTENCE_SESSION
+は、そのクラスのオブジェクトについてのみ持続させます。
+クラスのスタティックなデータについては対象となりません。
+self::$bar ではなく $this->bar を使用しましょう。
+
+vim:ft=help:

@@ -1,0 +1,70 @@
+mysql_data_seek -- 内部的な結果ポインタを移動する
+
+  bool mysql_data_seek(resource result, int row_number)~
+
+|mysql_data_seek| は、指定した結果 ID （result_identifier）が指す
+MySQL 結果の内部ポインタが指定した行番号
+（row_number）を指すように移動します。 この後、たとえば
+|mysql_fetch_assoc| のような MySQL
+のフェッチ関数をコールした場合には、
+ここで指定した行の内容が返されます。
+
+{row_number} は 0 から始まります。 {row_number} は 0 から
+|mysql_num_rows| - 1 までの範囲にあるべきです。
+しかし、もし結果セットが空（|mysql_num_rows| == 0）
+の場合、0 へのシークは E_WARNING
+を発生して失敗し、|mysql_data_seek| は FALSE を返します。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{row_number} 新しく結果ポインタを設定したい行番号です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mysql_data_seek| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('接続できませんでした: ' . mysql_error());
+  }
+  $db_selected = mysql_select_db('sample_db');
+  if (!$db_selected) {
+      die('データベースを選択できませんでした: ' . mysql_error());
+  }
+  $query = 'SELECT last_name, first_name FROM friends';
+  $result = mysql_query($query);
+  if (!$result) {
+      die('クエリは失敗しました: ' . mysql_error());
+  }
+  /* 行を逆順で取得する */
+  for ($i = mysql_num_rows($result) - 1; $i >= 0; $i--) {
+      if (!mysql_data_seek($result, $i)) {
+          echo "行 $i をシークできません: " . mysql_error() . "\n";
+          continue;
+      }
+  
+      if (!($row = mysql_fetch_assoc($result))) {
+          continue;
+      }
+  
+      echo $row['last_name'] . ' ' . $row['first_name'] . "<br />\n";
+  }
+  
+  mysql_free_result($result);
+?>
+
+
+
+
+
+|mysql_data_seek| は、 |mysql_query|
+との組み合わせでのみ利用可能です。 |mysql_unbuffered_query|
+と組み合わせることはできません。
+
+|mysql_query| |mysql_num_rows| |mysql_fetch_row| |mysql_fetch_assoc|
+|mysql_fetch_array| |mysql_fetch_object|
+
+vim:ft=help:

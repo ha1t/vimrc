@@ -1,0 +1,17 @@
+cpdf_set_creator -- pdf ドキュメントの creator
+フィールドを設定する
+
+  bool cpdf_set_creator(int pdf_document, string creator)~
+
+PDF ドキュメントの creator を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{creator} ドキュメントの作者。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_subject| |cpdf_set_title| |cpdf_set_keywords|
+
+vim:ft=help:

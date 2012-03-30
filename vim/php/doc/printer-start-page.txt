@@ -1,0 +1,14 @@
+printer_start_page -- 新規ページを開始する
+
+  bool printer_start_page(resource printer_handle)~
+
+この関数は、アクティブなドキュメントに新しいページを作成します。
+使用例は |printer_start_doc| を参照ください。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

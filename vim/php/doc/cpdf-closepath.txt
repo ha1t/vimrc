@@ -1,0 +1,12 @@
+cpdf_closepath -- パスを閉じる
+
+  bool cpdf_closepath(int pdf_document)~
+
+現在のパスを閉じます。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

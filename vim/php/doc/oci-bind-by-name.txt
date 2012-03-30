@@ -1,0 +1,208 @@
+oci_bind_by_name -- Oracle プレースホルダーに PHP
+変数をバインドする
+
+  bool oci_bind_by_name(resource statement, string ph_name, mixed variable [, int maxlength [, int type]])~
+
+|ocibindbyname| は、PHP 変数 {variable} を Oracle
+プレースホルダー {ph_name}
+にバインドします。実行時に入力用、
+出力用に使用されるによらず、必要な記憶領域が確保されます。
+
+{statement} OCI ステートメント
+
+{ph_name} プレースホルダー
+
+{variable} PHP 変数
+
+{maxlength} バインド時の最大長。-1 に設定した場合、
+{variable} の現在の長さを最大長として設定する。
+
+{type} 抽象データ型 (LOB/ROWID/BFILE)
+をバインドする必要がある場合、まず |oci_new_descriptor|
+関数を使用してこれを確保する必要がある。 {length}
+は抽象データ型用には 使用されず、-1
+を設定する必要がある。 {type} パラメータは、
+使用されるディスクリプタをOracle に伝える。
+デフォルトは SQLT_CHR。
+指定可能な型については以下を参照のこと。 SQLT_FILE - BFILE
+用
+
+SQLT_CFILE - CFILE 用
+
+SQLT_CLOB - CLOB 用
+
+SQLT_BLOB - BLOB 用
+
+SQLT_RDD - ROWID 用
+
+SQLT_NTY - 名前付けされたデータ型用
+
+SQLT_INT - integer 用
+
+SQLT_CHR - VARCHAR 用
+
+SQLT_BIN - RAW カラム用
+
+SQLT_LNG - LONG カラム用
+
+SQLT_LBI - LONG RAW カラム用
+
+SQLT_RSET - カーソル用。 |oci_new_cursor|
+により、前もって生成されたもの。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|oci_bind_by_name| の例
+
+<?php >
+  /* oci_bind_by_name  の例 thies at thieso dot net (980221)
+    3レコードをempに挿入し、挿入の直後にレコードを更新するために
+    ROWIDを使用する。
+  */
+  
+  $conn = oci_connect("scott", "tiger");
+  
+  $stmt = oci_parse($conn, "
+                            INSERT INTO
+                                       emp (empno, ename)
+                                 VALUES
+                                       (:empno,:ename)
+                              RETURNING
+                                       ROWID
+                                   INTO
+                                       :rid
+                           ");
+  
+  $data = array(
+                1111 => "Larry",
+                2222 => "Bill",
+                3333 => "Jim"
+               );
+  
+  $rowid = oci_new_descriptor($conn, OCI_D_ROWID);
+  
+  oci_bind_by_name($stmt, ":empno", $empno, 32);
+  oci_bind_by_name($stmt, ":ename", $ename, 32);
+  oci_bind_by_name($stmt, ":rid",   $rowid, -1, OCI_B_ROWID);
+  
+  $update = oci_parse($conn, "
+                              UPDATE
+                                    emp
+                                 SET
+                                    sal = :sal
+                               WHERE
+                                    ROWID = :rid
+                             ");
+  oci_bind_by_name($update, ":rid", $rowid, -1, OCI_B_ROWID);
+  oci_bind_by_name($update, ":sal", $sal,   32);
+  
+  $sal = 10000;
+  
+  foreach ($data as $empno => $ename) {
+      oci_execute($stmt);
+      oci_execute($update);
+  }
+  
+  $rowid->free();
+  
+  oci_free_statement($update);
+  oci_free_statement($stmt);
+  
+  $stmt = oci_parse($conn, "
+                            SELECT
+                                  *
+                              FROM
+                                  emp
+                             WHERE
+                                  empno
+                                IN
+                                  (1111,2222,3333)
+                           ");
+  oci_execute($stmt);
+  
+  while ($row = oci_fetch_assoc($stmt)) {
+      var_dump($row);
+  }
+  
+  oci_free_statement($stmt);
+  
+  /* テーブル emp から "junk" を削除する.... */
+  $stmt = oci_parse($conn, "
+                            DELETE FROM
+                                       emp
+                                  WHERE
+                                       empno
+                                     IN
+                                       (1111,2222,3333)
+                           ");
+  oci_execute($stmt);
+  oci_free_statement($stmt);
+  
+  oci_close($conn);
+?>
+
+
+
+
+
+この関数は余分な空白を除去する事を忘れないでください。
+次の例を見てください。
+
+|oci_bind_by_name| の例
+
+<?php >
+      $connection = oci_connect('apelsin','kanistra');
+      $query = "INSERT INTO test_table VALUES(:id, :text)";
+  
+      $statement = oci_parse($query);
+      oci_bind_by_name($statement, ":id", 1);
+      oci_bind_by_name($statement, ":text", "trailing spaces follow     ");
+      oci_execute($statement);
+      /*
+       このコードは DB に文字列 'trailing spaces follow' を挿入する。
+       余分な空白は付加されない。
+      */
+?>
+
+
+
+
+
+|oci_bind_by_name| の例
+
+<?php >
+      $connection = oci_connect('apelsin','kanistra');
+      $query = "INSERT INTO test_table VALUES(:id, 'trailing spaces follow      ')";
+  
+      $statement = oci_parse($query);
+      oci_bind_by_name($statement, ":id", 1);
+      oci_execute($statement);
+      /*
+       また、このコードは後方の空白を保持したまま 'trailing spaces follow      '
+       を追加する。
+      */
+?>
+
+
+
+
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+magic_quotes_gpc や |addslashes| と |oci_bind_by_name|
+を同時に使用しないでください。
+これは、引用符を追加する必要がないためで、 また、magic
+quote により付加された引用符は、 |oci_bind_by_name| が magic
+quote によ
+り付加された引用符と意図的に付加されたものを区別できないため、
+そのままデータベースに書き込まれるためです。
+
+PHP バージョン 5.0.0 以前では、代わりに |ocibindbyname|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_bind_by_name| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

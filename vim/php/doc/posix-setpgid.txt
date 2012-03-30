@@ -1,0 +1,18 @@
+posix_setpgid -- ジョブ制御のプロセスグループ ID を設定する
+
+  bool posix_setpgid(int pid, int pgid)~
+
+プロセス {pid} をプロセスグループ {pgid} に加えます。
+
+{pid} プロセス ID。
+
+{pgid} プロセスグループ ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+プロセスグループおよびジョブ制御に関する詳細は、
+POSIX.1 および POSIX システムのマニュアルページ setsid(2)
+を参照ください。
+
+vim:ft=help:

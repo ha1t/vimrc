@@ -1,0 +1,24 @@
+hw_pConnect -- 持続的データベース接続を作成する
+
+  int hw_pconnect(string host, int port [, string username, string password])~
+
+Hyperwave サーバへの持続的接続をオープンします。
+同時に複数の持続的接続をオープンすることができます。
+
+{host} サーバのホスト名。
+
+{port} サーバのポート番号。
+
+{username} Hyperwave
+のユーザ名。省略した場合は、サーバとの認証は行われません。
+これは、匿名ユーザとして認証されることに似ています。
+
+{password} {username} のパスワード。
+パスワードは暗号化されないことを覚えておきましょう。
+
+成功時に接続インデックスを、接続できなかった場合に
+FALSE を返します。
+
+|hw_connect|
+
+vim:ft=help:

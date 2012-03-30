@@ -1,0 +1,45 @@
+get_magic_quotes_gpc -- magic quotes gpc の現在の設定を得る
+
+  int get_magic_quotes_gpc()~
+
+magic_quotes_gpc の現在の設定を返します。
+
+magic_quotes_gpcは 実行時にセットしても反映されないことに
+留意してください。
+
+magic_quotes についての詳細な情報は セキュリティの欄
+を参照してください。
+
+magic quotes gpc がオフの場合に 0、そうでない場合に 1
+を返します。
+
+|get_magic_quotes_gpc| の例
+
+<?php >
+  echo get_magic_quotes_gpc();         // 1
+  echo $_POST['lastname'];             // O\'reilly
+  echo addslashes($_POST['lastname']); // O\\\'reilly
+  
+  if (!get_magic_quotes_gpc()) {
+      $lastname = addslashes($_POST['lastname']);
+  } else {
+      $lastname = $_POST['lastname'];
+  }
+  
+  echo $lastname; // O\'reilly
+  $sql = "INSERT INTO lastnames (lastname) VALUES ('$lastname')";
+?>
+
+
+
+
+
+magic_quotes_sybase ディレクティブがONの場合、magic_quotes_gpcは
+完全に上書きされます。そのため|get_magic_quotes_gpc|
+がTRUEを返したとしてもダブルクォーテーションやバックスラッシュ、
+NULLはエスケープされません。シングルクォーテーションだけがエスケープ
+されます。そのケースでは''のように見えます。
+
+|addslashes| |stripslashes| |get_magic_quotes_runtime| |ini_get|
+
+vim:ft=help:

@@ -1,0 +1,37 @@
+reset -- 配列の内部ポインタを先頭の要素にセットする
+
+  mixed reset(array array)~
+
+|reset| は、{array}
+の内部ポインタの先頭の要素に戻し、配列の最初の要素の値を返します。
+
+{array} 入力の配列。
+
+配列の最初の要素の値を返します。 配列が空の場合 FALSE
+を返します。
+
+|reset| の例
+
+<?php >
+  $array = array('step one', 'step two', 'step three', 'step four');
+  
+  // デフォルトでは、ポインタは先頭要素を指しています
+  echo current($array) . "<br />\n"; // "step one"
+  
+  // 次の２ステップをとばします
+  next($array);
+  next($array);
+  echo current($array) . "<br />\n"; // "step three"
+  
+  // ポインタをリセットし、再度ステップ１開始します
+  reset($array);
+  echo current($array) . "<br />\n"; // "step one"
+?>
+
+
+
+
+
+|current| |each| |end| |next| |prev|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+date_default_timezone_get --
+スクリプト中の日付/時刻関数で使用されるデフォルトタイムゾーンを取得する
+
+  string date_default_timezone_get()~
+
+この関数は、デフォルトのタイムゾーンを以下の順で「推測」します。
+|date_default_timezone_set| 関数を使用して
+設定したタイムゾーン（もし何か設定されていれば）
+
+TZ 環境変数（もし空白でなければ）
+
+date.timezone ini オプション （設定されていれば）
+
+「特殊な」推測（もし OS がサポートしていれば）
+
+以上のどの方法でも推測できなかった場合は UTC
+を返します。
+
+string を返します。
+
+|date_default_timezone_set|
+
+vim:ft=help:

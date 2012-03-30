@@ -1,0 +1,30 @@
+ssh2_sftp_readlink -- シンボリックリンクのターゲットを返す
+
+  string ssh2_sftp_readlink(resource sftp, string link)~
+
+シンボリックリンクのターゲットを返します。
+
+{sftp} |ssh2_sftp| でオープンした SSH2 SFTP リソース。
+
+{link} シンボリックリンクへのパス。
+
+シンボリックリンク {link} のターゲットを返します。
+
+シンボリックリンクの読み込み
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  $sftp = ssh2_sftp($connection);
+  
+  $target = ssh2_sftp_readlink($sftp, '/tmp/mysql.sock');
+  /* $target は例えば次のような感じ: '/var/run/mysql.sock' */
+?>
+
+
+
+
+
+|readlink| |ssh2_sftp_symlink|
+
+vim:ft=help:

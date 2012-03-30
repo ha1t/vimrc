@@ -1,0 +1,89 @@
+mcrypt_module_open --
+使用するアルゴリズムおよびモードのモジュールをオープンする
+
+  resource mcrypt_module_open(string algorithm, string algorithm_directory, string mode, string mode_directory)~
+
+この関数は、使用するアルゴリズムおよびモードのモジュールをオープン
+します。アルゴリズム名は、"twofish" または定数
+MCRYPT_暗号名により algorithm で指定します。 ライブラリは
+|mcrypt_module_close| をコールする
+ことによりクローズされます。通常、この関数は暗号化記述子を返し、
+エラーの際に FALSE を返します。
+
+暗号化モジュールの位置を指定する際には
+{algorithm_directory} および {mode_directory} が使用されます。
+ディレクトリ名を指定した場合には、これが使用されます。
+これらの一つに空の文字列("")を指定した場合、ini
+ディエクティブの {mcrypt.algorithms_dir} または {mcrypt.modes_dir}
+に設定された値が使用されます。
+これらが設定されていない場合、libmcrypt
+をコンパイルした際の デフォルトのディレクトリ
+(通常は/usr/local/lib/libmcrypt)が 使用されます。
+
+|mcrypt_module_open| の例
+
+<?php >
+      $td = mcrypt_module_open(MCRYPT_DES, '',
+          MCRYPT_MODE_ECB, '/usr/lib/mcrypt-modes');
+  
+      $td = mcrypt_module_open('rijndael-256', '', 'ofb', '');
+?>
+
+
+
+
+
+上の例の最初の行では、デフォルトのディレクトリから
+DES 暗号化を、 そして /usr/lib/mcrypt-modes から EBC モードの
+オープンを試みます。2
+行目の例では暗号化形式とモードを文字列で
+指定しています。これは、libmcrypt 2.4.x あるいは 2.5.x
+に対して
+拡張モジュールがリンクされている場合にのみ使用可能です。
+
+|mcrypt_module_open| を暗号化で使用する
+
+<?php >
+      /* 暗号モジュールをオープンします */
+      $td = mcrypt_module_open('rijndael-256', '', 'ofb', '');
+  
+      /* IV を作成し、キー長を定義します。Windows では、かわりに
+       * MCRYPT_RAND を使用します */
+      $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_DEV_RANDOM);
+      $ks = mcrypt_enc_get_key_size($td);
+  
+      /* キーを作成します */
+      $key = substr(md5('very secret key'), 0, $ks);
+  
+      /* 暗号化処理を初期化します */
+      mcrypt_generic_init($td, $key, $iv);
+  
+      /* データを暗号化します */
+      $encrypted = mcrypt_generic($td, 'This is very important data');
+  
+      /* 暗号化ハンドラを終了します */
+      mcrypt_generic_deinit($td);
+  
+      /* 復号用の暗号モジュールを初期化します */
+      mcrypt_generic_init($td, $key, $iv);
+  
+      /* 暗号化された文字列を復号します */
+      $decrypted = mdecrypt_generic($td, $encrypted);
+  
+      /* 復号ハンドルを終了し、モジュールを閉じます */
+      mcrypt_generic_deinit($td);
+      mcrypt_module_close($td);
+  
+      /* 文字列を表示します */
+      echo trim($decrypted) . "\n";
+?>
+
+
+
+
+
+|mcrypt_module_close|、 |mcrypt_generic|、 |mdecrypt_generic|、
+|mcrypt_generic_init| および |mcrypt_generic_deinit|
+も参照ください。
+
+vim:ft=help:

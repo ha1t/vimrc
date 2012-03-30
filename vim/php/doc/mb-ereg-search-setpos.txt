@@ -1,0 +1,20 @@
+mb_ereg_search_setpos --
+次の正規表現検索を開始する位置を設定する
+
+  bool mb_ereg_search_setpos(int position)~
+
+|mb_ereg_search_setpos| は、 |mb_ereg_search|
+で検索を開始する位置を設定します。
+
+{position} 設定する位置。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+内部エンコーディングあるいは |mb_regex_encoding|
+で指定した文字エンコーディングを、
+この関数の文字エンコーディングとして使用します。
+
+|mb_regex_encoding| |mb_ereg_search_init|
+
+vim:ft=help:

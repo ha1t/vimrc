@@ -1,0 +1,22 @@
+ldap_mod_del -- 現在の属性から属性を削除する
+
+  bool ldap_mod_del(resource link_identifier, string dn, array entry)~
+
+ひとつあるいは複数の属性を、指定した {dn}
+から削除します。
+この関数は、オブジェクトレベルではなく属性レベルで修正を行います。
+オブジェクトレベルの削除は、|ldap_delete|
+関数により行います。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{dn} LDAP エンティティの識別名。
+
+{entry}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ldap_mod_add| |ldap_mod_replace|
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+PDF_fit_pdi_page -- インポートした PDF ページを配置する
+
+  bool PDF_fit_pdi_page(resource pdfdoc, int page, float x, float y, string optlist)~
+
+さまざまなオプションに基づいて、インポートした PDF
+ページを配置します。 成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

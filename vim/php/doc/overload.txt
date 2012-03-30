@@ -1,0 +1,16 @@
+overload --
+クラスのプロパティおよびメソッドに関してオーバーロードを可能にする
+
+  void overload(string class_name)~
+
+|overload| 関数は、 {class_name}
+で指定されたクラスのプロパティと
+メソッドコールをオーバーロードします。
+
+{class_name} オーバーロードするクラス名。
+
+値を返しません。
+
+このパートの導入部にある 例 を参照ください。
+
+vim:ft=help:

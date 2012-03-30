@@ -1,0 +1,10 @@
+spl_autoload_call --
+要求されたクラスを読み込むために、すべての登録済みの
+__autoload() 関数を試す
+
+  void spl_autoload_call(string class_name)~
+
+この関数は、登録済みの __autoload 関数を使用して
+クラスあるいはインターフェイスを手動で探すために使用することができます。
+
+vim:ft=help:

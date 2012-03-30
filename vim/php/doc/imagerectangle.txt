@@ -1,0 +1,24 @@
+imagerectangle -- 矩形を描画する
+
+  bool imagerectangle(resource image, int x1, int y1, int x2, int y2, int color)~
+
+|imagerectangle|
+は、指定した座標から始まる矩形を作成します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{x1} 左上の x 座標。
+
+{y1} 左上の y 座標。 0, 0 が画像の左上隅を表します。
+
+{x2} 右下の x 座標。
+
+{y2} 右下の y 座標。
+
+{color} |imagecolorallocate| で作成した色 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

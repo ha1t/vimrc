@@ -1,0 +1,20 @@
+imagesetthickness -- 線描画用の線幅を設定する
+
+  bool imagesetthickness(resource image, int thickness)~
+
+|imagesetthickness|
+は、長方形、多角形、楕円等を描画する際の線幅を
+{thickness} ピクセルに設定します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{thickness}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、GD 2.0.1 以降を必要とします (2.0.28
+以降を推奨します)。
+
+vim:ft=help:

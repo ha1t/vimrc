@@ -1,0 +1,21 @@
+SDO_DAS_XML::createDataObject -- 名前空間 URI
+および型名を指定して SDO_DataObject を作成する
+
+  SDO_DataObject SDO_DAS_XML::createDataObject(string namespace_uri, string type_name)~
+
+名前空間 URI および型名を指定して SDO_DataObject
+を作成します。
+型名はモデルで定義されていなければなりません。
+定義されていない場合は SDO_TypeNotFoundException
+がスローされます。
+
+{namespace_uri} 型名の名前空間 URI。
+
+{type_name} 型名。
+
+成功した場合に SDO_DataObject を返します。
+
+{SDO_TypeNotFoundException}
+もとになるモデルで型が定義されていない場合にスローされます。
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+maxdb_init -- MaxDB を初期化し、maxdb_real_connect
+で使用するリソースを返す
+
+  resource maxdb_init()~
+
+|maxdb_options| および |maxdb_real_connect| で使用する MaxDB
+リソースを確保、あるいは初期化します。
+
+|maxdb_real_connect| がコールされるまでは、 これ以降の
+(|maxdb_options| 以外の) maxdb 関数のコールは失敗します。
+
+リソースを返します。
+
+|maxdb_options| |maxdb_close| |maxdb_real_connect| |maxdb_connect|
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+PDF_findfont -- 後で使用するフォントを準備する [古い関数]
+
+  int PDF_findfont(resource p, string fontname, string encoding, int embed)~
+
+後で |PDF_setfont| で使用するフォントを検索し、
+準備します。
+このフォントのメトリックがロードされ、{embed}
+がゼロでない場合はフォントファイルがチェックされますが、
+ロードはまだ行われません。{encoding}は、 builtin、macroman、
+winansi、host、 ユーザ定義のエンコーディング名あるいは
+CMap の名前のどれかとなります。 パラメータ {embed} は、PHP
+4.3.5 以前あるいは PDFlib バージョン 5
+未満ではオプションです。
+
+この関数は PDFlib バージョン 5
+で廃止されました。かわりに |PDF_load_font|
+を使用してください。
+
+vim:ft=help:

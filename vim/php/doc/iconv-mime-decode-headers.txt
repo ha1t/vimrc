@@ -1,0 +1,76 @@
+iconv_mime_decode_headers -- 複数の MIME
+ヘッダフィールドを一度にデコードする
+
+  array iconv_mime_decode_headers(string encoded_headers [, int mode [, string charset]])~
+
+成功した場合は連想配列を返します。その中身には
+{encoded_headers} で指定した MIME
+ヘッダフィールドがすべて含まれています。
+デコード中にエラーが発生した場合は FALSE を返します。
+
+連想配列の個々のキーがフィールド名を表し、対応する要素がフィールドの
+値を表します。同じ名前のフィールドが複数存在する場合は、
+|iconv_mime_decode_headers| が自動的に連番つきの
+配列をつくり、出現順にその配列に入れられます。
+
+{encoded_headers} エンコードされたヘッダを表す文字列。
+
+{mode} {mode} は、|iconv_mime_decode_headers| が不正な形式の MIME
+ヘッダフィールドに遭遇した場合の
+振る舞いを定義します。以下のビットマスクの組み合わせで指定が可能です。
+|iconv_mime_decode_headers| で指定できるビットマスク 値 定数名
+説明 1 ICONV_MIME_DECODE_STRICT 指定すると、ヘッダは RFC2047
+で定義されている標準に完全準拠する形式でデコードされます。
+このオプションはデフォルトでは無効になっています。なぜなら、世の中には
+おかしなメールソフトが多く存在し、それらは規格に従わずに間違った
+MIME ヘッダを生成するからです。 2
+ICONV_MIME_DECODE_CONTINUE_ON_ERROR
+指定すると、|iconv_mime_decode_headers|
+は文法的なエラーを無視し、デコード作業を継続します。
+
+{charset} オプションの {charset} パラメータは、結果の
+文字セットを指定します。指定されなかった場合は
+iconv.internal_encoding が用いられます。
+
+|iconv_mime_decode_headers| の例
+
+<?php >
+  $headers_string = <<<EOF
+  Subject: =?UTF-8?B?UHLDvGZ1bmcgUHLDvGZ1bmc=?=
+  To: example@example.com
+  Date: Thu, 1 Jan 1970 00:00:00 +0000
+  Message-Id: <example@example.com>
+  Received: from localhost (localhost [127.0.0.1]) by localhost
+      with SMTP id example for <example@example.com>;
+      Thu, 1 Jan 1970 00:00:00 +0000 (UTC)
+      (envelope-from example-return-0000-example=example.com@example.com)
+  Received: (qmail 0 invoked by uid 65534); 1 Thu 2003 00:00:00 +0000
+  
+  EOF;
+  
+  $headers =  iconv_mime_decode_headers($headers_string, 0, "ISO-8859-1");
+  print_r($headers);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [Subject] => Pr?ung Pr?ung
+      [To] => example@example.com
+      [Date] => Thu, 1 Jan 1970 00:00:00 +0000
+      [Message-Id] => <example@example.com>
+      [Received] => Array
+          (
+              [0] => from localhost (localhost [127.0.0.1]) by localhost with SMTP id example for <example@example.com>; Thu, 1 Jan 1970 00:00:00 +0000 (UTC) (envelope-from example-return-0000-example=example.com@example.com)
+              [1] => (qmail 0 invoked by uid 65534); 1 Thu 2003 00:00:00 +0000
+          )
+  
+  )
+
+
+
+|iconv_mime_decode| |mb_decode_mimeheader| |imap_mime_header_decode|
+|imap_base64| |imap_qprint|
+
+vim:ft=help:

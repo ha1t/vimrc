@@ -1,0 +1,53 @@
+imap_list -- メールボックスのリストを読み込む
+
+  array imap_list(resource imap_stream, string ref, string pattern)~
+
+メールボックスのリストを読み込みます。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{ref} 通常、{ref} は |imap_open|
+で述べられているサーバ定義です。
+
+{pattern}
+検索を開始するメールボックスの階層を指定します。
+
+{pattern} の中で使用できる特別な文字として '*' および '%'
+があります。'*'
+は、全てのメールボックスを意味します。 {pattern} に '*'
+を指定した場合、メールボックス
+階層全体のリストが得られます。'%'
+は現在のレベルのみを意味します。 '%' を {pattern}
+に指定した場合、
+トップレベルのメールボックスのみが返されます。UW_IMAPD
+を使用した場合、 '~/mail/%' は ~/mail
+ディレクトリの全てのメールボックスを返しますが、
+そのディレクトリのサブフォルダーにあるメールボックスは返しません。
+
+メールボックスの名前を含む配列を返します。
+
+|imap_list| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org}", "username", "password", OP_HALFOPEN)
+        or die("接続できません: " . imap_last_error());
+  
+  $list = imap_list($mbox, "{imap.example.org}", "*");
+  if (is_array($list)) {
+      foreach ($list as $val) {
+          echo imap_utf7_decode($val) . "\n";
+      }
+  } else {
+      echo "imap_list が失敗しました: " . imap_last_error() . "\n";
+  }
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+|imap_getmailboxes| |imap_lsub|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+mysqli->rpl_query_type() -- RPL クエリの型を返す
+
+手続き型:
+
+  int mysqli_rpl_query_type(mysqli link, string query)~
+
+オブジェクト指向型（メソッド）
+
+  int rpl_query_type(mysqli link, string query, string query)~
+
+クエリの型により、 MYSQLI_RPL_MASTER、 MYSQLI_RPL_SLAVE あるいは
+MYSQLI_RPL_ADMIN のいずれかを返します。 INSERT・UPDATE
+およびそれに類する ものは master クエリで、SELECT は
+slave、そして FLUSH・ REPAIR およびそれに類するものは admin
+です。
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+この関数は 非推奨 であり、PHP 5.3.0 で 削除 されます。
+
+vim:ft=help:

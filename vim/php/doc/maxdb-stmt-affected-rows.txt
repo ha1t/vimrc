@@ -1,0 +1,107 @@
+maxdb_stmt->affected_rows --
+直近のステートメントによって変更、削除あるいは挿入された行の数を返す
+
+手続き型
+
+  int maxdb_stmt_affected_rows(resource stmt)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_stmt_affected_rows| は、 INSERT、UPDATE あるいは DELETE
+クエリによって変更された行の数を返します。
+直近のクエリが無効だった場合、あるいは行数が取得できなかった場合は、
+この関数は -1 を返します。
+
+ゼロより大きい整数の場合は、変更された行数あるいは取得した行数を表します。
+ゼロの場合は、UPDATE/DELETE 文で 1
+行も更新されなかったか、 クエリの WHERE
+句にマッチする行がなかった、
+あるいはクエリがまだ実行されていないことを表します。
+-1
+は、クエリがエラーを返したか行数が取得できなかったことを表します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* 一時テーブルを作成します */
+  $maxdb->query("CREATE TABLE temp.mycity LIKE hotel.city");
+  
+  $query = "INSERT INTO temp.mycity SELECT * FROM hotel.city WHERE state LIKE ?";
+  
+  /* ステートメントを準備します */
+  if ($stmt = $maxdb->prepare($query)) {
+  
+     /* 変数をプレースホルダにバインドします */
+     $code = 'N%';
+     $stmt->bind_param("s", $code);
+     
+     /* ステートメントを実行します */
+     $stmt->execute();
+  
+     printf("挿入された行数: %d\n", $stmt->affected_rows);
+  
+     /* ステートメントを閉じます */
+     $stmt->close();
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* 一時テーブルを作成します */
+  maxdb_query($link, "CREATE TABLE temp.mycity LIKE hotel.city");
+  
+  $query = "INSERT INTO temp.mycity SELECT * FROM hotel.city WHERE state LIKE ?";
+  
+  /* ステートメントを準備します */
+  if ($stmt = maxdb_prepare($link, $query)) {
+  
+     /* 変数をプレースホルダにバインドします */
+     $code = 'N%';
+     maxdb_stmt_bind_param($stmt, "s", $code);
+     
+     /* ステートメントを実行します */
+     maxdb_stmt_execute($stmt);
+  
+     printf("挿入された行数: %d\n", maxdb_stmt_affected_rows($stmt));
+  
+     /* ステートメントを閉じます */
+     maxdb_stmt_close($stmt);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  挿入された行数: 4
+
+|maxdb_stmt_num_rows| |maxdb_prepare|
+
+vim:ft=help:

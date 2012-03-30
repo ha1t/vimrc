@@ -1,0 +1,42 @@
+sesam_settransaction -- SESAM
+トランザクションパラメータを設定する
+
+  bool sesam_settransaction(int isolation_level, int read_only)~
+
+(SESAM 設定ファイル で設定される)
+トランザクションパラメータ "isolation level" と "read-only"
+のデフォルト値を上書きします。これは、連続するクエリを
+最適化し、データベースの統一性を保証するためです。上書きされた値は、
+次のトランザクションでのみ使用されます。
+詳細な説明は SESAM ハンドブックを参照ください。
+
+この関数は、トランザクションを開始する前にのみコールすることが可能です。
+、既にトランザクションが開始されている場合には、コールすることができません。
+
+|sesam_settransaction| により設定された値は、 SESAM
+設定ファイルで
+指定されたデフォルト設定を上書きします。
+
+{isolation_level} {isolation_level} パラメータの有効な値 値 定数
+意味 1 SESAM_TXISOL_READ_UNCOMMITTED Read Uncommitted 2
+SESAM_TXISOL_READ_COMMITTED Read Committed 3 SESAM_TXISOL_REPEATABLE_READ
+Repeatable Read 4 SESAM_TXISOL_SERIALIZABLE Serializable
+
+{read_only} {read_only} パラメータの有効な値 値 定数 意味 0
+SESAM_TXREAD_READWRITE Read/Write 1 SESAM_TXREAD_READONLY Read-Only
+
+|settransaction| 処理が成功して、 有効な場合に
+TRUE、その他の場合に FALSE を返します。
+
+SESAM トランザクションパラメータの設定
+
+<?php >
+  sesam_settransaction (SESAM_TXISOL_REPEATABLE_READ,
+                       SESAM_TXREAD_READONLY);
+?>
+
+
+
+
+
+vim:ft=help:

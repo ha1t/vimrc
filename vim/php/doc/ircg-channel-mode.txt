@@ -1,0 +1,27 @@
+ircg_channel_mode --
+ユーザ用にチャンネルモードフラグを設定する
+
+  bool ircg_channel_mode(resource connection, string channel, string mode_spec, string nick)~
+
+{connection} で接続されているサーバ上のチャンネル {channel}
+のモードフラグを設定します。 モードフラグは {mode_spec}
+で渡され、 {nick}
+で指定したユーザに対して適用されます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{channel} #name 形式のチャンネル名。
+
+{mode_spec} {nick} に適用するモード。
+
+モードフラグは、モード文字の前にプラスあるいはマイナスの文字を
+つけることで、それぞれ設定あるいは解除します。たとえば
+オペレータ権限を与えるには '+o'、破棄するには '-o' を
+{mode_spec} として指定します。
+
+{nick} そのモードを適用するユーザ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+ifxus_close_slob -- SLOB オブジェクトを削除する
+
+  bool ifxus_close_slob(int bid)~
+
+指定した SLOB オブジェクト ID {bid} の SLOB
+オブジェクトを削除します。
+
+{bid} 既存の SLOB の ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ifxus_open_slob|
+
+vim:ft=help:

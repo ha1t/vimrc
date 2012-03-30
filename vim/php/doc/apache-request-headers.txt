@@ -1,0 +1,50 @@
+apache_request_headers -- HTTPリクエストヘッダを全て取得する
+
+  array apache_request_headers()~
+
+カレントのリクエストにおける全てのHTTPヘッダを取得します。
+
+この関数は、 PHP が apache
+モジュールとしてインストールされた場合のみサポートされます。
+
+カレントのリクエストにおける全てのHTTPヘッダの連想配列、もしくは
+失敗時は FALSE を返します。
+
+|apache_request_headers| の例
+
+<?php >
+  $headers = apache_request_headers();
+  
+  foreach ($headers as $header => $value) {
+      echo "$header: $value <br />\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Accept: */*
+  Accept-Language: en-us
+  Accept-Encoding: gzip, deflate
+  User-Agent: Mozilla/4.0
+  Host: www.example.com
+  Connection: Keep-Alive
+
+
+
+PHP 4.3.0より前では、|apache_request_headers|は、
+|getallheaders|と呼ばれていました。PHP 4.3.0以
+降、|getallheaders|は、
+|apache_request_headers|へのエイリアスとなって います。
+
+環境変数を読み込むことにより、共通のCGI変数の値を取得することも可
+能です。これは、PHPがApacheモジュール
+として使用されているかどうかにはよらず動作します。
+利用可能な環境変数
+の一覧を見るには、|phpinfo|を使用してください。
+
+PHP 4.3.3 以降、 Netscape/iPlanet/SunONE Web サーバの NSAPI
+サーバモジュール でもこの関数を使用できます。
+
+|apache_response_headers|
+
+vim:ft=help:

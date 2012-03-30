@@ -1,0 +1,58 @@
+SwishResults->getParsedWords --
+パースされた単語の配列を取得する
+
+  array SwishResults->getParsedWords(string index_name)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{indexi_name} Swish
+オブジェクトを初期化する際に使用するインデックスの名前。
+
+パースされた単語からストップワードを取り除いた配列を返します。
+パースされた単語の一覧は、結果の中で検索語句を強調させるのに便利です。
+
+基本的な |SwishResults->getParsedWords| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $results = $swish->query("'some characters' and numbers");
+  
+      var_dump($results->getParsedWords("index.swish-e"));
+      var_dump($results->indexes[0]['parsed_words']); // 同じ結果を別の方法で得ます
+  
+  } catch (SwishException $e) {
+      echo "Error: ", $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  array(4) {
+    [0]=>
+    string(4) "some"
+    [1]=>
+    string(10) "characters"
+    [2]=>
+    string(3) "and"
+    [3]=>
+    string(7) "numbers"
+  }
+  array(4) {
+    [0]=>
+    string(4) "some"
+    [1]=>
+    string(10) "characters"
+    [2]=>
+    string(3) "and"
+    [3]=>
+    string(7) "numbers"
+  }
+
+
+
+vim:ft=help:

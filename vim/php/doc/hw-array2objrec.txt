@@ -1,0 +1,15 @@
+hw_Array2Objrec --
+オブジェクト配列からオブジェクトレコードに属性を変換する
+
+  string hw_array2objrec(array object_array)~
+
+{object_array} をオブジェクトレコードに変換します。 'Title'
+のような異なった言語で多重定義された属性は正しく処理されます。
+
+{object_array} 配列。
+
+オブジェクトレコードを返します。
+
+|hw_objrec2array|
+
+vim:ft=help:

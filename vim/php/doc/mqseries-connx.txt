@@ -1,0 +1,52 @@
+mqseries_connx -- MQSeries MQCONNX
+
+   mqseries_connx(string qManagerName, array connOptions, resourceref hconn, resourceref compCode, resourceref reason)~
+
+|mqseries_connx| (MQCONNX)
+をコールすると、アプリケーションプログラムをキューマネージャに接続します。
+これによって取得した接続ハンドルを、
+アプリケーション側でそれ以降のメッセージキューコールの際に使用します。
+
+{qManagerName} キューマネージャ名。
+
+アプリケーションが接続したいキューマネージャの名前。
+
+{connOps} 関数の動作を制御するオプション。
+
+MQCNO 構造体を参照ください。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_connx| の例
+
+<?php >
+      $mqcno = array(
+          'Version' => MQSERIES_MQCNO_VERSION_2,
+          'Options' => MQSERIES_MQCNO_STANDARD_BINDING,
+          'MQCD' => array('ChannelName' => 'MQNX9420.CLIENT',
+          'ConnectionName' => 'localhost',
+          'TransportType' => MQSERIES_MQXPT_TCP)
+      );
+  
+      mqseries_connx('MQNX9420', $mqcno, $conn, $comp_code,$reason);
+      if ($comp_code !== MQSERIES_MQCC_OK) {		
+          printf("Connx CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+          exit;
+      }
+?>
+
+
+
+
+
+|mqseries_disc|
+
+vim:ft=help:

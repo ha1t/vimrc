@@ -1,0 +1,13 @@
+hw_api->objectbyanchor --
+アンカーが所属しているオブジェクトを返す
+
+  hw_api_object objectbyanchor(array parameter)~
+
+この関数は、指定したアンカーが属しているオブジェクトを取得します。
+
+{parameter} パラメータの配列には、必須要素 'objectIdentifier'
+およびオプションの要素 'attributeSelector' が含まれます。
+
+
+
+vim:ft=help:

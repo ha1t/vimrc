@@ -1,0 +1,19 @@
+xml_parser_get_option -- XML パーサからオプションを得る
+
+  mixed xml_parser_get_option(resource parser, int option)~
+
+XML パーサからオプションの値を取得します。
+
+{parser} オプションを取得する XML
+パーサへのリファレンス。
+
+{option} 取得するオプション。XML_OPTION_CASE_FOLDING あるいは
+XML_OPTION_TARGET_ENCODING が使用可能です。 詳細は
+|xml_parser_set_option| を参照ください。
+
+この関数は、{parser} が有効なパーサを参照しないか、
+{option} が不正な形式の場合に FALSE を返します (同時に
+E_WARNING を生成します)。
+それ以外の場合、そのオプションの値が返されます。
+
+vim:ft=help:

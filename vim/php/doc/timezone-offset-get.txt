@@ -1,0 +1,46 @@
+timezone_offset_get -- GMT
+からのタイムゾーンのオフセットを返す
+
+  int timezone_offset_get(DateTimeZone object, DateTime datetime)~
+
+  int DateTimeZone::getOffset(DateTimeZone object, DateTime datetime, DateTime datetime)~
+
+この関数は、{datetime} パラメータで指定した 日付/時刻
+についての GMT へのオフセットを返します。GMT
+オフセットの計算の際には、 使用する DateTime
+オブジェクトに含まれるタイムゾーン情報を使用します。
+
+{object} DateTimeZone オブジェクト。
+
+{datetime} オフセットを計算する 日付/時刻 を含む DateTime。
+
+成功した場合にタイムゾーンのオフセット秒数、失敗した場合に
+FALSE を返します。
+
+|timezone_offset_get| の例
+
+<?php >
+  // ふたつのタイムゾーンオブジェクトを作成します。ひとつは台北 (台湾)、
+  // そしてもうひとつは東京 (日本) のものです。
+  $dateTimeZoneTaipei = new DateTimeZone("Asia/Taipei");
+  $dateTimeZoneJapan = new DateTimeZone("Asia/Tokyo");
+  
+  // 同一の Unix タイムスタンプを持つふたつの DateTime オブジェクトを作成します。
+  // しかしアタッチするタイムゾーンはそれぞれ異なります。
+  $dateTimeTaipei = new DateTime("now", $dateTimeZoneTaipei);
+  $dateTimeJapan = new DateTime("now", $dateTimeZoneJapan);
+  
+  // $dateTimeTaipei オブジェクトに含まれる 日付/時刻 の GMT オフセットを計算します。
+  // しかし、タイムゾーンの規則は東京のもの ($dateTimeZoneJapan)
+  // を使用します。
+  $timeOffset = $dateTimeZoneJapan->getOffset($dateTimeTaipei);
+  
+  // これは int(32400) となります (Sat Sep 8 01:00:00 1951 JST 以降の日付の場合)。
+  var_dump($timeOffset);
+?>
+
+
+
+
+
+vim:ft=help:

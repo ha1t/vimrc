@@ -1,0 +1,36 @@
+sesam_affected_rows --
+直近のクエリにより作用されたレコードの数を得る
+
+  int sesam_affected_rows(string result_id)~
+
+直近のクエリが変更した行の数を取得します。
+
+|sesam_affected_rows| 関数は、"即時型" SQL 命令 (INSERT、UPDATE、
+DELETE のような更新処理)との組合せで使用された
+場合にのみ有用な値を返します。これは、SESAM が "select型"
+クエリに 関して "作用されたレコード"
+に関する情報を返さないためです。
+
+{result_id} |sesam_query| により返された有効な結果 ID。
+
+{result_id} に関連するクエリにより作用された
+レコード数を返します。
+
+|sesam_affected_rows| の例
+
+<?php >
+  $result = sesam_execimm("DELETE FROM PHONE WHERE LASTNAME = '" . strtoupper($name) . "'");
+  if (!$result) {
+      /* ... エラー ... */
+  }
+  echo sesam_affected_rows($result).
+      " 姓が " . $name . " のエントリが削除されました。\n";
+?>
+
+
+
+
+
+|sesam_query| |sesam_execimm|
+
+vim:ft=help:

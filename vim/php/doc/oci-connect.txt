@@ -1,0 +1,20 @@
+oci_connect -- Oracle サーバへの接続を確立する
+
+  resource oci_connect(string username, string password [, string db [, string charset [, int session_mode]]])~
+
+他のほとんどの OCI コールで必要な接続 ID を返します。
+
+{username} Oracle ユーザ名
+
+{password} {username} に対するパスワード
+
+{db} このオプションパラメータには、ローカル Oracle
+インスタンスの名前か tnsnames.ora
+における接続先のエントリ名を指定することができる。
+
+指定されない場合、PHP
+は接続先のデータベースを決定するために環境変数
+ORACLE_SID と TWO_TASK を使用して、ローカル Oracle
+インスタンス名と tnsnames.ora の場所を適宜決定する。
+
+vim:ft=help:

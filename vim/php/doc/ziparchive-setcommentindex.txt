@@ -1,0 +1,31 @@
+ZipArchive::setCommentIndex --
+インデックスを使用してエントリのコメントを設定する
+
+  mixed ZipArchive::setCommentIndex(int index, string comment)~
+
+インデックスを使用して、エントリのコメントを設定します。
+
+{index} エントリのインデックス。
+
+{comment} コメントの内容。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+アーカイブをオープンし、エントリのコメントを設定する
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip');
+  if ($res === TRUE) {
+      $z->setCommentIndex(2, '新しいエントリのコメント');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

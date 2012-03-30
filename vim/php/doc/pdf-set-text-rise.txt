@@ -1,0 +1,7 @@
+PDF_set_text_rise -- テキストの傾きを設定する [古い関数]
+
+この関数は PDFlib バージョン 3
+で廃止されました。かわりに |PDF_set_value| でパラメータ
+{textrise} を使用してください。
+
+vim:ft=help:

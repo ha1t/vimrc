@@ -1,0 +1,72 @@
+ini_get -- 設定オプションの値を得る
+
+  string ini_get(string varname)~
+
+成功時に、設定オプションの値を返します。
+
+{varname} 設定オプションの名前。
+
+成功した場合に設定オプションの値、失敗した場合あるいは
+null 値を指定した場合に空の文字列を返します。
+
+|ini_get| の例
+
+<?php >
+  /*
+  php.ini で以下のように設定されているものとします
+  
+  display_errors = On
+  register_globals = Off
+  post_max_size = 8M
+  */
+  
+  echo 'display_errors = ' . ini_get('display_errors') . "\n";
+  echo 'register_globals = ' . ini_get('register_globals') . "\n";
+  echo 'post_max_size = ' . ini_get('post_max_size') . "\n";
+  echo 'post_max_size+1 = ' . (ini_get('post_max_size')+1) . "\n";
+  echo 'post_max_size in bytes = ' . return_bytes(ini_get('post_max_size'));
+  
+  function return_bytes($val) {
+      $val = trim($val);
+      $last = strtolower($val{strlen($val)-1});
+      switch($last) {
+          // 'G' は PHP 5.1.0 以降で使用可能です
+          case 'g':
+              $val *= 1024;
+          case 'm':
+              $val *= 1024;
+          case 'k':
+              $val *= 1024;
+      }
+  
+      return $val;
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  display_errors = 1
+  register_globals = 0
+  post_max_size = 8M
+  post_max_size+1 = 9
+  post_max_size in bytes = 8388608
+
+
+
+off という boolean の ini 値は空文字列または "0"
+として返されます。 一方で on の ini 値は "1"
+として返されます。
+また、この関数はリテラル文字列で設定された INI
+値を返すこともできます。
+
+upload_max_filesize のようなメモリサイズの値の場合、
+php.ini上で省略形で格納されています。
+|ini_get|はphp.iniに格納されている値を
+そのままの形式で返します。整数表現に変換したりはしません。
+これらの値に通常の算術的な関数を施すと予期しない結果を
+得てしまいます。上の例では、省略形の表記から本来のバイト数に変換する
+PHP ソースのひとつの例を示しています。
+
+|get_cfg_var| |ini_get_all| |ini_restore| |ini_set|
+
+vim:ft=help:

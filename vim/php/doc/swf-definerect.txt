@@ -1,0 +1,22 @@
+swf_definerect -- 長方形を定義する
+
+  void swf_definerect(int objid, float x1, float y1, float x2, float y2, float width)~
+
+左上と右下の点の座標を指定し、長方形を定義します。
+
+{objid} オブジェクト ID。
+
+{x1} 左上の点の x 座標。
+
+{y1} 左上の点の y 座標。
+
+{x2} 右下の点の x 座標。
+
+{y2} 右下の点の y 座標。
+
+{width} 長方形の輪郭の幅。0.0
+の場合は長方形が塗りつぶされます。
+
+値を返しません。
+
+vim:ft=help:

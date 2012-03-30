@@ -1,0 +1,14 @@
+hw_Error -- エラー番号
+
+  int hw_error(int connection)~
+
+直近のコマンドのエラー番号を返します。
+
+{connection} 接続 ID。
+
+直近のエラー番号を返します。 返り値が 0
+の場合、エラーは発生していません。
+
+|hw_errormsg|
+
+vim:ft=help:

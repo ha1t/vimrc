@@ -1,0 +1,80 @@
+dbx_connect -- 接続/データベースをオープンする
+
+  object dbx_connect(mixed module, string host, string database, string username, string password [, int persistent])~
+
+データベースへの接続をオープンします。
+
+{module} {module}
+パラメータには文字列または定数を設定します。
+定数の使用が推奨されます。指定可能な値を以下に示しますが、これは
+該当するモジュールが実際にロードされている場合のみ動作することに注意してください。
+
+DBX_MYSQL あるいは "mysql"
+
+DBX_ODBC あるいは "odbc"
+
+DBX_PGSQL あるいは "pgsql"
+
+DBX_MSSQL あるいは "mssql"
+
+DBX_FBSQL あるいは "fbsql" (PHP 4.1.0 以降で使用可能)
+
+DBX_SYBASECT あるいは "sybase_ct" (PHP 4.2.0 以降で使用可能)
+
+DBX_OCI8 あるいは "oci8" (PHP 4.3.0 以降で使用可能)
+
+DBX_SQLITE あるいは "sqlite" (PHP 5)
+
+{host} SQL サーバのホスト。
+
+{database} データベース名。
+
+{username} ユーザ名。
+
+{password} パスワード。
+
+{persistent} {persistent} パラメータに DBX_PERSISTENT
+を設定すると、持続的接続が作成されます。
+
+{host}、{database}、 {username} および {password}
+のパラメータを受け付けますが、抽象化されたモジュールの接続関数によっては
+これらがすべて使われるわけではないこともあります。
+
+|dbx_connect| は成功時にオブジェクト、エラー時に FALSE
+を返します。接続は確立したもののデータベースが選択できなかった場合には、
+接続はクローズされて FALSE を返します。
+
+返される object は 3 つのプロパティを有します。 database
+現在選択されているデータベースの名前。
+
+handle
+接続されたデータベースの有効なハンドルで、モジュール固有の関数に
+（必要に応じて）使用されます。
+
+<?php >
+  $link = dbx_connect(DBX_MYSQL, "localhost", "db", "username", "password");
+  mysql_close($link->handle); // dbx_close($link) の方が良いかもしれません
+?>
+
+module dbx
+の内部でのみ使用され、上で述べたモジュール番号を表します。
+
+|dbx_connect| example
+
+<?php >
+  $link = dbx_connect(DBX_ODBC, "", "db", "username", "password", DBX_PERSISTENT)
+      or die("接続できませんでした");
+  
+  echo "接続に成功しました";
+  dbx_close($link);
+?>
+
+
+
+
+
+モジュール固有のドキュメントも参照ください。
+
+|dbx_close|
+
+vim:ft=help:

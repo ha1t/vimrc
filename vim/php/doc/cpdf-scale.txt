@@ -1,0 +1,16 @@
+cpdf_scale -- 倍率を設定する
+
+  bool cpdf_scale(int pdf_document, float x_scale, float y_scale)~
+
+両方向の倍率を指定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{x_scale} X 座標のパーセント。デフォルトは 0.0。
+
+{y_scale} Y 座標のパーセント。デフォルトは 0.0。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

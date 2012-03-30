@@ -1,0 +1,36 @@
+array_fill_keys -- キーを指定して、配列を値で埋める
+
+  array array_fill_keys(array keys, mixed value)~
+
+パラメータ {value} で指定した値で配列を埋めます。
+キーとして、配列 {keys} で指定した値を使用します。
+
+{keys} キーとして使用する値の配列。
+
+{value} 文字列か、あるいは値の配列。
+
+値を埋めた配列を返します。
+
+|array_fill_keys| の例
+
+<?php >
+  $keys = array('foo', 5, 10, 'bar');
+  $a = array_fill_keys($keys, 'banana');
+  print_r($a);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [foo] => banana
+      [5] => banana
+      [10] => banana
+      [bar] => banana
+  )
+
+
+
+|array_fill| |array_combine|
+
+vim:ft=help:

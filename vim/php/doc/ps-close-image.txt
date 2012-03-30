@@ -1,0 +1,18 @@
+ps_close_image -- 画像を閉じ、メモリを開放する
+
+  void ps_close_image(resource psdoc, int imageid)~
+
+画像を閉じ、そのリソースを開放します。
+いったん閉じられた後は、画像を使用することはできません。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{imageid} |ps_open_image| あるいは |ps_open_image_file| が返す、
+画像のリソース ID。
+
+成功した場合に NULL を、失敗した場合に FALSE
+を返します。
+
+|ps_open_image| |ps_open_image_file|
+
+vim:ft=help:

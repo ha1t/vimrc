@@ -1,0 +1,25 @@
+mb_substr -- 文字列の一部を得る
+
+  string mb_substr(string str, int start [, int length [, string encoding]])~
+
+文字数に基づきマルチバイト対応の |substr|
+処理を行います。位置は、 {str}
+の始めから数えられます。 最初の文字の位置は 0、2
+番目の文字の位置は 1、といったようになります。
+
+{str} 調べたい文字列。
+
+{start} {str} の中の使用開始位置。
+
+{length} 返す文字列の最大の長さ。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+|mb_substr| は、{start} および {length} パラメータで指定した
+{str} の一部を返します。
+
+|mb_strcut| |mb_internal_encoding|
+
+vim:ft=help:

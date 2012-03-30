@@ -1,0 +1,59 @@
+SCA::getService -- サービスのプロキシを取得する
+
+  mixed SCA::getService(string target [, string binding [, array config]])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+対象を調べ、適切な種類のプロキシを作成して返します。
+対象がローカル PHP コンポーネントの場合は SCA_LocalProxy
+を返します。 対象が WSDL ファイルの場合は SCA_SoapProxy
+を返します。
+
+{target} 対象となるサービスあるいはサービスの説明
+(たとえば json-rpc サービスへの URL や PHP
+コンポーネント、WSDL ファイルなど)
+への絶対パスあるいは相対パス。
+相対パスを指定した場合は、|getService|
+をコールしたスクリプトの位置を基準としてパスを解決します。
+include_path や現在の作業ディレクトリは考慮しません。
+
+{binding} サービスとの通信に使用するバインディング
+(つまりプロトコル)。 たとえば json-rpc サービスの場合は
+binding.jsonrpc となります。 target
+パラメータの内容によっては、サービスの型を自動的に推定してくれることもあります
+(たとえば target パラメータの最後が .wsdl
+で終わっている場合、 SCA は binding.soap
+を使用すると判断します)。
+アノテーションの中で使用できるあらゆるバインディングがここで指定できます。
+たとえば、'binding.soap' は '@binding.soap'
+アノテーションと同じ意味となります。
+
+{config}
+そのバインディングで使用する任意の設定プロパティの配列
+(たとえば array('location' => 'http://example.org'))。
+アノテーションの中で使用できるあらゆる設定オプションがここで指定できます。
+たとえば 'location' は、soap サービスの場所を設定する
+'@location' アノテーションと同じ意味です。
+
+SCA_LocalProxy あるいは SCA_SoapProxy を返します。
+
+|SCA::getService| の例 この例は、http://example.org にある
+EmailService.wsdl で定義される email soap
+サービスへのプロキシを取得する方法を示すものです。
+
+<?php >
+  include 'SCA/SCA.php';
+  $service = SCA::getService('EmailService.wsdl', 'binding.soap', array('location' => 'http://example.org'));
+  $service->send(...);
+?>
+
+上の例の出力は以下となります。
+
+
+
+
+
+vim:ft=help:

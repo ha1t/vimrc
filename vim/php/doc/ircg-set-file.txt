@@ -1,0 +1,15 @@
+ircg_set_file -- 接続用にログファイルを設定する
+
+  bool ircg_set_file(resource connection, string path)~
+
+関数 |ircg_set_file| は、接続 {connection}
+からの全ての出力を記録するログファイルを指定します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{path} ログファイルへのパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

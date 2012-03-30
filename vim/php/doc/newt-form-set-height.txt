@@ -1,0 +1,15 @@
+newt_form_set_height --
+
+  void newt_form_set_height(resource form, int height)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{form}
+
+{height}
+
+値を返しません。
+
+vim:ft=help:

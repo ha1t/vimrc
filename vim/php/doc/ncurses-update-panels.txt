@@ -1,0 +1,10 @@
+ncurses_update_panels --
+仮想画面を再描画し、スタック内のパネルとの関係を反映させる
+
+  void ncurses_update_panels()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

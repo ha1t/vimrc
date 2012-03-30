@@ -1,0 +1,15 @@
+mailparse_msg_free -- MIME リソースを解放する
+
+  bool mailparse_msg_free(resource mimemail)~
+
+MIME リソースを解放します。
+
+{mimemail} |mailparse_msg_create| あるいは |mailparse_msg_parse_file|
+が割り当てた 有効な MIME リソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mailparse_msg_create| |mailparse_msg_parse_file|
+
+vim:ft=help:

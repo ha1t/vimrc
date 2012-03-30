@@ -1,0 +1,14 @@
+ovrimos_close -- ovrimos への接続を閉じる
+
+  void ovrimos_close(int connection)~
+
+Ovrimos への指定した接続 {connection}
+を閉じます。コミットしていないトランザクションはロールバックされます。
+
+{connection} |ovrimos_connect| が返す Ovrimos 接続 ID。
+
+値を返しません。
+
+|ovrimos_connect|
+
+vim:ft=help:

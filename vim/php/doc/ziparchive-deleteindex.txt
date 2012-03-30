@@ -1,0 +1,28 @@
+ZipArchive::deleteIndex --
+インデックスを使用して、アーカイブ内のエントリを削除する
+
+  bool ZipArchive::deleteIndex(int index)~
+
+そのインデックスをもとにして、アーカイブ内のエントリを削除します。
+
+{index} 削除するエントリのインデックス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+インデックスを使用した、アーカイブからのファイルの削除
+
+<?php >
+  $zip = new ZipArchive;
+  if ($zip->open('test.zip') === TRUE) {
+      $zip->deleteIndex(2);
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

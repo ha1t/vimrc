@@ -1,0 +1,13 @@
+mcrypt_enc_is_block_algorithm --
+オープンされたモードの暗号がブロックアルゴリズムであるかどうかを調べる
+
+  bool mcrypt_enc_is_block_algorithm(resource td)~
+
+オープンされたモードの暗号がブロックアルゴリズムであるかどうかを調べます。
+
+{td} 暗号化記述子。
+
+アルゴリズムがブロックアルゴリズムである場合に TRUE、
+ストリームアルゴリズムである場合に FALSE を返します。
+
+vim:ft=help:

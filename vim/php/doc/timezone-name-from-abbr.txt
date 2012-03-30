@@ -1,0 +1,36 @@
+timezone_name_from_abbr -- 略称からタイムゾーン名を返す
+
+  string timezone_name_from_abbr(string abbr [, int gmtOffset [, int isdst]])~
+
+{abbr} タイムゾーンの略称。
+
+{gmtOffset} GMT からのオフセット秒数。デフォルトは -1 で、
+この場合は {abbr}
+に対応するタイムゾーンのうち最初に見つかったものを返します。
+それ以外の場合は指定したオフセットを探し、
+そこで見つからなかった場合には
+他のオフセットも含めて最初に見つかったものを返します。
+
+{isdst} 夏時間の識別子。{abbr} が存在しなかった場合は、
+{offset} と {isdst} をもとにタイムゾーンを探します。
+
+成功した場合にタイムゾーン名、失敗した場合に FALSE
+を返します。
+
+|timezone_name_from_abbr| の例
+
+<?php >
+  echo timezone_name_from_abbr("CET") . "\n";
+  echo timezone_name_from_abbr("", 3600, 0) . "\n";
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Europe/Berlin
+  Europe/Paris
+
+
+
+|timezone_abbreviations_list|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+date_create -- 新しい DateTime オブジェクトを返す
+
+  DateTime date_create([string time [, DateTimeZone timezone]])~
+
+  DateTime DateTime::__construct([string time [, DateTimeZone timezone [, string time [, DateTimeZone timezone]]]])~
+
+{time} |strtotime| が理解する形式の文字列。デフォルトは
+"now" です。
+
+{timezone} その時間のタイムゾーン。
+
+成功した場合に DateTime オブジェクト、失敗した場合に
+FALSE を返します。
+
+vim:ft=help:

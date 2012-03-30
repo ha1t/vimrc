@@ -1,0 +1,69 @@
+stristr -- 大文字小文字を区別しない strstr
+
+  string stristr(string haystack, mixed needle [, bool before_needle])~
+
+{haystack} において {needle}
+が最初に見つかった位置から最後までを返します。
+
+{haystack} 検索を行う文字列。
+
+{needle} {needle} が文字列でない場合は、
+それを整数に変換し、その番号に対応する文字として扱います。
+
+{before_needle} TRUE にすると (デフォルトは FALSE
+です)、|stristr| の返り値は、{haystack} の中で最初に {needle}
+があらわれる箇所より前の部分となります。
+
+{needle} および {haystack}
+は大文字小文字を区別せずに評価されます。
+
+マッチした部分文字列を返します。{needle}
+が見つからない場合は FALSE を返します。
+
+バージョン 説明 5.3.0 オプションの {before_needle}
+パラメータが追加されました。 4.3.0 |stristr|
+がバイナリセーフとなりました。
+
+|stristr| の例
+
+<?php >
+    $email = 'USER@EXAMPLE.com';
+    echo stristr($email, 'e'); // 出力は ER@EXAMPLE.com となります
+    echo stristr($email, 'e', true); // 出力は US となります
+?>
+
+
+
+
+
+文字列が見つかるかどうかをテストする
+
+<?php >
+    $string = 'Hello World!';
+    if(stristr($string, 'earth') === FALSE) {
+      echo '"earth" not found in string';
+    }
+  // 出力は "earth" not found in string となります
+?>
+
+
+
+
+
+文字列以外の needle の指定
+
+<?php >
+    $string = 'APPLE';
+    echo stristr($string, 97); // 97 = 小文字の a
+  // 出力は APPLE となります
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|strstr| |strrchr| |substr| |preg_match|
+
+vim:ft=help:

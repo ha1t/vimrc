@@ -1,0 +1,13 @@
+ncurses_meta -- 8 ビットのメタキー情報を有効/無効にする
+
+  int ncurses_meta(resource window, bool 8bit)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{8bit}
+
+vim:ft=help:

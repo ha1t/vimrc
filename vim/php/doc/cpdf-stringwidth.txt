@@ -1,0 +1,17 @@
+cpdf_stringwidth -- 現在のフォントのテキストの幅を返す
+
+  float cpdf_stringwidth(int pdf_document, string text)~
+
+文字列 {text} の幅を返します。
+
+この関数は、フォントがあらかじめ設定されている必要があります。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{text} テキストを表す文字列。
+
+{text} の幅を返します。
+
+|cpdf_set_font|
+
+vim:ft=help:

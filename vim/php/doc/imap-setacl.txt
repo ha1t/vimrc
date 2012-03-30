@@ -1,0 +1,25 @@
+imap_setacl -- 指定したメールボックスの ACL を設定する
+
+  bool imap_setacl(resource imap_stream, string mailbox, string id, string rights)~
+
+指定したメールボックスの ACL を設定します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+{id} 権限を付与するユーザ。
+
+{rights} そのユーザに付与する権限。空文字列を渡すと、acl
+を削除します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、現在 c-client2000
+以降のユーザのみ使用可能です。
+
+|imap_getacl|
+
+vim:ft=help:

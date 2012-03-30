@@ -1,0 +1,27 @@
+rawurldecode -- URL エンコードされた文字列をデコードする
+
+  string rawurldecode(string str)~
+
+文字列の中にパーセント記号 (%) に続いて 2 つの 16
+進数があるような表現形式を、文字定数に置き換えて返します。
+
+{str} デコードする URL。
+
+デコードされた URL を文字列で返します。
+
+|rawurldecode| の例
+
+<?php >
+  echo rawurldecode('foo%20bar%40baz'); // foo bar@baz
+?>
+
+
+
+
+
+|rawurldecode| は、プラス記号 ('+')
+をスペースに変換しません。|urldecode| は変換します。
+
+|rawurlencode| |urldecode| |urlencode|
+
+vim:ft=help:

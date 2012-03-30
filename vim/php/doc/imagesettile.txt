@@ -1,0 +1,28 @@
+imagesettile -- 塗りつぶし用のイメージを設定する
+
+  bool imagesettile(resource image, resource tile)~
+
+|imagesettile| は、特別な色 IMG_COLOR_TILED
+を指定して塗りつぶされた場合に、 (|imagefill| や
+|imagefilledpolygon| のような)
+領域塗りつぶし関数で使用されるタイルイメージを設定します。
+
+タイルは、領域を塗りつぶすために繰り返し使用されるイメージです。
+全ての GD イメージをタイルとして使用可能で、
+|imagecolortransparent| でタイルの透過色 ID
+を設定することにより、
+その一部から下の部分が透けて見えるようなタイルを作成することが可能です。
+
+タイルの使用が終った際には、特別な処理は不要ですが、
+タイルイメージを破棄する場合には、新たにタイルイメージを設定するまでは、色
+IMG_COLOR_TILED を使用してはいけません。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{tile} タイルとして使用する画像リソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

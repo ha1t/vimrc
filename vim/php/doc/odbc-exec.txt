@@ -1,0 +1,18 @@
+odbc_exec -- SQL文を準備し、実行する
+
+  resource odbc_exec(resource connection_id, string query_string [, int flags])~
+
+SQL 命令を データベースサーバに送ります。
+
+{connection_id} 接続 ID。
+
+{query_string} SQL 文。
+
+{flags}
+
+SQL コマンドの実行に成功した場合には、 ODBC 結果 ID
+を返します。エラー時には、FALSEを返します。
+
+|odbc_prepare| |odbc_execute|
+
+vim:ft=help:

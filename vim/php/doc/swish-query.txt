@@ -1,0 +1,39 @@
+Swish->query -- クエリを実行し、結果オブジェクトを返す
+
+  object Swish->query(string query)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+デフォルトのパラメータで検索を行うためのお手軽なメソッドです。
+
+{query} クエリ文字列。
+
+SwishResults オブジェクトを返します。
+
+エラー時に SwishException をスローします。
+
+基本的な |Swish->query| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $results = $swish->query("test query");
+  
+      echo "Found: ", $results->hits, " hits\n";
+  
+  } catch (SwishException $e) {
+      echo $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Found: 1 hits
+
+
+
+vim:ft=help:

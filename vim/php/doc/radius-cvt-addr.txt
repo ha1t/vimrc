@@ -1,0 +1,41 @@
+radius_cvt_addr -- 生データを IP アドレスに変換する
+
+  string radius_cvt_addr(string data)~
+
+
+
+|radius_cvt_addr| の例
+
+<?php >
+  while ($resa = radius_get_attr($res)) {
+  
+      if (!is_array($resa)) {
+          printf ("属性取得時のエラー: %s\n",  radius_strerror($res));
+          exit;
+      }
+  
+      $attr = $resa['attr'];
+      $data = $resa['data'];
+      
+      switch ($attr) {
+  
+      case RADIUS_FRAMED_IP_ADDRESS:
+          $ip = radius_cvt_addr($data);
+          echo "IP: $ip<br>\n";
+          break;
+  
+      case RADIUS_FRAMED_IP_NETMASK:
+          $mask = radius_cvt_addr($data);
+          echo "マスク: $mask<br>\n";
+          break;
+      }
+  }
+?>
+
+
+
+
+
+|radius_cvt_int| |radius_cvt_string|
+
+vim:ft=help:

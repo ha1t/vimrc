@@ -1,0 +1,27 @@
+apd_clunk -- 警告とコールスタックをスローする
+
+  void apd_clunk(string warning [, string delimiter])~
+
+perl の Carp::cluck
+と同じように動作します。警告とコールバックをスローします。
+デフォルトの行区切り文字は "\n" です。
+
+{warning} スローする警告。
+
+{delimiter} 区切り文字。デフォルトは 。
+
+値を返しません。
+
+|apd_clunk| の例
+
+<?php >
+  apd_clunk("Some Warning", "<br/>");
+?>
+
+
+
+
+
+|apd_croak|
+
+vim:ft=help:

@@ -1,0 +1,25 @@
+ldap_error -- 直近の LDAP コマンドの LDAP
+エラーメッセージを返す
+
+  string ldap_error(resource link_identifier)~
+
+指定した {link_identifier} に関して、 直近の LDAP
+コマンドにより生成されたエラーを表すエラーメッセージ文字列を返します。
+LDAP errno
+番号は標準化されていますが、ライブラリによって異なる
+（あるいはローカライズされた）エラーメッセージを返します。
+エラーメッセージの内容をチェックするのではなく、
+必ずエラー番号をチェックするようにしてください。
+
+php.ini で警告レベルを十分に下げるか、
+警告出力を抑制するために LDAP コマンドの前に @
+文字をつけない限り、発生したエラーは HTML
+出力にも表示されます。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+エラーメッセージ文字列を返します。
+
+|ldap_err2str| |ldap_errno|
+
+vim:ft=help:

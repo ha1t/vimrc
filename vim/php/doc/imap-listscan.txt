@@ -1,0 +1,40 @@
+imap_listscan --
+指定したテキストにマッチするメールボックスの一覧を返す
+
+  array imap_listscan(resource imap_stream, string ref, string pattern, string content)~
+
+{content} をテキストに持つメールボックスの名前を
+配列で返します。
+
+この関数は |imap_listmailbox| に似ていますが、
+メールボックス内に文字列 {content} が存在するか
+どうかを調べる点が違います。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{ref} 通常、{ref} は |imap_open|
+で述べられているサーバ定義です。
+
+{pattern}
+検索を開始するメールボックスの階層を指定します。
+
+{pattern} の中で使用できる特別な文字として '*' および '%'
+があります。'*'
+は、全てのメールボックスを意味します。 {pattern} に '*'
+を指定した場合、メールボックス
+階層全体のリストが得られます。'%'
+は現在のレベルのみを意味します。 '%' を {pattern}
+に指定した場合、
+トップレベルのメールボックスのみが返されます。UW_IMAPD
+を使用した場合、 '~/mail/%' は ~/mail
+ディレクトリの全てのメールボックスを返しますが、
+そのディレクトリのサブフォルダーにあるメールボックスは返しません。
+
+{content} 検索する文字列。
+
+{content} をテキストに持つメールボックスの名前を
+配列で返します。
+
+|imap_listmailbox| |imap_search|
+
+vim:ft=help:

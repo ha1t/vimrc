@@ -1,0 +1,39 @@
+pg_close -- PostgreSQL 接続をクローズする
+
+  bool pg_close([resource connection])~
+
+|pg_close| は、 {connection} リソースで指定した PostgreSQL
+データベースへの持続的でない接続を閉じます。
+
+持続的でない接続はスクリプトの実行終了時に自動的にクローズされるため、
+|pg_close| は通常は必要ありません。
+
+接続の中でラージオブジェクトをオープンしている場合は、すべての
+ラージオブジェクトリソースをクローズするまで接続を閉じないでください。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_close| の例
+
+<?php >
+  $dbconn = pg_connect("host=localhost port=5432 dbname=mary")
+     or die("Could not connect");
+  echo "Connected successfully";
+  pg_close($dbconn);
+?>
+
+上の例の出力は以下となります。
+
+  Connected successfully
+
+
+
+|pg_connect|
+
+vim:ft=help:

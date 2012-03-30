@@ -1,0 +1,22 @@
+XMLWriter::fullEndElement -- 現在の要素を終了する
+
+オブジェクト指向型
+
+  bool fullEndElement()~
+
+手続き型
+
+  bool xmlwriter_full_end_element(resource xmlwriter)~
+
+現在の xml
+要素を終了します。要素が空であっても終了タグを書き込みます。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

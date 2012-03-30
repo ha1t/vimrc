@@ -1,0 +1,80 @@
+SDO_DAS_DataFactory::addPropertyToType -- 型にプロパティを追加する
+
+  void SDO_DAS_DataFactory::addPropertyToType(string parent_type_namespace_uri, string parent_type_name, string property_name, string type_namespace_uri, string type_name [, array options])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+型にプロパティを追加します。この型は、常に
+SDO_DAS_DataFactory が 知っていなければなりません
+(つまり、addType() を使用して追加されたもので
+なければなりません)。このプロパティは、型のプロパティとなります。
+これを使用することによって、SDO_DataObject
+の構造を表すグラフモデルが 作成されます。
+
+{parent_type_namespace_uri} 親となる型の名前空間 URI。
+
+{parent_type_name} 親となる型の名前。
+
+{property_name}
+親となる型から参照するためのプロパティ名。
+
+{type_namespace_uri} プロパティの型の名前空間 URI。
+
+{type_name} プロパティの型の名前。
+
+{options} このプロパティに設定する属性を、キー=>値
+の組み合わせで保持する配列。以下のキーワードが指定可能です。
+
+{many}
+このプロパティが複数の値を保持するかどうかを宣言するフラグ。
+'true'
+を指定すると、このプロパティが複数の値を保持するものとして
+扱われます (デフォルトは 'false' です)。
+
+{readOnly}
+このプロパティが読み込み専用であるかどうかを宣言するフラグ。
+'true' を指定すると、SDO アプリケーション API からは
+このプロパティを変更できなくなります (デフォルトは
+'false' です)。
+
+{containment}
+このプロパティと親の間に包含関係があるかどうかを宣言するフラグ。
+'true'
+を指定すると、親との間に包含関係があるということになります。
+'false' の場合は、包含関係のない単なる参照となります
+(デフォルトは 'true' です)。
+このフラグは、データオブジェクト型のプロパティを
+追加するときにのみ使用されます。それ以外の場合は無視されます。
+
+{default}
+このプロパティのデフォルト値。このキーを省略した場合は、
+プロパティがデフォルト値を持たないことを意味します。
+デフォルト値を保持することができるのは、プロパティが
+単一の値をとるデータ型 (プリミティブ型)
+の場合のみです。
+
+None.
+
+バージョン 説明 0.5.2 オプションのパラメータ many、
+readOnly および containment は廃止予定で、options 配列の使用が
+推奨されます。
+
+|SDO_DAS_DataFactory::addPropertyToType| の例
+以下の例では、親の型にプロパティ 'addressline'
+を追加します。 親の型は、名前空間 'PersonNS' にある
+'PersonType' 型です。 'addressline'
+プロパティの型は、複数の値を保持する SDO データ型
+(プリミティブ) で、名前空間 'commonj.sdo' および名前 'String'
+で表されるものです。
+
+<?php >
+    $df->addPropertyToType('PersonNS', 'PersonType',
+      'addressline', 'commonj.sdo', 'String', array('many'=>true));
+?>
+
+
+
+vim:ft=help:

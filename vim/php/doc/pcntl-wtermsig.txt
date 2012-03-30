@@ -1,0 +1,15 @@
+pcntl_wtermsig -- 子プロセスの終了を生じたシグナルを返す
+
+  int pcntl_wtermsig(int status)~
+
+子プロセスを終了させたシグナルの数を返します。この関数は、
+|pcntl_wifsignaled| が TRUE を返す場合のみ有用です。
+
+{status} パラメータ {status} は、 |pcntl_waitpid|
+が正常にコールされた際に得られます。
+
+シグナル番号を表す整数値を返します。
+
+|pcntl_waitpid| |pcntl_signal| |pcntl_wifsignaled|
+
+vim:ft=help:

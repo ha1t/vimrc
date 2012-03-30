@@ -1,0 +1,37 @@
+mb_internal_encoding --
+内部文字エンコーディングを設定あるいは取得する
+
+  mixed mb_internal_encoding([string encoding])~
+
+内部文字エンコーディングを設定あるいは取得します。
+
+{encoding} {encoding} は、HTTP 入力文字エンコーディング変換、
+HTTP 出力文字エンコーディング変換および mbstring
+モジュールの文字列関数においてデフォルトの文字エンコーディングとして使用されます。
+
+{encoding} が設定された場合、 成功した場合に TRUE
+を、失敗した場合に FALSE を返します。 {encoding}
+が省略された場合、
+現在の文字エンコーディング名を返します。
+
+|mb_internal_encoding| の例
+
+<?php >
+  /* 内部文字エンコーディングをUTF-8に設定 */
+  mb_internal_encoding("UTF-8");
+  
+  /* 現在の内部文字エンコーディングを表示 */
+  echo mb_internal_encoding();
+?>
+
+
+
+
+
+内部エンコーディングあるいは |mb_regex_encoding|
+で指定した文字エンコーディングを、
+この関数の文字エンコーディングとして使用します。
+
+|mb_http_input| |mb_http_output| |mb_detect_order|
+
+vim:ft=help:

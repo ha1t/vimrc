@@ -1,0 +1,25 @@
+px_put_record -- paradox データベースにレコードを保存する
+
+  bool px_put_record(resource pxdoc, array record [, int recpos])~
+
+paradox
+データベースにレコードを保存します。たとえ空きスロットがあったとしても、
+レコードは常にデータベースの最後に追記されます。
+最初に見つかった空きスロットにデータを書き込みたい場合は、
+|px_insert_record| を使用します。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+{record} 例えば |px_retrieve_record|
+が返すような形式でのフィールド値を含む、
+連想配列あるいは数値添字配列。
+
+{recpos}
+このオプションパラメータで、データベース内の現在の位置以降の
+レコード番号を指定します。この関数は、必要なだけ空のレコードを追加します。
+このパラメータが必要になることは、まずないでしょう。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

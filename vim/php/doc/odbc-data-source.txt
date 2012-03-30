@@ -1,0 +1,17 @@
+odbc_data_source -- 現在の接続についての情報を返す
+
+  array odbc_data_source(resource connection_id, int fetch_type)~
+
+この関数は、有効な
+DNS（複数回のコールの後）のリストを返します。
+
+{connection_id} 接続 ID。
+
+{fetch_type} {fetch_type} は次のふたつの定数 SQL_FETCH_FIRST,
+SQL_FETCH_NEXT のうちのどちらかです。
+この関数を最初にコールする際には SQL_FETCH_FIRST
+を、それ以降は SQL_FETCH_NEXT を使用します。
+
+エラー時には FALSE、成功時には配列を返します。
+
+vim:ft=help:

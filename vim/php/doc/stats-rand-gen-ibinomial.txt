@@ -1,0 +1,18 @@
+stats_rand_gen_ibinomial --
+二項分布から無作為な値を生成する。二項分布の試行回数を
+"n" (n >= 0)、各試行で事象の発生する確率を "pp" ([0;1])
+とし、BTPE アルゴリズムを使用する
+
+  int stats_rand_gen_ibinomial(int n, float pp)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{n}
+
+{pp}
+
+
+
+vim:ft=help:

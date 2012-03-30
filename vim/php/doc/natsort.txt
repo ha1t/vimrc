@@ -1,0 +1,59 @@
+natsort -- "自然順"アルゴリズムで配列をソートする
+
+  bool natsort(array array)~
+
+この関数は、人間が行うような手法でアルファベットまたは数字の文字列の順番を
+キー/値の関係を保持したままソートします。
+これは、"自然順(natural ordering)"と呼ばれているものです。
+このアルゴリズムと (|sort| を用いた)
+通常のコンピュータ文字列ソートアルゴリズムの違いを示す例を以下に示します。
+
+{array} 入力の配列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|natsort| の例
+
+<?php >
+  $array1 = $array2 = array("img12.png", "img10.png", "img2.png", "img1.png");
+  
+  sort($array1);
+  echo "Standard sorting\n";
+  print_r($array1);
+  
+  natsort($array2);
+  echo "\nNatural order sorting\n";
+  print_r($array2);
+?>
+
+上の例の出力は以下となります。
+
+  Standard sorting
+  Array
+  (
+      [0] => img1.png
+      [1] => img10.png
+      [2] => img12.png
+      [3] => img2.png
+  )
+  
+  Natural order sorting
+  Array
+  (
+      [3] => img1.png
+      [2] => img2.png
+      [1] => img10.png
+      [0] => img12.png
+  )
+
+より詳細な情報については、Martin PoolのNatural Order String
+Comparison ページを参照ください。
+
+
+
+
+
+|natcasesort| |strnatcmp| |strnatcasecmp|
+
+vim:ft=help:

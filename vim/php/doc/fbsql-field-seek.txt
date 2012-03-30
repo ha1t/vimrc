@@ -1,0 +1,22 @@
+fbsql_field_seek --
+指定したフィールドオフセットに結果ポインタを設定する
+
+  bool fbsql_field_seek(resource result [, int field_offset])~
+
+指定したフィールドオフセットに移動します。
+|fbsql_fetch_field| がフィールドオフセットを
+指定せずにコールされた場合、|fbsql_field_seek|
+で指定したフィールドオフセットが返されます。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+{field_offset}
+フィールドの数値オフセット。フィールドのインデックスは
+0 からはじまります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fbsql_fetch_field|
+
+vim:ft=help:

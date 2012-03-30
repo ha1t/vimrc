@@ -1,0 +1,42 @@
+ftp_mkdir -- ディレクトリを作成する
+
+  string ftp_mkdir(resource ftp_stream, string directory)~
+
+FTP サーバ上に、指定した {directory} を作成します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{directory} 作成されるディレクトリの名前。
+
+成功した時には新規に作成したディレクトリ名、エラー時に
+FALSE を返します。
+
+|ftp_mkdir| の例
+
+<?php >
+  $dir = 'www';
+  
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // ディレクトリ $dir の作成を試みる
+  if (ftp_mkdir($conn_id, $dir)) {
+   echo "successfully created $dir\n";
+  } else {
+   echo "There was a problem while creating $dir\n";
+  }
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_rmdir|
+
+vim:ft=help:

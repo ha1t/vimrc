@@ -1,0 +1,16 @@
+OCI-Lob->export -- LOB の内容をファイルに出力する
+
+  bool export(string filename [, int start [, int length]])~
+
+LOB の内容をファイルに出力します。
+
+{filename} ファイルへのパス。
+
+{start} 出力を開始する位置。
+
+{length} 出力するデータの長さ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

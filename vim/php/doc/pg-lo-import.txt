@@ -1,0 +1,52 @@
+pg_lo_import --
+ファイルからラージオブジェクトをインポートする
+
+  int pg_lo_import(resource connection, string pathname)~
+
+  int pg_lo_import(resource connection, string pathname, string pathname)~
+
+|pg_lo_import| は、ファイルシステム上のファイルの
+データをもとにして新しいラージオブジェクトをデータベース内に作成します。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+セーフモード が有効の場合、PHP
+は操作を行うファイル／ディレクトリが実行するスクリプトと
+同じ UID (所有者)を有しているかどうかを確認します。
+
+この関数は、以前は |pg_loimport| と呼ばれていました。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{pathname}
+クライアントのファイルシステムからラージオブジェクト用データを
+読み込む際のフルパスとファイル名。
+
+作成されたラージオブジェクトの OID を返します。
+失敗した場合には FALSE を返します。
+
+  int pg_lo_import(resource connection, string pathname, string pathname, string pathname [, resource connection])~
+
+バージョン 説明 4.2.0
+関数の構文が変わりました。以前は次のようなものでした。
+
+|pg_lo_import| の例
+
+<?php >
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     $oid = pg_lo_import($database, '/tmp/lob.dat');
+     pg_query($database, "commit");
+?>
+
+
+
+
+
+|pg_lo_export| |pg_lo_open|
+
+vim:ft=help:

@@ -1,0 +1,21 @@
+dio_write --
+オプションで丸め長さを指定してデータを書き込む
+
+  int dio_write(resource fd, string data [, int len])~
+
+|dio_write| は、{data} から最大 {len} バイトを ファイル {fd}
+に書き込みます。
+
+{fd} |dio_open| が返すファイル記述子。
+
+{data} 書き込むデータ。
+
+{len}
+書き込むデータのバイト長。指定しなかった場合は、データ全体を
+指定したファイルに書き込みます。
+
+{fd} に書き込んだバイト数を返します。
+
+|dio_read|
+
+vim:ft=help:

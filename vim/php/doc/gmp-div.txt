@@ -1,0 +1,5 @@
+gmp_div -- gmp_div_q のエイリアス
+
+この関数は次の関数のエイリアスです。 |gmp_div_q|.
+
+vim:ft=help:

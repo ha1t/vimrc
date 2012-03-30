@@ -1,0 +1,19 @@
+stats_cdf_logistic -- 未ドキュメント化
+
+  float stats_cdf_logistic(float par1, float par2, float par3, int which)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{par1}
+
+{par2}
+
+{par3}
+
+{which}
+
+
+
+vim:ft=help:

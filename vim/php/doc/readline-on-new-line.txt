@@ -1,0 +1,11 @@
+readline_on_new_line -- カーソルが新しい行に移動したことを
+readline に通知する
+
+  void readline_on_new_line()~
+
+readline
+に、カーソルが新しい行に移動したことを通知します。
+
+値を返しません。
+
+vim:ft=help:

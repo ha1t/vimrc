@@ -1,0 +1,59 @@
+stream_set_timeout -- ストリームにタイムアウトを設定する
+
+  bool stream_set_timeout(resource stream, int seconds [, int microseconds])~
+
+{stream} にタイムアウトの値を設定します。
+この値は、{seconds} と {microseconds}
+の和で表されます。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+ストリームがタイムアウトとなった場合は、
+|stream_get_meta_data| が返す配列のキー 'timed_out' の値が TRUE
+に設定されます。エラーや警告が発生していなくても
+同様になります。
+
+|stream_set_timeout| の例
+
+<?php >
+  $fp = fsockopen("www.example.com", 80);
+  if (!$fp) {
+      echo "開けません\n";
+  } else {
+  
+      fwrite($fp, "GET / HTTP/1.0\r\n\r\n");
+      stream_set_timeout($fp, 2);
+      $res = fread($fp, 2000);
+  
+      $info = stream_get_meta_data($fp);
+      fclose($fp);
+  
+      if ($info['timed_out']) {
+          echo 'Connection timed out!';
+      } else {
+          echo $res;
+      }
+  
+  }
+?>
+
+
+
+
+
+PHP 4.3 より、この関数は、(潜在的には)どの種類の
+ストリームに対しても機能するようになりました。 PHP 4.3
+では、ソケットベースのストリームが、
+唯一この関数でサポートされている種類でしたが、他の拡張モジュール由来の
+モジュールはこの機能をサポートしているかもしれません。
+
+この関数では、|stream_socket_recvfrom| のような
+高度な操作はできません。そのかわりに、timeout
+パラメータを指定して |stream_select| を使用してください。
+
+この関数は、以前は |set_socket_timeout| 、その後は
+|socket_set_timeout| と呼ばれたこともありましたが、
+これらの利用は推奨されません。
+
+|fsockopen| と |fopen| も参照ください。
+
+vim:ft=help:

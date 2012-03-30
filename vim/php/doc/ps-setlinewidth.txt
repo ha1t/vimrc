@@ -1,0 +1,16 @@
+ps_setlinewidth -- 線幅を設定する
+
+  bool ps_setlinewidth(resource psdoc, float width)~
+
+以降の描画処理での線幅を設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{width} 線の幅 (ポイント数)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_setlinecap| |ps_setlinejoin| |ps_setmiterlimit|
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+sinh -- 双曲線正弦（ハイパボリックサイン）
+
+  float sinh(float arg)~
+
+{arg} のハイパボリックサインを返します。
+これは、(exp(arg) - exp(-arg))/2 で定義されます。
+
+{arg} 処理する引数。
+
+{arg} のハイパボリックサインを返します。
+
+|sin| |asinh| |cosh| |tanh|
+
+vim:ft=help:

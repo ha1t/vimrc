@@ -1,0 +1,14 @@
+openal_device_open -- OpenAL 音声レイヤを初期化する
+
+  resource openal_device_open([string device_desc])~
+
+{device_desc} で指定した音声デバイスをオープンします。
+{device_desc} が指定されなかった場合は、
+最初に見つかった音声デバイスが使用されます。
+
+成功した場合に Open AL (デバイス) リソース、
+失敗した場合に FALSE を返します。
+
+|openal_device_close| |openal_context_create|
+
+vim:ft=help:

@@ -1,0 +1,49 @@
+imap_mailboxmsginfo --
+現在のメールボックスに関する情報を得る
+
+  object imap_mailboxmsginfo(resource imap_stream)~
+
+サーバにおける現在のメールボックスのステータスを調べます。この関数は
+|imap_status| に似ていますが、
+メールボックス内の全メッセージのサイズを合計します。このため、
+実行時間が幾分余計にかかります。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+以下のプロパティを有するオブジェクトを返します。
+Mailbox のプロパティ Date 最終変更日 Driver ドライバ Mailbox
+メールボックスの名前 Nmsgs メッセージ数 Recent
+最近のメッセージの数 Unread 未読のメッセージの数 Deleted
+削除されたメッセージの数 Size メールボックスのサイズ
+
+Returns FALSE on failure.
+
+|imap_mailboxmsginfo| example
+
+<?php >
+  $mbox = imap_open("{imap.example.org}INBOX", "username", "password")
+        or die("接続できません: " . imap_last_error());
+  
+  $check = imap_mailboxmsginfo($mbox);
+  
+  if ($check) {
+      echo "Date: "     . $check->Date    . "<br />\n" ;
+      echo "Driver: "   . $check->Driver  . "<br />\n" ;
+      echo "Mailbox: "  . $check->Mailbox . "<br />\n" ;
+      echo "Messages: " . $check->Nmsgs   . "<br />\n" ;
+      echo "Recent: "   . $check->Recent  . "<br />\n" ;
+      echo "Unread: "   . $check->Unread  . "<br />\n" ;
+      echo "Deleted: "  . $check->Deleted . "<br />\n" ;
+      echo "Size: "     . $check->Size    . "<br />\n" ;
+  } else {
+      echo "imap_check() に失敗: " . imap_last_error() . "<br />\n";
+  }
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+vim:ft=help:

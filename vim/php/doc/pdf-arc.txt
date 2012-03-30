@@ -1,0 +1,7 @@
+PDF_arc -- 反時計回りに円弧を描く
+
+  bool PDF_arc(resource p, float x, float y, float r, float alpha, float beta)~
+
+反時計周りの円弧を追加します。
+
+vim:ft=help:

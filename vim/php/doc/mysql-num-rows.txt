@@ -1,0 +1,44 @@
+mysql_num_rows -- 結果における行の数を得る
+
+  int mysql_num_rows(resource result)~
+
+結果セットから行の数を取得します。このコマンドは、
+SELECT や SHOW
+のような、実際に結果セットを返す文に対してのみ有効です。
+INSERT、UPDATE、REPLACE、DELETE
+クエリで変更された行の数を得るには、 |mysql_affected_rows|
+を使用してください。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+成功した場合に結果セットの行の数、失敗した場合に FALSE
+を返します。
+
+|mysql_num_rows| の例
+
+<?php >
+  $link = mysql_connect("localhost", "mysql_user", "mysql_password");
+  mysql_select_db("database", $link);
+  
+  $result = mysql_query("SELECT * FROM table1", $link);
+  $num_rows = mysql_num_rows($result);
+  
+  echo "$num_rows Rows\n";
+?>
+
+
+
+
+
+|mysql_unbuffered_query| を使用した場合、
+結果セットのすべての行を取得するまで |mysql_num_rows|
+は正しい値を返しません。
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_numrows|
+
+|mysql_affected_rows| |mysql_connect| |mysql_data_seek| |mysql_select_db|
+|mysql_query|
+
+vim:ft=help:

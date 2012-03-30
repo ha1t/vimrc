@@ -1,0 +1,14 @@
+mcal_store_event -- MCAL
+カレンダーの既存のイベントを修正する
+
+  int mcal_store_event(int mcal_stream)~
+
+|mcal_store_event| は、修正したイベントを
+指定したストリームの現在のグローバルイベントに保存します。
+
+{mcal_stream} MCAL ストリーム。
+
+成功時に修正したイベントのイベント ID、エラー時に FALSE
+を返します。
+
+vim:ft=help:

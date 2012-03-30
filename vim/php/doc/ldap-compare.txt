@@ -1,0 +1,67 @@
+ldap_compare -- 指定した DN
+のエントリで見付かった属性の値を比較する
+
+  mixed ldap_compare(resource link_identifier, string dn, string attribute, string value)~
+
+属性 {attribute} の値 {value} を、指定した LDAP
+ディレクトリエントリの同じ属性の値と比較します。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{dn} LDAP エンティティの識別名。
+
+{attribute} 属性の名前。
+
+{value} 比較する値。
+
+{value} がマッチする場合に TRUE、その他の場合に
+FALSE、エラーの場合に -1 を返します。
+
+次の例は、指定したパスワードが DN
+の指定したエントリで定義された
+ものと一致するかどうかをチェックする方法を示しています。
+
+パスワード確認の例
+
+<?php >
+  $ds=ldap_connect("localhost");  // LDAP サーバが同一ホストであると仮定
+  
+  if ($ds) {
+  
+      // バインド
+      if (ldap_bind($ds)) {
+  
+          // データを準備
+          $dn = "cn=Matti Meikku, ou=My Unit, o=My Company, c=FI";
+          $value = "secretpassword";
+          $attr = "password";
+  
+          // 値を比較
+          $r=ldap_compare($ds, $dn, $attr, $value);
+  
+          if ($r === -1) {
+              echo "Error: " . ldap_error($ds);
+          } elseif ($r === true) {
+              echo "Password correct.";
+          } elseif ($r === false) {
+              echo "Wrong guess! Password incorrect.";
+          }
+  
+      } else {
+          echo "Unable to bind to LDAP server.";
+      }
+  
+      ldap_close($ds);
+  
+  } else {
+      echo "Unable to connect to LDAP server.";
+  }
+?>
+
+
+
+
+
+|ldap_compare| では BINARY 値を比較することはできません!
+
+vim:ft=help:

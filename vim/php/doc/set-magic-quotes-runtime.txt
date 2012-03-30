@@ -1,0 +1,15 @@
+set_magic_quotes_runtime -- magic_quotes_runtime
+の現在アクティブな設定をセットする
+
+  bool set_magic_quotes_runtime(int new_setting)~
+
+magic_quotes_runtime の現在アクティブな設定をセットします。
+
+{new_setting} 0 はオフ、1 はオンを表します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|get_magic_quotes_gpc| |get_magic_quotes_runtime|
+
+vim:ft=help:

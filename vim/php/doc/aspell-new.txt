@@ -1,0 +1,25 @@
+aspell_new -- 新しい辞書を読み込む [非推奨]
+
+  int aspell_new(string master [, string personal])~
+
+|aspell_new| は、 他の aspell
+関数で使用する新しい辞書をオープンします。
+
+{master} 言語。
+
+{personal} デフォルトは空の文字列です。
+
+辞書リンク識別子、あるいはエラーの場合に FALSE
+を返します。
+
+|aspell_new| の例
+
+<?php >
+  $aspell_link = aspell_new("english");
+?>
+
+
+
+
+
+vim:ft=help:

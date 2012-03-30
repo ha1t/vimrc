@@ -1,0 +1,5 @@
+ocicolumntype -- oci_field_type のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_field_type|.
+
+vim:ft=help:

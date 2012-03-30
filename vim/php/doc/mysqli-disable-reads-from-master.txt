@@ -1,0 +1,18 @@
+mysqli->disable_reads_from_master() --
+マスタからの読み込みを無効にする
+
+手続き型:
+
+  bool mysqli_disable_reads_from_master(mysqli link)~
+
+オブジェクト指向型（メソッド）:
+
+  void disable_reads_from_master(mysqli link)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+この関数は 非推奨 であり、PHP 5.3.0 で 削除 されます。
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+imagedestroy -- 画像を破棄する
+
+  bool imagedestroy(resource image)~
+
+|imagedestroy| は画像 {image} を保持するメモリを解放します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

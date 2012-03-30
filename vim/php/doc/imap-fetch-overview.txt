@@ -1,0 +1,79 @@
+imap_fetch_overview --
+指定したメッセージのヘッダ情報の概要を読む
+
+  array imap_fetch_overview(resource imap_stream, string sequence [, int options])~
+
+この関数は、指定された {sequence}
+のメールヘッダを取得してその内容の概要を返します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{sequence} メッセージのシーケンスを指定します。 X,Y
+形式で列挙したり、 X:Y
+形式でその範囲内のすべてのメッセージを取得したりできます。
+
+{options} {sequence} には、メッセージのインデックスか、もし
+{flags} に FT_UID が含まれている場合は UID が含まれます。
+
+オブジェクトの配列を返します。各要素が、
+それぞれひとつのメッセージのヘッダを表します。
+オブジェクトで定義されるのは、存在するプロパティのみです。
+以下のプロパティがあります。 subject -
+メッセージの題名(subject)
+
+from - 送信者
+
+to - 受信者
+
+date - 送信日
+
+message_id - Message-ID
+
+references - このメッセージ ID への参照です
+
+in_reply_to - このメッセージ ID への返信です
+
+size - サイズ（バイト数）
+
+uid - メールボックスにおけるこのメッセージの UID
+
+msgno -
+メールボックスにおけるこのメッセージのシーケンス番号
+
+recent - このメッセージには recent
+フラグが立てられています
+
+flagged - フラグが立てられています
+
+answered - 返信済みフラグが立てられています
+
+deleted - 削除フラグが立てられています
+
+seen - 既読フラグが立てられています
+
+draft - 草稿フラグが立てられています
+
+|imap_fetch_overview| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org:143}INBOX", "username", "password")
+       or die("接続できません: " . imap_last_error());
+  
+  $MC = imap_check($mbox);
+  
+  // INBOX のすべてのメッセージの概要を取得します
+  $result = imap_fetch_overview($mbox,"1:{$MC->Nmsgs}",0);
+  foreach ($result as $overview) {
+      echo "#{$overview->msgno} ({$overview->date}) - From: {$overview->from}
+      {$overview->subject}\n";
+  }
+  imap_close($mbox);
+?>
+
+
+
+
+
+|imap_fetchheader|
+
+vim:ft=help:

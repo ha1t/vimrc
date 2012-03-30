@@ -1,0 +1,17 @@
+dbmexists -- DBM
+データベース中に、キーに対応する値があるかどうかを調べる
+
+  bool dbmexists(resource dbm_identifier, string key)~
+
+キー {key} が指す値が存在すれば TRUE を返します。
+
+{ dbm_identifier}|dbmopen| が返す DBM リンク識別子。
+
+{key} キーを表す文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dbmfetch|
+
+vim:ft=help:

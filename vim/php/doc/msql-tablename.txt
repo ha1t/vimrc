@@ -1,0 +1,5 @@
+msql_tablename -- msql_result のエイリアス
+
+この関数は次の関数のエイリアスです。 |msql_result|
+
+vim:ft=help:

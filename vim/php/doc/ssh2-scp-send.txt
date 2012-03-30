@@ -1,0 +1,36 @@
+ssh2_scp_send -- SCP 経由でファイルを送信する
+
+  bool ssh2_scp_send(resource session, string local_file, string remote_file [, int create_mode])~
+
+ローカルファイルシステムからリモートサーバに SCP
+プロトコルを使用してコピーします。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{local_file} ローカルファイルへのパス。
+
+{remote_file} リモートファイルへのパス。
+
+{create_mode} ファイルは {create_mode}
+で指定されたモードで作成されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+SCP 経由でのファイルのアップロード
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  
+  ssh2_scp_send($connection, '/local/filename', '/remote/filename', 0644);
+?>
+
+
+
+
+
+|ssh2_scp_recv| |copy|
+
+vim:ft=help:

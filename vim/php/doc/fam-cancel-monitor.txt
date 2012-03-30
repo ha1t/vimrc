@@ -1,0 +1,20 @@
+fam_cancel_monitor -- 監視を終了する
+
+  bool fam_cancel_monitor(resource fam, resource fam_monitor)~
+
+リソースの監視を終了します。
+
+さらに FAMAcknowledge イベントが発生します。
+
+{fam} A resource representing a connection to the FAM service returned by
+|fam_open|
+
+{fam_monitor} fam_monitor_XXX 関数のいずれかが返すリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fam_monitor_file| |fam_monitor_directory| |fam_monitor_collection|
+|fam_suspend_monitor|
+
+vim:ft=help:

@@ -1,0 +1,68 @@
+enchant_dict_quick_check --
+単語のスペルが正しいかどうかを調べ、修正候補を提供する
+
+  bool enchant_dict_quick_check(resource dict, string word [, array suggestions])~
+
+単語のスペルが正しい場合は TRUE、そうでない場合は FALSE
+を返します。変数 suggestions を指定している場合は、
+そこに修正候補が格納されます。
+
+{dict} 辞書リソース。
+
+{word} 調べる単語。
+
+{suggestions} 単語のスペルが間違っている場合に、
+この変数の中に修正候補の配列が格納されます。
+
+単語のスペルが正しい場合に TRUE、 そうでない場合に FALSE
+を返します。
+
+|enchant_dict_quick_check| の例
+
+<?php >
+  $tag = 'en_US';
+  $r = enchant_broker_init();
+  
+  if (enchant_broker_dict_exists($r,$tag)) {
+      $d = enchant_broker_request_dict($r, $tag);
+      enchant_dict_quick_check($d, 'soong', $suggs);
+      print_r($suggs);
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => song
+      [1] => snog
+      [2] => soon
+      [3] => Sang
+      [4] => Sung
+      [5] => sang
+      [6] => sung
+      [7] => sponge
+      [8] => spongy
+      [9] => snag
+      [10] => snug
+      [11] => sonic
+      [12] => sing
+      [13] => songs
+      [14] => Son
+      [15] => Sonja
+      [16] => Synge
+      [17] => son
+      [18] => Sejong
+      [19] => sarong
+      [20] => sooner
+      [21] => Sony
+      [22] => sown
+      [23] => scone
+      [24] => song's
+  )
+
+
+
+|enchant_dict_check| |enchant_dict_suggest|
+
+vim:ft=help:

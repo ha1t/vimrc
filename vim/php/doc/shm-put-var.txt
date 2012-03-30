@@ -1,0 +1,21 @@
+shm_put_var -- 共有メモリの変数を挿入または更新する
+
+  bool shm_put_var(int shm_identifier, int variable_key, mixed variable)~
+
+|shm_put_var| は、 指定した {variable_key} を有する 変数
+{variable} の挿入または更新を行います。
+
+{shm_identifier} が有効な SysV 共有メモリではない場合や
+リクエストを処理するために充分な共有メモリが残っていない場合は
+(E_WARNING レベルの) 警告を発生させます。
+
+{shm_identifier}
+
+{variable_key}
+
+{variable} 変数。全ての 変数型をサポートします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

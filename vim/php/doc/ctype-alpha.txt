@@ -1,0 +1,39 @@
+ctype_alpha -- 英字かどうかを調べる
+
+  bool ctype_alpha(string text)~
+
+与えられた文字列 {text} のすべての文字が
+英字であるかどうかを調べます。 標準の C
+ロケールの場合、文字は [A-Za-z] で、|ctype_alpha| は $text
+が一文字のみの場合の (ctype_upper($text) || ctype_lower($text))
+と等価です。
+しかし、他の言語には大文字でも小文字でもない文字が含まれています。
+
+{text} 調べる文字列。
+
+{text} のすべての文字が英字だった場合に TRUE
+、そうでない場合に FALSE を返します。
+
+|ctype_alpha|の例 (デフォルトのロケールを使用)
+
+<?php >
+  $strings = array('KjgWZC', 'arf12');
+  foreach ($strings as $testcase) {
+      if (ctype_alpha($testcase)) {
+          echo "文字列 $testcase は全て文字からなります。\n";
+      } else {
+          echo "文字列 $testcase は全てが文字から構成されているわけではありません。\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  文字列 KjqWZC は全て文字からなります。
+  文字列 arf12 は全てが文字から構成されているわけではありません。
+
+
+
+|ctype_upper| |ctype_lower| |setlocale|
+
+vim:ft=help:

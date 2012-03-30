@@ -1,0 +1,17 @@
+stats_dens_negative_binomial -- 未ドキュメント化
+
+  float stats_dens_negative_binomial(float x, float n, float pi)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{x}
+
+{n}
+
+{pi}
+
+
+
+vim:ft=help:

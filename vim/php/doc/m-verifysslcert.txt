@@ -1,0 +1,16 @@
+m_verifysslcert -- サーバの ssl
+証明書を検証するかどうかを設定する
+
+  bool m_verifysslcert(resource conn, int tf)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{tf}
+
+
+
+vim:ft=help:

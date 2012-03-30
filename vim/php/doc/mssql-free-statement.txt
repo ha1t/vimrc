@@ -1,0 +1,19 @@
+mssql_free_statement -- ステートメントのメモリを開放する
+
+  bool mssql_free_statement(resource stmt)~
+
+|mssql_free_statement| をコールする必要があるのは、
+スクリプトの実行中に大量のメモリを使用することが気になる場合のみです。
+すべてのステートメントメモリはスクリプトが終了する際に自動的に開放
+されます。ステートメント ID を引数に指定して
+|mssql_free_statement| をコールすることで、
+関連付けられたステートメントのメモリが開放されます。
+
+{stmt} |mssql_init| で取得したステートメントリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mssql_bind| |mssql_execute| |mssql_init|
+
+vim:ft=help:

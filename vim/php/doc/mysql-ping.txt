@@ -1,0 +1,56 @@
+mysql_ping --
+サーバとの接続状況を調べ、接続されていない場合は再接続する
+
+  bool mysql_ping([resource link_identifier])~
+
+サーバとの接続が有効かどうかを調べます。
+もし接続が切れていた場合、自動的に再接続が試みられます。
+この関数は、アイドル期間が長いスクリプトで利用し、
+サーバが接続を切断したかどうかを確認するために用いられます。
+
+MySQL 5.0.13 以降、自動再接続機能は使えなくなりました。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+MySQL サーバとの接続が有効な場合に TRUE そうでない場合に
+FALSE を返します。
+
+|mysql_ping| の例
+
+<?php >
+  set_time_limit(0);
+  
+  $conn = mysql_connect('localhost', 'mysqluser', 'mypass');
+  $db   = mysql_select_db('mydb');
+  
+  /* このクエリは非常に時間がかかるものと仮定する */
+  $result = mysql_query($sql);
+  if (!$result) {
+      echo 'Query #1 failed, exiting.';
+      exit;
+  }
+  
+  /* 接続が有効かどうかを確かめる。切断されていたら再接続する */
+  if (!mysql_ping($conn)) {
+      echo 'Lost connection, exiting after query #1';
+      exit;
+  }
+  mysql_free_result($result);
+  
+  /* 接続が有効であることが確かめられたので、別のクエリを実行する */
+  $result2 = mysql_query($sql2);
+?>
+
+
+
+
+
+|mysql_thread_id| |mysql_list_processes|
+
+vim:ft=help:

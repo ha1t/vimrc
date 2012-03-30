@@ -1,0 +1,56 @@
+ftp_get -- FTP サーバからファイルをダウンロードする
+
+  bool ftp_get(resource ftp_stream, string local_file, string remote_file, int mode [, int resumepos])~
+
+|ftp_get| は FTP サーバからリモートファイルを取得し、
+それをローカルファイルに保存します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{local_file}
+ローカルファイルのパス（ファイルがすでに存在する場合は上書きされます）。
+
+{remote_file} リモートファイルのパス。
+
+{mode} 転送モード。FTP_ASCII または FTP_BINARY
+のどちらかを指定する必要があります。
+
+{resumepos}
+リモートファイルの、ダウンロードを開始する位置。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ftp_get| の例
+
+<?php >
+  // 変数を定義する
+  $local_file = 'local.zip';
+  $server_file = 'server.zip';
+  
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // $server_file をダウンロードし、$local_file への保存を試みる
+  if (ftp_get($conn_id, $local_file, $server_file, FTP_BINARY)) {
+      echo "Successfully written to $local_file\n";
+  } else {
+      echo "There was a problem\n";
+  }
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+バージョン 説明 4.3.0 {resumepos} が追加されました。
+
+|ftp_pasv| |ftp_fget| |ftp_nb_get| |ftp_nb_fget|
+
+vim:ft=help:

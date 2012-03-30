@@ -1,0 +1,44 @@
+Rar::getHostOs -- エントリのホスト OS を取得する
+
+  int getHostOs()~
+
+|Rar::getHostOs| は、アーカイブエントリの ホスト OS
+のコードを返します。
+
+ホスト OS のコード、あるいはエラー時に FALSE
+を返します。
+
+|Rar::getHostOs| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entry = rar_entry_get($rar_file, 'Dir/file.txt') or die("そのようなエントリは見つかりません");
+  
+  switch ($entry->getHostOs()) {
+      case RAR_HOST_MSDOS:
+          echo "MS-DOS\n";
+          break;
+      case RAR_HOST_OS2:
+          echo "OS2\n";
+          break;
+      case RAR_HOST_WIN32:
+          echo "Win32\n";
+          break;
+      case RAR_HOST_MACOS:
+          echo "MacOS\n";
+          break;
+      case RAR_HOST_UNIX:
+          echo "Unix/Linux\n";
+          break;
+      case RAR_HOST_BEOS:
+          echo "BeOS\n";
+          break;
+  }
+?>
+
+
+
+
+
+vim:ft=help:

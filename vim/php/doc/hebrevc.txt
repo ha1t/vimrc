@@ -1,0 +1,6 @@
+hebrevc --
+論理表記のヘブライ語を、改行の変換も含めて物理表記に変換する
+
+  string hebrevc(string hebrew_text [, int max_chars_per_line])~
+
+vim:ft=help:

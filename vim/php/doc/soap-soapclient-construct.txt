@@ -1,0 +1,117 @@
+SoapClient->__construct() -- SoapClient コンストラクタ
+
+このコンストラクタは、WSDL モードもしくは 非 WSDL
+モードで SoapClient オブジェクトを生成します。
+
+{wsdl} WSDL ファイルの URI もしくは 非 WSDL モードの場合 NULL
+
+開発中は、WSDL のキャッシュを php.ini の soap.wsdl_cache_ttl
+で無効にしておくとよいでしょう。 そうしないと、WSDL
+を変更しても soap.wsdl_cache_ttl
+で設定した時間が経過するまで
+それが反映されなくなります。
+
+{options} オプションの配列。もし WSDL
+モードで動作させる場合、
+このパラメータはオプションです。非 WSDL
+モードで動作させる場合、 location と uri
+オプションを指定する必要があります。ここで、 location
+はリクエストを行う URL、 uri は SOAP
+サービスのターゲット名前空間です。
+
+style および use オプション は非 WSDL
+モードでのみ動作します。 WSDL モードでは、これらは WSDL
+ファイルで指定されます。
+
+soap_version オプションは、 SOAP 1.1 または SOAP 1.2
+クライアントのどちらを使用するかを指定します。
+
+HTTP 認証用として、login および password
+オプションが使用可能です。 プロキシサーバ経由で HTTP
+接続を確立する場合は、 proxy_host, proxy_port, proxy_login
+および proxy_password の各オプションを使用してください。
+
+compression オプションにより、 HTTP SOAP
+リクエストやレスポンスの圧縮を行うことができます。
+
+encoding
+オプションは内部的な文字エンコーディングを定義します。
+このオプションは SOAP リクエストのエンコーディング
+(常に utf-8)
+を変更しませんが、その中の文字列を変換します。
+
+classmap オプションは WSDL 型を PHP
+クラスにマッピングするために使用可能です。
+このオプションには、キーとしてWSDL 型、値として PHP
+クラスの名前を持つ配列を指定する必要があります。
+
+boolean のオプション trace を設定すると、
+SoapClient->__getLastRequest、 SoapClient->__getLastRequestHeaders、
+SoapClient->__getLastResponse および SoapClient->__getLastResponseHeaders
+といったメソッドが使用できるようになります。
+
+exceptions オプションは boolean 値で、soap のエラー時に
+SoapFault 型の例外をスローさせるかどうかを設定します。
+
+connection_timeout オプションは、SOAP
+サービスに接続する際のタイムアウト秒数を指定します。
+これを使用しても、レスポンスが遅いサービスのタイムアウトを定義することはできません。
+サービスのコールが完了するまでの待ち時間を制限するには、設定項目
+default_socket_timeout を使用します。
+
+typemap オプションは、型マッピングの配列です。
+この配列のキーは type_name、 type_ns (名前空間 URI)、from_xml
+(引数として文字列をひとつ受け取るコールバック) そして
+to_xml
+(引数としてオブジェクトをひとつ受け取るコールバック)
+です。
+
+その他には stream_context や features、 cache_wsdl そして user_agent
+といったオプションがあります。
+
+SoapClient の例
+
+<?php >
+  $client = new SoapClient("some.wsdl");
+  
+  $client = new SoapClient("some.wsdl", array('soap_version'   => SOAP_1_2));
+  
+  $client = new SoapClient("some.wsdl", array('login'          => "some_name",
+                                              'password'       => "some_password"));
+  
+  $client = new SoapClient("some.wsdl", array('proxy_host'     => "localhost",
+                                              'proxy_port'     => 8080));
+  
+  $client = new SoapClient("some.wsdl", array('proxy_host'     => "localhost",
+                                              'proxy_port'     => 8080,
+                                              'proxy_login'    => "some_name",
+                                              'proxy_password' => "some_password"));
+  
+  $client = new SoapClient("some.wsdl", array('local_cert'     => "cert_key.pem"));
+  
+  $client = new SoapClient(null, array('location' => "http://localhost/soap.php",
+                                       'uri'      => "http://test-uri/"));
+  
+  $client = new SoapClient(null, array('location' => "http://localhost/soap.php",
+                                       'uri'      => "http://test-uri/",
+                                       'style'    => SOAP_DOCUMENT,
+                                       'use'      => SOAP_LITERAL));
+  
+  $client = new SoapClient("some.wsdl",
+    array('compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP));
+  
+  $server = new SoapClient("some.wsdl", array('encoding'=>'ISO-8859-1'));
+  
+  class MyBook {
+      public $title;
+      public $author;
+  }
+  
+  $server = new SoapClient("books.wsdl", array('classmap' => array('book' => "MyBook")));
+?>
+
+
+
+
+
+vim:ft=help:

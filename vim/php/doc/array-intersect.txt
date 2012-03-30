@@ -1,0 +1,42 @@
+array_intersect -- 配列の共通項を計算する
+
+  array array_intersect(array array1, array array2 [, array ...])~
+
+|array_intersect| は、他の全ての引数に存在する {array1}
+の値を全て有する配列を返します。
+キーと値の関係は維持されることに注意してください。
+
+{array1} 値を調べるもととなる配列。
+
+{array2} 値を比較する対象となる配列。
+
+{array} さらにそれ以外の配列。
+
+{array1} の値のうち、
+すべての引数に存在する値のものを含む連想配列を返します。
+
+|array_intersect| の例
+
+<?php >
+  $array1 = array("a" => "green", "red", "blue");
+  $array2 = array("b" => "green", "yellow", "red");
+  $result = array_intersect($array1, $array2);
+  print_r($result);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [a] => green
+      [0] => red
+  )
+
+
+
+二つの要素は、 (string) $elem1 === (string) $elem2
+の場合のみ等しいとみなされます。言い換えると、文字列表現が同じ場合となります。
+
+|array_intersect_assoc| |array_diff| |array_diff_assoc|
+
+vim:ft=help:

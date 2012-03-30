@@ -1,0 +1,9 @@
+PDF_stroke -- パスを描く
+
+  bool PDF_stroke(resource p)~
+
+現在の色および線幅でパスの輪郭を描画し、パスをクリアします。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

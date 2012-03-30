@@ -1,0 +1,22 @@
+dbplus_rkeys -- リレーションの主キーを新規に指定する
+
+  mixed dbplus_rkeys(resource relation, mixed domlist)~
+
+|dbplus_rkeys| は、 {relation} に指定された現在の主キーを、
+{domlist} で指定されたドメインに変更します。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+{domlist}
+ドメインの組み合わせ。ドメイン名を含む文字列あるいは
+複数のドメイン名を含む配列を渡します。
+
+成功した場合にリソース、失敗した場合に DBPLUS_ERR_UNKNOWN
+を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

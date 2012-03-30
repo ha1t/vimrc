@@ -1,0 +1,41 @@
+pg_lo_unlink -- ラージオブジェクトを削除する
+
+  bool pg_lo_unlink(resource connection, int oid)~
+
+|pg_lo_unlink|は、{oid}で
+関連付けられたラージオブジェクトを削除します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+この関数は、以前は |pg_lounlink| と呼ばれていました。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{oid} データベース内のラージオブジェクトの OID 。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_lo_unlink| の例
+
+<?php >
+     // 削除するラージオブジェクトの OID
+     $doc_oid = 189762345;
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     pg_lo_unlink($database, $doc_oid);
+     pg_query($database, "commit");
+?>
+
+
+
+
+
+|pg_lo_create| |pg_lo_import|
+
+vim:ft=help:

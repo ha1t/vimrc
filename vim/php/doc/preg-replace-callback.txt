@@ -1,0 +1,131 @@
+preg_replace_callback --
+正規表現検索を行い、コールバック関数を使用して置換を行う
+
+  mixed preg_replace_callback(mixed pattern, callback callback, mixed subject [, int limit [, int count]])~
+
+この関数の動作は、ほぼ |preg_replace| と同じですが、
+{replacement} の代わりに {callback}
+を指定するところが異なります。
+
+{pattern} 検索するパターン。
+文字列あるいは文字列の配列のいずれかとなります。
+
+{callback}
+このコールバック関数は、検索対象文字列でマッチした要素の配列が指定されて
+コールされます。このコールバック関数は、置換後の文字列を返す必要があります。
+
+しばしば、1カ所だけで |preg_replace_callback|用の
+{callback}関数が必要となることがあります。
+この場合、|create_function|を使用して、 |preg_replace_callback|
+をコールする際
+に使用するコールバック関数として匿名の関数を宣言することができます。
+このようにすることにより、コールに関するすべての情報を
+1 ヶ所に集め、
+他の場所で使用されないコールバック関数名で関数の名前空間を
+汚染しないようにすることができます。
+
+|preg_replace_callback| と |create_function|
+
+<?php >
+  /* Unix 方式のコマンドラインフィルタです。
+   * 段落の冒頭の大文字を、小文字に変換します。*/
+  $fp = fopen("php://stdin", "r") or die("標準入力から読み込めません");
+  while (!feof($fp)) {
+      $line = fgets($fp);
+      $line = preg_replace_callback(
+          '|<p>\s*\w|',
+          create_function(
+              // ここでは単一引用符の使用が不可欠です。
+              // そうでない場合は、$ をすべて \$ とエスケープします。
+              '$matches',
+              'return strtolower($matches[0]);'
+          ),
+          $line
+      );
+      echo $line;
+  }
+  fclose($fp);
+?>
+
+
+
+
+
+{subject} 文字列あるいは文字列の配列で、
+検索および置換の対象となる文字列を指定します。
+
+{limit} {subject} 文字列における
+各パターンの最大置換回数。デフォルトは -1 (無制限)
+です。
+
+{count}
+指定した場合は、置換を行った回数がここに格納されます。
+
+|preg_replace_callback| は、 {subject} が配列の場合には配列を、
+それ以外の場合は文字列を返します。
+
+マッチするものが見つかった場合は新しい subject
+を返し、それ以外の場合はもとの {subject}
+をそのまま返します。
+
+バージョン 説明 5.1.0 パラメータ {count}
+が追加されました。
+
+|preg_replace_callback| の例
+
+<?php >
+  // このテキストは 2002 に使われていたものなのですが、
+  // これを 2003 年対応の日付に変更したいのです
+  $text = "エイプリルフールの日付は 04/01/2002 です\n";  
+  $text.= "この前のクリスマスの日付は 12/24/2001 でした\n";  
+  // コールバック関数
+  function next_year($matches)
+  {
+    // 通常は、$matches[0] がマッチした全体を表します。
+    // $matches[1] は、マッチした中で、パターン内の最初の '(...)'
+    // にあてはまる部分を表します。それ以降も同様です。
+    return $matches[1].($matches[2]+1);
+  }
+  echo preg_replace_callback(
+              "|(\d{2}/\d{2}/)(\d{4})|",
+              "next_year",
+              $text);
+?>
+
+上の例の出力は以下となります。
+
+  エイプリルフールの日付は 04/01/2003 です
+  この前のクリスマスの日付は 12/24/2002 でした
+
+
+
+カプセル化された BB code を処理するための、
+|preg_replace_callback| での再帰構造の使用
+
+<?php >
+  $input = "通常の位置 [indent] 字下げ [indent] もっと字下げ [/indent] 字下げ [/indent] 通常の位置"; 
+  
+  function parseTagsRecursive($input)
+  {
+  
+      $regex = '#\[indent]((?:[^[]|\[(?!/?indent])|(?R))+)\[/indent]#';
+  
+      if (is_array($input)) {
+          $input = '<div style="margin-left: 10px">'.$input[1].'</div>';
+      }
+  
+      return preg_replace_callback($regex, 'parseTagsRecursive', $input);
+  }
+  
+  $output = parseTagsRecursive($input);
+  
+  echo $output;
+?>
+
+
+
+
+
+|preg_replace| |create_function| callback 型に関する情報
+
+vim:ft=help:

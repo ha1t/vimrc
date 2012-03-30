@@ -1,0 +1,10 @@
+PDF_activate_item --
+構造体要素やその他の内容をアクティブにする
+
+  bool PDF_activate_item(resource pdfdoc, int id)~
+
+事前に作成された構造体要素やその他の内容をアクティブにします。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

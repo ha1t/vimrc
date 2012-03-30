@@ -1,0 +1,22 @@
+sem_acquire -- セマフォを得る
+
+  bool sem_acquire(resource sem_identifier)~
+
+|sem_acquire| は、(必要な場合)
+セマフォが確保できるまでブロックします。
+既に確保されているセマフォを得ようとするプロセスは、
+セマフォの獲得により max_aquire 値を超える場合、
+永久にブロックされます。
+
+リクエスト処理の後、プロセスにより獲得された全てのセマフォのうち、
+明示的に開放されていないものが自動的に開放され、警告が表示されます。
+
+{sem_identifier} {sem_identifier} はセマフォのリソースで、
+|sem_get| によって得られます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|sem_get| |sem_release|
+
+vim:ft=help:

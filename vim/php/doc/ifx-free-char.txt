@@ -1,0 +1,15 @@
+ifx_free_char -- 文字オブジェクトを削除する
+
+  bool ifx_free_char(int bid)~
+
+指定したオブジェクト ID
+の文字オブジェクトを削除します。
+
+{bid} 文字オブジェクト ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ifx_create_char|
+
+vim:ft=help:

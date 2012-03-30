@@ -1,0 +1,23 @@
+domxml_xslt_version -- XSLT ライブラリのバージョンを取得する
+
+  int domxml_xslt_version()~
+
+XSLT ライブラリのバージョンを取得します。
+
+XSLT ライブラリのバージョン番号を整数で返します。
+
+|domxml_xslt_version| の例
+
+<?php >
+  echo domxml_xslt_version();
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  10112
+
+
+
+|domxml_version|
+
+vim:ft=help:

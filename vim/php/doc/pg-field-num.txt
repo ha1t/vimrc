@@ -1,0 +1,40 @@
+pg_field_num --
+指定されたフィールドのフィールド番号を返す
+
+  int pg_field_num(resource result, string field_name)~
+
+|pg_field_num| は、指定した PostgreSQL の
+結果リソース({result})において {field_name}
+に相当するカラム(フィールド)
+のフィールド番号を返します。
+
+この関数は、以前は |pg_fieldnum| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{field_name} フィールドの名前。
+
+フィールド番号（0
+から始まります）を返します。エラー時には -1
+を返します。
+
+フィールドの情報を取得する
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    $res = pg_query($dbconn, "select author, year, title from authors where author = 'Orwell'");
+    
+    echo "Column 'title' is field number: ", pg_field_num($res, 'title');
+?>
+
+上の例の出力は以下となります。
+
+  Column 'title' is field number: 2
+
+
+
+|pg_field_name|
+
+vim:ft=help:

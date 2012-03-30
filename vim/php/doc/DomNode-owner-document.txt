@@ -1,0 +1,28 @@
+DomNode->owner_document -- このノードが属する文章を返す
+
+  domdocument DomNode->owner_document()~
+
+この関数は現在のノードが属している文章を返します。
+
+以下の例は 2 つの等しい子ノードリストを作成します。
+ノードの文章を検出する
+
+<?php >
+  $doc = domxml_new_doc("1.0");
+  $node = $doc->create_element("para");
+  $node = $doc->append_child($node);
+  $children = $doc->children();
+  print_r($children);
+  
+  $doc2 = $node->owner_document();
+  $children = $doc2->children();
+  print_r($children);
+?>
+
+
+
+
+
+|domnode_insert_before| も参照ください。
+
+vim:ft=help:

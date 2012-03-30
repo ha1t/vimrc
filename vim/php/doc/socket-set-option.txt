@@ -1,0 +1,61 @@
+socket_set_option -- ソケットのオプションを設定する
+
+  bool socket_set_option(resource socket, int level, int optname, mixed optval)~
+
+|socket_set_option| 関数は、{level}
+が指すプロトコルレベルでソケット {socket} のオプション
+{optname} に値 {optval} を設定します。
+
+{socket} |socket_create| あるいは |socket_accept|
+で作成したソケットリソース。
+
+{level} {level}
+パラメータは、オプションのプロトコルレベルを指定します。
+例えば、オプションをソケットレベルで取得するには
+{level} パラメータに SOL_SOCKET を指定します。 TCP
+のようなそれ以外のレベルの場合、そのレベルのプロトコル番号を指定します。
+プロトコル番号は |getprotobyname|
+関数を使用して取得可能です。
+
+{optname} 使用可能なソケットオプションは |socket_get_option|
+関数と同じです。
+
+{optval} オプションの値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|socket_set_option| の例
+
+<?php >
+  $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+  
+  if (!is_resource($socket)) {
+      echo 'ソケットを作成できません: '. socket_strerror(socket_last_error()) . PHP_EOL;
+  }
+  
+  if (!socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1)) {
+      echo 'ソケットのオプションを設定できません: '. socket_strerror(socket_last_error()) . PHP_EOL;
+  }
+  
+  if (!socket_bind($socket, '127.0.0.1', 1223)) {
+      echo 'ソケットをバインドできません: '. socket_strerror(socket_last_error()) . PHP_EOL;
+  }
+  
+  $rval = socket_get_option($socket, SOL_SOCKET, SO_REUSEADDR);
+  
+  if ($rval === false) {
+      echo 'ソケットのオプションを取得できません: '. socket_strerror(socket_last_error()) . PHP_EOL;
+  } else if ($rval !== 0) {
+      echo 'SO_REUSEADDR がソケットに設定されています!' . PHP_EOL;
+  }
+?>
+
+
+
+
+
+バージョン 説明 4.3.0 関数の名前が変わりました。以前は
+|socket_setopt| という名前でした。
+
+vim:ft=help:

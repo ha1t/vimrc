@@ -1,0 +1,14 @@
+tidy_reset_config -- Tidy の設定をデフォルト値に戻す
+
+  bool tidy_reset_config()~
+
+この関数は、Tidy の設定をデフォルト値に戻します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、Tidy 1.0 でのみ利用可能です。
+この関数は、Tidy 2.0
+では古い関数として削除されているためです。
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+dbplus_freerlocks --
+指定したリレーションに関する全てのタプルロックを解放する
+
+  int dbplus_freerlocks(resource relation)~
+
+指定した {relation}
+で保持されている全てのタプルロックを解放します。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|dbplus_getlock| |dbplus_freelock| |dbplus_freealllocks|
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+stream_socket_get_name --
+ローカルまたはリモートのソケットの名前を取得する
+
+  string stream_socket_get_name(resource handle, bool want_peer)~
+
+与えられたソケット接続のローカルまたはリモートでの名前を取得します。
+{want_peer} が TRUE にセットされている時は、
+リモートでのソケットの名前が、FALSE
+の時は、ローカルでのソケットの名前が 返されます。
+
+|stream_socket_accept| も参照ください。
+
+vim:ft=help:

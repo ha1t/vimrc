@@ -1,0 +1,55 @@
+mcal_fetch_current_stream_event --
+現在のイベント構造体ストリームを有するオブジェクトを返す
+
+  object mcal_fetch_current_stream_event(int stream)~
+
+現在のイベント構造ストリームを含むオブジェクトを返します。
+
+{stream} MCAL ストリーム。
+
+|mcal_fetch_current_stream_event|
+は、現在のイベント構造ストリームを、
+以下のような内容を含むオブジェクトで返します。 int id -
+イベントID
+
+int public - イベントが public の場合に TRUE、private の場合に
+FALSE。
+
+string category - イベントの Category 文字列。
+
+string title - イベントの Title 文字列。
+
+string description - イベントの Description 文字列。
+
+int alarm -
+アラーム・リマインダを送るイベントまでの分単位の時間。
+
+object start - 開始 datetime エントリを有するオブジェクト。
+
+object end - 終了 datetime エントリを有するオブジェクト。
+
+int recur_type - 繰り返し型
+
+int recur_interval - 繰り返し間隔
+
+datetime recur_enddate - 繰り返し終了日
+
+int recur_data - 繰り返しデータ
+
+全ての datetime
+エントリは、次の要素を有するオブジェクトから
+構成されます。 int year - 年
+
+int month - 月
+
+int mday - 日
+
+int hour - 時間
+
+int min - 分
+
+int sec - 秒
+
+int alarm - イベントを送信するまでの分単位の時間
+
+vim:ft=help:

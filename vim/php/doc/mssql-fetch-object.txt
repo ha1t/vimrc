@@ -1,0 +1,29 @@
+mssql_fetch_object -- オブジェクトとして行を取得する
+
+  object mssql_fetch_object(resource result)~
+
+|mssql_fetch_object| は |mssql_fetch_array|
+に似ていますが、配列の代わりに
+オブジェクトが返されるという違いがあります。
+間接的にこのことは、データをフィールド名でのみアクセスすることが
+可能であり、そのオフセットではアクセスできないことを意味します
+(番号はプロパティ名としては使用できません)。
+
+速度面でこの関数は |mssql_fetch_array| と同等であり、
+|mssql_fetch_row| とほとんど同じです (違いは僅かです)。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+取得された行に対応するプロパティを有するオブジェクト、
+またはもう行がない場合に FALSE を返します。
+
+この関数により返されるフィー ルド名は
+大文字小文字を区別 します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|mssql_fetch_array| |mssql_fetch_row|
+
+vim:ft=help:

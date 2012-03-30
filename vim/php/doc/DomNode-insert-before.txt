@@ -1,0 +1,49 @@
+DomNode->insert_before -- 新規ノードを子ノードとして挿入する
+
+  domelement DomNode->insert_before(domelement newnode, domelement refnode)~
+
+この関数は新規ノード {newnode} をノード {refnode}
+の直前に挿入します。 戻り値は挿入されたノードです。
+もし追加された子ノードを変更するつもりであれば、
+返されたノードを使用する必要があります。
+
+(PHP >= 4.3 のみ) {newnode}
+がすでに文章の一部である場合、最初に既存のコンテキストから削除されます。
+もし {refnode} が NULL の場合、 {newnode}
+は子ノードリストの最後に挿入されます。
+
+|domnode_insert_before| は |domnode_append_child| に非常に似ており、
+以下の例は |domnode_append_child|
+にある例と同様のことを行うことを示しています。
+
+子ノードを追加する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+    echo "Error while parsing the document\n";
+    exit;
+  }
+  
+  $elements = $dom->get_elements_by_tagname("informaltable");
+  print_r($elements);
+  $element = $elements[0];
+  
+  $newnode = $element->insert_before($element, $element);
+  $children = $newnode->children();
+  $attr = $children[1]->set_attribute("align", "left");
+  
+  echo "<pre>";
+  $xmlfile = $dom->dump_mem();
+  echo htmlentities($xmlfile);
+  echo "</pre>";
+?>
+
+
+
+
+
+|domnode_append_child| も参照ください。
+
+vim:ft=help:

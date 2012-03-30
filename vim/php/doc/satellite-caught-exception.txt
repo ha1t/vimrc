@@ -1,0 +1,42 @@
+satellite_caught_exception --
+例外が前の関数からキャッチされたかどうかを調べる
+
+  bool satellite_caught_exception()~
+
+この関数は、例外がキャッチされた場合にTRUEを返します。
+
+IDLファイルのサンプル
+
+  /* ++?????++ Out of Cheese Error. Redo From Start. */
+  exception OutOfCheeseError {
+      int parameter;
+  }
+  
+  interface AnotherInterface {
+      void AskWhy() raises (OutOfCheeseError);
+  }
+
+
+
+
+
+CORBA例外を処理するPHPコード
+
+<?php >
+  $obj = new OrbitObject ($ior);
+  
+  $obj->AskWhy();
+  
+  if (satellite_caught_exception()) {
+      if ("IDL:OutOfCheeseError:1.0" == satellite_exception_id()) {
+          $exception = satellite_exception_value();
+          echo $exception->parameter;
+      }
+  }
+?>
+
+
+
+
+
+vim:ft=help:

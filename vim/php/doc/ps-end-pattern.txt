@@ -1,0 +1,15 @@
+ps_end_pattern -- パターンを終了する
+
+  bool ps_end_pattern(resource psdoc)~
+
+|ps_begin_pattern| によって開始したパターンを終了します。
+パターンが終了すると、領域の塗りつぶし時にそれを使用できるようになります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_begin_pattern|
+
+vim:ft=help:

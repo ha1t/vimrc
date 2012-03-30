@@ -1,0 +1,14 @@
+ovrimos_commit -- トランザクションをコミットする
+
+  bool ovrimos_commit(int connection_id)~
+
+トランザクションをコミットします。
+
+{connection_id} |ovrimos_connect| が返す Ovrimos 接続 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ovrimos_rollback|
+
+vim:ft=help:

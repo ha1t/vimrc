@@ -1,0 +1,15 @@
+newt_grid_wrapped_window --
+
+  void newt_grid_wrapped_window(resource grid, string title)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{grid}
+
+{title}
+
+値を返しません。
+
+vim:ft=help:

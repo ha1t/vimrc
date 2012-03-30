@@ -1,0 +1,17 @@
+imagepsslantfont -- フォントを傾ける
+
+  bool imagepsslantfont(resource font_index, float slant)~
+
+指定したフォントを傾けます。
+
+{font_index}
+
+{slant}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、PHP が --with-t1lib
+を指定してコンパイルされている場合のみ使用可能です。
+
+vim:ft=help:

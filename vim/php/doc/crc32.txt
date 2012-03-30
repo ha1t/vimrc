@@ -1,0 +1,31 @@
+crc32 -- 文字列の crc32 多項式計算を行う
+
+  int crc32(string str)~
+
+{str} の 32 ビット長の CRC (cyclic redundancy checksum)
+チェックサムを生成します。
+これは通常、送信したデータの整合性を検証するために使用します。
+
+PHP の整数型は符号付きで、多くの crc32
+チェックサムは負の整数になるため、 符号なしの crc32
+チェックサムの文字列表記を取得するには |sprintf|
+もしくは |printf| の "%u"
+フォーマッタを使用する必要があります。
+
+{str} データ。
+
+
+
+crc32 チェックサムの表示 この例は |printf|
+関数を用いた変換後のチェックサムの表示方法を示しています。
+
+<?php >
+  $checksum = crc32("The quick brown fox jumped over the lazy dog.");
+  printf("%u\n", $checksum);
+?>
+
+
+
+|md5| |sha1|
+
+vim:ft=help:

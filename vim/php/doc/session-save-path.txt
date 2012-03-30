@@ -1,0 +1,23 @@
+session_save_path --
+現在のセッションデータ保存パスを取得または設定する
+
+  string session_save_path([string path])~
+
+|session_save_path| は、
+現在のセッションデータ保存パスを返します。
+
+{path} セッションデータのパス。これを指定すると、
+データを保存するパスが変更されます。ただしそのためには
+|session_start| がコールされる前に |session_save_path|
+がコールされている必要があります。
+
+いくつかのオペレーションシステムでは、多くの小さなファイルを効率的に
+処理するファイルシステム上にパスを指定することが望ましいです。
+例えば、Linux では ext2fs よりも reiserfs の方が性能面でより
+優れています。
+
+現在のデータ保存先ディレクトリのパスを返します。
+
+設定ディレクティブ session.save_path
+
+vim:ft=help:

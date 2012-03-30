@@ -1,0 +1,63 @@
+pg_send_query -- 非同期クエリを送信する
+
+  bool pg_send_query(resource connection, string query)~
+
+|pg_send_query| は、{connection}
+に非同期クエリを送信します。|pg_query| とは異なり、
+PostgreSQL へ一度に複数のクエリを送信することができ、
+|pg_get_result|
+を用いて結果を一つずつ取得することが可能です。
+
+スクリプトの実行は、クエリを実行中もブロックされません。
+接続がビジーである(すなわち、クエリが実行中である)ことを調べるには、
+|pg_connection_busy| を使用してください。
+クエリは、|pg_cancel_query|
+をコールすることによりキャンセルすることが可能です。
+
+ユーザは複数のクエリを一度に送信することができますが、
+複数のクエリをビジー状態の接続に送信することはできません。
+クエリがビジー状態の接続に送信された場合、
+最後のクエリが終了するまで待ち、全ての結果は破棄されます。
+
+{connection} PostgreSQL データベース接続リソース。
+
+{query} 実行するひとつまたは複数の SQL 文。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+クエリの結果を利用するには |pg_get_result| を使用します。
+
+|pg_send_query| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    if (!pg_connection_busy($dbconn)) {
+        pg_send_query($dbconn, "select * from authors; select count(*) from authors;");
+    }
+    
+    $res1 = pg_get_result($dbconn);
+    echo "First call to pg_get_result(): $res1\n";
+    $rows1 = pg_num_rows($res1);
+    echo "$res1 has $rows1 records\n\n";
+    
+    $res2 = pg_get_result($dbconn);
+    echo "Second call to pg_get_result(): $res2\n";
+    $rows2 = pg_num_rows($res2);
+    echo "$res2 has $rows2 records\n";
+?>
+
+上の例の出力は以下となります。
+
+  First call to pg_get_result(): Resource id #3
+  Resource id #3 has 3 records
+  
+  Second call to pg_get_result(): Resource id #4
+  Resource id #4 has 1 records
+
+
+
+|pg_query| |pg_cancel_query| |pg_get_result| |pg_connection_busy|
+
+vim:ft=help:

@@ -1,0 +1,22 @@
+crack_opendict -- 新規CrackLib辞書をオープンする
+
+  resource crack_opendict(string dictionary)~
+
+|crack_opendict| は、指定した CrackLib {dictionary}
+をオープンします。この辞書は、
+|crack_check|で使用されます。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+1度にオープンできる辞書は1つだけです。
+
+{dictionary} Cracklib辞書のパス。
+
+成功時に辞書のリソースID、失敗時に FALSE 。
+
+|crack_check| |crack_closedict|
+
+vim:ft=help:

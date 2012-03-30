@@ -1,0 +1,52 @@
+curl_multi_add_handle -- cURL マルチハンドルに、通常の cURL
+ハンドルを追加する
+
+  int curl_multi_add_handle(resource mh, resource ch)~
+
+{ch} ハンドルを、マルチハンドル {mh} に追加します。
+
+{mh} |curl_multi_init| が返す cURL マルチハンドル。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+成功した場合に 0、あるいはエラーコード CURLM_XXX
+のいずれかを返します。
+
+|curl_multi_add_handle| の例 この例は、ふたつの cURL
+ハンドルを作成し、それをマルチハンドルに追加して並列実行します。
+
+<?php >
+  // cURL リソースを作成します
+  $ch1 = curl_init();
+  $ch2 = curl_init();
+  
+  // URL およびその他適切なオプションを設定します。
+  curl_setopt($ch1, CURLOPT_URL, "http://www.example.com/");
+  curl_setopt($ch1, CURLOPT_HEADER, 0);
+  curl_setopt($ch2, CURLOPT_URL, "http://www.php.net/");
+  curl_setopt($ch2, CURLOPT_HEADER, 0);
+  
+  // マルチ cURL ハンドルを作成します
+  $mh = curl_multi_init();
+  
+  // ふたつのハンドルを追加します
+  curl_multi_add_handle($mh,$ch1);
+  curl_multi_add_handle($mh,$ch2);
+  
+  $running=null;
+  // ハンドルを実行します
+  do {
+      curl_multi_exec($mh,$running);
+  } while($running > 0);
+  
+  // すべてのハンドルを閉じます
+  curl_multi_remove_handle($ch1);
+  curl_multi_remove_handle($ch2);
+  curl_multi_close($mh);
+?>
+
+
+
+|curl_multi_remove_handle| |curl_multi_init| |curl_init|
+
+vim:ft=help:

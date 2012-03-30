@@ -1,0 +1,16 @@
+mcal_time_valid -- 時刻を検証する
+
+  bool mcal_time_valid(int hour, int minutes, int seconds)~
+
+時刻を検証します。
+
+{hour} 時間。
+
+{minutes} 分。
+
+{seconds} 秒。
+
+指定した時刻が有効である場合に TRUE、そうでない場合に
+FALSE を返します。
+
+vim:ft=help:

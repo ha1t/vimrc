@@ -1,0 +1,23 @@
+mb_ereg_match --
+マルチバイト文字列が正規表現に一致するか調べる
+
+  bool mb_ereg_match(string pattern, string string [, string option])~
+
+マルチバイト文字列に対する正規表現マッチングを行います。
+
+{pattern} 正規表現パターン。
+
+{string} 評価する文字列。
+
+{option}
+
+{string} が正規表現 {pattern} に一致する場合にTRUE 、
+そうでない場合に FALSE を返します。
+
+内部エンコーディングあるいは |mb_regex_encoding|
+で指定した文字エンコーディングを、
+この関数の文字エンコーディングとして使用します。
+
+|mb_regex_encoding| |mb_ereg|
+
+vim:ft=help:

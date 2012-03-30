@@ -1,0 +1,31 @@
+urldecode -- URL エンコードされた文字列をデコードする
+
+  string urldecode(string str)~
+
+与えられた文字列中のあらゆるエンコード文字 %##
+をデコードします。
+
+{str} デコードする文字列。
+
+デコードした文字列を返します。
+
+|urldecode| の例
+
+<?php >
+  $a = explode('&amp;', $QUERY_STRING);
+  $i = 0;
+  while ($i < count($a)) {
+      $b = split('=', $a[$i]);
+      echo 'Value for parameter ', htmlspecialchars(urldecode($b[0])),
+           ' is ', htmlspecialchars(urldecode($b[1])), "<br />\n";
+      $i++;
+  }
+?>
+
+
+
+
+
+|urlencode| |rawurlencode| |rawurldecode|
+
+vim:ft=help:

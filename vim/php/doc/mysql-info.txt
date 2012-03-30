@@ -1,0 +1,43 @@
+mysql_info -- 直近のクエリについての情報を得る
+
+  string mysql_info([resource link_identifier])~
+
+直近のクエリについての詳細な情報を返します。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に文についての情報、失敗した場合に FALSE
+を返します。
+どんな文が情報を返し、またそれがどのように見えるのかについては、以下の
+例を参照ください。ここに挙げられていない文では FALSE
+が返されます。
+
+該当する MySQL 文
+情報を返す文の例です。数値はあくまで説明用の例で、実際の値は
+クエリの内容によって変わります。
+
+  INSERT INTO ... SELECT ...
+  String format: Records: 23 Duplicates: 0 Warnings: 0 
+  INSERT INTO ... VALUES (...),(...),(...)...
+  String format: Records: 37 Duplicates: 0 Warnings: 0 
+  LOAD DATA INFILE ...
+  String format: Records: 42 Deleted: 0 Skipped: 0 Warnings: 0 
+  ALTER TABLE
+  String format: Records: 60 Duplicates: 0 Warnings: 0 
+  UPDATE
+  String format: Rows matched: 65 Changed: 65 Warnings: 0
+
+
+
+INSERT ... VALUES 文で |mysql_info| が非 FALSE 値を
+返すのは、文中で複数の値のリストが指定された場合に限ります。
+
+|mysql_affected_rows| |mysql_insert_id| |mysql_stat|
+
+vim:ft=help:

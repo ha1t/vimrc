@@ -1,0 +1,50 @@
+str_ireplace -- 大文字小文字を区別しない str_replace
+
+  mixed str_ireplace(mixed search, mixed replace, mixed subject [, int count])~
+
+この関数は、{subject} の中に現れるすべての
+{search}(大文字小文字を区別しない)を {replace}
+に置き換えた文字列あるいは配列を
+返します。一般に、凝った置換ルールが必要ないのであれば、
+|eregi_replace| あるいは |preg_replace| で i 修正子を
+使用するかわりにこの関数を使用すべきです。
+
+{search} すべての {search} 配列による置換は、
+直前の置換の結果に対して作用します。
+
+{replace}
+
+{subject} {subject} が配列の場合は、そのすべての要素に
+対して検索と置換が行われ、返される結果も配列となります。
+
+{count} {needles} の中で、マッチして置換を行った数を {count}
+に返します。このパラメータは参照渡しとします。
+
+{search} および {replace} が配列の場合は、 |str_ireplace|
+はそれぞれの配列から取り出した 値を使用して {subject}
+の置換を行います。 {replace} の要素数が {search}
+より少ない場合は、残りの要素は
+空の文字列に置き換えられます。もし {search} が配列で
+{replace} が文字列だった場合は すべての {search}
+が同じ文字列に置き換えられます。
+
+置換した文字列あるいは配列を返します。
+
+バージョン 説明 5.0.0 {count}
+パラメータが追加されました。
+
+|str_ireplace| の例
+
+<?php >
+  $bodytag = str_ireplace("%body%", "black", "<body text=%BODY%>");
+?>
+
+
+
+
+
+この関数はバイナリセーフです。
+
+|str_replace| |preg_replace| |strtr|
+
+vim:ft=help:

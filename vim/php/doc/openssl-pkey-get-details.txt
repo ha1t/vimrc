@@ -1,0 +1,16 @@
+openssl_pkey_get_details -- キーの詳細の配列を返す
+
+  array openssl_pkey_get_details(resource key)~
+
+この関数は、キーの詳細 (bits, key, type) を返します。
+
+{key} キーを保持する配列。
+
+成功した場合にキーの詳細を含む配列、失敗した場合に
+FALSE を返します。 返される配列のキーは bits (ビット数)、
+key (公開鍵を表す文字列) および type (キーの種類。
+OPENSSL_KEYTYPE_RSA、 OPENSSL_KEYTYPE_DSA、 OPENSSL_KEYTYPE_DH、
+OPENSSL_KEYTYPE_EC のいずれか。あるいは不明な場合は -1)
+となります。
+
+vim:ft=help:

@@ -1,0 +1,43 @@
+ssh2_sftp_stat --
+リモートファイルシステム上のファイルの情報を取得する
+
+  array ssh2_sftp_stat(resource sftp, string path)~
+
+シンボリックリンクを辿って
+リモートファイルシステム上のファイルの情報を取得します。
+
+PHP 5 では、この関数は ssh2.sftp://
+ラッパーを使用した場合の |stat| 関数と同様です。
+返される値も同じです。
+
+{sftp} |ssh2_sftp| でオープンした SSH2 SFTP リソース。
+
+{path}
+
+どのような値が返されるのかについての詳細は、 |stat|
+を参照ください。
+
+SFTP 経由でのファイルの情報の取得
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  
+  $sftp = ssh2_sftp($connection);
+  $statinfo = ssh2_sftp_stat($sftp, '/path/to/file');
+  
+  $filesize = $statinfo['size'];
+  $group = $statinfo['gid'];
+  $owner = $statinfo['uid'];
+  $atime = $statinfo['atime'];
+  $mtime = $statinfo['mtime'];
+  $mode = $statinfo['mode'];
+?>
+
+
+
+
+
+|ssh2_sftp_lstat| |lstat| |stat|
+
+vim:ft=help:

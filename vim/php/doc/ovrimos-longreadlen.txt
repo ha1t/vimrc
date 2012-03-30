@@ -1,0 +1,16 @@
+ovrimos_longreadlen -- long
+データ型から取得されるバイト数を指定する
+
+  bool ovrimos_longreadlen(int result_id, int length)~
+
+long データ型 (long varchar とlong varbinary)
+から取得するバイト数を指定します。
+
+{result_id} |ovrimos_execute| あるいは |ovrimos_exec| が返す結果
+ID。
+
+{length} 取得するバイト数。デフォルトはゼロ。
+
+TRUE を返します。
+
+vim:ft=help:

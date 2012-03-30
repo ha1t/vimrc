@@ -1,0 +1,14 @@
+cpdf_setlinejoin -- linejoin パラメータを設定する
+
+  bool cpdf_setlinejoin(int pdf_document, int value)~
+
+linejoin パラメータを設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{value} 0 = miter, 1 = round, 2 = bevel。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

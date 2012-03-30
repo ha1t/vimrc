@@ -1,0 +1,46 @@
+pg_field_type_oid -- フィールド番号に対応する型
+ID（OID）を返す
+
+  int pg_field_type_oid(resource result, int field_number)~
+
+|pg_field_type_oid| は、指定した PostgreSQL {result}
+リソースにおける指定した {field_number} の型の OID
+を返します。
+
+フィールド型についての詳細な情報を得るには、PostgreSQL
+のシステムテーブル pg_type に対して、この関数で取得した
+OID を用いて 問い合わせます。PostgreSQL の |format_type|
+関数は、 型の OID を SQL の型名に変換します。
+
+フィールドが（基本型ではなく）PostgreSQL
+ドメインを使用している場合は、 ドメインそのものの OID
+ではなくドメインの元となっている型の OID を返します。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{field_number} フィールド番号。0 から始まります。
+
+フィールドの型に対応する OID を返します。エラー時には
+FALSE を返します。
+
+フィールドの情報を得る
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    // 'title' は varchar 型であると仮定する
+    $res = pg_query($dbconn, "select title from authors where author = 'Orwell'");
+  
+    echo "Title field type OID: ", pg_field_type_oid($res, 0);
+?>
+
+上の例の出力は以下となります。
+
+  Title field type OID: 1043
+
+
+
+|pg_field_type| |pg_field_prtlen| |pg_field_name|
+
+vim:ft=help:

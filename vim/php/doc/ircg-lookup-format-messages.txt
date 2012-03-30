@@ -1,0 +1,18 @@
+ircg_lookup_format_messages --
+フォーマットメッセージセットの存在を調べる
+
+  bool ircg_lookup_format_messages(string name)~
+
+フォーマットメッセージセット {name}
+が存在するかどうかを確かめます。フォーマットメッセージセットは
+|ircg_register_format_messages| で登録し、 デフォルトのセット名
+ircg が常に使用可能です。
+
+{name} フォーマットメッセージセットの名前。
+
+セットが存在する場合に TRUE、それ以外の場合に FALSE
+を返します。
+
+|ircg_register_format_messages|
+
+vim:ft=help:

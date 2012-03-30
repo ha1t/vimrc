@@ -1,0 +1,47 @@
+headers_list -- 送信した (もしくは送信される予定の)
+レスポンスヘッダの一覧を返す
+
+  array headers_list()~
+
+|headers_list|
+はブラウザもしくはクライアントに送信されるヘッダの数値配列を返します。
+これらのヘッダが送信されたかどうかを判断するためには
+|headers_sent| を使用します。
+
+ヘッダを、数値添字の配列で返します。
+
+|headers_list| の使用例
+
+<?php >
+  /* setcookie() でレスポンスヘッダをそれ自身に追加します */
+  setcookie('foo', 'bar');
+  
+  /* 独自のレスポンスヘッダを定義します。
+     これはほとんどのクライアントで無視されます */
+  header("X-Sample-Test: foo");
+  
+  /* レスポンスがプレーンテキストだと宣言します */
+  header('Content-type: text/plain');
+  
+  /* 送信しようとしているヘッダは? */
+  var_dump(headers_list());
+?>
+
+上の例の出力は以下となります。
+
+  array(4) {
+    [0]=>
+    string(23) "X-Powered-By: PHP/5.1.3"
+    [1]=>
+    string(19) "Set-Cookie: foo=bar"
+    [2]=>
+    string(18) "X-Sample-Test: foo"
+    [3]=>
+    string(24) "Content-type: text/plain"
+  }
+
+
+
+|headers_sent| |header| |setcookie| |apache_response_headers|
+
+vim:ft=help:

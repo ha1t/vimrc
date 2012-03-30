@@ -1,0 +1,22 @@
+ircg_names -- ユーザ名を問い合わせる
+
+  bool ircg_names(int connection, string channel [, string target])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{channel} #name 形式のチャンネル名。
+
+{target}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ircg_get_username| |ircg_lusers|
+
+vim:ft=help:

@@ -1,0 +1,18 @@
+runkit_function_remove -- 関数の定義を削除する
+
+  bool runkit_function_remove(string funcname)~
+
+デフォルトでは、
+削除・リネーム・変更が可能なのはユーザ定義関数だけです。組み込み関数を
+オーバーライドするには、php.ini で runkit.internal_override
+を有効にする必要があります。
+
+{funcname} 削除する関数の名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_function_add| |runkit_function_copy| |runkit_function_redefine|
+|runkit_function_rename|
+
+vim:ft=help:

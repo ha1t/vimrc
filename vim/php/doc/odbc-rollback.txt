@@ -1,0 +1,12 @@
+odbc_rollback -- トランザクションをロールバックする
+
+  bool odbc_rollback(resource connection_id)~
+
+この接続における全ての未解決の命令をロールバックします。
+
+{connection_id} 接続 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

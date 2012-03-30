@@ -1,0 +1,62 @@
+pg_parameter_status -- サーバのパラメータ設定を検索する
+
+  string pg_parameter_status(resource connection, string param_name)~
+
+  string pg_parameter_status(resource connection, string param_name, string param_name)~
+
+サーバのパラメータ設定を検索します。
+
+いくつかのパラメータについては、接続の確立時や値の変更時にサーバから
+自動的に通知されます。|pg_parameter_status| は
+これらの設定問い合わせるために使用可能です。指定したパラメータが存在する
+場合にその値を、存在しない場合に FALSE を返します。
+
+PostgreSQL 8.0
+で指定できるパラメータには以下が含まれます。
+server_version、 server_encoding、client_encoding、
+is_superuser、session_authorization、 DateStyle、TimeZone および
+integer_datetimes （server_encoding、TimeZone および integer_datetimes
+は 8.0 より前のバージョンでは指定できません）。
+server_version、server_encoding および integer_datetimes は、PostgreSQL
+の稼動中には変更できないことに注意しましょう。
+
+PostgreSQL 7.3
+以前のサーバはパラメータ設定を通知する機能を持っていません。
+しかし、|pg_parameter_status| には server_version および
+client_encoding
+を取得する機能を組み込んでいます。これらの値を取得するためにアプリケーションで
+アドホックなコードを書くのではなく、|pg_parameter_status|
+を使用することを推奨します。
+
+7.4 より前の PostgreSQL サーバでは、接続の確立後に SET
+を用いて client_encoding を変更しても |pg_parameter_status|
+には反映されません。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{param_name} 指定可能な {param_name} には以下が含まれます。
+server_version、 server_encoding、client_encoding、
+is_superuser、session_authorization、 DateStyle、TimeZone および
+integer_datetimes。
+
+パラメータの値を文字列で返します。失敗した場合や
+{param_name} が間違っている場合には FALSE を返します。
+
+|pg_parameter_status| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    echo "Server encoding: ", pg_parameter_status($dbconn, "server_encoding");
+?>
+
+上の例の出力は以下となります。
+
+  Server encoding: SQL_ASCII
+
+
+
+vim:ft=help:

@@ -1,0 +1,7 @@
+PDF_new -- PDFlib オブジェクトを作成する
+
+  resource PDF_new( )~
+
+新規に PDFlib オブジェクトを作成します。
+
+vim:ft=help:

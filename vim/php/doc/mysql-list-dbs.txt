@@ -1,0 +1,48 @@
+mysql_list_dbs -- MySQL
+サーバ上で利用可能なデータベースのリストを得る
+
+  resource mysql_list_dbs([resource link_identifier])~
+
+カレントの mysql
+デーモンから、利用可能なデータベースを含む
+結果ポインタを返します。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に結果ポインタ resource を、失敗した場合に
+FALSE を返します。結果ポインタの中身を調べるために
+|mysql_tablename| 関数を利用し、取得したテーブルを
+利用するには |mysql_fetch_array| などの関数を
+利用してください。
+
+|mysql_list_dbs| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  $db_list = mysql_list_dbs($link);
+  
+  while ($row = mysql_fetch_object($db_list)) {
+       echo $row->Database . "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  database1
+  database2
+  database3
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_listdbs|
+
+|mysql_db_name| |mysql_select_db|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+ircg_nickname_unescape --
+エンコードされたニックネームをデコードする
+
+  string ircg_nickname_unescape(string nick)~
+
+関数 |ircg_nickname_unescape| は、 {nick}
+で指定したニックネームをデコードした結果を返します。
+
+{nick} エンコードされたニックネーム。
+
+デコードしたニックネームを返します。
+
+|ircg_nickname_escape|
+
+vim:ft=help:

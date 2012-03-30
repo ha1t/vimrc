@@ -1,0 +1,32 @@
+ifx_do -- 事前に準備された SQL 文を実行する
+
+  bool ifx_do(resource result_id)~
+
+事前に準備されたクエリを実行し、カーソルをオープンします。
+
+エラーの際に、{result_id} を解放しないでください。
+
+select 文でない場合に、|ifx_affected_rows| に数を設定します。
+これは、|ifx_affected_rows| で取得可能です。
+
+{result_id} {result_id} は、 |ifx_query| あるいは |ifx_prepare|
+が返す有効な結果 ID です (select 型のクエリのみです!)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ifx_do| の例
+
+<?php >
+  $conn = fx_connect( "db", "user", "password" );
+  $result = ifx_prepare("SELECT customer_num, company FROM customer", $conn);
+  ifx_do($result);
+?>
+
+
+
+
+
+|ifx_prepare|
+
+vim:ft=help:

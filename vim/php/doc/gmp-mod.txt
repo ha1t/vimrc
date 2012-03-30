@@ -1,0 +1,30 @@
+gmp_mod -- モジュロ演算
+
+  resource gmp_mod(resource n, resource d)~
+
+{d} を法として {n} を計算します。結果は常に非負であり、
+{d} の符号は無視されます。
+
+{n} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{d} 法として使用する値。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+GMP 数リソースを返します。
+
+|gmp_mod| の例
+
+<?php >
+  $mod = gmp_mod("8", "3");
+  echo gmp_strval($mod) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  2
+
+
+
+vim:ft=help:

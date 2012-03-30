@@ -1,0 +1,52 @@
+pg_last_oid -- 直近の行のオブジェクト ID を返す
+
+  string pg_last_oid(resource result)~
+
+|pg_last_oid| は、挿入された行に割り当てられた OID
+を取得します。
+
+OID フィールドは PostgreSQL 7.2 からはオプションとなり、
+PostgreSQL 8.1 ではデフォルトで存在しません。OID
+フィールドが テーブルに存在しない場合、プログラマは
+|pg_result_status| を使用して挿入が成功したことを
+確かめる必要があります。
+
+挿入された行の SERIAL フィールドの値を取得するには、
+PostgreSQL の CURRVAL 関数を使用してシーケンス内で
+直近に要求された値を取得する必要があります。シーケンス名がわからない
+場合は、PostgreSQL 8.0 の関数 pg_get_serial_sequence
+が必要になります。
+
+PostgreSQL 8.1 には LASTVAL 関数が存在し、セッション内で
+直近に使用されたシーケンスの値を返します。これを用いれば、シーケンスや
+テーブルやカラムの名前を指定する必要がなくなります。
+
+この関数は、以前は |pg_getlastoid| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+指定された {connection} で、直近に挿入された行に
+割り当てられた OID
+を文字列で返します。エラー時や有効な OID のない場合に
+FALSE を返します。
+
+|pg_last_oid| の例
+
+<?php >
+    $pgsql_conn = pg_connect("dbname=mark host=localhost");
+    
+    $res1 = pg_query("CREATE TABLE test (a INTEGER) WITH OIDS");
+  
+    $res2 = pg_query("INSERT INTO test VALUES (1)");
+    
+    $oid = pg_last_oid($res2);
+?>
+
+
+
+
+
+|pg_query| |pg_result_status|
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+udm_free_res -- mnoGoSearch 結果を開放する
+
+  bool udm_free_res(resource res)~
+
+結果用に確保されたメモリを開放します。
+
+{res} |udm_find| から返された結果 ID へのリンク。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,27 @@
+SQLiteResult->key -- カレントレコードのインデックスを返す
+
+  int sqlite_key(resource result)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  int key(resource result)~
+
+|sqlite_key| は、バッファされた結果セット {result}
+のカレントレコードのインデックスを返します。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+この関数は、
+バッファなしの結果ハンドルで使用することはできません。
+
+バッファされた結果セット {result}
+のカレントレコードのインデックスを返します。
+
+バージョン 説明 5.0.4 PHP 5.0.4 以降、|sqlite_key| は SQLiteResult
+オブジェクトのメソッドとしてコールする場合のみ利用可能です。
+手続き型としてはコールできません。
+
+|sqlite_next| |sqlite_current| |sqlite_rewind|
+
+vim:ft=help:

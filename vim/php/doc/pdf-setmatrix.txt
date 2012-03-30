@@ -1,0 +1,8 @@
+PDF_setmatrix -- 現在の変換行列を設定する
+
+  bool PDF_setmatrix(resource p, float a, float b, float c, float d, float e, float f)~
+
+現在の変換行列を明示的に設定します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

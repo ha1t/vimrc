@@ -1,0 +1,53 @@
+printer_list -- サーバに登録されたプリンタの配列を返す
+
+  array printer_list(int enumtype [, string name [, int level]])~
+
+この関数は、利用可能なプリンタとその機能を調べます。
+
+{enumtype} {enumtype}
+は次の定義済みの定数のどれかとする必要があります。
+PRINTER_ENUM_LOCAL:
+ローカルにインストールされたプリンタを列挙します。
+
+PRINTER_ENUM_NAME: {name} のサーバ、
+ドメインまたはプリントプロバイダになることができるものを列挙します。
+
+PRINTER_ENUM_SHARED: このパラメータは単独では使用できず、
+他のパラメータとともに使用する必要があります。
+たとえば PRINTER_ENUM_LOCAL とともに使用することで、
+ローカルの共有プリンタを検出します。
+
+PRINTER_ENUM_DEFAULT: (Win9.x のみ)
+デフォルトのプリンタを列挙します。
+
+PRINTER_ENUM_CONNECTIONS: (WinNT/2000 のみ)
+ユーザが接続済みのプリンタを列挙します。
+
+PRINTER_ENUM_NETWORK: (WinNT/2000 のみ)
+コンピュータのドメインにあるネットワークプリンタを列挙します。
+{level} が 1 の場合のみ有効です。
+
+PRINTER_ENUM_REMOTE: (WinNT/2000 のみ)
+コンピュータのドメインにある
+ネットワークプリンタとプリンタサーバを列挙します。
+{level} が 1 の場合のみ有効です。
+
+{name} PRINTER_ENUM_NAME とともに使用します。
+
+{level} {level} には、情報要求のレベルを設定します。
+これは、1,2,4 または 5 とすることが可能です、
+
+プリンタの配列を返します。
+
+|printer_list| の例
+
+<?php >
+  /* ローカルな共有プリンタを検出 */
+  var_dump(printer_list(PRINTER_ENUM_LOCAL | PRINTER_ENUM_SHARED));
+?>
+
+
+
+
+
+vim:ft=help:

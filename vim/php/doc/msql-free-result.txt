@@ -1,0 +1,18 @@
+msql_free_result -- 結果保持用メモリを開放する
+
+  bool msql_free_result(resource result)~
+
+|msql_free_result| は、 {query_identifier}
+が指すメモリを開放します。
+リクエストの処理を完了した時、このメモリは自動的に開放されます。
+よって、この関数を使用する必要があるのは、
+スクリプトの実行時に大量のメモリを使用しないことを
+確実にしたい場合のみです。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

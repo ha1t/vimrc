@@ -1,0 +1,46 @@
+yaz_ccl_parse -- CCL パーサを起動する
+
+  bool yaz_ccl_parse(resource id, string query, array result)~
+
+この関数は、CCL
+パーサを起動します。パーサは、指定された CCL FIND
+クエリを RPN クエリに変換します。これは検索を実行する
+|yaz_search| 関数に渡すためのものです。
+
+有効な CCL
+フィールドの組を定義するには、この関数の前に
+|yaz_ccl_conf| をコールします。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{query} CCL FIND クエリ。
+
+{result} 関数が成功した場合、キー rpn に有効な RPN
+クエリを含む配列となります。
+
+失敗した場合は、以下の 3
+つの添え字を含む配列となり、失敗の原因を示します。
+errorcode - CCL エラーコード（整数）
+
+errorstring - CCL エラー文字列
+
+errorpos - クエリが失敗したおおよその位置
+（文字の位置を整数で表す）
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+CCL のパース CCL を利用して検索します。以下の例で、$ccl
+は CCL クエリです。
+
+<?php >
+  yaz_ccl_conf($id, $fields);  // yaz_ccl_conf のサンプルを参照ください
+  if (!yaz_ccl_parse($id, $ccl, &amp;$cclresult)) {
+      echo 'Error: ' . $cclresult["errorstring"];
+  } else {
+      $rpn = $cclresult["rpn"];
+      yaz_search($id, "rpn", $rpn);
+  }
+?>
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+px_numrecords -- データベース内のレコードの数を返す
+
+  int px_numrecords(resource pxdoc)~
+
+データベースファイル内のレコードの数を取得します。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+データベースファイル内のレコードの数を返します。この関数の返す値は、
+|px_get_info| が返す配列における要素 numrecords
+の値と等しくなります。
+
+vim:ft=help:

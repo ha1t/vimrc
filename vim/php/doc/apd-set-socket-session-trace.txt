@@ -1,0 +1,42 @@
+apd_set_socket_session_trace --
+リモートセッションのデバッグを開始する
+
+  bool apd_set_socket_session_trace(string tcp_server, int socket_type, int port, int debug_level)~
+
+指定した {tcp_server} (例: tcplisten)
+に接続詞、デバッグデータをソケットに送信します。
+
+{tcp_server} TCP サーバの IP あるいは Unix ドメインソケット
+(ファイルなど)。
+
+{socket_type} ファイルベースのソケットの場合は AF_UNIX、
+標準の tcp/ip の場合は APD_AF_INET。
+
+{port}
+任意のポートが使用できます。しかし大きめの番号にしておくことを推奨します。
+小さめの番号はその他のシステムサービスが使用している可能性があります。
+
+{ debug_level} XXX_TRACE 定数の組み合わせによる整数値。
+
+MEMORY_TRACE を用いることは推奨しません。
+これは非常に低速で、またあまり正確ではないようだからです。
+ASSIGNMENT_TRACE は、まだ実装されていません。
+
+すべての機能 (TIMING, FUNCTIONS, ARGS SUMMARY (strace -c
+のようなもの)) のトレースを有効にするには、値 99
+を指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|apd_set_socket_session_trace| の例
+
+<?php >
+    apd_set_socket_session_trace("127.0.0.1",APD_AF_INET,7112,0);
+?>
+
+
+
+
+
+vim:ft=help:

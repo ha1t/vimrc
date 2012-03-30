@@ -1,0 +1,25 @@
+XMLWriter::writePI -- PI (処理命令) 書き込む
+
+オブジェクト指向型
+
+  bool writePI(string target, string content)~
+
+手続き型
+
+  bool xmlwriter_write_pi(string target, string content, resource xmlwriter, string target, string content)~
+
+処理命令を書き込みます。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{target} 処理命令の対象。
+
+{content} 処理命令の内容。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

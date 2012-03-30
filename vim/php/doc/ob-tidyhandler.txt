@@ -1,0 +1,39 @@
+ob_tidyhandler -- バッファを修正するための ob_start
+コールバック関数
+
+  string ob_tidyhandler(string input [, int mode])~
+
+|ob_tidyhandler| は、バッファを修正するための |ob_start|
+として使用されることを意図しています。
+
+{input} バッファ。
+
+{mode} バッファのモード。
+
+修正したバッファを返します。
+
+|ob_tidyhandler| の例
+
+<?php >
+  ob_start('ob_tidyhandler');
+  
+  echo '<p>test</i>';
+?>
+
+上の例の出力は以下となります。
+
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <html>
+  <head>
+  <title></title>
+  </head>
+  <body>
+  <p>test</p>
+  </body>
+  </html>
+
+
+
+|ob_start|
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+newt_entry_set_flags --
+
+  void newt_entry_set_flags(resource entry, int flags, int sense)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{entry}
+
+{flags}
+
+{sense}
+
+値を返しません。
+
+vim:ft=help:

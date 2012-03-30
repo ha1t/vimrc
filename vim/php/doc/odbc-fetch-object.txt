@@ -1,0 +1,25 @@
+odbc_fetch_object -- オブジェクトとして結果の行を取得する
+
+  object odbc_fetch_object(resource result [, int rownumber])~
+
+ODBC
+クエリから、オブジェクトを取得します。この関数が使用可能なバージョンに
+ついては、以下の更新履歴を参照ください。
+
+{result} |odbc_exec| の結果リソース。
+
+{rownumber} どの行番号を取得するのかを任意で指定する。
+
+取得した行に対応するオブジェクトを返します。もう行がない場合には
+FALSE を返します。
+
+バージョン 説明 4.3.3 この関数は、IBM DB2 あるいは UnixODBC
+のサポートを有効にして
+コンパイルした場合に使用可能です。 4.3.2
+この関数は、Windows 版で使用可能です。 4.0.2 この関数は
+DBMaker のサポートを有効にしてコンパイルした場合に
+使用可能です。
+
+|odbc_fetch_row| |odbc_fetch_array| |odbc_num_rows|
+
+vim:ft=help:

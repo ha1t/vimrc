@@ -1,0 +1,51 @@
+udm_get_res_field -- mnoGoSearch 結果フィールドを取得する
+
+  string udm_get_res_field(resource res, int row, int field)~
+
+Fetch a mnoGoSearch result field.
+
+{res} {res} - |udm_find| から返された結果 ID へのリンク。
+
+{row} {row} - カレントページのリンク番号。0 から
+{UDM_PARAM_NUM_ROWS-1} までの番号。
+
+{field} {field} - フィールド ID。次の値のどれか。 UDM_FIELD_URL
+- ドキュメント URL フィールド。
+
+UDM_FIELD_CONTENT - ドキュメント Content-type フィールド
+(例えば、
+
+UDM_FIELD_CATEGORY - ドキュメントの category フィールド。
+カテゴリツリーのルートから現在のカテゴリまでの完全なパスを
+取得するには |udm_cat_path| を使用します
+(このパラメータは、PHP 4.0.6 以降でのみ使用可能です)。
+
+UDM_FIELD_TITLE - ドキュメントの title フィールド。
+
+UDM_FIELD_KEYWORDS - ドキュメント keywords フィールド(META KEYWORDS
+タグから)。
+
+UDM_FIELD_DESC - ドキュメント description フィールド (META
+DESCRIPTION タグから)。
+
+UDM_FIELD_TEXT - ドキュメント body テキスト (最初の数行で
+ドキュメントの内容に関するアイデアを示す)。
+
+UDM_FIELD_SIZE - ドキュメントのサイズ。
+
+UDM_FIELD_URLID - リンクへのユニークな URL ID。
+
+UDM_FIELD_RATING - (mnoGoSearch
+で計算された)ページのレーティング。
+
+UDM_FIELD_MODIFIED - unixtime 形式の last-modified フィールド。
+
+UDM_FIELD_ORDER -
+見つかったドキュメントの中の現在のドキュメントの数。
+
+UDM_FIELD_CRC - ドキュメント CRC。
+
+|udm_get_res_field| は、成功時に結果フィールド、 エラー時に
+FALSE を返します。
+
+vim:ft=help:

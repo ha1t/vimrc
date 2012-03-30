@@ -1,0 +1,34 @@
+spl_classes -- 利用可能な SPL クラスを返す
+
+  array spl_classes()~
+
+この関数は現在利用可能な SPL クラスを配列で返します。
+
+|spl_classes| の例
+
+<?php >
+  print_r(spl_classes());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [ArrayObject] => ArrayObject
+      [ArrayIterator] => ArrayIterator
+      [CachingIterator] => CachingIterator
+      [RecursiveCachingIterator] => RecursiveCachingIterator
+      [DirectoryIterator] => DirectoryIterator
+      [FilterIterator] => FilterIterator
+      [LimitIterator] => LimitIterator
+      [ParentIterator] => ParentIterator
+      [RecursiveDirectoryIterator] => RecursiveDirectoryIterator
+      [RecursiveIterator] => RecursiveIterator
+      [RecursiveIteratorIterator] => RecursiveIteratorIterator
+      [SeekableIterator] => SeekableIterator
+      [SimpleXMLIterator] => SimpleXMLIterator
+  )
+
+
+
+vim:ft=help:

@@ -1,0 +1,53 @@
+compact -- 変数名とその値から配列を作成する
+
+  array compact(mixed varname [, mixed ...])~
+
+変数名とその値から配列を作成します。
+
+各引数について、|compact|
+は現在のシンボルテーブルにおいてその名前を有する変数を探し、
+変数名がキー、変数の値がそのキーに関する値となるように追加します。
+端的に言うと、|extract| の逆の動作をします。
+
+設定されていない全ての文字列は、単にスキップされます。
+
+{varname} |compact| がとるパラメータの数は可変です。
+各パラメータは、変数名を値とする文字列か、
+変数名の配列のどちらかとすることができます。
+配列は、変数名を値とする別の配列を持つことができます。
+|compact|はこれを再帰的に処理します。
+
+追加された全ての変数を値とする出力配列を返します。
+
+|compact| の例
+
+<?php >
+  $city  = "San Francisco";
+  $state = "CA";
+  $event = "SIGGRAPH";
+  
+  $location_vars = array("city", "state");
+  
+  $result = compact("event", "nothing_here", $location_vars);
+  print_r($result);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [event] => SIGGRAPH
+      [city] => San Francisco
+      [state] => CA
+  )
+
+
+
+可変変数 は関数内で PHP の スーパーグローバル配列
+と併用してはいけませんので、
+スーパーグローバル配列を |compact|
+に渡してはいけません。
+
+|extract|
+
+vim:ft=help:

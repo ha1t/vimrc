@@ -1,0 +1,14 @@
+mcal_delete_event -- MCAL カレンダーからイベントを削除する
+
+  bool mcal_delete_event(int mcal_stream, int event_id)~
+
+|mcal_delete_event| は event_id で指定した
+カレンダーイベントを削除します。
+
+{mcal_stream} MCAL ストリーム。
+
+{event_id} イベント ID。
+
+TRUE を返します。
+
+vim:ft=help:

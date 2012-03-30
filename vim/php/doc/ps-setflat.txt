@@ -1,0 +1,18 @@
+ps_setflat -- 平面度を設定する
+
+  bool ps_setflat(resource psdoc, float value)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{value} {value} は 0.2 から 1 までの間でなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

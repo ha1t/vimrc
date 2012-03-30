@@ -1,0 +1,25 @@
+apache_child_terminate --
+このリクエストの後にApacheプロセスを終了する
+
+  bool apache_child_terminate()~
+
+|apache_child_terminate| は、カレントのPHPリク
+エストを実行しているApacheプロセスをリクエスト終了時点で終了しま
+す。この関数は、メモリ消費量が大きなスクリプトを実行した後プロセ
+スを使用するために使用することが可能です。これは、メモリは通常内
+部的にのみ解放され、オペレーティングシステムに戻されないためです。
+
+もし PHP が Apache 1
+モジュールとして実行している場合、TRUE を返します。
+この Apache
+バージョンはマルチスレッドバージョンではなく、
+child_terminate PHP ディレクティブは有効です
+(デフォルトは無効) 。
+もしこれらの条件に適合しない場合 FALSE
+が返され、エラーレベル E_WARNING が発生します。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|exit|
+
+vim:ft=help:

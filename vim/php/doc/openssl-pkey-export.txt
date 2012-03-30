@@ -1,0 +1,30 @@
+openssl_pkey_export --
+エクスポート可能な形式で、キーを文字列に取得する
+
+  bool openssl_pkey_export(mixed key, string out [, string passphrase [, array configargs]])~
+
+|openssl_pkey_export| は、 {key} を PEM
+エンコードした文字列として取得し、
+{out}（参照渡し）に格納します。
+
+この関数を正しく動作させるには、正しい形式の openssl.cnf
+をインストールしておく必要があります。
+詳細な情報は、インストールについてのセクション
+を参照ください。
+
+{key}
+
+{out}
+
+{passphrase} オプションで {passphrase}
+を使用してキーを保護することが可能です。
+
+{configargs} {configargs} により openssl 設定ファイルの設定を
+追加したり上書きしたりすることで、エクスポート処理の詳細設定が可能です。
+{configargs} についての詳細な情報は |openssl_csr_new|
+を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

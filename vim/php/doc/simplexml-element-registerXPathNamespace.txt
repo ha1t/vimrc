@@ -1,0 +1,73 @@
+SimpleXMLElement->registerXPathNamespace() -- 次の XPath クエリ用の
+prefix/ns コンテキストを作成する
+
+  bool registerXPathNamespace(string prefix, string ns)~
+
+次の XPath クエリ用の prefix/ns
+コンテキストを作成します。特にこれが有用なのは、 XML
+ドキュメントの提供者が名前空間プレフィックスを変更したような場合です。
+registerXPathNamespace
+はプレフィックスを作成して名前空間に関連付け、
+そのプレフィックスで名前空間のノードにアクセスできるようにします。
+提供者側がプレフィックスを変更したとしても、コードを書き換える必要はありません。
+
+{prefix} {ns} で指定した名前空間への XPath
+クエリで使用する、 名前空間プレフィックス。
+
+{ns} XPath クエリで使用する名前空間。 これは XML
+ドキュメントで使用している名前空間と一致していなければなりません。
+一致していない場合、{prefix} を使用した XPath
+クエリは何も結果を返しません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+XPath クエリで使用する名前空間プレフィックスの設定
+
+<?php >
+  $xml = <<<EOD
+  <book xmlns:chap="http://example.org/chapter-title">
+      <title>My Book</title>
+      <chapter id="1">
+          <chap:title>Chapter 1</chap:title>
+          <para>Donec velit. Nullam eget tellus vitae tortor gravida scelerisque. 
+              In orci lorem, cursus imperdiet, ultricies non, hendrerit et, orci. 
+              Nulla facilisi. Nullam velit nisl, laoreet id, condimentum ut, 
+              ultricies id, mauris.</para>
+      </chapter>
+      <chapter id="2">
+          <chap:title>Chapter 2</chap:title>
+          <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin 
+              gravida. Phasellus tincidunt massa vel urna. Proin adipiscing quam 
+              vitae odio. Sed dictum. Ut tincidunt lorem ac lorem. Duis eros 
+              tellus, pharetra id, faucibus eu, dapibus dictum, odio.</para>
+      </chapter>
+  </book>
+  EOD;
+  
+  $sxe = new SimpleXMLElement($xml);
+  
+  $sxe->registerXPathNamespace('c', 'http://example.org/chapter-title');
+  $result = $sxe->xpath('//c:title');
+  
+  foreach ($result as $title) {
+    echo $title . "\n";
+  }
+?>
+
+上の例の XML ドキュメントでは、プレフィックス chap
+で名前空間を指定していることを確認しておきましょう。仮に、このドキュメント
+(あるいはよく似た別のドキュメント)
+が以前に同じ名前空間に対してプレフィックス c
+を使用していたとしましょう。プレフィックスが変わった時点で、
+これまでの XPath
+クエリは正しい値を返さないようになります。
+そしてクエリに対して何らかの変更が必要となります。
+registerXPathNamespace を使用すると、
+仮に名前空間プレフィックスが変更された場合でもクエリの変更する必要がなくなります。
+
+
+
+
+
+vim:ft=help:

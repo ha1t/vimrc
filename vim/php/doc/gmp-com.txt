@@ -1,0 +1,23 @@
+gmp_com -- 1 の補数を計算する
+
+  resource gmp_com(resource a)~
+
+{a} について、1 の補数を返します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{a} についての 1 の補数を GMP 数で返します。
+
+|gmp_com| の例
+
+<?php >
+  $com = gmp_com("1234");
+  echo gmp_strval($com) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  -1235
+
+vim:ft=help:

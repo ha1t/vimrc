@@ -1,0 +1,36 @@
+mssql_connect -- MS SQL サーバ接続をオープンする
+
+  resource mssql_connect([string servername [, string username [, string password [, bool new_link]]]])~
+
+|mssql_connect| はMS SQL サーバへの接続を確立します。 引数
+servername は 'interfaces'
+ファイルに定義された有効なサーバ名です。
+
+サーバへのリンクは、事前に |mssql_close| により
+明示的に閉じられていない限り、スクリプト終了後すぐに閉じられます。
+
+{servername} MS SQL サーバ。 hostname,port
+のようにポート番号を含めることもできます。
+
+{username} ユーザ名。
+
+{password} パスワード。
+
+{new_link} 同じ引数で |mssql_connect|
+が再度コールされた場合、
+新規のリンクは作成されず、代わりに既にオープンされたリンク
+ID が返されます。
+このパラメータは、この振る舞いを変更し、|mssql_connect|
+が常に新しいリンクを返すようにします。同じパラメータで事前に
+|mssql_connect| がコールされていたとしても、
+新しいリンクを返します。
+
+成功時に MS SQL リンク ID、エラー発生時に FALSE
+を返します。
+
+バージョン 説明 4.4.1 および 5.1.0 パラメータ {new_link}
+が追加されました。
+
+|mssql_close| |mssql_pconnect|
+
+vim:ft=help:

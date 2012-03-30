@@ -1,0 +1,19 @@
+swf_shapearc -- 円弧を描画する
+
+  void swf_shapearc(float x, float y, float r, float ang1, float ang2)~
+
+円弧を描画します。
+
+{x} 中心の x 座標。
+
+{y} 中心の y 座標。
+
+{r} 円弧の半径。
+
+{ang1} 開始角度。
+
+{ang2} 終了角度。
+
+値を返しません。
+
+vim:ft=help:

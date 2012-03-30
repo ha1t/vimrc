@@ -1,0 +1,48 @@
+db2_result -- 結果セットの行からひとつのカラムを返す
+
+  mixed db2_result(resource stmt, mixed column)~
+
+|db2_result| を使用して、
+結果セットの現在の行から指定したカラムの値を取得します。
+結果セットポインタの位置を指定するため、|db2_result|
+のコール前には |db2_fetch_row|
+をコールする必要があります。
+
+{stmt} 有効な stmt リソース。
+
+{column} 結果セット内のカラムの位置を表す 0
+から始まるインデックス、
+あるいはカラム名を表す文字列。
+
+指定したフィールドが結果セットに存在する場合にそのフィールドの値を返します。
+フィールドが存在しない場合には NULL
+を返し、警告を発生させます。
+
+|db2_result| の例 以下の例では、|db2_fetch_row| で結果セットを
+順に処理し、|db2_result| で結果セットから
+カラムを取得する方法を説明します。
+
+<?php >
+  $sql = 'SELECT name, breed FROM animals WHERE weight < ?';
+  $stmt = db2_prepare($conn, $sql);
+  db2_execute($stmt, array(10));
+  while (db2_fetch_row($stmt)) {
+      $name = db2_result($stmt, 0);
+      $breed = db2_result($stmt, 'BREED');
+      print "$name $breed";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  cat Pook
+  gold fish Bubbles
+  budgerigar Gizmo
+  goat Rickety Ride
+
+
+
+|db2_fetch_array| |db2_fetch_assoc| |db2_fetch_both| |db2_fetch_object|
+|db2_fetch_row|
+
+vim:ft=help:

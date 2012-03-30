@@ -1,0 +1,33 @@
+ftp_raw -- FTP サーバに任意のコマンドを送信する
+
+  array ftp_raw(resource ftp_stream, string command)~
+
+任意の {command} を FTP サーバに送信します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{command} 実行したいコマンド。
+
+サーバからの応答を文字列の配列で返します。
+結果の文字列に対して、何の処理も行いません。また、
+|ftp_raw| はそのコマンドが成功したのかどうかを
+判断できません。
+
+|ftp_raw| を用いて FTP サーバに手動でログインする
+
+<?php >
+  $fp = ftp_connect("ftp.example.com");
+  
+  /* ftp_login($fp, "joeblow", "secret");
+     を実行するのと同じ意味 */
+  ftp_raw($fp, "USER joeblow");
+  ftp_raw($fp, "PASS secret");
+?>
+
+
+
+
+
+|ftp_exec|
+
+vim:ft=help:

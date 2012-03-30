@@ -1,0 +1,10 @@
+PDF_fit_textline -- 1 行分のテキストを配置する
+
+  bool PDF_fit_textline(resource pdfdoc, string text, float x, float y, string optlist)~
+
+1
+行分のテキストを、さまざまなオプションに基づいてページ上に配置します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

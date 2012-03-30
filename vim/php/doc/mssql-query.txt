@@ -1,0 +1,31 @@
+mssql_query -- MS SQL クエリを送る
+
+  mixed mssql_query(string query [, resource link_identifier [, int batch_size]])~
+
+|mssql_query| は指定したリンク ID
+が指すサーバ上の現在アクティブなデータベースにクエリを送信します。
+
+{query} SQL クエリ。
+
+{link_identifier} |mssql_connect| あるいは |mssql_pconnect| が返す MS
+SQL リンク ID。
+
+リンク ID
+が指定されない場合、最後にオープンされたリンクが
+仮定されます。リンクがオープンされない場合、この関数は
+|mssql_connect| がコールされた時と同様に
+リンクの確立を試み、これを使用します。
+
+{batch_size} バッファにまとめるレコードの数。
+
+成功時に MS SQL 結果 ID、結果が返されなかった場合に
+TRUE、エラー時に FALSE を返します。
+
+クエリが複数の結果を返す場合は、 |mssql_next_result|
+ですべての結果を取得するか、
+次のクエリを実行する前に |mssql_free_result|
+で結果を解放する必要があります。
+
+|mssql_select_db| |mssql_connect|
+
+vim:ft=help:

@@ -1,0 +1,45 @@
+imap_set_quota --
+指定したメールボックスにクォータを設定する
+
+  bool imap_set_quota(resource imap_stream, string quota_root, int quota_limit)~
+
+メールボックス単位でクォータ上限(最大容量)を設定します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{quota_root} クォータを設定するメールボックス。
+これは、メールボックスの IMAP 標準フォーマット 'user.name'
+に基づき指定する必要があります。
+
+{quota_limit} {quota_root} の最大サイズ (KB 単位)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_set_quota| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org:143}", "mailadmin", "password");
+  
+  if (!imap_set_quota($mbox, "user.kalowsky", 3000)) {
+      echo "クォータの設定に失敗\n";
+      return;
+  }
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+この関数は、現在は c-client2000
+以降のライブラリのユーザのみ使用可能です。
+
+メール管理者のアカウントでオープンされている
+{imap_stream} を必要とします。
+他のユーザでオープンされている場合は、この関数は動作しません。
+
+|imap_open| |imap_get_quota|
+
+vim:ft=help:

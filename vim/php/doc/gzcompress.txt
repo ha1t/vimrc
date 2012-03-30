@@ -1,0 +1,35 @@
+gzcompress -- 文字列を圧縮する
+
+  string gzcompress(string data [, int level])~
+
+この関数は、ZLIB データフォーマットを用いて
+与えられた文字列を圧縮します。
+
+ZLIB 圧縮アルゴリズムについての詳細は、 "ZLIB Compressed Data
+Format Specification version 3.3" (RFC 1950) を参照ください。
+
+これは、いくつかのヘッダデータを有する gzip
+圧縮と同じでは ありません。
+gzip圧縮については、|gzencode|を参照ください。
+
+{data} 圧縮するデータ
+
+{level} 圧縮レベル。0 で圧縮無し、9
+で最大限の圧縮を指定できます。
+
+圧縮された文字列、もしくはエラーの場合 FALSE 。
+
+|gzcompress| の例
+
+<?php >
+  $compressed = gzcompress('Compress me', 9);
+  echo $compressed;
+?>
+
+
+
+
+
+|gzdeflate| |gzinflate| |gzuncompress| |gzencode|
+
+vim:ft=help:

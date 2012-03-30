@@ -1,0 +1,33 @@
+ucfirst -- 文字列の最初の文字を大文字にする
+
+  string ucfirst(string str)~
+
+{str} の最初の文字がアルファベットであれば、
+それを大文字にします。
+
+「アルファベット」かどうかというのは現在のロケールにより決定されます。
+たとえば、デフォルトの "C" ロケールでは、a ウムラウト
+(&auml;) は変換されません。
+
+{str} 入力文字列。
+
+変換後の文字列を返します。
+
+|ucfirst| の例
+
+<?php >
+  $foo = 'hello world!';
+  $foo = ucfirst($foo);             // Hello world!
+  
+  $bar = 'HELLO WORLD!';
+  $bar = ucfirst($bar);             // HELLO WORLD!
+  $bar = ucfirst(strtolower($bar)); // Hello world!
+?>
+
+
+
+
+
+|lcfirst| |strtolower| |strtoupper| |ucwords|
+
+vim:ft=help:

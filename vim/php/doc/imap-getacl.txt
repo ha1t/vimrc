@@ -1,0 +1,35 @@
+imap_getacl -- 与えられたメールボックスの ACL を取得する
+
+  array imap_getacl(resource imap_stream, string mailbox)~
+
+指定したメールボックスの ACL を取得します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+"folder" => "acl" 形式の連想配列を返します。
+
+|imap_getacl| の例
+
+<?php >
+  print_r(imap_getacl($conn_id, 'user.joecool'));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [asubfolder] => lrswipcda
+      [anothersubfolder] => lrswipcda
+  )
+
+
+
+この関数は、現在は c-client2000
+以降のライブラリを使用しているユーザのみ利用可能です。
+
+|imap_setacl|
+
+vim:ft=help:

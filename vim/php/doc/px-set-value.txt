@@ -1,0 +1,22 @@
+px_set_value -- 値を設定する
+
+  bool px_set_value(resource pxdoc, string name, float value)~
+
+さまざまな値を設定します。
+
+{pxdoc} |px_new| が返す、 paradox データベースのリソース ID。
+
+{name} {name} は以下のいずれかです。
+
+numprimkeys プライマリキーの数。paradox データベースは、
+常に最初の numprimkeys フィールドを
+プライマリキーとして扱います。
+
+{value}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|px_set_parameter|
+
+vim:ft=help:

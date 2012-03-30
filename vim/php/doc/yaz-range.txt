@@ -1,0 +1,20 @@
+yaz_range -- 取得するレコードの範囲を指定する
+
+  void yaz_range(resource id, int start, int number)~
+
+取得するレコードの範囲を指定します。
+
+この関数は、|yaz_search| あるいは |yaz_present|
+の前にコールしなければなりません。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{start}
+取得する最初のレコードの位置を指定します。レコード番号は
+1 から |yaz_hits| までです。
+
+{number} 取得するレコードの数を指定します。
+
+値を返しません。
+
+vim:ft=help:

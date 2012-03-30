@@ -1,0 +1,30 @@
+preg_last_error -- 直近の PCRE
+正規表現処理のエラーコードを返す
+
+  int preg_last_error()~
+
+直近の PCRE 正規表現処理のエラーコードを返します。
+
+|preg_last_error| の例
+
+<?php >
+  preg_match('/(?:\D+|<\d+>)*[!?]/', 'foobar foobar foobar');
+  
+  if (preg_last_error() == PREG_BACKTRACK_LIMIT_ERROR) {
+      print 'Backtrack limit was exhausted!';
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Backtrack limit was exhausted!
+
+
+
+以下の定数のいずれかを返します
+(別のページで説明します)。 PREG_NO_ERROR PREG_INTERNAL_ERROR
+PREG_BACKTRACK_LIMIT_ERROR (pcre.backtrack_limit も参照ください)
+PREG_RECURSION_LIMIT_ERROR (pcre.recursion_limit も参照ください)
+PREG_BAD_UTF8_ERROR
+
+vim:ft=help:

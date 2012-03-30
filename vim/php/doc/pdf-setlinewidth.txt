@@ -1,0 +1,8 @@
+PDF_setlinewidth -- 線幅を設定する
+
+  bool PDF_setlinewidth(resource p, float width)~
+
+現在の線幅を設定します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

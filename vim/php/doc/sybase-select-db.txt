@@ -1,0 +1,24 @@
+sybase_select_db -- Sybase データベースを選択する
+
+  bool sybase_select_db(string database_name [, resource link_identifier])~
+
+|sybase_select_db| は、指定されたリンク ID が指す
+データベースをサーバ上の現在アクティブなデータベースに設定します。
+
+その後の |sybase_query| のコールは、
+このアクティブなデータベースにおいて行われます。
+
+{database_name}
+
+{link_identifier} リンク ID
+が指定されない場合、最後にオープンされたリンクが指定されたものとみなします。
+リンクがオープンされていない場合、この関数は、
+|sybase_connect| がコールされた時と同様に
+リンクを確立しようと試み、これを使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|sybase_connect| |sybase_pconnect| |sybase_query|
+
+vim:ft=help:

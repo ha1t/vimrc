@@ -1,0 +1,79 @@
+win32_create_service -- SCM
+データベースに新しいサービスのエントリを作成する
+
+  mixed win32_create_service(array details [, string machine])~
+
+{details} サービスの詳細情報を含む配列。 {service}
+サービスの短い名前。net コマンドでサービスを
+制御する際に、この名前を使用します。この名前は一意である（同名の
+サービスが 2
+つ存在することがない）必要があり、スペースを含む
+名前は可能な限り避けるべきです。
+
+{display}
+サービスの表示名。これは、サービスアプレットに表示される名前です。
+
+{user}
+サービスを実行するユーザ名。指定しなかった場合、サービスは
+LocalSystem
+アカウントで実行されます。ユーザ名が指定された場合、
+password も指定する必要があります。
+
+{password} {user} に対応するパスワード。
+
+{path}
+サービスの開始時に起動される実行モジュールのフルパス。
+指定しなかった場合、現在の PHP
+プロセスへのパスが使用されます。
+
+{params}
+サービスの開始時に渡されるコマンドラインパラメータ。
+PHP
+スクリプトをサービスとして実行したい場合は、最初のパラメータは
+実行するスクリプトへのフルパスとなります。
+
+{load_order} load_order
+を制御します。現時点では完全にはサポートされていません。
+
+{svc_type}
+サービスの型を指定します。指定しなかった場合、デフォルト値は
+WIN32_SERVICE_WIN32_OWN_PROCESS です。
+よくわからない場合はこの値を変更しないでください。
+
+{start_type}
+サービスをどのように開始させるかを指定します。デフォルトは
+WIN32_SERVICE_AUTO_START で、これは
+マシンの起動時にサービスを開始させることを意味します。
+
+{error_control}
+サービスに問題が発生した際にとるべき行動を SCM
+に指示します。 デフォルトは WIN32_SERVER_ERROR_IGNORE です。
+この値を変更することは、現時点では完全にはサポートされていません。
+
+{machine}
+オプションで、サービスを作成したいマシン名を指定します。
+指定しなかった場合は、ローカルマシンを使用します。
+
+成功した場合に TRUE 、それ以外の場合に win32
+エラーコードを返します。
+
+|win32_create_service| の例
+
+<?php >
+  $x = win32_create_service(array(
+          'service' => 'dummyphp',
+          'display' => 'sample dummy PHP service',
+          'params' => __FILE__ . ' run',
+  ));
+  debug_zval_dump($x);
+?>
+
+
+
+
+
+
+
+|win32_delete_service|
+
+vim:ft=help:

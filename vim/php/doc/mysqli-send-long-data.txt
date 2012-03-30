@@ -1,0 +1,9 @@
+mysqli_send_long_data -- mysqli_stmt_send_long_data のエイリアス
+
+この関数は |mysqli_stmt_send_long_data| のエイリアスです。
+
+|mysqli_send_long_data| は非推奨で、廃止予定です。
+
+|mysqli_stmt_send_long_data|
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+gmp_invert -- 法による逆
+
+  resource gmp_invert(resource a, resource b)~
+
+{b} を法とした {a} の逆を計算します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{b} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+成功した場合に GMP 数、逆が存在しない場合に FALSE
+を返します。
+
+|gmp_invert| の例
+
+<?php >
+  echo gmp_invert("5", "10"); // 逆は存在しないので何も出力せず、結果は FALSE となります
+  $invert = gmp_invert("5", "11");
+  echo gmp_strval($invert) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  9
+
+
+
+vim:ft=help:

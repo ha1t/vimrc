@@ -1,0 +1,34 @@
+fdf_set_value -- フィールドの値を設定する
+
+  bool fdf_set_value(resource fdf_document, string fieldname, mixed value [, int isName])~
+
+指定したフィールドに値 {value} を設定します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{fieldname} FDF フィールド名を表す文字列。
+
+{value}
+このパラメータは、配列形式でない限り文字列で保存されます。
+配列の場合は、配列のすべての要素が配列として保存されます。
+
+{isName} FDF
+ツールキットの古いバージョンでは、最後のパラメータは
+フィールドの値を PDF Name に変換する (= 1) か、PDF String
+に設定する (= 0) かを定義します。
+
+ツールキットの現在のバージョン 5.0
+では、もはやこのパラメータは 使用されません。PHP 4.3
+以降、互換性を確保するためにこのパラメータが
+オプションとして残されていますが、内部ではこのパラメータは無視されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.3.0 {value}
+で配列をサポートするようになりました。
+
+|fdf_get_value| |fdf_remove_item|
+
+vim:ft=help:

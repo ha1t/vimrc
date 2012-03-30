@@ -1,0 +1,43 @@
+mysql_field_table --
+指定したフィールドが含まれるテーブルの名前を取得する
+
+  string mysql_field_table(resource result, int field_offset)~
+
+指定したフィールドが含まれるテーブルの名前を返します。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset} は 0
+から始まります。 {field_offset} が存在しない場合、 E_WARNING
+レベルのエラーが発行されます。
+
+成功した場合にテーブルの名前を返します。
+
+|mysql_field_table| の例
+
+<?php >
+  $query = "SELECT account.*, country.* FROM account, country WHERE country.name = 'Portugal' AND account.country_id = country.id";
+  
+  // 結果を DB から取得します
+  $result = mysql_query($query);
+  
+  // テーブル名とフィールド名を一覧表示します
+  for ($i = 0; $i < mysql_num_fields($result); ++$i) {
+      $table = mysql_field_table($result, $i);
+      $field = mysql_field_name($result, $i);
+  
+      echo  "$table: $field\n";
+  }
+?>
+
+
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_fieldtable|
+
+|mysql_list_tables|
+
+vim:ft=help:

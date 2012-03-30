@@ -1,0 +1,13 @@
+m_initengine -- IP/SSL 通信のためのクライアントの準備をする
+
+  int m_initengine(string location)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{location}
+
+
+
+vim:ft=help:

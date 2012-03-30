@@ -1,0 +1,5 @@
+sqlite_fetch_string -- sqlite_fetch_single のエイリアス
+
+この関数は次の関数のエイリアスです。 |sqlite_fetch_single|.
+
+vim:ft=help:

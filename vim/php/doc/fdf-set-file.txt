@@ -1,0 +1,50 @@
+fdf_set_file -- FDF データを表示する PDF
+ドキュメントを設定する
+
+  bool fdf_set_file(resource fdf_document, string url [, string target_frame])~
+
+フォームの結果を表示する PDF
+ドキュメントとして、もとのフォームとは別のものを指定します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{url} 絶対 URL で指定する必要があります。
+
+{target_frame}
+このパラメータを使用して、ドキュメントを表示するフレームを指定します。
+このパラメータのデフォルト値を |fdf_set_target_frame|
+で指定することもできます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+FDF データを 2 番目のフォームに渡す
+
+<?php >
+    /* Adobe FDF の content type を設定します */
+    fdf_header();
+  
+    /* fdf を開始します */
+    $fdf = fdf_create();
+  
+    /* "foo" フィールドに、値 "bar" を設定します */
+    fdf_set_value($fdf, "foo", "bar");
+  
+    /* "fdf_form.pdf" を使用して fdf を表示することをクライアントに通知します */
+    fdf_set_file($fdf, "http://www.example.com/fdf_form.pdf");
+  
+    /* fdf を出力します */
+    fdf_save($fdf);
+  
+    /* 後始末を行います */
+    fdf_close($fdf);
+?>
+
+
+
+
+
+|fdf_get_file| |fdf_set_target_frame|
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+radius_close -- すべてのリソースを開放する
+
+  bool radius_close(resource radius_handle)~
+
+各リクエストの終了時に PHP
+がすべてのリソースを開放するので、
+この関数をコールする必要はありません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

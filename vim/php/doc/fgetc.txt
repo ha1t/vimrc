@@ -1,0 +1,44 @@
+fgetc -- ファイルポインタから1文字取り出す
+
+  string fgetc(resource handle)~
+
+指定したファイルポインタから 1 文字読み出します。
+
+{handle}
+ファイルポインタは、有効なファイルポインタである必要があり、
+|fopen| または |fsockopen| で正常にオープンされた
+（そしてまだ |fclose| でクローズされていない）
+ファイルを指している必要があります。
+
+{handle}が指すファイルポインタから 1 文字読み出し、
+その文字からなる文字列を返します。EOF の場合に FALSE
+を返します。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|fgetc| の例
+
+<?php >
+  $fp = fopen('somefile.txt', 'r');
+  if (!$fp) {
+      echo 'somefile.txt をオープンできませんでした';
+  }
+  while (false !== ($char = fgetc($fp))) {
+      echo "$char\n";
+  }
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|fread| |fopen| |popen| |fsockopen| |fgets|
+
+vim:ft=help:

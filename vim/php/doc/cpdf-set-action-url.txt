@@ -1,0 +1,11 @@
+cpdf_set_action_url -- ハイパーリンクを設定する
+
+  bool cpdf_set_action_url(int pdfdoc, float xll, float yll, float xur, float xur, string url [, int mode])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

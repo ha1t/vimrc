@@ -1,0 +1,49 @@
+unicode_set_error_mode -- 文字列変換のエラーモードを設定する
+
+  bool unicode_set_error_mode(int direction, int mode)~
+
+この関数は、異なるエンコーディング間での文字列変換の際のエラーモードを設定します。
+文字列変換の際にエラーが発生する原因としては、
+不正な文字があらわれた場合や
+変換先のエンコードで表現できない文字があらわれた場合などがあります。
+デフォルトでは、エラーが発生したらその場で変換を停止します。
+
+{direction} {direction} は、
+そのエラーモードを適用する変換方向を設定します。
+FROM_UNICODE か TO_UNICODE のいずれかです。 FROM_UNICODE の場合は
+unicode 文字列からバイナリ文字列への変換、TO_UNICODE
+の場合はバイナリ文字列から unicode
+文字列への変換を表します。
+
+{mode} {mode} は、変換エラーの処理方法を指定します。
+以下の定数のいずれかとなります。
+
+使用できるモード モード 説明 U_CONV_ERROR_STOP
+変換を停止する。これがデフォルトのモードです。
+U_CONV_ERROR_SKIP その文字を読み飛ばす。 U_CONV_ERROR_SUBST
+特定の文字で置き換える。置き換える文字は
+|unicode_set_subst_char| で設定します。 U_CONV_ERROR_ESCAPE_UNICODE
+間違ったバイト列をエスケープし、Unicode
+形式の文字フォーマットで表す。 U_CONV_ERROR_ESCAPE_ICU
+間違ったバイト列をエスケープし、ICU
+形式の文字フォーマットで表す。 U_CONV_ERROR_ESCAPE_JAVA
+間違ったバイト列をエスケープし、Java
+形式の文字フォーマットで表す。 U_CONV_ERROR_ESCAPE_XML_DEC
+間違ったバイト列をエスケープし、十進形式の文字フォーマットで表す。
+U_CONV_ERROR_ESCAPE_XML_HEX
+間違ったバイト列をエスケープし、十六進形式の文字フォーマットで表す。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+direction あるいは mode に不正な値を指定した場合は E_WARNING
+レベルのエラーが発生します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|unicode_encode| |unicode_decode|
+
+vim:ft=help:

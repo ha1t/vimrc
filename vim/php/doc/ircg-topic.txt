@@ -1,0 +1,16 @@
+ircg_topic -- サーバ上のチャンネル用にトピックを設定する
+
+  bool ircg_topic(resource connection, string channel, string new_topic)~
+
+{channel} のトピックを変更します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{channel} #name 形式のチャンネル名。
+
+{new_topic} 新しく設定するトピック。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

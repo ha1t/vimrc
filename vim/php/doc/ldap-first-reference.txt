@@ -1,0 +1,9 @@
+ldap_first_reference -- 最初のリファレンスを返す
+
+  resource ldap_first_reference(resource link, resource result)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

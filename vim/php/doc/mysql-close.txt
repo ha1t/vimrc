@@ -1,0 +1,47 @@
+mysql_close -- MySQL 接続を閉じる
+
+  bool mysql_close([resource link_identifier])~
+
+|mysql_close| は、指定した link_identifier が指す MySQL
+データベースへの非持続的リンクを閉じます。
+{link_identifier} が指定されない場合、最後に
+オープンされたリンクが使用されます。
+
+持続的でないリンクはスクリプトの実行終了時に自動的に閉じられるの
+で、通常は |mysql_close| を使用する必要はありません。
+リソースの解放 を参照ください。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mysql_close| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('接続できませんでした: ' . mysql_error());
+  }
+  echo '接続に成功しました';
+  mysql_close($link);
+?>
+
+上の例の出力は以下となります。
+
+  接続に成功しました
+
+
+
+|mysql_close| は、|mysql_pconnect|
+により生成された持続的リンクを閉じません。
+
+|mysql_connect| |mysql_free_result|
+
+vim:ft=help:

@@ -1,0 +1,39 @@
+Memcache::getServerStatus -- サーバの状態を返す
+
+  int Memcache::getServerStatus(string host [, int port])~
+
+|Memcache::getServerStatus|
+は、サーバがオンライン/オフラインのどちらであるかを返します。
+|memcache_get_server_status| 関数を使用することも可能です。
+
+この関数は、Memcache バージョン 2.1.0 で追加されました。
+
+{host} memcached が接続を待ち受けるホストを指定します。
+
+{port} memcached が接続を待ち受けるポートを指定します。
+このパラメータはオプションで、デフォルト値は 11211
+です。
+
+サーバの状態を返します。サーバに接続できなかった場合に
+0、 それ以外の場合にはゼロ以外の値を返します。
+
+|Memcache::getServerStatus| の例
+
+<?php >
+  /* オブジェクト指向の API */
+  $memcache = new Memcache;
+  $memcache->addServer('memcache_host', 11211);
+  echo $memcache->getServerStatus('memcache_host', 11211);
+  
+  /* 手続き型の API */
+  $memcache = memcache_connect('memcache_host', 11211);
+  echo memcache_get_server_status($memcache, 'memcache_host', 11211);
+?>
+
+
+
+
+
+|Memcache::addServer| |Memcache::setServerParams|
+
+vim:ft=help:

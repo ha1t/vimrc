@@ -1,0 +1,58 @@
+import_request_variables -- GET/POST/Cookie
+変数をグローバルスコープにインポートする
+
+  bool import_request_variables(string types [, string prefix])~
+
+GET/POST/Cookie
+変数をグローバルスコープにインポートします。
+この関数は、register_globals
+を無効としているが、いくつかの変数をグローバルスコープで参照したいといった場合に有用です。
+
+SERVER
+のような他の変数をグローバルスコープへインポートすることを考えている場合には、
+|extract| の使用を検討してください。
+
+{types} {types} パラメータを使用すると、インポートする
+リクエスト変数の種類を指定可能です。文字 'G'、'P'、'C'
+がそれぞれ GET、POST、Cookie
+を表します。これらは大文字小文字を区別しないため、
+'g'、'p'、'c' の組み合せも使用することが可能です。 POST
+には、アップロードされたファイルに関する情報も含まれます。
+
+文字の順番には注意してください。"gp" とすると、POST
+変数は同名の GET 変数を上書きします。GPC
+以外の文字は無視されます。
+
+{prefix} 変数名の接頭辞として使用され、
+グローバルスコープにインポートされる全ての変数名の前に付加されます。
+このため、"userid" という名前の GET 値があり、 接頭辞
+"pref_" を指定した場合、 $pref_userid
+という名前のグローバル変数が作成されます。
+
+{prefix} パラメータはオプションですが、
+接頭辞を指定しないか接頭辞として空の文字列を指定した場合、
+E_NOTICE レベルのエラーが発生します。
+これは、セキュリティ上の問題を発生する可能性があります。
+NOTICE レベルのエラーは、デフォルトの error reporting
+レベルでは表示されません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|import_request_variables| の例
+
+<?php >
+  // GET および POST 変数を、接頭辞 "rvar_" を付けて
+  // インポートします
+  import_request_variables("gp", "rvar_");
+  
+  echo $rvar_foo;
+?>
+
+
+
+
+
+$_REQUEST register_globals 定義済みの変数 |extract|
+
+vim:ft=help:

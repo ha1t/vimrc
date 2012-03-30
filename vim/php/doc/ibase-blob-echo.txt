@@ -1,0 +1,19 @@
+ibase_blob_echo -- ブラウザに blob の内容を出力する
+
+  bool ibase_blob_echo([resource link_identifier, string blob_id])~
+
+この関数は読み込み用に BLOB
+をオープンし、直接その内容を標準出力
+(たいていの場合はブラウザ) に送信します。
+
+{link_identifier} InterBase リンク ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+{blob_id}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_blob_open| |ibase_blob_close| |ibase_blob_get|
+
+vim:ft=help:

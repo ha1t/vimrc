@@ -1,0 +1,31 @@
+ZipArchive::setCommentName --
+名前を使用してエントリのコメントを設定する
+
+  mixed ZipArchive::setCommentName(string name, string comment)~
+
+名前を使用して、エントリのコメントを設定します。
+
+{name} エントリの名前。
+
+{comment} コメントの内容。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+アーカイブをオープンし、エントリのコメントを設定する
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip');
+  if ($res === TRUE) {
+      $z->setCommentName('entry1.txt', '新しいエントリのコメント');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

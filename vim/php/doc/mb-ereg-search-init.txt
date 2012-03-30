@@ -1,0 +1,23 @@
+mb_ereg_search_init --
+マルチバイト正規表現検索用の文字列と正規表現を設定する
+
+  bool mb_ereg_search_init(string string [, string pattern [, string option]])~
+
+|mb_ereg_search_init| は、マルチバイト対応の正規
+表現検索において検索対象の文字列 {string}
+および正規表現 {pattern} を設定します。
+この設定は、|mb_ereg_search|, |mb_ereg_search_pos|,
+|mb_ereg_search_regs| で使用されます。
+
+この関数にはパラメータはありません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+内部エンコーディングあるいは |mb_regex_encoding|
+で指定した文字エンコーディングを、
+この関数の文字エンコーディングとして使用します。
+
+|mb_regex_encoding| |mb_ereg_search_regs|
+
+vim:ft=help:

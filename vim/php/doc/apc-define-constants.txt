@@ -1,0 +1,56 @@
+apc_define_constants --
+定数の組を定義し、それを取得あるいは一括定義する
+
+  bool apc_define_constants(string key, array constants [, bool case_sensitive])~
+
+ご存知のとおり、|define| は非常に遅いです。 APC
+を使用する主な利点はスクリプト/アプリケーションのパフォーマンスの改善なので、
+大量の定数を定義する手順を合理化するために、この仕組みが提供されています。
+しかし、この関数は期待通りの動作をしません。
+
+よりよい解決策として、PECL の hidef
+拡張モジュールを試してみましょう。
+
+（キャッシュ全体をクリアすることなく）格納されている定数を削除するには、
+{constants} に空の配列を渡します。そうすれば、
+そこに格納されていた値は事実上削除されます。
+
+{key} {key} は、格納される定数群の名前を表します。 この
+{key} は、格納されている定数を |apc_load_constants|
+で取得するために使用されます。
+
+{constants} constant_name => value 形式の連想配列。 constant_name
+は、一般の 定数 の命名規則に従う 必要があります。 value
+は、スカラ値でなければ なりません。
+
+{case_sensitive}
+デフォルトでは、定数名の大文字・小文字は区別されます。すなわち、
+CONSTANT と Constant は別の値を表します。このパラメータを
+FALSE にすると、
+定数名の大文字・小文字は区別されなくなります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|apc_define_constants| の例
+
+<?php >
+  $constants = array(
+      'ONE'   => 1,
+      'TWO'   => 2,
+      'THREE' => 3,
+  );
+  apc_define_constants('numbers', $constants);
+  echo ONE, TWO, THREE;
+?>
+
+上の例の出力は以下となります。
+
+  123
+
+
+
+|apc_load_constants| |define| |constant| あるいは PHP
+リファレンスの「定数」
+
+vim:ft=help:

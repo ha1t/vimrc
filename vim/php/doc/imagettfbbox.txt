@@ -1,0 +1,37 @@
+imagettfbbox -- TypeType フォントを使用したテキストの bounding
+box を生成する
+
+  array imagettfbbox(float size, float angle, string fontfile, string text)~
+
+この関数は TrueType テキストの bounding box
+をピクセル単位で計算して 返します。
+
+{size} ピクセル単位のフォントの大きさ。
+
+{angle} 測定する {text} の角度(度単位)。
+
+{fontfile} TrueType フォントファイルのファイル名 (URL)。PHP
+が使用している GD
+ライブラリのバージョンによっては、'/' から始まり '.ttf'
+で終わるような
+ファイル名で探し、またライブラリによって定義されているフォントパスで
+探そうと試みます。
+
+{text} 測定する文字列。
+
+|imagettfbbox| は、テキストの bounding box を 作成するための 4
+点を表現する 8 個の要素からなる配列を返します。 0
+左下角の X 座標 1 左下角の Y 座標 2 右下角の X 座標 3
+右下角の Y 座標 4 右上角の X 座標 5 右上角の Y 座標 6
+左上角の X 座標 7 左上角の Y 座標
+
+各点の位置は、 {angle} にかかわらず text
+からの相対位置で表されます。
+つまり、"左上"はテキストを水平に見た場合の左上の角を意味します。
+
+本関数は GD ライブラリと FreeType
+ライブラリの両方が必要です。
+
+|imagettftext|
+
+vim:ft=help:

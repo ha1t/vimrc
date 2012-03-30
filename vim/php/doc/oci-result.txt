@@ -1,0 +1,30 @@
+oci_result -- フェッチした行からフィールドの値を取得する
+
+  mixed oci_result(resource statement, mixed field)~
+
+|oci_fetch| によってフェッチされた現在の行のフィールド
+{field}からデータを返します。
+
+oci8 ドライバによるデータ型マッピングの
+詳細については、ドライバが サポートするデータ型
+を参照ください。
+
+{statement}
+
+{field} カラム番号 (1から始まる) またはカラム名 (大文字)
+のどちらかを使用可能です。
+
+抽象型 (ROWID, LOB, FILE)
+を除き、全てを文字列として返します。
+エラーの場合、FALSE を返します。
+
+PHP バージョン 5.0.0 以前では、代わりに |ociresult|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_result| への別名として残されていますが、
+推奨されません。
+
+|oci_fetch_array| |oci_fetch_assoc| |oci_fetch_object| |oci_fetch_row|
+|oci_fetch_all|
+
+vim:ft=help:

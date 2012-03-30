@@ -1,0 +1,40 @@
+mysql_list_processes -- MySQL プロセスのリストを得る
+
+  resource mysql_list_processes([resource link_identifier])~
+
+カレントの MySQL サーバのスレッドを取得します。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に結果ポインタ resource 、 失敗した場合に
+FALSE を返します。
+
+|mysql_list_processes| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  
+  $result = mysql_list_processes($link);
+  while ($row = mysql_fetch_assoc($result)){
+      printf("%s %s %s %s %s\n", $row["Id"], $row["Host"], $row["db"],
+          $row["Command"], $row["Time"]);
+  }
+  mysql_free_result($result);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  1 localhost test Processlist 0
+  4 localhost mysql sleep 5
+
+
+
+|mysql_thread_id| |mysql_stat|
+
+vim:ft=help:

@@ -1,0 +1,25 @@
+swf_mulcolor -- グローバル乗算色を指定した rbga
+値に設定する
+
+  void swf_mulcolor(float r, float g, float b, float a)~
+
+指定した {rgba} 色にグローバル乗算色を設定します。
+この色は、この後 (暗黙の内に) 関数 |swf_placeobject|、
+|swf_modifyobject|、 |swf_addbuttonrecord| で使用されます。
+
+オブジェクトがスクリーンに描かれる時にオブジェクトの色に
+指定した値が掛けられます。
+
+{r} 赤の値。
+
+{g} 緑の値。
+
+{b} 青の値。
+
+{a} アルファ値。
+
+これらの値は正または負のどちらにもなります。
+
+値を返しません。
+
+vim:ft=help:

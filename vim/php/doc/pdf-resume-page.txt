@@ -1,0 +1,7 @@
+PDF_resume_page -- ページを再開する
+
+  bool PDF_resume_page(resource pdfdoc, string optlist)~
+
+ページを再開し、さらに内容を追加します。
+
+vim:ft=help:

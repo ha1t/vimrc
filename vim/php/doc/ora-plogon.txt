@@ -1,0 +1,24 @@
+ora_plogon -- 持続的な Oracle 接続をオープンする
+
+  resource ora_plogon(string user, string password)~
+
+PHP と Oracle
+データベースの間に持続的な接続を確立します。
+
+{user} ユーザ名。
+
+{password} {user} に対応するパスワード。
+
+持続的な接続 ID、あるいはエラー時に FALSE を返します。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_pconnect|
+
+|ora_logon|
+
+vim:ft=help:

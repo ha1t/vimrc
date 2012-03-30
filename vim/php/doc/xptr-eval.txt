@@ -1,0 +1,14 @@
+xptr_eval -- 指定した文字列の XPtr
+ロケーションパスを評価する
+
+  int xptr_eval(string eval_str [, domnode contextnode])~
+
+  int xptr_eval(string eval_str [, domnode contextnode, XPathContext xpath_context, string eval_str [, domnode contextnode]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

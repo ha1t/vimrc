@@ -1,0 +1,21 @@
+filepro_retrieve -- filePro データベースからデータを取得する
+
+  string filepro_retrieve(int row_number, int field_number)~
+
+データベースの指定された位置から読み込んだデータを返します。
+
+セーフモード が有効の場合、PHP
+は操作を行うファイル／ディレクトリが実行するスクリプトと
+同じ UID (所有者)を有しているかどうかを確認します。
+
+{row_number} 行番号。ゼロから 全行数マイナス 1
+までの間である必要があります (0..|filepro_rowcount| - 1)。
+
+{field_number} フィールド番号。ゼロから
+全フィールド数マイナス 1 までの間である必要があります
+(0..|filepro_fieldcount| - 1)。
+
+指定したデータ、あるいはエラーの場合に FALSE
+を返します。
+
+vim:ft=help:

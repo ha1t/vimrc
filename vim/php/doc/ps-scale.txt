@@ -1,0 +1,18 @@
+ps_scale -- 縮尺を設定する
+
+  bool ps_scale(resource psdoc, float x, float y)~
+
+座標系の、水平方向・垂直方向の縮尺をそれぞれ設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{x} 水平方向の倍率。
+
+{y} 垂直方向の倍率。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_rotate| |ps_translate|
+
+vim:ft=help:

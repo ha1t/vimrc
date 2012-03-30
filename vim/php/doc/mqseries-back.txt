@@ -1,0 +1,46 @@
+mqseries_back -- MQSeries MQBACK
+
+   mqseries_back(resource hconn, resourceref compCode, resourceref reason)~
+
+|mqseries_back| (MQBACK) は、キューマネージャに対して、
+直近の同期ポイント以降に get あるいは put
+されたすべてのメッセージを戻すことを指示します。
+作業ユニットの一部として put
+されたメッセージは削除されます。
+作業ユニットの一部として取得したメッセージはキューに戻されます。
+
+|mqseries_back| は、 |mqseries_begin|
+と組み合わせた場合にのみ動作します。 また、mqclient
+インターフェイスを介さずに
+直接キューマネージャに接続した場合にのみ動作します。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_back| の例
+
+<?php >
+      mqseries_back($conn, $comp_code, $reason);
+  
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+      }
+?>
+
+
+
+
+
+|mqseries_back| は、MQSeries Client を使用して Queueu Manager
+に接続した場合には動作しません。
+
+|mqseries_conn| |mqseries_connx| |mqseries_begin|
+
+vim:ft=help:

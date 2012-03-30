@@ -1,0 +1,60 @@
+Memcache::get -- サーバから項目を取得する
+
+  string Memcache::get(string key [, int flags])~
+
+  array Memcache::get(string key [, int flags, array keys [, array flags]])~
+
+|Memcache::get| は、その時点でサーバ上に {key}
+というキーのデータが存在する場合に、
+格納されているデータを返します。
+
+|Memcache::get| にキーの配列を渡すことにより、
+値の配列を取得することができます。この配列には、サーバ上で見つかった
+キーと値のペアのみが含まれます。
+
+{key} 取得したいキー (あるいはキーの配列)。
+
+{flags}
+存在した場合は、値とともに取得したフラグをここに書き込みます。
+これらのフラグは、たとえば |Memcache::set|
+に渡すものと同じです。int の最下位バイトは pecl/memcache
+で内部的に使用するために予約されています
+(たとえば圧縮やシリアライズに関する状態を表します)。
+
+{key} に関連付けられた文字列を返します。
+取得に失敗したり {key} が見つからなかったりした
+場合には FALSE を返します。
+
+|Memcache::get| の例
+
+<?php >
+  /* 手続き型の API */
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  $var = memcache_get($memcache_obj, 'some_key');
+  
+  /* オブジェクト指向の API */
+  $memcache_obj = new Memcache;
+  $memcache_obj->connect('memcache_host', 11211);
+  $var = $memcache_obj->get('some_key');
+  
+  /* 
+  キーの配列をパラメータとして使用することもできます。
+  もしキーに対応する項目がサーバ上で見つからなければ、
+  結果の配列の中にはそのキーは含まれません。
+  */
+  
+  /* 手続き型の API */
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  $var = memcache_get($memcache_obj, Array('some_key', 'another_key'));
+  
+  /* オブジェクト指向の API */
+  $memcache_obj = new Memcache;
+  $memcache_obj->connect('memcache_host', 11211);
+  $var = $memcache_obj->get(Array('some_key', 'second_key'));
+?>
+
+
+
+
+
+vim:ft=help:

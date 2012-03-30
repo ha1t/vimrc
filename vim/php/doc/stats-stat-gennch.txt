@@ -1,0 +1,13 @@
+stats_stat_gennch -- 未ドキュメント化
+
+  float stats_stat_gennch(int n)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{n}
+
+
+
+vim:ft=help:

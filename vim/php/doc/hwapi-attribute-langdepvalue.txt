@@ -1,0 +1,11 @@
+hw_api_attribute->langdepvalue -- 指定した言語の値を返す
+
+  string langdepvalue(string language)~
+
+属性の、指定した言語における値を返します。
+
+{language}
+
+属性の値を表す文字列を返します。
+
+vim:ft=help:

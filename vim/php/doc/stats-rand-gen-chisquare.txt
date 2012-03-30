@@ -1,0 +1,14 @@
+stats_rand_gen_chisquare -- 自由度 "df"
+の乱数で表されるカイ二乗分布から、無作為な値を返す
+
+  float stats_rand_gen_chisquare(float df)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{df}
+
+
+
+vim:ft=help:

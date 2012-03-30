@@ -1,0 +1,16 @@
+bzclose -- bzip2 ファイルを閉じる
+
+  int bzclose(resource bz)~
+
+与えられた bzip2 ファイルポインタを閉じます。
+
+{bz} ファイルポインタ。これは有効である必要があり、
+|bzopen| によりオープンされたファイルを指してい
+る必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bzopen|
+
+vim:ft=help:

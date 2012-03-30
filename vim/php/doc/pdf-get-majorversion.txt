@@ -1,0 +1,10 @@
+PDF_get_majorversion -- メジャーバージョン番号を取得する
+[古い関数]
+
+  int PDF_get_majorversion()~
+
+この関数は PDFlib バージョン 5 で廃止されました。
+かわりにパラメータ {major} を用いて |PDF_get_value|
+を使用してください。
+
+vim:ft=help:

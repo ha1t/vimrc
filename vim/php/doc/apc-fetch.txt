@@ -1,0 +1,29 @@
+apc_fetch -- 格納されている変数をキャッシュから取得する
+
+  mixed apc_fetch(string key)~
+
+格納されている変数をキャッシュから取得します。
+
+{key} （|apc_store| を用いて）値を格納する際に 使用された
+{key} 。
+
+成功した場合に格納されていた変数、失敗した場合に FALSE
+を返します。
+
+|apc_fetch| の例
+
+<?php >
+  $bar = 'BAR';
+  apc_store('foo', $bar);
+  var_dump(apc_fetch('foo'));
+?>
+
+上の例の出力は以下となります。
+
+  string(3) "BAR"
+
+
+
+|apc_store| |apc_delete|
+
+vim:ft=help:

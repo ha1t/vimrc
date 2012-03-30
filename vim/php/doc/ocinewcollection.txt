@@ -1,0 +1,5 @@
+ocinewcollection -- oci_new_collection のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_new_collection|.
+
+vim:ft=help:

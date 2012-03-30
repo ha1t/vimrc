@@ -1,0 +1,6 @@
+openssl_get_publickey -- openssl_pkey_get_public のエイリアス
+
+この関数は次の関数のエイリアスです。
+|openssl_pkey_get_public|.
+
+vim:ft=help:

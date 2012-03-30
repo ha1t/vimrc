@@ -1,0 +1,30 @@
+cpdf_open -- 新規 pdf ドキュメントをオープンする
+
+  int cpdf_open(int compression [, string filename [, array doc_limits]])~
+
+新しい PDF ドキュメントをオープンします。
+
+{compression} 0
+以外を指定すると、ドキュメントの圧縮を行います。
+
+{filename} ドキュメントを書き込むファイルを設定します。-
+は標準出力を表します。
+
+省略すると、ドキュメントがメモリ上に作成され、
+|cpdf_save_to_file| でファイルに書き込んだり |cpdf_output_buffer|
+で標準出力に書き込んだりします。
+
+PHP が apache モジュールとしてコンパイルされている場合、
+標準出力を使用するとうまく動作しません。この問題を解決するには、
+ファイル名を指定せずに、後で |cpdf_output_buffer|
+を使用して PDF ドキュメントを出力します。
+
+{doc_limits} ドキュメントの制限を表す配列。詳細は
+|cpdf_global_set_document_limits| を参照ください。
+
+ドキュメントのハンドルを返します。このライブラリのその他の関数で、
+最初の引数としてこれを必要とします。
+
+|cpdf_close| |cpdf_output_buffer|
+
+vim:ft=help:

@@ -1,0 +1,37 @@
+DomAttribute->value -- 属性の値を返す
+
+  string value()~
+
+この関数は属性の値を返します。
+
+ノードの全ての属性を取得する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+       echo "Error while parsing the document\n";
+       exit;
+  }
+  
+  $root = $dom->document_element();
+  $attrs = $root->attributes();
+  
+  echo 'Attributes of ' . $root->node_name() . "\n";
+  foreach ($attrs as $attribute) {
+       echo ' - ' . $attribute->name . ' : ' . $attribute->value . "\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Attributes of chapter
+   - language : en
+
+
+
+Returns the value of the attribute.
+
+DOMAttr の value プロパティを使用してください。
+
+vim:ft=help:

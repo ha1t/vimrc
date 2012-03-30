@@ -1,0 +1,23 @@
+ps_open_image_file -- ファイルから画像を開く
+
+  int ps_open_image_file(resource psdoc, string type, string filename [, string stringparam [, int intparam]])~
+
+後で使用するために、画像を読み込みます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{type} 画像の形式。png、 jpeg あるいは eps。
+
+{filename} 画像データを含むファイルの名前。
+
+{stringparam} 使用されません。
+
+{intparam} 使用されません。
+
+成功した場合に画像の ID
+を、失敗した場合にゼロを返します。 ID は、0
+より大きい正の数値です。
+
+|ps_open_image| |ps_place_image| |ps_close_image|
+
+vim:ft=help:

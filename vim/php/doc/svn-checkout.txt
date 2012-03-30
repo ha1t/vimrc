@@ -1,0 +1,51 @@
+svn_checkout --
+リポジトリから作業コピーをチェックアウトする
+
+  bool svn_checkout(string repos, string targetpath [, int revision])~
+
+{repos} にあるリポジトリの リビジョン {revision} を、
+{targetpath} の作業コピーにチェックアウトします。
+
+{repos}
+チェックアウトしたいリポジトリ内のディレクトリを表す
+URL 文字列。
+
+{targetpath}
+チェックアウト先ディレクトリのローカルパス。
+
+相対パスは、PHP
+バイナリが存在するディレクトリを基準として解決されます。呼び出しもとのスクリプトの作業ディレクトリを基準とするには、|realpath|
+あるいは dirname(__FILE__) を使用してください。
+
+{revision}
+チェックアウトしたいリビジョン番号を表す整数値。デフォルトは
+HEAD リビジョンで、これは最新のリビジョンを表します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+基本的な例 この例は、リポジトリ内のディレクトリを calc
+という名前のローカルディレクトリにチェックアウトします。
+
+<?php >
+  svn_checkout('http://www.example.com/svnroot/calc/trunk', dirname(__FILE__) . '/calc');
+?>
+
+dirname(__FILE__) を使用して、 相対パス calc
+を絶対パスに変換する必要があります。 もし calc
+ディレクトリが存在するのなら、 |realpath|
+を使って絶対パスを取得することもできます。
+
+
+
+
+
+|svn_add| |svn_commit| |svn_status| |svn_update| SVN ドキュメントの svn
+checkout
+
+vim:ft=help:

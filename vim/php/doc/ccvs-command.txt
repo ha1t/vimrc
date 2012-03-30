@@ -1,0 +1,10 @@
+ccvs_command -- 単一のプロトコルに基づく、一般的な CCVS API
+で利用できないコマンドを実行する
+
+  string ccvs_command(string session, string type, string argval)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

@@ -1,0 +1,35 @@
+gmp_powm -- べき乗とモジュロを計算する
+
+  resource gmp_powm(resource base, resource exp, resource mod)~
+
+{mod} を法として ({base} の {exp} 乗) を計算します。 {exp}
+が負の場合、結果は未定義(undefined) となります。
+
+{base} もととなる数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{exp} 正の数で、{base} を何乗するかを指定します。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{mod} モジュロ。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+結果を GMP 数で返します。
+
+|gmp_powm| の例
+
+<?php >
+  $pow1 = gmp_powm("2", "31", "2147483649");
+  echo gmp_strval($pow1) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  2147483648
+
+
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+openal_context_current --
+指定したコンテキストを現在のコンテキストにする
+
+  bool openal_context_current(resource context)~
+
+Open AL (コンテキスト) リソース (事前に |openal_context_create|
+で作成したもの)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openal_context_create|
+
+vim:ft=help:

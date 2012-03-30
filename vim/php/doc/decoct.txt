@@ -1,0 +1,29 @@
+decoct -- 10 進数を 8 進数に変換する
+
+  string decoct(int number)~
+
+引数 {number} を 8 進数表現した文字列を返します。
+変換出来る最大の数字は 10 進数の 4294967295
+であり、"37777777777" を返します。
+
+{number} 変換したい 10 進数値。
+
+{number} を 8 進文字列で表した値を返します。
+
+|decoct| の例
+
+<?php >
+  echo decoct(15) . "\n";
+  echo decoct(264);
+?>
+
+上の例の出力は以下となります。
+
+  17
+  410
+
+
+
+|octdec| |decbin| |dechex| |base_convert|
+
+vim:ft=help:

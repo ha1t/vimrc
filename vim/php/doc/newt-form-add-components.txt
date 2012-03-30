@@ -1,0 +1,31 @@
+newt_form_add_components --
+フォームに複数のコンポーネントを追加する
+
+  void newt_form_add_components(resource form, array components)~
+
+{form} に複数のコンポーネントを追加します。
+
+{form} コンポーネントを追加するフォーム。
+
+{components} フォームに追加するコンポーネントの配列。
+
+値を返しません。
+
+|newt_form_add_components| の例
+
+<?php >
+  $form = newt_form();
+  
+  $b1 = newt_button(5, 12, "Run Tool");
+  $b2 = newt_button(21, 12, "Quit");
+  
+  newt_form_add_components($form, array($b1, $b2));
+?>
+
+
+
+
+
+|newt_form_add_component|
+
+vim:ft=help:

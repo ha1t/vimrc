@@ -1,0 +1,27 @@
+sybase_fetch_assoc -- 結果の行を連想配列として取得する
+
+  array sybase_fetch_assoc(resource result)~
+
+|sybase_fetch_assoc| は |sybase_fetch_row|
+で数値インデックスのかわりに
+カラム名を使用するバージョンです。複数のテーブルから同じ名前の
+カラムが取得された場合、それらの名前は name, name1, name2,
+..., nameN のような形式で返されます。
+
+|sybase_fetch_assoc| を使用した場合でも、
+かなりの機能が付加されるにもかかわらず、
+|sybase_fetch_row| を使用した場合に比べて著しく
+遅くなるということはないということを重要なこととして記しておきます。
+
+{result}
+
+取得した行に対応する配列を返します。行がもうない場合には
+FALSE を返します。
+
+この関数は、Sybase の CT
+ライブラリインターフェイスでのみ使用可能で、DB
+ライブラリでは使用できません。
+
+|sybase_fetch_row| |sybase_fetch_array| |sybase_fetch_object|
+
+vim:ft=help:

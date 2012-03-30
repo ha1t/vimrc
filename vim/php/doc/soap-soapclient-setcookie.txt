@@ -1,0 +1,18 @@
+SoapClient->__setCookie() -- SOAP
+リクエストと共に送信されるクッキーを設定する
+
+  void __setCookie(string name [, string value])~
+
+SOAP リクエストと共に送信されるクッキーを定義します。
+
+このメソッドをコールすることで、その後の全ての
+SoapClient メソッドコール に影響します。
+
+{name} クッキーの名前
+
+{value}
+クッキーの値。指定されない場合、クッキーは削除されます。
+
+値を返しません。
+
+vim:ft=help:

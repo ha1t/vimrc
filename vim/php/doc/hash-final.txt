@@ -1,0 +1,35 @@
+hash_final --
+段階的なハッシュ処理を終了し、出来上がったダイジェストを返す
+
+  string hash_final(resource context [, bool raw_output])~
+
+{context} |hash_init| が返すハッシュコンテキスト。
+
+{raw_output} TRUE
+を設定すると、生のバイナリデータを出力します。
+デフォルト (FALSE) の場合は小文字の 16
+進数値となります。
+
+{raw_output} が true に設定されていない場合は、
+メッセージダイジェストの計算結果を小文字の 16
+進数値形式の文字列で 返します。もし true
+に設定されていた場合は、メッセージダイジェストが
+そのままのバイナリ形式で返されます。
+
+|hash_final| の例
+
+<?php >
+  $ctx = hash_init('sha1');
+  hash_update($ctx, 'The quick brown fox jumped over the lazy dog.');
+  echo hash_final($ctx);
+?>
+
+上の例の出力は以下となります。
+
+  c0854fb9fb03c41cce3802cb0d220529e6eef94e
+
+
+
+|hash_init| |hash_update| |hash_update_stream| |hash_update_file|
+
+vim:ft=help:

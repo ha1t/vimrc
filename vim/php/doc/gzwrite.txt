@@ -1,0 +1,42 @@
+gzwrite -- バイナリセーフな gz ファイル書き込み
+
+  int gzwrite(resource zp, string string [, int length])~
+
+|gzwrite| は {string} の内容を与えられた gz
+ファイルに書き込みます。
+
+{zp} gz
+ファイルポインタを指定します。これは有効なファイルポインタであり、
+かつ、|gzopen|
+によりオープンできたファイルを指している必要があります。
+
+{string} 書き込む文字列を指定します。
+
+{length} 書き込む解凍されたバイト数を指定します。
+もし指定された場合、 {length}
+バイトのデータが書き込まれたか、 {string}
+の終わりに達した時に 書き込みは終了します。
+
+引数 {length} が指定された場合、 magic_quotes_runtime
+設定オプションは無視されて {string} から
+スラッシュが取り除かれなくなることに注意してください。
+
+与えられた gz ファイルストリームに書き込まれた
+(解凍された) バイト数を返します。
+
+|gzwrite| の例
+
+<?php >
+  $string = 'Some information to compress';
+  $gz = gzopen('somefile.gz','w9');
+  gzwrite($gz, $string);
+  gzclose($gz);
+?>
+
+
+
+
+
+|gzread| |gzopen|
+
+vim:ft=help:

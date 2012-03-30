@@ -1,0 +1,22 @@
+fbsql_blob_size -- BLOB の大きさを取得する
+
+  int fbsql_blob_size(string blob_handle [, resource link_identifier])~
+
+指定した BLOB の大きさを返します。
+
+{blob_handle} |fbsql_create_blob| が返す BLOB ハンドル。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+BLOB の大きさを整数値で返します。エラー時には FALSE
+を返します。
+
+|fbsql_clob_size|
+
+vim:ft=help:

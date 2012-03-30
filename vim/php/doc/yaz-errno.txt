@@ -1,0 +1,22 @@
+yaz_errno -- エラー番号を返す
+
+  int yaz_errno(resource id)~
+
+{id} で表される
+サーバの（直近のリクエストについての）エラー番号を返します。
+
+|yaz_errno| は、各ターゲットへのネットワーク接続が
+確立された後(つまり、|yaz_wait|の後)に
+コールされる必要があり、直近の操作(例えば検索)が成功したか
+失敗したかを判定します。
+
+{id} |yaz_connect| が返す接続リソース。
+
+エラーコードを返します。エラーコードは Z39.50
+診断コード （通常は Bib-1 診断）あるいは PHP/YAZ
+が生成するクライアント側の エラーコード（たとえば
+"Connect failed"、"Init Rejected" など） のいずれかです。
+
+|yaz_error| |yaz_addinfo|
+
+vim:ft=help:

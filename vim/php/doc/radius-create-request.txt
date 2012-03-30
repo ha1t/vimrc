@@ -1,0 +1,37 @@
+radius_create_request --
+課金あるいは認証のリクエストを作成する
+
+  bool radius_create_request(resource radius_handle, int type)~
+
+Radius
+リクエストには、リクエストの種類を指定するコードおよび
+追加情報を指定するゼロ個以上の属性が含まれます。新しいリクエストを
+作成するには、|radius_create_request| をコールします。
+
+注意:
+属性を設定する前にこの関数をコールする必要があります。
+
+{radius_handle} RADIUS_ACCESS_REQUEST あるいは RADIUS_ACCOUNTING_REQUEST
+のいずれか。
+
+{type} その説明
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|radius_create_request| の例
+
+<?php >
+  if (!radius_create_request($res, RADIUS_ACCESS_REQUEST)) {
+      echo 'RadiusError:' . radius_strerror($res). "\n<br />";
+      exit;
+  }
+?>
+
+
+
+
+
+|radius_send_request|
+
+vim:ft=help:

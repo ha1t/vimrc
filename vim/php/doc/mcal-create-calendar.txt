@@ -1,0 +1,14 @@
+mcal_create_calendar -- 新規に MCAL カレンダを作成する
+
+  bool mcal_create_calendar(int stream, string calendar)~
+
+{calendar} という名前で新規のカレンダを 作成します。
+
+{stream} MCAL ストリーム。
+
+{calendar} カレンダ名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

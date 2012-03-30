@@ -1,0 +1,13 @@
+hw_api->identify -- Hyperwave サーバにログインする
+
+  bool identify(array parameter)~
+
+Hyperwave サーバにログインします。
+
+{parameter} パラメータの配列には、 要素 'username' および
+'password' が含まれている必要があります。
+
+認証に失敗した場合は HW_API_Error 型のオブジェクト、
+成功した場合は TRUE を返します。
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+zip_entry_filesize --
+ディレクトリエントリの実際のファイルサイズを取得する
+
+  int zip_entry_filesize(resource zip_entry)~
+
+ディレクトリエントリの実際のファイルサイズを返します。
+
+{zip_entry} |zip_read|により返されたディレクトリのエントリ
+
+ディレクトリエントリのサイズ
+
+|zip_open| |zip_read|
+
+vim:ft=help:

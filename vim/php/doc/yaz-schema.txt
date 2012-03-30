@@ -1,0 +1,19 @@
+yaz_schema -- 取得するスキーマを指定する
+
+  void yaz_schema(resource id, string schema)~
+
+|yaz_schema| は取得するスキーマを指定します。
+
+この関数は、 |yaz_search| あるいは |yaz_present|
+より前にコールしなければなりません。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{schema} ドット記法の（1.2.840.10003.13.4 のような） OID
+あるいは登録されているスキーマのひとつ、たとえば
+GILS-schema、Holdings、 Zthes
+などのいずれかで指定する必要があります。
+
+値を返しません。
+
+vim:ft=help:

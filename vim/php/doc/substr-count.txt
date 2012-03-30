@@ -1,0 +1,57 @@
+substr_count -- 副文字列の出現回数を数える
+
+  int substr_count(string haystack, string needle [, int offset [, int length]])~
+
+|substr_count| は、文字列 {haystack} の中での副文字列 {needle}
+の出現回数を返します。 {needle}
+は英大小文字を区別することに注意してください。
+
+この関数は重なり合う副文字列をカウントしません。以下の例を見てください
+!
+
+{haystack} 検索対象の文字列
+
+{needle} 検索する副文字列
+
+{offset} 開始位置のオフセット
+
+{length}
+指定したオフセット以降に副文字列で検索する最大長。
+オフセットと長さの総和が {haystack}
+の長さよりも長い場合、警告が発生します。
+
+この関数は 整数 を返します。
+
+バージョン 説明 5.1.0 {offset} と {length}
+パラメータが追加されました。
+
+|substr_count| の例
+
+<?php >
+  $text = 'This is a test';
+  echo strlen($text); // 14
+  
+  echo substr_count($text, 'is'); // 2
+  
+  // 文字列は 's is a test' になっているので, 1 が表示される
+  echo substr_count($text, 'is', 3);
+  
+  // テキストは 's i' になっているので, 0 が表示される
+  echo substr_count($text, 'is', 3, 3);
+  
+  // 5+10 > 14 なので、警告が発生する
+  echo substr_count($text, 'is', 5, 10);
+  
+  
+  // 重なっている副文字列はカウントされないので、1 が表示される
+  $text2 = 'gcdgcdgcd';
+  echo substr_count($text2, 'gcdgcd');
+?>
+
+
+
+
+
+|count_chars| |strpos| |substr| |strstr|
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+iconv_set_encoding --
+文字エンコーディング変換用の設定を行なう
+
+  bool iconv_set_encoding(string type, string charset)~
+
+{type} で指定された内部設定変数の値を、 {charset}
+に変更します。
+
+{type} {type} には以下の値のどれかを指定できます。
+input_encoding output_encoding internal_encoding
+
+{charset} 文字セット。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|iconv_set_encoding| の例
+
+<?php >
+  iconv_set_encoding("internal_encoding", "UTF-8");
+  iconv_set_encoding("output_encoding", "ISO-8859-1");
+?>
+
+
+
+
+
+|iconv_get_encoding| |ob_iconv_handler|
+
+vim:ft=help:

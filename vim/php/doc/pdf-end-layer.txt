@@ -1,0 +1,10 @@
+PDF_end_layer -- すべてのアクティブなレイヤーを無効にする
+
+  bool PDF_end_layer(resource pdfdoc)~
+
+すべてのアクティブなレイヤーを無効にします。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+この関数は、PDF 1.5 で使用可能です。
+
+vim:ft=help:

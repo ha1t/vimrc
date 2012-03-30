@@ -1,0 +1,92 @@
+mysql_affected_rows --
+一番最近の操作で変更された行の数を得る
+
+  int mysql_affected_rows([resource link_identifier])~
+
+{link_identifier} と関連付けられた直近の
+INSERT、UPDATE、REPLACE、DELETE
+クエリによって変更された行の数を取得します。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に変更された行の数を、直近のクエリが失敗した場合に
+-1 を返します。
+
+直近のクエリが WHERE 句を含まない DELETE
+だった場合、テーブルから
+すべてのレコードが削除されますが、MySQL 4.1.2
+以前のバージョンでは この関数はゼロを返します。
+
+UPDATE を使用する場合、MySQL
+では新旧の値が同じときには更新処理を行いません。
+このことから、必ずしも |mysql_affected_rows| の返す値が
+マッチする行の数と一致するとは限りません。返す値は実際に更新処理が行われた
+行の数です。
+
+REPLACE
+ステートメントは、まず最初に同じ主キーのレコードを削除した後に
+新しいレコードを挿入します。この関数は、削除された行の数と
+挿入された行の数を足したものを返します。
+
+|mysql_affected_rows| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('Could not connect: ' . mysql_error());
+  }
+  mysql_select_db('mydb');
+  
+  /* これは、削除されたレコードの正しい数をかえずはず */
+  mysql_query('DELETE FROM mytable WHERE id < 10');
+  printf("Records deleted: %d\n", mysql_affected_rows());
+  
+  /* 決して真にはならない where 条件なので、結果は 0 となるはず */
+  mysql_query('DELETE FROM mytable WHERE 0');
+  printf("Records deleted: %d\n", mysql_affected_rows());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Records deleted: 10
+  Records deleted: 0
+
+
+
+トランザクションを利用した |mysql_affected_rows| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('Could not connect: ' . mysql_error());
+  }
+  mysql_select_db('mydb');
+  
+  /* レコードの更新 */
+  mysql_query("UPDATE mytable SET used=1 WHERE id < 10");
+  printf ("Updated records: %d\n", mysql_affected_rows());
+  mysql_query("COMMIT");
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Updated Records: 10
+
+
+
+トランザクションを使用する場合には、コミット後ではなく
+INSERT, UPDATE, DELETE クエリの後に |mysql_affected_rows|
+をコールする必要があります。
+
+SELECT から返される行の数を得る際には、 |mysql_num_rows|
+が利用できます。
+
+|mysql_num_rows| |mysql_info|
+
+vim:ft=help:

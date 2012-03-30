@@ -1,0 +1,69 @@
+array_intersect_ukey --
+キーを基準にし、コールバック関数を用いて
+配列の共通項を計算する
+
+  array array_intersect_ukey(array array1, array array2 [, array ..., callback key_compare_func])~
+
+|array_intersect_ukey| は、他の全ての引数に存在する {array1}
+の値を全て有する配列を返します。
+
+比較は、ユーザが指定したコールバック関数を利用して行われます。
+この関数は、1 つめの引数が 2 つめより小さい / 等しい /
+大きい 場合にそれぞれ 負の数 / ゼロ / 正の数
+を返す必要があります。
+
+{array1} 比較元となる最初の配列。
+
+{array2} キーを比較する対象となる最初の配列。
+
+{array} キーを比較する対象となる配列の、可変リスト。
+
+{key_compare_func}
+比較に使用する、ユーザ定義のコールバック関数。
+
+{array1} の値のうち、
+すべての引数に存在するキーのものを含む連想配列を返します。
+
+|array_intersect_ukey| の例
+
+<?php >
+  function key_compare_func($key1, $key2)
+  {
+      if ($key1 == $key2)
+          return 0;
+      else if ($key1 > $key2)
+          return 1;
+      else
+          return -1;
+  }
+  
+  $array1 = array('blue'  => 1, 'red'  => 2, 'green'  => 3, 'purple' => 4);
+  $array2 = array('green' => 5, 'blue' => 6, 'yellow' => 7, 'cyan'   => 8);
+  
+  var_dump(array_intersect_ukey($array1, $array2, 'key_compare_func'));
+?>
+
+上の例の出力は以下となります。
+
+  array(2) {
+    ["blue"]=>
+    int(1)
+    ["green"]=>
+    int(3)
+  }
+
+
+
+この例では、両方の配列に存在するキーが 'blue' と 'green'
+だけであり、それが返されていることがわかります。
+また、ふたつの配列の間で 'blue' と 'green'
+に対応する値が違うことにも注意しましょう。
+それでも一致していると判定されるのは、ただキーだけがチェックされているからです。
+返される値は {array1} のものです。
+
+|array_diff| |array_udiff| |array_diff_assoc| |array_diff_uassoc|
+|array_udiff_assoc| |array_udiff_uassoc| |array_diff_key| |array_diff_ukey|
+|array_intersect| |array_intersect_assoc| |array_intersect_uassoc|
+|array_intersect_key|
+
+vim:ft=help:

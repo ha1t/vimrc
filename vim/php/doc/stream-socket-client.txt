@@ -1,0 +1,111 @@
+stream_socket_client -- インターネットドメインまたは Unix
+ドメインのソケット接続を開く
+
+  resource stream_socket_client(string remote_socket [, int errno [, string errstr [, float timeout [, int flags [, resource context]]]]])~
+
+{remote_socket} で指定された接続先との、
+ストリームまたはデータグラム接続を確立します。
+作成されるソケットのタイプは、[トランスポート]://[ターゲット]
+という形式の URL フォーマットによって指定された
+トランスポートによって決定されます。 TCP や UDP
+といったインターネットドメインのソケット (AF_INET)
+には、{remote_socket} パラメータの ターゲット
+の部分は、ホスト名または IP アドレスと、
+それに続くコロンで区切られたポート番号から構成されていなければなりません。
+Unix ドメインのソケットの場合は、{ターゲット}
+の部分は、ファイルシステムにおけるソケットのファイルを指定しなくては
+いけません。 省略可能な {timeout}
+パラメータを使うことで、
+接続するためのシステムコールにおけるタイムアウトを設定することができます。
+{flags} は、接続設定フラグの任意の組み合わせ
+を指定できるビットフィールドです。
+現在、接続設定フラグとして選択できる値は、
+STREAM_CLIENT_CONNECT（デフォルト）、 STREAM_CLIENT_ASYNC_CONNECT と
+STREAM_CLIENT_PERSISTENT のみです。
+
+ソケット上のデータの読み書きに関してタイムアウトを設定する必要がある場合は、
+|stream_set_timeout| を使ってください。 |stream_socket_client|
+に渡される {timeout}
+は、ソケットの接続時にのみ適用されます。
+
+パラメータ timeout
+は、非同期通信を試みている場合には適用されません。
+
+|stream_socket_client| は、 |fgets|, |fgetss|, |fwrite|, |fclose|, |feof|
+といった、ファイル関数と共に
+使うことのできるストリームリソースを返します。
+
+もし、呼び出しに失敗すると、FALSE を返し、
+さらに省略可能な {errno} 引数と {errstr}
+引数がある場合は、そこに システムレベルの connect()
+関数の実行時に
+発生したシステムレベルのエラーを表す値を返します。
+もし、{errno} に返された値が 0 で、かつ、 この関数が FALSE
+を返した時は、 connect()
+システムコールの前に何らかのエラーが
+発生したことを示しています。これは、多くの場合、ソケットの初期化
+に失敗したことで起こります。{errno} と {errstr}
+パラメータは常に参照渡しされることに
+留意してください。
+
+環境により、Unix
+ドメインや接続タイムアウトが利用できない場合があります。
+有効なトランスポートのリストは、|stream_get_transports|
+で取得できます。 組み込むのポートの一覧については、
+を 参照ください。
+
+ストリームはデフォルトではブロックモードで開かれますが、
+|stream_set_blocking| を使うことで非ブロックモードに
+変更することができます。 |stream_socket_client| の例
+
+<?php >
+  $fp = stream_socket_client("tcp://www.example.com:80", $errno, $errstr, 30);
+  if (!$fp) {
+      echo "$errstr ($errno)<br />\n";
+  } else {
+      fwrite($fp, "GET / HTTP/1.0\r\nHost: www.example.com\r\nAccept: */*\r\n\r\n");
+      while (!feof($fp)) {
+          echo fgets($fp, 1024);
+      }
+      fclose($fp);
+  }
+?>
+
+
+
+下記の例は、PHP
+のスクリプトで、どのようにローカル上で動いている UDP
+サービスの "daytime" (ポート 13) によって日時の情報を
+取得できるかを表しています。 UDP 接続を使う
+
+<?php >
+  $fp = stream_socket_client("udp://127.0.0.1:13", $errno, $errstr);
+  if (!$fp) {
+      echo "ERROR: $errno - $errstr<br />\n";
+  } else {
+      fwrite($fp, "\n");
+      echo fread($fp, 26);
+      fclose($fp);
+  }
+?>
+
+
+
+UDP ソケットは、リモートホストに到達できなくても
+エラーを発生せず、開いているかような状態になることがありす。
+このエラーは、実際にソケットに対して、読み込みや書き込み動作を
+行ってみないと判断できません。原因としては、UDP
+が非接続型の
+プロトコルであることが挙げられます。つまり、実際にデータを
+送受信する段階になるまで、OS
+の側では接続を確立しようとしないという ことです。
+
+数値で IPv6 アドレスを指定するときは、 (例 fe80::1)
+アドレスを角カッコでくくらなくてはなりません。たとえば、
+tcp://[fe80::1]:80.
+
+|stream_socket_server|, |stream_set_blocking|, |stream_set_timeout|,
+|stream_select|, |fgets|, |fgetss|, |fwrite|, |fclose|, |feof|, Curl extension
+も参照ください。
+
+vim:ft=help:

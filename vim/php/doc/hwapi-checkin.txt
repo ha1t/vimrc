@@ -1,0 +1,40 @@
+hw_api->checkin -- オブジェクトをチェックインする
+
+  bool checkin(array parameter)~
+
+この関数は、オブジェクトあるいはオブジェクト階層の全体をチェックインします。
+パラメータ配列の中には、必須要素 'objectIdentifier'
+およびオプションの要素
+'version'、'comment'、'mode'、'objectQuery' が含まれます。'version'
+ではオブジェクトのバージョンを設定します。
+これは、メジャーバージョンとマイナーバージョンをピリオドで区切ったものです。
+version
+が設定されていない場合、マイナーバージョンがひとつ加算されます。
+'mode' は以下の値のいずれかです。 HW_API_CHECKIN_NORMAL
+オブジェクトをチェックインし、コミットします。
+オブジェクトは文書でなければなりません。
+
+HW_API_CHECKIN_RECURSIVE
+チェックインするオブジェクトがコレクションであった場合、
+もし子要素が文書であればそれらもすべて再帰的にチェックインされます。
+コレクションをチェックインしようとすると、エラーが発生することがあります。
+
+HW_API_CHECKIN_FORCE_VERSION_CONTROL
+バージョン管理されていないオブジェクトも強制的にチェックインします。
+
+HW_API_CHECKIN_REVERT_IF_NOT_CHANGED
+新しいバージョンが以前のバージョンと変わっているかどうかを調べます。
+変わっている場合にのみオブジェクトがチェックインされます。
+
+HW_API_CHECKIN_KEEP_TIME_MODIFIED
+直近のオブジェクトの更新時刻を保持します。
+
+HW_API_CHECKIN_NO_AUTO_COMMIT
+オブジェクトのチェックイン時に、自動的なコミットは行われません。
+
+{parameter}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

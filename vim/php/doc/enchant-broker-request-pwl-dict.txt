@@ -1,0 +1,20 @@
+enchant_broker_request_pwl_dict -- PWL
+ファイルを使用して辞書を作成する。PWL
+ファイルは、一行にひとつの単語を記述したパーソナル単語ファイルとなる。
+
+  resource enchant_broker_request_pwl_dict(resource broker, string filename)~
+
+PWL ファイルを使用して辞書を作成します。 PWL
+ファイルは、一行にひとつの単語を記述したパーソナル単語ファイルです。
+
+{broker} ブローカーリソース。
+
+{filename} PWL ファイルへのパス。
+
+成功した場合に辞書リソース、失敗した場合に FALSE
+を返します。
+
+|enchant_dict_describe| |enchant_broker_dict_exists|
+|enchant_broker_dict_free|
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+PDF_define_layer -- レイヤー定義を作成する
+
+  int PDF_define_layer(resource pdfdoc, string name, string optlist)~
+
+新しいレイヤー定義を作成します。
+
+この関数は、PDF 1.5 で使用可能です。
+
+vim:ft=help:

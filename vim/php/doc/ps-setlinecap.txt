@@ -1,0 +1,17 @@
+ps_setlinecap -- 線端の形状を設定する
+
+  bool ps_setlinecap(resource psdoc, int type)~
+
+線端をどのように表示するかを設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{type} 線端の形式。 PS_LINECAP_BUTT、 PS_LINECAP_ROUND あるいは
+PS_LINECAP_SQUARED のいずれか。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_setlinejoin| |ps_setlinewidth| |ps_setmiterlimit|
+
+vim:ft=help:

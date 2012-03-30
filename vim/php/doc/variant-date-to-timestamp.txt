@@ -1,0 +1,16 @@
+variant_date_to_timestamp -- 日付/時刻の variant 値を Unix
+タイムスタンプに変換する
+
+  int variant_date_to_timestamp(variant variant)~
+
+{variant} を、VT_DATE (あるいはそれに似た型) から Unix
+タイムスタンプに変換します。 これにより、PHP の Unix
+的な部分と COM とのやりとりが容易になります。
+
+{variant} variant。
+
+unix タイムスタンプを返します。
+
+|variant_date_from_timestamp| |date| |strftime|
+
+vim:ft=help:

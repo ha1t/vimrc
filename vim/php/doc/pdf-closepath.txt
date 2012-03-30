@@ -1,0 +1,8 @@
+PDF_closepath -- 現在のパスを閉じる
+
+  bool PDF_closepath(resource p)~
+
+現在のパスを閉じます。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

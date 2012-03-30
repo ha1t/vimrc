@@ -1,0 +1,28 @@
+SDO_DAS_XML::saveFile -- SDO_DAS_XML_Document
+オブジェクトをファイルに保存する
+
+  void SDO_DAS_XML::saveFile(SDO_XMLDocument xdoc, string xml_file [, int indent])~
+
+SDO_DAS_XML_Document オブジェクトをファイルに保存します。
+
+{xdoc} SDO_DAS_XML_Document オブジェクト。
+
+{xml_file} xml ファイル。
+
+{indent} オプションの引数で、xml
+を整形するかどうかを指定します。
+負でない整数値を指定すると、それが xml
+の字下げ幅になります。 つまり、例えば 2
+を指定すると、xml の子要素は親要素から 空白 2
+つ分右にずれた場所から始まることになります。0
+を指定すると、 xml
+は完全に左寄せされた形式になります。-1
+を指定すると、一切整形を行いません。 xml は長い 1
+行のファイルとなります。
+
+None.
+
+{SDO_DAS_XML_FileException}
+指定されたファイルが見つからない場合にスローされます。
+
+vim:ft=help:

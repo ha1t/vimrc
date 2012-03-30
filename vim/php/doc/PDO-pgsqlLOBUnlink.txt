@@ -1,0 +1,34 @@
+PDO::pgsqlLOBUnlink -- ラージオブジェクトを削除する
+
+  bool PDO::pgsqlLOBUnlink(string oid)~
+
+OID
+が指すラージオブジェクトをデータベースから削除します。
+
+この関数は、トランザクション内でコールしなければなりません。
+
+{oid} ラージオブジェクトの ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|PDO::pgsqlLOBUnlink| の例 |PDO::pgsqlLOBCreate| および
+|PDO::pgsqlLOBOpen| の例で使用した blob
+テーブルからラージオブジェクトを参照している行を削除する前に、
+この例ではラージオブジェクトをデータベースから削除します。
+
+<?php >
+  $db = new PDO('pgsql:dbname=test host=localhost', $user, $pass);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $db->beginTransaction();
+  $db->pgsqlLOBUnlink($oid);
+  $stmt = $db->prepare("DELETE FROM BLOBS where ident = ?");
+  $stmt->execute(array($some_id));
+  $db->commit();
+?>
+
+
+
+|PDO::pgsqlLOBOpen| |PDO::pgsqlLOBCreate|
+
+vim:ft=help:

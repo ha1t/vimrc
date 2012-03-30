@@ -1,0 +1,76 @@
+pg_pconnect -- 持続的な PostgreSQL 接続をオープンする
+
+  resource pg_pconnect(string connection_string [, int connect_type])~
+
+|pg_pconnect| は PostgreSQL への接続を
+オープンします。この関数は、他の PostgreSQL関数
+が必要とする 接続リソースを返します。
+
+既存の接続と同じ {connection_string} を用いて |pg_pconnect| が 2
+回目にコールされた場合は、
+既存の接続を返します。ただし、{connect_type} に
+PGSQL_CONNECT_FORCE_NEW を指定している場合は 除きます。
+
+持続的接続を有効にするには、php.ini のディレクティブ
+pgsql.allow_persistent を "On"
+に設定する必要があります（デフォルトは On です）。
+持続的接続の最大数は php.ini ディレクティブ
+pgsql.max_persistent
+で設定可能です（デフォルトは制限無しを意味する -1
+です）。 接続全体の数は php.ini ディレクティブ
+pgsql.max_links で設定可能です。
+
+|pg_close| は、 |pg_pconnect|
+によりオープンされた持続的接続は 閉じません。
+
+{connection_string}
+すべてデフォルトのパラメータを使用する場合には
+{connection_string} を空にすることが可能です。 または 1
+つ以上のパラメータを空白で区切って指定することも可能です。
+個々のパラメータは keyword = value の形式で
+設定します。等号の前後の空白はあってもなくてもかまいません。
+空の値や空白を含む値を指定する場合は、その値をシングルクォートで
+囲みます（例: keyword = 'a value'）。値の中に
+シングルクォートやバックスラッシュが含まれる場合は、それらを
+バックスラッシュでエスケープする必要があります（例:
+\' および \\）。
+
+現在利用できるパラメータは以下のとおりです。 {host},
+{hostaddr}, {port}, {dbname}, {user}, {password}, {connect_timeout},
+{options}, {tty}（無視されます）, {sslmode},
+{requiressl}（非推奨。代わりに {sslmode} を推奨します）
+および {service} 。これらのうち実際にどの
+パラメータが使えるかは、PostgreSQL
+のバージョンに依存します。
+
+{connect_type} PGSQL_CONNECT_FORCE_NEW が渡された場合は、 たとえ
+{connection_string} が既存の接続と
+まったく同一であっても新しい接続をオープンします。
+
+成功した場合に PostgreSQL の接続リソース、失敗した場合に
+FALSE を返します。
+
+|pg_pconnect| の使用法
+
+<?php >
+  $dbconn = pg_pconnect("dbname=mary");
+  // "mary"という名前のデータベースに接続
+  
+  $dbconn2 = pg_pconnect("host=localhost port=5432 dbname=mary");
+  // "localhost"のポート"5432"にて"mary"という名前のデータベースに接続
+  
+  $dbconn3 = pg_pconnect("host=sheep port=5432 dbname=mary user=lamb password=foo");
+  // ユーザ名とパスワードを指定してホスト"sheep"上の"mary"という名前のデータベースに接続
+  
+  $conn_string = "host=sheep port=5432 dbname=test user=lamb password=bar";
+  $dbconn4 = pg_pconnect($conn_string);
+  // ユーザ名とパスワードを指定してホスト"sheep"上の"test"という名前のデータベースへ接続
+?>
+
+
+
+
+
+|pg_connect| 持続的データベース接続
+
+vim:ft=help:

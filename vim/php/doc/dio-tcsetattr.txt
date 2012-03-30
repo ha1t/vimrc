@@ -1,0 +1,57 @@
+dio_tcsetattr --
+シリアルポートの端末属性とボーレートを設定する
+
+  bool dio_tcsetattr(resource fd, array options)~
+
+|dio_tcsetattr| は、オープンした {fd}
+の端末属性とボーレートを指定します。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+{fd} |dio_open| が返すファイル記述子。
+
+{options} 現在使用可能なオプションは以下のとおりです。
+'baud' - ポートのボーレート - とりうる値は
+38400,19200,9600,4800,2400,1800, 1200,600,300,200,150,134,110,75 あるいは
+50 で、デフォルト値は 9600 。
+
+'bits' - データビット - とりうる値は 8,7,6 あるいは 5
+で、デフォルト値は 8 。
+
+'stop' - ストップビット - とりうる値は 1 あるいは 2
+で、デフォルト値は 1 。
+
+'parity' - とりうる値は 0,1 あるいは 2 で、デフォルト値は 0
+。
+
+値を返しません。
+
+シリアルポートのボーレートを設定する
+
+<?php >
+  $fd = dio_open('/dev/ttyS0', O_RDWR | O_NOCTTY | O_NONBLOCK);
+  
+  dio_fcntl($fd, F_SETFL, O_SYNC);
+  
+  dio_tcsetattr($fd, array(
+    'baud' => 9600,
+    'bits' => 8,
+    'stop'  => 1,
+    'parity' => 0
+  )); 
+  
+  while (1) {
+  
+    $data = dio_read($fd, 256);
+  
+    if ($data) {
+        echo $data;
+    }
+  } 
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+strpbrk -- 文字列の中から任意の文字を探す
+
+  string strpbrk(string haystack, string char_list)~
+
+|strpbrk| は、文字列 {haystack} から {char_list} を探します。
+
+{haystack} {char_list} を探す文字列。
+
+{char_list} このパラメータは大文字小文字を区別します。
+
+見つかった文字から始まる文字列、あるいは見つからなかった場合に
+FALSE を返します。
+
+|strpbrk| の例
+
+<?php >
+  $text = 'This is a Simple text.';
+  
+  // これは "is is a Simple text." を出力します。なぜなら 'i' が最初にマッチするからです。
+  echo strpbrk($text, 'mi');
+  
+  // これは "Simple text." を出力します。なぜなら大文字小文字が区別されるからです。
+  echo strpbrk($text, 'S');
+?>
+
+
+
+
+
+vim:ft=help:

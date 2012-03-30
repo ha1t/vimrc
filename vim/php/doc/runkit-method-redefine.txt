@@ -1,0 +1,71 @@
+runkit_method_redefine --
+指定されたメソッドのコードを動的に変更する
+
+  bool runkit_method_redefine(string classname, string methodname, string args, string code [, int flags])~
+
+この関数は、
+現在実行中(もしくはチェーンド)のメソッドを操作することはできません。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{classname} メソッドを再定義するクラス。
+
+{methodname} 再定義するメソッドの名前。
+
+{args} カンマで区切られた、再定義後のメソッドの引数。
+
+{code} {methodname} がコールされた際に
+評価される、新しいコード。
+
+{flags} 再定義するメソッドの型。 RUNKIT_ACC_PUBLIC、
+RUNKIT_ACC_PROTECTED あるいは RUNKIT_ACC_PRIVATE のいずれか。
+
+このパラメータは PHP 5
+以降でのみ使用されます。なぜなら、それ以前の
+バージョンでは全てのメソッドが public だからです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_method_redefine| の例
+
+<?php >
+  class Example {
+      function foo() {
+          return "foo!\n";
+      }
+  }
+  
+  // Example オブジェクトの作成
+  $e = new Example();
+  
+  // Example::foo() の出力（再定義前）
+  echo "Before: " . $e->foo();
+  
+  // 'foo' メソッドの再定義
+  runkit_method_redefine(
+      'Example',
+      'foo',
+      '',
+      'return "bar!\n";',
+      RUNKIT_ACC_PUBLIC
+  );
+  
+  // Example::foo() の出力（再定義後）
+  echo "After: " . $e->foo();
+?>
+
+上の例の出力は以下となります。
+
+  Before: foo!
+  After: bar!
+
+
+
+|runkit_method_add| |runkit_method_copy| |runkit_method_remove|
+|runkit_method_rename| |runkit_function_redefine|
+
+vim:ft=help:

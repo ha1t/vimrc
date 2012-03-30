@@ -1,0 +1,54 @@
+pg_set_error_verbosity -- pg_last_error および pg_result_error
+が返すメッセージの詳細度を指定する
+
+  int pg_set_error_verbosity(resource connection, int verbosity)~
+
+  int pg_set_error_verbosity(resource connection, int verbosity, int verbosity)~
+
+|pg_last_error| および |pg_result_error|
+が返すメッセージの詳細度を指定します。
+
+|pg_set_error_verbosity| は詳細度を設定し、その接続の
+これまでの設定を返します。PGSQL_ERRORS_TERSE
+モードでは、返されるメッセージは深刻度・概要 および
+発生位置のみです。 これはたいていの場合 1
+行に収まります。デフォルトのモード
+（PGSQL_ERRORS_DEFAULT）では、それに加えて何らかの
+詳細情報・ヒントあるいは状況フィールドを含みます（これらは複数行に
+またがる可能性があります）。PGSQL_ERRORS_VERBOSE
+モードは、有効なフィールドをすべて含みます。詳細度の設定変更内容は
+それ以降に新しく作成した結果オブジェクトにのみ反映され、既存の
+結果オブジェクトには影響を与えません。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{verbosity} 指定する詳細度。PGSQL_ERRORS_TERSE、 PGSQL_ERRORS_DEFAULT
+あるいは PGSQL_ERRORS_VERBOSE 。
+
+変更前の詳細度レベル。PGSQL_ERRORS_TERSE、 PGSQL_ERRORS_DEFAULT
+あるいは PGSQL_ERRORS_VERBOSE のいずれかを 返します。
+
+|pg_set_error_verbosity| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    if (!pg_connection_busy($dbconn)) {
+        pg_send_query($dbconn, "select * from doesnotexist;");
+    }
+    
+    pg_set_error_verbosity($dbconn, PGSQL_ERRORS_VERBOSE);
+    $res1 = pg_get_result($dbconn);
+    echo pg_result_error($res1);
+?>
+
+
+
+
+
+|pg_last_error| |pg_result_error|
+
+vim:ft=help:

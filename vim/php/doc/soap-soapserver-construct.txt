@@ -1,0 +1,54 @@
+SoapServer->__construct() -- SoapServer コンストラクタ
+
+このコンストラクタにより SoapServer オブジェクトを WSDL
+または非 WSDL モードで作成することが可能です。
+
+{wsdl} WSDL モードの場合、これに WSDL ファイルの URI
+を指定する必要があります。 その他の場合、NULL
+を指定し、uri オプションを設定する必要があります。
+
+{options} デフォルトの SOAP バージョン (soap_version),
+内部の文字エンコーディング (encoding), アクターの URI
+(actor) を指定することができます。
+
+classmap オプションにより、WSDL 型を PHP
+のクラスにマッピングすることが可能です。
+このオプションには、キーとしてWSDL 型、値として PHP
+クラスの名前を持つ配列を指定する必要があります。
+
+typemap オプションは、型マッピングの配列です。
+この配列のキーは type_name、 type_ns (名前空間 URI)、from_xml
+(引数として文字列をひとつ受け取るコールバック) そして
+to_xml
+(引数としてオブジェクトをひとつ受け取るコールバック)
+です。
+
+その他には features や cache_wsdl
+といったオプションがあります。
+
+いくつかの例
+
+<?php >
+  $server = new SoapServer("some.wsdl");
+  
+  $server = new SoapServer("some.wsdl", array('soap_version' => SOAP_1_2));
+  
+  $server = new SoapServer("some.wsdl", array('actor' => "http://example.org/ts-tests/C"));
+  
+  $server = new SoapServer("some.wsdl", array('encoding'=>'ISO-8859-1'));
+  
+  $server = new SoapServer(null, array('uri' => "http://test-uri/"));
+  
+  class MyBook {
+      public $title;
+      public $author;
+  }
+  
+  $server = new SoapServer("books.wsdl", array('classmap' => array('book' => "MyBook")));
+?>
+
+
+
+
+
+vim:ft=help:

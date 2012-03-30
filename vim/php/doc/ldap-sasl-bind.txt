@@ -1,0 +1,17 @@
+ldap_sasl_bind -- SASL を使用して LDAP
+ディレクトリにバインドする
+
+  bool ldap_sasl_bind(resource link [, string binddn [, string password [, string sasl_mech [, string sasl_realm [, string sasl_authz_id [, string props]]]]]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ldap_sasl_bind| は SASL サポート（sasl.h）を必要とします。PHP
+の configure 時に --with-ldap-sasl が指定されている
+ことを確認してください。さもないとこの関数は未定義となります。
+
+vim:ft=help:

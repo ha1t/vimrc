@@ -1,0 +1,33 @@
+newt_grid_set_field --
+
+  void newt_grid_set_field(resource grid, int col, int row, int type, resource val, int pad_left, int pad_top, int pad_right, int pad_bottom, int anchor [, int flags])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{grid}
+
+{col}
+
+{row}
+
+{type}
+
+{val}
+
+{pad_left}
+
+{pad_top}
+
+{pad_right}
+
+{pad_bottom}
+
+{anchor}
+
+{flags}
+
+値を返しません。
+
+vim:ft=help:

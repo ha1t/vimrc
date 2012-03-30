@@ -1,0 +1,44 @@
+next -- 内部配列ポインタを進める
+
+  mixed next(array array)~
+
+|next| は、ひとつの違いを除いて |current| と同じです。
+|next|
+は要素を返す前に内部配列ポインタをひとつ先に進めます。
+つまり、次の配列要素を返すとともに内部配列ポインタをひとつ進めるということです。
+
+{array} 対象となる配列。
+
+内部配列ポインタが指す場所の次の場所の値を返します。
+それ以上要素がない場合は FALSE を返します。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|next| および類似関数の使用例
+
+<?php >
+  $transport = array('foot', 'bike', 'car', 'plane');
+  $mode = current($transport); // $mode = 'foot';
+  $mode = next($transport);    // $mode = 'bike';
+  $mode = next($transport);    // $mode = 'car';
+  $mode = prev($transport);    // $mode = 'bike';
+  $mode = end($transport);     // $mode = 'plane';
+?>
+
+
+
+
+
+配列中に boolean FALSE の要素が含まれていると、
+それを配列の終わりと区別することができません。FALSE
+要素を含む配列を順に処理するには、|each|
+関数を参照ください。
+
+|current| |end| |prev| |reset| |each|
+
+vim:ft=help:

@@ -1,0 +1,58 @@
+getdate -- 日付/時刻情報を取得する
+
+  array getdate([int timestamp])~
+
+{timestamp} に関する日付情報を有する連想配列を返します。
+timestamp
+が指定されない場合は、現在のローカルな時間に関する情報を返します。
+
+{timestamp} オプションのパラメータ {timestamp} は、 integer
+型の Unix タイムスタンプです。 {timestamp}
+が指定されなかった場合のデフォルト値は、
+現在の時刻です。言い換えると、デフォルトは |time|
+の返り値となります。
+
+{timestamp} に関連する情報を連想配列で返します。
+返される連想配列の内容は、次のようになります。
+
+返される連想配列のキー キー 説明 戻り値の例 "seconds"
+秒。数値。 0 から 59 "minutes" 分。数値。 0 から 59 "hours"
+時。数値 0 から 23 "mday" 月単位の日。数値 1 から 31 "wday"
+曜日。数値。 0 (日曜) から 6 (土曜) "mon" 月。数値。 1 から
+12 "year" 年。4桁の数値。 例: 1999 あるいは 2003 "yday"
+年単位の日。数値。 0 から 365 "weekday"
+曜日。フルスペルの文字。 Sunday から Saturday "month"
+月。フルスペルの文字。 January から December 0
+UNIX時（1970年1月1日）からの秒数。 |time|の戻り値と同様。
+|date|でも使用される。
+システムによって違うが、通常は-2147483648 から 2147483647.
+
+|getdate| の例
+
+<?php >
+  $today = getdate();
+  print_r($today);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [seconds] => 40
+      [minutes] => 58
+      [hours]   => 21
+      [mday]    => 17
+      [wday]    => 2
+      [mon]     => 6
+      [year]    => 2003
+      [yday]    => 167
+      [weekday] => Tuesday
+      [month]   => June
+      [0]       => 1055901520
+  )
+
+
+
+|date| |time| |setlocale|
+
+vim:ft=help:

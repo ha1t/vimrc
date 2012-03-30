@@ -1,0 +1,5 @@
+ociparse -- oci_parse のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_parse|.
+
+vim:ft=help:

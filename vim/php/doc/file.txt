@@ -1,0 +1,106 @@
+file -- ファイル全体を読み込んで配列に格納する
+
+  array file(string filename [, int flags [, resource context]])~
+
+ファイル全体を配列に読み込みます。
+
+ファイルの内容を文字列として返すには |file_get_contents|
+を使用します。
+
+{filename} ファイルへのパス。
+
+fopen wrappers が有効の場合、この関数のファイル名として
+URL
+を使用することができます。ファイル名の指定方法に関する詳細は
+|fopen|、サポートされる URL プロトコルの種類
+については、(例えば) を参照してください。
+
+{flags} オプションのパラメータ {flags}
+は、以下の定数のうちのひとつ、あるいは複数の組み合わせとなります。
+FILE_USE_INCLUDE_PATH include_path のファイルを探します。
+
+FILE_IGNORE_NEW_LINES
+配列の各要素の最後に改行文字を追加しません。
+
+FILE_SKIP_EMPTY_LINES 空行を読み飛ばします。
+
+FILE_TEXT コンテンツを UTF-8 エンコーディングで返します。
+別のエンコーディングを指定するには、独自のコンテキストを作成します。
+このフラグは FILE_BINARY
+と同時に使用することはできません。 このフラグは PHP 6
+以降でのみ使用可能です。
+
+FILE_BINARY
+コンテンツをバイナリデータとして読み込みます。
+これはデフォルトの設定で、 FILE_TEXT
+と同時に使用することはできません。 このフラグは PHP 6
+以降でのみ使用可能です。
+
+{context} |stream_context_create|
+関数で作成したコンテキストリソース。
+
+コンテキストのサポートは、 PHP 5.0.0
+で追加されました。contexts の説明に関しては、
+を参照してください。
+
+
+
+ファイルを配列に入れて返します。
+配列の各要素はファイルの各行に対応します。改行記号はついたままとなります。
+失敗すると |file| は FALSE を返します。
+
+FILE_IGNORE_NEW_LINES を指定しない限り、
+配列に取り込まれた各行は行末文字も含みます。
+行末文字を取り除きたい場合には |rtrim|
+を使用する必要があります。
+
+マッキントッシュコンピュータ上で作成されたファイルを読み込む際に、
+PHP が行末を認識できないという問題が発生した場合、
+実行時の設定オプションauto_detect_line_endings
+を有効にする必要が生じるかもしれません。
+
+バージョン 説明 6.0.0 FILE_TEXT フラグおよび FILE_BINARY
+フラグをサポートするようになりました。 5.0.0 {context}
+パラメータが追加されました。 5.0.0 PHP 5.0.0
+より前のバージョンでは、パラメータ {flags}
+でカバーしているのは include_path
+の設定だけでした。これを有効にするには 1
+を指定します。 4.3.0 |file|
+はバイナリセーフとなりました。
+
+|file| の例
+
+<?php >
+  // ファイルの内容を配列に取り込みます。
+  // この例ではHTTPを通してURL上のHTMLソースを取得します。
+  $lines = file('http://www.example.com/');
+  
+  // 配列をループしてHTMLをHTMLソースとして表示し、行番号もつけます。
+  foreach ($lines as $line_num => $line) {
+      echo "Line #<b>{$line_num}</b> : " . htmlspecialchars($line) . "<br />\n";
+  }
+  
+  // 他の例として、Webページを文字列に取り込みます。file_get_contents()も参照してください。
+  $html = implode('', file('http://www.example.com/'));
+?>
+
+
+
+
+
+IIS のような、いくつかの標準に 対応してない Web
+サーバは、PHP
+に警告を発生させるような手順でデータを送信します。
+このようなサーバを使用する場合は、 error_reporting
+を警告を発生しないレベルまで小さくする必要があります。
+PHP 4.3.7 以降では、https://
+ラッパーでストリームをオープンする際に バグがある IIS
+サーバソフトウエアを検出することができ、この警告を抑制することができます。
+あなたが ssl:// ソケットを作成するために |fsockopen|
+を使用している場合、
+自らこの警告を検出し、抑制する必要があります。
+
+|readfile| |fopen| |fsockopen| |popen| |file_get_contents| |include|
+|stream_context_create|
+
+vim:ft=help:

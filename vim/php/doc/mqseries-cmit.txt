@@ -1,0 +1,41 @@
+mqseries_cmit -- MQSeries MQCMIT
+
+   mqseries_cmit(resource hconn, resourceref compCode, resourceref reason)~
+
+|mqseries_cmit| (MQCMIT) は、キューマネージャに対して、
+アプリケーションが同期ポイントに達したことと
+直近の同期ポイント以降に get あるいは put
+されたすべてのメッセージを確定させることを指示します。
+作業ユニットの一部として put
+されたメッセージは他のアプリケーションでも使用できるようになります。
+作業ユニットの一部として取得したメッセージは削除されます。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_cmit| の例
+
+<?php >
+      mqseries_cmit($conn, $comp_code, $reason);
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("cmit CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+      }
+?>
+
+
+
+
+
+|mqseries_back| は、MQSeries Client を使用して Queueu Manager
+に接続した場合には動作しません。
+
+|mqseries_begin| |mqseries_back| |mqseries_conn| |mqseries_connx|
+
+vim:ft=help:

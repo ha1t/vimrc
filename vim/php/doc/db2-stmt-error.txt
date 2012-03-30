@@ -1,0 +1,26 @@
+db2_stmt_error -- SQL 文が返す SQLSTATE を含む文字列を返す
+
+  string db2_stmt_error([resource stmt])~
+
+SQL 文が返す SQLSTATE を含む文字列を返します。
+
+|db2_stmt_error| の引数にステートメントリソースを
+渡さなかった場合は、直近で (例えば |db2_prepare| あるいは
+|db2_exec| を使用して)
+返そうとしたステートメントリソースに関連する SQLSTATE
+を返します。
+
+SQLSTATE の値の意味を調べるには、DB2
+コマンドラインプロセッサのプロンプトで
+次のコマンドを発行します。 db2 '? {sqlstate-value}'
+また、|db2_stmt_errormsg| をコールして、
+明示的なエラーメッセージと、それに関連する SQLCODE
+の値を取得することも可能です。
+
+{stmt} 有効なステートメントリソース。
+
+SQLSTATE を含む文字列を返します。
+
+|db2_conn_error| |db2_conn_errormsg| |db2_stmt_errormsg|
+
+vim:ft=help:

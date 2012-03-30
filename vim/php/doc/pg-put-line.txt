@@ -1,0 +1,61 @@
+pg_put_line -- NULL で終わる文字列を PostgreSQL
+バックエンドに送信する
+
+  bool pg_put_line(string data)~
+
+  bool pg_put_line(string data, resource connection, string data)~
+
+|pg_put_line| は、NULL で終わる文字列を PostgreSQL
+バックエンドサーバに送信します。これは、PostgreSQL の
+COPY FROM
+コマンドとともに使用する場合に必要となります。
+
+COPY は、PostgreSQL によってサポートされている
+高速なデータ読み込みインターフェースです。データの内容はパースされず、
+一度のトランザクションで実行されます。
+
+低レベルな |pg_put_line| コマンドを用いない別の方法は、
+|pg_copy_from| を使用することです。これは、はるかに
+シンプルなインターフェースです。
+
+|pg_end_copy| を実行する際には、送信データの最後に
+明示的に "\." の 2
+文字を送信する必要があります。これによって、
+バックエンドに対してデータ送信の終了を通知します。
+
+|pg_put_line| の使用は、|pg_lo_read| や |pg_lo_tell|
+などを含むラージオブジェクトの操作を
+発生させ、これが失敗することもあります。そのような場合、かわりに
+|pg_copy_from| および |pg_copy_to| が使用可能です。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{data} PostgreSQL
+バックエンドに直接送信されるテキストデータ。 最後に
+NULL が自動的に付加されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_put_line| の例
+
+<?php >
+    $conn = pg_pconnect("dbname=foo");
+    pg_query($conn, "create table bar (a int4, b char(16), d float8)");
+    pg_query($conn, "copy bar from stdin");
+    pg_put_line($conn, "3\thello world\t4.5\n");
+    pg_put_line($conn, "4\tgoodbye world\t7.11\n");
+    pg_put_line($conn, "\\.\n");
+    pg_end_copy($conn);
+?>
+
+
+
+
+
+|pg_end_copy|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+xml_get_current_line_number -- XML
+パーサのカレントの行番号を得る
+
+  int xml_get_current_line_number(resource parser)~
+
+指定した XML パーサのカレントの行番号を取得します。
+
+{parser} 行番号を得る XML パーサへのリファレンス。
+
+この関数は、{parser} が有効なパーサでない場合に
+FALSE、それ以外の場合にデータバッファの中で
+現在パーサが処理中の行番号を返します。
+
+|xml_get_current_column_index| |xml_get_current_byte_index|
+
+vim:ft=help:

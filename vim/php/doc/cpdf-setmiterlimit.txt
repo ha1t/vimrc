@@ -1,0 +1,14 @@
+cpdf_setmiterlimit -- miter のリミットを設定する
+
+  bool cpdf_setmiterlimit(int pdf_document, float value)~
+
+miter のリミットを設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{value} miter のリミット。1 以上でなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

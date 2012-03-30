@@ -1,0 +1,65 @@
+pg_fetch_assoc -- 行を連想配列として取得する
+
+  array pg_fetch_assoc(resource result [, int row])~
+
+|pg_fetch_assoc| は、取得した行（レコード）を
+保持する連想配列を返します。
+
+|pg_fetch_assoc| は、オプションの第 3 パラメータに PGSQL_ASSOC
+を指定して |pg_fetch_array|
+をコールするのと同じです。連想配列のみを返します。もし数値添字の配列が
+必要な場合は |pg_fetch_row| を使用してください。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|pg_fetch_assoc| は、 |pg_fetch_row|
+に比べてきわめて遅いというわけでは
+「ありません」。そして、きわめて簡単に使用できます。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{row} 取得する行番号。最初の行は 0
+です。指定されなかった場合、 次の行が取得されます。
+
+連想配列（フィールド名をキーとする）を返します。
+配列の各要素の値は文字列です。 データベースの NULL
+値は、NULL として返します。
+
+{row} が結果の行数より大きい場合、行が存在しない場合、
+そしてそれ以外のエラーが発生した場合は FALSE
+を返します。
+
+バージョン 説明 4.1.0 {row}
+パラメータがオプションとなりました。
+
+|pg_fetch_assoc| の例
+
+<?php >
+  $conn = pg_connect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  $result = pg_query($conn, "SELECT id, author, email FROM authors");
+  if (!$result) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  while ($row = pg_fetch_assoc($result)) {
+    echo $row['id'];
+    echo $row['author'];
+    echo $row['email'];
+  }
+?>
+
+
+
+
+
+|pg_fetch_row| |pg_fetch_array| |pg_fetch_object| |pg_fetch_result|
+
+vim:ft=help:

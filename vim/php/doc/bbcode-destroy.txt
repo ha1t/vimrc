@@ -1,0 +1,13 @@
+bbcode_destroy -- BBCode_container リソースを閉じる
+
+  bool bbcode_destroy(resource bbcode_container)~
+
+この関数は、|bbcode_create|
+がオープンしたリソースを閉じます。
+
+{bbcode} |bbcode_create| が返す BBCode_Container。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

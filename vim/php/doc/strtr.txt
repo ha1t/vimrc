@@ -1,0 +1,62 @@
+strtr -- 特定の文字を変換する
+
+  string strtr(string str, string from, string to)~
+
+  string strtr(string str, string from, string to, string str, array replace_pairs)~
+
+この関数は {str} を走査し、 {from}
+に含まれる文字が見つかると、そのすべてを {to}
+の中で対応する文字に置き換え、 その結果を返します。
+
+{from} と {to}
+の長さが異なる場合、長い方の余分な文字は無視されます。
+
+{str} 変換する文字列。
+
+{from} {to} に変換される文字列。
+
+{to} {from} を置換する文字列。
+
+{replace_pairs} {replace_pairs} パラメータを {to} や {from}
+のかわりに使用することができます。この場合は
+array('from' => 'to', ...) 形式の配列となります。
+
+この関数は {str} を走査し、 {from}
+に含まれる文字が見つかると、そのすべてを {to}
+の中で対応する文字に置き換え、 その結果を返します。
+
+バージョン 説明 4.0.0 オプションのパラメータ {to} および
+{from} が追加されました。
+
+|strtr| の例
+
+<?php >
+  $addr = strtr($addr, "äåö", "aao");
+?>
+
+
+
+
+
+|strtr| は、引数を 2
+つ指定してコールすることが可能です。 引数を 2
+つ指定してコールした場合、異なった動作となります。
+文字列{from} では、ソース文字列で変換を行う 「文字列 ->
+文字列」の組を指定する必要があります。 |strtr|
+は、常にまず最も長くマッチする文字列を探し、
+既に置換されている部分文字列については再度置換を行いません。
+
+2 つの引数を伴う |strtr| の例
+
+<?php >
+  $trans = array("hello" => "hi", "hi" => "hello");
+  echo strtr("hi all, I said hello", $trans);
+?>
+
+上の例の出力は以下となります。
+
+  hello all, I said hi
+
+|ereg_replace|
+
+vim:ft=help:

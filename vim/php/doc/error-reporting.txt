@@ -1,0 +1,68 @@
+error_reporting -- 出力する PHP エラーの種類を設定する
+
+  int error_reporting([int level])~
+
+|error_reporting| 関数は、 error_reporting ディレクティブを
+実行時に設定します。PHP
+には多くのエラーレベルがあり、
+この関数によりスクリプトの持続時間(実行時間)のレベルが設定されます。
+
+{level} 新しい error_reporting
+レベル。ビットマスクまたは名前つき定数のどちらかです。将来の
+バージョンとの互換性を保証するために、名前つき定数の使用が
+強く推奨されています。エラーレベルが追加されると、整数の幅は増加します。
+そのため、以前の整数を使用するエラーレベルは常に期待通りに動作するとは
+限りません。
+
+利用可能なエラーレベル定数の一覧を以下に示します。
+これらのエラーの実際の意味は、 定義済みの定数に
+記述されています。 |error_reporting| レベル定数とビット値
+値 定数 1 E_ERROR 2 E_WARNING 4 E_PARSE 8 E_NOTICE 16 E_CORE_ERROR 32
+E_CORE_WARNING 64 E_COMPILE_ERROR 128 E_COMPILE_WARNING 256 E_USER_ERROR 512
+E_USER_WARNING 1024 E_USER_NOTICE 6143 E_ALL 2048 E_STRICT 4096
+E_RECOVERABLE_ERROR
+
+変更前の error_reporting レベルを返します。
+
+バージョン 説明 5.0.0 E_STRICT が追加されました (これは
+E_ALL には含まれません)。 5.2.0 E_RECOVERABLE_ERROR
+が追加されました。 6 E_STRICT が E_ALL
+に含まれるようになりました。
+
+|error_reporting| の例
+
+<?php >
+  // 全てのエラー出力をオフにする
+  error_reporting(0);
+  
+  // 単純な実行時エラーを表示する
+  error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  
+  // E_NOTICE を表示させるのもおすすめ（初期化されていない
+  // 変数、変数名のスペルミスなど…）
+  error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+  
+  // E_NOTICE 以外の全てのエラーを表示する
+  // これは php.ini で設定されているデフォルト値
+  error_reporting(E_ALL ^ E_NOTICE);
+  
+  // 全ての PHP エラーを表示する
+  error_reporting(E_ALL);
+  
+  // error_reporting(E_ALL); と同じ
+  ini_set('error_reporting', E_ALL);
+?>
+
+
+
+
+
+ほとんどの E_STRICT レベルのエラーは
+スクリプトのコンパイル時に発生します。そのため、
+error_reporting で E_STRICT
+を含むように設定されている環境では
+これらのエラーを検出できません (逆も同様です)。
+
+display_errors ディレクティブ |ini_set|
+
+vim:ft=help:

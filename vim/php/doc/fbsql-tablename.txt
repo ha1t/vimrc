@@ -1,0 +1,5 @@
+fbsql_tablename -- fbsql_table_name のエイリアス
+
+この関数は次の関数のエイリアスです。 |fbsql_table_name|.
+
+vim:ft=help:

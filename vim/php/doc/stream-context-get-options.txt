@@ -1,0 +1,8 @@
+stream_context_get_options -- ストリーム / ラッパ /
+コンテキストに設定されているオプションを取得する
+
+  array stream_context_get_options(resource stream_or_context)~
+
+指定されたストリームまたはコンテキストに設定されたオプションを配列として返します。
+
+vim:ft=help:

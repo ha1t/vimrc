@@ -1,0 +1,23 @@
+apd_echo -- デバッグ用ソケットに表示する
+
+  bool apd_echo(string output)~
+
+実行中のスクリプトに関する情報を、
+一般的にはソケット経由でリクエストします。
+
+{output} デバッグされた変数。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|apd_echo| の例
+
+<?php >
+  apd_echo($i);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+getservbyport --
+ポートおよびプロトコルに対応するインターネットサービスを得る
+
+  string getservbyport(int port, string protocol)~
+
+|getservbyport| は、 /etc/services に基づき 指定したプロトコル
+{protocol} に関してポート {port}
+に関連するインターネットサービスを返します。
+
+{port} ポート番号。
+
+{protocol} {protocol} は "tcp" あるいは "udp" (小文字)
+のいずれかです。
+
+インターネットサービス名を文字列で返します。
+
+|getservbyname|
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+ibase_drop_db -- データベースを削除する
+
+  bool ibase_drop_db([resource connection])~
+
+この関数は、|ibase_connect| あるいは |ibase_pconnect|
+のいずれかによってオープンされたデータベースを削除します。
+データベースがクローズされ、サーバから削除されます。
+
+{connection} InterBase リンク ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_connect| |ibase_pconnect|
+
+vim:ft=help:

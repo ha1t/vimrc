@@ -1,0 +1,32 @@
+gmp_xor -- 排他的論理和を計算する
+
+  resource gmp_xor(resource a, resource b)~
+
+2 つの GMP 数の排他的論理和 (XOR) を計算します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{b} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+GMP 数リソースを返します。
+
+|gmp_xor| の例
+
+<?php >
+  $xor1 = gmp_init("1101101110011101", 2);
+  $xor2 = gmp_init("0110011001011001", 2);
+  
+  $xor3 = gmp_xor($xor1, $xor2);
+  
+  echo gmp_strval($xor3, 2) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  1011110111000100
+
+
+
+vim:ft=help:

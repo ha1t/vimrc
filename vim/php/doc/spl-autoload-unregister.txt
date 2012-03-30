@@ -1,0 +1,16 @@
+spl_autoload_unregister -- 指定した関数の、__autoload()
+の実装としての登録を解除する
+
+  bool spl_autoload_unregister(mixed autoload_function)~
+
+spl が提供する __autoload
+スタックから、関数の登録を解除します。
+スタックがアクティブであり、かつこの関数の実行後にスタックが空になった場合は
+スタックが非アクティブ化されます。登録解除に成功した場合は
+true、 失敗した場合は false が返されます。
+
+この関数の結果として autoload
+スタックがアクティブになったとした場合に、 既存の
+__autoload 関数が再アクティブ化されることはありません。
+
+vim:ft=help:

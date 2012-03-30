@@ -1,0 +1,13 @@
+ZipArchive::unchangeIndex --
+指定したインデックスのエントリに対するすべての変更を取り消す
+
+  mixed ZipArchive::unchangeIndex(int index)~
+
+指定したインデックスのエントリに対するすべての変更を取り消します。
+
+{index} エントリのインデックス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,66 @@
+openssl_pkcs7_sign -- S/MIME メッセージにサインする
+
+  bool openssl_pkcs7_sign(string infilename, string outfilename, mixed signcert, mixed privkey, array headers [, int flags [, string extracerts]])~
+
+|openssl_pkcs7_sign| は、 {infilename}
+という名前のファイルの内容について パラメータ {signcert}
+および {privkey}
+で指定した証明書と公開鍵を用いてサインをします。
+
+{infilename}
+
+{outfilename}
+
+{signcert}
+
+{privkey}
+
+{headers} {headers} は、ヘッダの配列です。このヘッダは、
+サインされた後でデータの前に付加されます
+(このパラメータの形式の詳細については
+|openssl_pkcs7_encrypt| を参照ください)。
+
+{flags} {flags}
+を出力を変更するために使用することが可能です。 PKCS7
+定数
+を参照ください。これが指定されない場合、デフォルトの
+PKCS7_DETACHED になります。
+
+{extracerts} {extracerts} には、
+サインに含めるための他の一連の証明書を記述したファイル名を指定します。
+これは、例えば送信者が使用した証明書を受信者が検証しやすくするために使用することが可能です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openssl_pkcs7_sign| の例
+
+<?php >
+  // 受信者が送信者を確認できるようにサインしたいメッセージ
+  $data = <<<EOD
+  
+  You have my authorization to spend $10,000 on dinner expenses.
+  
+  The CEO
+  EOD;
+  // ファイルにメッセージを保存
+  $fp = fopen("msg.txt", "w");
+  fwrite($fp, $data);
+  fclose($fp);
+  // 暗号化
+  if (openssl_pkcs7_sign("msg.txt", "signed.txt", "mycert.pem",
+      array("file://mycert.pem", "mypassphrase"),
+      array("To" => "joes@example.com", // 連想配列の構文
+            "From: HQ <ceo@example.com>", // 添字配列の構文
+            "Subject" => "Eyes only")
+      )) {
+      // メッセージはサインされました。送信しましょう!
+      exec(ini_get("sendmail_path") . " < signed.txt");
+  }
+?>
+
+
+
+
+
+vim:ft=help:

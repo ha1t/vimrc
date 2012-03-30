@@ -1,0 +1,15 @@
+imap_base64 -- BASE64
+でエンコードされたテキストをデコードする
+
+  string imap_base64(string text)~
+
+BASE64 でエンコードされたテキスト {text}
+をデコードします。
+
+{text} エンコードされたテキスト。
+
+デコードしたメッセージを文字列で返します。
+
+|imap_binary| |base64_encode| |base64_decode| RFC2045, Section 6.8
+
+vim:ft=help:

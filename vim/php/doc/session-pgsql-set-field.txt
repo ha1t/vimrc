@@ -1,0 +1,16 @@
+session_pgsql_set_field -- カスタムフィールドの値を設定する
+
+  bool session_pgsql_set_field(string value)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{value}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|session_pgsql_get_field|
+
+vim:ft=help:

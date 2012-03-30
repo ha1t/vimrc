@@ -1,0 +1,25 @@
+swf_addcolor -- グローバル加算色を、指定した rbga
+値に設定する
+
+  void swf_addcolor(float r, float g, float b, float a)~
+
+指定した {rgba} 色にグローバル加算色を設定します。
+この色は、この後(暗黙の内に)関数 |swf_placeobject|、
+|swf_modifyobject|、 |swf_addbuttonrecord| で使用されます。
+
+オブジェクトがスクリーンに描かれる時に、オブジェクトの色に
+指定した値が加算されます。
+
+{r} 赤の値。
+
+{g} 緑の値。
+
+{b} 青の値。
+
+{a} アルファ値。
+
+これらの値は正または負のどちらにもなります。
+
+値を返しません。
+
+vim:ft=help:

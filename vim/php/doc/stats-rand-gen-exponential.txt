@@ -1,0 +1,14 @@
+stats_rand_gen_exponential -- 平均値 "av"
+の指数分布から、無作為な値を返す
+
+  float stats_rand_gen_exponential(float av)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{av}
+
+
+
+vim:ft=help:

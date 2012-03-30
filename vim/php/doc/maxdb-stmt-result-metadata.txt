@@ -1,0 +1,116 @@
+maxdb_stmt_result_metadata --
+プリペアドステートメントから、結果セットのメタデータを返す
+
+手続き型
+
+  resource maxdb_stmt_result_metadata(resource stmt)~
+
+オブジェクト指向型 (メソッド)
+
+  resource result_metadata(resource stmt)~
+
+|maxdb_prepare| に渡されたステートメントが
+結果セットを作成するものであった場合に、
+|maxdb_stmt_result_metadata| は結果リソースを返します。
+これを使用することで、フィールドの総数や各フィールドの情報といったメタ情報を
+処理することができます。
+
+この結果セットポインタは、結果セットメタデータを処理するフィールドベースの関数、
+例えば以下のような関数への引数として渡すことができます。
+|maxdb_num_fields|
+
+|maxdb_fetch_field|
+
+|maxdb_fetch_field_direct|
+
+|maxdb_fetch_fields|
+
+|maxdb_field_count|
+
+|maxdb_field_seek|
+
+|maxdb_field_tell|
+
+|maxdb_free_result|
+
+結果セットの構造体は、使用が終わったあとに開放しなければなりません。
+そのためには、それを|maxdb_free_result| に渡します。
+
+|maxdb_stmt_result_metadata| が返す結果セットには、
+メタデータのみが含まれます。結果の行は含まれません。行を取得するには、
+ステートメントハンドルを |maxdb_fetch| に渡します。
+
+|maxdb_stmt_result_metadata| は結果リソースを返します。
+エラーが発生した場合には FALSE を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  $maxdb->query("CREATE TABLE temp.friends (id int, name varchar(20))"); 
+   
+  $maxdb->query("INSERT INTO temp.friends VALUES (1,'Hartmut')");
+  $maxdb->query("INSERT INTO temp.friends VALUES (2, 'Ulf')");
+  
+  $stmt = $maxdb->prepare("SELECT id, name FROM temp.friends");
+  $stmt->execute();
+  
+  /* メタデータの結果セットを取得します */
+  $result = $stmt->result_metadata();
+  
+  /* メタデータの結果セットからフィールド情報を取得します */
+  $field = $result->fetch_field();
+  
+  printf("フィールド名: %s\n", $field->name);
+  
+  /* 結果セットを閉じます */
+  $result->close();
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  maxdb_query($link, "CREATE TABLE temp.friends (id int, name varchar(20))"); 
+   
+  maxdb_query($link, "INSERT INTO temp.friends VALUES (1,'Hartmut')");
+  maxdb_query($link, "INSERT INTO temp.friends VALUES (2, 'Ulf')");
+  
+  $stmt = maxdb_prepare($link, "SELECT id, name FROM temp.friends");
+  maxdb_stmt_execute($stmt);
+  
+  /* メタデータの結果セットを取得します */
+  $result = maxdb_stmt_result_metadata($stmt);
+  
+  /* メタデータの結果セットからフィールド情報を取得します */
+  $field = maxdb_fetch_field($result);
+  
+  printf("フィールド名: %s\n", $field->name);
+  
+  /* 結果セットを閉じます */
+  maxdb_free_result($result);
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  フィールド名: ID
+
+|maxdb_prepare| |maxdb_free_result|
+
+vim:ft=help:

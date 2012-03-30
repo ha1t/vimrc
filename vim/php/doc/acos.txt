@@ -1,0 +1,15 @@
+acos -- 逆余弦（アークコサイン）
+
+  float acos(float arg)~
+
+{arg} のアークコサインをラジアンで返します。 |acos| は
+|cos| の逆関数で、 |acos| がとりうる範囲内のすべての a
+について a==cos(acos(a)) が成立します。
+
+{arg} 処理する角度。
+
+{arg} のアークコサインをラジアンで返します。
+
+|cos| |acosh| |asin| |atan|
+
+vim:ft=help:

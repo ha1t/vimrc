@@ -1,0 +1,18 @@
+ibase_prepare --
+後でパラメータのバインド及び実行を行うためにクエリを準備する
+
+  resource ibase_prepare(string query)~
+
+  resource ibase_prepare(string query, resource link_identifier, string query)~
+
+  resource ibase_prepare(string query, resource link_identifier, string query, resource link_identifier, string trans, string query)~
+
+対応するパラメータのバインドや (|ibase_execute| による)
+実行をするためのクエリを準備します。
+
+{query} InterBase クエリ。
+
+プリペアドクエリのハンドル、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

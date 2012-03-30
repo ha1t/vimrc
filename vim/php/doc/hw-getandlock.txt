@@ -1,0 +1,20 @@
+hw_GetAndLock --
+オブジェクトレコードを返しおよびオブジェクトをロックする
+
+  string hw_getandlock(int connection, int objectID)~
+
+ID {objectID} を有するオブジェクトの
+オブジェクトレコードを返します。
+また、オブジェクトをロックします。このため、ロックを解放するまで、
+他のユーザはアクセスできません。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+ID {objectID} を有するオブジェクトの
+オブジェクトレコードを返します。
+
+|hw_unlock| |hw_getobject|
+
+vim:ft=help:

@@ -1,0 +1,37 @@
+newt_form_add_component -- フォームにコンポーネントを追加する
+
+  void newt_form_add_component(resource form, resource component)~
+
+{form} にコンポーネントを追加します。
+
+{form} コンポーネントを追加するフォーム。
+
+{component} フォームに追加するコンポーネント。
+
+値を返しません。
+
+|newt_form_add_component| の例
+
+<?php >
+  $form = newt_form();
+  
+  $options = array("Authentication configuration", "Firewall configuration",
+  "Mouse configuration", "Network configuration", "Printer configuration",
+  "System services");
+  
+  $list = newt_listbox(3, 2, 10);
+  
+  foreach ($options as $l_item) {
+      newt_listbox_add_entry($list, $l_item, $l_item);
+  }
+  
+  newt_form_add_component($form, $list);
+?>
+
+
+
+
+
+|newt_form_add_components|
+
+vim:ft=help:

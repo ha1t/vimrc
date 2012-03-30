@@ -1,0 +1,41 @@
+ircg_pconnect -- IRC サーバに接続する
+
+  resource ircg_pconnect(string username [, string server_ip [, int server_port [, string msg_format [, array ctcp_messages [, array user_settings [, bool bailout_on_trivial]]]]]])~
+
+|ircg_pconnect| は、 IRC
+サーバへの接続を確立しようと試みます。
+
+{username} サーバ上での初期ニックネーム。
+
+{server_ip} IRC サーバのアドレス。
+
+{server_ip} は数値表現の IP アドレスしか受け付けません。
+DNS 検索はコストがかかる処理で、IRCG で行うべきです。
+デフォルトは 127.0.0.1 です。
+
+{server_port} サーバのポート番号。デフォルトは 6667 です。
+
+{msg_format} 事前に |ircg_register_format_messages|
+で作成したフォーマットメッセージセットの名前を
+{msg_format} に指定することで、 IRC
+のメッセージやイベントの出力をカスタマイズすることが可能です。
+
+{ctcp_messages} ACTION (/me) のような CTCP
+メッセージを扱いたい場合は、 CTCP 型 (例: ACTION)
+からカスタムフォーマット文字列への
+マッピングを定義する必要があります。そうするには、
+{ctcp_messages} に連想配列を渡します。 配列のキーが CTCP
+型で、対応する値がフォーマットメッセージとなります。
+
+{user_settings} IRC サーバに送信する "ident"、"password" および
+"realname" トークンを
+連想配列として指定することが可能です。この連想配列を設定します。
+
+{bailout_on_trivial}
+
+後で使うための接続リソースハンドル、あるいはエラー時に
+FALSE を返します。
+
+|ircg_disconnect| |ircg_is_conn_alive| |ircg_register_format_messages|
+
+vim:ft=help:

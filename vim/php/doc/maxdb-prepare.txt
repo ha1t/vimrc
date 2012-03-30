@@ -1,0 +1,132 @@
+maxdb->prepare -- 後で実行するための SQL 文を準備する
+
+手続き型
+
+  resource maxdb_prepare(resource link, string query)~
+
+オブジェクト指向型 (メソッド)
+
+  resource prepare(resource link, string query, string query)~
+
+|maxdb_prepare| は、 後で実行するための
+SQLクエリをヌル終端の文字列で準備し、
+今後のステートメントに対する操作に使用するためのハンドルを返します。
+クエリは、単一の SQL 文である必要があります。
+
+文の最後に、セミコロンや \g をつけてはいけません。
+
+{query} では、SQL 文の中に、
+ひとつあるいは複数のパラメータマーカを含めることが可能です。
+適切な場所にクエスチョンマーク (?) を埋め込みます。
+
+マーカは、SQL
+文の中の適切な箇所にある場合にのみ有効です。 例えば
+INSERT 文の VALUES() リスト (その行のカラムの値を指定する)
+あるいは WHERE 句でカラムの値と
+比較する条件を指定する場合などが有効です。
+
+しかし、識別子 (テーブル名やカラム名)、SELECT
+文が返すカラム名の一覧、 あるいは (例えば = のような)
+二項演算子の両側などに
+マーカを指定することはできません。最後の制限が必要なのは、
+この場合にパラメータの型が決定できなくなるからです。
+一般的に、パラメータはデータ操作言語 (DML)
+文で使用し、 データ定義言語 (DDL) 文では使用しません。
+
+パラメータマーカは、文を実行したり行を取得したりする前に、必ず
+|maxdb_stmt_bind_param| や |maxdb_stmt_bind_result|
+でアプリケーションの変数にバインドしなければなりません。
+
+|maxdb_prepare| は、ステートメントリソースを返します。
+エラーが発生した場合は FALSE を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $city = "Rosemont";
+  
+  /* プリペアドステートメントを作成します */
+  if ($stmt = $maxdb->prepare("SELECT state FROM hotel.city WHERE name=?")) {
+  
+     /* マーカにパラメータをバインドします */
+     $stmt->bind_param("s", $city);
+  
+     /* クエリを実行します */
+     $stmt->execute();
+  
+     /* 結果変数にバインドします */
+     $stmt->bind_result($district);
+  
+     /* 値を取得します */
+     $stmt->fetch();
+  
+     printf("%s is in district %s\n", $city, $district);
+  
+     /* ステートメントを閉じます */
+     $stmt->close();
+  } 
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $city = "Rosemont";
+  
+  /* プリペアドステートメントを作成します */
+  if ($stmt = maxdb_prepare($link, "SELECT state FROM hotel.city WHERE name=?")) {
+  
+     /* マーカにパラメータをバインドします */
+     maxdb_stmt_bind_param($stmt, "s", $city);
+  
+     /* クエリを実行します */
+     maxdb_stmt_execute($stmt);
+  
+     /* 結果変数にバインドします */
+     maxdb_stmt_bind_result($stmt, $district);
+  
+     /* 値を取得します */
+     maxdb_stmt_fetch($stmt);
+  
+     printf("%s is in district %s\n", $city, $district);
+  
+     /* ステートメントを閉じます */
+     maxdb_stmt_close($stmt);
+  } 
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Rosemont is in district IL
+
+|maxdb_stmt_execute| |maxdb_stmt_fetch| |maxdb_stmt_bind_param|
+|maxdb_stmt_bind_result| |maxdb_stmt_close|
+
+vim:ft=help:

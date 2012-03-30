@@ -1,0 +1,14 @@
+xml_error_string -- XML パーサのエラー文字列を得る
+
+  string xml_error_string(int code)~
+
+エラーコード {code} の説明を有する文字列を 返します。
+
+{code} |xml_get_error_code| からのエラーコード。
+
+エラーコード {code} の説明を有する文字列を
+返します。説明がない場合には FALSE を返します。
+
+|xml_get_error_code|
+
+vim:ft=help:

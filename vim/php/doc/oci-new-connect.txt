@@ -1,0 +1,25 @@
+oci_new_connect -- Oracle サーバへの新規接続を確立する
+
+  resource oci_new_connect(string username, string password [, string db [, string charset [, int session_mode]]])~
+
+Oracle サーバへの新規接続を確立し、ログオンします。
+
+|oci_connect| や |oci_pconnect| と異なり、|oci_new_connect|
+は接続をキャッシュしません。また、
+常に新しくオープンされた接続ハンドルを返します。
+これは、もしアプリケーションが 2
+セットのクエリ間でトランザクション的な独立を必要とする場合に有効です。
+
+{username} Oracle のユーザ名。
+
+{password} {username} のパスワード。
+
+{db} オプションのパラメータで、ローカルの Oracle
+インスタンスの名前か tnsnames.ora
+における接続先のエントリ名を指定することができます。
+
+指定しない場合は、PHP は環境変数 ORACLE_SID および TWO_TASK
+を用いてローカルの Oracle インスタンス名および tnsnames.ora
+の場所を見つけます。
+
+vim:ft=help:

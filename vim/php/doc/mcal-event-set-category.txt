@@ -1,0 +1,15 @@
+mcal_event_set_category --
+グローバルイベント構造体ストリームのカテゴリを設定する
+
+  void mcal_event_set_category(int stream, string category)~
+
+|mcal_event_set_category| は、グローバルイベント
+構造体ストリームのカテゴリを指定した文字列に設定します。
+
+{stream} MCAL ストリーム。
+
+{category} 設定するカテゴリ。
+
+値を返しません。
+
+vim:ft=help:

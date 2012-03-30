@@ -1,0 +1,127 @@
+var_export -- 変数の文字列表現を出力または返す
+
+  mixed var_export(mixed expression [, bool return])~
+
+|var_export| は、
+渡された変数に関する構造化された情報を返します。この関数は
+|var_dump| に似ていますが、 返される表現が有効な PHP
+コードであるところが異なります。
+
+{expression} エクスポートしたい変数
+
+{return} 使用されかつ TRUE に設定された場合、|var_export|
+は変数表現を出力する代わりに返します。
+
+この関数は、
+このパラメータに対して内部的に出力バッファリングを使用しています。
+そのため、|ob_start|
+コールバック関数の中で使用することはできません。
+
+{return} パラメータが使用され TRUE と評価される場合、
+変数表現を返します。そうでない場合、この関数は NULL
+を返します。
+
+バージョン 説明 5.1.0 マジックメソッド __set_state
+を使用することで、
+クラスを含む配列やクラスをエクスポートできるようになりました。
+
+|var_export| の例
+
+<?php >
+  $a = array (1, 2, array ("a", "b", "c"));
+  var_export($a);
+?>
+
+上の例の出力は以下となります。
+
+  array (
+    0 => 1,
+    1 => 2,
+    2 =>
+    array (
+      0 => 'a',
+      1 => 'b',
+      2 => 'c',
+    ),
+  )
+
+<?php >
+  $b = 3.1;
+  $v = var_export($b, true);
+  echo $v;
+?>
+
+上の例の出力は以下となります。
+
+  3.1
+
+
+
+PHP 5.1.0 以降でのクラスのエクスポート
+
+<?php >
+  class A { public $var; }
+  $a = new A;
+  $a->var = 5;
+  var_export($a);
+?>
+
+上の例の出力は以下となります。
+
+  A::__set_state(array(
+     'var' => 5,
+  ))
+
+
+
+__set_state の使用法 (PHP 5.1.0 以降)
+
+<?php >
+  class A
+  {
+      public $var1;
+      public $var2;
+  
+      public static function __set_state($an_array)
+      {
+          $obj = new A;
+          $obj->var1 = $an_array['var1'];
+          $obj->var2 = $an_array['var2'];
+          return $obj;
+      }
+  }
+  
+  $a = new A;
+  $a->var1 = 5;
+  $a->var2 = 'foo';
+  
+  eval('$b = ' . var_export($a, true) . ';'); // $b = A::__set_state(array(
+                                              //    'var1' => 5,
+                                              //    'var2' => 'foo',
+                                              // ));
+  var_dump($b);
+?>
+
+上の例の出力は以下となります。
+
+  object(A)#2 (2) {
+    ["var1"]=>
+    int(5)
+    ["var2"]=>
+    string(3) "foo"
+  }
+
+
+
+リソース型 の変数は、
+この関数ではエクスポートする事ができません。
+
+|var_export| では循環参照を扱うことができません。
+循環参照を表す解析可能な PHP
+コードを生成することは、不可能に近いからです。
+配列やオブジェクトを完全な形式で扱いたい場合は
+|serialize| を使用してください。
+
+|print_r| |serialize| |var_dump|
+
+vim:ft=help:

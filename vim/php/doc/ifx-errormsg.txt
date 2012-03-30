@@ -1,0 +1,24 @@
+ifx_errormsg -- 直近の Informix
+コールのエラーメッセージを返す
+
+  string ifx_errormsg([int errorcode])~
+
+直近の Informix エラーに関する Informix
+エラーメッセージを返します。
+
+{errorcode}
+指定すると、指定したコードに対応するエラーメッセージを返します。
+
+エラーメッセージを文字列で返します。
+
+|ifx_errormsg| の例
+
+  printf("%s\n<br>", ifx_errormsg(-201));
+
+
+
+
+
+|ifx_error|
+
+vim:ft=help:

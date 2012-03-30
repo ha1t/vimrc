@@ -1,0 +1,46 @@
+pg_copy_from -- 配列からテーブルに挿入する
+
+  bool pg_copy_from(resource connection, string table_name, array rows [, string delimiter [, string null_as]])~
+
+|pg_copy_from| は、{rows}
+の内容をテーブルに挿入します。レコードを挿入するために、内部では
+COPY FROM SQL コマンドを発行します。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{table_name} {rows} をコピーするテーブルの名前。
+
+{rows} {table_name} にコピーするデータの配列。 {rows}
+の個々の値が {table_name} のひとつの行となります。{rows}
+の個々の値は、
+それぞれのフィールドに対応する値が区切り文字で区切られており、最後は
+改行で終了していなければなりません。
+
+{delimiter} {rows} の要素内で、各フィールドに対応する値を
+区切る文字。デフォルトは TAB です。
+
+{null_as} {rows} の中で、SQL の NULL
+をどのように表現するか。デフォルトは \N ("\\N") です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_copy_from| の例
+
+<?php >
+     $db = pg_connect("dbname=publisher") or die("Could not connect");
+     
+     $rows = pg_copy_to($db, $table_name);
+     
+     pg_query($db, "DELETE FROM $table_name");
+     
+     pg_copy_from($db, $table_name, $rows);
+?>
+
+
+
+
+
+|pg_copy_to|
+
+vim:ft=help:

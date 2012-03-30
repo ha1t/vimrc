@@ -1,0 +1,9 @@
+mail -- メールを送信する
+
+  bool mail(string to, string subject, string message [, string additional_headers [, string additional_parameters]])~
+
+メールを送信します。
+
+{to} メールの受信者。
+
+vim:ft=help:

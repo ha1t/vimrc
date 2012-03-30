@@ -1,0 +1,79 @@
+stream_filter_append -- ストリームにフィルタを付加する
+
+  resource stream_filter_append(resource stream, string filtername [, int read_write [, mixed params]])~
+
+{filtername} で指定されたフィルタを、 {stream}
+に付加されているフィルタのリストに加えます。
+このフィルタは、指定された {params} と共に、
+リストの末尾に追加され、ストリームに対する操作の中で最後に呼び出されます。
+フィルタをリストの先頭に加えたいときは、|stream_filter_prepend|
+を使ってください。
+
+デフォルトでは、 |stream_filter_append| は
+ストリームが読み込み用に開かれている場合は
+(つまり、オープンモードが r あるいは + を伴う場合は)、
+フィルタを リードフィルタチェイン に追加し、
+ストリームが書き出し用に開かれている場合は(つまり、オープンモードが
+w か aか、あるいは+ を伴う場合は)、
+ライトフィルターチェィンにも追加します。
+STREAM_FILTER_READ・ STREAM_FILTER_WRITE・ STREAM_FILTER_ALL を
+{read_write}パラメータに渡すことで、この挙動を変えることができます。
+
+PHP 5.1.0 以降では、この関数はリソースを返します。
+このリソースは、|stream_filter_remove|
+をコールする際にこのフィルタインスタンスを参照するために使用可能です。
+PHP 5.1.0
+より前のバージョンでは、この関数は成功した場合に
+TRUE、 失敗した場合に FALSE を返します。
+
+フィルタの適用される場所を制御する
+
+<?php >
+  /* ファイルを読み書き用に開く */
+  $fp = fopen('test.txt', 'w+');
+  
+  /* ROT13 フィルタをライトフィルタチェインに付加する。
+   * リードフィルタチェインには付加しない。*/
+  stream_filter_append($fp, "string.rot13", STREAM_FILTER_WRITE);
+  
+  /* 単純な文字列をファイルに書き出す。
+   * この文字列には、出口で ROT13 変換が適用される。
+   */
+  fwrite($fp, "This is a test\n");
+  
+  /* ファイルの最初に戻る */
+  rewind($fp);
+  
+  /* 書き出した内容を読み戻す。
+   * もし、フィルタがリードフィルタチェインにも
+   * 付加されていれば、再び読み出し時に ROT13 が適用され、
+   * テキストは元の状態に戻るはず。 */
+  fpassthru($fp);
+  
+  fclose($fp);
+  
+  /* 期待される出力
+     ---------------
+  
+  Guvf vf n grfg
+  
+   */
+?>
+
+
+
+
+
+カスタムフィルタを {filtername} に指定するためには、 まず
+|stream_filter_register| 関数でそれを登録しておく
+必要があります。
+
+ストリームデータは（ローカルおよびリモートの）リソースからチャンク単位で
+読み込まれ、内部バッファに保持されます。新しいフィルタがストリームに
+追加されると、内部バッファのデータがその時点でフィルタリングされます。
+これは |stream_filter_prepend| の挙動とは違います。
+
+|stream_filter_register|、 |stream_filter_prepend| および
+|stream_get_filters| も参照ください。
+
+vim:ft=help:

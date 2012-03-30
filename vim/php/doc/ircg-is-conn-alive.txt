@@ -1,0 +1,13 @@
+ircg_is_conn_alive -- 接続ステータスを確認する
+
+  bool ircg_is_conn_alive(resource connection)~
+
+|ircg_is_conn_alive| は、 {connection} の状態を調べます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{connection} が有効で正常に動作している場合に TRUE、
+何らかの理由で接続が死んでいる場合に FALSE
+を返します。
+
+vim:ft=help:

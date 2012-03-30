@@ -1,0 +1,60 @@
+json_decode -- JSON 文字列をデコードする
+
+  mixed json_decode(string json [, bool assoc])~
+
+JSON エンコードされた文字列を受け取り、それを PHP
+の変数に変換します。
+
+{json} デコード対象となる {json} 文字列。
+
+{assoc} TRUE
+の場合は、返されるオブジェクトが連想配列形式になります。
+
+オブジェクトを返します。あるいは、オプションのパラメータ
+{assoc} が TRUE の場合には、 連想配列を返します。
+
+|json_decode| の例
+
+<?php >
+  $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
+  
+  var_dump(json_decode($json));
+  var_dump(json_decode($json, true));
+?>
+
+上の例の出力は以下となります。
+
+  object(stdClass)#1 (5) {
+      ["a"] => int(1)
+      ["b"] => int(2)
+      ["c"] => int(3)
+      ["d"] => int(4)
+      ["e"] => int(5)
+  }
+  
+  array(5) {
+      ["a"] => int(1)
+      ["b"] => int(2)
+      ["c"] => int(3)
+      ["d"] => int(4)
+      ["e"] => int(5)
+  }
+
+<?php >
+  $json = '{"foo-bar": 12345}';
+  
+  $obj = json_decode($json);
+  print $obj->{'foo-bar'}; // 12345
+?>
+
+
+
+JSON エンコードされたデータのネストの深さが 127
+を超えると、 この関数は false を返します。
+
+バージョン 説明 5.2.3 ネストの制限が 20 から 128
+に拡張されました。
+
+|json_encode|
+
+vim:ft=help:

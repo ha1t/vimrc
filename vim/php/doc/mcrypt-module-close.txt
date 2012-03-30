@@ -1,0 +1,14 @@
+mcrypt_module_close -- mcrypt モジュールを閉じる
+
+  bool mcrypt_module_close(resource td)~
+
+指定した暗号化ハンドルを閉じます。
+
+{td} 暗号化記述子。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mcrypt_module_open|
+
+vim:ft=help:

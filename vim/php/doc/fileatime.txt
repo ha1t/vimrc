@@ -1,0 +1,50 @@
+fileatime -- ファイルの最終アクセス時刻を取得する
+
+  int fileatime(string filename)~
+
+指定したファイルの最終アクセス時刻を取得します。
+
+{filename} ファイルへのパス。
+
+ファイルの最終アクセス時刻を返し、エラーの場合は FALSE
+を返します。 時間は Unix
+タイムスタンプとして返されます。
+
+|fileatime| の例
+
+<?php >
+  // 出力例 somefile.txt was last accessed: December 29 2002 22:16:23.
+  
+  $filename = 'somefile.txt';
+  if (file_exists($filename)) {
+      echo "$filename was last accessed: " . date("F d Y H:i:s.", fileatime($filename));
+  }
+?>
+
+
+
+
+
+ファイルの atime は、
+ファイルのデータブロックが読み込まれる度に変更されるとみなされます。
+この仕様は、アプリケーションが非常に多くのファイルまたはディレクトリに
+常にアクセスする場合に性能上の負荷となる可能性があります。
+
+Unix のファイルシステムの中には、
+このようなアプリケーションの性能を向上させるために
+atime の更新を無効としてマウントできるものもあります。
+USENET のニューススプールが一般的な例です。
+このようなファイルシステムでは、この関数は使用できません。
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|filemtime| |fileinode| |date|
+
+vim:ft=help:

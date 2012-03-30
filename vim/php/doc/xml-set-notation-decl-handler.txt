@@ -1,0 +1,50 @@
+xml_set_notation_decl_handler -- 表記法宣言ハンドラを設定する
+
+  bool xml_set_notation_decl_handler(resource parser, callback handler)~
+
+XML パーサ {parser}
+の表記法宣言用ハンドラ関数を設定します。
+
+表記法の宣言は、ドキュメントの DTD の一部であり、
+次のようなフォーマットとなります。
+
+  <!NOTATION <parameter>name</parameter>
+  { <parameter>systemId</parameter> | <parameter>publicId</parameter>?>
+
+表記法宣言の定義に関しては、 XML 1.0 仕様の 4.7 節
+を参照ください。
+
+{parser}
+
+{handler} {handler} は、 {parser} に関して |xml_parse|
+がコールされた際に必要な関数の名前を有する文字列です。
+
+  bool (resource parser, callback handler, resource parser, string notation_name, string base, string system_id, string public_id)~
+
+{handler}
+という名前の関数は、5つのパラメータをとる必要があります。
+{parser} 最初のパラメータ、parser は ハンドラをコールする
+XML パーサへのリファレンスです。
+
+{notation_name}
+これは、前記の表記用フォーマットに示すように表記法の
+{名前} です。
+
+{base} 外部エンティティのシステムID({systemId})を
+取得する際の基本となります。現在、このパラメータは、常に空の
+文字列に設定されています。
+
+{system_id} 外部表記用宣言のシステム ID
+
+{public_id} 外部表記用宣言のパブリック ID
+
+ハンドラ関数が空の文字列または FALSE
+に設定されていた場合、そのハンドラは無効となります。
+
+関数名の代わりに、オブジェクトへの
+リファレンスを格納した配列とメソッド名を指定することもできます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

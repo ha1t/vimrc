@@ -1,0 +1,46 @@
+exif_imagetype -- イメージの型を定義する
+
+  int exif_imagetype(string filename)~
+
+|exif_imagetype| を画像の先頭バイトを読み
+そのサインを調べます。
+
+|exif_imagetype| は、他の exif
+関数がサポートしていないファイル形式で
+コールされるの防いだり、$_SERVER['HTTP_ACCEPT']
+と組み合わせて閲覧者が画像を見る権限を持っているかどうかを調べたりするために
+使用可能です。
+
+{filename} 調べる画像。
+
+正しいサインが見つかった場合は適切な定数、それ以外の場合は
+FALSE を返します。返り値は |getimagesize| がインデックス 2
+に対して返す値と同じですが、|exif_imagetype|
+のほうがずっと早く動作します。
+
+バージョン 説明 4.3.2 JPC、JP2、 JPX、JB2、 XBM および WBMP
+がサポートされます。 4.3.0 SWC がサポートされます。
+
+以下の定数が定義されており、|exif_imagetype|
+の返り値を表しています。 Imagetype 定数 値 定数 1
+IMAGETYPE_GIF 2 IMAGETYPE_JPEG 3 IMAGETYPE_PNG 4 IMAGETYPE_SWF 5 IMAGETYPE_PSD
+6 IMAGETYPE_BMP 7 IMAGETYPE_TIFF_II (intel byte order) 8 IMAGETYPE_TIFF_MM
+(motorola byte order) 9 IMAGETYPE_JPC 10 IMAGETYPE_JP2 11 IMAGETYPE_JPX 12
+IMAGETYPE_JB2 13 IMAGETYPE_SWC 14 IMAGETYPE_IFF 15 IMAGETYPE_WBMP 16
+IMAGETYPE_XBM
+
+|exif_imagetype| の例
+
+<?php >
+  if (exif_imagetype('image.gif') != IMAGETYPE_GIF) {
+      echo 'The picture is not a gif';
+  }
+?>
+
+
+
+
+
+|getimagesize|
+
+vim:ft=help:

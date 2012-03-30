@@ -1,0 +1,16 @@
+ldap_delete -- ディレクトリからエントリを削除する
+
+  bool ldap_delete(resource link_identifier, string dn)~
+
+指定したエントリを LDAP ディレクトリから削除します。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{dn} LDAP エンティティの識別名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ldap_add|
+
+vim:ft=help:

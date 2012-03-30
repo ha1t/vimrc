@@ -1,0 +1,11 @@
+udm_crc32 -- 指定した文字列の CRC32 チェックサムを計算する
+
+  int udm_crc32(resource agent, string str)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

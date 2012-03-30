@@ -1,0 +1,63 @@
+mailparse_uudecode_all --
+ファイルポインタからデータをスキャンし、uuencode
+されたファイルを展開する
+
+  array mailparse_uudecode_all(resource fp)~
+
+指定したファイルポインタからのデータを読み込み、
+uuencode されたファイルを一時ファイルに展開します。
+
+{fp} 有効なファイルポインタ。
+
+ファイル名の情報を含む連想配列の配列を返します。
+filename 作成された一時ファイルへのパス。 origfilename
+もとのファイル名。uuencode
+されたパートにのみ存在します。 最初の filename
+エントリがメッセージ本文、次のエントリがデコードされた
+uuencode ファイルとなります。
+
+|mailparse_uudecode_all| の例
+
+<?php >
+  $text = <<<EOD
+  To: fred@example.com
+  
+  hello, this is some text hello.
+  blah blah blah.
+  
+  begin 644 test.txt
+  /=&amp;AI<R!I<R!A('1E<W0*
+  `
+  end
+  
+  EOD;
+  
+  $fp = tmpfile();
+  fwrite($fp, $text);
+  
+  $data = mailparse_uudecode_all($fp);
+  
+  echo "BODY\n";
+  readfile($data[0]["filename"]);
+  echo "UUE ({$data[1]['origfilename']})\n";
+  readfile($data[1]["filename"]);
+  
+  // 後始末をします
+  unlink($data[0]["filename"]);
+  unlink($data[1]["filename"]);
+?>
+
+上の例の出力は以下となります。
+
+  BODY
+  To: fred@example.com
+  
+  hello, this is some text hello.
+  blah blah blah.
+  
+  UUE (test.txt)
+  this is a test
+
+
+
+vim:ft=help:

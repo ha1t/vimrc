@@ -1,0 +1,13 @@
+DomNode->dump_node -- 単一ノードをダンプする
+
+  string DomNode->dump_node()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+|domdocument_dump_mem| も参照ください。
+
+vim:ft=help:

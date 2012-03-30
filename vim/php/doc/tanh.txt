@@ -1,0 +1,14 @@
+tanh -- 双曲線正接（ハイパボリックタンジェント）
+
+  float tanh(float arg)~
+
+{arg} のハイパボリックタンジェントを返します。 これは
+sinh(arg)/cosh(arg) で定義されます。
+
+{arg} 処理する引数。
+
+{arg} のハイパボリックタンジェントを返します。
+
+|tan| |atanh| |sinh| |cosh|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+pfsockopen -- 持続的な Internet または Unix
+ドメインソケット接続をオープンする
+
+  resource pfsockopen(string hostname [, int port [, int errno [, string errstr [, float timeout]]]])~
+
+この関数は、|fsockopen| と全く同様に動作します。
+ただし、この関数による接続はリクエストが終了した後でも閉じられないという違いがあります。
+この関数は、|fsockopen| の持続的接続版です。
+
+パラメータについての情報は |fsockopen|
+のドキュメントを参照ください。
+
+|fsockopen|
+
+vim:ft=help:

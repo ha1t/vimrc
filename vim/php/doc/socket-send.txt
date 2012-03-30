@@ -1,0 +1,29 @@
+socket_send -- 接続したソケットにデータを送信する
+
+  int socket_send(resource socket, string buf, int len, int flags)~
+
+関数 |socket_send| は、 {buf} からソケット {socket} に {len}
+バイトのデータを送信します。
+
+{socket} |socket_create| あるいは |socket_accept|
+が作成したソケットリソース。
+
+{buf} リモートホストに送信するデータを含むバッファ。
+
+{len} {buf} からリモートホストに送信するバイト数。
+
+{flags} {flags} の値は、以下のフラグの任意の組み合わせを
+論理 OR 演算子 (|) で連結したものとなります。 {flags}
+がとりうる値 MSG_OOB OOB（out-of-band:
+帯域外）データを送信します。 MSG_EOR
+レコードにマークをつけます。
+レコードでデータがそろいます。 MSG_EOF
+ソケットの送信側を閉じ、そのことを知らせる通知を送信データの最後に付加します。
+トランザクションでデータがそろいます。 MSG_DONTROUTE
+ルータを使用せず、直接つながっているインターフェースのみを使用します。
+
+
+
+|socket_sendto|
+
+vim:ft=help:

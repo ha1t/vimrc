@@ -1,0 +1,17 @@
+runkit_import --
+ファイルから関数やクラスの定義を読み込み、必要に応じて書き換える
+
+  bool runkit_import(string filename [, int flags])~
+
+|include| と似ていますが、関数やクラスの外部に
+あるコードは無視されます。 また、{flags} の設定により、
+現在実行中の環境内の既存の関数やクラスを自動的に上書きします。
+
+{filename} 関数やクラスの定義を読み込むファイル名。
+
+{flags} RUNKIT_IMPORT_* 系の定数の論理和。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

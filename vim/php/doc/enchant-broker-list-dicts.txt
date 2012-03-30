@@ -1,0 +1,78 @@
+enchant_broker_list_dicts -- 使用可能な辞書の一覧を返す
+
+  mixed enchant_broker_list_dicts(resource broker)~
+
+使用可能な辞書の一覧と、その詳細を返します。
+
+{broker} ブローカーリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+あるブローカーで使用可能なすべての辞書を表示する
+
+<?php >
+  $r = enchant_broker_init();
+  $dicts = enchant_broker_list_dicts($r);
+  print_r($dicts);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => Array
+          (
+              [lang_tag] => de
+              [provider_name] => aspell
+              [provider_desc] => Aspell Provider
+              [provider_file] => /usr/lib/enchant/libenchant_aspell.so
+          )
+  
+      [1] => Array
+          (
+              [lang_tag] => de_DE
+              [provider_name] => aspell
+              [provider_desc] => Aspell Provider
+              [provider_file] => /usr/lib/enchant/libenchant_aspell.so
+          )
+  
+      [3] => Array
+          (
+              [lang_tag] => en
+              [provider_name] => aspell
+              [provider_desc] => Aspell Provider
+              [provider_file] => /usr/lib/enchant/libenchant_aspell.so
+          )
+  
+      [4] => Array
+          (
+              [lang_tag] => en_GB
+              [provider_name] => aspell
+              [provider_desc] => Aspell Provider
+              [provider_file] => /usr/lib/enchant/libenchant_aspell.so
+          )
+  
+      [5] => Array
+          (
+              [lang_tag] => en_US
+              [provider_name] => aspell
+              [provider_desc] => Aspell Provider
+              [provider_file] => /usr/lib/enchant/libenchant_aspell.so
+          )
+  
+      [6] => Array
+          (
+              [lang_tag] => hi_IN
+              [provider_name] => myspell
+              [provider_desc] => Myspell Provider
+              [provider_file] => /usr/lib/enchant/libenchant_myspell.so
+          )
+  
+  )
+
+
+
+|enchant_broker_describe |
+
+vim:ft=help:

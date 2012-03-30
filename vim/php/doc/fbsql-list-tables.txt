@@ -1,0 +1,25 @@
+fbsql_list_tables -- FrontBase
+データベースのテーブル一覧を得る
+
+  resource fbsql_list_tables(string database [, resource link_identifier])~
+
+{database} について説明する結果ポインタを返します。
+
+{database} データベース名。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+結果ポインタを返します。これを |fbsql_tablename|
+関数で使用すると、
+実際のテーブル名が取得できます。エラー時には FALSE
+を返します。
+
+|fbsql_list_fields| |fbsql_list_dbs|
+
+vim:ft=help:

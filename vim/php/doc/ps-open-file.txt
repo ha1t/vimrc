@@ -1,0 +1,20 @@
+ps_open_file -- 出力用のファイルを開く
+
+  bool ps_open_file(resource psdoc [, string filename])~
+
+ディスク上に新しいファイルを作成し、PostScript
+ドキュメントをその中に書き込みます。|ps_close|
+が呼ばれると、ファイルは閉じられます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{filename} postscript ファイルの名前。 {filename}
+が渡されなかった場合、
+ドキュメントはメモリ内に作成され、内容は直接ブラウザに出力されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_close|
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+shm_remove_var -- 共有メモリから変数を削除する
+
+  bool shm_remove_var(int shm_identifier, int variable_key)~
+
+指定した{variable_key}
+を有する変数を共有メモリから削除し、占有するメモリを解放します。
+
+{shm_identifier} 共有メモリの ID。
+
+{variable_key} 変数のキー。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|shm_remove|
+
+vim:ft=help:

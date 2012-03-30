@@ -1,0 +1,23 @@
+ora_columntype -- Oracle のカラムの型を取得する
+
+  string ora_columntype(resource cursor, int column)~
+
+カーソル {cursor} 上の、フィールド/カラム {column} の Oracle
+データ型名を返します。
+
+{cursor} |ora_open| でオープンした Oracle カーソル。
+
+{column} カラム番号。最初は 0 です。
+
+返された型名は、次のどれかになります。 "VARCHAR2" "VARCHAR"
+"CHAR" "NUMBER" "LONG" "LONG RAW" "ROWID" "DATE" "CURSOR"
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_field_type| |oci_field_type_raw|
+
+vim:ft=help:

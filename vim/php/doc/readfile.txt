@@ -1,0 +1,31 @@
+readfile -- ファイルを出力する
+
+  int readfile(string filename [, bool use_include_path [, resource context]])~
+
+ファイルを読んで標準出力に書き出します。
+
+{filename} 読み込もうとするファイルの名前。
+
+{use_include_path}
+オプションの2番目の引数を使用して、これにTRUEを設定することにより、
+include_path のファイルの検索も行うことができます。
+
+{context} コンテキストストリームリソース。
+
+ファイルから読み込んだバイト数を返します。エラーが起こると
+FALSEを返し、また@|readfile|という名前でコールされない限り、
+エラーメッセージが表示されます。
+
+fopen wrappers が有効の場合、この関数のファイル名として
+URL
+を使用することができます。ファイル名の指定方法に関する詳細は
+|fopen|、サポートされる URL プロトコルの種類
+については、(例えば) を参照してください。
+
+コンテキストのサポートは、 PHP 5.0.0
+で追加されました。contexts の説明に関しては、
+を参照してください。
+
+|fpassthru| |file| |fopen| |include| |require| |virtual| |file_get_contents|
+
+vim:ft=help:

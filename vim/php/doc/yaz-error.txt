@@ -1,0 +1,16 @@
+yaz_error -- エラーの内容を返す
+
+  string yaz_error(resource id)~
+
+|yaz_error| は、|yaz_errno|
+で返された直近のエラー番号に対応する英語のメッセージを返します。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{id} で表される(直近のリクエストの)
+サーバに関するエラーメッセージを返します。
+直近の操作が成功した場合には空の文字列が返されます。
+
+|yaz_errno| |yaz_addinfo|
+
+vim:ft=help:

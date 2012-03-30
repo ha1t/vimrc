@@ -1,0 +1,14 @@
+ifx_create_char -- 文字オブジェクトを作成する
+
+  int ifx_create_char(string param)~
+
+文字オブジェクトを作成します。
+
+{param} 内容となる文字。
+
+新しい文字オブジェクトの ID、あるいはエラー時に FALSE
+を返します。
+
+|ifx_free_char|
+
+vim:ft=help:

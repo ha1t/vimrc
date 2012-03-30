@@ -1,0 +1,30 @@
+proc_terminate -- proc_open
+でオープンされたプロセスを強制終了する
+
+  bool proc_terminate(resource process [, int signal])~
+
+終了させる (|proc_open| を用いて生成された) {process}
+にシグナルを送信します。 |proc_terminate| は即座に返され、
+プロセスの終了を待ちません。
+
+|proc_terminate| により、プロセスを終了させ、
+他のタスクを継続することができます。|proc_get_status|
+関数を使用して (停止したかどうかを確認するために)
+プロセスをポーリングすることができます。
+しかし、これは PHP 5.2.2
+以降でしか行えません。それより前のバージョンでは
+指定したプロセス {resource} を破棄していました。
+
+{process} 終了させる |proc_open| リソース。
+
+{signal} このオプションパラメータは POSIX
+オペレーティングシステムでのみ有用です。 kill(2)
+システムコールを使用して、
+プロセスに送信するシグナルを指定することができます。
+デフォルトは SIGTERM です。
+
+実行していたプロセスの終了状態を返します。
+
+|proc_open| |proc_close| |proc_get_status|
+
+vim:ft=help:

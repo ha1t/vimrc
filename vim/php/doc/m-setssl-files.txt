@@ -1,0 +1,18 @@
+m_setssl_files --
+サーバがクライアント証明書による検証を要求している場合に、証明書のキーファイルを設定する
+
+  int m_setssl_files(resource conn, string sslkeyfile, string sslcertfile)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{sslkeyfile}
+
+{sslcertfile}
+
+
+
+vim:ft=help:

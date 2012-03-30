@@ -1,0 +1,11 @@
+swf_actionprevframe -- フレームを一つ戻す
+
+  void swf_actionprevframe()~
+
+ひとつ前のフレームに戻します。
+
+値を返しません。
+
+|swf_actionnextframe|
+
+vim:ft=help:

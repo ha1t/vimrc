@@ -1,0 +1,16 @@
+hw_InsColl -- コレクションを挿入する
+
+  int hw_inscoll(int connection, int objectID, array object_array)~
+
+{object_array} の中の属性を有する新しいコレクションを
+オブジェクト ID {objectID} のコレクションに 挿入します。
+
+{connection} 接続 ID。
+
+{objectID}
+
+{object_array}
+
+
+
+vim:ft=help:

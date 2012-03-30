@@ -1,0 +1,28 @@
+gnupg_init -- 接続を初期化する
+
+  resource gnupg_init()~
+
+この関数にはパラメータはありません。
+
+GnuPG 接続リソースを返します。これを他の GnuPG
+関数で使用します。
+
+手続き型の |gnupg_init| の例
+
+<?php >
+  $res = gnupg_init();
+?>
+
+
+
+オブジェクト指向の gnupg の初期化の例
+
+<?php >
+  $gpg = new gnupg();
+?>
+
+
+
+
+
+vim:ft=help:

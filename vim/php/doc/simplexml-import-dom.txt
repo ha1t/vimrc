@@ -1,0 +1,41 @@
+simplexml_import_dom -- DOM ノードから SimpleXMLElement
+オブジェクトを取得する
+
+  SimpleXMLElement simplexml_import_dom(DOMNode node [, string class_name])~
+
+この関数は、DOM ドキュメントのノードを引数とし、
+SimpleXML
+ノードを作成します。この新しいオブジェクトは、
+この後、通常の SimpleXML 要素として使用できます。
+
+{node} DOM 要素ノード。
+
+{class_name} このオプションパラメータを使用すると、
+|simplexml_import_dom|
+は指定したクラスのオブジェクトを返します。このクラスは
+SimpleXMLElement を継承していなければなりません。
+
+SimpleXMLElement、あるいは失敗した場合に FALSE を返します。
+
+DOM のインポート
+
+<?php >
+  $dom = new DOMDocument;
+  $dom->loadXML('<books><book><title>blah</title></book></books>');
+  if (!$dom) {
+      echo 'ドキュメントのパース時にエラーが発生しました';
+      exit;
+  }
+  
+  $s = simplexml_import_dom($dom);
+  
+  echo $s->book[0]->title; // blah
+?>
+
+
+
+
+
+|dom_import_simplexml|
+
+vim:ft=help:

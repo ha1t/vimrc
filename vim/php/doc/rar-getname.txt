@@ -1,0 +1,24 @@
+Rar::getName -- エントリの名前を取得する
+
+  string getName()~
+
+|Rar::getName| は、アーカイブエントリの名前を返します。
+
+エントリ名を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+|Rar::getName| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entry = rar_entry_get($rar_file, 'Dir/file.txt') or die("そのようなエントリは見つかりません");
+  
+  echo "エントリ名: " . $entry->getName();
+?>
+
+
+
+
+
+vim:ft=help:

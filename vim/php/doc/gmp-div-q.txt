@@ -1,0 +1,61 @@
+gmp_div_q -- 数値を除算する
+
+  resource gmp_div_q(resource a, resource b [, int round])~
+
+{a} を {b} で割り、 結果を整数で返します。
+
+{a} 割られる数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{b} {a} を割る数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{round} 結果の丸め方は {round}
+で指定し、次の値を指定可能です。 {GMP_ROUND_ZERO}: 結果は 0
+の方に丸められます。
+
+{GMP_ROUND_PLUSINF}: 結果は、 +infinity の方に丸められます。
+
+{GMP_ROUND_MINUSINF}: 結果は、 -infinity の方に丸められます。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+GMP 数リソースを返します。
+
+|gmp_div_q| の例
+
+<?php >
+  $div1 = gmp_div_q("100", "5");
+  echo gmp_strval($div1) . "\n";
+  
+  $div2 = gmp_div_q("1", "3");
+  echo gmp_strval($div2) . "\n";
+  
+  $div3 = gmp_div_q("1", "3", GMP_ROUND_PLUSINF);
+  echo gmp_strval($div3) . "\n";
+  
+  $div4 = gmp_div_q("-1", "4", GMP_ROUND_PLUSINF);
+  echo gmp_strval($div4) . "\n";
+  
+  $div5 = gmp_div_q("-1", "4", GMP_ROUND_MINUSINF);
+  echo gmp_strval($div5) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  20
+  0
+  1
+  0
+  -1
+
+
+
+この関数は、|gmp_div|
+のようにコールすることも可能です。
+
+|gmp_div_r| |gmp_div_qr|
+
+vim:ft=help:

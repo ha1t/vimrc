@@ -1,0 +1,29 @@
+gmp_abs -- 絶対値
+
+  resource gmp_abs(resource a)~
+
+ある数の絶対値を返します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{a} の絶対値を GMP 数で返します。
+
+|gmp_abs| の例
+
+<?php >
+  $abs1 = gmp_abs("274982683358");
+  $abs2 = gmp_abs("-274982683358");
+  
+  echo gmp_strval($abs1) . "\n";
+  echo gmp_strval($abs2) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  274982683358
+  274982683358
+
+
+
+vim:ft=help:

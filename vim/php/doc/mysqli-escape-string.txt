@@ -1,0 +1,7 @@
+mysqli_escape_string -- mysqli_real_escape_string のエイリアス
+
+この関数は |mysqli_real_escape_string| のエイリアスです。
+
+|mysqli_real_escape_string|
+
+vim:ft=help:

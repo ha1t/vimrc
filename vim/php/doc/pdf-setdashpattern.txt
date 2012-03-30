@@ -1,0 +1,8 @@
+PDF_setdashpattern -- 破線パターンを設定する
+
+  bool PDF_setdashpattern(resource pdfdoc, string optlist)~
+
+オプションリストで定義した破線パターンを設定します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

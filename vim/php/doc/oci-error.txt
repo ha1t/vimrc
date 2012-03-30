@@ -1,0 +1,68 @@
+oci_error -- 最後に見つかったエラーを返す
+
+  array oci_error([resource source])~
+
+最後に見つかったエラーを返します。
+
+{source} ほとんどのエラーに対応するため、
+パラメータは適当なリソースハンドルを指定可能。
+|oci_connect|、 |oci_new_connect| あるいは |oci_pconnect|
+での接続エラーの場合、 パラメータを渡さない。
+
+もしエラーが見つからない場合、|oci_error| は FALSE
+を返す。 |oci_error| はエラーを連想配列として返す。
+この配列には、Oracle エラーコード code や Oracle
+エラー文字列 message が含まれる。
+
+バージョン 説明 4.3 エラーの場所と原因となった SQL
+テキストを示すため、 offset と sqltext
+も返される配列に含まれる。
+
+接続エラー後、Oracle エラーメッセージを表示する
+
+  $conn = @oci_connect("scott", "tiger", "mydb");
+  if (!$conn) {
+    $e = oci_error();   // oci_connect のエラーの場合、ハンドルを渡さない
+    echo htmlentities($e['message']);
+  }
+
+
+
+
+
+パースエラー後、Oracle エラーメッセージを表示する
+
+  $stmt = @oci_parse($conn, "select ' from dual");  // クオートが間違っている事に注意
+  if (!$stmt) {
+    $e = oci_error($conn);  // oci_parse のエラーの場合、接続ハンドルを渡す
+    echo htmlentities($e['message']);
+  }
+
+
+
+
+
+実行エラー後、 Oracle
+エラーメッセージと問題となった文を表示する
+
+  $r = oci_execute($stmt);
+  if (!$r) {
+    $e = oci_error($stmt); // oci_execute のエラーの場合、ステートメントハンドルを渡す
+    echo htmlentities($e['message']);
+    echo "<pre>";
+    echo htmlentities($e['sqltext']);
+    printf("\n%".($e['offset']+1)."s", "^");
+    echo "</pre>";
+  }
+
+
+
+
+
+PHP バージョン 5.0.0 以前では、代わりに |ocierror|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_error| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

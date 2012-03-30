@@ -1,0 +1,8 @@
+PDF_get_apiname -- 成功しなかった API 関数の名前を取得する
+
+  string PDF_get_apiname(resource pdfdoc)~
+
+直近で例外を発生させたり失敗したりした API
+関数の名前を取得します。
+
+vim:ft=help:

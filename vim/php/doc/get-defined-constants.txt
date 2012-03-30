@@ -1,0 +1,96 @@
+get_defined_constants --
+すべての定数の名前とその値を連想配列として返す
+
+  array get_defined_constants([mixed categorize])~
+
+現在定義されている全ての定数の名前と値を返します。返される値には、
+拡張モジュールにより作成された定数や |define|
+関数で作成された定数も含まれます。
+
+{categorize}
+これを渡すと、この関数は多次元の配列を返すようになります。
+最初の次元のキーがカテゴリとなり、
+そのカテゴリ内の定数とその値が下位レベルに格納されます。
+
+<?php >
+  define("MY_CONSTANT", 1);
+  print_r(get_defined_constants(true));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [internal] => Array
+          (
+              [E_ERROR] => 1
+              [E_WARNING] => 2
+              [E_PARSE] => 4
+              [E_NOTICE] => 8
+              [E_CORE_ERROR] => 16
+              [E_CORE_WARNING] => 32
+              [E_COMPILE_ERROR] => 64
+              [E_COMPILE_WARNING] => 128
+              [E_USER_ERROR] => 256
+              [E_USER_WARNING] => 512
+              [E_USER_NOTICE] => 1024
+              [E_ALL] => 2047
+              [TRUE] => 1
+          )
+  
+      [pcre] => Array
+          (
+              [PREG_PATTERN_ORDER] => 1
+              [PREG_SET_ORDER] => 2
+              [PREG_OFFSET_CAPTURE] => 256
+              [PREG_SPLIT_NO_EMPTY] => 1
+              [PREG_SPLIT_DELIM_CAPTURE] => 2
+              [PREG_SPLIT_OFFSET_CAPTURE] => 4
+              [PREG_GREP_INVERT] => 1
+          )
+  
+      [user] => Array
+          (
+              [MY_CONSTANT] => 1
+          )
+  
+  )
+
+{categorize} パラメータの内容は何でもかまいません。
+パラメータを渡したかどうかだけが判断の対象となります。
+
+
+
+バージョン 説明 5.0.0 パラメータ {categorize}
+が追加されました。
+
+|get_defined_constants| の例
+
+<?php >
+  print_r(get_defined_constants());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [E_ERROR] => 1
+      [E_WARNING] => 2
+      [E_PARSE] => 4
+      [E_NOTICE] => 8
+      [E_CORE_ERROR] => 16
+      [E_CORE_WARNING] => 32
+      [E_COMPILE_ERROR] => 64
+      [E_COMPILE_WARNING] => 128
+      [E_USER_ERROR] => 256
+      [E_USER_WARNING] => 512
+      [E_USER_NOTICE] => 1024
+      [E_ALL] => 2047
+      [TRUE] => 1
+  )
+
+
+
+|defined| |get_loaded_extensions| |get_defined_functions| |get_defined_vars|
+
+vim:ft=help:

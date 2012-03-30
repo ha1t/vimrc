@@ -1,0 +1,16 @@
+dgettext -- 現在のドメインを上書きする
+
+  string dgettext(string domain, string message)~
+
+|dgettext| 関数により、単一のメッセージ参照について
+現在のドメインを上書きすることができます。
+
+{domain} ドメイン。
+
+{message} メッセージ。
+
+成功した場合に文字列を返します。
+
+|gettext|
+
+vim:ft=help:

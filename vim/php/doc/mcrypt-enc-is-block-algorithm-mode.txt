@@ -1,0 +1,14 @@
+mcrypt_enc_is_block_algorithm_mode --
+オープンされたモードの暗号がブロックモードで動作するかどうかを調べる
+
+  bool mcrypt_enc_is_block_algorithm_mode(resource td)~
+
+オープンされているモードがブロックモードで動作するかどうかを調べます
+(たとえば素簿リームでは FALSE、cbc や cfb、ofb では TRUE)。
+
+{td} 暗号化記述子。
+
+モードがブロックアルゴリズムを使用している場合に
+TRUE、 その他の場合に FALSE を返します。
+
+vim:ft=help:

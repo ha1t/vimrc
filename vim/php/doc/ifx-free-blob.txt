@@ -1,0 +1,15 @@
+ifx_free_blob -- BLOB オブジェクトを削除する
+
+  bool ifx_free_blob(int bid)~
+
+指定された BLOB オブジェクト ID の BLOB
+オブジェクトを削除します。
+
+{bid} BLOB オブジェクト ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ifx_create_blob|
+
+vim:ft=help:

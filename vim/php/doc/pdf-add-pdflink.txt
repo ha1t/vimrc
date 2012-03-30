@@ -1,0 +1,15 @@
+PDF_add_pdflink -- 現在のページにリンク注記を追加する
+[古い関数]
+
+  bool PDF_add_pdflink(resource pdfdoc, float bottom_left_x, float bottom_left_y, float up_right_x, float up_right_y, string filename, int page, string dest)~
+
+PDF ターゲットにファイルリンク注記を追加します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに {type=GoToR} とともに
+|PDF_create_action|、 および {type=Link} とともに
+|PDF_create_annotation| を使用してください。
+
+vim:ft=help:

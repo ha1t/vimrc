@@ -1,0 +1,13 @@
+ini_restore -- 設定オプションの値を元に戻す
+
+  void ini_restore(string varname)~
+
+指定した設定オプションを元の値に戻します。
+
+{varname} 設定オプションの名前。
+
+値を返しません。
+
+|ini_get| |ini_get_all| |ini_set|
+
+vim:ft=help:

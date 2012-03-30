@@ -1,0 +1,40 @@
+eregi_replace --
+大文字小文字を区別せずに正規表現による置換を行う
+
+  string eregi_replace(string pattern, string replacement, string string)~
+
+この関数は、アルファベット文字をマッチングさせる際に大文字
+小文字の区別をしないこと以外は |ereg_replace|
+と同じです。
+
+{pattern} POSIX 拡張正規表現。
+
+{replacement} {pattern} の中に括弧でくくられた部分
+文字列が含まれている場合、{replacement} の中に \\数字
+のような部分文字列を埋め込むこともできます。この部分は、
+「数字」番目の括弧でくくられた部分文字列にマッチする文字列に
+置き換えられます。また、\\0 は文字列全体を 指します。9
+個までの部分文字列を使うことができます。括弧は
+入れ子になっていても構いません。この場合は開き括弧
+'(' が 最大 9 個まで使用可能です。
+
+{string} 入力文字列。
+
+置換後の文字列を返します。
+マッチしなかった場合は、元の文字列をそのまま返します。
+
+検索結果の強調表示
+
+<?php >
+  $pattern = '(>[^<]*)('. quotemeta($_GET['search']) .')';
+  $replacement = '\\1<span class="search">\\2</span>';
+  $body = eregi_replace($pattern, $replacement, $body);
+?>
+
+
+
+
+
+|ereg| |eregi| |ereg_replace|
+
+vim:ft=help:

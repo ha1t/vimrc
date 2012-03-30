@@ -1,0 +1,11 @@
+hw_api->dcstat -- 文書キャッシュサーバの統計情報を返す
+
+  hw_api_object dcstat(array parameter)~
+
+文書キャッシュサーバの統計情報を返します。
+
+{parameter}
+
+
+
+vim:ft=help:

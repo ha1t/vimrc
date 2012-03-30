@@ -1,0 +1,18 @@
+strval -- 変数の文字列としての値を得ます
+
+  string strval(mixed var)~
+
+{var} の string としての値を
+返します。文字列への変換の詳細については、string の
+ドキュメントを参照ください。
+
+{var} 文字列に変換したい変数。
+
+{var} は、全てのスカラー値にできます。 |strval|
+に配列あるいはオブジェクトは使用できません。
+
+{var} の文字列値を返します。
+
+|floatval| |intval| |settype| 型の相互変換
+
+vim:ft=help:

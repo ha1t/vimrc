@@ -1,0 +1,22 @@
+SQLiteResult->hasPrev -- 前のレコードがあるかどうかを返す
+
+  bool sqlite_has_prev(resource result)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  bool hasPrev(resource result)~
+
+与えられた結果ハンドルに前のレコードがあるかどうかを検査します。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+この関数は、
+バッファなしの結果ハンドルで使用することはできません。
+
+結果ハンドル {result} に前のレコードがある場合 TRUE、
+そうでない場合 FALSE を返します。
+
+|sqlite_prev| |sqlite_has_more| |sqlite_num_rows|
+
+vim:ft=help:

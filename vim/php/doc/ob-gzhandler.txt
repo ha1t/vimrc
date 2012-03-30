@@ -1,0 +1,54 @@
+ob_gzhandler -- 出力バッファを gzip 圧縮するための ob_start
+コールバック関数
+
+  string ob_gzhandler(string buffer, int mode)~
+
+|ob_gzhandler| は |ob_start|
+用のコールバック関数として使用されることを意図したもので、
+圧縮されたページをサポートしている web
+ブラウザに対して gz
+エンコードされたデータを送信することを容易にします。
+|ob_gzhandler| は
+実際に圧縮されたデータを送信する前にブラウザがサポートする
+content encoding の種類("gzip"、"deflate"
+またはなし)を調べ、それに基づいて
+出力を返します。すべてのブラウザがサポートされています。
+というのも、ブラウザは、
+自分が圧縮されたページをサポートするかどうかを表す
+適切なヘッダを送信することになっているからです。
+圧縮されたページをブラウザがサポートしていない場合、
+この関数は FALSE を返します。
+
+{buffer}
+
+{mode}
+
+
+
+バージョン 説明 4.0.5 {mode} パラメータが追加されました。
+
+|ob_gzhandler| の例
+
+<?php >
+  ob_start("ob_gzhandler");
+?>
+  <html>
+  <body>
+  <p>このページは圧縮されます。</p>
+  </html>
+  <body>
+
+
+
+
+
+|ob_gzhandler| は、zlib 拡張モジュールを必要とします。
+
+|ob_gzhandler| と zlib.output_compression
+の両方を使用することはできません。 また、
+zlib.output_compression を使用すると、それは |ob_gzhandler|
+よりも優先されることに注意してください。
+
+|ob_start| |ob_end_flush|
+
+vim:ft=help:

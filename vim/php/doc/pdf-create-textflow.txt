@@ -1,0 +1,8 @@
+PDF_create_textflow -- textflow オブジェクトを作成する
+
+  int PDF_create_textflow(resource pdfdoc, string text, string optlist)~
+
+後の書式設定で使用するテキストの前処理を行い、textflow
+オブジェクトを作成します。
+
+vim:ft=help:

@@ -1,0 +1,47 @@
+property_exists --
+オブジェクトもしくはクラスにプロパティが存在するかどうかを調べる
+
+  bool property_exists(mixed class, string property)~
+
+この関数は、与えられたプロパティ {property} が
+指定されたクラスに存在するかどうか
+(かつ現在のスコープからアクセス可能かどうか)
+を確認します。
+
+|isset| とは対象的に、 プロパティの値が NULL の場合でも
+|property_exists| は TRUE を返します。
+
+{class}
+確認するクラス名、もしくはクラスのオブジェクトを指定します。
+
+{property} プロパティ名を指定します。
+
+プロパティが存在している場合は
+TRUE、存在していない場合に FALSE、 エラー時には NULL
+を返します。
+
+|property_exists| の例
+
+<?php >
+  class myClass {
+      public $mine;
+      private $xpto;
+  
+      static function test() {
+          var_dump(property_exists('myClass', 'xpto')); // ここからアクセス可能なので true
+      }
+  }
+  
+  var_dump(property_exists('myClass', 'mine'));   //true
+  var_dump(property_exists(new myClass, 'mine')); //true
+  var_dump(property_exists('myClass', 'xpto'));   //public でないので false
+  myClass::test();
+?>
+
+
+
+
+
+|method_exists|
+
+vim:ft=help:

@@ -1,0 +1,79 @@
+Memcache::getExtendedStats --
+プール内のすべてのサーバの統計情報を取得する
+
+  array Memcache::getExtendedStats([string type [, int slabid [, int limit]]])~
+
+|Memcache::getExtendedStats| は、サーバの
+統計情報を含む二次元の配列を返します。配列のキーが各サーバの
+host:port
+に対応し、その値として個々のサーバの統計情報を保持します。
+取得に失敗したサーバは、値に FALSE が設定されます。
+|memcache_get_extended_stats| 関数を使用することも可能です。
+
+この関数は、Memcache バージョン 2.0.0 で追加されました。
+
+{type} 取得する統計情報の型。使用可能な値は {reset, malloc,
+maps, cachedump, slabs, items, sizes} のいずれかです。 memcached
+プロトコルの仕様によると、これらの追加の引数は
+「memcache
+の開発者の都合により、変更される可能性があります」
+ということです。
+
+{slabid} {type} を cachedump
+と設定した場合に使用し、ダンプを取得する slab
+を指定します。 cachedump
+コマンドはサーバと結びついており、デバッグ目的でのみ使用します。
+
+{limit} {type} を cachedump
+と設定した場合に使用し、ダンプするエントリの数を制限します。
+デフォルト値は 100 です。
+
+サーバの統計情報を含む二次元の配列を返します。失敗した場合は
+FALSE を返します。
+
+|Memcache::getExtendedStats| の例
+
+<?php >
+      $memcache_obj = new Memcache;
+      $memcache_obj->addServer('memcache_host', 11211);
+      $memcache_obj->addServer('failed_host', 11211);
+      
+      $stats = $memcache_obj->getExtendedStats();
+      print_r($stats);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [memcache_host:11211] => Array
+          (
+              [pid] => 3756
+              [uptime] => 603011
+              [time] => 1133810435
+              [version] => 1.1.12
+              [rusage_user] => 0.451931
+              [rusage_system] => 0.634903
+              [curr_items] => 2483
+              [total_items] => 3079
+              [bytes] => 2718136
+              [curr_connections] => 2
+              [total_connections] => 807
+              [connection_structures] => 13
+              [cmd_get] => 9748
+              [cmd_set] => 3096
+              [get_hits] => 5976
+              [get_misses] => 3772
+              [bytes_read] => 3448968
+              [bytes_written] => 2318883
+              [limit_maxbytes] => 33554432
+          )
+  
+      [failed_host:11211] => false
+  )
+
+
+
+|Memcache::getVersion| |Memcache::getStats|
+
+vim:ft=help:

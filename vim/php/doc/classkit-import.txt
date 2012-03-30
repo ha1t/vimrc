@@ -1,0 +1,59 @@
+classkit_import --
+新しいクラスメソッドの定義をファイルから読み込む
+
+  array classkit_import(string filename)~
+
+この関数により現在実行中
+(もしくはチェーンド)のメソッドを操作することはできません。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{filename}
+クラスメソッドが定義されているファイルの名前。
+
+読み込まれたメソッドの連想配列を返します。
+
+|classkit_import| の例
+
+<?php >
+  // ファイル名: newclass.php
+  class Example {
+      function foo() {
+          return "bar!\n";
+      }
+  }
+?>
+
+<?php >
+  // newclass.php が必要（上を参照）
+  class Example {
+      function foo() {
+          return "foo!\n";
+      }
+  }
+  
+  $e = new Example();
+  
+  // 本来の出力
+  echo $e->foo();
+  
+  // 置き換えるメソッドの読み込み
+  classkit_import('newclass.php');
+  
+  // 置き換えられたメソッドの出力
+  echo $e->foo();
+?>
+
+上の例の出力は以下となります。
+
+  foo!
+  bar!
+
+
+
+|classkit_method_add| |classkit_method_copy|
+
+vim:ft=help:

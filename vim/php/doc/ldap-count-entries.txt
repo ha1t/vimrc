@@ -1,0 +1,14 @@
+ldap_count_entries -- 検索結果のエントリ数を数える
+
+  int ldap_count_entries(resource link_identifier, resource result_identifier)~
+
+直前の検索結果として保存されたエントリの数を返します。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{result_identifier} 内部の LDAP 結果。
+
+結果のエントリ数を返します。エラーの場合は FALSE
+を返します。
+
+vim:ft=help:

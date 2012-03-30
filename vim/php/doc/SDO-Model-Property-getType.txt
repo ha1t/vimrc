@@ -1,0 +1,21 @@
+SDO_Model_Property::getType -- プロパティの SDO_Model_Type
+を取得する
+
+  SDO_Model_Type SDO_Model_Property::getType()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+プロパティの SDO_Model_Type を取得します。 SDO_Model_Type
+には、型の名前や名前空間
+URI、プリミティブデータ型かどうか
+など、プロパティの型に関する情報が含まれます。
+
+なし。
+
+プロパティ型に関する情報を含む SDO_Model_Type
+を返します。
+
+vim:ft=help:

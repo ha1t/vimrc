@@ -1,0 +1,12 @@
+define_syslog_variables -- syslog
+に関係する全ての定数を初期化する
+
+  void define_syslog_variables()~
+
+syslog 関数で使用される全ての定数を初期化します。
+
+値を返しません。
+
+|openlog| |syslog| |closelog|
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+shm_attach --
+共有メモリセグメントを作成またはオープンする
+
+  int shm_attach(int key [, int memsize [, int perm]])~
+
+|shm_attach| は ID を返します。 これは、指定されたキー {key}
+で System V
+共有メモリにアクセスする際に使用することが可能です。
+最初のコールの際に、サイズが {memsize}、
+オプションのパーミッション {perm}
+を指定した共有メモリセグメントを作成します。
+
+同じ {key} で |shm_attach| を 2 回コールした場合は
+別の共有メモリ ID が返されますが、両方の ID
+は同じ共有メモリをアクセスします。 {memsize} および {perm}
+は無視されます。
+
+{key}
+
+{memsize} メモリのサイズ。省略した場合のデフォルトは
+php.ini の sysvshm.init_mem、あるいは 10000 バイトとなります。
+
+{perm} オプションのパーミッション設定。デフォルトは 0666
+です。
+
+共有メモリセグメントの ID を返します。
+
+|sem_detach| |ftok|
+
+vim:ft=help:

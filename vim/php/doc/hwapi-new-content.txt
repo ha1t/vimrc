@@ -1,0 +1,15 @@
+hw_api_content -- hw_api_content
+クラスの新しいインスタンスを作成する
+
+  HW_API_Content hw_api_content(string content, string mimetype)~
+
+文字列 {content}
+から新しいコンテンツオブジェクトを作成します。
+
+{content}
+
+{mimetype} コンテンツの mime タイプ。
+
+
+
+vim:ft=help:

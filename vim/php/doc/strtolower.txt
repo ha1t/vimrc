@@ -1,0 +1,32 @@
+strtolower -- 文字列を小文字にする
+
+  string strtolower(string str)~
+
+{string}
+のアルファベット部分をすべて小文字にして返します｡
+
+「アルファベット部分」は現在のロケールにより決定されます。
+つまり、たとえばデフォルトの「C」ロケールである場合は、
+A ウムラウト (&Auml;) のような文字は変換されません。
+
+{str} 入力文字列。
+
+小文字に変換した文字列を返します。
+
+|strtolower| の例
+
+<?php >
+  $str = "Mary Had A Little Lamb and She LOVED It So";
+  $str = strtolower($str);
+  echo $str; // mary had a little lamb and she loved it so を返します
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|strtoupper| |ucfirst| |ucwords| |mb_strtolower|
+
+vim:ft=help:

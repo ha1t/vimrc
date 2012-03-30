@@ -1,0 +1,43 @@
+method_exists --
+クラスメソッドが存在するかどうかを確認する
+
+  bool method_exists(object object, string method_name)~
+
+指定した {object}
+にクラスメソッドが存在するかどうかを調べます。
+
+{object} オブジェクトのインスタンス。
+
+{method_name} メソッドの名前。
+
+{method_name} で指定したメソッドが 指定した {object}
+において定義されている場合に TRUE、そうでない場合に
+FALSE を返します。
+
+|method_exists| の例
+
+<?php >
+  $directory = new Directory('.');
+  var_dump(method_exists($directory,'read'));
+?>
+
+上の例の出力は以下となります。
+
+  bool(true)
+
+静的な |method_exists| の例
+
+<?php >
+  $directory = new Directory('.');
+  var_dump(method_exists('Directory','read'));
+?>
+
+上の例の出力は以下となります。
+
+  bool(true)
+
+
+
+|function_exists| |is_callable|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+kadm5_destroy --
+管理サーバへの接続を閉じ、関連するすべてのリソースを開放する
+
+  bool kadm5_destroy(resource handle)~
+
+管理サーバへの接続を閉じ、関連するすべてのリソースを開放します。
+
+{handle} KADM5 ハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|kadm5_init_with_password|
+
+vim:ft=help:

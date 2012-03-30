@@ -1,0 +1,14 @@
+mcal_event_init --
+グローバルイベント構造体のストリームを初期化する
+
+  void mcal_event_init(int stream)~
+
+|mcal_event_init| は、グローバルイベント構造体
+ストリームを初期化します。これにより、構造体の全ての要素に効率的に
+0 またはデフォルト値が設定されます。
+
+{stream} MCAL ストリーム。
+
+値を返しません。
+
+vim:ft=help:

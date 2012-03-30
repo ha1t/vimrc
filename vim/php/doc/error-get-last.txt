@@ -1,0 +1,32 @@
+error_get_last -- 最後に発生したエラーを取得する
+
+  array error_get_last()~
+
+最後に発生したエラーについての情報を取得します。
+
+最後に発生したエラーについての情報を連想配列で返します。連想配列のキーは
+"type"、"message"、"file" および "line" となります。
+エラーが発生していない場合は NULL を返します。 yet.
+
+|error_get_last| の例
+
+<?php >
+  echo $a;
+  print_r(error_get_last());
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [type] => 8
+      [message] => Undefined variable: a
+      [file] => C:\WWW\index.php
+      [line] => 2
+  )
+
+
+
+エラー定数 変数 $php_errormsg ディレクティブ {display_errors}
+
+vim:ft=help:

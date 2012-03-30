@@ -1,0 +1,41 @@
+ssh2_auth_pubkey_file -- 公開鍵を使用した認証を行う
+
+  bool ssh2_auth_pubkey_file(resource session, string username, string pubkeyfile, string privkeyfile [, string passphrase])~
+
+ファイルから読み込んだ公開鍵を使用した認証を行います。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{username}
+
+{pubkeyfile}
+
+{privkeyfile}
+
+{passphrase} もし、{privkeyfile} が暗号化されている
+(そうあるべきです)
+場合、パスフレーズも引数に渡す必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+公開鍵を用いた認証
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22, array('hostkey'=>'ssh-rsa'));
+  
+  if (ssh2_auth_pubkey_file($connection, 'username',
+                            '/home/username/.ssh/id_rsa.pub',
+                            '/home/username/.ssh/id_rsa', 'secret')) {
+    echo "Public Key Authentication Successful\n";
+  } else {
+    die('Public Key Authentication Failed');
+  }
+?>
+
+
+
+
+
+vim:ft=help:

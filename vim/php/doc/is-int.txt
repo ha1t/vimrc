@@ -1,0 +1,42 @@
+is_int -- 変数が整数型かどうかを検査する
+
+  bool is_int(mixed var)~
+
+与えられた変数の型が整数型かどうかを検査します。
+
+変数が数値もしくは数値文字列の場合
+(フォームからの入力の場合は 常に文字列となります)
+、|is_numeric| を使用する必要があります。
+
+{var} 評価する変数
+
+もし {var} が 整数型 の場合 TRUE、 そうでない場合は FALSE
+を返します。
+
+|is_int| の例
+
+<?php >
+  if (is_int(23)) {
+   echo "integer です\n";
+  } else {
+   echo "integer ではありません\n";
+  }
+  var_dump(is_int(23));
+  var_dump(is_int("23"));
+  var_dump(is_int(23.5));
+  var_dump(is_int(true));
+?>
+
+上の例の出力は以下となります。
+
+  integer です
+  bool(true)
+  bool(false)
+  bool(false)
+  bool(false)
+
+
+
+|is_bool| |is_float| |is_numeric| |is_string| |is_array| |is_object|
+
+vim:ft=help:

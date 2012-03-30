@@ -1,0 +1,11 @@
+swf_popmatrix -- 以前の変換行列を回復する
+
+  void swf_popmatrix()~
+
+現在の変換行列をスタックから回復します。
+
+値を返しません。
+
+|swf_pushmatrix|
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+mcrypt_module_is_block_algorithm --
+指定したアルゴリズムがブロックアルゴリズムであるかを調べる
+
+  bool mcrypt_module_is_block_algorithm(string algorithm [, string lib_dir])~
+
+この関数は、指定したアルゴリズムがブロックアルゴリズムの場合に
+TRUE、ストリームアルゴリズムの場合に FALSE を返します。
+オプションのパラメータ {lib_dir} により、 システム上での
+algorithm モジュールの位置を指定することが可能です。
+
+vim:ft=help:

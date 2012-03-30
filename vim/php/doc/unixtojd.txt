@@ -1,0 +1,15 @@
+unixtojd -- Unix タイムスタンプをユリウス歴に変換する
+
+  int unixtojd([int timestamp])~
+
+Unix タイムスタンプ(1970/1/1 からの秒数){timestamp}
+をユリウス歴に変換して返します。{timestamp} が
+指定されない場合は現在の日付が使用されます。
+
+{timestamp} 変換したい Unix タイムスタンプ。
+
+ユリウス積算日を表す整数値を返します。
+
+|jdtounix|
+
+vim:ft=help:

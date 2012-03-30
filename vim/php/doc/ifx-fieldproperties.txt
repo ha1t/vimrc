@@ -1,0 +1,38 @@
+ifx_fieldproperties -- SQL フィールドプロパティのリスト
+
+  array ifx_fieldproperties(resource result_id)~
+
+クエリ中の全てのフィールドの Informix SQL
+フィールドプロパティを
+連想配列として返します。プロパティは、以下のような形式となります。
+"SQLTYPE;length;precision;scale;ISNULLABLE" ただし、SQLTYPE は、
+"SQLVCHAR" 等の Informix 型。ISNULLABLE は、"Y" または "N"
+となります。
+
+{result_id} {result_id} は、 |ifx_query| または |ifx_prepare| (select
+型のクエリのみ!) により返された有効な結果 ID です。
+
+{result_id} のクエリについて、フィールド名を
+キーとし、SQL
+フィールドプロパティをデータとした連想配列を返します。
+エラーの場合に FALSE を返します。
+
+Informix SQL フィールドプロパティ
+
+<?php >
+  $properties = ifx_fieldproperties($resultid);
+  if (!isset($properties)) {
+      /* ... エラー ... */
+  }
+  foreach ($properties as $fname => $val) {
+      echo "$fname:\t property = $val\n";
+  }
+?>
+
+
+
+
+
+|ifx_fieldtypes|
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+ncurses_waddch --
+ウィンドウ内の現在位置に文字を追加し、カーソルを進める
+
+  int ncurses_waddch(resource window, int ch)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{ch}
+
+vim:ft=help:

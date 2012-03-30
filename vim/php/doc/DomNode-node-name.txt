@@ -1,0 +1,14 @@
+DomNode->node_name -- ノード名を返す
+
+  string DomNode->node_name()~
+
+ノード名を返します。名前は以下の表の通り、
+異なるノードの型に対しては異なる意味を持ちます。
+値の意味 型 意味 DomAttribute 属性値 DomAttribute DomCDataSection
+#cdata セクション DomComment #comment DomDocument #document
+DomDocumentType 文章型名 DomElement タグ名 DomEntity
+エンティティ名 DomEntityReference エンティティ参照名
+DomNotation ノーテーション名 DomProcessingInstruction ターゲット
+DomText #text
+
+vim:ft=help:

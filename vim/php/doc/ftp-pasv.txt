@@ -1,0 +1,52 @@
+ftp_pasv -- パッシブモードをオンまたはオフにする
+
+  bool ftp_pasv(resource ftp_stream, bool pasv)~
+
+|ftp_pasv| はパッシブモードをオンまたはオフにします。
+パッシブモードでは、データ接続はサーバではなくクライアントにより
+初期化されます。クライアントがファイアウォールの向こうにある場合に
+必要となるでしょう。
+
+|ftp_pasv| をコールできるのは、
+ログインに成功した後だけであることに注意しましょう。
+それ以外の場合は、この関数のコールは失敗します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{pasv} TRUE,
+の場合はパッシブモードをオンに、そうでない場合はオフにします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ftp_pasv| の例
+
+<?php >
+  $file = 'somefile.txt';
+  $remote_file = 'readme.txt';
+  
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // パッシブモードをオンにする
+  ftp_pasv($conn_id, true);
+  
+  // ファイルをアップロードする
+  if (ftp_put($conn_id, $remote_file, $file, FTP_ASCII)) {
+   echo "successfully uploaded $file\n";
+  } else {
+   echo "There was a problem while uploading $file\n";
+  }
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+vim:ft=help:

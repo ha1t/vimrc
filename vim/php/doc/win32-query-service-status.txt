@@ -1,0 +1,45 @@
+win32_query_service_status -- サービスの状態を問い合わせる
+
+  mixed win32_query_service_status(string servicename [, string machine])~
+
+サービスの稼動状況を問い合わせ、情報を配列で返します。
+
+{servicename} サービスの短い名前。
+
+{machine}
+オプションのマシン名。指定しなかった場合、ローカルマシンが使用されます。
+
+失敗した場合に FALSE
+、それ以外の場合に以下の情報を含む配列を返します。
+
+{ServiceType} dwServiceType
+
+{CurrentState} dwCurrentState
+
+{ControlsAccepted} サービスが許可しているコントロール。
+
+{Win32ExitCode}
+サービスが終了した際にプロセスが返すコード。
+
+{ServiceSpecificExitCode}
+サービスが異常終了した際にイベントログに記録されるコード。
+
+{CheckPoint}
+サービスが終了する際に、現在のチェックポイント番号を保持します。
+SCM
+はこれをいわゆる心拍のように扱い、反応しなくなったサービスを
+検出するために使用します。この値は、WaitHint
+の値と組み合わせて 用いられます。
+
+{WaitHint} サービスが終了する際に、WaitHint を checkpoint
+の値に設定します。
+この処理が終了した時点でサービスの終了処理が 100%
+完了したことを示します。
+これは、進捗状況のインジケータを実装する際に使用します。
+
+{ProcessId} Windows のプロセス ID 。0
+の場合、プロセスは実行していません。
+
+{ServiceFlags} dwServiceFlags
+
+vim:ft=help:

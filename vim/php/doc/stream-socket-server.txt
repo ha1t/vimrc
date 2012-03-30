@@ -1,0 +1,99 @@
+stream_socket_server -- インターネットドメインまたは Unix
+ドメインのサーバソケットを作成する
+
+  resource stream_socket_server(string local_socket [, int errno [, string errstr [, int flags [, resource context]]]])~
+
+{local_socket} で指定された接続ポイントに、
+ストリームまたはデータグラムソケットによる接続を作成します。
+作成されるソケットのタイプは、[トランスポート]://[ターゲット]
+という形式の URL フォーマットによって指定された
+トランスポートによって決定されます: TCP や UDP
+といったインターネットドメインのソケット (AF_INET)
+には、{remote_socket} パラメータの ターゲット
+の部分は、ホスト名または IP アドレスと、
+それに続くコロンで区切られたポート番号から構成されていなければなりません。
+Unix ドメインのソケットの場合は、{ターゲット}
+の部分は、ファイルシステムにおけるソケットのファイルを指定しなくては
+いけません。 {flags}
+は、ソケット作成フラグの任意の組み合わせ
+を指定できるビットフィールドです。
+デフォルトの値は、STREAM_SERVER_BIND | STREAM_SERVER_LISTEN です。
+
+UDP ソケットに対しては、STREAM_SERVER_BIND を {flags}
+パラメータとして使用する必要があります。
+
+この関数は、ソケットのみを作成します。接続待ちの状態に入るには、
+|stream_socket_accept| 関数を使います。
+
+もし失敗した場合は、FALSE を返し、その時オプションの
+{errno} と {errstr}
+パラメータが存在するときは、そこにシステムレベルの
+socket()、bind() および listen() のコールにおいて発生した
+実際のシステムレベルのエラーを返します。 もし、{errno}
+に返された値が 0 で、かつ FALSE が返された場合、bind()
+コールを行う前にエラーが発生したことを示しており、これは多くの場合
+ソケットの初期化に失敗したことを示しています。 {errno}
+と {errstr}
+パラメータは常に参照渡しとなることに留意してください。
+
+システムの種類によって、Unix
+ドメインのソケットが利用できない場合が あります。
+利用できるトランスポートの種類は、|stream_get_transports|
+によって知ることができます。
+組み込みのトランスポートのリストは、
+を参照ください。
+
+TCP サーバソケットの使用
+
+<?php >
+  $socket = stream_socket_server("tcp://0.0.0.0:8000", $errno, $errstr);
+  if (!$socket) {
+    echo "$errstr ($errno)<br />\n";
+  } else {
+    while ($conn = stream_socket_accept($socket)) {
+      fwrite($conn, 'The local time is ' . date('n/j/Y g:i a') . "\n");
+      fclose($conn);
+    }
+    fclose($socket);
+  }
+?>
+
+
+
+
+
+下記の例は、PHP のスクリプトが、どうやって
+|stream_socket_client| で示したような、
+問い合わせに応答するタイムサーバとして機能するかを示したものです。
+1024
+番よりも小さいポート番号のサーバソケットを作成する場合、
+多くのシステムでは root 権限が必要となります。
+
+UDP サーバソケットを利用する
+
+<?php >
+  $socket = stream_socket_server("udp://127.0.0.1:1113", $errno, $errstr, STREAM_SERVER_BIND);
+  if (!$socket) {
+      die("$errstr ($errno)");
+  }
+  
+  do {
+      $pkt = stream_socket_recvfrom($socket, 1, 0, $peer);
+      echo "$peer\n";
+      stream_socket_sendto($socket, date("D M j H:i:s Y\r\n"), 0, $peer);
+  } while ($pkt !== false);
+?>
+
+
+
+
+
+数値で IPv6 アドレスを指定するときは、 (例 fe80::1)
+アドレスを角カッコでくくらなくてはなりません。たとえば、
+tcp://[fe80::1]:80.
+
+|stream_socket_client|, |stream_set_blocking|, |stream_set_timeout|, |fgets|,
+|fgetss|, |fwrite|, |fclose|, |feof|, と Curl 拡張モジュール
+も参照ください。
+
+vim:ft=help:

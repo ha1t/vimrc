@@ -1,0 +1,19 @@
+swf_placeobject -- オブジェクトを画面に配置する
+
+  void swf_placeobject(int objid, int depth)~
+
+オブジェクトを、深さ {depth}
+で現在のフレームに配置します。
+
+この関数は、(|swf_mulcolor| で指定した)
+現在の乗算色および(|swf_addcolor| で指定した)
+現在の加算色をオブジェクトに色づけする際に使用します。また、
+オブジェクトの位置を決める際に現在の行列を使用します。
+
+{objid} オブジェクト ID。
+
+{depth} 1 から 65535 までの間の値。
+
+値を返しません。
+
+vim:ft=help:

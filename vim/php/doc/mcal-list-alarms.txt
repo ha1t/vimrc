@@ -1,0 +1,27 @@
+mcal_list_alarms -- 指定した datetime
+までにアラームを発生するイベントのリストを返す
+
+  array mcal_list_alarms(int mcal_stream [, int begin_year [, int begin_month [, int begin_day [, int end_year [, int end_month [, int end_day]]]]]])~
+
+開始日から終了日までの間にアラームがオフとなるイベントのIDの配列が
+返されます。ストリームだけが指定された場合、グローバルイベント構造体の
+開始日および終了日を使用します。
+
+{mcal_stream} MCAL ストリーム。
+
+{begin_year} 最初の日付の年。
+
+{begin_month} 最初の日付の月。
+
+{begin_day} 最初の日付の日。
+
+{end_year} 2 番目の日付の年。
+
+{end_month} 2 番目の日付の月。
+
+{end_day} 2 番目の日付の日。
+
+指定した日または内部イベントの間にあるイベントの ID
+の配列が返されます。
+
+vim:ft=help:

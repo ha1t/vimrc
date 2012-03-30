@@ -1,0 +1,41 @@
+ssh2_exec -- リモートサーバ上でコマンドを実行する
+
+  resource ssh2_exec(resource session, string command [, string pty [, array env [, int width [, int height [, int width_height_type]]]]])~
+
+コマンドをリモートエンドで実行し、チャネルを割り当てます。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{command}
+
+{pty}
+
+{env} {env} には、
+対象となる環境で設定する名前/値のペアを連想配列で渡します。
+
+{width} 仮想端末の幅。
+
+{height} 仮想端末の高さ。
+
+{width_height_type} {width_height_type} は、 SSH2_TERM_UNIT_CHARS
+あるいは SSH2_TERM_UNIT_PIXELS のいずれかです。
+
+成功時にストリームを返し、失敗時に FALSE を返します。
+
+コマンドの実行
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  
+  $stream = ssh2_exec($connection, '/usr/local/bin/php -i');
+?>
+
+
+
+
+
+|ssh2_connect| |ssh2_shell| |ssh2_tunnel|
+
+vim:ft=help:

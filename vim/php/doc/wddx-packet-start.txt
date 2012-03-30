@@ -1,0 +1,16 @@
+wddx_packet_start -- 新規の WDDX
+パケットを内部の構造体を用いて開始する
+
+  resource wddx_packet_start([string comment])~
+
+変数を順に追加していくための新しい WDDX
+パケットを開始します。
+この関数は、パケットの内部に自動的に構造体の定義を作成し、
+そこに変数を保持します。
+
+{comment} オプションのコメント文字列。
+
+後で他の関数で使用するためのパケット
+ID、あるいはエラー時に FALSE を返します。
+
+vim:ft=help:

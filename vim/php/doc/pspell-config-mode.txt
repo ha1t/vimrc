@@ -1,0 +1,36 @@
+pspell_config_mode -- 返される提案の数のモードを変更する
+
+  bool pspell_config_mode(int dictionary_link, int mode)~
+
+|pspell_config_mode| は、 |pspell_new_config|
+のコール前に設定を行う際に使用します。この関数は、
+|pspell_suggest| により返される修正候補の数を定義します。
+
+{dictionary_link}
+
+{mode} パラメータ mode
+は、スペルチェッカの動作モードです。
+使用可能なモードを以下に示します。 PSPELL_FAST -
+高速モード (修正候補の数は最小)
+
+PSPELL_NORMAL - 通常モード (修正候補はより多い)
+
+PSPELL_BAD_SPELLERS - 低速モード (修正候補は多い)
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pspell_config_mode| の例
+
+<?php >
+  $pspell_config = pspell_config_create("en");
+  pspell_config_mode($pspell_config, PSPELL_FAST);
+  $pspell_link = pspell_new_config($pspell_config);
+  pspell_check($pspell_link, "thecat");
+?>
+
+
+
+
+
+vim:ft=help:

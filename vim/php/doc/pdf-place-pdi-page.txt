@@ -1,0 +1,13 @@
+PDF_place_pdi_page -- PDF ページを置く [古い関数]
+
+  bool PDF_place_pdi_page(resource pdfdoc, int page, float x, float y, float sx, float sy)~
+
+PDI
+ページを配置し、サイズを変更します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+この関数は PDFlib バージョン 5
+で廃止されました。かわりに |PDF_fit_pdi_page|
+を使用してください。
+
+vim:ft=help:

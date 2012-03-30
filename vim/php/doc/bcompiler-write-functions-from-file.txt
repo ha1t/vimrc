@@ -1,0 +1,42 @@
+bcompiler_write_functions_from_file --
+ファイル内で定義されているすべての関数をバイトコードとして書き込む
+
+  bool bcompiler_write_functions_from_file(resource filehandle, string fileName)~
+
+指定したファイル内で定義されているすべての関数を検索し、
+対応するバイトコードを、
+開かれているファイルハンドルに書き込みます。
+
+{filehandle} |fopen| が返すファイルハンドル。
+
+{fileName} コンパイルしたいファイル。
+コンパイルしたいファイルを include/require
+することを忘れないでください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_write_functions_from_file| の例
+
+<?php >
+  require('module.php');
+  
+  $fh = fopen("/tmp/example","w");
+  bcompiler_write_header($fh);
+  bcompiler_write_functions_from_file($fh,'module.php');
+  bcompiler_write_footer($fh);
+  fclose($fh);
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|bcompiler_write_header| |bcompiler_write_footer|
+
+vim:ft=help:

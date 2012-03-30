@@ -1,0 +1,43 @@
+array_pop -- 配列の末尾から要素を取り除く
+
+  mixed array_pop(array array)~
+
+|array_pop| は配列 {array} の最後の値を取り出して返します。
+配列 {array} は、要素一つ分短くなります。 {array} が空
+(または、配列でない) の場合、 NULL が返されます。
+
+この関数は、 配列 (array)
+ポインタを使用した後にリセット (|reset|) します。
+
+{array} 値を取り出す配列。
+
+配列 {array} の最後の値を取り出して返します。 {array} が空
+(または、配列でない) の場合、 NULL が返されます。
+
+|array_pop| の例
+
+<?php >
+  $stack = array("orange", "banana", "apple", "raspberry");
+  $fruit = array_pop($stack);
+  print_r($stack);
+?>
+
+この後、$stack の要素は三つのみとなります。
+
+  Array
+  (
+      [0] => orange
+      [1] => banana
+      [2] => apple
+  )
+
+そして、raspberry が $fruit に代入されます。
+
+
+
+
+
+|array_push|、 |array_shift| および |array_unshift|
+も参照ください。
+
+vim:ft=help:

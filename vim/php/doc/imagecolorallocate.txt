@@ -1,0 +1,55 @@
+imagecolorallocate -- 画像で使用する色を作成する
+
+  int imagecolorallocate(resource image, int red, int green, int blue)~
+
+指定した RGB を配色とする色の ID を返します。
+
+|imagecolorallocate| は {image}
+で表される画像上で使用する各々の色を作成する際にコールする必要があります。
+
+|imagecolorallocate| の最初のコールで
+パレットをもとにした画像 (|imagecreate|
+を使用して作成した画像) で背景色がセットされます。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{red} 赤コンポーネントの値。
+
+{green} 緑コンポーネントの値。
+
+{blue} 青コンポーネントの値。
+
+これらの値は 0 から 255 までの整数か、あるいは 0x00 から
+0XFF までの 16 進数です。
+
+色の ID、あるいは作成に失敗したい場合に FALSE
+を返します。
+
+バージョン 説明 5.1.3 より前 作成に失敗した場合には -1
+を返します。
+
+|imagecolorallocate| の例
+
+<?php >
+  $im = imagecreate(100, 100);
+  
+  // 背景色を赤にします
+  $background = imagecolorallocate($im, 255, 0, 0);
+  
+  // その他の色を設定します
+  $white = imagecolorallocate($im, 255, 255, 255);
+  $black = imagecolorallocate($im, 0, 0, 0);
+  
+  // 十六進で指定します
+  $white = imagecolorallocate($im, 0xFF, 0xFF, 0xFF);
+  $black = imagecolorallocate($im, 0x00, 0x00, 0x00);
+?>
+
+
+
+
+
+|imagecolorallocatealpha| |imagecolordeallocate|
+
+vim:ft=help:

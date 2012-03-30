@@ -1,0 +1,13 @@
+zip_entry_name -- ディレクトリエントリの名前を取得する
+
+  string zip_entry_name(resource zip_entry)~
+
+指定したディレクトリエントリの名前を返します。
+
+{zip_entry} |zip_read|により返されたディレクトリエントリ
+
+ディレクトリエントリの名前
+
+|zip_open| |zip_read|
+
+vim:ft=help:

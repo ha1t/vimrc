@@ -1,0 +1,22 @@
+sybase_close -- Sybase 接続を閉じる
+
+  bool sybase_close([resource link_identifier])~
+
+|sybase_close|は、指定されたリンク {link_identifier} が指す
+Sybase データベースへのリンクを閉じます。
+
+持続的でないリンクは、スクリプトの実行終了時に自動的に閉じられるため、
+この関数は、通常の場合コールする必要がないことに注意してください。
+
+|sybase_close| は、 |sybase_pconnect| により生成された
+持続的なリンクは閉じません。
+
+{link_identifier} リンク ID
+を省略した場合は、最後にオープンしたリンクを使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|sybase_connect| |sybase_pconnect|
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+ming_setcubicthreshold -- 三次元の閾値を設定する
+
+  void ming_setcubicthreshold(int threshold)~
+
+三次ベジエ曲線を描画する際の閾値を設定します。
+
+{threshold}
+閾値。小さいほど正確になりますが、そのぶんサイズが大きくなります。
+
+値を返しません。
+
+vim:ft=help:

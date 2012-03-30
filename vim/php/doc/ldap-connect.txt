@@ -1,0 +1,63 @@
+ldap_connect -- LDAP サーバへ接続する
+
+  resource ldap_connect([string hostname [, int port]])~
+
+指定した {hostname} および {port} 上の LDAP
+サーバとの接続を確立します。
+
+{hostname} OpenLDAP 2.x.x
+を使用している場合、ホスト名の代わりに URL を指定する
+ことが可能です。SSL と組み合わせて LDAP
+を使用するには、SSL サポートを指定して OpenLDAP 2.x.x
+をコンパイルし、PHP の configure で SSL
+を指定し、このパラメータを ldaps://hostname/ とします。
+
+{port} 接続するポート。URL
+を用いる場合は使用しません。デフォルトは 389 です。
+
+成功した場合に正の LDAP リンク ID 、エラーの場合に FALSE
+を返します。OpenLDAP 2.x.x を使用している場合は、
+|ldap_connect| は常に resource
+を返しますが、実際には接続せずにパラメータの初期化だけを行います。
+実際に接続するのは次に ldap_*
+関数がコールされた際で、これは 通常は |ldap_bind| です。
+
+引数が指定されない場合、既に開かれているリンクのリンク
+ID を返します。
+
+バージョン 説明 4.0.4 URL および SSL
+のサポートが追加されました。
+
+LDAP サーバに接続する例
+
+<?php >
+  // LDAP 変数
+  $ldaphost = "ldap.example.com";  // ldap サーバ
+  $ldapport = 389;                 // ldap サーバのポート番号
+  
+  // LDAP に接続します
+  $ldapconn = ldap_connect($ldaphost, $ldapport)
+            or die("Could not connect to $ldaphost");
+?>
+
+
+
+LDAP サーバへのセキュアな接続の例
+
+<?php >
+  // サーバ証明書が証明するホストであることを
+  // 確認する
+  $ldaphost = "ldaps://ldap.example.com/";
+  
+  // LDAP に接続します
+  $ldapconn = ldap_connect($ldaphost)
+            or die("Could not connect to {$ldaphost}");
+?>
+
+
+
+
+
+|ldap_bind|
+
+vim:ft=help:

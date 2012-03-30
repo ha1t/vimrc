@@ -1,0 +1,38 @@
+gnupg_encryptsign -- 指定したテキストを暗号化し、署名する
+
+  string gnupg_encryptsign(resource identifier, string plaintext)~
+
+事前に gnupg_addsignkey および gnupg_addencryptkey
+で設定したキーを使用し、指定した {plaintext}
+を暗号化・署名します。暗号化・署名済みのテキストを返します。
+
+成功した場合、この関数は暗号化されて署名されたテキストを返します。
+失敗した場合、この関数は FALSE を返します。
+
+手続き型の |gnupg_encryptsign| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_addencryptkey($res,"8660281B6051D071D94B5B230549F9DC851566DC");
+  gnupg_addsignkey($res,"8660281B6051D071D94B5B230549F9DC851566DC","test");
+  $enc = gnupg_encryptsign($res, "just a test");
+  echo $enc;
+?>
+
+
+
+オブジェクト指向の |gnupg_encryptsign| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> addencryptkey("8660281B6051D071D94B5B230549F9DC851566DC");
+  $gpg -> addsignkey("8660281B6051D071D94B5B230549F9DC851566DC","test");
+  $enc = $gpg -> encryptsign("just a test");
+  echo $enc;
+?>
+
+
+
+
+
+vim:ft=help:

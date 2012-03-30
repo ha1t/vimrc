@@ -1,0 +1,15 @@
+getmyinode -- 現在のスクリプトの inode を取得する
+
+  int getmyinode()~
+
+現在のスクリプトの inode を取得します。
+
+現在のスクリプトの inode
+を表す文字列、あるいはエラーの場合は FALSE
+を返します。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|getmygid| |getmyuid| |getmypid| |get_current_user| |getlastmod|
+
+vim:ft=help:

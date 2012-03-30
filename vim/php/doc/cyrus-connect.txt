@@ -1,0 +1,16 @@
+cyrus_connect -- Cyrus IMAP サーバに接続する
+
+  resource cyrus_connect([string host [, string port [, int flags]]])~
+
+Cyrus IMAP サーバに接続します。
+
+{host} Cyrus IMAP ホスト名。
+
+{port} ポート番号。
+
+{flags}
+
+成功した場合に接続ハンドラ、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

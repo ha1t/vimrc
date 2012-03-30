@@ -1,0 +1,38 @@
+ctype_print -- 印字可能な文字かどうかを調べる
+
+  bool ctype_print(string text)~
+
+与えられた文字列 {text} のすべての文字が
+印字可能な文字であるかどうかを調べます。
+
+{text} 調べる文字列。
+
+{text} のすべての文字が（空白を含めて）実際に
+出力を行う場合に TRUE 、{text} に制御文字
+またはまったく出力も制御も行わない文字が含まれる場合に
+FALSE を返します。
+
+|ctype_print| の例
+
+<?php >
+  $strings = array('string1' => "asdf\n\r\t", 'string2' => 'arf12', 'string3' => 'LKA#@%.54');
+  foreach ($strings as $name => $testcase) {
+      if (ctype_print($testcase)) {
+          echo "The string '$name' consists of all printable characters.\n";
+      } else {
+          echo "The string '$name' does not consist of all printable characters.\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  The string 'string1' does not consist of all printable characters.
+  The string 'string2' consists of all printable characters.
+  The string 'string3' consists of all printable characters.
+
+
+
+|ctype_cntrl| |ctype_graph| |ctype_punct|
+
+vim:ft=help:

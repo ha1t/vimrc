@@ -1,0 +1,11 @@
+session_pgsql_reset --
+セッションデータベースサーバとの接続をリセットする
+
+  bool session_pgsql_reset()~
+
+セッションデータベースサーバとの接続をリセットします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

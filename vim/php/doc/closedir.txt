@@ -1,0 +1,31 @@
+closedir -- ディレクトリハンドルをクローズする
+
+  void closedir(resource dir_handle)~
+
+{dir_handle}
+で指定したディレクトリのストリームをクローズします。このストリームは、
+|opendir|により事前にオープンされていなければ
+なりません。
+
+{dir_handle} |opendir|により事前にオープンされた
+ディレクトリハンドルリソース
+
+|closedir| の例
+
+<?php >
+  $dir = "/etc/php5/";
+  
+  // 既知のディレクトリをオープンし、変数にディレクトリを読み込んで閉じる
+  if (is_dir($dir)) {
+      if ($dh = opendir($dir)) {
+          $directory = readdir($dh);
+          closedir($dh);
+      }
+  }
+?>
+
+
+
+
+
+vim:ft=help:

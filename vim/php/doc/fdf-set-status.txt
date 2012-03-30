@@ -1,0 +1,19 @@
+fdf_set_status -- /STATUS キーの値を設定する
+
+  bool fdf_set_status(resource fdf_document, string status)~
+
+/STATUS キーの値を設定します。 クライアントが FDF
+とともにステータスセットを受信すると、その内容を
+アラートボックスに表示します
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{status}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fdf_get_status|
+
+vim:ft=help:

@@ -1,0 +1,21 @@
+newt_checkbox --
+
+  resource newt_checkbox(int left, int top, string text, string def_value [, string seq])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{left}
+
+{top}
+
+{text}
+
+{def_value}
+
+{seq}
+
+
+
+vim:ft=help:

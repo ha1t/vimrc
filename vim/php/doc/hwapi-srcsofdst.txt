@@ -1,0 +1,16 @@
+hw_api->srcsofdst -- 対象オブジェクトのソースを返す
+
+  array srcsofdst(array parameter)~
+
+指定した対象を指しているすべてのソースアンカーを取得します。
+対象となるオブジェクトとしては、
+対象アンカーあるいはドキュメント全体を指定できます。
+
+{parameter} パラメータの配列には、必須要素
+'objectIdentifier'、 そしてオプションの要素 'attributeSelector'
+および 'objectQuery' が含まれます。
+この関数は、オブジェクトの配列あるいはエラーを返します。
+
+
+
+vim:ft=help:

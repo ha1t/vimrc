@@ -1,0 +1,20 @@
+msql_create_db -- mSQL データベースを作成する
+
+  bool msql_create_db(string database_name [, resource link_identifier])~
+
+|msql_create_db| は、mSQL サーバ上に
+データベースの作成を試みます。
+
+{database_name} mSQL データベース名。
+
+{ link_identifier}mSQL 接続。 指定されない場合、|msql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、この関数は、
+|msql_connect|をコールした時と同様にリンクを確立し、使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msql_drop_db|
+
+vim:ft=help:

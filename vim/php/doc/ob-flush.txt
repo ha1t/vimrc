@@ -1,0 +1,18 @@
+ob_flush -- 出力バッファをフラッシュ(送信)する
+
+  void ob_flush()~
+
+この関数は、(ある場合に)出力バッファの内容を送信します。
+更にバッファの内容を処理したい場合には、|ob_flush|
+がコールされた後にバッファの内容が破棄されるので、
+|ob_flush| の前に |ob_get_contents|
+をコールする必要があります。
+
+この関数は、|ob_end_flush|
+のように出力バッファを破棄しません。
+
+値を返しません。
+
+|ob_get_contents| |ob_clean| |ob_end_flush| |ob_end_clean|
+
+vim:ft=help:

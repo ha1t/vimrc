@@ -1,0 +1,58 @@
+PDO::pgsqlLOBCreate -- 新しいラージオブジェクトを作成する
+
+  string PDO::pgsqlLOBCreate()~
+
+|PDO::pgsqlLOBCreate| は、 ラージオブジェクトを作成してその
+OID を返します。
+このオブジェクトに対するデータの読み書きを行う際には、
+|PDO::pgsqlLOBOpen| を使用してストリームをオープンします。
+OID は OID
+型のカラムに格納され、ラージオブジェクトを参照するために使用されます。
+これにより、行のサイズがどんどん拡大してしまうことを防ぎます。
+|PDO::pgsqlLOBUnlink| をコールして削除するまで、
+ラージオブジェクトはデータベース内に残り続けます。
+
+ラージオブジェクトの大きさは最大 2GB
+まで拡大できますが、扱い方はめんどうです。
+オブジェクトの OID
+を参照している行をデータベースから削除する際には、
+必ず事前に |PDO::pgsqlLOBUnlink|
+がコールされていなければなりません。
+さらに、ラージオブジェクトにはアクセス権の設定がありません。
+ラージオブジェクトの代替策として、bytea
+型のカラムも検討ください。 最近のバージョンの PostgreSQL
+では bytea 型のカラムに最大 1GB
+まで保存でき、行サイズを最適化したうえでデータを透過的に扱うことができます。
+
+この関数は、トランザクション内でコールしなければなりません。
+
+|PDO::pgsqlLOBCreate| は、パラメータを受け取りません。
+
+新しく作成されたラージオブジェクトの
+OID、あるいは失敗した場合に FALSE を返します。
+
+|PDO::pgsqlLOBCreate| の例
+この例では、新しいラージオブジェクトを作成し、
+ファイルの内容をそこにコピーします。その後、OID
+がテーブルに保存されます。
+
+<?php >
+  $db = new PDO('pgsql:dbname=test host=localhost', $user, $pass);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $db->beginTransaction();
+  $oid = $db->pgsqlLOBCreate();
+  $stream = $db->pgsqlLOBOpen($oid, 'w');
+  $local = fopen($filename, 'rb');
+  stream_copy_to_stream($local, $stream);
+  $local = null;
+  $stream = null;
+  $stmt = $db->prepare("INSERT INTO BLOBS (ident, oid) VALUES (?, ?)");
+  $stmt->execute(array($some_id, $oid));
+  $db->commit();
+?>
+
+
+
+|PDO::pgsqlLOBOpen| |PDO::pgsqlLOBUnlink| |pg_lo_create|
+
+vim:ft=help:

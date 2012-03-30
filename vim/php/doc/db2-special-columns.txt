@@ -1,0 +1,53 @@
+db2_special_columns -- テーブルのユニーク行 ID
+カラムを含む結果セットを返す
+
+  resource db2_special_columns(resource connection, string qualifier, string schema, string table_name, int scope)~
+
+テーブルのユニーク行 ID
+カラムを含む結果セットを返します。
+
+{connection} IBM DB2、Cloudscape あるいは Apache Derby
+データベースへの有効な接続。
+
+{qualifier} OS/390 あるいは z/OS サーバ上で稼動している DB2
+データベースの修飾子。
+その他のデータベースの場合には NULL
+あるいは空の文字列を渡します。
+
+{schema} テーブルを含むスキーマ。
+
+{table_name} テーブルの名前。
+
+{scope} ユニーク行 ID の有効期間の最小値を表す整数値。
+以下の値のいずれかとなります。 整数値 SQL 定数 説明 0
+SQL_SCOPE_CURROW 行 ID
+は、カーソルがその行にある場合にのみ有効です。 1
+SQL_SCOPE_TRANSACTION 行 ID
+は、そのトランザクションの間のみ有効です。 2
+SQL_SCOPE_SESSION 行 ID は、その接続の間のみ有効です。
+
+テーブルのユニーク行 ID 情報を含む結果セットの
+ステートメントリソースを返します。
+行の内容は、以下のカラムで構成されています。
+カラム名 説明 SCOPE 整数値 SQL 定数 説明 0 SQL_SCOPE_CURROW 行
+ID は、カーソルがその行にある場合にのみ有効です。 1
+SQL_SCOPE_TRANSACTION 行 ID
+は、そのトランザクションの間のみ有効です。 2
+SQL_SCOPE_SESSION 行 ID は、その接続の間のみ有効です。
+
+COLUMN_NAME ユニークカラムの名前。 DATA_TYPE カラムの SQL
+データ型。 TYPE_NAME カラムの SQL
+データ型を文字列で表したもの。 COLUMN_SIZE
+カラムのサイズを表す整数値。 BUFFER_LENGTH
+このカラムのデータを保存するために必要な最大のバイト数。
+DECIMAL_DIGITS カラムの位取り。位取りが適用できない場合は
+NULL。 NUM_PREC_RADIX 10 (正確な数値データ型を表す)、 2
+(概数データ型を表す)、 あるいは NULL
+(基数が適用できないデータ型を表す) のいずれか。
+PSEUDO_COLUMN 常に 1 を返します。
+
+|db2_column_privileges| |db2_columns| |db2_foreign_keys| |db2_primary_keys|
+|db2_procedure_columns| |db2_procedures| |db2_statistics|
+|db2_table_privileges| |db2_tables|
+
+vim:ft=help:

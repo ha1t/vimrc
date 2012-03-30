@@ -1,0 +1,36 @@
+dbase_numrecords -- データベースのレコード数を得る
+
+  int dbase_numrecords(int dbase_identifier)~
+
+指定したデータベースのレコード（行）数を取得します。
+
+レコード番号は 1 から dbase_numrecords($db) までで、
+一方フィールド番号は 0 から dbase_numfields($db)-1 までです。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+データベースのレコード数を返します。エラーが発生した場合には
+FALSE を返します。
+
+データベースの全レコードをループする
+
+<?php >
+  // read-only モードでオープンする
+  $db = dbase_open('/tmp/test.dbf', 0);
+  
+  if ($db) {
+    $record_numbers = dbase_numrecords($db);
+    for ($i = 1; $i <= $record_numbers; $i++) {
+        // 各レコードに対して、ここで何かをする
+    }
+  }
+?>
+
+
+
+
+
+|dbase_num_fields|
+
+vim:ft=help:

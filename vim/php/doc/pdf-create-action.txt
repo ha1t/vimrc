@@ -1,0 +1,8 @@
+PDF_create_action --
+オブジェクトやイベントに対するアクションを作成する
+
+  int PDF_create_action(resource pdfdoc, string type, string optlist)~
+
+さまざまなオブジェクトやイベントに適用可能なアクションを作成します。
+
+vim:ft=help:

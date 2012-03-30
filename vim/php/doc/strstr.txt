@@ -1,0 +1,50 @@
+strstr -- 文字列が最初に現れる位置を見つける
+
+  string strstr(string haystack, mixed needle [, bool before_needle])~
+
+{haystack} の中で {needle}
+が最初に現れる場所から文字列の終わりまでを返します。
+
+この関数は大文字小文字を区別することに注意してください。
+大文字小文字を区別しない検索を行う場合は、|stristr|
+を使用してください。
+
+もし特定の {haystack} に {needle}
+があるかどうかを調べるだけの場合、
+より高速でメモリ消費も少ない |strpos|
+を代わりに使用してください。
+
+{haystack} 入力文字列。
+
+{needle} {needle} が文字列でない場合は、
+それを整数に変換し、その番号に対応する文字として扱います。
+
+{before_needle} TRUE にすると (デフォルトは FALSE です)、|strstr|
+の返り値は、{haystack} の中で最初に {needle}
+があらわれる箇所より前の部分となります。
+
+部分文字列を返します。 {needle} が見つからない場合は
+FALSE を返します。
+
+バージョン 説明 5.3.0 オプションの {before_needle}
+パラメータが追加されました。 4.3.0 |strstr|
+がバイナリセーフとなりました。
+
+|strstr| の例
+
+<?php >
+  $email  = 'name@example.com';
+  $domain = strstr($email, '@');
+  echo $domain; // @example.com と表示します
+  
+  $user = strstr($email, '@', true);
+  echo $user; // name と表示します
+?>
+
+
+
+
+
+|preg_match| |stristr| |strpos| |strrchr| |substr|
+
+vim:ft=help:

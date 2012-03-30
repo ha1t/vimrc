@@ -1,0 +1,53 @@
+snmpwalkoid --
+ネットワークエンティティに関する情報ツリーを検索する
+
+  array snmpwalkoid(string hostname, string community, string object_id [, int timeout [, int retries]])~
+
+|snmpwalkoid| 関数は、{hostname} で指定した SNMP
+エージェントから すべてのオブジェクト ID
+とその値を読みこむために使用します。
+
+|snmpwalkoid| および |snmpwalk|
+は、歴史的経緯により残されているものです。
+どちらも、下位互換のために提供されています。
+代わりに |snmprealwalk| を使用してください。
+
+{hostname} SNMP エージェント。
+
+{community} リードコミュニティ。
+
+{object_id} NULL の場合は、{object_id} が SNMP
+オブジェクトツリーのルートとして解釈され、
+ツリーの配下のすべてのオブジェクトを配列として返します。
+
+{object_id} を指定した場合は、 その {object_id}
+の配下のすべての SNMP オブジェクトを返します。
+
+{timeout}
+
+{retries}
+
+|object_id| からの SNMP
+オブジェクトの値の配列をルートとして返します。
+エラーの場合に FALSE を返します。
+
+|snmpwalkoid| の例
+
+<?php >
+  $a = snmpwalkoid("127.0.0.1", "public", ""); 
+  for (reset($a); $i = key($a); next($a)) {
+      echo "$i: $a[$i]<br />\n";
+  }
+?>
+
+
+
+
+
+上記の関数コールは、ローカルホスト上で稼働する SNMP
+エージェントからすべての SNMP オブジェクトを返します。
+ループ処理により値を一つずつとりだすことができます。
+
+|snmpwalk|
+
+vim:ft=help:

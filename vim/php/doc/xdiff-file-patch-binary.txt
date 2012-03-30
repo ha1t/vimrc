@@ -1,0 +1,41 @@
+xdiff_file_patch_binary -- ファイルにバイナリ diff
+形式のパッチを適用する
+
+  bool xdiff_file_patch_binary(string file, string patch, string dest)~
+
+ファイル {file} にバイナリ形式のパッチファイル {patch}
+を適用し、結果をファイル {dest} に保存します。
+
+{file} 元のファイル。
+
+{patch} バイナリのパッチファイル。
+
+{dest} 結果のファイルへのパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|xdiff_file_patch_binary| の例 以下のコードはバイナリ diff
+形式のパッチをファイルに適用します。
+
+<?php >
+  $old_version = 'archive-1.0.tgz';
+  $patch = 'archive.bpatch';
+  
+  $result = xdiff_file_patch_binary($old_version, $patch, 'archive-1.1.tgz');
+  if ($result) {
+     echo "パッチが適用されました";
+  } else {
+     echo "パッチが適用できませんでした";
+  }
+?>
+
+
+
+両方のファイル ({file} および {patch})
+がメモリに読み込まれるので、 memory_limit
+が十分大きな値に設定されていることを確認しましょう。
+
+|xdiff_string_patch_binary|
+
+vim:ft=help:

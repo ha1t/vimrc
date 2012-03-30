@@ -1,0 +1,16 @@
+ps_end_template -- テンプレートを終了する
+
+  bool ps_end_template(resource psdoc)~
+
+|ps_begin_template|
+によって開始したテンプレートを終了します。
+テンプレートが終了すると、それを画像のように使用できるようになります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_begin_template|
+
+vim:ft=help:

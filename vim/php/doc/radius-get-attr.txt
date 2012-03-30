@@ -1,0 +1,38 @@
+radius_get_attr -- 属性を取得する
+
+  mixed radius_get_attr(resource radius_handle)~
+
+Radius
+リクエストと同様、各レスポンスもゼロ個以上の属性を含んでいます。
+|radius_send_request| でレスポンスを受け取ったら、
+|radius_get_attr| を使用して各属性を抽出することが
+できます。|radius_get_attr| がコールされるたびに、
+現在のレスポンスから次の属性を取得します。
+
+属性の型とデータを含む連想配列、あるいは 0 以上の
+エラー番号を返します。
+
+|radius_get_attr| の例
+
+<?php >
+  while ($resa = radius_get_attr($res)) {
+  
+      if (!is_array($resa)) {
+          printf("属性取得エラー: %s\n",  radius_strerror($res));
+          exit;
+      }
+  
+      $attr = $resa['attr'];
+      $data = $resa['data'];
+      printf("属性を取得:%d %d Bytes %s\n", $attr, strlen($data), bin2hex($data));
+  }
+?>
+
+
+
+
+
+|radius_put_attr| |radius_get_vendor_attr| |radius_put_vendor_attr|
+|radius_send_request|
+
+vim:ft=help:

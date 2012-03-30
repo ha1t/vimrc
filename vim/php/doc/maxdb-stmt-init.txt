@@ -1,0 +1,22 @@
+maxdb->stmt_init -- ステートメントを初期化し、maxdb_stmt_prepare
+で使用するリソースを返す
+
+手続き型
+
+  resource maxdb_stmt_init(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+  object stmt_init(resource link)~
+
+|maxdb_stmt_prepare| で使用するステートメントリソースを
+確保して初期化します。
+
+|maxdb_stmt_prepare| がコールされるまでは、
+これ以降のすべての maxdb_stmt 関数のコールは失敗します。
+
+リソースを返します。
+
+|maxdb_stmt_prepare|
+
+vim:ft=help:

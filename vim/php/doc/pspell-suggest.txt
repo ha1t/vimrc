@@ -1,0 +1,32 @@
+pspell_suggest -- 単語のスペルについて修正候補を示す
+
+  array pspell_suggest(int dictionary_link, string word)~
+
+|pspell_suggest| は、
+指定した単語について可能性のあるスペルの配列を返します。
+
+{dictionary_link}
+
+{word} 調べたい単語。
+
+修正候補の配列を返します。
+
+|pspell_suggest| の例
+
+<?php >
+  $pspell_link = pspell_new("en");
+  
+  if (!pspell_check($pspell_link, "testt")) {
+      $suggestions = pspell_suggest($pspell_link, "testt");
+  
+      foreach ($suggestions as $suggestion) {
+          echo "Possible spelling: $suggestion<br />";
+      }
+  }
+?>
+
+
+
+
+
+vim:ft=help:

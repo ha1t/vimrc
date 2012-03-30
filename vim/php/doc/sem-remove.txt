@@ -1,0 +1,18 @@
+sem_remove -- セマフォを削除する
+
+  bool sem_remove(resource sem_identifier)~
+
+|sem_remove| は、指定したセマフォを削除します。
+
+セマフォを削除した後、そのセマフォにはもうアクセスできません。
+
+{sem_identifier} セマフォの ID。|sem_get|
+により作成したものでなければなりません。
+それ以外の場合は、警告を発生します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|sem_get| |sem_release| |sem_acquire|
+
+vim:ft=help:

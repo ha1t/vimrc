@@ -1,0 +1,31 @@
+id3_get_frame_short_name -- ID3v2 フレームの短い名前を取得する
+
+  string id3_get_frame_short_name(string frameId)~
+
+|id3_get_frame_short_name| は、 ID3v2
+フレームの短い名前を返します。
+
+{frameId} ID3v2 フレーム。
+
+フレームの短い名前、あるいはエラー時に FALSE
+を返します。
+
+|id3_get_short_name| が返す値は、 |id3_get_tag|
+の返す配列で用いられます。
+
+|id3_get_frame_short_name| の例
+
+<?php >
+  $shortName = id3_get_frame_short_name("TOLY");
+  echo $shortName;
+?>
+
+上の例の出力は以下となります。
+
+  originalLyricist
+
+
+
+|id3_get_frame_long_name|
+
+vim:ft=help:

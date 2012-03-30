@@ -1,0 +1,21 @@
+ps_shading_pattern -- シェーディング用のパターンを作成する
+
+  int ps_shading_pattern(resource psdoc, int shadingid, string optlist)~
+
+シェーディング用のパターンを作成します。これは
+|ps_shading| を呼ぶ前に行わなければなりません。
+シェーディングパターンは、標準のパターンと同じように用いられます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{shadingid} 事前に |ps_shading| で作成したシェーディングの
+ID。
+
+{optlist} このパラメータは、現在使用されていません。
+
+成功した場合にパターンの ID を、失敗した場合に FALSE
+を返します。
+
+|ps_shading| |ps_shfill|
+
+vim:ft=help:

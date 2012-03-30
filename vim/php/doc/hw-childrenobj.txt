@@ -1,0 +1,15 @@
+hw_ChildrenObj -- 子のオブジェクトレコード
+
+  array hw_childrenobj(int connection, int objectID)~
+
+コレクションの子のオブジェクトレコードを返します。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+オブジェクトレコードの配列を返します。各オブジェクトレコードは、ID
+{objectID} を有するコレクションの子に属して
+います。配列は、ドキュメントおよびコレクションの全ての子を有しています。
+
+vim:ft=help:

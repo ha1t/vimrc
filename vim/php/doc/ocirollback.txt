@@ -1,0 +1,5 @@
+ocirollback -- oci_rollback のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_rollback|.
+
+vim:ft=help:

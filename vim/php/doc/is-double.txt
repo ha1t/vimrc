@@ -1,0 +1,5 @@
+is_double -- is_float のエイリアス
+
+この関数は次の関数のエイリアスです。 |is_float|.
+
+vim:ft=help:

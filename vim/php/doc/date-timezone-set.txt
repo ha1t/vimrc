@@ -1,0 +1,16 @@
+date_timezone_set -- DateTime
+オブジェクトのタイムゾーンを設定する
+
+  void date_timezone_set(DateTime object, DateTimeZone timezone)~
+
+  void DateTime::setTimezone(DateTime object, DateTimeZone timezone, DateTimeZone timezone)~
+
+{object} DateTime オブジェクト。
+
+{timezone} 指定したいタイムゾーン。
+
+成功した場合に NULL、失敗した場合に FALSE を返します。
+
+|date_timezone_get|
+
+vim:ft=help:

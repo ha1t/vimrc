@@ -1,0 +1,75 @@
+fwrite -- バイナリセーフなファイル書き込み処理
+
+  int fwrite(resource handle, string string [, int length])~
+
+|fwrite|は{string}の内容を
+{handle}が指しているファイル・ストリームに書き込みます。
+
+{handle} |fopen|
+を使用して作成したファイルシステムポインタリソース。
+
+{string} 書き込む文字列。
+
+{length} {length}パラメータが与えられている場合、
+{length}バイト数分の書き込みが完了したか、
+{string}が終わりに達したかのいずれか早い方の
+事象により書き込みは中止されます。
+
+{length} パラメータが指定されている場合、 magic_quotes_runtime
+構成オプションは無視され、{string}からの
+スラッシュ文字の取り除きは行われないことに注意してください。
+
+|fwrite| は、 書き込んだバイト数、またはエラー時に FALSE
+を返します。
+
+(Windowsのように)バイナリとテキストファイルの形式が異なるシステムにおいては、ファイルをオープンする際に
+|fopen|の mode パラメータに 'b' を指定する必要があります。
+
+|fopen| を使用して追記モードでオープンした {handle}
+の場合、 |fwrite| はアトミックになります
+(ただし、一部のプラットフォームにおいて {string}
+がファイルシステムのブロックサイズを超えない場合、
+そしてローカルファイルシステム上のファイルである場合に限ります)。
+アトミックであるとは、つまり |fwrite|
+をコールする前にリソースを |flock|
+する必要がないということです。データの書き込みが中断されることはありません。
+
+簡単な |fwrite| の例
+
+<?php >
+  $filename = 'test.txt';
+  $somecontent = "Add this to the file\n";
+  
+  // ファイルが存在しかつ書き込み可能かどうか確認します
+  if (is_writable($filename)) {
+  
+      // この例では$filenameを追加モードでオープンします。
+      // ファイルポインタはファイルの終端になりますので
+      // そこがfwrite()で$somecontentが追加される位置になります。
+      if (!$handle = fopen($filename, 'a')) {
+           echo "Cannot open file ($filename)";
+           exit;
+      }
+  
+      // オープンしたファイルに$somecontentを書き込みます
+      if (fwrite($handle, $somecontent) === FALSE) {
+          echo "Cannot write to file ($filename)";
+          exit;
+      }
+  
+      echo "Success, wrote ($somecontent) to file ($filename)";
+  
+      fclose($handle);
+  
+  } else {
+      echo "The file $filename is not writable";
+  }
+?>
+
+
+
+
+
+|fread| |fopen| |fsockopen| |popen| |file_get_contents|
+
+vim:ft=help:

@@ -1,0 +1,24 @@
+hw_mv -- オブジェクトを移動する
+
+  int hw_mv(int connection, array object_id_array, int source_id, int destination_id)~
+
+コレクション内の指定したオブジェクトを別のコレクションに移動します。
+
+{connection} 接続 ID。
+
+{object_id_array} オブジェクト ID の配列。
+
+{source_id} 移動元のコレクション ID。
+
+{destination_id} 移動先のコレクション ID。0 を指定すると、
+オブジェクトは移動元のコレクションから削除されます。
+これがオブジェクトの最後のインスタンスの場合、
+このオブジェクトは削除されます。
+全てのインスタンスを一度に削除したい場合、
+|hw_deleteobject| を使用してください。
+
+移動されたオブジェクトの数を返します。
+
+|hw_cp| |hw_deleteobject|
+
+vim:ft=help:

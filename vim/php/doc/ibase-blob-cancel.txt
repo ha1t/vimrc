@@ -1,0 +1,15 @@
+ibase_blob_cancel -- blob の生成を取り消す
+
+  bool ibase_blob_cancel(resource blob_handle)~
+
+この関数は、まだ |ibase_blob_close|
+で閉じられていない場合に BLOB を捨てます。
+
+{blob_handle} |ibase_blob_create| でオープンした blob ハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_blob_close| |ibase_blob_create| |ibase_blob_import|
+
+vim:ft=help:

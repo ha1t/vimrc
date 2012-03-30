@@ -1,0 +1,21 @@
+SDO_Model_ReflectionDataObject::getInstanceProperties -- SDO_DataObject
+のインスタンスプロパティを取得する
+
+  array SDO_Model_ReflectionDataObject::getInstanceProperties()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+SDO_DataObject のインスタンスプロパティを取得します。
+インスタンスプロパティには、データオブジェクトの型で定義されている
+プロパティのほかに
+(もしデータオブジェクトがオープン型の場合は)
+オープン型からのプロパティが含まれます。
+
+なし。
+
+SDO_Model_Property オブジェクトの配列を返します。
+
+vim:ft=help:

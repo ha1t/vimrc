@@ -1,0 +1,10 @@
+snmp_read_mib -- アクティブな MIB ツリーの中に MIB
+ファイルを読み込んでパースする
+
+  bool snmp_read_mib(string filename)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

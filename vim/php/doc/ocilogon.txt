@@ -1,0 +1,5 @@
+ocilogon -- oci_connect のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_connect|.
+
+vim:ft=help:

@@ -1,0 +1,132 @@
+unset -- 指定した変数の割当を解除する
+
+  void unset(mixed var [, mixed var [, mixed ...]])~
+
+|unset| は指定した変数を破棄します。
+
+関数 |unset| の内部動作は、
+破棄しようとする変数の型に依存します。
+
+あるグローバル変数が関数の中で |unset|
+された場合、ローカル変数のみが破棄されます。呼出側の環境にある変数は、
+|unset| がコールされる前と同じ値を保持します。
+
+<?php >
+  function destroy_foo() 
+  {
+      global $foo;
+      unset($foo);
+  }
+  
+  $foo = 'bar';
+  destroy_foo();
+  echo $foo;
+?>
+
+上の例の出力は以下となります。
+
+  bar
+
+グローバル変数を関数の内部で |unset| したい場合は、
+$GLOBALS 配列を使用することが可能です。
+
+<?php >
+  function foo() 
+  {
+      unset($GLOBALS['bar']);
+  }
+  
+  $bar = "something";
+  foo();
+?>
+
+参照渡しされた変数が関数内で |unset| された場合に、
+ローカル変数のみが破棄されます。呼出側の環境でその変数は、
+|unset| がコールされる前と同じ値を保持します。
+
+<?php >
+  function foo(&amp;$bar) 
+  {
+      unset($bar);
+      $bar = "blah";
+  }
+  
+  $bar = 'something';
+  echo "$bar\n";
+  
+  foo($bar);
+  echo "$bar\n";
+?>
+
+上の例の出力は以下となります。
+
+  something
+  something
+
+静的変数が関数の内部で |unset| された場合、 |unset|
+は、その関数の残りのコンテキスト内においてのみ
+変数を破棄します。関数を再度コールすると、破棄する前の値が復元されます。
+
+<?php >
+  function foo()
+  {
+      static $bar;
+      $bar++;
+      echo "Before unset: $bar, ";
+      unset($bar);
+      $bar = 23;
+      echo "after unset: $bar\n";
+  }
+  
+  foo();
+  foo();
+  foo();
+?>
+
+上の例の出力は以下となります。
+
+  Before unset: 1, after unset: 23
+  Before unset: 2, after unset: 23
+  Before unset: 3, after unset: 23
+
+{var} 破棄する変数。
+
+{var} 別の変数。
+
+{...}
+
+値を返しません。
+
+バージョン 説明 4.0.0 |unset|
+は、関数ではなく、式となりました (PHP 3 では、|unset|
+は常に 1 を返していました)。
+
+|unset| の例
+
+<?php >
+  // 変数を一つ破棄する
+  unset($foo);
+  
+  // 配列の要素の一つを破棄する
+  unset($bar['quux']);
+  
+  // 複数の変数を破棄する
+  unset($foo1, $foo2, $foo3);
+?>
+
+
+
+
+
+これは、関数ではなく 言語構造のため、可変関数
+を用いて コールすることはできません。
+
+現在のコンテキストで見えるものであれば、
+オブジェクトのプロパティでさえも破棄することが可能です。
+
+PHP 5 以降では、オブジェクトのメソッド内で $this
+を破棄することはできません。
+
+|isset| |empty| |array_splice|
+
+vim:ft=help:

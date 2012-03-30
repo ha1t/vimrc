@@ -1,0 +1,16 @@
+session_decode -- 文字列からセッションデータをデコードする
+
+  bool session_decode(string data)~
+
+|session_decode| は、 {data}
+のセッションデータをデコードし、
+セッションに保存する変数を設定します。
+
+{data} エンコードされたデータ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|session_encode|
+
+vim:ft=help:

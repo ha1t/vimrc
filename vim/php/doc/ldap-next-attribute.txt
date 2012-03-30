@@ -1,0 +1,29 @@
+ldap_next_attribute -- 結果における次の属性を得る
+
+  string ldap_next_attribute(resource link_identifier, resource result_entry_identifier)~
+
+エントリ内の属性を取得します。 最初に |ldap_next_attribute|
+をコールした際には |ldap_first_attribute| から返される
+{result_entry_identifier} を使用します。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{result_entry_identifier}
+
+{ber_identifier}
+ポインタの内部状態を、このパラメータで管理します。
+
+このパラメータは使用されなくなりました。現在は PHP
+が自動的にこれを処理します。
+後方互換性を保持するため、もしこのパラメータが渡されても
+PHP はエラーを発生させません。
+
+成功した場合、エントリにおける次の属性を返します。エラー時に
+FALSE を返します。
+
+バージョン 説明 5.2.4 {ber_identifier} が削除されました。
+これは PHP が自動的に処理するようになりました。
+
+|ldap_get_attributes|
+
+vim:ft=help:

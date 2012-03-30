@@ -1,0 +1,9 @@
+DomNode->child_nodes -- 子ノードを返す
+
+  array DomNode->child_nodes()~
+
+全ての子ノードを返します。
+
+|domnode_next_sibling|, |domnode_previous_sibling| も参照ください。
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+msql_field_len -- フィールドの長さを取得する
+
+  int msql_field_len(resource result, int field_offset)~
+
+|msql_field_len| は指定したフィールドの長さを返します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset}
+は、1から始まります。
+
+指定したフィールドの長さを返します。エラー時には FALSE
+を返します。
+
+vim:ft=help:

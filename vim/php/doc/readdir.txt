@@ -1,0 +1,75 @@
+readdir -- ディレクトリハンドルからエントリを読み込む
+
+  string readdir(resource dir_handle)~
+
+ディレクトリから次のファイルのファイル名を返します。
+ファイル名はファイルシステム上に格納されている順番で返されます。
+
+{dir_handle} |opendir| で事前にオープンした
+ディレクトリハンドルの resource 。
+
+成功した場合にファイル名、失敗した場合に FALSE
+を返します。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+ディレクトリ内の全てのファイルのリストを得る
+以下の例で、|readdir|
+の返り値をどのように調べているかに
+注目してください。返り値が FALSE
+と一致することを、明示的に
+（値が等しく、かつ型も等しい - 詳細は 比較演算子
+を参照ください）調べています。なぜなら、そうしないと
+FALSE と評価されてしまうディレクトリエントリ （例: "0"
+という名前のディレクトリ）があった場合にループが
+とまってしまうからです。
+
+<?php >
+  // 4.0.0-RC2 より前のバージョンでは、!== は存在しないことに注意しましょう
+  
+  if ($handle = opendir('/path/to/files')) {
+      echo "Directory handle: $handle\n";
+      echo "Files:\n";
+  
+      /* ディレクトリをループする際の正しい方法です */
+      while (false !== ($file = readdir($handle))) {
+          echo "$file\n";
+      }
+  
+      /* ディレクトリをループする際の「間違った」方法です */
+      while ($file = readdir($handle)) {
+          echo "$file\n";
+      }
+  
+      closedir($handle);
+  }
+?>
+
+
+
+カレントディレクトリの全てのファイルを一覧する。ただし
+. および .. は取り除く
+
+<?php >
+  if ($handle = opendir('.')) {
+      while (false !== ($file = readdir($handle))) {
+          if ($file != "." &amp;& $file != "..") {
+              echo "$file\n";
+          }
+      }
+      closedir($handle);
+  }
+?>
+
+
+
+
+
+|is_dir| |glob|
+
+vim:ft=help:

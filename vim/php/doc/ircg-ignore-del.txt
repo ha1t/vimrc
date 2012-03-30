@@ -1,0 +1,18 @@
+ircg_ignore_del --
+サーバ上の除外リストからユーザを削除する
+
+  bool ircg_ignore_del(resource connection, string nick)~
+
+この関数は、接続 {connection} の IRCG 除外リストからユーザ
+{nick} を削除します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{nick} ユーザのニックネーム。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ircg_ignore_add|
+
+vim:ft=help:

@@ -1,0 +1,24 @@
+XMLWriter::setIndentString -- 字下げに使用する文字列を設定する
+
+オブジェクト指向型
+
+  bool setIndentString(string indentString)~
+
+手続き型
+
+  bool xmlwriter_set_indent_string(string indentString, resource xmlwriter, string indentString)~
+
+文字列を設定します。この文字を使用して、結果の xml
+の要素/属性 を字下げします。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{indentString} 字下げ用の文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+dbmdelete -- DBM データベースから値を削除する
+
+  bool dbmdelete(resource dbm_identifier, string key)~
+
+データベース中の、{key} に対応する値を削除します。
+
+{ dbm_identifier}|dbmopen| が返す DBM リンク識別子。
+
+{key} キーを表す文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 データベース中にキーが存在しない場合は
+FALSE を返します。
+
+|dbminsert|
+
+vim:ft=help:

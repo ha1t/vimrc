@@ -1,0 +1,11 @@
+mailparse_msg_create -- mime メールリソースを作成する
+
+  resource mailparse_msg_create()~
+
+MIME メールリソースを作成します。
+
+メッセージのパースに使用するハンドルを返します。
+
+|mailparse_msg_free| |mailparse_msg_parse_file|
+
+vim:ft=help:

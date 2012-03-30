@@ -1,0 +1,78 @@
+maxdb->info --
+直近に実行したクエリについての情報を取得する
+
+手続き型
+
+  string maxdb_info(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_info| は、最後に実行されたクエリについての情報を
+文字列で返します。文字列の内容は、以下のようになります。
+
+maxdb_info の返す値 クエリの型 返される文字列の例 INSERT
+INTO...SELECT... Records: 100 Duplicates: 0 Warnings: 0 INSERT INTO...VALUES
+(...),(...),(...) Records: 3 Duplicates: 0 Warnings: 0 LOAD DATA INFILE ...
+Records: 1 Deleted: 0 Skipped: 0 Warnings: 0 ALTER TABLE ... Records: 3
+Duplicates: 0 Warnings: 0 UPDATE ... Rows matched: 40 Changed: 40 Warnings: 0
+
+上のいずれにもあてはまらない形式のクエリはサポートされていません。
+そのような場合、|maxdb_info| は空の文字列を返します。
+
+直近に実行されたクエリについての追加情報を表す文字列を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $maxdb->query("CREATE TABLE temp.t1 LIKE hotel.city");
+  
+  /* INSERT INTO .. SELECT */
+  $maxdb->query("INSERT INTO temp.t1 SELECT * FROM hotel.city");
+  printf("%s\n", $maxdb->info);
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  maxdb_query($link, "CREATE TABLE temp.t1 LIKE hotel.city");
+  
+  /* INSERT INTO .. SELECT */
+  maxdb_query($link, "INSERT INTO temp.t1 SELECT * FROM hotel.city");
+  printf("%s\n", maxdb_info($link));
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Records: 25 Duplicates: 0 Warnings: 0
+
+|maxdb_affected_rows| |maxdb_warning_count| |maxdb_num_rows|
+
+vim:ft=help:

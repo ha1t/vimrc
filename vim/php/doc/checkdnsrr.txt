@@ -1,0 +1,28 @@
+checkdnsrr -- 指定したインターネットホスト名もしくは IP
+アドレスに対応する DNS レコードを検索する
+
+  int checkdnsrr(string host [, string type])~
+
+{host} に対応する {type} 型のレコードを DNS から探します。
+
+{host} {host}は、ドットで 4 つに分けられた形式の IP
+アドレスか、あるいはホスト名です。
+
+{type} {type}は、A, MX, NS, SOA, PTR, CNAME, AAAA, A6, SRV, NAPTR, ANY
+のどれか一つです。デフォルトは MX です。
+
+レコードが見つかった場合に TRUE、
+何も見つからないかエラーが発生した場合に FALSE
+を返します。
+
+バージョン 説明 5.2.4 TXT {type} が追加されました。 5.0.0 AAAA
+{type} が追加されました。
+
+この関数は Windows
+プラットフォームでは実装されていません。 PEAR の Net_DNS
+クラスをお試しください。
+
+|dns_get_record| |getmxrr| |gethostbyaddr| |gethostbyname| |gethostbynamel|
+the named(8) manual page
+
+vim:ft=help:

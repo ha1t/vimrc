@@ -1,0 +1,42 @@
+odbc_procedurecolumns --
+プロシージャへのパラメータに関する情報を取得する
+
+  resource odbc_procedurecolumns(resource connection_id [, string qualifier, string owner, string proc, string column])~
+
+指定したプロシージャに関して入出力パラメータのリストとその結果を構成するカラムを返します。
+ODBC 結果 ID または失敗した場合に FALSE を返します。
+
+結果は以下のカラムを有します。 PROCEDURE_QUALIFIER
+
+PROCEDURE_OWNER
+
+PROCEDURE_NAME
+
+COLUMN_NAME
+
+COLUMN_TYPE
+
+DATA_TYPE
+
+TYPE_NAME
+
+PRECISION
+
+LENGTH
+
+SCALE
+
+RADIX
+
+NULLABLE
+
+REMARKS
+
+結果セットは、PROCEDURE_QUALIFIER、PROCEDURE_OWNER、
+PROCEDURE_NAME、COLUMN_TYPE でソートされます。
+
+引数 {owner}、{proc}、 {column} には検索パターン
+(ゼロ以上の文字にマッチする '%'
+や単一の文字にマッチする '_') を使用可能です。
+
+vim:ft=help:

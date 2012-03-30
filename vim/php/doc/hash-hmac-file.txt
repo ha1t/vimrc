@@ -1,0 +1,44 @@
+hash_hmac_file -- HMAC
+方式を使用して、指定されたファイルの内容からハッシュ値を生成する
+
+  string hash_hmac_file(string algo, string filename, string key [, bool raw_output])~
+
+{algo} 選択したアルゴリズムの名前 (すなわち
+"md5"、"sha256"、"haval160,4" など…)。
+
+{filename} ハッシュ対象となるファイルの位置を示す URL。
+fopen ラッパーをサポートしています。
+
+{key} HMAC
+方式でのメッセージダイジェストを生成するために使用する
+共有の秘密鍵。
+
+{raw_output} TRUE
+を設定すると、生のバイナリデータを出力します。
+デフォルト (FALSE) の場合は小文字の 16
+進数値となります。
+
+{raw_output} が true に設定されていない場合は、
+メッセージダイジェストの計算結果を小文字の 16
+進数値形式の文字列で 返します。もし true
+に設定されていた場合は、メッセージダイジェストが
+そのままのバイナリ形式で返されます。
+
+|hash_hmac_file| の例
+
+<?php >
+  /* ハッシュ値を計算するファイルを作成します */
+  file_put_contents('example.txt', 'The quick brown fox jumped over the lazy dog.');
+  
+  echo hash_hmac_file('md5', 'example.txt', 'secret');
+?>
+
+上の例の出力は以下となります。
+
+  7eb2b5c37443418fc77c136dd20e859c
+
+
+
+|hash_hmac| |hash_file|
+
+vim:ft=help:

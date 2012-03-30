@@ -1,0 +1,9 @@
+xml_set_processing_instruction_handler -- 処理命令 (PI)
+用ハンドラを設定する
+
+  bool xml_set_processing_instruction_handler(resource parser, callback handler)~
+
+XML パーサ {parser}の処理命令 (PI)
+用ハンドラ関数を設定します。
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+pg_connection_status -- 接続ステータスを取得する
+
+  int pg_connection_status(resource connection)~
+
+|pg_connection_status| は、 {connection}
+で指定した接続のステータスを返します。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+PGSQL_CONNECTION_OK あるいは PGSQL_CONNECTION_BAD 。
+
+|pg_connection_status| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+    $stat = pg_connection_status($dbconn);
+    if ($stat === PGSQL_CONNECTION_OK) {
+        echo 'Connection status ok';
+    } else {
+        echo 'Connection status bad';
+    }    
+?>
+
+
+
+
+
+|pg_connection_busy|
+
+vim:ft=help:

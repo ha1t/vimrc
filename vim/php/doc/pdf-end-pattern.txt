@@ -1,0 +1,8 @@
+PDF_end_pattern -- パターンを終了する
+
+  bool PDF_end_pattern(resource p)~
+
+パターンの定義を終了します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

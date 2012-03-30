@@ -1,0 +1,14 @@
+DomDocumentType->entities() -- エンティティの一覧を返す
+
+  array entities()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+DOMDocumentType オブジェクトの entities
+プロパティを使用してください。
+
+vim:ft=help:

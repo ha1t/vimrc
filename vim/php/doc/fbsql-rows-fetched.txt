@@ -1,0 +1,12 @@
+fbsql_rows_fetched --
+直近の文で影響をうけた行の数を取得する
+
+  int fbsql_rows_fetched(resource result)~
+
+直近の文で影響をうけた行の数を取得します。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+行の数を整数値で返します。
+
+vim:ft=help:

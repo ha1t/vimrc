@@ -1,0 +1,9 @@
+PDF_open_memory_image -- PHP
+のイメージ関数で作成されたイメージをオープンする
+[未サポート]
+
+  int PDF_open_memory_image(resource p, resource image)~
+
+この関数は PDFlib GmbH でサポートされていません。
+
+vim:ft=help:

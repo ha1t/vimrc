@@ -1,0 +1,13 @@
+str_getcsv -- CSV 文字列をパースして配列に格納する
+
+  array str_getcsv(string input [, string delimiter [, string enclosure [, string escape]]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+|fgetcsv|
+
+vim:ft=help:

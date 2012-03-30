@@ -1,0 +1,15 @@
+hw_ErrorMsg -- エラーメッセージを返す
+
+  string hw_errormsg(int connection)~
+
+直近のコマンドのエラーメッセージを含む文字列を返します。
+
+{connection} 接続 ID。
+
+直近のエラーメッセージまたは 'No Error'
+を含む文字列を返します。 FALSE
+が返された場合、この関数は失敗しています。
+
+|hw_error|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+runkit_constant_redefine -- 定義済みの定数を再定義する
+
+  bool runkit_constant_redefine(string constname, mixed newvalue)~
+
+{constname}
+再定義する定数名。グローバル定数を表す文字列、あるいは
+classname::constname 形式でクラス定数を示す。
+
+{newvalue} 定数に新しく設定する値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_constant_add| |runkit_constant_remove|
+
+vim:ft=help:

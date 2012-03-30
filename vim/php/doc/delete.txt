@@ -1,0 +1,13 @@
+delete -- unlink か unset を参照してください
+
+  void delete()~
+
+この関数はダミーの関数エントリであり、間違った場所で
+|unlink| または |unset|
+を要求する人の要求を満足させるためのものです。
+
+値を返しません。
+
+ファイルを削除するには |unlink| 変数を削除するには |unset|
+
+vim:ft=help:

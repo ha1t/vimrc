@@ -1,0 +1,84 @@
+strtok -- 文字列をトークンに分割する
+
+  string strtok(string str, string token)~
+
+|strtok| は文字列 ({str}) を 何らかの文字 {token}
+によって区切られている小さな文字列 (トークン)
+に分割します。 "This is an example string"
+のような文字列がある場合、
+空白文字をトークンとするとこの文字列を個々の単語に分割することができます。
+
+strtok は最初のコールの時のみ string
+引数を使用することに注意してください。 strtok
+は、文字列のどこにいるのかの情報を保持しているため、
+2回目以降のコールではトークンのみを必要とします。
+最初からやりなおす場合や新しい文字列をトークンに分割する場合、
+初期化するために再度string引数を指定してstrtokをコールします。
+文字列は、引数の文字のどれかが見つかったはトークンに分割されます。
+
+{str} より小さい文字列 (トークン) に分割する文字列。
+
+{token} {str} を分割する際に使用する区切り文字。
+
+文字列トークンを返します。
+
+|strtok| の例
+
+<?php >
+  $string = "This is\tan example\nstring";
+  /* タブと改行をトークンの区切りとして使用します */
+  $tok = strtok($string, " \n\t");
+  
+  while ($tok !== false) {
+      echo "Word=$tok<br />";
+      $tok = strtok(" \n\t");
+  }
+?>
+
+
+
+
+
+空の部分が見つかった場合の動作は PHP 4.1.0
+で変更されました。
+以前は空の文字列を返していました、新しい、正しい動作は、
+文字列のその部分を単に読み飛ばします。
+
+古い |strtok| の動作
+
+<?php >
+  $first_token  = strtok('/something', '/');
+  $second_token = strtok('/');
+  var_dump($first_token, $second_token);
+?>
+
+上の例の出力は以下となります。
+
+  string(0) ""
+      string(9) "something"
+
+新しい |strtok| の動作
+
+<?php >
+  $first_token  = strtok('/something', '/');
+  $second_token = strtok('/');
+  var_dump($first_token, $second_token);
+?>
+
+上の例の出力は以下となります。
+
+  string(9) "something"
+      bool(false)
+
+
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|split| |explode|
+
+vim:ft=help:

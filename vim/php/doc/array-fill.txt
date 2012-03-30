@@ -1,0 +1,52 @@
+array_fill -- 配列を指定した値で埋める
+
+  array array_fill(int start_index, int num, mixed value)~
+
+パラメータ {value} を値とする {num}
+個のエントリからなる配列を埋めます。
+この際、キーは、{start_index} パラメータから開始します。
+
+{start_index} 返される配列の最初のインデックス。
+
+{num} 挿入する要素数。
+
+{value} 要素に使用する値。
+
+値を埋めた配列を返します。
+
+{num} が 1 より小さい場合に E_WARNING が発生します。
+
+|array_fill| の例
+
+<?php >
+  $a = array_fill(5, 6, 'banana');
+  $b = array_fill(-2, 2, 'pear');
+  print_r($a);
+  print_r($b);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [5]  => banana
+      [6]  => banana
+      [7]  => banana
+      [8]  => banana
+      [9]  => banana
+      [10] => banana
+  )
+  Array
+  (
+      [-2] => pear
+      [0] => pear
+  )
+
+
+
+負の値をキーに指定した場合についての詳細な説明は、マニュアルの
+配列 のセクションを参照ください。
+
+|str_repeat| |range|
+
+vim:ft=help:

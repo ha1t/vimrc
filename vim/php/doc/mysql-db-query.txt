@@ -1,0 +1,74 @@
+mysql_db_query -- MySQL クエリーを送信する
+
+  resource mysql_db_query(string database, string query [, resource link_identifier])~
+
+|mysql_db_query| はデータベースを選択し、
+そこでクエリーを実行します。
+
+{database} 選択するデータベース名。
+
+{query} MySQL クエリー。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+クエリーの結果を指す MySQL
+結果リソースを正の値で返します。 エラー時には FALSE
+を返します。また、 INSERT/UPDATE/DELETE クエリーの場合には
+TRUE または FALSE を返し、これらはそれぞれ クエリーが
+成功した / 失敗した ことを示します。
+
+バージョン 説明 4.0.6
+この関数は廃止予定です。使用しないでください。かわりに
+|mysql_select_db| あるいは |mysql_query| を使用してください。
+
+|mysql_db_query| の別の例
+
+<?php >
+  if (!$link = mysql_connect('mysql_host', 'mysql_user', 'mysql_password')) {
+      echo 'Could not connect to mysql';
+      exit;
+  }
+  
+  if (!mysql_select_db('mysql_dbname', $link)) {
+      echo 'Could not select database';
+      exit;
+  }
+  
+  $sql    = 'SELECT foo FROM bar WHERE id = 42';
+  $result = mysql_query($sql, $link);
+  
+  if (!$result) {
+      echo "DB Error, could not query the database\n";
+      echo 'MySQL Error: ' . mysql_error();
+      exit;
+  }
+  
+  while ($row = mysql_fetch_assoc($result)) {
+      echo $row['foo'];
+  }
+  
+  mysql_free_result($result);
+?>
+
+
+
+
+
+この関数の終了後、直前に選択されていたデータベースに自動的に戻ることは
+ないということに注意してください。
+言い換えれば、一時的に別のデータベース上でクエリーを
+実行するという目的でこの関数を利用することはできないということです。
+もしそのような場合は、もとのデータベースに改めて接続しなおす必要があります。
+この関数のかわりに、SQL クエリーの中で database.table
+構文を用いたり |mysql_select_db| を利用したりすることが
+強く推奨されています。
+
+|mysql_query| |mysql_select_db|
+
+vim:ft=help:

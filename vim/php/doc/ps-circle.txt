@@ -1,0 +1,26 @@
+ps_circle -- 円を描く
+
+  bool ps_circle(resource psdoc, float x, float y, float radius)~
+
+({x}, {y}) を中心とする円を描きます。描画開始位置は
+({x}+{radius}, {y})
+です。もしパスの外部でこの関数が呼び出された場合、
+新しいパスを開始します。パスの内部で呼び出された場合は、
+円をサブパスとして追加します。ひとつ前の描画処理の終点が
+({x}+{radius}, {y})
+でなかった場合、パスに隙間ができることになります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{x} 円の中心の x 座標。
+
+{y} 円の中心の y 座標。
+
+{radius} 円の半径。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_arc| |ps_arcn|
+
+vim:ft=help:

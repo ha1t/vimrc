@@ -1,0 +1,33 @@
+ZipArchive::getFromIndex --
+インデックスを使用して、エントリの内容を返す
+
+  mixed ZipArchive::getFromIndex(int index [, int flags])~
+
+インデックスを使用して、エントリの内容を返します。
+
+{index} エントリのインデックス。
+
+{flags}
+アーカイブのオープン時に使用するフラグ。以下の値を OR
+で連結して使用します。 ZIPARCHIVE::FL_UNCHANGED
+
+ZIPARCHIVE::FL_COMPRESSED
+
+成功した場合にエントリの内容、失敗した場合に FALSE
+を返します。
+
+ファイルの内容の取得
+
+<?php >
+  $zip = new ZipArchive;
+  if ($zip->open('test.zip') === TRUE) {
+      echo $zip->getFromIndex(2);
+      $zip->close();
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

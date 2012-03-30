@@ -1,0 +1,26 @@
+imap_mail_move --
+指定されたメッセージをメールボックスに移動する
+
+  bool imap_mail_move(resource imap_stream, string msglist, string mailbox [, int options])~
+
+{msglist} で指定されたメッセージを、
+指定されたメールボックス {mbox} に移動します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msglist} {msglist} は、 (RFC2060 に記述されたように)
+ただのメッセージ番号ではなく、範囲を示します。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+{options} {options}
+はビットマスクであり、ひとつのオプションをとります。
+CP_UID - UIDS を含む処理の数
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_mail_copy|
+
+vim:ft=help:

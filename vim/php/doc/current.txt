@@ -1,0 +1,52 @@
+current -- 配列内の現在の要素を返す
+
+  mixed current(array array)~
+
+各配列は、"カレント"の要素へのポインタを有しています。
+このポインタは、その配列の最初の要素を指すように初期化されます。
+
+{array} 配列。
+
+|current| 関数は、
+単に内部ポインタが現在指している配列要素の値を返します。
+この関数は、ポインタを全く移動しません。
+内部ポインタが最終要素の次を指していたり
+配列が空だったりした場合、 |current| は FALSE を返します。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|current| と類似関数の使用例
+
+<?php >
+  $transport = array('foot', 'bike', 'car', 'plane');
+  $mode = current($transport); // $mode = 'foot';
+  $mode = next($transport);    // $mode = 'bike';
+  $mode = current($transport); // $mode = 'bike';
+  $mode = prev($transport);    // $mode = 'foot';
+  $mode = end($transport);     // $mode = 'plane';
+  $mode = current($transport); // $mode = 'plane';
+  
+  $arr = array();
+  var_dump(current($arr)); // bool(false)
+  
+  $arr = array(array());
+  var_dump(current($arr)); // array(0) { }
+?>
+
+
+
+
+
+配列中に boolean FALSE の要素が含まれていると、
+それを配列の終わりと区別することができません。FALSE
+要素を含む配列を順に処理するには、|each|
+関数を参照ください。
+
+|end| |key| |each| |prev| |reset| |next|
+
+vim:ft=help:

@@ -1,0 +1,111 @@
+db2_next_result --
+ストアドプロシージャから、次の結果セットを要求する
+
+  resource db2_next_result(resource stmt)~
+
+ストアドプロシージャは、複数の結果セットを返すことができます。
+単純な SELECT
+文が返す結果を処理するのと同じように最初の結果セットを
+扱った後でそれ以降の結果セットを処理する際には、
+|db2_next_result| 関数をコールして その返り値を PHP
+変数に代入しなければなりません。
+
+{stmt} |db2_exec| あるいは |db2_execute|
+から返されるプリペアドステートメント。
+
+ストアドプロシージャが別の結果セットを返している場合には
+次の結果セットを含む新しいステートメントリソース、
+別の結果セットを返していない場合には FALSE
+を返します。
+
+複数の結果セットを返すストアドプロシージャをコールする
+次の例では、3
+つの結果セットを返すストアドプロシージャをコールします。
+最初の結果セットは CALL
+文を起動したのと同じステートメントリソースから
+直接取得できますが、2 番目および 3 番目の結果セットは
+|db2_next_result|
+が返すステートメントリソースから取得します。
+
+<?php >
+  $conn = db2_connect($database, $user, $password);
+  
+  if ($conn) {
+    $stmt = db2_exec($conn, 'CALL multiResults()');
+  
+    print "最初の結果セットを取得します\n";
+    while ($row = db2_fetch_array($stmt)) {
+      var_dump($row);
+    }
+  
+    print "\n2 番目の結果セットを取得します\n";
+    $res = db2_next_result($stmt);
+    if ($res) {
+      while ($row = db2_fetch_array($res)) {
+        var_dump($row);
+      }
+    }
+  
+    print "\n3 番目の結果セットを取得します\n";
+    $res2 = db2_next_result($stmt);
+    if ($res2) {
+      while ($row = db2_fetch_array($res2)) {
+        var_dump($row);
+      }
+    }
+  
+    db2_close($conn);
+  }
+?>
+
+上の例の出力は以下となります。
+
+  最初の結果セットを取得します
+  array(2) {
+    [0]=>
+    string(16) "Bubbles         "
+    [1]=>
+    int(3)
+  }
+  array(2) {
+    [0]=>
+    string(16) "Gizmo           "
+    [1]=>
+    int(4)
+  }
+  
+  2 番目の結果セットを取得します
+  array(4) {
+    [0]=>
+    string(16) "Sweater         "
+    [1]=>
+    int(6)
+    [2]=>
+    string(5) "llama"
+    [3]=>
+    string(6) "150.00"
+  }
+  array(4) {
+    [0]=>
+    string(16) "Smarty          "
+    [1]=>
+    int(2)
+    [2]=>
+    string(5) "horse"
+    [3]=>
+    string(6) "350.00"
+  }
+  
+  3 番目の結果セットを取得します
+  array(1) {
+    [0]=>
+    string(16) "Bubbles         "
+  }
+  array(1) {
+    [0]=>
+    string(16) "Gizmo           "
+  }
+
+
+
+vim:ft=help:

@@ -1,0 +1,26 @@
+ps_rect -- 矩形を描く
+
+  bool ps_rect(resource psdoc, float x, float y, float width, float height)~
+
+（{x}, {y}）を左下の角とする
+矩形を描きます。描画は左下の角から始まって同じ位置で終わります。
+もしパスの外部でこの関数が呼び出された場合、新しいパスを開始します。
+パスの内部で呼び出された場合は、矩形をサブパスとして追加します。一つ前の描画処理が
+左下角の位置で終わっていなかった場合は、パスに隙間ができることになります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{x} 矩形の左下角の x 座標。
+
+{y} 矩形の左下角の y 座標。
+
+{width} 画像の幅。
+
+{height} 画像の高さ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_arc| |ps_cirle| |ps_lineto|
+
+vim:ft=help:

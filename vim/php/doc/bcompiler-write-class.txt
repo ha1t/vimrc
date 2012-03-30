@@ -1,0 +1,48 @@
+bcompiler_write_class --
+定義したクラスをバイトコードとして書き込む
+
+  bool bcompiler_write_class(resource filehandle, string className [, string extends])~
+
+この関数は、PHP
+から既存のクラスをバイトコードとして読み込み、
+開かれているファイルハンドルに書き込みます。
+
+{filehandle} |fopen| が返すファイルハンドル。
+
+{className} クラス名を表す文字列。
+
+{extends}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_write_class| example
+
+<?php >
+  $fh = fopen("/tmp/example","w");
+  bcompiler_write_header($fh);
+  bcompiler_write_class($fh,"DB");
+  // DB_mysql が DB_common を継承しているのなら、
+  // DB_mysql より前に DB_common を書き込む必要があります。
+  bcompiler_write_class($fh,"DB_common");
+  bcompiler_write_class($fh,"DB_mysql");
+  bcompiler_write_footer($fh);
+  fclose($fh);
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+この関数は依存性のチェックを行わないので、
+読み込んだ際に undefined class
+とならないように、書き込む順序に注意が必要です。
+
+|bcompiler_write_header| |bcompiler_write_footer|
+
+vim:ft=help:

@@ -1,0 +1,26 @@
+shmop_delete -- 共有メモリブロックを削除する
+
+  bool shmop_delete(int shmid)~
+
+|shmop_delete| は共有メモリブロックを削除するために
+使用されます。
+
+{shmid} |shmop_open| が作成した共有メモリブロックの識別子。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+共有メモリブロックの削除
+
+<?php >
+  shmop_delete($shm_id);
+?>
+
+
+
+
+
+この例は、$shm_id を ID とする共有メモリブロックを
+削除します。
+
+vim:ft=help:

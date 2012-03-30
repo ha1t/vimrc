@@ -1,0 +1,9 @@
+PDF_fit_image -- 画像やテンプレートを配置する
+
+  bool PDF_fit_image(resource pdfdoc, int image, float x, float y, string optlist)~
+
+画像やテンプレートを、さまざまなオプションに基づいてページ上に配置します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

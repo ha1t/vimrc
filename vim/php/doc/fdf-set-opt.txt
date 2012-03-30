@@ -1,0 +1,23 @@
+fdf_set_opt -- フィールドのオプションを設定する
+
+  bool fdf_set_opt(resource fdf_document, string fieldname, int element, string str1, string str2)~
+
+指定したフィールドのオプションを設定します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{fieldname} FDF フィールド名を表す文字列。
+
+{element}
+
+{str1}
+
+{str2}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fdf_set_flags|
+
+vim:ft=help:

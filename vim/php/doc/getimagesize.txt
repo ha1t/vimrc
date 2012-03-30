@@ -1,0 +1,141 @@
+getimagesize -- 画像の大きさを取得する
+
+  array getimagesize(string filename [, array imageinfo])~
+
+|getimagesize| 関数は任意の画像ファイルの大きさを決定し、
+ファイルの型と高さ/幅を表す文字列を返します。これらは
+HTML の IMG タグや HTTP の content type として使用できます。
+
+|getimagesize| は、 {imageinfo}
+パラメータで追加情報を返します。
+
+JPC と JP2
+は異なるビット深度のコンポーネントを含むことが可能なことに
+注意してください。この場合 "bits" に対する値は、
+最も大きい深度になります。また、JP2 ファイルは 複数の
+JPEG 2000
+コードストリームを含む場合があります。この場合、
+|getimagesize| はファイルのルートから
+最初に遭遇するコードストリームに対する値を返します。
+
+アイコンに関する情報は、ビットレートが最大のアイコンから取得します。
+
+{filename}
+このパラメータは、情報を取得したいファイルの名前を指定します。
+ローカルファイルへの参照、あるいは
+(設定で許可されているなら)
+ストリームを用いたリモートファイルへの参照を指定できます。
+
+{imageinfo} オプションのパラメータで、
+画像ファイルから何らかの拡張情報を引き出すことが可能です。
+現在、この変数にはJPGファイルについて
+異なった複数のAPPマーカーが連想配列として返されます。いくつかのプログラムは、
+これらのAPPマーカーを画像の中の埋込テキストの情報として使用します。
+最も一般的な例は、マーカーAPPl3に埋込IPTC
+http://www.iptc.org/情報が返されることです。
+バイナリ形式のマーカーAPP13を読むことができるよう処理するために
+|iptcparse| 関数を使用することができます。
+
+5 つの要素からなる配列を返します。
+
+0 番目および 1
+番目の要素は、それぞれ画像の幅と高さを表します。
+
+形式によっては、画像を含まないものや複数の画像を含むものがあります。
+これらの場合、|getimagesize|
+は画像のサイズを適切に決定することができません。このような場合、
+|getimagesize| が返す幅と高さはいずれもゼロとなります。
+
+2 番目の要素は IMAGETYPE_XXX 定数のひとつで、
+画像の形式を表します。
+
+3 番目の要素はIMGタグで直接利用できる文字列 height="yyy"
+width="xxx" です。
+
+mimeは画像のMIMEタイプに一致します。この情報は
+画像とともに正しい HTTP Content-type
+ヘッダを転送するために使用できます。 getimagesize()
+および MIME 型
+
+<?php >
+  $size = getimagesize($filename);
+  $fp = fopen($filename, "rb");
+  if ($size &amp;& $fp) {
+      header("Content-type: {$size['mime']}");
+      fpassthru($fp);
+      exit;
+  } else {
+      // エラー
+  }
+?>
+
+
+
+
+
+channels は RGB 画像の場合に 3、CMYK 画像の場合に 4 です。
+bitsはカラーの数です。
+しかし、これらの値の存在はちょっと
+混乱気味です。例えば、GIFは常に1ピクセルあたり3チャンネル
+を使用しますが、グローバルカラーテーブルを使ったアニメーションGIFの
+ピクセルあたりのビット数を計算することはできません。
+
+失敗した場合には FALSE を返します。
+
+もし {filename} のイメージにアクセスできない場合、
+もしくは有効な画像でない場合、|getimagesize| は FALSE
+を返し、E_WARNING レベルのエラーを発生させます。
+読み込み時にエラーが発生した場合は、 |getimagesize| は
+E_NOTICE レベルのエラーを発生させます。
+
+バージョン 説明 5.3.0 アイコンに対応しました。 5.2.3
+読み込み時にエラーが発生した場合のエラーレベルが、
+E_WARNING から E_NOTICE に変わりました。 4.3.2 JPC, JP2, JPX, JB2,
+XBM, WBMP のサポートが追加されました。 4.3.2 {imageinfo}
+パラメータで JPEG 2000 のサポートが追加されました。 4.3.0
+bits と channels
+が他の画像形式でも使用できるようになりました。 4.3.0
+mime が追加されました。 4.3.0 SWC
+のサポートが追加されました。 4.2.0 TIFF
+のサポートが追加されました。 4.0.5 URL
+のサポートが追加されました。
+
+getimagesize (ファイル)
+
+<?php >
+  list($width, $height, $type, $attr) = getimagesize("img/flag.jpg");
+  echo "<img src=\"img/flag.jpg\" $attr alt=\"getimagesize() example\" />";
+?>
+
+
+
+getimagesize (URL)
+
+<?php >
+  $size = getimagesize("http://www.example.com/gifs/logo.gif");
+  
+  // ファイル名にスペースが含まれる場合は適切にエンコードしてください
+  $size = getimagesize("http://www.example.com/gifs/lo%20go.gif");
+?>
+
+
+
+IPTC を返す getimagesize()
+
+<?php >
+  $size = getimagesize("testimg.jpg", $info);
+  if (isset($info["APP13"])) {
+      $iptc = iptcparse($info["APP13"]);
+      var_dump($iptc);
+  }
+?>
+
+
+
+
+
+|getimagesize| 関数は GD 画像ライブラリを必要としません。
+
+|image_type_to_mime_type| |exif_imagetype| |exif_read_data| |exif_thumbnail|
+
+vim:ft=help:

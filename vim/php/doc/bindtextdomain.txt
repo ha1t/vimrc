@@ -1,0 +1,26 @@
+bindtextdomain -- ドメインのパスを設定する
+
+  string bindtextdomain(string domain, string directory)~
+
+|bindtextdomain| 関数は、ドメインへのパスを設定します。
+
+{domain} ドメイン。
+
+{directory} ディレクトリのパス。
+
+現在設定されているドメインへのフルパスを返します。
+
+|bindtextdomain| の例
+
+<?php >
+  $domain = 'myapp';
+  echo bindtextdomain($domain, '/usr/share/myapp/locale');
+?>
+
+上の例の出力は以下となります。
+
+  /usr/share/myapp/locale
+
+
+
+vim:ft=help:

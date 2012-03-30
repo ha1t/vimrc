@@ -1,0 +1,19 @@
+sybase_min_message_severity -- メッセージの severity
+の最小値を設定する
+
+  void sybase_min_message_severity(int severity)~
+
+|sybase_min_message_severity| はメッセージの severity
+レベルの最小値を設定します。
+
+{severity}
+
+値を返しません。
+
+この関数は、Sybase の DB
+ライブラリインターフェイスを使用する場合のみ利用可能で、
+CT ライブラリでは利用できません。
+
+|sybase_min_error_severity|
+
+vim:ft=help:

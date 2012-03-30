@@ -1,0 +1,22 @@
+fbsql_database --
+接続で使用するデータベース名を取得あるいは設定する
+
+  string fbsql_database(resource link_identifier [, string database])~
+
+接続で使用するデータベース名を取得あるいは設定します。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+{database}
+データベース名。指定すると、接続で使用するデフォルトのデータベースが
+{database} に変わります。
+
+この接続で使用するデータベースの名前を返します。
+
+vim:ft=help:

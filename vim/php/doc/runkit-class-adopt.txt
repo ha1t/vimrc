@@ -1,0 +1,37 @@
+runkit_class_adopt --
+ある基底クラスを、他のクラスを継承させたクラスに変換する。親クラスの適切なメソッドを追加する
+
+  bool runkit_class_adopt(string classname, string parentname)~
+
+{classname} 変換の対象となるクラス。
+
+{parentname} 継承させる親クラス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_class_adopt| の例
+
+<?php >
+  class myParent {
+    function parentFunc() {
+      echo "Parent Function Output\n";
+    }
+  }
+  
+  class myChild {
+  }
+  
+  runkit_class_adopt('myChild','myParent');
+  myChild::parentFunc();
+?>
+
+上の例の出力は以下となります。
+
+  Parent Function Output
+
+
+
+|runkit_class_emancipate|
+
+vim:ft=help:

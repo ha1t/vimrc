@@ -1,0 +1,11 @@
+odbc_num_fields -- 結果のカラム数を返す
+
+  int odbc_num_fields(resource result_id)~
+
+ODBC 結果におけるフィールド (カラム) の数を取得します。
+
+{result_id} |odbc_exec| が返す結果 ID。
+
+フィールド数、あるいはエラー時に -1 を返します。
+
+vim:ft=help:

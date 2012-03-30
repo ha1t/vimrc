@@ -1,0 +1,5 @@
+show_source -- highlight_file のエイリアス
+
+この関数は次の関数のエイリアスです。 |highlight_file|.
+
+vim:ft=help:

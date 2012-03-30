@@ -1,0 +1,56 @@
+array_reverse -- 要素を逆順にした配列を返す
+
+  array array_reverse(array array [, bool preserve_keys])~
+
+配列を受け取って、要素の順番を逆にした新しい配列を返します。
+
+{array} 入力の配列。
+
+{preserve_keys} TRUE の場合はキーを保持します。
+
+逆転させた配列を返します。
+
+バージョン 説明 4.0.3 パラメータ {preserve_keys}
+が追加されました。
+
+|array_reverse| の例
+
+<?php >
+  $input  = array("php", 4.0, array("green", "red"));
+  $result = array_reverse($input);
+  $result_keyed = array_reverse($input, true);
+?>
+
+この例において、$result と $result_keyed
+は同じ要素をもちますが、
+キーが違うことに注意してください。 $result と $result_keyed
+の出力は次のようになります:
+
+  Array
+  (
+      [0] => Array
+          (
+              [0] => green
+              [1] => red
+          )
+  
+      [1] => 4
+      [2] => php
+  )
+  Array
+  (
+      [2] => Array
+          (
+              [0] => green
+              [1] => red
+          )
+  
+      [1] => 4
+      [0] => php
+  )
+
+
+
+|array_flip|
+
+vim:ft=help:

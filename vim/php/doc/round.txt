@@ -1,0 +1,45 @@
+round -- 浮動小数点数を丸める
+
+  float round(float val [, int precision])~
+
+{val} を、指定した
+{precision}(小数点以下の桁数)に丸めた値を
+返します。{precision} を負またはゼロ(デフォルト)
+とすることも可能です。
+
+PHP は、デフォルトでは "12,300.2" のような
+文字列を正しく処理しません。文字列からの変換
+を参照ください。
+
+パラメータ {precision} は、PHP 4 以降でのみ 利用可能です。
+(訳注：内部的な 2 進数表現と 10
+進数表現の差により生じる丸め誤差の影響により
+必ずしも小数点以下を四捨五入した結果を返さないことに注意してください。)
+
+{val} 丸める値。
+
+{precision}
+オプションで指定する、丸める桁数。デフォルトは 0 です
+
+The rounded value
+
+|round| examples
+
+<?php >
+  echo round(3.4);         // 3
+  echo round(3.5);         // 4
+  echo round(3.6);         // 4
+  echo round(3.6, 0);      // 4
+  echo round(1.95583, 2);  // 1.96
+  echo round(1241757, -3); // 1242000
+  echo round(5.045, 2);    // 5.05
+  echo round(5.055, 2);    // 5.06
+?>
+
+
+
+
+
+|ceil| |floor| |number_format|
+
+vim:ft=help:

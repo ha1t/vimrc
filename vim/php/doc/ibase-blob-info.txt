@@ -1,0 +1,21 @@
+ibase_blob_info -- blob の長さと他の便利な情報を返す
+
+  array ibase_blob_info(resource link_identifier, string blob_id)~
+
+  array ibase_blob_info(resource link_identifier, string blob_id, string blob_id)~
+
+BLOB の長さや他の便利な情報を返します。
+
+{link_identifier} InterBase リンク ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+{blob_id} BLOB の ID。
+
+BLOB
+についての情報を含む配列を返します。返される情報には
+BLOB
+の長さ・含んでいるセグメントの数・最大のセグメントのサイズ・
+ストリーム BLOB とセグメント BLOB
+のどちらであるかなどがあります。
+
+vim:ft=help:

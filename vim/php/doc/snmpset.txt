@@ -1,0 +1,27 @@
+snmpset -- SNMP オブジェクトを設定する
+
+  bool snmpset(string hostname, string community, string object_id, string type, mixed value [, int timeout [, int retries]])~
+
+|snmpset| 関数は、 {object_id}で指定した SNMP オブジェクトの
+値を設定するために使用します。
+
+{hostname} SNMP エージェント。
+
+{community} リードコミュニティ。
+
+{object_id} SNMP オブジェクト。
+
+{type}
+
+{value}
+
+{timeout}
+
+{retries}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|snmpget|
+
+vim:ft=help:

@@ -1,0 +1,39 @@
+rename -- ファイルをリネームする
+
+  bool rename(string oldname, string newname [, resource context])~
+
+{oldname} を {newname} にリネームしようと試みます。
+
+{oldname}
+
+変更前の名前。 {oldname} で使用されるラッパーは、 {newname}
+で使用するラッパーと適合 している必要があります 。
+
+{newname} 変更後の名前。
+
+{context} コンテキストのサポートは、 PHP 5.0.0
+で追加されました。contexts の説明に関しては、
+を参照してください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.0.0 |rename| は いくつかの URL
+ラッパーを併用することができるようになりました。
+|rename| をサポートしているラッパーの一覧については、
+を参照ください。 4.3.3 |rename| は *nix ベースシステムで
+パーティション越しにファイル名を変更できるようになりました。
+
+|rename| の例
+
+<?php >
+  rename("/tmp/tmp_file.txt", "/home/user/login/docs/my_file.txt");
+?>
+
+
+
+
+
+|copy| |unlink| |move_uploaded_file|
+
+vim:ft=help:

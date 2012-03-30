@@ -1,0 +1,22 @@
+SDO_Model_ReflectionDataObject::getContainmentProperty --
+データオブジェクトとの包含関係を定義しているプロパティを取得する
+
+  SDO_Model_Property SDO_Model_ReflectionDataObject::getContainmentProperty()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+SDO_DataObject を含んでいる SDO_Model_Property を取得します。
+このメソッドは、リフレクション対象との包含関係を定義している
+親オブジェクトのプロパティをたどる際に使用可能です。
+
+なし。
+
+親オブジェクトが SDO_DataObject
+を参照しているプロパティを表す
+SDO_Model_Property、あるいはルート SDO_DataObject の場合は NULL
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,84 @@
+cal_info -- 特定のカレンダーに関する情報を返す
+
+  array cal_info([int calendar])~
+
+|cal_info| は、指定した {calendar}
+についての情報を返します。
+
+カレンダーの情報は配列として返され、その要素は
+calname、calsymbol、 month、abbrevmonth および maxdaysinmonth
+となります。 {calendar}
+として指定可能なカレンダー名は以下のとおりです。 0
+あるいは CAL_GREGORIAN - グレゴリウス暦
+
+1 あるいは CAL_JULIAN - ユリウス暦
+
+2 あるいは CAL_JEWISH - ユダヤ暦
+
+3 あるいは CAL_FRENCH - フランス革命暦
+
+{calendar} が指定されなかった場合は、
+サポートするすべてのカレンダーの情報を配列で返します。
+
+{calendar}
+情報を返したいカレンダー。指定しなかった場合は、
+すべてのカレンダーに関する情報を返します。
+
+
+
+バージョン 説明 5.0 以降 {calendar}
+パラメータが省略可能となり、 省略した場合は
+"すべてのカレンダー"
+についての情報を返すようになりました。
+
+|cal_info| の例
+
+<?php >
+  $info = cal_info(0);
+  print_r($info);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [months] => Array
+          (
+              [1] => January
+              [2] => February
+              [3] => March
+              [4] => April
+              [5] => May
+              [6] => June
+              [7] => July
+              [8] => August
+              [9] => September
+              [10] => October
+              [11] => November
+              [12] => December
+          )
+  
+      [abbrevmonths] => Array
+          (
+              [1] => Jan
+              [2] => Feb
+              [3] => Mar
+              [4] => Apr
+              [5] => May
+              [6] => Jun
+              [7] => Jul
+              [8] => Aug
+              [9] => Sep
+              [10] => Oct
+              [11] => Nov
+              [12] => Dec
+          )
+  
+      [maxdaysinmonth] => 31
+      [calname] => Gregorian
+      [calsymbol] => CAL_GREGORIAN
+  )
+
+
+
+vim:ft=help:

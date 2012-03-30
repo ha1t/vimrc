@@ -1,0 +1,23 @@
+hw_InsDoc -- ドキュメントを挿入する
+
+  int hw_insdoc(resource connection, int parentID, string object_record [, string text])~
+
+{object_record} の中の属性を有する
+新しいドキュメントをコレクションに挿入します。
+
+汎用の一般的なドキュメントを挿入したい場合は、代わりに
+|hw_insertdocument| を使用してください。
+
+{connection} 接続 ID。
+
+{parentID} 子の ID。
+
+{object_record} オブジェクトの属性。
+
+{text} 指定すると、このアスキーテキストを挿入します。
+
+
+
+|hw_insertdocument| |hw_inscoll|
+
+vim:ft=help:

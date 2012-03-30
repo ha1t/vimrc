@@ -1,0 +1,8 @@
+PDF_show_xy -- 指定した位置にテキストを出力する
+
+  bool PDF_show_xy(resource p, string text, float x, float y)~
+
+現在のフォントで {text} を出力します。 成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

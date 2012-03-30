@@ -1,0 +1,45 @@
+pg_result_error --
+結果に関連するエラーメッセージを取得する
+
+  string pg_result_error(resource result)~
+
+|pg_result_error| は、結果リソース
+({result})に関連したエラーメッセージを返します。
+このため、ユーザーが |pg_last_error| よりも適切な
+エラーメッセージを得る可能性があります。
+
+|pg_result_error_field| は、 |pg_result_error|
+よりもさらに詳細なエラー情報を 返します。
+
+|pg_query| はクエリが失敗した場合に FALSE を返すので、
+結果ハンドルを取得するには |pg_send_query| および
+|pg_get_result| を使用する必要があります。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{result} パラメータに関連付けられたエラーがある場合は
+それを文字列で返し、それ以外の場合は FALSE
+を返します。
+
+|pg_result_error| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("接続できませんでした");
+  
+    if (!pg_connection_busy($dbconn)) {
+        pg_send_query($dbconn, "select * from doesnotexist;");
+    }
+    
+    $res1 = pg_get_result($dbconn);
+    echo pg_result_error($res1);
+?>
+
+
+
+
+
+|pg_result_error_field| |pg_query| |pg_send_query| |pg_get_result|
+|pg_last_error| |pg_last_notice|
+
+vim:ft=help:

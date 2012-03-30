@@ -1,0 +1,17 @@
+cpdf_set_keywords -- pdf ドキュメントの keywords
+フィールドを設定する
+
+  bool cpdf_set_keywords(int pdf_document, string keywords)~
+
+PDF ドキュメントのキーワードを設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{keywords} ドキュメントに設定するキーワード。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_set_title| |cpdf_set_creator| |cpdf_set_subject|
+
+vim:ft=help:

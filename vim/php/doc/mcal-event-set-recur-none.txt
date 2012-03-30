@@ -1,0 +1,15 @@
+mcal_event_set_recur_none --
+グローバルイベント構造体ストリームの反復を設定する
+
+  void mcal_event_set_recur_none(int stream)~
+
+|mcal_event_set_recur_none| は、
+グローバルイベント構造体ストリームの反復が行われないことを
+指定します(event->recur_type は MCAL_RECUR_NONE
+に設定されます)。
+
+{stream} MCAL ストリーム。
+
+値を返しません。
+
+vim:ft=help:

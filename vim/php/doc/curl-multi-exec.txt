@@ -1,0 +1,65 @@
+curl_multi_exec -- 現在の cURL
+ハンドルから、サブ接続を実行する
+
+  int curl_multi_exec(resource mh, int still_running)~
+
+スタック内の各ハンドルを処理します。
+このメソッドは、ハンドルがデータの読み書きを要するかどうかにかかわらずコール可能です。
+
+{mh} |curl_multi_init| が返す cURL マルチハンドル。
+
+{still_running}
+処理が実行中かどうかを表すフラグへの参照。
+
+cURL 定義済み定数 で定義された cURL コードを返します。
+
+これは、マルチスタック全体に関するエラーのみを返します。この関数が
+CURLM_OK
+を返したとしても、各転送で個別にエラーが発生している可能性があります。
+
+|curl_multi_exec| の例 この例は、ふたつの cURL
+ハンドルを作成し、それをマルチハンドルに追加して並列実行します。
+
+<?php >
+  // cURL リソースを作成します
+  $ch1 = curl_init();
+  $ch2 = curl_init();
+  
+  // URL およびその他適切なオプションを設定します。
+  curl_setopt($ch1, CURLOPT_URL, "http://lxr.php.net/");
+  curl_setopt($ch1, CURLOPT_HEADER, 0);
+  curl_setopt($ch2, CURLOPT_URL, "http://www.php.net/");
+  curl_setopt($ch2, CURLOPT_HEADER, 0);
+  
+  // マルチ cURL ハンドルを作成します
+  $mh = curl_multi_init();
+  
+  // ふたつのハンドルを追加します
+  curl_multi_add_handle($mh,$ch1);
+  curl_multi_add_handle($mh,$ch2);
+  
+  $active = null;
+  // ハンドルを実行します
+  do {
+      $mrc = curl_multi_exec($mh, $active);
+  } while ($mrc == CURLM_CALL_MULTI_PERFORM);
+  
+  while ($active &amp;& $mrc == CURLM_OK) {
+      if (curl_multi_select($mh) != -1) {
+          do {
+              $mrc = curl_multi_exec($mh, $active);
+          } while ($mrc == CURLM_CALL_MULTI_PERFORM);
+      }
+  }
+  
+  // ハンドルを閉じます
+  curl_multi_remove_handle($mh, $ch1);
+  curl_multi_remove_handle($mh, $ch2);
+  curl_multi_close($mh);
+?>
+
+
+
+|curl_multi_init| |curl_exec|
+
+vim:ft=help:

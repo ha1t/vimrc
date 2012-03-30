@@ -1,0 +1,107 @@
+ssh2_connect -- SSH サーバに接続する
+
+  resource ssh2_connect(string host [, int port [, array methods [, array callbacks]]])~
+
+リモートの SSH サーバとの接続を確立します。
+
+一度接続すると、クライアントは |ssh2_fingerprint|
+を使用してサーバのホスト鍵を検証し、
+パスワードもしくは公開鍵を使用して認証します。
+
+{host}
+
+{port}
+
+{methods} {methods}
+は以下に示された4つのパラメータを持つ連想配列です。
+
+{methods}
+は以下のパラメータのいくつかあるいは全てを含む連想配列
+インデックス 意味 サポートする値* kex
+通知する鍵交換メソッドのリスト。優先する順にカンマ区切りにする。
+diffie-hellman-group1-sha1、 diffie-hellman-group14-sha1 および
+diffie-hellman-group-exchange-sha1 hostkey
+通知するホスト鍵メソッドのリスト。優先する順にカンマ区切りにする。
+ssh-rsa および ssh-dss client_to_server
+クライアントからサーバに送信されるメッセージのために優先する暗号化、
+圧縮、メッセージ認証コード (MAC)
+メソッドを含む連想配列。 server_to_client
+サーバからクライアントに送信されるメッセージのために優先する暗号化、
+圧縮、メッセージ認証コード (MAC)
+メソッドを含む連想配列。
+
+* - サポートする値は、
+構成するライブラリがサポートしているメソッドに依存します。
+追加情報については libssh2 ドキュメントを参照ください。
+
+{client_to_server} と {server_to_client}
+は以下のパラメータのいくつかあるいは全てを含む連想配列
+インデックス 意味 サポートする値* crypt
+通知する暗号化メソッドのリスト。
+優先する順にカンマ区切りにする。
+rijndael-cbc@lysator.liu.se、 aes256-cbc、 aes192-cbc、 aes128-cbc、
+3des-cbc、 blowfish-cbc、 cast128-cbc、 arcfour および none** comp
+通知する圧縮メソッドのリスト。
+優先する順にカンマ区切りにする。 zlib および none mac
+通知する MAC メソッドのリスト。
+優先する順にカンマ区切りにする。 hmac-sha1、 hmac-sha1-96、
+hmac-ripemd160、 hmac-ripemd160@openssh.com および none**
+
+暗号化、MAC メソッドの "none"
+セキュリティ上の問題で、none は ビルド時に適切な
+./configure
+オプションを使用して明示的に有効にしない限り、構成している
+libssh2 によって無効にされます。
+詳細は構成するライブラリのドキュメントを参照ください。
+
+{callbacks} {callbacks}
+は以下のパラメータのいくつかあるいは全てを含む連想配列
+コールバックパラメータ インデックス 意味 プロトタイプ
+ignore SSH2_MSG_IGNORE
+パケットを受信したときにコールする関数名 void
+ignore_cb($message) debug SSH2_MSG_DEBUG
+パケットを受信したときにコールする関数名 void
+debug_cb($message, $language, $always_display) macerror
+パケットを受信したがメッセージ認証コードに失敗した場合にコールされる関数名。
+もしコールバックが TRUE
+を返す場合、不整合は無視されます。
+そうでない場合、接続は終了します。 bool macerror_cb($packet)
+disconnect SSH2_MSG_DISCONNECT
+パケットを受信したときにコールする関数名 void
+disconnect_cb($reason, $message, $language)
+
+成功した場合にリソース、エラー時に FALSE を返します。
+
+|ssh2_connect| の例 パケット送信時に 3des-cbc 、
+パケット受信時に任意の強度の aes cipher、
+両方向で無圧縮、 Group1
+での鍵交換という設定で強制的に接続をオープンします。
+
+<?php >
+  /* もしサーバが接続を終了した場合、ユーザーに通知する */
+  function my_ssh_disconnect($reason, $message, $language) {
+    printf("Server disconnected with reason code [%d] and message: %s\n",
+           $reason, $message);
+  }
+  
+  $methods = array(
+    'kex' => 'diffie-hellman-group1-sha1',
+    'client_to_server' => array(
+      'crypt' => '3des-cbc',
+      'comp' => 'none'),
+    'server_to_client' => array(
+      'crypt' => 'aes256-cbc,aes192-cbc,aes128-cbc',
+      'comp' => 'none'));
+  
+  $callbacks = array('disconnect' => 'my_ssh_disconnect');
+  
+  $connection = ssh2_connect('shell.example.com', 22, $methods, $callbacks);
+  if (!$connection) die('Connection failed');
+?>
+
+
+
+|ssh2_fingerprint| |ssh2_auth_none| |ssh2_auth_password|
+|ssh2_auth_pubkey_file|
+
+vim:ft=help:

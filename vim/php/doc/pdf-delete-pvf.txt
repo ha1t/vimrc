@@ -1,0 +1,8 @@
+PDF_delete_pvf -- PDFlib 仮想ファイルを削除する
+
+  int PDF_delete_pvf(resource pdfdoc, string filename)~
+
+仮想ファイルを削除し、そのデータ構造体を開放します
+(ファイルの中身は削除しません)。
+
+vim:ft=help:

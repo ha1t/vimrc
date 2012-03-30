@@ -1,0 +1,59 @@
+imageline -- 直線を描画する
+
+  bool imageline(resource image, int x1, int y1, int x2, int y2, int color)~
+
+|imageline|
+は、指定したふたつの点を結ぶ直線を描画します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{x1} 最初の点の x 座標。
+
+{y1} 最初の点の y 座標。
+
+{x2} 二番目の点の x 座標。
+
+{y2} 二番目の点の y 座標。
+
+{color} 直線の色。 |imagecolorallocate| で作成した色 ID です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+太い線を描画する
+
+<?php >
+  function imagelinethick($image, $x1, $y1, $x2, $y2, $color, $thick = 1)
+  {
+      /* この方法は直行する線の場合のみうまく動作します
+      imagesetthickness($image, $thick);
+      return imageline($image, $x1, $y1, $x2, $y2, $color);
+      */
+      if ($thick == 1) {
+          return imageline($image, $x1, $y1, $x2, $y2, $color);
+      }
+      $t = $thick / 2 - 0.5;
+      if ($x1 == $x2 || $y1 == $y2) {
+          return imagefilledrectangle($image, round(min($x1, $x2) - $t), round(min($y1, $y2) - $t), round(max($x1, $x2) + $t), round(max($y1, $y2) + $t), $color);
+      }
+      $k = ($y2 - $y1) / ($x2 - $x1); //y = kx + q
+      $a = $t / sqrt(1 + pow($k, 2));
+      $points = array(
+          round($x1 - (1+$k)*$a), round($y1 + (1-$k)*$a),
+          round($x1 - (1-$k)*$a), round($y1 - (1+$k)*$a),
+          round($x2 + (1+$k)*$a), round($y2 - (1-$k)*$a),
+          round($x2 + (1-$k)*$a), round($y2 + (1+$k)*$a),
+      );
+      imagefilledpolygon($image, $points, 4, $color);
+      return imagepolygon($image, $points, 4, $color);
+  }
+?>
+
+
+
+
+
+|imagecreatetruecolor| |imagecolorallocate|
+
+vim:ft=help:

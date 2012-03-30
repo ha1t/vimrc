@@ -1,0 +1,17 @@
+ircg_join -- 接続中のサーバ上でチャンネルに接続する
+
+  bool ircg_join(resource connection, string channel [, string key])~
+
+{connection} で接続したサーバ上のチャンネル {channel}
+に参加します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{channel} #name 形式のチャンネル名。
+
+{key} オプションで指定する、ルームのパスワード。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

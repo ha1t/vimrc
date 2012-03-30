@@ -1,0 +1,24 @@
+Rar::getMethod -- エントリの圧縮方法を取得する
+
+  int getMethod()~
+
+|Rar::getMethod| は、現在のアーカイブエントリを
+追加する際に使用したメソッドの番号を返します。
+
+メソッド番号、あるいはエラー時に FALSE を返します。
+
+|Rar::getMethod| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entry = rar_entry_get($rar_file, 'Dir/file.txt') or die("そのようなエントリは見つかりません");
+  
+  echo "メソッド番号: " . $entry->getMethod();
+?>
+
+
+
+
+
+vim:ft=help:

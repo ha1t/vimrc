@@ -1,0 +1,13 @@
+cybermut_creerreponsecm -- 支払を確認し、領収書を生成する
+
+  string cybermut_creerreponsecm(string sentence)~
+
+支払いの確認メッセージが |cybermut_testmac|
+によって正しく認証された場合、パラメータは "OK" です。
+他のチェーンは全てエラーメッセージとみなされます。
+
+支払の領収メッセージを返します。
+
+|cybermut_creerformulairecm| |cybermut_testmac|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+swf_startsymbol -- シンボルを定義する
+
+  void swf_startsymbol(int objid)~
+
+シンボルとしてオブジェクト ID
+を定義します。シンボルは、同時に実行可能な 小さな
+flash ムービーです。
+
+{objid} シンボルとして定義したいオブジェクトの ID。
+
+値を返しません。
+
+|swf_endsymbol|
+
+vim:ft=help:

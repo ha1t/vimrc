@@ -1,0 +1,26 @@
+png2wbmp -- PNG イメージファイルから WBMP
+イメージファイルに変換する
+
+  bool png2wbmp(string pngname, string wbmpname, int dest_height, int dest_width, int threshold)~
+
+PNG ファイルを WBMP ファイルに変換します。
+
+{pngname} PNG ファイルへのパス。
+
+{wbmpname} 変換後の WBMP ファイルへのパス。
+
+{dest_height} 変換後の画像の高さ。
+
+{dest_width} 変換後の画像の幅。
+
+{threshold}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+WBMP サポートは、 PHP が GD-1.8
+以降と共にコンパイルされている場合のみ利用可能です。
+
+|jpeg2wbmp|
+
+vim:ft=help:

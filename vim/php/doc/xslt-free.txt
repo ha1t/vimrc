@@ -1,0 +1,13 @@
+xslt_free -- XSLT プロセッサを開放する
+
+  void xslt_free(resource xh)~
+
+ハンドルで指定した XSLT プロセッサを開放します。
+
+{xh} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+値を返しません。
+
+|xslt_create|
+
+vim:ft=help:

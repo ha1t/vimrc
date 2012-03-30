@@ -1,0 +1,26 @@
+ircg_set_on_die --
+接続が終了する際にホスト側で実行されるアクションを設定する
+
+  bool ircg_set_on_die(resource connection, string host, int port, string data)~
+
+接続 {connection} が終了する際に、 IRCG はホスト {host}
+のポート {port} に接続し、そのホストに {data}
+を送信した後に接続が閉じられるまで待ちます。例えば、
+PHP
+スクリプトを起動させるトリガーとして利用されます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{host} これは IPv4 アドレスでなければなりません。 IRCG
+はブロックの問題によりホスト名の解決を行いません。
+
+{port} ポート番号。
+
+{data} 接続が閉じる前に送信されるデータ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この機能は IRCG 3 を必要とします。
+
+vim:ft=help:

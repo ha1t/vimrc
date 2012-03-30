@@ -1,0 +1,52 @@
+imagestring -- 文字列を水平に描画する
+
+  bool imagestring(resource image, int font, int x, int y, string string, int color)~
+
+指定した座標に文字列 {string} を描画します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{ font}latin2
+エンコーディングの組み込みのフォントの場合は 1, 2, 3, 4,
+5 のいずれか
+(数字が大きなほうが、より大きいフォントに対応します)、
+あるいは |imageloadfont|
+で登録したフォントの識別子のいずれか。
+
+{x} 左上隅の x 座標。
+
+{y} 左上隅の y 座標。
+
+{string} 書き出す文字列。
+
+{color} |imagecolorallocate| で作成した色 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imagestring| の例
+
+<?php >
+  // 100*30 の画像を生成します
+  $im = imagecreate(100, 30);
+  
+  // 白色の背景と青色のテキスト
+  $bg = imagecolorallocate($im, 255, 255, 255);
+  $textcolor = imagecolorallocate($im, 0, 0, 255);
+  
+  // 左上に文字列を描画します
+  imagestring($im, 5, 0, 0, "Hello world!", $textcolor);
+  
+  // 画像を出力します
+  header("Content-type: image/png");
+  imagepng($im);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+|imageloadfont| |imagettftext|
+
+vim:ft=help:

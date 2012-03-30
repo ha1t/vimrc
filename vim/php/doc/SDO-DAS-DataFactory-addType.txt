@@ -1,0 +1,24 @@
+SDO_DAS_DataFactory::addType -- モデルに新しい型を追加する
+
+  void SDO_DAS_DataFactory::addType(string type_namespace_uri, string type_name [, array options])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+名前空間および名前を指定して、SDO_DAS_DataFactory
+に新しい型を
+追加します。この型はデータオブジェクトのモデルの一部となり、
+データファクトリからこのモデルを作成可能となります。
+
+{type_namespace_uri} 型の名前空間。
+
+{type_name} 型の名前。
+
+{options}
+型の属性値として設定する、ひとつあるいは複数の
+key=>value
+のペアをこの配列に保持します。オプションのキーワードは次のとおりです。
+
+vim:ft=help:

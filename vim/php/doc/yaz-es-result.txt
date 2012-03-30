@@ -1,0 +1,17 @@
+yaz_es_result -- 拡張サービスの結果を調査する
+
+  array yaz_es_result(resource id)~
+
+この関数は、サーバから返された直近の拡張サービスの結果を調査します。
+拡張サービスは、|yaz_item_order| あるいは |yaz_es|
+で起動します。
+
+{id} |yaz_connect| が返す接続リソース。
+
+要素 targetReference を持つ配列を返します。 この要素には
+(サーバ側で生成して返された)
+拡張サービス操作への参照が格納されます。
+
+|yaz_es|
+
+vim:ft=help:

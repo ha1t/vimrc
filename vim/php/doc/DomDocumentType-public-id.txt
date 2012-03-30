@@ -1,0 +1,30 @@
+DomDocumentType->public_id() -- 文章型の PUBLIC ID を返す
+
+  string PUBLIC_id()~
+
+この関数は、文章型の PUBLIC ID を返します。
+
+DomDocumentType の PUBLIC ID を文字列として返します。
+
+以下の例は何も出力しません。 PUBLIC ID を取得する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+    echo "Error while parsing the document\n";
+    exit;
+  }
+  
+  $doctype = $dom->doctype();
+  echo $doctype->public_id();
+?>
+
+
+
+
+
+DOMDocumentType オブジェクトの publicId
+プロパティを使用してください。
+
+vim:ft=help:

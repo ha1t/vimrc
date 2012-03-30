@@ -1,0 +1,25 @@
+mcrypt_enc_get_algorithms_name --
+オープンされたアルゴリズムの名前を返す
+
+  string mcrypt_enc_get_algorithms_name(resource td)~
+
+この関数はアルゴリズム名を返します。
+
+|mcrypt_enc_get_algorithms_name| の例
+
+<?php >
+  $td = mcrypt_module_open(MCRYPT_CAST_256, '', MCRYPT_MODE_CFB, '');
+  echo mcrypt_enc_get_algorithms_name($td). "\n";
+  
+  $td = mcrypt_module_open('cast-256', '', MCRYPT_MODE_CFB, '');
+  echo mcrypt_enc_get_algorithms_name($td). "\n";
+?>
+
+上の例の出力は以下となります。
+
+  CAST-256
+  CAST-256
+
+
+
+vim:ft=help:

@@ -1,0 +1,29 @@
+stream_get_transports --
+登録されたソケットのトランスポートの一覧を取得する
+
+  array stream_get_transports()~
+
+スクリプトを走らせているシステムにおいて利用可能なソケットのトランスポートのリストを配列として返します。
+
+|stream_get_transports| を使った例
+
+<?php >
+  $xportlist = stream_get_transports();
+  print_r($xportlist);
+?>
+
+出力は以下のようになります。 注意: PHP
+のバージョンによって、トランスポートの数が増減することがあります。
+
+  Array (
+    [0] => tcp
+    [1] => udp
+    [2] => unix
+    [3] => udg
+  )
+
+
+
+|stream_get_filters|, |stream_get_wrappers| も参照ください。
+
+vim:ft=help:

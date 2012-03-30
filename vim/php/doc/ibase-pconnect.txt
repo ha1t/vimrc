@@ -1,0 +1,60 @@
+ibase_pconnect -- InterBase
+データベースへの持続的接続をオープンする
+
+  resource ibase_pconnect([string database [, string username [, string password [, string charset [, int buffers [, int dialect [, string role [, int sync]]]]]]]])~
+
+InterBase
+データベースへの持続的な接続をオープンします。
+
+|ibase_pconnect| の動作は |ibase_connect|
+と非常に似ていますが、 大きな違いが二つあります。
+
+まず、この関数は接続時に同じパラメータで既にオープンされている
+(持続的)リンクを探します。見つかった場合、新規接続をオープンする
+代わりにそのリンクの ID が返されます。
+
+2 番目の違いとしては、InterBase サーバへの接続は
+スクリプト終了時にも閉じられないということです。
+代わりに、そのリンクは今後使用するためにオープンされたままとなります
+(|ibase_close| は |ibase_pconnect|
+によりオープンされたリンクを閉じません)。
+このため、この型のリンクは'持続的(persistent)'と呼ばれます。
+
+{database} {database}は接続するサーバ上のデータベース
+ファイルへの正しいパスである必要があります。ローカルなサーバへの
+接続でない場合、使用する接続プロトコルに応じてこの引数の前に'
+hostname:' (TCP/IP)、'//hostname/' (NetBEUI)、'hostname@'
+(IPX/SPX)のどれかをつける必要があります。
+
+{username} ユーザ名。php.ini ディレクティブ ibase.default_user
+で設定します。
+
+{password} {username} のパスワード。 php.ini ディレクティブ
+ibase.default_password で設定します。
+
+{charset} {charset}
+はデータベースに関するデフォルトの文字セットです。
+
+{buffers} {buffers}
+はサーバ側のキャッシュに確保されるデータベースバッファの数です。0
+または省略された場合、サーバーはデフォルト値を用います。
+
+{dialect} {dialect} は、接続時に実行される全ての命令に
+関する SQL
+方言のデフォルト値を選択し、デフォルトではクライアント
+ライブラリでサポートされる方言のうち、最高位のものになります。
+InterBase 6 以降でのみ有効です。
+
+{role} InterBase 5 以降でのみ有効です。
+
+{sync}
+
+成功した場合に InterBase リンク ID、エラー時に FALSE
+を返します。
+
+バージョン 説明 4.0.0 {buffers}、{dialect} および {role}
+が追加されました。
+
+|ibase_close| |ibase_connect|
+
+vim:ft=help:

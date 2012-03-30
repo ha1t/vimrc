@@ -1,0 +1,20 @@
+m_getcell --
+カンマ区切りの応答から、カラム名を指定してセルを取得する
+
+  string m_getcell(resource conn, int identifier, string column, int row)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{identifier}
+
+{column}
+
+{row}
+
+
+
+vim:ft=help:

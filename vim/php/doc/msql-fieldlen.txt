@@ -1,0 +1,5 @@
+msql_fieldlen -- msql_field_len のエイリアス
+
+この関数は次の関数のエイリアスです。 |msql_field_len|
+
+vim:ft=help:

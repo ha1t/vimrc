@@ -1,0 +1,13 @@
+newt_set_help_callback --
+
+  void newt_set_help_callback(mixed function)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{function}
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,36 @@
+ibase_field_info -- フィールドに関する情報を得る
+
+  array ibase_field_info(resource result, int field_number)~
+
+select
+クエリが実行された後、フィールドに関する情報を配列として返します。
+
+{result} InterBase 結果 ID。
+
+{field_number} フィールドのオフセット。
+
+配列を返します。配列に含まれるキーは name、
+alias、relation、 length そして type です。
+
+|ibase_field_info| の例
+
+<?php >
+  $rs = ibase_query("SELECT * FROM tablename");
+  $coln = ibase_num_fields($rs);
+  for ($i = 0; $i < $coln; $i++) {
+      $col_info = ibase_field_info($rs, $i);
+      echo "name: ". $col_info['name']. "\n";
+      echo "alias: ". $col_info['alias']. "\n";
+      echo "relation: ". $col_info['relation']. "\n";
+      echo "length: ". $col_info['length']. "\n";
+      echo "type: ". $col_info['type']. "\n";
+  }
+?>
+
+
+
+
+
+|ibase_num_fields|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+odbc_field_scale -- フィールドの精度を得る
+
+  int odbc_field_scale(resource result_id, int field_number)~
+
+指定した ODBC 結果 ID
+の番号で指定したフィールドの精度を取得します。
+
+{result_id} 結果 ID。
+
+{field_number} フィールド番号。 フィールド番号は、1
+から始まります。
+
+フィールド番号、あるいはエラー時に FALSE を返します。
+
+vim:ft=help:

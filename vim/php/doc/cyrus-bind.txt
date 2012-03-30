@@ -1,0 +1,14 @@
+cyrus_bind -- Cyrus IMAP 接続へのコールバックをバインドする
+
+  bool cyrus_bind(resource connection, array callbacks)~
+
+Cyrus IMAP 接続へのコールバックをバインドします。
+
+{connection} 接続ハンドル。
+
+{callbacks} コールバックの配列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

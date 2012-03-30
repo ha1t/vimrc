@@ -1,0 +1,24 @@
+hw_Document_SetContent -- hw_document の内容を設定/置換する
+
+  bool hw_document_setcontent(int hw_document, string content)~
+
+ドキュメントの内容を設定または置換します。ドキュメントが
+HTML ドキュメントの場合、内容はすべて BODY
+タグの後となります。HEAD および BODY
+タグからの情報は、オブジェクトレコードに保存されます。ドキュメントの
+内容の中にもこの情報を与えた場合、Hyperwave
+サーバはドキュメントが
+挿入された際にオブジェクトレコードを変更します。
+これは恐らくあまり良い考えではありません。
+この関数は、ドキュメントが古い内容を保持する場合に失敗します。
+
+{hw_document} ドキュメント ID。
+
+{content}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|hw_document_attributes| |hw_document_size| |hw_document_content|
+
+vim:ft=help:

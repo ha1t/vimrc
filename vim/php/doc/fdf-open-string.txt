@@ -1,0 +1,32 @@
+fdf_open_string -- 文字列から FDF ドキュメントを読み込む
+
+  resource fdf_open_string(string fdf_data)~
+
+文字列からデータを読み込みます。
+
+|fdf_open_string| を $HTTP_FDF_DATA
+とあわせて使用することで、リモート
+クライアントからの FDF
+フォーム入力を処理することが可能です。
+
+{fdf_data} |fdf_create|、 |fdf_open| あるいは |fdf_open_string| が返す
+FDF ドキュメントハンドル。
+
+FDF ドキュメントハンドル、あるいはエラー時に FALSE
+を返します。
+
+フォームデータへのアクセス
+
+<?php >
+  $fdf = fdf_open_string($HTTP_FDF_DATA);
+  /* ... */
+  fdf_close($fdf);
+?>
+
+
+
+
+
+|fdf_open| |fdf_close| |fdf_create| |fdf_save_string|
+
+vim:ft=help:

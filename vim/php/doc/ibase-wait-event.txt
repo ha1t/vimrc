@@ -1,0 +1,22 @@
+ibase_wait_event --
+データベースでイベントが発生するのを待つ
+
+  string ibase_wait_event(string event_name1 [, string event_name2 [, string ...]])~
+
+  string ibase_wait_event(string event_name1 [, string event_name2 [, string ..., resource connection, string event_name1 [, string event_name2 [, string ...]]]])~
+
+この関数は、指定したイベントのうちのひとつがデータベースで発生するまで
+スクリプトの実行を停止します。発生したイベントの名前を返します。
+この関数は、最大 15 のイベントを指定可能です。
+
+{event_name1} イベントの名前。
+
+{event_name2}
+
+{...}
+
+発生したイベントの名前を返します。
+
+|ibase_set_event_handler| |ibase_free_event_handler|
+
+vim:ft=help:

@@ -1,0 +1,27 @@
+odbc_fetch_row -- 行を取り込む
+
+  bool odbc_fetch_row(resource result_id [, int row_number])~
+
+|odbc_do| や |odbc_exec| から返された行データを取得します。
+|odbc_fetch_row| がコールされた後、この行のフィールドは、
+|odbc_result| でアクセス可能となります。
+
+{result_id} 結果 ID。
+
+{row_number} {row_number} が指定されない場合、 |odbc_fetch_row|
+は、
+結果セットにおける次の行を取り込もうと試みます。
+{row_number} を指定した |odbc_fetch_row|
+のコールと指定しないコールを混用することができます。
+
+結果を複数回走査したい場合、|odbc_fetch_row| を {row_number}
+に 1 を指定してコールし、 続いて結果を再度見るために
+{row_number} を指定せずに |odbc_fetch_row|
+を実行しつづけます。
+行を番号で取り込むことをドライバがサポートしていない場合、
+{row_number} パラメータは無視されます。
+
+行があった場合には TRUE、それ以外の場合に FALSE
+を返します。
+
+vim:ft=help:

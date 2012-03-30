@@ -1,0 +1,43 @@
+win32_start_service_ctrl_dispatcher -- スクリプトを SCM
+に登録し、指定した名前でサービスとして稼動させる
+ようにする
+
+  mixed win32_start_service_ctrl_dispatcher(string name)~
+
+サービスコントロールマネージャ経由で起動させる際、サービスプロセスは
+「チェックイン」を要求され、これによってサービスのモニタリングや
+通信の機能を確立します。この関数は、サービスコントロールマネージャとの
+低レベル通信を処理するスレッドを生成し、チェックインを実行します。
+
+サービスの開始後は、常にサービスコントロールマネージャにチェックイン
+し続け、サービスをいつ終了させるべきかを確認するべきです。
+これは、定期的に |win32_get_last_control_message|
+をコールして返り値を適切に処理することで実現できます。
+code appropriately.
+
+{name} サービスの短い名前。|win32_create_service|
+で登録されたもの。
+
+成功した場合に TRUE、それ以外の場合は FALSE か win32
+エラーコードを返します。
+
+|win32_start_service_ctrl_dispatcher| の例
+
+<?php >
+  if (!win32_start_service_ctrl_dispatcher('dummyphp')) {
+    die("I'm probably not running under the service control manager");
+  }
+  
+  while (WIN32_SERVICE_CONTROL_STOP != win32_get_last_control_message()) {
+    # ここでなんらかの処理をします。1 回のループに 30 秒以上かからない
+    # ように心がけてください。
+  }
+?>
+
+
+
+
+
+|win32_get_last_control_message|
+
+vim:ft=help:

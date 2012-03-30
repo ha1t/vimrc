@@ -1,0 +1,8 @@
+PDF_setmiterlimit -- miter limit を設定する
+
+  bool PDF_setmiterlimit(resource pdfdoc, float miter)~
+
+miter limit を設定します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

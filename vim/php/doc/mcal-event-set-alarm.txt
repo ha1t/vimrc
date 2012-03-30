@@ -1,0 +1,14 @@
+mcal_event_set_alarm --
+グローバルイベント構造体ストリームのアラームを設定する
+
+  void mcal_event_set_alarm(int stream, int alarm)~
+
+グローバルイベント構造体ストリームのアラームをイベントの分単位の指定時間前に設定します。
+
+{stream} MCAL ストリーム。
+
+{alarm} アラームの分数。
+
+値を返しません。
+
+vim:ft=help:

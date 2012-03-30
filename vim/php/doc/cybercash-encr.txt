@@ -1,0 +1,11 @@
+cybercash_encr -- Cybercash の暗号化
+
+  array cybercash_encr(string wmk, string sk, string inbuff)~
+
+情報を暗号化します。
+
+{wmk} merchant キー。
+
+{sk} session キー。
+
+vim:ft=help:

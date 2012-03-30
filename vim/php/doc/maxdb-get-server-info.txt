@@ -1,0 +1,63 @@
+maxdb->server_info -- MaxDB サーバのバージョンを返す
+
+手続き型
+
+  string maxdb_get_server_info(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+MaxDB 拡張モジュールが接続している ({link}
+パラメータで表される) MaxDB
+サーバのバージョンを表す文字列を返します。
+
+サーバのバージョンを表す文字列を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* サーバのバージョンを表示します */
+  printf("サーバのバージョン: %s\n", maxdb_get_server_info($link));
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* サーバのバージョンを表示します */
+  printf("サーバのバージョン: %s\n", maxdb_get_server_info($link));
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  サーバのバージョン: Kernel    7<...>
+
+|maxdb_get_client_info| |maxdb_get_client_version| |maxdb_get_server_version|
+
+vim:ft=help:

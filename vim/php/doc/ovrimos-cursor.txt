@@ -1,0 +1,14 @@
+ovrimos_cursor -- カーソルの名前を返す
+
+  string ovrimos_cursor(int result_id)~
+
+カーソルの名前を返します。 位置を指定した update または
+delete を実行する際に便利です。
+
+{result_id} |ovrimos_execute| あるいは |ovrimos_exec| が返す結果
+ID。
+
+名前を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

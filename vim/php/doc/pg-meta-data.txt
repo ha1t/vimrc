@@ -1,0 +1,81 @@
+pg_meta_data -- テーブルからメタデータを取得する
+
+  array pg_meta_data(resource connection, string table_name)~
+
+|pg_meta_data| は、table_name
+のテーブル定義を配列として返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+{table_name} テーブルの名前。
+
+テーブル定義の配列を返します。エラー時には FALSE
+を返します。
+
+テーブルのメタデータを得る
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    $meta = pg_meta_data($dbconn, 'authors');
+    if (is_array($meta)) {
+        echo '<pre>';
+        var_dump($meta);
+        echo '</pre>';
+    }
+?>
+
+上の例の出力は以下となります。
+
+  array(3) {
+  ["author"]=>
+  array(5) {
+    ["num"]=>
+    int(1)
+    ["type"]=>
+    string(7) "varchar"
+    ["len"]=>
+    int(-1)
+    ["not null"]=>
+    bool(false)
+    ["has default"]=>
+    bool(false)
+  }
+  ["year"]=>
+  array(5) {
+    ["num"]=>
+    int(2)
+    ["type"]=>
+    string(4) "int2"
+    ["len"]=>
+    int(2)
+    ["not null"]=>
+    bool(false)
+    ["has default"]=>
+    bool(false)
+  }
+  ["title"]=>
+  array(5) {
+    ["num"]=>
+    int(3)
+    ["type"]=>
+    string(7) "varchar"
+    ["len"]=>
+    int(-1)
+    ["not null"]=>
+    bool(false)
+    ["has default"]=>
+    bool(false)
+  }
+  }
+
+
+
+|pg_convert|
+
+vim:ft=help:

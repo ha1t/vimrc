@@ -1,0 +1,30 @@
+session_unregister --
+現在のセッションから変数の登録を削除する
+
+  bool session_unregister(string name)~
+
+|session_unregister| は現在のセッションから {name}
+という名前のグローバル変数の登録を削除します。
+
+{name} 変数名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+$_SESSION (または PHP 4.0.6 以前の場合は $HTTP_SESSION_VARS)
+が使用されている場合、セッション変数の登録を削除する際に
+|unset|を 使用してください。 $_SESSION 自身を |unset|
+しないでください。 さもないと、$_SESSION
+スーパーグローバルの特殊な機能が無効化されてしまいます。
+
+この関数は、{name}
+に対応するグローバル変数の登録を削除しません。
+セッションとしてその変数が保存されるのを妨げるだけです。
+対応するグローバル変数を削除するには、 |unset|
+をコールする必要があります。
+
+$_SESSION (あるいは $HTTP_SESSION_VARS) を使用する場合は、
+|session_register|、 |session_is_registered| および |session_unregister|
+を使用しないでください。
+
+vim:ft=help:

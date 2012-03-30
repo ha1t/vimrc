@@ -1,0 +1,26 @@
+openal_source_set -- ソースのプロパティを設定する
+
+  bool openal_source_set(resource source, int property, mixed setting)~
+
+Open AL (ソース) リソース (事前に |openal_source_create|
+で作成したもの)。
+
+設定するプロパティ。 AL_BUFFER (OpenAL (ソース))、 AL_LOOPING
+(bool)、 AL_SOURCE_RELATIVE (int)、 AL_SOURCE_STATE (int)、 AL_PITCH
+(float)、 AL_GAIN (float)、 AL_MIN_GAIN (float)、 AL_MAX_GAIN (float)、
+AL_MAX_DISTANCE (float)、 AL_ROLLOFF_FACTOR (float)、 AL_CONE_OUTER_GAIN
+(float)、 AL_CONE_INNER_ANGLE (float)、 AL_CONE_OUTER_ANGLE (float)、
+AL_REFERENCE_DISTANCE (float)、 AL_POSITION (array(float,float,float))、
+AL_VELOCITY (array(float,float,float))、 AL_DIRECTION
+(array(float,float,float)) のいずれか。
+
+指定した {property} に代入する値。
+代入できる値については、{property}
+の説明を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openal_source_create| |openal_source_get| |openal_source_play|
+
+vim:ft=help:

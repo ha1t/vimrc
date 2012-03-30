@@ -1,0 +1,12 @@
+nl2br -- 改行文字の前に HTML の改行タグを挿入する
+
+  string nl2br(string string)~
+
+{string} に含まれるすべての改行文字の前に ''
+を挿入して返します。
+
+{string} 入力文字列。
+
+変更後の文字列を返します。
+
+vim:ft=help:

@@ -1,0 +1,22 @@
+dcngettext -- dcgettext の複数形版
+
+  string dcngettext(string domain, string msgid1, string msgid2, int n, int category)~
+
+この関数により単一の複数形メッセージの参照について
+カレントのドメインを上書きすることができます。
+
+{domain} ドメイン。
+
+{msgid1}
+
+{msgid2}
+
+{n}
+
+{category}
+
+成功した場合に文字列を返します。
+
+|ngettext|
+
+vim:ft=help:

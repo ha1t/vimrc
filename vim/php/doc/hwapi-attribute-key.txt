@@ -1,0 +1,9 @@
+hw_api_attribute->key -- 属性のキーを返す
+
+  string key()~
+
+属性の名前を返します。
+
+属性の名前を表す文字列を返します。
+
+vim:ft=help:

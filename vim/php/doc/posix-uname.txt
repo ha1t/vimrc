@@ -1,0 +1,52 @@
+posix_uname -- システム名を得る
+
+  array posix_uname()~
+
+システムについての情報を取得します。
+
+POSIX
+では、値のフォーマットに関して何の仮定も設けないことを規定しています。
+例えば、バージョン番号が 3 桁の数字であることや、
+この関数により返されるその他のものに依存してはいけません。
+
+システムに関する情報を文字列の連想配列として返します。
+連想配列のキーは、次のようになります。 sysname -
+オペレーティングシステムの名前 (例 Linux)
+
+nodename - システムの名前 (例 valiant)
+
+release - オペレーティングシステムのリリース (例 2.2.10)
+
+version - オペレーティングシステムのバージョン (例 #4 Tue
+Jul 20 17:01:36 MEST 1999)
+
+machine - システムアーキテクチャ (例 i586)
+
+domainname - DNS ドメイン名 (例 example.com)
+
+domainname は、GNU の拡張機能で POSIX.1
+には含まれていません。 このため、このフィールドは GNU
+システム上または GNU libc
+を使用している場合にのみ使用可能です。
+
+|posix_uname| の使用例
+
+<?php >
+  $uname=posix_uname();
+  print_r($uname);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [sysname] => Linux
+      [nodename] => funbox
+      [release] => 2.6.20-15-server
+      [version] => #2 SMP Sun Apr 15 07:41:34 UTC 2007
+      [machine] => i686
+  )
+
+
+
+vim:ft=help:

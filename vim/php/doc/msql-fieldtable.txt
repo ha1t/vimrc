@@ -1,0 +1,5 @@
+msql_fieldtable -- msql_field_table のエイリアス
+
+この関数は次の関数のエイリアスです。 |msql_field_table|
+
+vim:ft=help:

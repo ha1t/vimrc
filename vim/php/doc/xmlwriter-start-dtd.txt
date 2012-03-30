@@ -1,0 +1,27 @@
+XMLWriter::startDTD -- DTD の開始タグを作成する
+
+オブジェクト指向型
+
+  bool startDTD(string qualifiedName [, string publicId [, string systemId]])~
+
+手続き型
+
+  bool xmlwriter_start_dtd(string qualifiedName [, string publicId [, string systemId, resource xmlwriter, string qualifiedName [, string publicId [, string systemId]]]])~
+
+DTD を開始します。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{qualifiedName} 作成するドキュメント型の修飾名。
+
+{publicId} 外部サブセットの公開識別子。
+
+{systemId} 外部サブセットのシステム識別子。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,17 @@
+win32_stop_service -- サービスを停止する
+
+  int win32_stop_service(string servicename [, string machine])~
+
+サービスを停止します。管理者権限を必要とします。
+
+{servicename} サービスの短い名前。
+
+{machine}
+オプションのマシン名。指定しなかった場合、ローカルマシンが使用されます。
+
+成功した場合に WIN32_NO_ERROR 、失敗した場合に それ以外の
+win32 エラーコードを返します。
+
+|win32_start_service|
+
+vim:ft=help:

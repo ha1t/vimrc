@@ -1,0 +1,21 @@
+XMLWriter::startComment -- コメントを開始する
+
+オブジェクト指向型
+
+  bool startComment()~
+
+手続き型
+
+  bool xmlwriter_start_comment(resource xmlwriter)~
+
+コメントを開始します。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

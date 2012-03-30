@@ -1,0 +1,21 @@
+quotemeta -- メタ文字をクォートする
+
+  string quotemeta(string str)~
+
+文字列 {str} について、
+
+  . \ + * ? [ ^ ] ( $ )
+
+の前にバックスラッシュ文字 (\)
+でクォートして返します。
+
+{str} 入力文字列。
+
+メタ文字をクォートした文字列を返します。
+
+この関数はバイナリデータに対応しています。
+
+|addslashes| |addcslashes| |htmlentities| |htmlspecialchars| |nl2br|
+|stripslashes| |stripcslashes| |ereg|
+
+vim:ft=help:

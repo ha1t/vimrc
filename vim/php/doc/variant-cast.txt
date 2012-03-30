@@ -1,0 +1,21 @@
+variant_cast -- variant を、別の型の新しい variant に変換する
+
+  variant variant_cast(variant variant, int type)~
+
+この関数は、{variant} のコピーを作成して、
+それを指定した {type} に強制的に変換します。
+
+この関数は、COM ライブラリの VariantChangeType()
+をラップしたものです。 詳細な情報は MSDN
+ライブラリを参照ください。
+
+{variant} variant。
+
+{type} {type} は、定数 VT_XXX
+の中のひとつでなければなりません。
+
+VT_DATE variant を返します。
+
+|variant_set_type|
+
+vim:ft=help:

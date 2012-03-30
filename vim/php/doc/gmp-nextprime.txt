@@ -1,0 +1,32 @@
+gmp_nextprime -- 次の素数を見つける
+
+  resource gmp_nextprime(int a)~
+
+次の素数を見つけます。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{a} より大きい次の素数を GMP 数として返します。
+
+|gmp_nextprime| の例
+
+<?php >
+  $prime1 = gmp_nextprime(10); // 10 より大きい次の素数
+  $prime2 = gmp_nextprime(-1000); // -1000 より大きい次の素数
+  
+  echo gmp_strval($prime1) . "\n";
+  echo gmp_strval($prime2) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  11
+  -997
+
+
+
+この関数は素数を識別するのに確率的アルゴリズムを使用します。
+誤って合成数を取得してしまうことは、まずありません。
+
+vim:ft=help:

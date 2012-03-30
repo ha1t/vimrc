@@ -1,0 +1,72 @@
+svn_commit --
+変更内容を、ローカルの作業コピーからリポジトリに送信する
+
+  array svn_commit(string log, array targets [, bool dontrecurse])~
+
+配列 {targets} で指定した、
+ローカルの作業コピーで変更されたファイルの内容をリポジトリにコミットします。
+ログメッセージは {log} で指定します。 {targets}
+にディレクトリを指定すると、 {dontrecurse} が true
+でない限りは再帰的にコミットを行います。
+
+この関数では、認証関連のパラメータを指定することができません。
+ユーザ名やパスワードは |svn_auth_set_parameter|
+で指定する必要があります。
+
+{log} コミット時に使用するログメッセージ。
+
+{targets} コミットするローカルパスやファイルの配列。
+
+このパラメータは配列である必要があります。
+対象がひとつだけであっても、文字列で指定することはできません。
+
+相対パスは、PHP
+バイナリが存在するディレクトリを基準として解決されます。呼び出しもとのスクリプトの作業ディレクトリを基準とするには、|realpath|
+あるいは dirname(__FILE__) を使用してください。
+
+{dontrecurse} 配列 {targets}
+にディレクトリが指定された場合の再帰コミットを無効にするフラグ。
+デフォルトは FALSE です。
+
+以下のような形式の配列を返します。
+
+
+
+  array(
+      0 => そのコミットのリビジョン番号
+      1 => コミット日時を表す ISO 8601 形式の文字列
+      2 => コミッターの名前
+  )
+
+失敗した場合は FALSE を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+基本的な例 この例は、calculator
+ディレクトリの内容をリポジトリにコミットします。
+ユーザ名は Bob、パスワードは abc123
+(ほんとはもうちょっとマシなパスワードにしたほうがいいでしょうね)
+です。
+
+<?php >
+  svn_auth_set_parameter(SVN_AUTH_PARAM_DEFAULT_USERNAME, 'Bob');
+  svn_auth_set_parameter(SVN_AUTH_PARAM_DEFAULT_PASSWORD, 'abc123');
+  var_dump(svn_commit('Log message of Bob\'s commit', array(realpath('calculator'))));
+?>
+
+上の例の出力は以下となります。
+
+  array(
+    0 => 1415,
+    1 => '2007-05-26T01:44:28.453125Z',
+    2 => 'Bob'
+  )
+
+
+
+|svn_auth_set_parameter| SVN ドキュメントの svn commit
+
+vim:ft=help:

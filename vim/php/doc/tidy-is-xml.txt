@@ -1,0 +1,19 @@
+tidy_is_xml -- ドキュメントが一般的な XML ドキュメント (非
+HTML/XHTML) かどうかを示す
+
+手続き型:
+
+  bool tidy_is_xml(tidy object)~
+
+オブジェクト指向型:
+
+  bool tidy->isXml(tidy object)~
+
+指定した Tidy オブジェクト {object} が一般的な XML
+ドキュメント (非 HTML/XHTML) の場合、 この関数は TRUE
+を返します。 その他の場合は FALSE を返します。
+
+この関数はまだ Tidylib 自身に実装されていません。
+なので、常に FALSE を返します。
+
+vim:ft=help:

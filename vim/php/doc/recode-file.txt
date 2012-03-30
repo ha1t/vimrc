@@ -1,0 +1,39 @@
+recode_file --
+コード変換指令に基づきファイルからファイルにコード変換する
+
+  bool recode_file(string request, resource input, resource output)~
+
+コード変換指令 {request} に基づきファイルハンドル {input}
+が指すファイルをファイルハンドル {output}
+が指すファイルにコード変換します。
+
+{request} 変換指令の型。
+
+{input} 入力として使用する
+ローカルファイルハンドルリソース。
+
+{output} 出力として使用する
+ローカルファイルハンドルリソース。
+
+応じることができない場合に FALSE、それ以外の場合に TRUE
+を返します。
+
+基本的な |recode_file| の例
+
+<?php >
+  $input = fopen('input.txt', 'r');
+  $output = fopen('output.txt', 'w');
+  recode_file("us..flat", $input, $output);
+?>
+
+
+
+
+
+この関数は現在リモートファイル(URL)を指すファイルハンドルを処理
+できません。ファイルハンドルは共にローカルなファイルを指している
+必要があります。
+
+|fopen|
+
+vim:ft=help:

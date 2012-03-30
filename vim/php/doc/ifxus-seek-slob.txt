@@ -1,0 +1,20 @@
+ifxus_seek_slob --
+現在のファイル位置またはシーク位置を返す
+
+  int ifxus_seek_slob(int bid, int mode, int offset)~
+
+オープンされた SLOB オブジェクトに関する
+現在のファイルまたはシーク位置を設定します。
+
+{bid} 既存の SLOB の ID。
+
+{mode} 0 = LO_SEEK_SET, 1 = LO_SEEK_CUR, 2 = LO_SEEK_END.
+
+{offset} バイトオフセット。
+
+シーク位置を表す整数値、あるいはエラー時に FALSE
+を返します。
+
+|ifxus_tell_slob|
+
+vim:ft=help:

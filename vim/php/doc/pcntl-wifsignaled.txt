@@ -1,0 +1,18 @@
+pcntl_wifsignaled --
+ステータスコードがシグナルによる終了を表しているかどうかを調べる
+
+  bool pcntl_wifsignaled(int status)~
+
+子プロセスが終了した原因が、
+シグナルが捕捉されなかったことであるかどうかを調べます。
+caught.
+
+{status} パラメータ {status} は、 |pcntl_waitpid|
+が正常にコールされた際に得られます。
+
+捕捉されなかったシグナルのせいで子プロセスが終了した場合に
+TRUE、 それ以外の場合に FALSE を返します。
+
+|pcntl_waitpid| |pcntl_signal|
+
+vim:ft=help:

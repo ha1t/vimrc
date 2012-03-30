@@ -1,0 +1,103 @@
+maxdb_stmt_sqlstate -- 事前のステートメントの捜査からの
+SQLSTATE エラーを返す
+
+  string maxdb_stmt_sqlstate(resource stmt)~
+
+直近に起動したプリペアドステートメントについての
+SQLSTATE エラーコードを含む文字列を返します。
+エラーコードは 5 つの文字で構成されています。'00000'
+は、エラーが発生しなかったことを意味します。
+コードの内容は ANSI SQL および ODBC で指定されています。
+
+今のところ、すべての MaxDB エラーが SQLSTATE
+に関連付けられているわけではないことに注意しましょう。
+関連付けられていないエラーについては、 HY000
+(一般的なエラー) が使用されます。
+
+直近のエラーについての SQLSTATE
+エラーコードを含む文字列を返します。 エラーコードは 5
+つの文字で構成されています。'00000'
+は、エラーが発生しなかったことを意味します。
+
+オブジェクト指向型
+
+<?php >
+  /* 接続をオープンします */
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */ 
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $maxdb->query("CREATE TABLE temp.mycity LIKE hotel.city");
+  $maxdb->query("INSERT INTO temp.mycity SELECT * FROM hotel.city");
+  
+  $query = "SELECT name, zip FROM temp.mycity ORDER BY name";
+  if ($stmt = $maxdb->prepare($query)) {
+  
+     /* テーブルを削除します */
+     $maxdb->query("DROP TABLE temp.mycity");
+  
+     /* クエリを実行します */
+     $stmt->execute();
+  
+     printf("エラー: %s.\n", $stmt->sqlstate);
+  
+     /* ステートメントを閉じます */
+     $stmt->close();
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  /* 接続をオープンします */
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */ 
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  maxdb_query($link, "CREATE TABLE temp.mycity LIKE hotel.city");
+  maxdb_query($link, "INSERT INTO temp.mycity SELECT * FROM hotel.city");
+  
+  $query = "SELECT name, zip FROM temp.mycity ORDER BY name";
+  if ($stmt = maxdb_prepare($link, $query)) {
+  
+     /* テーブルを削除します */
+     maxdb_query($link, "DROP TABLE temp.mycity");
+  
+     /* クエリを実行します */
+     maxdb_stmt_execute($stmt);
+  
+     printf("エラー: %s.\n", maxdb_stmt_sqlstate($stmt));
+  
+     /* ステートメントを閉じます */
+     maxdb_stmt_close($stmt);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Warning: maxdb_stmt_execute(): -4004 POS(23) Unknown table name:MYCITY [42000] <...>
+  エラー: 42000.
+
+|maxdb_stmt_errno| |maxdb_stmt_error|
+
+vim:ft=help:

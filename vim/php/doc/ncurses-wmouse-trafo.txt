@@ -1,0 +1,18 @@
+ncurses_wmouse_trafo --
+ウィンドウ/標準画面の座標系を変換する
+
+  bool ncurses_wmouse_trafo(resource window, int y, int x, bool toscreen)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{x}
+
+{y}
+
+{toscreen}
+
+vim:ft=help:

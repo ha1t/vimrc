@@ -1,0 +1,8 @@
+PDF_restore -- 描画状態を復元する
+
+  bool PDF_restore(resource p)~
+
+直近に保存された描画状態を復元します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

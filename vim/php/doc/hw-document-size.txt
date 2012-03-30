@@ -1,0 +1,16 @@
+hw_Document_Size -- hw_document のサイズ
+
+  int hw_document_size(int hw_document)~
+
+ドキュメントのサイズを返します。
+
+下位互換性のため、|hw_DocumentSize|
+も使用可能です。しかし、この関数の使用は推奨されません。
+
+{hw_document} ドキュメント ID。
+
+ドキュメントのサイズをバイト数で返します。
+
+|hw_document_attributes| |hw_document_bodytag|
+
+vim:ft=help:

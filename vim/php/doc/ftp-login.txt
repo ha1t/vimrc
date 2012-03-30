@@ -1,0 +1,41 @@
+ftp_login -- FTP 接続にログインする
+
+  bool ftp_login(resource ftp_stream, string username, string password)~
+
+指定した FTP ストリームにログインします。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{username} ユーザ名（USER）。
+
+{password} パスワード（PASS）。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 失敗した場合は、PHP が警告を発生します。
+
+|ftp_login| の例
+
+<?php >
+  $ftp_server = "ftp.example.com";
+  $ftp_user = "foo";
+  $ftp_pass = "bar";
+  
+  // 接続を確立する。接続に失敗したら終了する。
+  $conn_id = ftp_connect($ftp_server) or die("Couldn't connect to $ftp_server"); 
+  
+  // ログインを試みる
+  if (@ftp_login($conn_id, $ftp_user, $ftp_pass)) {
+      echo "Connected as $ftp_user@$ftp_server\n";
+  } else {
+      echo "Couldn't connect as $ftp_user\n";
+  }
+  
+  // 接続を閉じる
+  ftp_close($conn_id);  
+?>
+
+
+
+
+
+vim:ft=help:

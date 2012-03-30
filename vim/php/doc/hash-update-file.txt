@@ -1,0 +1,20 @@
+hash_update_file --
+アクティブなハッシュコンテキストに、ファイルから
+データを投入する
+
+  bool hash_update_file(resource context, string filename [, resource context])~
+
+{context} |hash_init| が返すハッシュコンテキスト。
+
+{filename} ハッシュ対象となるファイルの位置を示す URL。
+fopen ラッパーをサポートしています。
+
+{context} |stream_context_create| が返す
+ストリームコンテキスト。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|hash_init| |hash_update| |hash_update_stream| |hash_final| |hash| |hash_file|
+
+vim:ft=help:

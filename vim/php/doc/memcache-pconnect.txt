@@ -1,0 +1,50 @@
+Memcache::pconnect -- memcached
+サーバへの持続的な接続をオープンする
+
+  bool Memcache::pconnect(string host [, int port [, int timeout]])~
+
+|Memcache::pconnect| は |Memcache::connect| とほぼ同じですが、
+確立する接続が持続的なものであるという点が違います。
+この接続はスクリプトの実行が終了しても閉じられることはなく、
+|Memcache::close| 関数を使用することで閉じられます。
+|memcache_pconnect| 関数を使用することも可能です。
+
+{host} memcached が接続を待ち受けるホストを指定します。
+このパラメータには別のトランスポート層を指定することもできます。たとえば
+unix:///path/to/memcached.sock のようにすると Unix
+ドメインソケットを使用できます。この場合、 {port} は 0
+を指定しなければなりません。
+
+{port} memcached が接続を待ち受けるポートを指定します。
+Unix
+ドメインソケットを使用する場合は、このパラメータを 0
+とします。
+
+{timeout} デーモンへの接続の際に使用する値 (秒単位)
+です。 デフォルト値を 1
+秒でも変更する前には十分注意してください。
+接続が遅くなってしまうと、
+キャッシュ処理のメリットが なくなってしまいます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Memcache::pconnect| の例
+
+<?php >
+  /* 手続き型の API */
+  $memcache_obj = memcache_pconnect('memcache_host', 11211);
+  
+  /* オブジェクト指向の API */
+  
+  $memcache_obj = new Memcache;
+  $memcache_obj->pconnect('memcache_host', 11211);
+?>
+
+
+
+
+
+|Memcache::connect|
+
+vim:ft=help:

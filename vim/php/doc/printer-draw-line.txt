@@ -1,0 +1,44 @@
+printer_draw_line -- 線を描画する
+
+  void printer_draw_line(resource printer_handle, int from_x, int from_y, int to_x, int to_y)~
+
+この関数は、選択したペンで直線を描画します。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{from_x} {from_x} は開始点の x 座標です。
+
+{from_y} {from_y} は開始点の y 座標です。
+
+{to_x} {to_x} は終了点の x 座標です。
+
+{to_y} {to_y} は終了点の y 座標です。
+
+値を返しません。
+
+|printer_draw_line| の例
+
+<?php >
+  $handle = printer_open();
+  printer_start_doc($handle, "My Document");
+  printer_start_page($handle);
+  
+  $pen = printer_create_pen(PRINTER_PEN_SOLID, 30, "000000");
+  printer_select_pen($handle, $pen);
+  
+  printer_draw_line($handle, 1, 10, 1000, 10);
+  printer_draw_line($handle, 1, 60, 500, 60);
+  
+  printer_delete_pen($pen);
+  
+  printer_end_page($handle);
+  printer_end_doc($handle);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

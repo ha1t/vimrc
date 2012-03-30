@@ -1,0 +1,53 @@
+array_search --
+指定した値を配列で検索し、見つかった場合に対応するキーを返す
+
+  mixed array_search(mixed needle, array haystack [, bool strict])~
+
+{haystack} において {needle} を検索します。
+
+{needle} 探したい値。
+
+{needle} が文字列の場合、
+大文字小文字を区別して比較が行われます。
+
+{haystack} 配列。
+
+{strict} オプションの3番目のパラメータ {strict} に TRUE
+が指定された場合、|array_search| は {haystack} の中で {needle}
+の型に一致するかどうかも確認します。
+
+{needle} が見つかった場合に配列のキー、
+それ以外の場合に FALSE を返します。
+
+もし {haystack} に 1 つ以上の {needle} に見つかった場合、
+最初にマッチしたキーが返されます。
+全てのマッチした値に対するキーを返すためには、代わりに
+|array_keys| にパラメータ {search_value}
+を付けて使用してください。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+バージョン 説明 4.2.0 PHP 4.2.0 以前では、|array_search| は、
+失敗した場合に FALSE ではなく NULL を返します。
+
+|array_search| の例
+
+<?php >
+  $array = array(0 => 'blue', 1 => 'red', 2 => 'green', 3 => 'red');
+  
+  $key = array_search('green', $array); // $key = 2;
+  $key = array_search('red', $array);   // $key = 1;
+?>
+
+
+
+
+
+|array_keys| |array_values| |array_key_exists| |in_array|
+
+vim:ft=help:

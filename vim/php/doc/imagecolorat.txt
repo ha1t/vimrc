@@ -1,0 +1,43 @@
+imagecolorat -- ピクセルの色のインデックスを取得する
+
+  int imagecolorat(resource image, int x, int y)~
+
+{image}で指定された画像上の
+特定位置にあるピクセルの色のインデックスを返します。
+
+PHP が GD ライブラリ 2.0
+以上とともにコンパイルされておりかつ画像が True
+カラーイメージである場合、この関数はそのピクセルの
+RGB 値を整数で返します。
+赤、緑、青のそれぞれの値にアクセスするにはビットシフトとマスキングを利用してください:
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{x} 点の x 座標。
+
+{y} 点の y 座標。
+
+色のインデックスを返します。
+
+個々の RGB 値へのアクセス
+
+<?php >
+  $im = imagecreatefrompng("php.png");
+  $rgb = imagecolorat($im, 10, 15);
+  $r = ($rgb >> 16) &amp; 0xFF;
+  $g = ($rgb >> 8) &amp; 0xFF;
+  $b = $rgb &amp; 0xFF;
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  int(119)
+  int(123)
+  int(180)
+
+
+
+|imagecolorset| |imagecolorsforindex|
+
+vim:ft=help:

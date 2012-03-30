@@ -1,0 +1,14 @@
+curl_errno -- 直近のエラー番号を返す
+
+  int curl_errno(resource ch)~
+
+直近の cURL 処理に関するエラー番号を返します。
+
+{ch} |curl_init| が返す cURL ハンドル。
+
+エラー番号を返します。エラーが発生しない場合、 0
+(ゼロ) を返します。
+
+|curl_error| Curl エラーコード
+
+vim:ft=help:

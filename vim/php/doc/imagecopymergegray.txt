@@ -1,0 +1,42 @@
+imagecopymergegray --
+グレースケールでイメージの一部をコピー、マージする
+
+  bool imagecopymergegray(resource dst_im, resource src_im, int dst_x, int dst_y, int src_x, int src_y, int src_w, int src_h, int pct)~
+
+|imagecopymergegray| は、 {src_im} の X,Y座標 {src_x}, {src_y } から
+始まる幅{src_w}、高さ {src_h} の領域を
+{dst_im}にコピーします。
+定義された部分は、x、y座標{dst_x}、
+{dst_y}にコピーされます。
+
+この関数は |imagecopymerge| と同じですが、マー
+ジをする際に、コピー前にコピー先のピクセルをグレースケールに変換
+することにより、コピー先のピクセルをコピー元の色相を維持するとこ
+ろが異なります。
+
+{dst_im} コピー先の画像リンクリソース。
+
+{src_im} コピー元の画像リンクリソース。
+
+{dst_x} コピー先の x 座標。
+
+{dst_y} コピー先の y 座標。
+
+{src_x} コピー元の x 座標。
+
+{src_y} コピー元の y 座標。
+
+{src_w} コピー元の幅。
+
+{src_h} コピー元の高さ。
+
+{pct} ふたつの画像は、 {pct}
+に基づきマージされます。この値の範囲は
+0から100までです。{pct} = 0の場合、何も処理
+は行われません。100の場合、この関数は、
+|imagecopy|と同じ処理を行います。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

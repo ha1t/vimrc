@@ -1,0 +1,15 @@
+newt_listbox_set_current --
+
+  void newt_listbox_set_current(resource listbox, int num)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{listbox}
+
+{num}
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,7 @@
+PDF_add_outline -- 現在のページにブックマークを追加する
+[古い関数]
+
+この関数は非推奨です。かわりに |PDF_create_bookmark|
+を使用してください。
+
+vim:ft=help:

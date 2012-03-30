@@ -1,0 +1,13 @@
+m_transactionssent -- 送信バッファが空かどうかを確かめる
+
+  int m_transactionssent(resource conn)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+
+
+vim:ft=help:

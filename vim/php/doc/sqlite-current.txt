@@ -1,0 +1,46 @@
+SQLiteUnbuffered->current --
+結果セットからカレントのレコードを配列として取得する
+
+  array sqlite_current(resource result [, int result_type [, bool decode_binary]])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  array current(resource result [, int result_type [, bool decode_binary [, int result_type [, bool decode_binary]]]])~
+
+  array current(resource result [, int result_type [, bool decode_binary [, int result_type [, bool decode_binary [, int result_type [, bool decode_binary]]]]]])~
+
+|sqlite_current| は |sqlite_fetch_array| と同じですが、
+データを返す前に次のレコードに移動せず、カレントの位置からのみデー
+タを返すという違いがあります。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{result_type} オプションの {result_type}
+パラメータには定数を指定でき、返される配列の添字を定義します。
+SQLITE_ASSOC
+を用いると、連想配列の添字(名前フィールド)のみが
+返されます。一方、SQLITE_NUM は、
+数値の添字(フィールド番号)のみを返します。SQLITE_BOTH
+は、 連想配列の添字と数値の添字の両方を返します。
+SQLITE_BOTH がこの関数のデフォルトです。
+
+{decode_binary} {decode_binary} パラメータが TRUE (デフォルト)に
+設定された場合、PHP
+はバイナリエンコーディングをデコードします。
+これは、|sqlite_escape_string|
+によりエンコードされたデータに 適用されます。sqlite
+をサポートする他のアプリケーションにより
+作成されたデータベースを処理する時以外は、この値をデフォルトのままにしておくべきです。
+
+結果セットからカレントレコードの配列を返します。
+現在の位置が最終レコード以降の場合、 FALSE
+を返します。
+
+SQLITE_ASSOC および SQLITE_BOTH で
+返されるカラム名は、設定オプション sqlite.assoc_case
+の値に基づき、 大文字小文字が変換されます。
+
+|sqlite_seek| |sqlite_next| |sqlite_fetch_array|
+
+vim:ft=help:

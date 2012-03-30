@@ -1,0 +1,19 @@
+SDO_DAS_DataObject::getChangeSummary --
+データオブジェクトの変更内容を取得する
+
+  SDO_DAS_ChangeSummary SDO_DAS_DataObject::getChangeSummary()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+SDO_DAS_DataObject の SDO_DAS_ChangeSummary、
+あるいは存在しない場合に NULL を取得します。
+
+なし。
+
+SDO_DAS_DataObject の SDO_DAS_ChangeSummary、
+あるいは存在しない場合に NULL を返します。
+
+vim:ft=help:

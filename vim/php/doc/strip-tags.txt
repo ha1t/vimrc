@@ -1,0 +1,53 @@
+strip_tags -- 文字列から HTML および PHP タグを取り除く
+
+  string strip_tags(string str [, string allowable_tags])~
+
+この関数は、指定した文字列 ({str}) から全ての HTML および
+PHP タグを取り除きます。 この関数は、|fgetss|
+関数と同じタグ除去アルゴリズムを使用します。
+
+{str} 入力文字列。
+
+{allowable_tags}
+オプションの2番目の引数により、取り除かないタグを指定できます。
+
+HTML コメントや PHP
+タグも削除されるようになりました。この機能はハードコードされており、
+{allowable_tags} で変更することはできません。
+
+タグを除去した文字列を返します。
+
+バージョン 説明 5.0.0 |strip_tags|
+がバイナリセーフとなりました。 4.3.0 HTML
+のコメントも除去するようになりました。 4.0.0
+{allowable_tags} パラメータが追加されました。
+
+|strip_tags| の例
+
+<?php >
+  $text = '<p>Test paragraph.</p><!-- Comment --> <a href="#fragment">Other text</a>';
+  echo strip_tags($text);
+  echo "\n";
+  
+  // <p> と <a> は許可します
+  echo strip_tags($text, '<p><a>');
+?>
+
+上の例の出力は以下となります。
+
+  Test paragraph. Other text
+  <p>Test paragraph.</p> <a href="#fragment">Other text</a>
+
+
+
+|strip_tags| は HTML の検証を行わないため、
+不完全または壊れたタグにより予想以上に多くのテキスト/データが削除される可能性があります。
+
+この関数は、{allowable_tags}
+で許可した全てのタグの属性を修正しません。
+これには、style および onmouseover属性が含まれており、
+悪意のあるユーザが他のユーザに見せるようなテキストを投稿する際に危険な行為を行う可能性があります。
+
+|htmlspecialchars|
+
+vim:ft=help:

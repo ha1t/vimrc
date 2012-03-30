@@ -1,0 +1,15 @@
+fam_pending -- 待機中の FAM イベントの有無を調べる
+
+  int fam_pending(resource fam)~
+
+待機中の FAM イベントを調べます。
+
+{fam} |fam_open| が返す、 FAM
+サービスへの接続を表すリソース。
+
+|fam_next_event| により取得可能な待機中のイベントが
+ある場合にゼロ以外の値、ない場合にゼロを返します。
+
+|fam_next_event|
+
+vim:ft=help:

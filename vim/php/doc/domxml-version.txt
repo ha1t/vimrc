@@ -1,0 +1,22 @@
+domxml_version -- XML ライブラリのバージョンを取得する
+
+  string domxml_version()~
+
+この関数は、現在使用されている XML
+ライブラリのバージョンを取得します。
+
+XML ライブラリのバージョンを文字列として返します。
+
+|domxml_version| の例
+
+<?php >
+  echo domxml_version();
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  20607
+
+
+
+vim:ft=help:

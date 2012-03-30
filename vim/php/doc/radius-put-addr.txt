@@ -1,0 +1,12 @@
+radius_put_addr -- IP アドレス属性を設定する
+
+  bool radius_put_addr(resource radius_handle, int type, string addr)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

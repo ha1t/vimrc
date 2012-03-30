@@ -1,0 +1,5 @@
+ocicolumnsize -- oci_field_size のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_field_size|.
+
+vim:ft=help:

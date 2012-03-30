@@ -1,0 +1,22 @@
+maxdb->real_query -- SQL クエリを実行する
+
+手続き型
+
+  bool maxdb_real_query(resource link, string query)~
+
+オブジェクト指向型 (メソッド)
+
+  bool real_query(resource link, string query, string query)~
+
+|maxdb_real_query| は、機能的に |maxdb_query|
+とまったく同じです。
+
+指定したクエリが結果セットを返すかどうかを調べるには、
+|maxdb_field_count| を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|maxdb_query| |maxdb_store_result| |maxdb_use_result|
+
+vim:ft=help:

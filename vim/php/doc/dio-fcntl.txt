@@ -1,0 +1,70 @@
+dio_fcntl -- fd について C ライブラリの fcntl を実行する
+
+  mixed dio_fcntl(resource fd, int cmd [, mixed args])~
+
+関数 |dio_fcntl| は、ファイル記述子 {fd} において {cmd}
+で指定された処理を行います。いくつかのコマンドでは、オプションの引数
+{args} の指定が必要となります。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+{fd} |dio_open| が返すファイル記述子。
+
+{cmd} 以下の処理のいずれか。 F_SETLK -
+ロックが設定あるいはクリアされます。
+ロックが他の誰かに設定されている場合、|dio_fcntl| は -1
+を返します。
+
+F_SETLKW - F_SETLK
+と似ていますが、ロックが他の誰かに設定されている場合は
+|dio_fcntl| はそのロックが開放されるまで待ちます。
+
+F_GETLK - |dio_fcntl|
+は、他の誰かがロックを妨げる場合、（上で述べた）連想配列を返します。
+妨げるものがない場合、キー "type" は F_UNLCK
+に設定されます。
+
+F_DUPFD - {args}
+以上で最小のファイル記述子を探し、それを返します。
+
+F_SETFL - ファイル記述子のフラグを {args}
+で指定した値に設定します。指定できる値は
+O_APPEND、O_NONBLOCK あるいは O_ASYNC のいずれかです。 O_ASYNC
+を使用するには、 PCNTL 拡張モジュールが必要です。
+
+{args} {args} は連想配列で、 {cmd} が F_SETLK あるいは F_SETLLW
+の際に以下のキーを保持します。 "start" -
+ロックを開始するオフセット。
+
+"length" -
+ロックする領域の大きさ。ゼロはファイルの終端までを意味します。
+
+"wenth" - l_start の相対位置指定。 SEEK_SET、 SEEK_END および
+SEEK_CUR のいずれか。
+
+"type" - ロックの種類。F_RDLCK（読み込み
+ロック）、F_WRLCK（書き込みロック）あるいは
+F_UNLCK（ロック解除）のいずれか。
+
+C ライブラリをコールした結果を返します。
+
+ロックの設定と解除
+
+<?php >
+  $fd = dio_open('/dev/ttyS0', O_RDWR);
+  
+  if (dio_fcntl($fd, F_SETLK, Array("type"=>F_WRLCK)) == -1) {
+     // ファイル記述子がロックされている
+     echo "ロックを解除できません。別のプロセスによってロックされています。";
+  } else {
+     echo "ロックが正常に設定/解除できました。";
+  }
+  
+  dio_close($fd);
+?>
+
+
+
+
+
+vim:ft=help:

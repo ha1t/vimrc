@@ -1,0 +1,12 @@
+ncurses_panel_window --
+パネルに関連付けられたウィンドウを返す
+
+  resource ncurses_panel_window(resource panel)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{panel}
+
+vim:ft=help:

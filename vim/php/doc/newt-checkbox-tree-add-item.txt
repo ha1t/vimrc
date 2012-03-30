@@ -1,0 +1,20 @@
+newt_checkbox_tree_add_item --
+新しいアイテムをチェックボックスツリーに追加する
+
+  void newt_checkbox_tree_add_item(resource checkboxtree, string text, mixed data, int flags, int index [, int ...])~
+
+この関数は、新しいアイテムをチェックボックスツリーに追加します。
+
+{checkboxtree}
+
+{text}
+
+{data}
+
+{flags}
+
+{index}
+
+値を返しません。
+
+vim:ft=help:

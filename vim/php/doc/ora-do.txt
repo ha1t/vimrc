@@ -1,0 +1,28 @@
+ora_do -- パース、実行、フェッチを行う
+
+  resource ora_do(resource connection, string query)~
+
+クエリをパース、実行し、結果の最初のレコードを取得します。
+
+この関数は、|ora_parse|、 |ora_exec| および |ora_fetch|
+を組み合わせたものです。
+
+{connection} |ora_logon| でオープンした接続 ID。
+
+{query} SQL 文。
+
+この関数はカーソルインデックスを返し、エラー時に FALSE
+を返します。 エラーに関する詳細は、 |ora_error| および
+|ora_errorcode| 関数を用いて取得することが可能です。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+|ora_do| を直接置き換えるような関数は oci8
+にはありません。 そのかわりに、|oci_parse|、|oci_excute|
+そして oci_fetch_*() 関数のいずれかを使用します。
+
+|ora_parse| |ora_exec| |ora_fetch|
+
+vim:ft=help:

@@ -1,0 +1,48 @@
+fdf_save_string -- FDF ドキュメントを文字列として返す
+
+  string fdf_save_string(resource fdf_document)~
+
+FDF ドキュメントを文字列として返します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+ドキュメントを表す文字列、あるいはエラー時に FALSE
+を返します。
+
+FDF の文字列での取得
+
+<?php >
+  $fdf = fdf_create();
+  fdf_set_value($fdf, "foo", "bar");
+  $str = fdf_save_string($fdf);
+  fdf_close($fdf);
+  echo $str;
+?>
+
+上の例の出力は以下となります。
+
+  %FDF-1.2
+  %âăĎÓ
+  1 0 obj
+  <<
+  /FDF << /Fields 2 0 R >>
+  >>
+  endobj
+  2 0 obj
+  [
+  << /T (foo)/V (bar)>>
+  ]
+  endobj
+  trailer
+  <<
+  /Root 1 0 R
+  
+  >>
+  %%EOF
+
+
+
+|fdf_open_string| |fdf_close| |fdf_create| |fdf_save|
+
+vim:ft=help:

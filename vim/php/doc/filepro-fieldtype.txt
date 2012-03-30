@@ -1,0 +1,12 @@
+filepro_fieldtype -- フィールド型を取得する
+
+  string filepro_fieldtype(int field_number)~
+
+{field_number} に対応した編集フィールド型を返します。
+
+{field_number} フィールド番号。
+
+編集フィールド型を表す文字列、あるいはエラーの場合に
+FALSE を返します。
+
+vim:ft=help:

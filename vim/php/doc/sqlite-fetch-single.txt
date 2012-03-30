@@ -1,0 +1,52 @@
+SQLiteUnbuffered->fetchSingle --
+結果セットの最初のカラムを文字列として取得する
+
+  string sqlite_fetch_single(resource result [, bool decode_binary])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  string fetchSingle(resource result [, bool decode_binary [, bool decode_binary]])~
+
+  string fetchSingle(resource result [, bool decode_binary [, bool decode_binary [, bool decode_binary]]])~
+
+|sqlite_fetch_single| は、
+レコードセットの最初のカラムの値を返すことを除いて
+|sqlite_fetch_array| と等価です。
+
+この関数は、データの単一カラムの値を確認するだけの場合に
+データを処理する最善の方法です。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{decode_binary} {decode_binary} パラメータが TRUE (デフォルト)に
+設定された場合、PHP
+はバイナリエンコーディングをデコードします。
+これは、|sqlite_escape_string|
+によりエンコードされたデータに 適用されます。sqlite
+をサポートする他のアプリケーションにより
+作成されたデータベースを処理する時以外は、この値をデフォルトのままにしておくべきです。
+
+|sqlite_fetch_single| の例
+
+<?php >
+  if ($dbhandle = sqlite_open('mysqlitedb', 0666, $sqliteerror)) {
+  
+      $sql = "SELECT id FROM sometable WHERE id = 42";
+      $res = sqlite_query($dbhandle, $sql);
+  
+      if (sqlite_num_rows($res) > 0) {
+          echo sqlite_fetch_single($res); // 42
+      }
+  
+      sqlite_close($dbhandle);
+  }
+?>
+
+
+
+
+
+|sqlite_fetch_array|
+
+vim:ft=help:

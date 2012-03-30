@@ -1,0 +1,79 @@
+pspell_new_personal --
+個人の単語リストを有する新規辞書をロードする
+
+  int pspell_new_personal(string personal, string language [, string spelling [, string jargon [, string encoding [, int mode]]]])~
+
+|pspell_new_personal| は、個人の単語リストと共に
+新規辞書をオープンし、辞書リンクIDを返します。この ID
+は他の pspell
+関数で使用されます。単語リストは修正可能で、必要に応じて
+|pspell_save_wordlist| で保存することも可能です。
+しかし、置換の組は保存されません。置換の組を保存するには、
+|pspell_config_create| を用いて設定を作成し、
+|pspell_config_personal| で個人の単語リストを
+設定し、|pspell_config_repl| で置換のファイルを
+設定し、|pspell_new_config| で新規の辞書を オープンします。
+
+詳細な情報および例については、pspell の Web サイト
+:http://aspell.net/
+にあるインラインマニュアルを参照ください。
+
+{personal}
+個人リストに追加された単語が保存される場所を指定します。
+この場所には '/'
+で始まる絶対パスのファイル名を指定する必要があります。
+そうでない場合は $HOME からの相対パスになりますが、
+これは多くのシステムでは、"/root" であり、
+おそらく望ましい結果とはならないためです。
+
+{language} 2 文字の ISO 639 言語コードと
+オプションでダッシュまたはアンダースコアの後に 2
+文字の ISO 3166 国コードからなる言語コードです。
+
+{spelling} 英語のように複数のスペルがある言語に関して
+スペルの指定を行うものです。指定可能な値は、 'american',
+'british', 'canadian'です。
+
+{jargon} 同じ language および spelling パラメータを有する 2
+つの異なる単語リストを区別するための
+追加情報を有しています。
+
+{encoding}
+単語のエンコーディングとして予想されるもの。有効な値は、
+utf-8, iso8859-*, koi8-r, viscii, cp1252, machine unsigned 16, machine
+unsigned 32 です。
+
+{mode} スペルチェッカの動作モードです。
+使用可能なモードを以下に示します。 PSPELL_FAST -
+高速モード (修正候補の数は最小)
+
+PSPELL_NORMAL - 通常モード (修正候補はより多い)
+
+PSPELL_BAD_SPELLERS - 低速モード (修正候補は多い)
+
+PSPELL_RUN_TOGETHER - つながった単語を複合語 （legal
+compound）として考慮します。この場合、"thecat" には二つの
+単語の間に空白はありませんが複合語となります。この設定の変更は
+|pspell_check| から返される結果にのみ影響します。
+設定変更後も |pspell_suggest| は修正候補を返します。
+
+mode
+は、これらのさまざまな定数を用いたビットマスクです。
+しかし PSPELL_FAST、 PSPELL_NORMAL および PSPELL_BAD_SPELLERS
+は相反するため、
+この中のひとつを選択する必要があります。
+
+その他の pspell 関数で使用する辞書リンク ID を返します。
+
+|pspell_new_personal|
+
+<?php >
+  $pspell_link = pspell_new_personal ("/var/dictionaries/custom.pws",
+          "en", "", "", "", PSPELL_FAST|PSPELL_RUN_TOGETHER);
+?>
+
+
+
+
+
+vim:ft=help:

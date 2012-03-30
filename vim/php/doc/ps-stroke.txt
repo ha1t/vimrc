@@ -1,0 +1,15 @@
+ps_stroke -- 現在のパスを描画する
+
+  bool ps_stroke(resource psdoc)~
+
+|ps_lineto|
+のような関数で事前に組み立てられたパスを描画します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_closepath_stroke| |ps_fill| |ps_fill_stroke|
+
+vim:ft=help:

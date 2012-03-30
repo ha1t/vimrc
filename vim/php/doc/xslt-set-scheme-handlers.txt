@@ -1,0 +1,71 @@
+xslt_set_scheme_handlers -- XSLT
+プロセッサに関するスキーマハンドラを設定する
+
+  void xslt_set_scheme_handlers(resource xh, array handlers)~
+
+ドキュメントのスキーマハンドラ (XPath ハンドラ)
+を登録します。
+
+{xh} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+{handlers} "get_all"、"open"、"get"、"put" および "close"
+というキーを持つ配列。
+
+すべてのエントリは、関数名を表す文字列あるいは
+array($obj, "method") 形式の配列である必要があります。
+
+この配列には、すべてのスキームハンドラの要素を含める必要はありません
+(もちろん含めることもできます) が、 少なくとも "handler"
+=> "function" 形式を満たさなければなりません。
+
+各スキームハンドラ関数は、以下のフォーマットでコールされます。
+
+  string   get_all(resource processor, string scheme, string rest)
+  resource open(resource processor, string scheme, string rest)
+  int      get(resource processor, resource fp, string &amp;data)
+  int      put(resource processor, resource fp, string data)
+  void     close(resource processor, resource fp)
+
+
+
+値を返しません。
+
+|xslt_set_scheme_handlers| の例 たとえば、これは PHP の関数
+"file_exists()" を実装したものです。
+
+<?php >
+  // ハンドラの定義
+  function mySchemeHandler($processor, $scheme, $rest)
+  {
+      $rest = substr($rest,1);    // to remove the first / automatically added by the engine
+      if ($scheme == 'file_exists') {
+          // result is embedded in a small xml string
+          return '<?xml version="1.0" encoding="UTF-8"?><root>' . (file_exists($rest) ? 'true' : 'false') . '</root>';
+      }
+  }
+  
+  $SchemeHandlerArray = array('get_all' => 'mySchemeHandler');
+  
+  // エンジンを開始します
+  $params = array();
+  $xh = xslt_create();
+  
+  xslt_set_scheme_handlers($xh, $SchemeHandlerArray);
+  
+  $result = xslt_process($xh, "myFile.xml", "myFile.xsl", NULL, array(), $params);
+  xslt_free($xh);
+  
+  echo $result;
+?>
+
+これで、スタイルシート側で特定のファイルが存在するかどうかを調べることができます。
+
+  <xsl:if test="document('file_exists:anotherXMLfile.xml')/root='true'">
+   <!-- ファイルが存在する -->
+  </xsl:if>
+
+
+
+|xslt_set_scheme_handler|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+memory_get_peak_usage -- PHP
+によって割り当てられたメモリの最大値を返す
+
+  int memory_get_peak_usage([bool real_usage])~
+
+PHP
+スクリプトに割り当てられたメモリの最大値を、バイト単位で返します。
+
+{real_usage} これを TRUE
+に設定すると、システムが割り当てた実際のメモリの大きさを取得します。
+省略したり FALSE を設定したりすると、 emalloc()
+が使用するメモリのみを報告します。
+
+目盛りの最大値をバイト数で返します。
+
+バージョン 説明 5.2.1 この関数を使用するために、
+--enable-memory-limit
+でコンパイルすることは必須ではなくなりました。 5.2.0
+{real_usage} が追加されました。
+
+|memory_get_usage| memory_limit
+
+vim:ft=help:

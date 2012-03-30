@@ -1,0 +1,32 @@
+gzfile -- gzファイル全体を配列に読み込む
+
+  array gzfile(string filename [, int use_include_path])~
+
+ファイルを配列にして返すこと以外は |readgzfile|
+と同じです。
+
+{filename} ファイル名を指定します。
+
+{use_include_path} もし include_path
+にあるファイルも検索したい場合、
+このオプションパラメータに 1
+を設定することができます。
+
+ファイルを含む配列で、要素毎に 1 行ずつ含んでいます。
+
+|gzfile| の例
+
+<?php >
+  $lines = gzfile('somefile.gz');
+  foreach ($lines as $line) {
+      echo $line;
+  }
+?>
+
+
+
+
+
+|readgzfile| |gzopen|
+
+vim:ft=help:

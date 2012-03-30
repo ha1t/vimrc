@@ -1,0 +1,10 @@
+PDF_show_boxed -- ボックスにテキストを出力する [古い関数]
+
+  int PDF_show_boxed(resource p, string text, float left, float top, float width, float height, string mode, string feature)~
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに 単一行の場合は
+|PDF_fit_textline|、 複数行の場合は |PDF_*_textflow| 関数を
+使用してください。
+
+vim:ft=help:

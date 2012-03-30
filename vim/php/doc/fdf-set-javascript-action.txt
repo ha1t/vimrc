@@ -1,0 +1,22 @@
+fdf_set_javascript_action -- フィールドの javascript
+アクションを設定する
+
+  bool fdf_set_javascript_action(resource fdf_document, string fieldname, int trigger, string script)~
+
+指定したフィールドの javascript アクションを設定します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{fieldname} FDF フィールド名を表す文字列。
+
+{trigger}
+
+{script}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fdf_set_submit_form_action|
+
+vim:ft=help:

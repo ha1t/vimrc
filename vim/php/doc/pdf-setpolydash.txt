@@ -1,0 +1,7 @@
+PDF_setpolydash -- 複雑な破線パターンを設定する [古い関数]
+
+この関数は PDFlib バージョン 5
+で廃止されました。かわりに |PDF_setdashpattern|
+を使用してください。
+
+vim:ft=help:

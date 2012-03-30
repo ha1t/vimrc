@@ -1,0 +1,27 @@
+sys_getloadavg -- システムの平均負荷を取得する
+
+  array sys_getloadavg()~
+
+過去 1、5、15 分間のシステムの平均負荷
+(システムの実行キューの中のプロセス数)
+を表す三つの値を返します。
+
+(過去 1、5、15 分間の) 三つの値を array で返します。
+
+|sys_getloadavg| の例
+
+<?php >
+  $load = sys_getloadavg();
+  if ($load[0] > 80) {
+      header('HTTP/1.1 503 Too busy, try again later');
+      die('Server too busy. Please try again later.');
+  }
+?>
+
+
+
+
+
+この関数は Windows 環境にはまだ実装されていません。
+
+vim:ft=help:

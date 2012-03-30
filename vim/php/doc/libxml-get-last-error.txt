@@ -1,0 +1,12 @@
+libxml_get_last_error -- libxmlから直近のエラーを取得する
+
+  LibXMLError libxml_get_last_error()~
+
+libxmlから直近のエラーを取得します。
+
+エラーがバッファにある場合にLibXMLErrorオブジェクト、
+それ以外の場合に FALSE を返します。
+
+|libxml_get_errors| |libxml_clear_errors|
+
+vim:ft=help:

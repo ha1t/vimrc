@@ -1,0 +1,56 @@
+mcrypt_encrypt --
+指定したパラメータでプレーンテキストを暗号化する
+
+  string mcrypt_encrypt(string cipher, string key, string data, string mode [, string iv])~
+
+|mcrypt_encrypt| はデータを暗号化し、暗号化さ
+れたデータを返します。
+
+{cipher} には、アルゴリズム名を表す定数
+MCRYPT_暗号名の一つを文字列で指定します。
+
+{key} は、データを暗号化する際のキーです。必
+要なキー長よりも小さい場合には、'\0'
+で埋められます。キーにはASCII
+文字列を使わない方が良いです。文字列からキーを生成するにはmhash関
+数を使用することが推奨されます。
+
+{data} は、指定した暗号およびモードで暗号化
+されます。データの大きさが n * blocksize
+でない場合、データは、
+'\0'で埋められます。返される暗号化されたテキストは、
+{data}んで指定したデータの大きさよりも大きく
+なる可能性があります。
+
+{mode} には、"ecb", "cbc", "cfb", "ofb", "nofb" ,"stream"
+のどれかを用いて定数 MCRYPT_MODE_モード名を 指定します。
+
+パラメータ {IV} は、CBC, CFB, OFB モードおよ
+びSREAMモードのいくつかのアルゴリズムの初期化の際に使用されます。
+アルゴリズムで必要とするIVを指定しない場合、この関数は警告を発生
+し、全てのバイトを'\0'に設定したIVを使用します。
+
+|mcrypt_encrypt| の例
+
+<?php >
+      $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
+      $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+      $key = "This is a very secret key";
+      $text = "Meet me at 11 o'clock behind the monument.";
+      echo strlen($text) . "\n";
+  
+      $crypttext = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $text, MCRYPT_MODE_ECB, $iv);
+      echo strlen($crypttext) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  42
+  64
+
+
+
+より高度な API やサンプルについては |mcrypt_module_open|
+も参照ください。
+
+vim:ft=help:

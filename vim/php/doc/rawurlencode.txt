@@ -1,0 +1,51 @@
+rawurlencode -- RFC 1738 に基づき URL エンコードを行う
+
+  string rawurlencode(string str)~
+
+指定した文字列を RFC 1738
+にもとづいてエンコードします。
+
+{str} エンコードする URL。
+
+  -_.
+
+を除くすべての非アルファベット文字をパーセント 記号
+(%)に続いて 2 つの 16 進数がある表現形式に
+置き換えた文字列を返します。これは、文字定数が特殊な
+URL デリミタと して解釈されたり、URL
+デリミタが(いくつかの電子メールシステムのような)
+転送メディアにより文字変換されて失われてしまったりすることが
+ないように、RFC 1738
+で定められたエンコーディング方法です。
+
+FTP URL へのパスワードの埋め込み
+
+<?php >
+  echo '<a href="ftp://user:', rawurlencode('foo @+%/'),
+       '@ftp.example.com/x.txt">';
+?>
+
+上の例の出力は以下となります。
+
+  <a href="ftp://user:foo%20%40%2B%25%2F@ftp.example.com/x.txt">
+
+
+
+あるいは、URL の PATH_INFO 中の情報を渡した場合は、
+
+|rawurlencode| の例 2
+
+<?php >
+  echo '<a href="http://example.com/department_list_script/',
+      rawurlencode('sales and marketing/Miami'), '">';
+?>
+
+上の例の出力は以下となります。
+
+  <a href="http://example.com/department_list_script/sales%20and%20marketing%2FMiami">
+
+
+
+|rawurldecode| |urldecode| |urlencode| RFC 1738
+
+vim:ft=help:

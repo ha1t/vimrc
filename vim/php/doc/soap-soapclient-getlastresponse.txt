@@ -1,0 +1,22 @@
+SoapClient->__getLastResponse() -- 直近の SOAP レスポンスを返す
+
+  string __getLastResponse()~
+
+このメソッドは、オプション trace を指定して SoapClient
+が作成されている場合のみ使用可能です。
+
+直近の SOAP レスポンス
+
+SoapClient->__getLastResponse() の例
+
+<?php >
+  $client = SoapClient("some.wsdl", array('trace' => 1));
+  $result = $client->SomeFunction();
+  echo "RESPONSE:\n" . $client->__getLastResponse() . "\n";
+?>
+
+
+
+
+
+vim:ft=help:

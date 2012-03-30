@@ -1,0 +1,39 @@
+define -- 名前を指定して定数を定義する
+
+  bool define(string name, mixed value [, bool case_insensitive])~
+
+実行時に、名前を指定して定数を定義します。
+
+{name} 定数の名前。
+
+{value} 定数の値。スカラー値あるいは null
+値のみを指定できます。 スカラー値とは integer か
+float、string、boolean のいずれかのことです。
+
+{case_insensitive} TRUE
+を指定すると、定数は大文字小文字を区別しないようになります。
+デフォルトでは大文字小文字を区別します。つまり CONSTANT
+と Constant は別の値を表すわけです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+定数の定義
+
+<?php >
+  define("CONSTANT", "Hello world.");
+  echo CONSTANT; // "Hello world." を出力します
+  echo Constant; // "Constant" を出力し、警告が発生します
+  
+  define("GREETING", "Hello you.", true);
+  echo GREETING; // "Hello you." を出力します
+  echo Greeting; // "Hello you." を出力します
+?>
+
+
+
+
+
+|defined| |constant| 定数の節
+
+vim:ft=help:

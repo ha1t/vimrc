@@ -1,0 +1,21 @@
+newt_win_choice --
+
+  int newt_win_choice(string title, string button1_text, string button2_text, string format [, mixed args [, mixed ...]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{title}
+
+{button1_text}
+
+{button2_text}
+
+{format}
+
+{args}
+
+
+
+vim:ft=help:

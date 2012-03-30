@@ -1,0 +1,19 @@
+sybase_data_seek -- 内部行ポインタを移動する
+
+  bool sybase_data_seek(resource result_identifier, int row_number)~
+
+|sybase_data_seek|は、指定された結果 ID が指す Sybase
+結果の内部行ポインタを指定した行番号に移動します。
+|sybase_fetch_row| を次にコールした場合、
+その行が返されます。
+
+{result_identifier}
+
+{row_number}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|sybase_fetch_row|
+
+vim:ft=help:

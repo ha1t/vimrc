@@ -1,0 +1,73 @@
+phpcredits -- PHP に関するクレジットを出力する
+
+  bool phpcredits([int flag])~
+
+この関数は、PHP
+開発者、モジュール等のリストを有するクレジットを出力します。
+ページに情報を挿入するために、適切な HTML
+コードが生成されます。
+
+{flag} 独自のクレジットページを出力したい場合に {flag}
+を利用するとよいでしょう。{flag}
+はオプションで、デフォルトは CREDITS_ALL です。
+
+定義済みの |phpcredits| フラグ 名前 説明 CREDITS_ALL
+すべてのクレジットを含めます。 CREDITS_DOCS + CREDITS_GENERAL +
+CREDITS_GROUP + CREDITS_MODULES + CREDITS_FULLPAGE
+と同等です。これは、適切なタグを含んだ
+それ単体で成立する HTML ページを生成します。 CREDITS_DOCS
+ドキュメントチームのクレジット CREDITS_FULLPAGE
+通常、他のフラグと組み合わせて使用します。
+他のフラグで指定した情報を含む、それ単体で完全に独立した
+HTML ページを出力することを指定します。 CREDITS_GENERAL
+一般的なクレジット: 言語の設計およびコンセプト、PHP 4.0
+作者、SAPIモジュール CREDITS_GROUP コア開発者のリスト
+CREDITS_MODULES
+PHPの拡張モジュール、およびその作者のリスト CREDITS_SAPI
+PHP のサーバ API モジュールとその作者のリスト
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+全般的なクレジットの出力
+
+<?php >
+  phpcredits(CREDITS_GENERAL);
+?>
+
+
+
+
+
+コア開発者およびドキュメントグループの表示
+
+<?php >
+  phpcredits(CREDITS_GROUP + CREDITS_DOCS + CREDITS_FULLPAGE);
+?>
+
+
+
+
+
+すべてのクレジットの表示
+
+  <html>
+   <head>
+    <title>独自のクレジットページ</title>
+   </head>
+   <body>
+<?php >
+  // あなたが書いた独自のコード
+  phpcredits(CREDITS_ALL - CREDITS_FULLPAGE);
+  // さらに別のコード
+?>
+   </body>
+  </html>
+
+
+
+
+
+|phpversion| |php_logo_guid| |phpinfo|
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+Rar::getFileTime -- エントリの最終更新時刻を取得する
+
+  string getFileTime()~
+
+エントリの最終更新時刻を取得します。
+
+エントリの最終更新時刻を YYYY-MM-DD HH:II:SS
+形式で表した文字列、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

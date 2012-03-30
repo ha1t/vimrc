@@ -1,0 +1,33 @@
+SDO_DAS_XML::loadFile -- xml
+インスタンスドキュメントへのパスを指定し、
+SDO_DAS_XML_Document オブジェクトを返す
+
+  SDO_XMLDocument SDO_DAS_XML::loadFile(string xml_file)~
+
+指定したアドレスの xml インスタンスドキュメントから
+SDO_DataObjects のツリーを作成します。 SDO_DAS_XML_Document
+オブジェクトを返します。
+ルートデータオブジェクトを取得するには
+SDO_DAS_XML_Document::getRootDataObject メソッドを使用します。
+
+{xml_file} インスタンスドキュメントへのパス。
+ローカルファイルへのパス、あるいは URL
+が指定できます。
+
+成功した場合は SDO_DAS_XML_Document
+オブジェクトを返します。
+それ以外の場合は以下に示す例外がスローされます。
+
+{SDO_TypeNotFoundException}
+もとになるモデルで型が定義されていない場合にスローされます。
+
+{SDO_PropertyNotFoundException}
+もとになるモデルで型のプロパティが定義されていない場合にスローされます。
+
+{SDO_DAS_XML_ParserException} XSD
+ファイルのパース時に何らかの問題が発生した場合にスローされます。
+
+{SDO_DAS_XML_FileException}
+指定されたファイルが見つからない場合にスローされます。
+
+vim:ft=help:

@@ -1,0 +1,44 @@
+db2_tables --
+データベース内のテーブルおよび関連するメタデータを含む結果セットを返す
+
+  resource db2_tables(resource connection [, string qualifier [, string schema [, string table-name [, string table-type]]]])~
+
+データベース内のテーブルおよび関連するメタデータを含む結果セットを返します。
+
+{connection} IBM DB2、Cloudscape あるいは Apache Derby
+データベースへの有効な接続。
+
+{qualifier} OS/390 あるいは z/OS サーバ上で稼動している DB2
+データベースの修飾子。
+その他のデータベースの場合には NULL
+あるいは空の文字列を渡します。
+
+{schema}
+テーブルを含むスキーマ。このパラメータでは、ワイルドカードとして
+_ および % を含む検索パターンを使用可能です。
+
+{table-name}
+テーブルの名前。このパラメータでは、ワイルドカードとして
+_ および % を含む検索パターンを使用可能です。
+
+{table-type}
+テーブル型の識別子をカンマで区切ったリスト。
+すべてのテーブル型を指定するには、NULL
+あるいは空の文字列を指定します。
+有効なテーブル型識別子は ALIAS、HIERARCHY TABLE、INOPERATIVE
+VIEW、NICKNAME、 MATERIALIZED QUERY TABLE、SYSTEM TABLE、TABLE、TYPED
+TABLE、TYPED VIEW および VIEW です。
+
+指定したパラメータに一致するテーブルの情報を含む結果セットのリソースを返します。
+行の内容は、以下のカラムで構成されています。
+カラム名 説明 TABLE_CAT
+テーブルを含むカタログ。テーブルがカタログを保持していない場合は
+NULL。 TABLE_SCHEM テーブルを含むスキーマの名前。 TABLE_NAME
+テーブルの名前。 TABLE_TYPE テーブルの型識別子。 REMARKS
+テーブルの説明。
+
+|db2_column_privileges| |db2_columns| |db2_foreign_keys| |db2_primary_keys|
+|db2_procedure_columns| |db2_procedures| |db2_special_columns|
+|db2_statistics| |db2_table_privileges|
+
+vim:ft=help:

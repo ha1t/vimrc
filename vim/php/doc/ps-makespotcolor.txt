@@ -1,0 +1,60 @@
+ps_makespotcolor -- スポット色を作成する
+
+  int ps_makespotcolor(resource psdoc, string name [, float reserved])~
+
+現在の塗りつぶし色からスポット色を作成します。塗りつぶし色の色空間は
+rgb, cmyk または
+グレースケールのいずれかでなければなりません。
+スポット色には任意の名前をつけることができます。
+スポット色には、|ps_setcolor|
+を用いてどんな色でも設定できます。
+ドキュメントが印刷されずに postscript
+ビューアで表示される場合にも、
+指定した色空間の色が使用されます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{name} スポット色の名前、例えば Pantone 5565。
+
+成功した場合にスポット色の ID
+を、失敗した場合にゼロを返します。
+
+スポット色の作成と使用
+
+<?php >
+  $ps = ps_new();
+  if (!ps_open_file($ps, "spotcolor.ps")) {
+    print "PostScript ファイルをオープンできません\n";
+    exit;
+  }
+  
+  ps_set_info($ps, "Creator", "spotcolor.php");
+  ps_set_info($ps, "Author", "Uwe Steinmann");
+  ps_set_info($ps, "Title", "Spot color example");
+  
+  ps_begin_page($ps, 596, 842);
+  ps_setcolor($ps, "fill", "cmyk", 0.37, 0.0, 0.34, 0.34);
+  $spotcolor = ps_makespotcolor($ps, "PANTONE 5565 C", 0);
+  ps_setcolor($ps, "fill", "spot", $spotcolor, 0.5, 0.0, 0.0);
+  ps_moveto($ps, 100, 100);
+  ps_lineto($ps, 100, 200);
+  ps_lineto($ps, 200, 200);
+  ps_lineto($ps, 200, 100);
+  ps_lineto($ps, 100, 100);
+  ps_fill($ps);
+  ps_end_page($ps);
+  
+  ps_delete($ps);
+?>
+
+この例では、深緑 (オリーブ) 色で 50 %
+の濃度で矩形を塗りつぶすスポット色 "PANTONE 5565 C"
+を作成します。
+
+
+
+
+
+|ps_setcolor|
+
+vim:ft=help:

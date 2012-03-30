@@ -1,0 +1,21 @@
+muscat_give -- コア muscat API に文字列を送信する
+
+  void muscat_give(resource muscat_handle, string string)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{string} をコア muscat API に送信します。
+
+{muscat_handle} |muscat_setup| あるいは |muscat_setup_net| が返す
+muscat セッションハンドラ。
+
+{string} 送信する文字列。
+
+値を返しません。
+
+|muscat_get|
+
+vim:ft=help:

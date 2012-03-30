@@ -1,0 +1,16 @@
+dba_key_split -- 文字列形式のキーを配列形式に分割する
+
+  mixed dba_key_split(mixed key)~
+
+|dba_key_split| は、キー（文字列形式）
+を配列に分割します。
+
+{key} 文字列形式のキー。
+
+array(0 => group, 1 => value_name) 形式の配列を返します。 {key} が
+NULL あるいは FALSE の場合には この関数は FALSE
+を返します。
+
+|dba_firstkey| |dba_nextkey| |dba_fetch|
+
+vim:ft=help:

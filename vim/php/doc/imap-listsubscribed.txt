@@ -1,0 +1,5 @@
+imap_listsubscribed -- imap_lsub のエイリアス
+
+この関数は次の関数のエイリアスです。 |imap_lsub|.
+
+vim:ft=help:

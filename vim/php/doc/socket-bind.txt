@@ -1,0 +1,70 @@
+socket_bind -- ソケットに名前をバインドする
+
+  bool socket_bind(resource socket, string address [, int port])~
+
+{address} で指定した名前を {socket}
+で指定したソケットにバインドします。
+これは、|socket_connect| あるいは |socket_listen|
+を使用して接続が確立される前に行われます。
+
+{socket} |socket_create| で作成した有効なソケット記述子。
+
+{address} ソケットの種類が AF_INET の場合、 {address}
+はドットで 4 つに区切られた表記 （例: 127.0.0.1）の IP
+アドレス。
+
+ソケットの種類が AF_UNIX の場合、 {address} は Unix
+ドメインソケット （例: /tmp/my.sock）。
+
+{port}（オプション） パラメータ {port} は AF_INET
+ソケットに接続する場合にのみ使用され、
+接続するリモートホストのポートを指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+エラーコードは |socket_last_error| により取得できます。
+このコードを |socket_strerror| に渡すことにより、
+エラー内容を表すテキストを得ることができます。
+
+|socket_bind| を使用してソースアドレスを指定する
+
+<?php >
+  // 新しいソケットを作成する
+  $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+  
+  // コンピュータが所有する IP アドレスリストの例
+  $sourceips['kevin']    = '127.0.0.1';
+  $sourceips['madcoder'] = '127.0.0.2';
+  
+  // ソースアドレスをバインドする
+  socket_bind($sock, $sourceips['madcoder']);
+  
+  // 接続先アドレスと接続する
+  socket_connect($sock, '127.0.0.1', 80);
+  
+  // 書き込む
+  $request = 'GET / HTTP/1.1' . "\r\n" .
+             'Host: example.com' . "\r\n\r\n";
+  socket_write($sock, $request);
+  
+  // 閉じる
+  socket_close($sock);
+?>
+
+
+
+
+
+この関数は、 |socket_connect|
+の前に実行されている必要があります。
+
+Windows 9x/ME 互換性の注意:
+マシンに属しないアドレスにソケットをバインドしようとした場合、
+|socket_last_error| は
+無効なエラーコードを返すことがあります。
+
+|socket_connect| |socket_listen| |socket_create| |socket_last_error|
+|socket_strerror|
+
+vim:ft=help:

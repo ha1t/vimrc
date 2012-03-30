@@ -1,0 +1,23 @@
+fbsql_username --
+接続に使用するホストユーザを取得あるいは設定する
+
+  string fbsql_username(resource link_identifier [, string username])~
+
+接続で使用するユーザ名を取得あるいは設定します。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+{username}
+指定した場合は、これを新しいユーザ名として設定します。
+
+この接続で使用する現在のユーザ名を文字列で返します。
+
+|fbsql_password| |fbsql_hostname|
+
+vim:ft=help:

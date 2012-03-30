@@ -1,0 +1,17 @@
+udm_hash32 -- 指定した文字列の Hash32 チェックサムを返す
+
+  int udm_hash32(resource agent, string str)~
+
+|udm_hash32| は、文字列 {str} を受け取り、その 32
+ビットハッシュ値を返します。
+
+{agent} 事前の |>udm_alloc_agent|
+のコールにより返されたエージェントへのリンク。
+
+{str} 入力文字列。
+
+32 ビットのハッシュ値を返します。
+
+|udm_alloc_agent|
+
+vim:ft=help:

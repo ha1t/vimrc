@@ -1,0 +1,37 @@
+dbx_escape_string -- SQL
+ステートメントで安全に使用できるように文字列をエスケープする
+
+  string dbx_escape_string(object link_identifier, string text)~
+
+指定した文字列をエスケープし、SQL
+ステートメントで安全に使用できるようにします。
+
+{link_identifier} |dbx_connect| が返す DBX リンクオブジェクト。
+
+{text} エスケープする文字列。
+
+テキストを返します。
+必要なら（クォートやバックスラッシュなど）エスケープ処理を行います。
+エラー時には NULL を返します。
+
+|dbx_escape_string| の例
+
+<?php >
+  $link   = dbx_connect(DBX_MYSQL, "localhost", "db", "username", "password")
+      or die("接続できませんでした");
+  
+  $text = dbx_escape_string($link, "It\'s quoted and backslashed (\\).");
+  $result = dbx_query($link, "insert into tbl (txt) values ('" . $text . "')");
+  if ($result == 0) {
+      echo dbx_error($link);
+  }
+  dbx_close($link);
+?>
+
+
+
+
+
+|dbx_query|
+
+vim:ft=help:

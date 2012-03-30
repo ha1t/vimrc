@@ -1,0 +1,48 @@
+mqseries_begin -- MQseries MQBEGIN
+
+   mqseries_begin(resource hconn, array beginOptions, resourceref compCode, resourceref reason)~
+
+The |mqseries_begin| (MQBEGIN)
+をコールすると、作業ユニットを開始します。
+これはキューマネージャが扱うものですが、外部のリソースマネージャを使用することもあります。
+
+|mqseries_begin|
+は作業ユニットを開始します。作業ユニットを終了させるには
+|mqseries_back| あるいは |mqseries_cmit| を使用します。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_begin| の例
+
+<?php >
+      $mqbo = array();
+      mqseries_begin(	$conn, 
+                      $mqbo,
+                      $comp_code,
+                      $reason);
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          /* コード 2121 は警告を表します。詳細は MQSeries のリファレンスマニュアルを参照ください */
+          if ($reason !== 2121) {
+              printf("CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+          }
+      }
+?>
+
+
+
+
+
+|mqseries_begin| は、MQSeries Client を使用して Queueu Manager
+に接続した場合には動作しません。
+
+|mqseries_conn| |mqseries_connx| |mqseries_back| |mqseries_cmit|
+
+vim:ft=help:

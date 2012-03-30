@@ -1,0 +1,25 @@
+end -- 配列の内部ポインタを最終要素にセットする
+
+  mixed end(array array)~
+
+|end| は {array}
+の内部ポインタを最後の要素まで進め、その値を返します。
+
+{array} 配列。
+
+最後の要素の値を返します。
+
+|end| の例
+
+<?php >
+  $fruits = array('リンゴ', 'バナナ', 'クランベリー');
+  echo end($fruits); // クランベリー
+?>
+
+
+
+
+
+|current| |each| |prev| |reset| |next|
+
+vim:ft=help:

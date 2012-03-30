@@ -1,0 +1,35 @@
+sesam_rollback -- SESAM
+データベースに対する待機中の更新を破棄する
+
+  bool sesam_rollback()~
+
+|sesam_rollback| は、データベースへの待機中の
+更新を破棄します。結果カーソルと結果記述子も変更されます。
+
+スクリプトの終了時に、|sesam_disconnect| 関数
+から暗黙のうちに |sesam_rollback| が実行され、
+データベースの待機中の全ての変更は破棄されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+SESAM データベースへの更新を破棄する
+
+<?php >
+  if (sesam_connect ("mycatalog", "myschema", "otto")) {
+      if (sesam_execimm ("INSERT INTO mytable VALUES (*, 'Small Test', <0, 8, 15>)")
+          &amp;& sesam_execimm ("INSERT INTO othertable VALUES (*, 'Another Test', 1)")) {
+          sesam_commit();
+      } else {
+          sesam_rollback();
+      }
+  }
+?>
+
+
+
+
+
+|sesam_commit|
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+PDF_open_pdi -- PDF ファイルをオープンする [古い関数]
+
+  int PDF_open_pdi(resource pdfdoc, string filename, string optlist, int len)~
+
+後で使用するため、ディスクベースかあるいは仮想 PDF
+ドキュメントをオープンします。
+
+この関数は PDFlib バージョン 7 で廃止されました。
+かわりに |PDF_open_pdi_document| を使用してください。
+
+vim:ft=help:

@@ -1,0 +1,20 @@
+msql_drop_db -- mSQL データベースを破棄(削除)する
+
+  bool msql_drop_db(string database_name [, resource link_identifier])~
+
+|msql_drop_db| は、mSQL サーバから
+データベースを削除することを試みます。
+
+{database_name} データベースの名前。
+
+{ link_identifier}mSQL 接続。 指定されない場合、|msql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、この関数は、
+|msql_connect|をコールした時と同様にリンクを確立し、使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msql_create_db|
+
+vim:ft=help:

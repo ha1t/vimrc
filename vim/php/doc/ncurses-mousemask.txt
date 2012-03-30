@@ -1,0 +1,96 @@
+ncurses_mousemask -- マウスオプションを設定する
+
+  int ncurses_mousemask(int newmask, int oldmask)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+報告されるマウスイベントを設定します。デフォルトでは、
+どのマウスイベントについても報告されません。
+
+マウスイベントは、|ncurses_wgetch| 入力ストリーム内では
+NCURSES_KEY_MOUSE で表されます。
+イベントデータを読み込んでキューからイベントを取り出すには、
+|ncurses_getmouse| をコールします。
+
+{newmask}
+マウスマスクオプションには、以下の定義済み定数が指定可能です。
+NCURSES_BUTTON1_PRESSED
+
+NCURSES_BUTTON1_RELEASED
+
+NCURSES_BUTTON1_CLICKED
+
+NCURSES_BUTTON1_DOUBLE_CLICKED
+
+NCURSES_BUTTON1_TRIPLE_CLICKED
+
+NCURSES_BUTTON2_PRESSED
+
+NCURSES_BUTTON2_RELEASED
+
+NCURSES_BUTTON2_CLICKED
+
+NCURSES_BUTTON2_DOUBLE_CLICKED
+
+NCURSES_BUTTON2_TRIPLE_CLICKED
+
+NCURSES_BUTTON3_PRESSED
+
+NCURSES_BUTTON3_RELEASED
+
+NCURSES_BUTTON3_CLICKED
+
+NCURSES_BUTTON3_DOUBLE_CLICKED
+
+NCURSES_BUTTON3_TRIPLE_CLICKED
+
+NCURSES_BUTTON4_PRESSED
+
+NCURSES_BUTTON4_RELEASED
+
+NCURSES_BUTTON4_CLICKED
+
+NCURSES_BUTTON4_DOUBLE_CLICKED
+
+NCURSES_BUTTON4_TRIPLE_CLICKED
+
+NCURSES_BUTTON_SHIFT>
+
+NCURSES_BUTTON_CTRL
+
+NCURSES_BUTTON_ALT
+
+NCURSES_ALL_MOUSE_EVENTS
+
+NCURSES_REPORT_MOUSE_POSITION
+
+副作用として、{newmask} にゼロを設定すると
+マウスポインタを消去します。ゼロ以外の値を設定すると
+マウスポインタが表示されます。
+
+{oldmask}
+以前のマウスイベントマスクの値が設定されます。
+
+{newmask} が指定するイベントを報告することが
+できるマスクを返します。失敗した場合は 0 を返します。
+
+|ncurses_mousemask| の例
+
+<?php >
+  $newmask = NCURSES_BUTTON1_CLICKED + NCURSES_BUTTON1_RELEASED;
+  $mask = ncurses_mousemask($newmask, &amp;$oldmask);
+  if ($mask &amp; $newmask){
+      printf("All specified mouse options will be supported\n");
+  }
+?>
+
+
+
+
+
+|ncurses_getmouse| |ncurses_ungetmouse| |ncurese_getch|
+
+vim:ft=help:

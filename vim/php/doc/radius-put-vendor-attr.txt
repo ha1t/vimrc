@@ -1,0 +1,25 @@
+radius_put_vendor_attr -- ベンダ固有のバイナリ属性を設定する
+
+  bool radius_put_vendor_attr(resource radius_handle, int vendor, int type, string value)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|radius_put_vendor_attr| の例
+
+<?php >
+  if (!radius_put_vendor_attr($res, RADIUS_VENDOR_MICROSOFT, RAD_MICROSOFT_MS_CHAP_CHALLENGE, $challenge)) {
+      echo 'RadiusError:' . radius_strerror($res). "\n<br />";
+      exit;
+  }
+?>
+
+
+
+
+
+vim:ft=help:

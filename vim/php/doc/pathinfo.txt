@@ -1,0 +1,51 @@
+pathinfo -- ファイルパスに関する情報を返す
+
+  mixed pathinfo(string path [, int options])~
+
+|pathinfo| は、{path}
+に関する情報を有する連想配列を返します。
+
+{path} 調べたいパス。
+
+{options} どの要素を返すのかをオプションのパラメータ
+{options} で指定します。これは PATHINFO_DIRNAME、
+PATHINFO_BASENAME、 PATHINFO_EXTENSION および PATHINFO_FILENAME
+の組み合わせとなります。
+デフォルトではすべての要素を返します。
+
+以下の要素を含む連装配列を返します。 dirname
+(ディレクトリ名)、basename (ファイル名)
+そして、もし存在すれば extension (拡張子)。
+
+{options} を使用すると、
+すべての要素を選択しない限りこの関数の返り値は文字列となります。
+
+バージョン 説明 5.2.0 定数 PATHINFO_FILENAME
+が追加されました。
+
+|pathinfo| の例
+
+<?php >
+  $path_parts = pathinfo('/www/htdocs/index.html');
+  
+  echo $path_parts['dirname'], "\n";
+  echo $path_parts['basename'], "\n";
+  echo $path_parts['extension'], "\n";
+  echo $path_parts['filename'], "\n"; // PHP 5.2.0 以降
+?>
+
+上の例の出力は以下となります。
+
+  /www/htdocs
+  index.html
+  html
+  index
+
+
+
+カレントのパスに関する情報を取得するには、
+定義済みの変数 のセクションをご覧ください。
+
+|dirname| |basename| |parse_url| |realpath|
+
+vim:ft=help:

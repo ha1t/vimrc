@@ -1,0 +1,129 @@
+proc_open --
+コマンドを実行し、入出力用にファイルポインタを開く
+
+  resource proc_open(string cmd, array descriptorspec, array pipes [, string cwd [, array env [, array other_options]]])~
+
+|proc_open| は |popen| と
+よく似ていますが、プログラムの実行をさらに細かく制御できる点で違います。
+
+{cmd} 実行されるコマンド。
+
+{descriptorspec}
+数値添字の配列で、ディスクリプタ番号をキーとし、PHP
+がその
+ディスクリプタをどのように子プロセスに渡すかを表すのが
+対応する値となります。 0 が標準入力 (stdin)、1
+が標準出力 (stdout) で、 2 が標準エラー出力 (stderr)
+となります。
+
+現在サポートされているパイプ形式は file および pipe
+です。
+
+ファイルディスクリプタの番号は、特に 0, 1, 2
+に限られているわけでは
+ありません。有効であるどのようなファイルディスクリプタの番号も指定でき、
+それは子プロセスに渡されます。これにより、あるスクリプトと、
+子プロセスとして起動している別のスクリプトとの間で通信ができます。
+特に、これは PGP や GPG、openssl
+といったプログラムにパスフレーズを
+より安全な方法で渡したいとき威力を発揮します。
+補助的なファイルディスクリプタを介して、そのようなプログラムの
+状態を取得するのにも便利です。
+
+{pipes} PHP 側で生成されたパイプの終端にあたる
+ファイルポインタの配列。
+
+{cwd} コマンドの初期作業ディレクトリ。
+完全パスである必要があります。 デフォルト値 (現在の
+PHP プロセスの作業ディレクトリ) を使用したい場合は NULL
+を指定します。
+
+{env} 実行するコマンドのための環境変数の配列。 現在の
+PHP プロセスと同じ環境変数を使用する場合は NULL
+を指定します。
+
+{other_options}
+その他の追加オプションを指定することが可能です。
+現在サポートされているオプションは次の通りです。
+suppress_errors (windows のみ): TRUE
+にすると、この関数が出力するエラーを抑制します。
+bypass_shell (windows のみ): TRUE にすると、cmd.exe
+シェルをバイパスします。 context:
+ファイルをオープンする際に (|stream_context_create|
+で作成した) ストリームコンテキストを使用します。
+binary_pipes: パイプをバイナリモードでオープンします。
+通常の stream_encoding は使用しません。
+
+プロセスを表すリソースを返します。このリソースは、使用し終えた際に
+|proc_close| を使用して開放する必要があります。
+失敗した場合は FALSE を返します。
+
+バージョン 説明 6.0.0 {other_options} パラメータに
+オプション context および binary_pipes が追加されました。
+5.2.1 {other_options} パラメータに オプション bypass_shell
+が追加されました。 5.0.0 パラメータ {cwd}、{env} および
+{other_options} が追加されました。
+
+A |proc_open| の例
+
+<?php >
+  $descriptorspec = array(
+     0 => array("pipe", "r"),  // stdin は、子プロセスが読み込むパイプです。
+     1 => array("pipe", "w"),  // stdout は、子プロセスが書き込むパイプです。
+     2 => array("file", "/tmp/error-output.txt", "a") // はファイルで、そこに書き込みます。
+  );
+  
+  $cwd = '/tmp';
+  $env = array('some_option' => 'aeiou');
+  
+  $process = proc_open('php', $descriptorspec, $pipes, $cwd, $env);
+  
+  if (is_resource($process)) {
+      // $pipes はこの時点で次のような形を取っています。
+      // 0 => 子プロセスの stdin に繋がれた書き込み可能なハンドル
+      // 1 => 子プロセスの stdout に繋がれた読み込み可能なハンドル
+      // すべてのエラー出力は /tmp/error-output.txt に書き込みされます。
+  
+      fwrite($pipes[0], '<?php print_r($_ENV); ?>');
+      fclose($pipes[0]);
+  
+      echo stream_get_contents($pipes[1]);
+      fclose($pipes[1]);
+  
+      // デッドロックを避けるため、proc_close を呼ぶ前に
+      // すべてのパイプを閉じることが重要です。
+      $return_value = proc_close($process);
+  
+      echo "command returned $return_value\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [some_option] => aeiou
+      [PWD] => /tmp
+      [SHLVL] => 1
+      [_] => /usr/local/bin/php
+  )
+  command returned 0
+
+
+
+Windows における互換性: 2 (stderr)
+よりも大きな番号のディスクリプタは
+子プロセスに継承可能なハンドルとして渡されますが、
+Windows
+のアーキテクチャは、ファイルディスクリプタの番号と
+より低レベルなハンドルを関連付けないので、子プロセスは、
+それらのハンドルにアクセスする術を持ちません。stdin,
+stdout, stderr は期待通り動きます。
+
+もし単方向(一方向)のパイプを利用したいだけでしたら、
+|popen| を使うほうがより簡単です。
+
+|popen| |exec| |system| |passthru| |stream_select|
+バックティック演算子
+
+vim:ft=help:

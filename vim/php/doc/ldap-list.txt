@@ -1,0 +1,93 @@
+ldap_list -- 単一階層の検索を行う
+
+  resource ldap_list(resource link_identifier, string base_dn, string filter [, array attributes [, int attrsonly [, int sizelimit [, int timelimit [, int deref]]]]])~
+
+指定したフィルタ {filter} を使用し、スコープ
+LDAP_SCOPE_ONELEVEL でディレクトリを検索します。
+
+LDAP_SCOPE_ONELEVEL は、コール時に指定した {base_dn}
+の直下の階層から検索した結果のみを返すことを表します
+("ls"
+と入力して、現在の作業ディレクトリのファイル/フォルダ
+一覧を取得するのと同じようなものです)。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{base_dn} ディレクトリのベース DN。
+
+{filter}
+
+{attributes} 必要な属性を、 array("mail", "sn", "cn")
+のような通常の PHP 文字列配列で保持します。 "dn"
+は要求された属性の型によらず常に返されることに注意してください。
+
+このパラメータを使用すると、デフォルトの動作よりもかなり効率的になります
+(デフォルトでは、すべての属性とその値を返します)。
+したがって、これを使用することを推奨します。
+
+{attrsonly} 属性の型のみを取得したい場合は 1
+を設定します。
+属性の型および値の両方を取得したい場合は 0
+を設定します (これがデフォルトの挙動です)。
+
+{sizelimit} 取得するエントリ数の制限を設定します。 0
+は無制限であることを表します。
+
+このパラメータは、サーバ側で事前に設定されている
+sizelimit
+を上書きすることはできません。それ以下の値を指定することはできます。
+
+ディレクトリサーバのホストによっては、
+事前に設定された数以上のエントリを返さないようになっているものもあります。
+この場合、サーバでは、それが結果セットのすべてではないことを通知します。
+このパラメータでエントリ数を制限した場合にも、同じことが起こります。
+
+{timelimit} 検索に要する最大秒数を設定します。 これを 0
+にすると無制限であることを表します。
+
+このパラメータは、サーバ側で事前に設定されている
+timelimit
+を上書きすることはできません。それ以下の値を指定することはできます。
+
+{deref} 検索時のエイリアスの扱いについて指定します。
+以下のいずれかとなります。 LDAP_DEREF_NEVER - (デフォルト)
+エイリアスは参照されません。
+
+LDAP_DEREF_SEARCHING -
+エイリアスを参照しますが、検索のベースオブジェクト上にいるときは参照しません。
+
+LDAP_DEREF_FINDING -
+エイリアスの参照は、ベースオブジェクト上にいて検索中でない場合に行われます。
+
+LDAP_DEREF_ALWAYS - エイリアスを常に参照します。
+
+検索結果 ID を返します。エラーの場合は、FALSE
+を返します。
+
+バージョン 説明 4.0.5
+並列検索のサポートが追加されました。詳細は |ldap_search|
+を参照ください。 4.0.2 {attrsonly}、{sizelimit}、 {timelimit}
+および {deref} が追加されました。
+
+ある組織の全ての組織単位を一覧表示する
+
+  // $ds はディレクトリサーバーの有効なリンク ID
+  
+  $basedn = "o=My Company, c=US";
+  $justthese = array("ou");
+  
+  $sr=ldap_list($ds, $basedn, "ou=*", $justthese);
+  
+  $info = ldap_get_entries($ds, $sr);
+  
+  for ($i=0; $i<$info["count"]; $i++) {
+      echo $info[$i]["ou"][0] ;
+  }
+
+
+
+
+
+|ldap_search|
+
+vim:ft=help:

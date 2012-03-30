@@ -1,0 +1,7 @@
+PDF_stringwidth -- テキストの幅を返す
+
+  float PDF_stringwidth(resource p, string text, int font, float fontsize)~
+
+任意のフォントにおける {text} の幅を返します。
+
+vim:ft=help:

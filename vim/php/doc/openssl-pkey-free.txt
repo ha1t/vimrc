@@ -1,0 +1,12 @@
+openssl_pkey_free -- 秘密鍵を開放する
+
+  void openssl_pkey_free(resource key)~
+
+この関数は、|openssl_pkey_new|
+で作成した秘密鍵を開放します。
+
+{key} キーを保持するリソース。
+
+値を返しません。
+
+vim:ft=help:

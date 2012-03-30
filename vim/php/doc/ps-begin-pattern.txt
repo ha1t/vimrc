@@ -1,0 +1,71 @@
+ps_begin_pattern -- 新しいパターンを開始する
+
+  int ps_begin_pattern(resource psdoc, float width, float height, float xstep, float ystep, int painttype)~
+
+新しいパターンを開始します。パターンとは、
+領域を塗りつぶすための描画データを含むページのようなものです。
+|ps_setcolor| をコールする際に pattern
+に色空間を指定すると、
+これは色のように使用されます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{width} ピクセル単位のパターンの幅。
+
+{height} ピクセル単位のパターンの高さ。
+
+{x-step}
+パターンを水平方向に並べる際のピクセル単位の間隔。
+
+{y-step}
+パターンを垂直方向に並べる際のピクセル単位の間隔。
+
+{painttype} 1 あるいは 2 でなければなりません。
+
+パターンの ID を返します。失敗した場合は FALSE
+を返します。
+
+パターンの作成および使用
+
+<?php >
+  $ps = ps_new();
+  
+  if (!ps_open_file($ps, "pattern.ps")) {
+    print "PostScript ファイルをオープンできません\n";
+    exit;
+  }
+  
+  ps_set_parameter($ps, "warning", "true");
+  ps_set_info($ps, "Creator", "pattern.php");
+  ps_set_info($ps, "Author", "Uwe Steinmann");
+  ps_set_info($ps, "Title", "Pattern example");
+  
+  
+  $pspattern = ps_begin_pattern($ps, 10.0, 10.0, 10.0, 10.0, 1);
+  ps_setlinewidth($ps, 0.2);
+  ps_setcolor($ps, "stroke", "rgb", 0.0, 0.0, 1.0, 0.0);
+  ps_moveto($ps, 0, 0);
+  ps_lineto($ps, 7, 7);
+  ps_stroke($ps);
+  ps_moveto($ps, 0, 7);
+  ps_lineto($ps, 7, 0);
+  ps_stroke($ps);
+  ps_end_pattern($ps);
+  
+  ps_begin_page($ps, 596, 842);
+  ps_setcolor($ps, "both", "pattern", $pspattern, 0.0, 0.0, 0.0);
+  ps_rect($ps, 50, 400, 200, 200);
+  ps_fill($ps);
+  ps_end_page($ps);
+  
+  ps_close($ps);
+  ps_delete($ps);
+?>
+
+
+
+
+
+|ps_end_pattern| |ps_setcolor| |ps_shading_pattern|
+
+vim:ft=help:

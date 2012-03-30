@@ -1,0 +1,19 @@
+imagepsextendfont -- フォントを展開または圧縮する
+
+  bool imagepsextendfont(int font_index, float extend)~
+
+フォント({font_index})を展開または圧縮します。
+パラメータ{extend}の値が1より小さい場合、
+フォントの圧縮が行われます。
+
+{font_index}
+
+{extend}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、PHP が --with-t1lib
+を指定してコンパイルされている場合のみ使用可能です。
+
+vim:ft=help:

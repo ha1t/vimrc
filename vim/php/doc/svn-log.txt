@@ -1,0 +1,122 @@
+svn_log -- 指定したリポジトリ URL
+のコミットログメッセージを返す
+
+  array svn_log(string repos_url [, int revision_no])~
+
+|svn_log| は、指定したリビジョン URL {repos_url}
+の中身の完全な履歴を返します。 {revision_no}
+を指定した場合は、そのリビジョンの履歴を返します。
+この関数は、svn log --verbose -r $revision_no $repos_url
+と同等です。
+
+長い期間使用しているリポジトリでは、出力が巨大なものになる可能性があります
+(すべてのリビジョンに対して配列の項目ができあがります)。
+この関数は --limit NUM フラグをサポートしていません。
+また、リビジョンの範囲指定にも対応していません
+(revision_no は整数で指定しなければなりません)。
+
+{repos_url} 履歴を取得したいアイテムのリポジトリ URL。
+
+{revision_no}
+ログを取得したいリビジョン番号。最新の情報を取得するには
+SVN_REVISON_HEAD を使用します。
+
+成功した場合は、この関数は次のような構造の配列を返します。
+
+  [0] => Array (最新のリポジトリから順に並びます)
+  (
+      [rev] => リビジョン番号
+      [author] => コミットした人の名前
+      [msg] => ログメッセージ
+      [date] => ISO 8601 形式、つまり date('c') と同じ形式の日付文字列
+      [paths] => Array (変更したファイルについての説明)
+          (
+              [0] => Array
+                  (
+                      [action] => 変更の種類を表す文字
+                      [path] =>  変更されたファイルの絶対パス
+                  )
+              [1] => ...
+          )
+  )
+  [1] => ...
+
+
+
+出力は、常に数値添字の二次元配列となります。
+ログメッセージがなかったり、ひとつだけだったりする場合でも同じです。
+
+action の値は、 status の出力の最初の列の内容
+のサブセットで、以下のいずれかとなります。
+
+何も変更されていない場合は、空の配列を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|svn_log| の例
+
+<?php >
+  print_r( svn_log('http://www.example.com/', 23) );
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [0] => Array
+      (
+          [rev] => 23
+          [author] => 'joe'
+          [msg] => 'チーズとサラミをサンドイッチに追加した。'
+          [date] => '2007-04-06T16:00:27-04:00'
+          [paths] => Array
+              (
+                  [0] => Array
+                      (
+                          [action] => 'M'
+                          [path] =>  '/sandwich.txt'
+                      )
+              )
+      )
+  )
+
+
+
+svn と |svn_log| による --limit のシミュレート
+このサンプル関数は、SVN 実行ファイルを使用することで
+--limit スイッチの機能をシミュレートしたものです。
+この結果をもとにして |svn_log| を使用しています。
+
+この関数は、合計で {limit} + 1
+回のリクエストを行います。最初の一回は必要なリビジョンを取得するためのもので、
+必要な範囲について個別にログを取得します。
+
+<?php >
+  /**
+   * 直近の $limit 件のログエントリを取得する
+   * @param $repos_url ログを取得したいアイテムのリポジトリ URL
+   * @param $limit 取得する最大件数
+   */
+  function svn_log_limit($repos_url, $limit) {
+      $limit = (int) $limit;
+      if ($limit <= 0) return array();
+      // -q フラグを使用して、サーバがログメッセージを送信しないようにします
+      $output = shell_exec("svn log -q --limit $limit $repos_url");
+      preg_match_all('/^r(\d+) /m', $output, $matches);
+      $ret = array();
+      foreach ($matches[1] as $rev) {
+          $log = svn_log($repos_url, (int) $rev);
+          $ret[] = $log[0]; // log is only one item long
+      }
+      return $ret;
+  }
+?>
+
+
+
+SVN ドキュメントの svn log
+
+vim:ft=help:

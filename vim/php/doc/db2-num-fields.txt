@@ -1,0 +1,36 @@
+db2_num_fields -- 結果セットに含まれるフィールドの数を返す
+
+  int db2_num_fields(resource stmt)~
+
+結果セットに含まれるフィールドの数を返します。動的に生成されたクエリが返す
+結果セットを処理する場合、あるいはストアドプロシージャから返された結果セットを
+処理する場合など、結果セットの使用法がアプリケーションにわからない場合に有用です。
+
+{stmt} 結果セットを含む有効なステートメントリソース。
+
+指定したステートメントリソースに関連付けられた結果セット内の
+フィールドの数を表す整数値を返します。ステートメントリソースが
+不正な値の場合には FALSE を返します。
+
+結果セットのフィールド数の取得
+以下の例では、結果セットが返すフィールドの数を取得する方法を説明します。
+
+<?php >
+  $sql = "SELECT id, name, breed, weight FROM animals ORDER BY breed";
+  $stmt = db2_prepare($conn, $sql);
+  db2_execute($stmt, $sql);
+  $columns = db2_num_fields($stmt);
+  
+  echo "結果セット内には {$columns} つのカラムがあります。";
+?>
+
+上の例の出力は以下となります。
+
+  結果セット内には 4 つのカラムがあります。
+
+
+
+|db2_execute| |db2_field_display_size| |db2_field_name| |db2_field_num|
+|db2_field_precision| |db2_field_scale| |db2_field_type| |db2_field_width|
+
+vim:ft=help:

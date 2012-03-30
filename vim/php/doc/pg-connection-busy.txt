@@ -1,0 +1,33 @@
+pg_connection_busy -- 接続がビジーかどうか調べる
+
+  bool pg_connection_busy(resource connection)~
+
+|pg_connection_busy| は、接続がビジーかどうかを調べます。
+接続がビジーである場合、以前のクエリがまだ実行中です。
+もしこの接続に |pg_get_result| がコールされた場合、
+それはブロックされます。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+接続がビジーの場合に TRUE 、そうでない場合に FALSE
+を返します。
+
+|pg_connection_busy| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+    $bs = pg_connection_busy($dbconn);
+    if ($bs) {
+        echo 'connection is busy';
+    } else {
+       echo 'connection is not busy';
+    }
+?>
+
+
+
+
+
+|pg_connection_status| |pg_get_result|
+
+vim:ft=help:

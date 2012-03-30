@@ -1,0 +1,30 @@
+openssl_pkey_export_to_file --
+エクスポート可能な形式で、キーをファイルに取得する
+
+  bool openssl_pkey_export_to_file(mixed key, string outfilename [, string passphrase [, array configargs]])~
+
+|openssl_pkey_export_to_file| は、ASCII 変換された (PEM
+エンコードされた) {key} を {outfilename}
+のファイルに保存します。
+
+この関数を正しく動作させるには、正しい形式の openssl.cnf
+をインストールしておく必要があります。
+詳細な情報は、インストールについてのセクション
+を参照ください。
+
+{key}
+
+{outfilename} 出力ファイルへのパス。
+
+{passphrase} オプションで {passphrase}
+を使用してキーを保護することが可能です。
+
+{configargs} {configargs} により openssl 設定ファイルの設定を
+追加したり上書きしたりすることで、エクスポート処理の詳細設定が可能です。
+{configargs} についての詳細な情報は |openssl_csr_new|
+を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

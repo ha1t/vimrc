@@ -1,0 +1,25 @@
+XMLWriter::openMemory --
+文字列の出力にメモリを使用する新しい xmlwriter
+を作成する
+
+オブジェクト指向型
+
+  bool openMemory()~
+
+手続き型
+
+  resource xmlwriter_open_memory()~
+
+文字列の出力にメモリを使用する新しい XMLWriter
+を作成します。
+
+
+
+オブジェクト指向型: 成功した場合に TRUE
+を、失敗した場合に FALSE を返します。。
+
+手続き型: 成功した場合に、その後の xmlwriter
+関数で使用するための新しい xmlwriter リソース、
+エラーの場合に FALSE を返します。
+
+vim:ft=help:

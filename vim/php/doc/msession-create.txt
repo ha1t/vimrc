@@ -1,0 +1,9 @@
+msession_create -- セッションを作成する
+
+  bool msession_create(string session, string classname, string data)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

@@ -1,0 +1,44 @@
+get_defined_vars -- 全ての定義済の変数を配列で返す
+
+  array get_defined_vars()~
+
+この関数は、環境変数、サーバ変数、|get_defined_vars|
+がコールされたスコープ内でユーザが定義した変数を含む、全ての
+の定義済の変数のリストを有する多次元の配列を返します。
+
+すべての変数を含む多次元の配列を返します。
+
+|get_defined_vars| の例
+
+<?php >
+  $b = array(1, 1, 2, 3, 5, 8);
+  
+  $arr = get_defined_vars();
+  
+  // $b を出力
+  print_r($arr["b"]);
+  
+  // PHPインタプリタのパスを出力 (CGIとして使用された場合)
+  // 例えば、/usr/local/bin/php
+  echo $arr["_"];
+  
+  // コマンドラインパラメータがある場合に出力
+  print_r($arr["argv"]);
+  
+  // サーバ変数を全て表示
+  print_r($arr["_SERVER"]);
+  
+  // 変数の配列で利用可能なキーを全て出力
+  print_r(array_keys(get_defined_vars()));
+?>
+
+
+
+
+
+バージョン 説明 5.0.0 返される配列に $GLOBALS 変数が
+含まれます。
+
+|isset| |get_defined_functions| |get_defined_constants|
+
+vim:ft=help:

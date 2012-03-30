@@ -1,0 +1,10 @@
+sqlite_libversion --
+リンクされているSQLiteライブラリのバージョンを返す
+
+  string sqlite_libversion()~
+
+リンクされているSQLiteライブラリのバージョンを文字列として返します。
+
+|sqlite_libencoding|
+
+vim:ft=help:

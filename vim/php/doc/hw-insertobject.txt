@@ -1,0 +1,23 @@
+hw_InsertObject -- オブジェクトレコードを挿入する
+
+  int hw_insertobject(int connection, string object_rec, string parameter)~
+
+オブジェクトをサーバに挿入します。
+
+注意: アンカーを挿入したい場合、属性 Position は常に
+start/end の値または 'invisible' のどちらかに常に
+設定されています。
+不可視(invisible)位置は、注釈が対応する注釈文へのリンクを
+有していない場合に必要です。
+
+{connection} 接続 ID。
+
+{object_rec} オブジェクトは、全ての有効な Hyperwavve
+オブジェクトとすることができます。
+
+{parameter} パラメータに関する詳細な情報を説明するには、
+HG-CSP ドキュメントを参照ください。
+
+|hw_pipedocument| |hw_insertdocument| |hw_insdoc| |hw_inscoll|
+
+vim:ft=help:

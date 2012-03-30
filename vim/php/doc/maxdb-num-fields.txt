@@ -1,0 +1,78 @@
+result->field_count -- 結果のフィールド数を取得する
+
+手続き型
+
+  int maxdb_num_fields(resource result)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_num_fields| は、
+指定した結果セットのフィールド数を返します。
+
+結果セットのフィールド数を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if ($result = $maxdb->query("SELECT * FROM hotel.city ORDER BY zip")) {
+  
+     /* 結果セットのフィールド数を調べます */
+     $field_cnt = $result->field_count;
+  
+     printf("結果セットのフィールド数は %d です。\n", $field_cnt);
+  
+     /* 結果セットを閉じます */
+     $result->close();
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if ($result = maxdb_query($link, "SELECT * FROM hotel.city ORDER BY zip")) {
+  
+     /* 結果セットのフィールド数を調べます */
+     $field_cnt = maxdb_num_fields($result);
+  
+     printf("結果セットのフィールド数は %d です。\n", $field_cnt);
+  
+     /* 結果セットを閉じます */
+     maxdb_free_result($result);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  結果セットのフィールド数は 3 です。
+
+|maxdb_fetch_field|
+
+vim:ft=help:

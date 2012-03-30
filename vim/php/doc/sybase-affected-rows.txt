@@ -1,0 +1,40 @@
+sybase_affected_rows -- 直近のクエリで変更された行の数を得る
+
+  int sybase_affected_rows([resource link_identifier])~
+
+|sybase_affected_rows| は、指定したリンク ID が
+指すサーバにおいて直近の INSERT、UPDATE、DELETE
+クエリで変更された レコードの数を返します。
+
+このコマンドは、SELECT
+文には使用できません。レコードを変更する
+文のみに使用できます。SELECT
+から返された行の数を得たい場合は |sybase_num_rows|
+を使用してください。
+
+{link_identifier} リンク ID
+を省略した場合は、最後にオープンしたリンクを使用します。
+
+変更された行数を整数値で返します。
+
+削除クエリ
+
+<?php >
+  /* データベースに接続します */
+  sybase_connect('SYBASE', '', '') or
+  die("接続できません");
+  sybase_select_db("db");
+  
+  sybase_query("DELETE FROM sometable WHERE id < 10");
+  printf("削除したレコード数: %d\n", sybase_affected_rows());
+?>
+
+上の例の出力は以下となります。
+
+  削除したレコード数: 10
+
+
+
+|sybase_num_rows|
+
+vim:ft=help:

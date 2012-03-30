@@ -1,0 +1,12 @@
+getmyuid -- PHP スクリプト所有者のユーザ ID を取得する
+
+  int getmyuid()~
+
+現在のスクリプトのユーザ ID を取得します。
+
+現在のスクリプトのユーザ ID を返し、エラーの場合は
+FALSE を返します。
+
+|getmygid| |getmypid| |get_current_user| |getmyinode| |getlastmod|
+
+vim:ft=help:

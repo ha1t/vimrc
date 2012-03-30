@@ -1,0 +1,33 @@
+pg_port -- 接続に関連するポート番号を返す
+
+  int pg_port([resource connection])~
+
+|pg_port| は、指定した PostgreSQL {connection}
+リソースが接続している ポートの番号を返します。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{connection} が指しているデータベースのポート番号を 含む
+int を返します。エラー時には FALSE を返します。
+
+|pg_port| の例
+
+<?php >
+  $pgsql_conn = pg_connect("dbname=mark host=localhost");
+  
+  if ($pgsql_conn) {
+     print "Successfully connected to port: " . pg_port($pgsql_conn) . "<br/>\n";
+  } else {
+     print pg_last_error($pgsql_conn);
+     exit;
+  }
+?>
+
+
+
+
+
+vim:ft=help:

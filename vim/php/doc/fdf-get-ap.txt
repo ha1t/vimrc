@@ -1,0 +1,20 @@
+fdf_get_ap -- フィールドの外観を取得する
+
+  bool fdf_get_ap(resource fdf_document, string field, int face, string filename)~
+
+{field} の外観 (つまり /AP キーの値)
+を取得し、ファイルに保存します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{field}
+
+{face} FDFNormalAP、FDFRolloverAP および FDFDownAP のいずれか。
+
+{filename} ここに外観を保存します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

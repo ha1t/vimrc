@@ -1,0 +1,33 @@
+expect_popen -- Bourne
+シェル経由でコマンドを実行し、プロセスへの PTY
+ストリームをオープンする
+
+  resource expect_popen(string command)~
+
+Bourne シェル経由でコマンドを実行し、プロセスへの PTY
+ストリームを オープンします。
+
+{command} 実行するコマンド。
+
+プロセスの標準入力・標準出力・標準エラー出力への PTY
+ストリームを返します。
+
+失敗した場合は、この関数は FALSE を返します。
+
+|expect_popen| の例
+
+<?php >
+  // PHP.net の CVS リポジトリにログインします
+  $stream = expect_popen ("cvs -d :pserver:anonymous@cvs.php.net:/repository login");
+  sleep (3);
+  fwrite ($stream, "phpfi\n");
+  fclose ($stream);
+?>
+
+
+
+
+
+|popen|
+
+vim:ft=help:

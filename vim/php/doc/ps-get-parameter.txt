@@ -1,0 +1,19 @@
+ps_get_parameter -- パラメータを取得する
+
+  string ps_get_parameter(resource psdoc, string name [, float modifier])~
+
+|ps_set_parameter| で直接設定されたか、
+あるいは他の関数で間接的に設定されたパラメータの値を取得します。
+パラメータは文字列値として定義されます。この関数は、
+同じく |ps_set_parameter|
+で設定されたリソースを取得するためには利用できません。
+
+パラメータ {name} は、以下の値をとります。
+
+fontname 現在アクティブなフォント、 あるいはパラメータ
+{modifier} で指定された ID を持つフォントの名前。
+
+fontencoding
+現在アクティブなフォントのエンコーディング。
+
+vim:ft=help:

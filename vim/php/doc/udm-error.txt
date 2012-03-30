@@ -1,0 +1,13 @@
+udm_error -- mnoGoSearch エラーメッセージを得る
+
+  string udm_error(resource agent)~
+
+エージェントエラーメッセージを取得します。
+
+{agent} |udm_alloc_agent|
+をコールした際に得られたエージェント ID へのリンク。
+
+|udm_error| は mnoGoSearch エラーメッセージを返します。
+エラーがない場合には、空の文字列を返します。
+
+vim:ft=help:

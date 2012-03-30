@@ -1,0 +1,18 @@
+pfpro_cleanup -- Payflow Pro ライブラリをシャットダウンする
+
+  bool pfpro_cleanup()~
+
+Used to shutdown the Payflow Pro library cleanly.
+
+この関数は、トランザクションを
+終了した後スクリプトが終了する前にコールしなければなりません。
+しかしこの関数のコールは省略することができ、その場合
+この拡張モジュールはスクリプト終了時に |pfpro_cleanup|
+を自動的にコールします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pfpro_init|
+
+vim:ft=help:

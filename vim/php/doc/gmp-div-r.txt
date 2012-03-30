@@ -1,0 +1,37 @@
+gmp_div_r -- 除算の余りを計算する
+
+  resource gmp_div_r(resource n, resource d [, int round])~
+
+{n} を {d}
+で整数として割った際の余りを計算します。余りは、引数
+{n} がゼロでないばあいに、これと同じ符号を有します。
+
+{n} 割られる数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{d} {n} を割る数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{round} 引数 {round} の説明については、関数 |gmp_div_q|
+を参照ください。
+
+余りを GMP 数で返します。
+
+|gmp_div_r| の例
+
+<?php >
+  $div = gmp_div_r("105", "20");
+  echo gmp_strval($div) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  5
+
+
+
+|gmp_div_q| |gmp_div_qr|
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+mailparse_rfc822_parse_addresses -- RFC 822
+準拠のアドレスをパースする
+
+  array mailparse_rfc822_parse_addresses(string addresses)~
+
+RFC 822 準拠の受信者リスト、 たとえば To:
+ヘッダの内容などをパースします。
+
+vim:ft=help:

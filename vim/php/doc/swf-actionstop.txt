@@ -1,0 +1,12 @@
+swf_actionstop -- 現在のフレームで flash
+ムービーの実行を終了する
+
+  void swf_actionstop()~
+
+現在のフレームで flash ムービーの実行を終了します。
+
+値を返しません。
+
+|swf_actionplay|
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+hw_api_attribute->values -- 属性のすべての値を返す
+
+  array values()~
+
+属性のすべての値を取得します。
+
+属性の値を配列として返します。
+
+vim:ft=help:

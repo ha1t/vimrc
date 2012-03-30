@@ -1,0 +1,34 @@
+jdtojewish -- ユリウス積算日をユダヤ暦に変換する
+
+  string jdtojewish(int juliandaycount [, bool hebrew [, int fl]])~
+
+ユリウス積算日をユダヤ暦に変換します。
+
+{julianday} ユリウス積算日を表す整数値。
+
+{hebrew} パラメータ {hebrew} が TRUE に設定されている場合、
+ヘブライ語の文字列形式での出力のために {fl}
+が使用されます。
+
+{fl} 使用可能なフォーマットは CAL_JEWISH_ADD_ALAFIM_GERESH、
+CAL_JEWISH_ADD_ALAFIM および CAL_JEWISH_ADD_GERESHAYIM です。
+
+ユダヤ暦の日付を "月/日/年" 形式の文字列で返します。
+
+バージョン 説明 5.0.0 {hebrew} および {fl}
+が追加されました。
+
+|jdtojewish| の例
+
+<?php >
+  echo jdtojewish(gregoriantojd(10, 8, 2002), true,
+         CAL_JEWISH_ADD_GERESHAYIM + CAL_JEWISH_ADD_ALAFIM + CAL_JEWISH_ADD_ALAFIM_GERESH); 
+?>
+
+
+
+
+
+|jewishtojd| |cal_from_jd|
+
+vim:ft=help:

@@ -1,0 +1,84 @@
+php_uname -- PHP
+が稼動しているオペレーティングシステムに関する情報を返す
+
+  string php_uname([string mode])~
+
+|php_uname| は、PHP が稼動しているオペレーティング
+システムに関する説明を返します。単に OS
+の名前を取得したい場合には PHP_OS
+定数の利用を考えてください。ただし、
+この定数が返すのは PHP が構築された OS の
+情報であることに注意しましょう。
+
+Unix では、もし現在稼動中の OS が判定できない場合には
+PHP が構築された OS を表示します。
+
+{mode} {mode}
+は、どのような情報を返すのかを一文字で指定します: 'a':
+デフォルトです。すべてのモードを "s n r v m"
+の順で返します。
+
+'s': オペレーティングシステム名。 例: FreeBSD
+
+'n': ホスト名。 例: localhost.example.com
+
+'r': リリース名。 例: 5.1.2-RELEASE
+
+'v': バージョン情報。
+オペレーティングシステムによって大きく変わります。
+
+'m': マシン型。例: i386
+
+説明を文字列で返します。
+
+|php_uname| の例
+
+<?php >
+  echo php_uname();
+  echo PHP_OS;
+  
+  /* 出力の例
+  Linux localhost 2.4.21-0.13mdk #1 Fri Mar 14 15:08:06 EST 2003 i686
+  Linux
+  
+  FreeBSD localhost 3.2-RELEASE #15: Mon Dec 17 08:46:02 GMT 2001
+  FreeBSD
+  
+  Windows NT XN1 5.1 build 2600
+  WINNT
+  */
+  
+  if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+      echo 'このサーバは Windows です!';
+  } else {
+      echo 'このサーバは Windows ではありません!';
+  }
+?>
+
+
+
+
+
+関連する 定義済みの定数
+を使うほうが簡単なこともあります。例えばこのようになります。
+OS 関連の定数の例
+
+<?php >
+  // *nix
+  echo DIRECTORY_SEPARATOR; // /
+  echo PHP_SHLIB_SUFFIX;    // so
+  echo PATH_SEPARATOR;      // :
+  
+  // Win*
+  echo DIRECTORY_SEPARATOR; // \
+  echo PHP_SHLIB_SUFFIX;    // dll
+  echo PATH_SEPARATOR;      // ;
+?>
+
+
+
+
+
+|phpversion| |php_sapi_name| |phpinfo|
+
+vim:ft=help:

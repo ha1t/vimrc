@@ -1,0 +1,16 @@
+sybase_free_result -- 結果メモリを開放する
+
+  bool sybase_free_result(resource result)~
+
+|sybase_free_result| は、スクリプト実行時に大量の
+メモリを使用することが懸念される場合にのみコールする必要があります。
+すべての結果メモリは、スクリプト終了時に自動的に開放されます。
+結果 ID を引数として |sybase_freeresult| を
+コールすることが可能で、関連する結果メモリは開放されます。
+
+{result}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

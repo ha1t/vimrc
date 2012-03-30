@@ -1,0 +1,17 @@
+msg_remove_queue -- メッセージキューを破棄する
+
+  bool msg_remove_queue(resource queue)~
+
+|msg_remove_queue| は、{queue}
+で指定したメッセージキューを破棄します。この関数を使用するのは、
+すべてのプロセスがメッセージキューの使用を終え、
+キューが保持するシステムリソースを開放する必要が生じた場合のみです。
+
+{queue}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msg_get_queue| |msg_receive| |msg_stat_queue| |msg_set_queue|
+
+vim:ft=help:

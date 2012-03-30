@@ -1,0 +1,50 @@
+addslashes -- 文字列をスラッシュでクォートする
+
+  string addslashes(string str)~
+
+データベースへの問い合わせなどに際してクォートされるべき文字の前に
+バックスラッシュを挿入した文字列を返します。
+クォートされるべき文字とは、シングルクォート('),
+ダブルクォート("),バックスラッシュ (\) ,NUL (NULL バイト)
+です。
+
+|addslashes| の使用例は、
+データベースにデータを登録するときです。例えば、
+O'reilly という名前をデータベースに挿入するには、
+エスケープする必要があります。ほとんどのデータベースでは
+O\'reilly という具合に \
+を使用します。これはデータベースにデータを格納する場合のみ必要です。
+追加される \ は挿入されません。 PHP のディレクティブ
+magic_quotes_sybase を \ にすると、' はもうひとつの '
+でエスケープされます。
+
+PHP ディレクティブ magic_quotes_gpc はデフォルトでは on で、
+全ての GET、POST、COOKIE データについて基本的に |addslashes|
+を実行します。 magic_quotes_gpc
+によってすでにエスケープされた文字列に対して
+|addslashes| を実行しないでください。
+さもないと、重複してエスケープされてしまいます。
+関数 |get_magic_quotes_gpc|
+はこれを確認するのに役立つかも知れません。
+
+{str} エスケープしたい文字列。
+
+エスケープされた文字列を返します。
+
+|addslashes| の例
+
+<?php >
+  $str = "Is your name O'reilly?";
+  
+  // 出力: Is your name O\'reilly?
+  echo addslashes($str);
+?>
+
+
+
+
+
+|stripcslashes| |stripslashes| |addcslashes| |htmlspecialchars| |quotemeta|
+|get_magic_quotes_gpc|
+
+vim:ft=help:

@@ -1,0 +1,59 @@
+enchant_broker_describe -- Enchant プロバイダを列挙する
+
+  array enchant_broker_describe(resource broker)~
+
+Enchant プロバイダを列挙し、その基本情報を通知します。
+同じ情報が phpinfo() からでも取得できます。
+
+{broker} ブローカーリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+指定したブローカーが提供するバックエンドの一覧
+
+<?php >
+  $r = enchant_broker_init();
+  $bprovides = enchant_broker_describe($r);
+  echo "現在のブローカーは、次のバックエンドを提供します。\n";
+  print_r($bprovides);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  現在のブローカーは、次のバックエンドを提供します。
+  Array
+  (
+      [0] => Array
+          (
+              [name] => aspell
+              [desc] => Aspell Provider
+              [file] => /usr/lib/enchant/libenchant_aspell.so
+          )
+  
+      [1] => Array
+          (
+              [name] => hspell
+              [desc] => Hspell Provider
+              [file] => /usr/lib/enchant/libenchant_hspell.so
+          )
+  
+      [2] => Array
+          (
+              [name] => ispell
+              [desc] => Ispell Provider
+              [file] => /usr/lib/enchant/libenchant_ispell.so
+          )
+  
+      [3] => Array
+          (
+              [name] => myspell
+              [desc] => Myspell Provider
+              [file] => /usr/lib/enchant/libenchant_myspell.so
+          )
+  
+  )
+
+
+
+vim:ft=help:

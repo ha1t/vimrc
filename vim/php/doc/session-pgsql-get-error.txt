@@ -1,0 +1,15 @@
+session_pgsql_get_error --
+エラーの数および直近のエラーメッセージを返す
+
+  array session_pgsql_get_error([bool with_error_message])~
+
+エラーの数を取得し、またオプションでエラーメッセージも取得します。
+
+{with_error_message} TRUE
+に設定すると、各エラーのエラーメッセージも返されます。
+
+エラーの数を配列で返します。
+
+|session_pgsql_add_error|
+
+vim:ft=help:

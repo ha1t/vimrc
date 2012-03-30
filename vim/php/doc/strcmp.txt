@@ -1,0 +1,11 @@
+strcmp -- バイナリセーフな文字列比較
+
+  int strcmp(string str1, string str2)~
+
+この比較は大文字小文字を区別することに注意してください。
+
+{str1} 最初の文字列。
+
+{str2} 次の文字列。
+
+vim:ft=help:

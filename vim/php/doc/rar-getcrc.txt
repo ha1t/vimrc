@@ -1,0 +1,10 @@
+Rar::getCrc -- エントリの CRC を取得する
+
+  int getCrc()~
+
+|Rar::getCrc| は、アーカイブエントリの CRC を返します。
+
+アーカイブエントリの CRC、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

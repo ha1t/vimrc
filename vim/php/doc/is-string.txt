@@ -1,0 +1,38 @@
+is_string -- 変数の型が文字列かどうかを調べる
+
+  bool is_string(mixed var)~
+
+指定した変数の型が文字列かどうかを調べます。
+
+{var} 評価する変数。
+
+{var} の型が string である場合に TRUE、それ以外の場合に
+FALSE を返します。
+
+|is_string| の例
+
+<?php >
+  if (is_string("23")) {
+   echo "文字列です\n";
+  } else {
+   echo "文字列ではありません\n";
+  }
+  var_dump(is_string('abc'));
+  var_dump(is_string("23"));
+  var_dump(is_string(23.5));
+  var_dump(is_string(true));
+?>
+
+上の例の出力は以下となります。
+
+  文字列です
+  bool(true)
+  bool(true)
+  bool(false)
+  bool(false)
+
+
+
+|is_float| |is_int| |is_bool| |is_object| |is_array|
+
+vim:ft=help:

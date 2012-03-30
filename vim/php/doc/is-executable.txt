@@ -1,0 +1,42 @@
+is_executable -- ファイルが実行可能かどうかを調べる
+
+  bool is_executable(string filename)~
+
+ファイルが実行可能かどうかを調べます。
+
+{filename} ファイルへのパス。
+
+ファイルが存在し、かつそれが実行可能な場合に TRUE、
+エラー時に FALSE を返します。
+
+バージョン 説明 5.0.0 |is_executable| は Windows
+でも使用可能となりました。
+
+|is_executable| の例
+
+<?php >
+  $file = '/home/vincent/somefile.sh';
+  
+  if (is_executable($file)) {
+      echo $file.' は実行可能です';
+  } else {
+      echo $file.' は実行可能ではありません';
+  }
+?>
+
+
+
+
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|is_file| |is_link|
+
+vim:ft=help:

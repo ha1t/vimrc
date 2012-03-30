@@ -1,0 +1,58 @@
+mysql_result -- 結果データを得る
+
+  string mysql_result(resource result, int row [, mixed field])~
+
+MySQL の結果セットからひとつのセルの内容を取得します。
+
+大量の結果セットで作業を行う際は、行全体を取り込む関数のうちひとつを
+使用することを検討するべきです（以下で説明します）。
+これらの関数は一回の関数コールで複数のセルの内容を返すので、
+|mysql_result| よりもかなり高速です。
+また、フィールド引数としてオフセット数値を指定する方が
+フィールド名やテーブル名.フィールド名のように指定するよりも
+かなり高速です。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{row} 結果から取得する行の番号。行番号は 0
+からはじまります。
+
+{field}
+取得したいフィールド名またはフィールドのオフセット。
+
+フィールドのオフセット、フィールド名またはテーブル名.フィールド名を
+指定可能です。カラム名のエイリアスが定義されている
+（'select foo as bar from...'）場合、そのカラム名の代わりに
+エイリアスを使用してください。指定しなかった場合は最初のフィールドを
+取得します。
+
+成功した場合に MySQL 結果セットのひとつのセルの内容、
+失敗した場合に FALSE を返します。
+
+|mysql_result| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('Could not connect: ' . mysql_error());
+  }
+  $result = mysql_query('SELECT name FROM work.employee');
+  if (!$result) {
+      die('Could not query:' . mysql_error());
+  }
+  echo mysql_result($result, 2); // 3 番目の employee の name を出力する
+  
+  mysql_close($link);
+?>
+
+
+
+
+
+|mysql_result| は、
+結果セットを処理するほかの関数と混用することはできません。
+
+|mysql_fetch_row| |mysql_fetch_array| |mysql_fetch_assoc| |mysql_fetch_object|
+
+vim:ft=help:

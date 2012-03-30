@@ -1,0 +1,138 @@
+gopher_parsedir -- gopher
+フォーマットのディレクトリエントリを連想配列に変換する
+
+  array gopher_parsedir(string dirent)~
+
+|gopher_parsedir| は、gopher
+フォーマットされたディレクトリエントリを連想配列に変換します。
+
+gopher は、リクエストに対して text/plain 形式の
+ドキュメントを返します。ディレクトリ（例えば /
+など）へのリクエストには
+特別にエンコードされた一連の行を返し、その個々の行が
+1 つのディレクトリ エントリあるいは情報行を表します。
+
+{dirent} ディレクトリエントリ。
+
+以下の要素からなる連想配列を返します。 type - GOPHER_XXX
+定数のいずれか。
+
+title - リソースの名前。
+
+path - リソースのパス。
+
+host - このドキュメント (あるいはディレクトリ)
+を保持するホストのドメイン名。
+
+port - host に接続するポート。
+
+失敗した場合には、さらに data
+というエントリがこの配列に追加され、そこにパースした行が含まれます。
+
+gopher://gopher.example.com/ からの出力を以下のように仮定する
+
+  0All about my gopher site.               /allabout.txt               gopher.example.com    70
+  9A picture of my cat.                    /pics/cat.png               gopher.example.com    70
+  1A collection of my writings.            /stories                    gopher.example.com    70
+  hThe HTTP version of this site.          URL:http://www.example.com  gopher.example.com    70
+  1Mirror of this site in Spain.           /                           gopher.ejemplo.co.es  70
+  iWelcome to my gopher site.                                          error.host            1
+  iPlease select one of the options above                              error.host            1
+  iSend complaints to /dev/null                                        error.host            1
+  iLong live gopher!                                                   error.host            1
+
+
+
+
+
+上の例で、gopher.example.com のルートディレクトリには ID 0
+のドキュメント が gopher://gopher.example.com:70/allabout.txt
+にあります。 また、2
+つのディレクトリ（それぞれ独自のファイル一覧を保持します）が
+gopher://gopher.exmaple.com:70/stories および
+gopher://gopher.ejemplo.co.es:70/ にあります。
+その他にバイナリファイル・HTTP URL
+へのリンク・そして情報の行があります。
+
+ディレクトリ一覧の各行を |gopher_parsedir| に渡すと、
+そのデータを連想配列形式にフォーマットします。
+
+|gopher_parsedir| の使用例
+
+<?php >
+  $directory = file("gopher://gopher.example.com");
+  
+  foreach($directory as $dirent) {
+      print_r(gopher_parsedir($dirent));
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Array (
+    [type] => 0
+    [title] => All about my gopher site.
+    [path] => /allabout.txt
+    [host] => gopher.example.com
+    [port] => 70
+  )
+  Array (
+    [type] => 9
+    [title] => A picture of my cat.
+    [path] => /pics/cat.png
+    [host] => gopher.example.com
+    [port] => 70
+  )
+  Array (
+    [type] => 1
+    [title] => A collection of my writings.
+    [path] => /stories
+    [host] => gopher.example.com
+    [port] => 70
+  )
+  Array (
+    [type] => 254
+    [title] => The HTTP version of this site.
+    [path] => URL:http://www.example.com
+    [host] => gopher.example.com
+    [port] => 70
+  )
+  Array (
+    [type] => 1
+    [title] => Mirror of this site in Spain.
+    [path] => /
+    [host] => gopher.ejemplo.co.es
+    [port] => 70
+  )
+  Array (
+    [type] => 255
+    [title] => Welcome to my gopher site.
+    [path] =>
+    [host] => error.host
+    [port] => 1
+  )
+  Array (
+    [type] => 255
+    [title] => Please select one of the options above.
+    [path] =>
+    [host] => error.host
+    [port] => 1
+  )
+  Array (
+    [type] => 255
+    [title] => Send complaints to /dev/null
+    [path] =>
+    [host] => error.host
+    [port] => 1
+  )
+  Array (
+    [type] => 255
+    [title] => Long live gopher!
+    [path] =>
+    [host] => error.host
+    [port] => 1
+  )
+
+
+
+vim:ft=help:

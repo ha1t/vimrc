@@ -1,0 +1,63 @@
+imagearc -- 部分楕円を描画する
+
+  bool imagearc(resource image, int cx, int cy, int width, int height, int start, int end, int color)~
+
+|imagearc|
+は、指定した座標を中心とする円弧を描画します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{cx} 中心の x 座標。
+
+{cy} 中心の y 座標。
+
+{width} 円弧の幅。
+
+{height} 円弧の高さ。
+
+{start} 始点の角度。
+
+{end} 終点の角度。 0&deg; は 3
+時の位置で、そこから時計回りの方向に円弧が描かれます。
+
+{color} |imagecolorallocate| で作成した色 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imagearc| による円の描画
+
+<?php >
+  // 200*200 の画像を作成します
+  $img = imagecreatetruecolor(200, 200);
+  
+  // 色を設定します
+  $white = imagecolorallocate($img, 255, 255, 255);
+  $red   = imagecolorallocate($img, 255,   0,   0);
+  $green = imagecolorallocate($img,   0, 255,   0);
+  $blue  = imagecolorallocate($img,   0,   0, 255);
+  
+  // 頭を描きます
+  imagearc($img, 100, 100, 200, 200,  0, 360, $white);
+  // 口を描きます
+  imagearc($img, 100, 100, 150, 150, 25, 155, $red);
+  // 左右の目を描きます
+  imagearc($img,  60,  75,  50,  50,  0, 360, $green);
+  imagearc($img, 140,  75,  50,  50,  0, 360, $blue);
+  
+  // 画像をブラウザに出力します
+  header("Content-type: image/png");
+  imagepng($img);
+  
+  // メモリを解放します
+  imagedestroy($img);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+|imagefilledarc| |imageellipse| |imagefilledellipse|
+
+vim:ft=help:

@@ -1,0 +1,27 @@
+dbplus_rsecindex --
+リレーションに新規セカンダリインデックスを作成する
+
+  mixed dbplus_rsecindex(resource relation, mixed domlist, int type)~
+
+|dbplus_rsecindex| は、 {relation}
+に新しいセカンダリインデックスを作成します。
+このインデックスには {domlist}
+で指定したドメインが含まれ、型は {type} です。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+{domlist}
+ドメイン名の組み合わせ。単一のドメイン名を含む文字列あるいは
+複数のドメイン名を含む配列を渡します。
+
+{type}
+
+成功した場合にリソース、失敗した場合に DBPLUS_ERR_UNKNOWN
+を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

@@ -1,0 +1,38 @@
+gnupg_decryptverify -- 指定されたテキストを復号し、検証する
+
+  array gnupg_decryptverify(resource identifier, string text, string plaintext)~
+
+指定したテキストを復号・検証し、署名の情報を返します。
+復号されたテキストは {plaintext} に保存されます。
+
+成功した場合、この関数は署名の情報を返し、復号されたテキストを
+{plaintext} に保存します。 失敗した場合、この関数は FALSE
+を返します。
+
+手続き型の |gnupg_decryptverify| の例
+
+<?php >
+  $plaintext = "";
+  $res = gnupg_init();
+  gnupg_adddecryptkey($res,"8660281B6051D071D94B5B230549F9DC851566DC","test");
+  $info = gnupg_decryptverify($res,$text,$plaintext);
+  print_r($info);
+?>
+
+
+
+オブジェクト指向の |gnupg_decryptverify| の例
+
+<?php >
+  $plaintext = "";
+  $gpg = new gnupg();
+  $gpg -> adddecryptkey("8660281B6051D071D94B5B230549F9DC851566DC","test");
+  $info = $gpg -> decryptverify($text,$plaintext);
+  print_r($info);
+?>
+
+
+
+
+
+vim:ft=help:

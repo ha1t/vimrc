@@ -1,0 +1,12 @@
+readline_write_history -- ヒストリを書きこむ
+
+  bool readline_write_history([string filename])~
+
+この関数はコマンドヒストリをファイルに書き込みます。
+
+{filename} 保存するファイルへのパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

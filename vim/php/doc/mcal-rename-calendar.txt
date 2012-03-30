@@ -1,0 +1,16 @@
+mcal_rename_calendar -- MCAL カレンダの名前を変更する
+
+  bool mcal_rename_calendar(int stream, string old_name, string new_name)~
+
+カレンダ名 {old_name} を {new_name} に変更します。
+
+{stream} MCAL ストリーム。
+
+{old_name} 古い名前。
+
+{new_name} 新しい名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

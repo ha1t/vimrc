@@ -1,0 +1,50 @@
+tidy_getopt -- Tidy
+ドキュメントについて指定した設定オプションの値を返す
+
+手続き型:
+
+  mixed tidy_getopt(tidy object, string option)~
+
+オブジェクト指向型:
+
+  mixed tidy->getOpt(tidy object, string option, string option)~
+
+|tidy_getopt| は、 Tidy オブジェクト {object}
+について指定した設定オプション {option}
+の値を返します。 返される型は、設定オプション {option}
+の型に依存します。
+それぞれの設定オプションと型の一覧は、http://tidy.sourceforge.net/docs/quickref.html
+にあります。
+
+|tidy_getopt| の例
+
+<?php >
+  $html ='<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <html><head><title>Title</title></head>
+  <body>
+  
+  <p><img src="img.png"></p>
+  
+  </body></html>';
+  
+  $config = array('accessibility-check' => 3,
+                  'alt-text' => 'some text');
+  
+  $tidy = new tidy();
+  $tidy->parseString($html, $config);
+  
+  
+  var_dump($tidy->getOpt('accessibility-check')); //integer
+  var_dump($tidy->getOpt('lower-literals')); //boolean
+  var_dump($tidy->getOpt('alt-text')); //string
+?>
+
+上の例の出力は以下となります。
+
+  int(3)
+  bool(true)
+  string(9) "some text"
+
+
+
+vim:ft=help:

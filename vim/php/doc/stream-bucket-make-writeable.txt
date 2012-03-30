@@ -1,0 +1,10 @@
+stream_bucket_make_writeable -- 操作する brigade から bucket
+オブジェクトを返す
+
+  object stream_bucket_make_writeable(resource brigade)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

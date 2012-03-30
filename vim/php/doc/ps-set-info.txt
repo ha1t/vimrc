@@ -1,0 +1,44 @@
+ps_set_info -- ドキュメントの情報を設定する
+
+  bool ps_set_info(resource p, string key, string val)~
+
+ドキュメントの情報フィールドを設定します。この情報は、PostScript
+ファイルのヘッダにコメントとして表示されます。
+ドキュメントが pdf に変換された場合にも、
+このフィールドはドキュメントの情報として使用されます。
+
+通常 BoundingBox は最初のページの設定と同じ値を
+設定しておきます。 |ps_findfont|
+が事前に呼ばれていなかった場合のみ、この設定が利用されます。そのような場合、
+もしこの関数で明示的に設定していなければ BoundingBox
+は空白のままとなります。
+
+postscript
+ファイルのヘッダが既に書き込まれている場合には、
+この関数は何の意味も持ちません。この関数は、最初のページの前、
+あるいは |ps_findfont|
+が最初にコールされる前にコールされる必要があります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{key} 設定する情報フィールドの名前。設定できる値は
+Keywords、Subject、 Title、Creator、 Author、BoundingBox および
+Orientation です。 このうちのいくつかは、PostScript
+ビューアに対して意味を持つものであることに注意しましょう。
+
+{value} 情報フィールドの値。 Orientation フィールドには
+Portrait あるいは Landscape が設定できます。BoundingBox は 4
+つの数値からなる文字列で、最初の 2
+つがページの左下角の座標を表します。 残りの 2
+つが右上角の座標です。
+
+pslib のバージョン 0.2.6 まででは、 |ps_findfont|
+が事前にコールされていない限り、 この関数は常に
+BoundingBox および Orientation を上書きします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_findfont| |ps_begin_page|
+
+vim:ft=help:

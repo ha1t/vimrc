@@ -1,0 +1,31 @@
+mqseries_set -- MQSeries MQSET
+
+   mqseries_set(resource hconn, resourceref compCode, resourceref reason)~
+
+|mqseries_set| (MQSET)
+は、ハンドルが指すオブジェクトの属性を変更します。
+オブジェクトは、キューでなければなりません。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_set| の例
+
+<?php >
+  TODO:
+?>
+
+
+
+
+
+|mqseries_inq|
+
+vim:ft=help:

@@ -1,0 +1,10 @@
+stream_encoding --
+ストリームのエンコード用の文字セットを設定する
+
+  bool stream_encoding(resource stream [, string encoding])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

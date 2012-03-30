@@ -1,0 +1,34 @@
+mime_content_type -- ファイルの MIME Content-type を検出する
+(非推奨)
+
+  string mime_content_type(string filename)~
+
+magic.mime ファイルの情報を用いて、 ファイルの MIME content
+type を返します。
+
+{filename} 調べるファイルへのパス。
+
+Content type を MIME 形式で返します。 たとえば text/plain
+あるいは application/octet-stream のような形式です。
+
+この関数は非推奨です。PECL 拡張モジュール Fileinfo
+が、同等の機能 (それ以上のもの)
+をもっときれいな方法で提供しています。
+
+|mime_content_type| の例
+
+<?php >
+  echo mime_content_type('php.gif') . "\n";
+  echo mime_content_type('test.php');
+?>
+
+上の例の出力は以下となります。
+
+  image/gif
+  text/plain
+
+
+
+Fileinfo を代わりに使用してください。
+
+vim:ft=help:

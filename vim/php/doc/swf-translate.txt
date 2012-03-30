@@ -1,0 +1,15 @@
+swf_translate -- 現在の座標軸を変換する
+
+  void swf_translate(float x, float y, float z)~
+
+指定した値で現在の座標を変換します。
+
+{x} x の値。
+
+{y} y の値。
+
+{z} z の値。
+
+値を返しません。
+
+vim:ft=help:

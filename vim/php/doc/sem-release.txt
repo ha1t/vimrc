@@ -1,0 +1,19 @@
+sem_release -- セマフォを解放する
+
+  bool sem_release(resource sem_identifier)~
+
+|sem_release| は、そのセマフォが
+コール元のプロセスにより現在確保されている場合、解放します。
+そうでない場合、警告が表示されます。
+
+セマフォを解放した後、再び確保するには、|sem_acquire|
+をコールします。
+
+{sem_identifier}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|sem_get| |sem_acquire|
+
+vim:ft=help:

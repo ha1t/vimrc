@@ -1,0 +1,30 @@
+ibase_fetch_assoc --
+クエリの結果から、行を連想配列として取得する
+
+  array ibase_fetch_assoc(resource result [, int fetch_flag])~
+
+クエリの結果の行を連想配列で返します。
+
+|ibase_fetch_assoc| は、 {result} から結果を 1 行取得します。
+同じフィールド名のカラムが 2
+つ以上存在する場合、最後のカラムが
+優先されます。同名のその他のカラムにアクセスするには、
+|ibase_fetch_row| を使用して数値添字を用いるか
+あるいはクエリ中でカラムに別名をつけます。
+
+{result} 結果ハンドル。
+
+{fetch_flag} {fetch_flag} は、定数 IBASE_TEXT および IBASE_UNIXTIME
+を論理和で指定します。IBASE_TEXT を渡すと、BLOB ID
+のかわりに BLOB の内容自体を返します。IBASE_UNIXTIME
+を渡すと、日付/時刻の値を文字列ではなく Unix
+タイムスタンプで返します。
+
+|ibase_fetch_assoc|
+は、取得した行に対応する連想配列を返します。
+続けてコールすると、結果セットの次の行を返し、
+行がもうない場合には FALSE を返します。
+
+|ibase_fetch_row| |ibase_fetch_object|
+
+vim:ft=help:

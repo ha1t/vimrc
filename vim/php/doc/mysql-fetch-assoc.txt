@@ -1,0 +1,84 @@
+mysql_fetch_assoc -- 連想配列として結果の行を取得する
+
+  array mysql_fetch_assoc(resource result)~
+
+取得した行に対応する連想配列を返し、内部のデータポインタを前に進めます。
+|mysql_fetch_assoc| は、 |mysql_fetch_array| の 2
+番目のパラメータを MYSQL_ASSOC
+に指定してコールするのと同じ働きをします。つまり、
+連想配列のみを返します。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+取得した行に対応する文字列の連想配列を返します。行がもうない場合には
+FALSE を返します。
+
+結果の複数のカラムが同じフィールド名を有している場合、最後のカラ
+ムが優先されます。同じ名前を有する他のカラムにアクセスするには、
+|mysql_fetch_row|を使用して数値添字を返すか、
+エイリアス名を追加する必要があります。エイリアスの説明については、
+|mysql_fetch_array|の例を参照ください。
+
+|mysql_fetch_assoc| のいろいろな例
+
+<?php >
+  $conn = mysql_connect("localhost", "mysql_user", "mysql_password");
+  
+  if (!$conn) {
+      echo "Unable to connect to DB: " . mysql_error();
+      exit;
+  }
+  
+  if (!mysql_select_db("mydbname")) {
+      echo "Unable to select mydbname: " . mysql_error();
+      exit;
+  }
+  
+  $sql = "SELECT id as userid, fullname, userstatus
+          FROM   sometable
+          WHERE  userstatus = 1";
+  
+  $result = mysql_query($sql);
+  
+  if (!$result) {
+      echo "Could not successfully run query ($sql) from DB: " . mysql_error();
+      exit;
+  }
+  
+  if (mysql_num_rows($result) == 0) {
+      echo "No rows found, nothing to print so am exiting";
+      exit;
+  }
+  
+  // データ行が存在する間、それを $row に連想配列形式でセットする
+  // 注: 結果が 1 行であることがわかっているのなら、ループを利用しなくてもよい
+  // 注: ループ内で extract($row); を実行すれば、
+  //     $userid, $fullname, そして $userstatus を利用できる
+  while ($row = mysql_fetch_assoc($result)) {
+      echo $row["userid"];
+      echo $row["fullname"];
+      echo $row["userstatus"];
+  }
+  
+  mysql_free_result($result);
+?>
+
+
+
+
+
+特筆すべき点として、|mysql_fetch_assoc| が
+著しい付加価値があるにもかかわらず、 |mysql_fetch_row|より
+それほど遅くはないということが言えます。
+
+この関数により返されるフィー ルド名は
+大文字小文字を区別 します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|mysql_fetch_row| |mysql_fetch_array| |mysql_data_seek| |mysql_query|
+|mysql_error|
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+wddx_add_vars -- 指定した ID の WDDX パケットを追加する
+
+  bool wddx_add_vars(resource packet_id, mixed var_name [, mixed ...])~
+
+渡された変数をシリアライズし、
+指定したパケットに結果を追加します。
+
+この関数は、可変長のパラメータを受け取ります。
+{packet_id} |wddx_packet_start| が返す WDDX パケット。
+
+{var_name} 変数名を表す文字列、あるいは配列。
+配列の中身は、変数名を表す文字列あるいは別の配列などとなります。
+
+{...}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

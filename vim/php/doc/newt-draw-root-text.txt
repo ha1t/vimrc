@@ -1,0 +1,43 @@
+newt_draw_root_text -- 指定した位置に文字列を表示する
+
+  void newt_draw_root_text(int left, int top, string text)~
+
+指定した位置に文字列を表示します。
+
+{left} カラム番号。
+
+left
+が負の数の場合、画面の反対側から位置が計算されます。
+
+{top} 行番号。
+
+top
+が負の数の場合、画面の反対側から位置が計算されます。
+
+{text} 表示する文字列。
+
+値を返しません。
+
+|newt_draw_root_text| の例
+このコードは、画面の両側の隅にタイトルを表示します。
+
+<?php >
+   newt_init();
+   newt_cls();
+  
+   newt_draw_root_text (2, 0, "Some root text");
+   newt_refresh();
+   sleep(1);
+  
+   newt_draw_root_text (-30, 0, "Root text in the other corner");
+   newt_refresh();
+   sleep(1);
+  
+   newt_finished();
+?>
+
+
+
+|newt_push_help_line| |newt_pop_help_line|
+
+vim:ft=help:

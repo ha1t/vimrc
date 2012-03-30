@@ -1,0 +1,8 @@
+PDF_suspend_page -- ページを停止する
+
+  bool PDF_suspend_page(resource pdfdoc, string optlist)~
+
+現在のページを一時停止します。後で |PDF_resume_page|
+で再開することが可能です。
+
+vim:ft=help:

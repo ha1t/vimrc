@@ -1,0 +1,18 @@
+imap_rfc822_parse_headers -- 文字列からメールヘッダを解釈する
+
+  object imap_rfc822_parse_headers(string headers [, string defaulthost])~
+
+複数のヘッダ要素を含むオブジェクトを取得します。
+|imap_header| と同じようなものです。
+
+{headers} パースされたヘッダデータ。
+
+{defaulthost} デフォルトのホスト名。
+
+|imap_header| が返すオブジェクトと似たものを返します。
+フラグおよび他の要素は IMAP
+サーバから取得するいう点が異なります。
+
+|imap_rfc822_parse_adrlist|
+
+vim:ft=help:

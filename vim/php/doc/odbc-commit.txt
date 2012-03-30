@@ -1,0 +1,12 @@
+odbc_commit -- ODBC トランザクションをコミットする
+
+  bool odbc_commit(resource connection_id)~
+
+その接続におけるすべての実行中のトランザクションをコミットします。
+
+{connection_id} 接続 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

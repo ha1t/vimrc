@@ -1,0 +1,22 @@
+oci_field_is_null -- フィールドが NULL
+であるかどうかを確認する
+
+  bool oci_field_is_null(resource statement, mixed field)~
+
+{statement} の、 指定したフィールド {field} が NULL
+であるかどうかを調べます。
+
+{statement} 有効な OCI ステートメント ID。
+
+{field} フィールド番号またはフィールド名 (大文字)。
+
+{field} が NULL の場合に TRUE、 それ以外の場合に FALSE
+を返します。
+
+PHP バージョン 5.0.0 以前では、代わりに |ocicolumnisnull|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_field_is_null| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

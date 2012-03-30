@@ -1,0 +1,14 @@
+msql_num_rows -- 結果における行の数を得る
+
+  int msql_num_rows(resource query_identifier)~
+
+|msql_num_rows| は、結果セットにおける 行の数を返します。
+
+{ result}評価された結果 リソース。 この結果は、|msql_query|
+のコールにより得られたものです。
+
+結果セットにおける行の数を返します。
+
+|msql_num_fields|
+
+vim:ft=help:

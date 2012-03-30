@@ -1,0 +1,15 @@
+m_transsend -- トランザクションを終了し、送信する
+
+  int m_transsend(resource conn, int identifier)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{identifier}
+
+
+
+vim:ft=help:

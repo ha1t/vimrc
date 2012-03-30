@@ -1,0 +1,33 @@
+xslt_error -- エラー文字列を返す
+
+  string xslt_error(resource xh)~
+
+指定した XSLT
+プロセッサで発生した直近のエラーを説明する文字列を返します。
+
+{xh} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+エラーメッセージを表す文字列を返します。
+
+関数 |xslt_error| および |xslt_errno| によるエラー処理
+
+<?php >
+  $xh = xslt_create();
+  $result = xslt_process($xh, 'dog.xml', 'pets.xsl');
+  if (!$result) {
+      die(sprintf("Cannot process XSLT document [%d]: %s",
+                  xslt_errno($xh), xslt_error($xh)));
+  }
+  
+  echo $result;
+  
+  xslt_free($xh);
+?>
+
+
+
+
+
+|xslt_errno|
+
+vim:ft=help:

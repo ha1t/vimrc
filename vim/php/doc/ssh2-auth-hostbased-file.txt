@@ -1,0 +1,50 @@
+ssh2_auth_hostbased_file -- ホスト公開鍵を使用して認証を行う
+
+  bool ssh2_auth_hostbased_file(resource session, string username, string hostname, string pubkeyfile, string privkeyfile [, string passphrase [, string local_username]])~
+
+ファイルから読み込まれたホスト公開鍵を使用して認証を行います。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{username}
+
+{hostname}
+
+{pubkeyfile}
+
+{privkeyfile}
+
+{passphrase} もし {privkeyfile} が暗号化されている
+(そのはずです)
+場合、パスフレーズを渡す必要があります。
+
+{local_username} もし {local_username} を省略した場合、 {username}
+の値を使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+ホスト公開鍵を使用した認証
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22, array('hostkey'=>'ssh-rsa'));
+  
+  if (ssh2_auth_hostbased_file($connection, 'remoteusername', 'myhost.example.com',
+                               '/usr/local/etc/hostkey_rsa.pub',
+                               '/usr/local/etc/hostkey_rsa', 'secret',
+                               'localusername')) {
+    echo "Public Key Hostbased Authentication Successful\n";
+  } else {
+    die('Public Key Hostbased Authentication Failed');
+  }
+?>
+
+
+
+
+
+|ssh2_auth_hostbased_file| には libssh2 >= 0.7 と PHP/SSH2 >= 0.7
+が必要です。
+
+vim:ft=help:

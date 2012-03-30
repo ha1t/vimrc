@@ -1,0 +1,21 @@
+ps_shfill -- 範囲をシェーディングで塗りつぶす
+
+  bool ps_shfill(resource psdoc, int shadingid)~
+
+範囲をシェーディングで塗りつぶします。シェーディングは事前に
+|ps_shading| で作られている必要があります。
+この関数は、|ps_shading_pattern|
+でシェーディングからパターンを作成し、
+それを塗りつぶし色として使用するのと同じことを行います。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{shadingid} 事前に |ps_shading| で作成したシェーディングの
+ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_shading| |ps_shading_pattern|
+
+vim:ft=help:

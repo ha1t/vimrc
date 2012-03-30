@@ -1,0 +1,12 @@
+DomDocument->doctype -- 文章型を返す
+
+  domdocumenttype DomDocument->doctype()~
+
+この関数は、クラス DomDocumentType
+のオブジェクトを返します。4.3より前のバージョンのPHPでは、
+このオブジェクトは、クラス Dtd でしたが、 DOM
+標準にはそのようなクラスはありません。
+
+クラスDomDocumentTypeのメソッドも参照下さい。
+
+vim:ft=help:

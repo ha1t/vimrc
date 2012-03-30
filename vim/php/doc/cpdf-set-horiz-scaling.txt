@@ -1,0 +1,14 @@
+cpdf_set_horiz_scaling -- テキストの水平方向の倍率を設定する
+
+  bool cpdf_set_horiz_scaling(int pdf_document, float scale)~
+
+水平方向の倍率を {scale} パーセントに設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{scale} 設定する倍率。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

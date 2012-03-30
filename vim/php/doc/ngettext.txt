@@ -1,0 +1,30 @@
+ngettext -- gettext の複数形版
+
+  string ngettext(string msgid1, string msgid2, int n)~
+
+複数形版の |gettext| です。
+言語によっては、数量に応じていくつかの複数形が存在することがあります。
+
+{msgid1}
+
+{msgid2}
+
+{n}
+
+{msgid1} および {msgid2} で表されるメッセージの、数 {n}
+に対応する複数形を返します。
+
+|ngettext| の例
+
+<?php >
+  setlocale(LC_ALL, 'cs_CZ');
+  printf(ngettext("%d window", "%d windows", 1), 1); // 1 okno
+  printf(ngettext("%d window", "%d windows", 2), 2); // 2 okna
+  printf(ngettext("%d window", "%d windows", 5), 5); // 5 oken
+?>
+
+
+
+
+
+vim:ft=help:

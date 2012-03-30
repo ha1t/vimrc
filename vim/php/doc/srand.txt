@@ -1,0 +1,37 @@
+srand -- 乱数ジェネレータを初期化する
+
+  void srand([int seed])~
+
+シード {seed} で乱数ジェネレータを初期化します。 {seed}
+を省略した場合はランダムな値が設定されます。
+
+PHP 4.2.0 以降、 |srand| または |mt_srand|
+によりランダム数生成器にシードを与える必要はありません。
+これは、この処理が自動的に行われるためです。
+
+{seed} オプションで指定するシード値。
+
+バージョン 説明 4.2.0 以降 {seed}
+はオプションになりました。
+省略した場合はランダムな値がデフォルトで設定されます。
+
+|srand| の例
+
+<?php >
+  // マイクロ秒でシードを設定します
+  function make_seed()
+  {
+    list($usec, $sec) = explode(' ', microtime());
+    return (float) $sec + ((float) $usec * 100000);
+  }
+  srand(make_seed());
+  $randval = rand();
+?>
+
+
+
+
+
+|rand| |getrandmax| |mt_srand|
+
+vim:ft=help:

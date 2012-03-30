@@ -1,0 +1,25 @@
+shmop_size -- 共有メモリブロックの大きさを得る
+
+  int shmop_size(int shmid)~
+
+|shmop_size| は共有メモリブロックの大きさを
+得るために使用されます。
+
+{shmid} |shmop_open| が作成した共有メモリブロックの識別子。
+
+共有メモリブロックが占有するバイト数を表す整数を返します。
+
+共有メモリブロックの大きさを得る
+
+<?php >
+  $shm_size = shmop_size($shm_id);
+?>
+
+
+
+
+
+この例は、$shm_id を ID とする共有メモリブロックの
+大きさを $shm_size に代入します。
+
+vim:ft=help:

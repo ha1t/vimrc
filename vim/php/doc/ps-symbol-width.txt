@@ -1,0 +1,26 @@
+ps_symbol_width -- グリフの幅を取得する
+
+  float ps_symbol_width(resource psdoc, int ord [, int fontid [, float size]])~
+
+指定されたフォントとサイズで出力した場合に、
+グリフの幅が何ポイントになるかを計算します。正確な幅を計算するため、
+この関数は Adobe
+のフォントメトリックファイルを必要とします。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{ord} {ord} は、
+フォントエンコーディングベクタの中でのグリフの位置です。
+
+{fontid} 使用するフォントの
+ID。フォントが指定されていない場合は、
+現在のフォントが使用されます。
+
+{size}
+フォントのサイズ。指定されていない場合は現在のサイズが使用されます。
+
+グリフの幅をポイント数で返します。
+
+|ps_symbol| |ps_symbol_name|
+
+vim:ft=help:

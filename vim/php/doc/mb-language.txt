@@ -1,0 +1,25 @@
+mb_language -- 現在の言語を設定あるいは取得する
+
+  mixed mb_language([string language])~
+
+現在の言語を設定あるいは取得します。
+
+{language} e-mail
+メッセージのエンコーディングとして使用します。有効な言語は、"Japanese",
+"ja","English","en", "uni" (UTF-8) です。 |mb_send_mail| は、e-mail
+をエンコードする際にこの設定を使用します。
+
+言語とその設定は、Japanese の場合は ISO-2022-JP/Base64、uni
+の場合は UTF-8/Base64、English の場合は ISO-8859-1/quoted printable
+です。
+
+{language} が設定され、 {language}
+が有効な場合、TRUEが返されます。
+そうでない場合、FALSEが返されます。 {language}
+が省略された場合、
+言語の名前が文字列として返されます。事前に言語が設定されていない場合、
+FALSE が返されます。
+
+|mb_send_mail|
+
+vim:ft=help:

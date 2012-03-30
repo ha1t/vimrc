@@ -1,0 +1,8 @@
+PDF_end_document -- PDF ファイルを閉じる
+
+  bool PDF_end_document(resource pdfdoc, string optlist)~
+
+作成された PDF
+ファイルを閉じ、さまざまなオプションを適用します。
+
+vim:ft=help:

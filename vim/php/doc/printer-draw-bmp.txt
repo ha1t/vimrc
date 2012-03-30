@@ -1,0 +1,41 @@
+printer_draw_bmp -- ビットマップを描画する
+
+  bool printer_draw_bmp(resource printer_handle, string filename, int x, int y [, int width, int height])~
+
+この関数はビットマップを描画します。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{filename} ビットマップへのパス。
+
+{x} {x} はビットマップの左上の x 座標です。
+
+{y} {y} はビットマップの左上の y 座標です。
+
+{width} ビットマップの幅。
+
+{height} ビットマップの高さ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|printer_draw_bmp| の例
+
+<?php >
+  $handle = printer_open();
+  printer_start_doc($handle, "My Document");
+  printer_start_page($handle);
+  
+  printer_draw_bmp($handle, "c:\\image.bmp", 1, 1);
+  
+  printer_end_page($handle);
+  printer_end_doc($handle);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

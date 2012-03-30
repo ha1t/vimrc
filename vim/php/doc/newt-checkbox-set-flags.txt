@@ -1,0 +1,15 @@
+newt_checkbox_set_flags -- チェックボックスリソースを設定する
+
+  void newt_checkbox_set_flags(resource checkbox, int flags, int sense)~
+
+この関数は、チェックボックスリソースのさまざまなフラグを設定します。
+
+{checkbox}
+
+{flags}
+
+{sense}
+
+値を返しません。
+
+vim:ft=help:

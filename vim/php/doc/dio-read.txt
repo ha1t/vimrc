@@ -1,0 +1,17 @@
+dio_read -- ファイル記述子からバイトデータを読み込む
+
+  string dio_read(resource fd [, int len])~
+
+関数 |dio_read| は 記述子 {fd} で示されるファイルから {len}
+バイトを読み込み、それを返します。
+
+{fd} |dio_open| が返すファイル記述子。
+
+{len} 読み込むバイト数。指定されなかった場合は |dio_read|
+は 1K サイズのブロックを読み込みます。
+
+{fd} から読み込んだバイトデータを返します。
+
+|dio_write|
+
+vim:ft=help:

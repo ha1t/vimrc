@@ -1,0 +1,29 @@
+newt_win_menu --
+
+  int newt_win_menu(string title, string text, int suggestedWidth, int flexDown, int flexUp, int maxListHeight, array items, int listItem [, string button1 [, string ...]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{title}
+
+{text}
+
+{suggestedWidth}
+
+{flexDown}
+
+{flexUp}
+
+{maxListHeight}
+
+{items}
+
+{listItem}
+
+{button1}
+
+値を返しません。
+
+vim:ft=help:

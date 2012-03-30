@@ -1,0 +1,5 @@
+socket_set_timeout -- stream_set_timeout のエイリアス
+
+この関数は次の関数のエイリアスです。 |stream_set_timeout|.
+
+vim:ft=help:

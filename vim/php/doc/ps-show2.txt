@@ -1,0 +1,20 @@
+ps_show2 -- テキストを現在の位置に出力する
+
+  bool ps_show2(resource psdoc, string text, int len)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+{psdoc} |ps_new| が返す postscript ファイルの ID リソース。
+
+{text}
+
+{len}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

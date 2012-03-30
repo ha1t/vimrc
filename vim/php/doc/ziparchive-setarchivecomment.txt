@@ -1,0 +1,30 @@
+ZipArchive::setArchiveComment -- ZIP
+アーカイブのコメントを設定する
+
+  mixed ZipArchive::setArchiveComment(string comment)~
+
+ZIP アーカイブのコメントを設定します。
+
+{comment} コメントの内容。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+アーカイブの作成およびコメントの設定
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip', ZipArchive::CREATE);
+  if ($res === TRUE) {
+      $zip->addFromString('test.txt', 'ここにファイルの内容を書きます');
+      $z->setArchiveComment('新しいアーカイブのコメント');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

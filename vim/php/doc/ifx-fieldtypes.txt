@@ -1,0 +1,32 @@
+ifx_fieldtypes -- Informix SQL フィールドのリスト
+
+  array ifx_fieldtypes(resource result_id)~
+
+{result_id} のクエリについて、フィールド名をキーとし、
+SQL フィールド型をデータとした連想配列を返します。
+
+{result_id} {result_id} は、 |ifx_query| または |ifx_prepare| (select
+型のクエリのみ!) により返された有効な結果 ID です。
+
+{result_id} のクエリについて、フィールド名をキーとし、
+SQL フィールド型をデータとした連想配列を返します。
+エラーの場合に FALSE を返します。
+
+フィールド名および SQL フィールド型
+
+<?php >
+  $types = ifx_fieldtypes($resultid);
+  if (is_array($types)) {
+      foreach ($types as $fname => $val) {
+          echo "$fname:\t type = $val\n";
+      }
+  }
+?>
+
+
+
+
+
+|ifx_fieldproperties|
+
+vim:ft=help:

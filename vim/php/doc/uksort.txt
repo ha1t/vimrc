@@ -1,0 +1,54 @@
+uksort --
+ユーザ定義の比較関数を用いて、キーで配列をソートする
+
+  bool uksort(array array, callback cmp_function)~
+
+|uksort| は、
+ユーザ定義の比較関数を用いて配列のキーをソートします。
+ソートしたい配列を複雑な基準でソートする必要がある場合には、
+この関数を使う必要があります。
+
+{array} 入力の配列。
+
+{cmp_function} 比較用のコールバック関数。
+
+関数 {cmp_function} は、 {array}
+のキーペアによって満たされる 2
+つのパラメータを受け取ります。
+この比較関数が返す値は、最初の引数が二番目より小さい場合は負の数、
+等しい場合はゼロ、そして大きい場合は正の数でなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|uksort| の例
+
+<?php >
+  function cmp($a, $b)
+  {
+      $a = ereg_replace('^(a|an|the) ', '', $a);
+      $b = ereg_replace('^(a|an|the) ', '', $b);
+      return strcasecmp($a, $b);
+  }
+  
+  $a = array("John" => 1, "the Earth" => 2, "an apple" => 3, "a banana" => 4);
+  
+  uksort($a, "cmp");
+  
+  foreach ($a as $key => $value) {
+      echo "$key: $value\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  an apple: 3
+  a banana: 4
+  the Earth: 2
+  John: 1
+
+
+
+|usort| |uasort| |sort| |asort| |arsort| |ksort| |natsort| |rsort|
+
+vim:ft=help:

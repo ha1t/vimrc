@@ -1,0 +1,27 @@
+strcoll -- ロケールに基づく文字列比較
+
+  int strcoll(string str1, string str2)~
+
+この比較は大文字小文字を区別すること、そして、 |strcmp|
+とは異なり、
+バイナリセーフではないことに注意してください。
+
+|strcoll| は比較を行う際に現在のロケールを使用します。
+ロケールが C または POSIX の場合、この関数は |strcmp|
+と等価です。
+
+{str1} 最初の文字列。
+
+{str2} 次の文字列。
+
+{str1} が {str2} より小さい場合に 0 未満の値、{str1} が {str2}
+より大きい場合に 0 より大きな値、 両者が等しい場合に 0
+を返します。
+
+バージョン 説明 4.2.3 この関数が win32
+でも動作するようになりました。
+
+|preg_match| |strcmp| |strcasecmp| |substr| |stristr| |strncasecmp| |strncmp|
+|strstr| |setlocale|
+
+vim:ft=help:

@@ -1,0 +1,46 @@
+ftp_site -- SITEコマンドをサーバに送信する
+
+  bool ftp_site(resource ftp_stream, string command)~
+
+|ftp_site| は、指定された SITE コマンドを FTP
+サーバに送信します。
+
+SITE コマンドの規格は統一されていないため、
+サーバにより仕様が異なります．ファイルのパーミッションや
+グループメンバーの設定のような処理を行う際には有用です。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{command} SITE
+コマンド。このパラメータはエスケープされないので、スペースや
+その他の文字を含むファイル名は問題を引き起こす可能性があることに
+注意してください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+SITE コマンドを FTP サーバに送信する
+
+<?php >
+  /* Connect to FTP server */
+  $conn = ftp_connect('ftp.example.com');
+  if (!$conn) die('Unable to connect to ftp.example.com');
+  
+  /* "user" として、パスワード "pass" でログインする */
+  if (!ftp_login($conn, 'user', 'pass')) die('Error logging into ftp.example.com');
+  
+  /* FTP サーバに "SITE CHMOD 0600 /home/user/privatefile" コマンドを発行する */
+  if (ftp_site($conn, 'CHMOD 0600 /home/user/privatefile')) {
+     echo "Command executed successfully.\n";
+  } else {
+     die('Command failed.');
+  }
+?>
+
+
+
+
+
+|ftp_raw|
+
+vim:ft=help:

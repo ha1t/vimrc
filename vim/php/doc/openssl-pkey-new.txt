@@ -1,0 +1,22 @@
+openssl_pkey_new -- 新規に秘密鍵を生成する
+
+  resource openssl_pkey_new([array configargs])~
+
+|openssl_pkey_new| は、
+新しい秘密鍵と公開鍵の鍵ペアを作成します。鍵の公開部は、
+|openssl_pkey_get_public| を使用して取得可能です。
+
+この関数を正しく動作させるには、正しい形式の openssl.cnf
+をインストールしておく必要があります。
+詳細な情報は、インストールについてのセクション
+を参照ください。
+
+{configargs}
+鍵の作成方法の詳細（ビット数など）を指定するには、
+{configargs} を使用します。 {configargs}
+の詳細な情報については |openssl_csr_new| を参照ください。
+
+成功した場合に秘密鍵のリソース ID、 エラー時に FALSE
+を返します。
+
+vim:ft=help:

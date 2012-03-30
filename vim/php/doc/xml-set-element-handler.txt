@@ -1,0 +1,56 @@
+xml_set_element_handler --
+開始要素および終了要素のハンドラを設定する
+
+  bool xml_set_element_handler(resource parser, callback start_element_handler, callback end_element_handler)~
+
+XML パーサ {parser} の要素ハンドラ関数を設定します。
+{start_element_handler} および {end_element_handler} は、 |xml_parse| が
+{parser} を
+コールした際に存在している必要がある関数の名前を有する文字列です。
+
+{parser}
+
+  bool (resource parser, callback start_element_handler, callback end_element_handler, resource parser, string name, array attribs)~
+
+{start_element_handler} {start_element_handler} という名前の関数は、
+次の 3 つのパラメータをとる必要があります。 {parser}
+最初のパラメータである parser は、 ハンドラをコールする
+XML パーサへのリファレンスです。
+
+{name} 2 番目のパラメータである {name} は、
+このハンドラがコールされた要素の名前を有しています。
+大文字変換
+がこのパーサに関して有効な場合、要素の名前は大文字になります。
+
+{attribs} 第 3 のパラメータである {attribs} は、その要素の
+(全)属性に関する連想配列です。この配列のキーは属性の名前であり、
+値は属性の値です。属性の名前は、要素名と同様に
+大文字変換 となります。 属性の値は、大文字変換
+されません。
+
+この属性は、|each| を使用して {attribs}
+を順次アクセスすることにより、
+元の順序で取得することができます。
+配列の最初のキーが最初の属性であり、後も同様です。
+
+関数名の代わりに、オブジェクトへの
+リファレンスを格納した配列とメソッド名を指定することもできます。
+
+  bool (resource parser, callback start_element_handler, callback end_element_handler, resource parser, string name, array attribs, resource parser, string name)~
+
+{end_element_handler} {end_element_handler}という名前の関数は、 2
+つのパラメータをとる必要があります。 {parser}
+最初のパラメータである parser は、 ハンドラをコールする
+XML パーサへのリファレンスです。
+
+{name} 2 番目のパラメータである {name} は、
+このハンドラがコールされた要素の名前を有しています。このパーサにおいて
+大文字変換 が有効な場合、要素名は大文字になります。
+
+ハンドラ関数が空の文字列または FALSE
+に設定されている場合、そのハンドラは無効です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

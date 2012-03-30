@@ -1,0 +1,23 @@
+openssl_pkey_get_private -- 秘密鍵を取得する
+
+  resource openssl_pkey_get_private(mixed key [, string passphrase])~
+
+|openssl_get_privatekey| は {key}
+をパースし、他の関数で使用できるよう準備します。
+
+{key} {key} は以下のいずれかです。 file://path/to/file.pem
+形式の文字列。 このファイルは、PEM
+エンコードされた証明書/秘密鍵である必要が
+あります（両方を含むことも可能です）。
+
+PEM フォーマットの秘密鍵。
+
+{passphrase}
+指定されたキーが（パスフレーズを用いて）暗号化されている場合は、
+オプションのパラメータ {passphrase}
+を使用する必要があります。
+
+成功した場合に正のキーリソース ID、エラー時に FALSE
+を返します。
+
+vim:ft=help:

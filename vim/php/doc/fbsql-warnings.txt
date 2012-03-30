@@ -1,0 +1,14 @@
+fbsql_warnings -- FrontBase 警告を有効または無効にする
+
+  bool fbsql_warnings([bool OnOff])~
+
+FrontBase の警告を有効または無効にします。
+
+{OnOff} 警告を有効にするかしないか。
+
+警告をオンにした場合は TRUE、そうでない場合は FALSE
+を返します。
+
+|fbsql_errno| |fbsql_error|
+
+vim:ft=help:

@@ -1,0 +1,32 @@
+mssql_fetch_array --
+連想配列・数値添字配列・あるいはその両方で結果の行を取得する
+
+  array mssql_fetch_array(resource result [, int result_type])~
+
+|mssql_fetch_array| は、 |mssql_fetch_row| の拡張版です。
+この関数は、結果の配列に数値インデックスにデータを保持するのに加えて、
+フィールド名をキーとしてデータを連想配列にも保存します。
+
+機能がかなり増えているにもかかわらず、|mssql_fetch_array|
+は |mssql_fetch_row|
+よりもそれほど遅くはないということを強調しておきます。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+{result_type}
+取得する配列の形式。定数で、以下のいずれかの値となります。
+MSSQL_ASSOC、 MSSQL_NUM あるいは MSSQL_BOTH (デフォルト)。
+
+取得された行に対応する配列、行がもうない場合に FALSE
+を返します。
+
+この関数により返されるフィー ルド名は
+大文字小文字を区別 します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|mssql_fetch_row|
+
+vim:ft=help:

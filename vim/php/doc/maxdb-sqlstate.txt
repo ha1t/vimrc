@@ -1,0 +1,76 @@
+maxdb->sqlstate -- 直近の MaxDB 操作の SQLSTATE エラーを返します
+
+手続き型
+
+  string maxdb_sqlstate(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+直近のエラーの SQLSTATE
+エラーコードを含む文字列を返します。 エラーコードは 5
+つの文字で構成されています。'00000'
+は、エラーが発生しなかったことを意味します。
+コードの内容は ANSI SQL および ODBC で指定されています。
+
+今のところ、すべての MaxDB エラーが SQLSTATE
+に関連付けられているわけではないことに注意しましょう。
+関連付けられていないエラーについては、 HY000
+(一般的なエラー) が使用されます。
+
+直近のエラーについての SQLSTATE
+エラーコードを含む文字列を返します。 エラーコードは 5
+つの文字で構成されています。'00000'
+は、エラーが発生しなかったことを意味します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* City テーブルは既に存在するので、エラーとなります */
+  if (!$maxdb->query("CREATE TABLE hotel.city (ID INT, Name VARCHAR(30))")) {
+     printf("Error - SQLSTATE %s.\n", $maxdb->sqlstate);
+  }
+  
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* City テーブルは既に存在するので、エラーとなります */
+  if (!maxdb_query($link, "CREATE TABLE hotel.city (ID INT, Name VARCHAR(30))")) {
+     printf("Error - SQLSTATE %s.\n", maxdb_sqlstate($link));
+  }
+  
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Warning: maxdb_query(): -6000 POS(20) Duplicate table name:CITY [I6000] <...>
+  Error - SQLSTATE I6000.
+
+|maxdb_errno| |maxdb_error|
+
+vim:ft=help:

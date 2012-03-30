@@ -1,0 +1,28 @@
+ZipArchive::deleteName --
+名前を使用して、アーカイブからエントリを削除する
+
+  bool ZipArchive::deleteName(string name)~
+
+その名前をもとにして、アーカイブ内のエントリを削除します。
+
+{name} 削除するエントリの名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+名前を使用した、アーカイブからのファイルの削除
+
+<?php >
+  $zip = new ZipArchive;
+  if ($zip->open('test1.zip') === TRUE) {
+      $zip->deleteName('testfromfile.php');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

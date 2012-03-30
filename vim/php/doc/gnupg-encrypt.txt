@@ -1,0 +1,36 @@
+gnupg_encrypt -- 指定したテキストを暗号化する
+
+  string gnupg_encrypt(resource identifier, string plaintext)~
+
+事前に gnupg_addencryptkey
+で設定したキーを使用し、指定されたテキストを暗号化します。暗号化された
+テキストを返します。
+
+成功した場合、この関数は暗号化されたテキストを返します。
+失敗した場合、この関数は FALSE を返します。
+
+手続き型の |gnupg_encrypt| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_addencryptkey($res,"8660281B6051D071D94B5B230549F9DC851566DC");
+  $enc = gnupg_encrypt($res, "just a test");
+  echo $enc;
+?>
+
+
+
+オブジェクト指向の |gnupg_encrypt| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> addencryptkey("8660281B6051D071D94B5B230549F9DC851566DC");
+  $enc = $gpg -> encrypt("just a test");
+  echo $enc;
+?>
+
+
+
+
+
+vim:ft=help:

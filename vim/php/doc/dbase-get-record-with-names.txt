@@ -1,0 +1,51 @@
+dbase_get_record_with_names --
+データベースからレコードを連想配列として得る
+
+  array dbase_get_record_with_names(int dbase_identifier, int record_number)~
+
+dBase
+データベースから、レコードを連想配列として取得します。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+{record_number} レコードのインデックス。
+
+レコードの連想配列を返します。これには deleted
+という名前のキーも含まれており、もしレコードに削除マークがつけられている
+場合にはその値が 1 となります （|dbase_delete_record|
+を参照ください）。
+
+各フィールドは、適切な PHP
+の型に変換されます。ただし以下の例外を除きます。
+日付は文字列のままとなります。
+
+オーバーフローを発生するような整数（> 32 ビット）は、
+文字列として返されます。
+
+エラー時には |dbase_get_record_with_names| は FALSE を返します。
+
+データベースに登録されているメンバの一覧表示
+
+<?php >
+  // read-only モードでオープンする
+  $db = dbase_open('/tmp/test.dbf', 0);
+  
+  if ($db) {
+    $record_numbers = dbase_numrecords($db);
+    for ($i = 1; $i <= $record_numbers; $i++) {
+        $row = dbase_get_record_with_names($db, $i);
+        if ($row['ismember'] == 1) {
+            echo "Member #$i: " . trim($row['name']) . "\n";
+        }
+    }
+  }
+?>
+
+
+
+
+
+|dbase_get_record|
+
+vim:ft=help:

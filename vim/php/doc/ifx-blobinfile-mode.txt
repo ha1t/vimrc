@@ -1,0 +1,16 @@
+ifx_blobinfile_mode -- 全ての select
+クエリに関するデフォルトの BLOB モードを設定する
+
+  bool ifx_blobinfile_mode(int mode)~
+
+全ての select クエリに関するデフォルトの BLOB
+モードを設定します。
+
+{mode} モード "0" は、BLOB
+をメモリーに保存することを意味し、 モード "1" は、BLOB
+をファイルに保存することを意味します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

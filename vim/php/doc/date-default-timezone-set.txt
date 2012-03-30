@@ -1,0 +1,30 @@
+date_default_timezone_set --
+スクリプト中の日付/時刻関数で使用されるデフォルトタイムゾーンを設定する
+
+  bool date_default_timezone_set(string timezone_identifier)~
+
+|date_default_timezone_set| は、日付/時刻関数で
+使用されるデフォルトタイムゾーンを設定します。
+
+PHP 5.1.0 以降（日付/時刻
+関数が書き直されてから）、タイムゾーンを
+正しく設定せずに日付/時刻関数をコールすると E_NOTICE
+が発生し、またシステムの設定や TZ 環境変数を
+使用すると E_STRICT が発生するようになりました。
+
+スクリプト内でこの関数を使用してデフォルトタイムゾーンを設定するかわりに、
+INI 設定 date.timezone
+でデフォルトタイムゾーンを設定することもできます。
+
+{timezone_identifier} タイムゾーン ID 。例えば UTC や Europe/Lisbon
+など。有効な ID の一覧は にあります。
+
+この関数は、{timezone_identifier} が 無効なものである場合に
+FALSE、それ以外の場合に TRUE を返します。
+
+バージョン 説明 5.1.2 {timezone_identifier} パラメータの内容を
+検証するようになりました。
+
+|date_default_timezone_get|
+
+vim:ft=help:

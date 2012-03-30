@@ -1,0 +1,180 @@
+array_multisort -- 複数の多次元の配列をソートする
+
+  bool array_multisort(array arr [, mixed arg [, mixed ...]])~
+
+|array_multisort| は、複数の配列を一度に、
+または、多次元の配列をその次元の一つでソートする際に使用可能です。
+この関数は、ソートの際にキーの相関を維持します。
+
+連想配列のキー (string) は不変ですが、
+数値添字は再度振り直されます。
+
+{arr} ソートしたい配列。
+
+{arg} オプションで指定する別の配列、
+あるいは先ほどの引数の配列のソート方法 (SORT_ASC,
+SORT_DESC, SORT_REGULAR, SORT_NUMERIC, SORT_STRING)。
+
+{...} 追加の引数。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+複数の配列をソートする
+
+<?php >
+  $ar1 = array(10, 100, 100, 0);
+  $ar2 = array(1, 3, 2, 4);
+  array_multisort($ar1, $ar2);
+  
+  var_dump($ar1);
+  var_dump($ar2);
+?>
+
+この例では、ソートの後で、最初の配列は、0, 10, 100, 100
+となります。 2番目の配列は、4, 1, 2, 3
+を有します。最初の配列 (100 および 100)
+の同じエントリに対応している二番目の配列のエントリは、
+同時にソートされます。
+
+  array(4) {
+    [0]=> int(0)
+    [1]=> int(10)
+    [2]=> int(100)
+    [3]=> int(100)
+  }
+  array(4) {
+    [0]=> int(4)
+    [1]=> int(1)
+    [2]=> int(2)
+    [3]=> int(3)
+  }
+
+
+
+多次元の配列をソートする
+
+<?php >
+  $ar = array(
+         array("10", 11, 100, 100, "a"),
+         array(   1,  2, "2",   3,   1)
+        );
+  array_multisort($ar[0], SORT_ASC, SORT_STRING,
+                  $ar[1], SORT_NUMERIC, SORT_DESC);
+  var_dump($ar);
+?>
+
+この例では、ソートされた後、最初の配列は "10", 100, 100,
+11, "a" (文字列として昇順でソートされています)
+に変換され、二番目の配列は、 1, 3, "2", 2, 1
+(数値として降順にソートされています) となっています。
+
+  array(2) {
+    [0]=> array(5) {
+      [0]=> string(2) "10"
+      [1]=> int(100)
+      [2]=> int(100)
+      [3]=> int(11)
+      [4]=> string(1) "a"
+    }
+    [1]=> array(5) {
+      [0]=> int(1)
+      [1]=> int(3)
+      [2]=> string(1) "2"
+      [3]=> int(2)
+      [4]=> int(1)
+    }
+  }
+
+
+
+データベースの結果をソートする この例では、配列 data
+の個々の要素がテーブルのひとつの行を表しています。
+これは、データベースのレコードの典型的な形式です。
+
+データの例:
+
+  volume | edition
+  -------+--------
+      67 |       2
+      86 |       1
+      85 |       6
+      98 |       2
+      86 |       6
+      67 |       7
+
+データは data という名前の配列に格納します。
+これは、例えば |mysql_fetch_assoc|
+の結果をループさせたりすれば得られます。
+
+<?php >
+  $data[] = array('volume' => 67, 'edition' => 2);
+  $data[] = array('volume' => 86, 'edition' => 1);
+  $data[] = array('volume' => 85, 'edition' => 6);
+  $data[] = array('volume' => 98, 'edition' => 2);
+  $data[] = array('volume' => 86, 'edition' => 6);
+  $data[] = array('volume' => 67, 'edition' => 7);
+?>
+
+この例では、データを volume の降順、 edition
+の昇順に並べ替えます。
+
+私たちが今もっているのは行方向の配列ですが、
+|array_multisort| で必要なのは列方向の配列です。
+そこで、以下のコードで列方向の配列を得たあとでソートを行います。
+
+<?php >
+  // 列方向の配列を得る
+  foreach ($data as $key => $row) {
+      $volume[$key]  = $row['volume'];
+      $edition[$key] = $row['edition'];
+  }
+  
+  // データを volume の降順、edition の昇順にソートする。
+  // $data を最後のパラメータとして渡し、同じキーでソートする。
+  array_multisort($volume, SORT_DESC, $edition, SORT_ASC, $data);
+?>
+
+データセットの行はソートされ、以下のようになります:
+
+  volume | edition
+  -------+--------
+      98 |       2
+      86 |       1
+      86 |       6
+      85 |       6
+      67 |       2
+      67 |       7
+
+
+
+大文字・小文字を区別しないソート SORT_STRING と SORT_REGULAR
+はどちらも大文字・小文字を区別し、
+大文字ではじまる文字列が小文字で始まる文字列より前になります。
+
+大文字・小文字を区別しないためには、
+元の配列の内容をすべて小文字に変換した配列を用意し、
+それをソートの基準にします。
+
+<?php >
+  $array = array('Alpha', 'atomic', 'Beta', 'bank');
+  $array_lowercase = array_map('strtolower', $array);
+  
+  array_multisort($array_lowercase, SORT_ASC, SORT_STRING, $array);
+  
+  print_r($array);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => Alpha
+      [1] => atomic
+      [2] => bank
+      [3] => Beta
+  )
+
+
+
+vim:ft=help:

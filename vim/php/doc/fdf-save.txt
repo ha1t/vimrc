@@ -1,0 +1,20 @@
+fdf_save -- FDF ドキュメントを保存する
+
+  bool fdf_save(resource fdf_document [, string filename])~
+
+FDF ドキュメントを保存します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{filename} 指定した場合は、結果の FDF
+がここに書き込まれます。
+それ以外の場合は、この関数は FDF をデフォルトの PHP
+出力ストリームに書き込みます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fdf_close| |fdf_create| |fdf_save_string|
+
+vim:ft=help:

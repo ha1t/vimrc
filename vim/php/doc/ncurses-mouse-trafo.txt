@@ -1,0 +1,15 @@
+ncurses_mouse_trafo -- 座標を変換する
+
+  bool ncurses_mouse_trafo(int y, int x, bool toscreen)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{y}
+
+{x}
+
+{toscreen}
+
+vim:ft=help:

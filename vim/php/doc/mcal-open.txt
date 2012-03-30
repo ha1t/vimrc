@@ -1,0 +1,20 @@
+mcal_open -- MCAL 接続をオープンする
+
+  int mcal_open(string calendar, string username, string password [, int options])~
+
+|mcal_open| は、指定した {calendar} 保存ファイルへの MCAL
+接続を オープンします。
+ストリームの内部イベント構造体も接続時に初期化されます。
+
+{calendar} MCAL カレンダ。
+
+{username} MCAL ユーザ名。
+
+{password} MCAL パスワード。
+
+{options} オプション {options} が指定された場合、 {options}
+もメールボックスに渡されます。
+
+成功時に MCAL ストリーム、エラー時に FALSE を返します。
+
+vim:ft=help:

@@ -1,0 +1,41 @@
+mysql_escape_string -- mysql_query
+で使用するために文字列をエスケープする
+
+  string mysql_escape_string(string unescaped_string)~
+
+この関数は、|mysql_query| で指定可能なように {unescaped_string}
+をエスケープします。 この関数は非推奨です。
+
+この関数は |mysql_real_escape_string| とほぼ同じです。ただ
+|mysql_real_escape_string| はコネクションハンドラを用い、
+カレントの文字セットを考慮したエスケープを行うという点が違います。
+|mysql_escape_string| はコネクションに関する引数を
+持たず、カレントの文字セット設定を考慮しません。
+
+{unescaped_string} エスケープされる文字列。
+
+エスケープされた文字列を返します。
+
+バージョン 説明 4.3.0
+この関数は非推奨となりました。利用しないでください。代わりに
+|mysql_real_escape_string| を利用してください。
+
+|mysql_escape_string| の例
+
+<?php >
+  $item = "Zak's Laptop";
+  $escaped_item = mysql_escape_string($item);
+  printf("Escaped string: %s\n", $escaped_item);
+?>
+
+上の例の出力は以下となります。
+
+  Escaped string: Zak\'s Laptop
+
+
+
+|mysql_escape_string| は、 % および _ をエスケープしません。
+
+|mysql_real_escape_string| |addslashes| magic_quotes_gpc ディレクティブ
+
+vim:ft=help:

@@ -1,0 +1,29 @@
+imap_mail_copy --
+指定されたメッセージをメールボックスにコピーする
+
+  bool imap_mail_copy(resource imap_stream, string msglist, string mailbox [, int options])~
+
+{msglist} で指定されたメッセージを、
+指定したメールボックスにコピーします。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msglist} {msglist} は、 (RFC2060 に記述されたように)
+ただのメッセージ番号ではなく、範囲を示します。
+
+{mailbox} メールボックス名。詳細は |imap_open|
+を参照ください。
+
+{options} {options}
+はビットマスクであり、以下の組み合わせです。 CP_UID -
+UIDS を含む処理の数
+
+CP_MOVE -
+コピー後にメールボックスからメッセージを削除する
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_mail_move|
+
+vim:ft=help:

@@ -1,0 +1,19 @@
+imagecolorclosesthwb --
+指定した色に最も近い色合い、白、黒を有する色のインデックスを得る
+
+  int imagecolorclosesthwb(resource image, int red, int green, int blue)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{red} 赤コンポーネントの値。
+
+{green} 緑コンポーネントの値。
+
+{blue} 青コンポーネントの値。
+
+vim:ft=help:

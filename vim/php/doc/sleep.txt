@@ -1,0 +1,37 @@
+sleep -- 実行を遅延させる
+
+  int sleep(int seconds)~
+
+{seconds}
+で与えられた秒数ぶんプログラムの実行を遅延させます。
+
+{seconds} 秒単位の停止時間。
+
+成功した場合にゼロ、エラー時に FALSE を返します。
+
+指定した秒数 {seconds} が負の場合、 この関数は E_WARNING
+を発生させます。
+
+|sleep| の例
+
+<?php >
+  // 現在の時刻
+  echo date('h:i:s') . "\n";
+  
+  // 10 秒間遅延させる
+  sleep(10);
+  
+  // 再開!
+  echo date('h:i:s') . "\n";
+?>
+
+この例の（10 秒後の）出力は以下のようになります。
+
+  05:31:23
+  05:31:33
+
+
+
+|usleep|, |set_time_limit|
+
+vim:ft=help:

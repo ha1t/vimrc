@@ -1,0 +1,14 @@
+mcal_delete_calendar -- MCAL カレンダを削除する
+
+  bool mcal_delete_calendar(int stream, string calendar)~
+
+{calendar} という名前のカレンダを削除します。
+
+{stream} MCAL ストリーム。
+
+{calendar} カレンダ名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

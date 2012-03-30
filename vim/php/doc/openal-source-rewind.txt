@@ -1,0 +1,13 @@
+openal_source_rewind -- ソースを巻き戻す
+
+  bool openal_source_rewind(resource source)~
+
+Open AL (ソース) リソース (事前に |openal_source_create|
+で作成したもの)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openal_source_stop| |openal_source_pause| |openal_source_play|
+
+vim:ft=help:

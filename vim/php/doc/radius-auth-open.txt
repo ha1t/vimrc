@@ -1,0 +1,22 @@
+radius_auth_open -- 認証用の Radius ハンドルを作成する
+
+  resource radius_auth_open()~
+
+
+
+成功した場合にハンドル、エラー時に FALSE を返します。
+この関数が失敗するのは、無効なメモリを使用した場合のみです。
+
+|radius_auth_open| の例
+
+<?php >
+  $radh = radius_auth_open()
+      or die ("ハンドルを作成できませんでした");
+  echo "ハンドルの作成に成功しました";
+?>
+
+
+
+
+
+vim:ft=help:

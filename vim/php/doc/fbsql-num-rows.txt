@@ -1,0 +1,33 @@
+fbsql_num_rows -- 結果のレコード数を得る
+
+  int fbsql_num_rows(resource result)~
+
+指定した結果セット {result} の行数を取得します。
+
+このコマンドは SELECT 文に対してのみ使用可能です。
+INSERT、UPDATE あるいは DELETE クエリの行数を取得するには、
+|fbsql_affected_rows| を使用します。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+直近の SELECT 文が返す行の数を返します。
+
+|fbsql_num_rows| の例
+
+<?php >
+  $link = fbsql_connect("localhost", "username", "password");
+  fbsql_select_db("database", $link);
+  
+  $result = fbsql_query("SELECT * FROM table1;", $link);
+  $num_rows = fbsql_num_rows($result);
+  
+  echo "$num_rows Rows\n";
+?>
+
+
+
+
+
+|fbsql_affected_rows| |fbsql_connect| |fbsql_select_db| |fbsql_query|
+
+vim:ft=help:

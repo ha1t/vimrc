@@ -1,0 +1,24 @@
+ora_rollback -- トランザクションをロールバックする
+
+  bool ora_rollback(resource connection)~
+
+Oracle のトランザクションをロールバックします。
+
+トランザクションの定義については |ora_commit|
+を参照ください。
+
+{connection} |ora_logon| でオープンした接続 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。 エラーについての詳細は、|ora_error| および
+|ora_errorcode| 関数を用いて調べられます。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_rollback|
+
+vim:ft=help:

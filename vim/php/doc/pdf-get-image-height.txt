@@ -1,0 +1,7 @@
+PDF_get_image_height -- 画像の高さを取得する [古い関数]
+
+この関数は PDFlib バージョン 3 で廃止されました。
+かわりにパラメータ {imageheight} を用いて |PDF_get_value|
+を使用してください。
+
+vim:ft=help:

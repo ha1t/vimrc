@@ -1,0 +1,9 @@
+ccvs_done -- CCVS エンジンを終了し、後始末をする
+
+  string ccvs_done(string sess)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

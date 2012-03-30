@@ -1,0 +1,14 @@
+swf_setframe -- 指定したフレームに切替える
+
+  void swf_setframe(int framenumber)~
+
+アクティブなフレームを {framenumber}
+で指定したフレームに変更します。
+
+{framenumber} 設定するフレーム番号。
+
+値を返しません。
+
+|swf_getframe|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+mb_regex_encoding --
+現在の正規表現用のエンコーディングを文字列として返す
+
+  mixed mb_regex_encoding([string encoding])~
+
+現在のマルチバイト正規表現用のエンコーディングを文字列として返す
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+マルチバイト対応の正規表現関数で用いる文字エンコーディングを返します。
+
+|mb_internal_encoding| |mb_ereg|
+
+vim:ft=help:

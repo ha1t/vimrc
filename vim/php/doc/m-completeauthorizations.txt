@@ -1,0 +1,18 @@
+m_completeauthorizations --
+キューの中の認証済み件数を数え、その ID の配列を返す
+
+  int m_completeauthorizations(resource conn, int array)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{array} Its description
+
+What the function returns, first on success, then on failure. See also the
+成功した場合に &true; を、失敗した場合に &false;
+を返します。 entity
+
+vim:ft=help:

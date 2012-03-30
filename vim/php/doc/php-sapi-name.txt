@@ -1,0 +1,30 @@
+php_sapi_name -- ウェブサーバと PHP
+の間のインターフェイスの型を返す
+
+  string php_sapi_name()~
+
+Web サーバと PHP (サーバ API、SAPI)
+の間のインターフェイスの型を小文字の文字列で返します。
+CGI 版の PHP ではこの文字列は「cgi」となり、Apache の mod_php
+版ではこの文字列は「apache」となるといったようになります。
+
+インターフェイスの型を小文字の文字列で返します。
+
+|php_sapi_name| の例
+
+<?php >
+  $sapi_type = php_sapi_name();
+  if (substr($sapi_type, 0, 3) == 'cgi') {
+      echo "CGI 版の PHP を使用しています\n";
+  } else {
+      echo "CGI 版の PHP を使用していません\n";
+  }
+?>
+
+
+
+
+
+PHP_SAPI
+
+vim:ft=help:

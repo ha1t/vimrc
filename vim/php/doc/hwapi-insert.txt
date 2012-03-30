@@ -1,0 +1,34 @@
+hw_api->insert -- 新しいオブジェクトを挿入する
+
+  hw_api_object insert(array parameter)~
+
+新しいオブジェクトを挿入します。オブジェクトは
+ユーザ(user)・グループ(group)・文書(document)・アンカー(anchor)
+のいずれかの型となります。
+オブジェクトの型に応じて、設定すべき他の属性が決まります。
+
+{parameter} パラメータの配列には、必須要素 'object' および
+'content'
+(オブジェクトが文書である場合)、そしてオプションの要素として
+'parameters'、'mode' および 'attributeSelector' が含まれます。
+'object'
+は、オブジェクトの全ての属性を含む必要があります。
+'parameters' は、例えば destination のような (属性のキーは
+'Parent' です) 追加の属性を保持するものです 'content'
+は文書の内容です。'mode'
+は以下のフラグの組み合わせです。 HW_API_INSERT_NORMAL
+オブジェクトはサーバに挿入されます。
+
+HW_API_INSERT_FORCE_VERSION_CONTROL
+
+HW_API_INSERT_AUTOMATIC_CHECKOUT
+
+HW_API_INSERT_PLAIN
+
+HW_API_INSERT_KEEP_TIME_MODIFIED
+
+HW_API_INSERT_DELAY_INDEXING
+
+
+
+vim:ft=help:

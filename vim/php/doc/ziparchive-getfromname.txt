@@ -1,0 +1,46 @@
+ZipArchive::getFromName --
+名前を使用して、エントリの内容を返す
+
+  mixed ZipArchive::getFromName(string name [, int flags])~
+
+名前を使用して、エントリの内容を返します。
+
+{name} エントリの名前。
+
+{flags}
+アーカイブのオープン時に使用するフラグ。以下の値を OR
+で連結して使用します。 ZIPARCHIVE::FL_UNCHANGED
+
+ZIPARCHIVE::FL_COMPRESSED
+
+成功した場合にエントリの内容、失敗した場合に FALSE
+を返します。
+
+ファイルの内容の取得
+
+<?php >
+  $zip = new ZipArchive;
+  if ($zip->open('test1.zip') === TRUE) {
+      echo $zip->getFromName('testfromfile.php');
+      $zip->close();
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+zip エントリの画像への変換
+
+<?php >
+  $z = new ZipArchive();
+  if ($z->open(dirname(__FILE__) . '/test_im.zip')) {
+      $im_string = $z->getFromName("pear_item.gif");
+      $im = imagecreatefromstring($im_string);
+      imagepng($im, 'b.png');
+  }
+?>
+
+
+
+vim:ft=help:

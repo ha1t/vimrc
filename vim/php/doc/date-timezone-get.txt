@@ -1,0 +1,15 @@
+date_timezone_get -- 指定した DateTime
+に関連するタイムゾーンを返す
+
+  DateTimeZone date_timezone_get(DateTime object)~
+
+  DateTimeZone DateTime::getTimezone(DateTime object)~
+
+{object} DateTime オブジェクト。
+
+成功した場合に DateTimeZone オブジェクト、失敗した場合に
+FALSE を返します。
+
+|date_timezone_set|
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+ps_close -- PostScript ドキュメントを閉じる
+
+  bool ps_close(resource psdoc)~
+
+PostScript ドキュメントを閉じます。
+
+この関数は、PostScript
+ドキュメントのトレーラーを書き込みます。
+また、ブックマークツリーも書き込みます。|ps_close|
+は、リソースの開放は行いません。これは |ps_delete|
+が行います。
+
+もし事前にコールされていない場合、この関数は |ps_delete|
+からもコールされます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_open_file| |ps_delete|
+
+vim:ft=help:

@@ -1,0 +1,53 @@
+SoapClient->__soapCall() -- SOAP 関数をコールする
+
+  mixed __soapCall(string function_name, array arguments [, array options [, mixed input_headers [, array output_headers]]])~
+
+本メソッドは、SOAP コールを行う低レベル API 関数です。
+通常、WSDL モードでは、SOAP 関数を SoapClient
+のメソッドとして簡単にコールすることができます。
+本メソッドは、soapaction が不明な場合や、 uri
+がデフォルトと異なっていたり、 SOAP
+ヘッダを送受信したい場合に、非 WSDL
+モードを使用する際に有用です。
+
+エラーの場合、SOAP 関数のコールは、PHP
+例外または、例外が無効な場合に SoapFault
+オブジェクトが返されます。
+この関数コールが失敗したかどうかを調べるには、
+SoapFault 例外をキャッチするか、 |is_soap_fault|
+関数を指定して結果を調べてください。
+
+SOAP
+関数は、一つまたは複数の値を返す可能性があります。
+SOAP 関数によって返される値が 1 つだけの場合、__soapCall
+の返す値は単純な値 (例えば、整数型、文字列など)
+になります。 複数の値が返される場合、__soapCall
+は出力パラメータの名前を連想配列として返します。
+
+SoapClient->__soapCall() の例
+
+<?php >
+  $client = new SoapClient("some.wsdl");
+  $client->SomeFunction($a, $b, $c);
+  
+  $client->__soapCall("SomeFunction", array($a, $b, $c));
+  $client->__soapCall("SomeFunction", array($a, $b, $c), NULL,
+                      new SoapHeader(), $output_headers);
+  
+  
+  $client = new SoapClient(null, array('location' => "http://localhost/soap.php",
+                                       'uri'      => "http://test-uri/"));
+  $client->SomeFunction($a, $b, $c);
+  $client->__soapCall("SomeFunction", array($a, $b, $c));
+  $client->__soapCall("SomeFunction", array($a, $b, $c),
+                      array('soapaction' => 'some_action',
+                            'uri'        => 'some_uri'));
+?>
+
+
+
+
+
+|is_soap_fault|
+
+vim:ft=help:

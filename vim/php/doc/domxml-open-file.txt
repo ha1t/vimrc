@@ -1,0 +1,48 @@
+domxml_open_file -- XML ファイルから DOM
+オブジェクトを作成する
+
+  DomDocument domxml_open_file(string filename [, int mode [, array error]])~
+
+この関数は、ファイルで与えられた XML
+文章をパースします。
+
+{filename} XML
+ファイルへのパス。ファイルは読み込み専用モードでアクセスされます。
+
+{mode}
+このオプションパラメータにより、この関数の動作を変更する事が可能です。
+
+以下の定数の 1 つを使用することが可能です:
+DOMXML_LOAD_PARSING (デフォルト), DOMXML_LOAD_VALIDATING もしくは
+DOMXML_LOAD_RECOVERING 。 ビット OR により
+DOMXML_LOAD_DONT_KEEP_BLANKS, DOMXML_LOAD_SUBSTITUTE_ENTITIES と
+DOMXML_LOAD_COMPLETE_ATTRS も追加することが可能です。
+
+{error}
+指定された場合、エラーメッセージが代入されます。
+{error} は リファレンス として渡す必要があります。
+
+与えられたファイルの DomDocument
+インスタンスを返します。
+
+ファイルから XML 文章をオープンする
+
+<?php >
+  if (!$dom = domxml_open_file("example.xml")) {
+    echo "Error while parsing the document\n";
+    exit;
+  }
+  
+  $root = $dom->document_element();
+?>
+
+
+
+
+
+バージョン 説明 4.3.0 パラメータ {mode} と {error}
+が追加されました。
+
+|domxml_open_mem| |domxml_new_doc|
+
+vim:ft=help:

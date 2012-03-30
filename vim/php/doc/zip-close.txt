@@ -1,0 +1,13 @@
+zip_close -- ZIP ファイルアーカイブを閉じる
+
+  void zip_close(resource zip)~
+
+ZIP ファイルアーカイブを閉じます。
+
+{zip} 事前に |zip_open| でオープンされた ZIP ファイル。
+
+値を返しません。
+
+|zip_open| |zip_read|
+
+vim:ft=help:

@@ -1,0 +1,10 @@
+msession_plugin -- msession personality
+プラグイン内のエスケープ関数をコールする
+
+  string msession_plugin(string session, string val [, string param])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

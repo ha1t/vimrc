@@ -1,0 +1,22 @@
+ps_setmiterlimit -- miter limit 値を設定する
+
+  bool ps_setmiterlimit(resource psdoc, float value)~
+
+2 本の直線が小さい角度で連結され、かつ連結方法が
+PS_LINEJOIN_MITER に設定されている場合、
+出来上がる線の角の部分が非常に長くなります。miter limit
+は、miter length (角の長さ) と線幅の比率の最大値です。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{value} miter length と線幅の比率の最大値。大きな値 (> 10)
+を設定すると、2 本の直線が狭い角度で交わる際に、
+角の部分が非常に長くなってしまいます。
+よくわからない場合はデフォルトのままにしておきましょう。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_setlinecap| |ps_setlinejoin| |ps_setlinewidth|
+
+vim:ft=help:

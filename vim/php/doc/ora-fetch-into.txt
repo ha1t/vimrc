@@ -1,0 +1,48 @@
+ora_fetch_into -- 指定した配列 result にレコードを取得する
+
+  int ora_fetch_into(resource cursor, array result [, int flags])~
+
+データの行を取得し、配列に格納します。
+
+{cursor} |ora_open| でオープンした Oracle カーソル。
+
+{result}
+参照渡しの配列。ここに取得した値が格納されます。
+
+{flags} 二種類のフラグがあります。 ORA_FETCHINTO_NULLS
+が指定された場合、 NULL
+値を持つカラムは配列にセットされますが、
+ORA_FETCHINTO_ASSOC が指定された場合、
+連想配列が生成されます。
+
+取得したカラム数、あるいはエラー時に FALSE
+を返します。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+|ora_fetch_into|
+
+<?php >
+  $results = array();
+  ora_fetch_into($cursor, $results);
+  echo $results[0];
+  echo $results[1];
+  $results = array();
+  ora_fetch_into($cursor, $results, ORA_FETCHINTO_NULLS|ORA_FETCHINTO_ASSOC);
+  echo $results['MyColumn'];
+?>
+
+
+
+
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_fetch_array|
+のような取得用関数
+
+|ora_parse| |ora_exec| |ora_fetch| |ora_do|
+
+vim:ft=help:

@@ -1,0 +1,50 @@
+pg_lo_export --
+ラージオブジェクトをファイルにエクスポートする
+
+  bool pg_lo_export(resource connection, int oid, string pathname)~
+
+  bool pg_lo_export(resource connection, int oid, string pathname, int oid, string pathname)~
+
+|pg_lo_export| は PostgreSQL データベースから
+ラージオブジェクトを取得し、その内容をローカルファイルシステム上の
+ファイルに保存します。
+
+ラージオブジェクトインターフェースは、トランザクションブロックの中で
+使用する必要があります。
+
+この関数は、以前は |pg_loexport| と呼ばれていました。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{oid} データベース内のラージオブジェクトの OID 。
+
+{pathname}
+ラージオブジェクトをクライアントのファイルシステムに書き込む際の
+フルパスとファイル名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_lo_export| の例
+
+<?php >
+     $database = pg_connect("dbname=jacarta");
+     pg_query($database, "begin");
+     $oid = pg_lo_create($database);
+     $handle = pg_lo_open($database, $oid, "w");
+     pg_lo_write($handle, "large object data");
+     pg_lo_close($handle);
+     pg_lo_export($database, $oid, '/tmp/lob.dat');
+     pg_query($database, "commit");
+?>
+
+
+
+
+
+|pg_lo_import|
+
+vim:ft=help:

@@ -1,0 +1,96 @@
+debug_zval_dump -- 内部的な Zend
+の値を表す文字列をダンプする
+
+  void debug_zval_dump(mixed variable)~
+
+内部的な Zend の値を表す文字列をダンプします。
+
+{variable} 評価される変数
+
+値を返しません。
+
+|debug_zval_dump| の例
+
+<?php >
+  $var1 = 'Hello World';
+  $var2 = '';
+  
+  $var2 =&amp; $var1;
+  
+  debug_zval_dump(&amp;$var1);
+?>
+
+上の例の出力は以下となります。
+
+  &amp;string(11) "Hello World" refcount(3)
+
+
+
+この関数によって返される refcount の値は、
+特定の状況下では自明ではありません。例えば、とある開発者は上記の例で
+refcount は 2 を示すと予想したかも知れません。 実際に
+|debug_zval_dump| がコールされるとき、 3
+番目の参照が生成されます。
+
+この動作は、変数が |debug_zval_dump|
+に参照渡しされない場合、よりその度合いを増します。
+例えば、上記の例を僅かに修正したバージョンを考えてみます。
+
+<?php >
+  $var1 = 'Hello World';
+  $var2 = '';
+  
+  $var2 =&amp; $var1;
+  
+  debug_zval_dump($var1); // この時、参照で渡されない
+?>
+
+上の例の出力は以下となります。
+
+  string(11) "Hello World" refcount(1)
+
+
+
+なぜ refcount(1) でしょうか?
+なぜなら関数がコールされるとき、 $var1
+のコピーが作成されるためです。
+
+この関数は、refcount が 1 の変数が渡される
+(コピーもしくは値渡し) とき、より 混乱させます。
+
+<?php >
+  $var1 = 'Hello World';
+  
+  debug_zval_dump($var1);
+?>
+
+上の例の出力は以下となります。
+
+  string(11) "Hello World" refcount(2)
+
+
+
+ここで refcount の 2
+は自明ではありません。特に上記の例を考える場合はそうです。
+では、何が起こっているのでしょうか ?
+
+変数が単一の参照 (|debug_zval_dump|
+の引数として使用される前の $var1) を持つ場合、PHP
+のエンジンは関数に渡される様式を最適化します。内部的に
+PHP は参照 (refcount
+がこの関数のスコープのために増加されます) のように
+$var1 を扱い、参照渡しされた変数に
+書き込みが発生するかどうかの警告を伴ってコピーが作成されます。
+ただし、書き込みの瞬間だけです。これは "copy on write"
+として知られます。
+
+そのため、もし |debug_zval_dump| がただ一つのパラメータ
+(もしくはない)
+に書き込みが発生した場合、コピーが作成されます。
+その時までパラメータは参照を保持し、関数呼び出しのスコープに対して
+refcount が 2 にインクリメントされる原因になります。
+
+|var_dump| |debug_backtrace| リファレンスの説明
+リファレンスの説明 (Derick Rethans による)
+
+vim:ft=help:

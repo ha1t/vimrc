@@ -1,0 +1,25 @@
+imagegrabscreen -- 画面全体をキャプチャする
+
+  resource imagegrabscreen()~
+
+画面全体のスクリーンショットを取得します。
+
+成功した場合に画像リソースの ID、失敗した場合に FALSE
+を返します。
+
+|imagegrabscreen| の例
+この例は、現在の画面の状態のスクリーンショットを取得してそれを
+png 画像として保存するものです。
+
+<?php >
+  $im = imagegrabscreen();
+  imagepng($im, "myscreenshot.png");
+?>
+
+
+
+この関数は Windows 上でしか使用できません。
+
+|imagegrabwindow|
+
+vim:ft=help:

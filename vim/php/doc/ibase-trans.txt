@@ -1,0 +1,39 @@
+ibase_trans -- トランザクションを開始する
+
+  resource ibase_trans([int trans_args [, resource link_identifier]])~
+
+トランザクションを開始します。
+
+この関数の挙動は PHP 5.0.0 で変更されました。The first call
+|ibase_trans| を最初にコールした際には、接続の
+デフォルトのトランザクションを返しません。|ibase_trans|
+によって開始されたすべてのトランザクションは、|ibase_commit|
+や |ibase_rollback| を使用してコミットあるいは
+ロールバックを明示的に行わない限り、スクリプトの終了時に自動的に
+ロールバックされます。
+
+PHP 5.0.0 以降では、この関数は複数の {trans_args} および
+{link_identifier} を指定することが可能です。これにより、
+複数のデータベース接続にまたがるトランザクションを扱えるようになり、
+2
+フェーズコミット機能を使用したコミットが可能になります。つまり、複数の
+データベースの更新内容が成功したか失敗したかによる判断ができるということです。
+これは、ひとつのクエリで異なるデータベースのテーブルを同時に使用できるという
+ことではありません!
+
+複数データベースにまたがるトランザクションを使用する場合、
+|ibase_query| および |ibase_prepare| をコールする際には {link_id}
+および {transaction_id} の両方を指定する必要があります。
+
+{trans_args} {trans_args} は、以下の IBASE_READ、 IBASE_WRITE、
+IBASE_COMMITTED、 IBASE_CONSISTENCY、 IBASE_CONCURRENCY、
+IBASE_REC_VERSION、 IBASE_REC_NO_VERSION、 IBASE_WAIT および IBASE_NOWAIT
+の組み合わせとなります。
+
+{link_identifier} InterBase リンク ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+トランザクションハンドル、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

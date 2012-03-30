@@ -1,0 +1,39 @@
+shuffle -- 配列をシャッフルする
+
+  bool shuffle(array array)~
+
+この関数は、配列をシャッフル (要素の順番をランダムに)
+します。
+
+{array} 配列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|shuffle| の例
+
+<?php >
+  $numbers = range(1, 20);
+  srand((float)microtime() * 1000000);
+  shuffle($numbers);
+  foreach ($numbers as $number) {
+      echo "$number ";
+  }
+?>
+
+
+
+
+
+この関数は、 {array}
+パラメータの要素に対して新しいキーを割り当てます。
+その際、単純にキーを並べ替える代わりに、
+すでに割り当てられている既存のキーを削除してしまいます。
+
+PHP 4.2.0 以降、 |srand| または |mt_srand|
+によりランダム数生成器にシードを与える必要はありません。
+これは、この処理が自動的に行われるためです。
+
+|arsort| |asort| |ksort| |rsort| |sort| |usort|
+
+vim:ft=help:

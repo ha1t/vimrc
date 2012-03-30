@@ -1,0 +1,31 @@
+gzgetc -- gz ファイルへのポインタから文字を得る
+
+  string gzgetc(resource zp)~
+
+与えられた gz ファイルポインタから (非圧縮の) 1
+文字を読み込み、これを含む 文字列を返します。
+
+{zp} gz ファイルポインタを指定します。
+これは有効なファイルポインタであり、かつ、 |gzopen|
+によりオープンできたファイルを指している必要があります。
+
+非圧縮の文字列、もしくは EOF (|gzeof| とは異なる)
+の場合の FALSE
+
+|gzgetc| の例
+
+<?php >
+  $gz = gzopen('somefile.gz', 'r');
+  while (!gzeof($gz)) {
+    echo gzgetc($gz);
+  }
+  gzclose($gz);
+?>
+
+
+
+
+
+|gzopen| |gzgets|
+
+vim:ft=help:

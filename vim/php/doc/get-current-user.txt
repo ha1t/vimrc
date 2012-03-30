@@ -1,0 +1,12 @@
+get_current_user -- 現在の PHP
+スクリプトの所有者の名前を取得する
+
+  string get_current_user()~
+
+現在の PHP スクリプトの所有者の名前を返します。
+
+ユーザ名を表す文字列。
+
+|getmyuid| |getmygid| |getmypid| |getmyinode| |getlastmod|
+
+vim:ft=help:

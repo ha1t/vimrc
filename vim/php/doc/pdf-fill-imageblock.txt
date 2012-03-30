@@ -1,0 +1,11 @@
+PDF_fill_imageblock --
+画像ブロックをさまざまなデータで塗りつぶす
+
+  int PDF_fill_imageblock(resource pdfdoc, int page, string blockname, int image, string optlist)~
+
+画像ブロックを、そのプロパティに基づいたさまざまなデータで塗りつぶします。
+
+この関数は、PDFlib Personalization Server (PPS)
+でのみ使用可能です。
+
+vim:ft=help:

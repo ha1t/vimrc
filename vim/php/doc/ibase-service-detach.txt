@@ -1,0 +1,12 @@
+ibase_service_detach -- サービスマネージャとの接続を切断する
+
+  bool ibase_service_detach(resource service_handle)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,30 @@
+ZipArchive::addEmptyDir -- 新しいディレクトリを追加する
+
+  bool ZipArchive::addEmptyDir(string dirname)~
+
+空のディレクトリをアーカイブに追加します。
+
+{dirname} 追加するディレクトリ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+アーカイブ内での新規ディレクトリの作成
+
+<?php >
+  $zip = new ZipArchive;
+  if ($zip->open('test.zip') === TRUE) {
+      if($zip->addEmptyDir('newDirectory')) {
+          echo '新しいディレクトリを作成しました';
+      } else {
+          echo 'ディレクトリが作成できませんでした';
+      }
+      $zip->close();
+  } else {
+      echo '失敗しました';
+  }
+?>
+
+
+
+vim:ft=help:

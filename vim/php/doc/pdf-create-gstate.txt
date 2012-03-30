@@ -1,0 +1,7 @@
+PDF_create_gstate -- 画像状態オブジェクトを作成する
+
+  int PDF_create_gstate(resource pdfdoc, string optlist)~
+
+さまざまなオプションをもとにして、画像状態オブジェクトを作成します。
+
+vim:ft=help:

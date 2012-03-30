@@ -1,0 +1,16 @@
+fdf_error -- 直近の fdf エラーコードについての説明を返す
+
+  string fdf_error([int error_code])~
+
+{error_code}
+で指定したエラーコードについての説明テキストを取得します。
+
+{error_code} |fdf_errno| で取得したエラーコード。
+省略した場合は、直近の操作で設定された内部エラーコードを使用します。
+
+エラーメッセージを表す文字列、あるいは何も問題がない場合は
+no error を返します。
+
+|fdf_errno|
+
+vim:ft=help:

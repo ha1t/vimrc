@@ -1,0 +1,12 @@
+PDF_place_image -- イメージをページ上に置く [古い関数]
+
+  bool PDF_place_image(resource pdfdoc, int image, float x, float y, float scale)~
+
+イメージを置き、サイズを変更します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+この関数は PDFlib バージョン 5
+で廃止されました。かわりに |PDF_fit_image|
+を使用してください。
+
+vim:ft=help:

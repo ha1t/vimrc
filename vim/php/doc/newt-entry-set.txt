@@ -1,0 +1,17 @@
+newt_entry_set --
+
+  void newt_entry_set(resource entry, string value [, bool cursor_at_end])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{entry}
+
+{value}
+
+{cursor_at_end}
+
+値を返しません。
+
+vim:ft=help:

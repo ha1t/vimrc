@@ -1,0 +1,39 @@
+hash_file -- ファイルの内容から、ハッシュ値を生成する
+
+  string hash_file(string algo, string filename [, bool raw_output])~
+
+{algo} 選択したアルゴリズムの名前 (すなわち
+"md5"、"sha256"、"haval160,4" など…)。
+
+{filename} ハッシュ対象となるファイルの位置を示す URL。
+fopen ラッパーをサポートしています。
+
+{raw_output} TRUE
+を設定すると、生のバイナリデータを出力します。
+デフォルト (FALSE) の場合は小文字の 16
+進数値となります。
+
+{raw_output} が true に設定されていない場合は、
+メッセージダイジェストの計算結果を小文字の 16
+進数値形式の文字列で 返します。もし true
+に設定されていた場合は、メッセージダイジェストが
+そのままのバイナリ形式で返されます。
+
+|hash_file| の使用例
+
+<?php >
+  /* ハッシュ値を計算するファイルを作成します */
+  file_put_contents('example.txt', 'The quick brown fox jumped over the lazy dog.');
+  
+  echo hash_file('md5', 'example.txt');
+?>
+
+上の例の出力は以下となります。
+
+  5c6ffbdd40d9556b73a21e63c3e0e904
+
+
+
+|hash| |hash_hmac_file| |hash_update_file|
+
+vim:ft=help:

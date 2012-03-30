@@ -1,0 +1,34 @@
+fdf_create -- 新規 FDF ドキュメントを作成する
+
+  resource fdf_create()~
+
+新規 FDF ドキュメントを作成します。
+
+この関数は、PDF
+ドキュメントの入力フィールドにデータを書きこみたい場合に必要です。
+
+FDF ドキュメントハンドル、あるいはエラー時に FALSE
+を返します。
+
+PDF ドキュメントを公開する
+
+<?php >
+  $outfdf = fdf_create();
+  fdf_set_value($outfdf, "volume", $volume, 0);
+  
+  fdf_set_file($outfdf, "http:/testfdf/resultlabel.pdf");
+  fdf_save($outfdf, "outtest.fdf");
+  fdf_close($outfdf);
+  Header("Content-type: application/vnd.fdf");
+  $fp = fopen("outtest.fdf", "r");
+  fpassthru($fp);
+  unlink("outtest.fdf");
+?>
+
+
+
+
+
+|fdf_close| |fdf_save| |fdf_open|
+
+vim:ft=help:

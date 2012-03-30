@@ -1,0 +1,32 @@
+getrusage -- カレントリソースの使用に関する情報を得る
+
+  array getrusage([int who])~
+
+この関数は、getrusage(2) へのインターフェースです。
+システムコールから返されたデータを含む連想配列を返します。
+
+{who} who が 1 の場合、getrusage は RUSAGE_CHILDREN
+を付けてコールされます。
+
+システムコールから返されたデータを含む連想配列を返します。
+すべてのエントリは、記述されたフィールド名を用いてアクセス可能です。
+
+|getrusage| の例
+
+<?php >
+  $dat = getrusage();
+  echo $dat["ru_nswap"];         // スワップの数
+  echo $dat["ru_majflt"];        // ページフォルトの数
+  echo $dat["ru_utime.tv_sec"];  // 使用するユーザー時間 (秒)
+  echo $dat["ru_utime.tv_usec"]; // 使用するユーザー時間 (マイクロ秒)
+?>
+
+
+
+
+
+この関数は Windows 環境にはまだ実装されていません。
+
+getrusage(2) についてのシステムの man ページ
+
+vim:ft=help:

@@ -1,0 +1,56 @@
+radius_add_server -- サーバを追加する
+
+  bool radius_add_server(resource radius_handle, string hostname, int port, string secret, int timeout, int max_tries)~
+
+|radius_add_server| は複数回コールされることも
+ありえます。また、|radius_config| とともに
+使用されることでしょう。最大で 10
+までのサーバを指定できます。
+複数のサーバが指定されると、有効なレスポンスを受信するか
+あるいは各サーバへの接続回数が {max_tries}
+をこえるまでラウンドロビン形式でのアクセスを試みます。
+
+{radius_handle}
+
+{hostname} {hostname} はサーバのホストを FQDN
+あるいはドット区切りの IP アドレス形式で指定します。
+
+{port} {port} は、サーバとの接続に使用する UDP
+ポートを指定します。0 を指定すると、このライブラリは
+ネットワークサービスデータベースから radius/udp あるいは
+radacct/udp サービスを
+検索し、見つかったポートを使用します。見つからなかった場合は
+標準の Radius ポート、すなわち認証には 1812、 課金には
+1813 を使用します。
+
+{secret} {secret} パラメータには、サーバホストに
+対する共有秘密鍵が渡されます。Radius
+プロトコルは、共有秘密鍵の 最初の 128
+バイト以外を無視します。
+
+{timeout} {timeout} パラメータには、サーバから
+応答を受信する際のタイムアウトを秒単位で指定します。
+
+{max_tries}
+結果が返ってこなかった場合に最大何回までリクエストを繰り返すかを
+{max_tries} に指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|radius_add_server| の例
+
+<?php >
+  if (!radius_add_server($res, 'radius.example.com', 1812, 'testing123', 3, 3)) {
+      echo 'RadiusError:' . radius_strerror($res). "\n<br>";
+      exit;
+  }
+?>
+
+
+
+
+
+|radius_config|
+
+vim:ft=help:

@@ -1,0 +1,39 @@
+trigger_error --
+ユーザレベルのエラー/警告/通知メッセージを生成する
+
+  bool trigger_error(string error_msg [, int error_type])~
+
+ユーザエラーを発生するために使用され、
+組み込みのエラーハンドラまたは新しいエラーハンドラ
+(|set_error_handler|)
+として設定済みのユーザ定義関数と組み合わせて使用されます。
+
+この関数は、実行時の例外に特定の応答を生成する必要がある場合に便利です。
+
+{error_msg}
+このエラーに割り当てられたメッセージ。長さは最大 1024
+文字までです。 1024
+文字を超える部分は切り捨てられます。
+
+{error_type} このエラーに割り当てられたエラー型。E_USER
+関連の定数のみが指定可能で、 デフォルトは E_USER_NOTICE
+です。
+
+この関数は、間違った {error_type} が指定された場合に FALSE
+を、それ以外の場合に TRUE を返します。
+
+|trigger_error| の例 より拡張した例については
+|set_error_handler| を参照ください。
+
+<?php >
+  if (assert($divisor == 0)) {
+      trigger_error("ゼロで割ることはできません", E_USER_ERROR);
+  }
+?>
+
+
+
+|error_reporting| |set_error_handler| |restore_error_handler|
+エラーレベル定数
+
+vim:ft=help:

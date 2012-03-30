@@ -1,0 +1,29 @@
+mb_strrchr --
+別の文字列の中で、ある文字が最後に現れる場所を見つける
+
+  string mb_strrchr(string haystack, string needle [, bool part [, string encoding]])~
+
+|mb_strrchr| は、 {haystack} の中で最後に {needle}
+が現れる場所を探し、 {haystack} の部分文字列を返します。
+{needle} が見つからなかった場合は FALSE を返します。
+
+{haystack} {needle} が最後に現れる位置を探す文字列。
+
+{needle} {haystack} の中で探す文字列。
+
+{part} この関数が {haystack}
+のどの部分を返すのかを指定します。 TRUE
+の場合は、{haystack} の先頭から {needle}
+が最後に現れる位置までを返します。 FALSE
+の場合は、{needle} が最後に現れる位置から {haystack}
+の最後までを返します。 デフォルト値は FALSE です。
+
+{encoding} 使用する文字エンコーディングの名前。
+省略した場合は内部文字エンコーディングを使用します。
+
+{haystack} の部分文字列を返します。 {needle}
+が見つからない場合は FALSE を返します。
+
+|strrchr| |mb_strstr| |mb_strrichr|
+
+vim:ft=help:

@@ -1,0 +1,32 @@
+bzopen -- bzip2 圧縮されたファイルをオープンする
+
+  resource bzopen(string filename, string mode)~
+
+|bzopen| は、 bzip2 (.bz2)
+ファイルを読み書き用にオープンします。
+
+{filename} オープンするファイル名
+
+{mode} |fopen| 関数 (読み込みは`r'、書き込みは`w'、等)
+と同様です。
+
+オープンできなかった場合、|bzopen| は FALSE
+を返します。それ以外の場合は、
+新規にオープンされたファイルへのポインタが返されます。
+
+|bzopen| の例
+
+<?php >
+  $file = "/tmp/foo.bz2";
+  $bz = bzopen($file, "r") or die("Couldn't open $file for reading");
+  
+  bzclose($bz);
+?>
+
+
+
+
+
+|bzclose|
+
+vim:ft=help:

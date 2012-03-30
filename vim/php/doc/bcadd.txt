@@ -1,0 +1,31 @@
+bcadd -- 2つの任意精度の数値を加算する
+
+  string bcadd(string left_operand, string right_operand [, int scale])~
+
+{left_operand} を {right_operand} に加算します。
+
+{left_operand} 左オペランドを表す文字列。
+
+{right_operand} 右オペランドを表す文字列。
+
+{ scale}このオプションパラメータを使用して、
+結果の小数点以下の桁数を指定します。すべての関数で使用するデフォルトのスケールを定義するには
+|bcscale| を使用します。
+
+二つの数の和を文字列で返します。
+
+|bcadd| の例
+
+<?php >
+  $a = '1.234';
+  $b = '5';
+  
+  echo bcadd($a, $b);     // 6
+  echo bcadd($a, $b, 4);  // 6.2340
+?>
+
+
+
+|bcsub|
+
+vim:ft=help:

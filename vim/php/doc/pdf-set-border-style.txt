@@ -1,0 +1,14 @@
+PDF_set_border_style -- 注記の周りの境界の形式を設定する
+[古い関数]
+
+  bool PDF_set_border_style(resource pdfdoc, string style, float width)~
+
+全ての種類の注記の境界の形式を設定します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+この関数は PDFlib バージョン 6
+で廃止されました。かわりに |PDF_create_annotation|
+でオプション {borderstyle} および {linewidth}
+を使用してください。
+
+vim:ft=help:

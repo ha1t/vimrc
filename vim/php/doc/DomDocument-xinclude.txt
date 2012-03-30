@@ -1,0 +1,46 @@
+DomDocument->xinclude -- DomDocument オブジェクトにおける XIncludes
+の代替
+
+  int DomDocument->xinclude()~
+
+この関数は DomDocument オブジェクトにおける XIncludes
+の代替です。
+
+Xincludes の代替
+
+<?php >
+  // include.xml は以下の内容を含む :
+  // <child>test</child>
+  
+  $xml = '<?xml version="1.0"?>
+  <root xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="include.xml">
+      <xi:fallback>
+        <error>xinclude: include.xml not found</error>
+      </xi:fallback>
+    </xi:include>
+  </root>';
+  
+  $domxml = domxml_open_mem($xml);
+  $domxml->xinclude();
+  
+  echo $domxml->dump_mem();
+?>
+
+上の例の出力は以下となります。
+
+  <?xml version="1.0"?>
+  <root xmlns:xi="http://www.w3.org/2001/XInclude">
+    <child>test</child>
+  </root>
+
+もし include.xml が存在しない場合、 次の通りとなります:
+
+  <?xml version="1.0"?>
+  <root xmlns:xi="http://www.w3.org/2001/XInclude">
+    <error>xinclude:dom.xml not found</error>
+  </root>
+
+
+
+vim:ft=help:

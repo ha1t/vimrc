@@ -1,0 +1,65 @@
+geoip_record_by_name -- GeoIP
+データベースで見つかった詳細な都市情報を返す
+
+  array geoip_record_by_name(string hostname)~
+
+|geoip_record_by_name| 関数は、 ホスト名あるいは IP
+アドレスに対応するレコード情報を返します。
+
+この関数は、GeoLite City Edition および商用の GeoIP City Edition
+のどちらでも使用可能です。
+適切なデータベースが見つからない場合には警告が発生します。
+
+返される連想配列には、以下のようなさまざまな名前のキーが含まれます。
+
+"country_code" -- 二文字の国コード (|geoip_country_code_by_name|
+を参照ください)
+
+"region" -- 地域コード (例: カリフォルニアなら CA)
+
+"city" -- 市
+
+"postal_code" -- 郵便番号、FSA あるいは Zip コード
+
+"latitude" -- 緯度 (符号付き浮動小数点形式)
+
+"longitude" -- 経度 (符号付浮動小数点形式)
+
+"dma_code"
+
+"area_code" -- PSTN エリアコード (例: 212)
+
+{hostname} レコードを探す対象となるホスト名あるいは IP
+アドレス。
+
+成功した場合には連想配列、
+アドレスがデータベースで見つからない場合には FALSE
+を返します。
+
+|geoip_record_by_name| の例 これは、ホスト example.com
+のレコードを含む連想配列を表示します。
+
+<?php >
+  $record = geoip_record_by_name('www.example.com');
+  if ($record) {
+      print_r($record);
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [country_code] => US
+      [region] => CA
+      [city] => Marina Del Rey
+      [postal_code] => 
+      [latitude] => 33.9776992798
+      [longitude] => -118.435096741
+      [dma_code] => 803
+      [area_code] => 310
+  )
+
+
+
+vim:ft=help:

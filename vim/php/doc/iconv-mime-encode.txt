@@ -1,0 +1,76 @@
+iconv_mime_encode -- MIME ヘッダフィールドを作成する
+
+  string iconv_mime_encode(string field_name, string field_value [, array preferences])~
+
+有効な MIME ヘッダフィールドを作成し、返します。
+これは以下のような形式になります。
+
+  Subject: =?ISO-8859-1?Q?Pr=FCfung_f=FCr?= Entwerfen von einer MIME kopfzeile
+
+上の例では "Subject" がフィールド名、"=?ISO-8859-1?..."
+で始まる部分が フィールドの値となります。
+
+{field_name} フィールド名。
+
+{field_value} フィールドの値。
+
+{preferences} |iconv_mime_encode| の振る舞いを変更するには、
+ここで設定項目を含む連想配列を指定します。
+|iconv_mime_encode| でサポートされている項目は
+以下のとおりです。項目名の大文字・小文字は区別されることに注意してください。
+|iconv_mime_encode| でサポートされる設定項目 項目 型 説明
+デフォルト値 例 scheme string
+フィールドの値のエンコード方法を指定します。"B" か "Q"
+の どちらかを指定することになるでしょう。"B" は base64
+エンコードを、また "Q" は quoted-printable
+エンコードを表します。 B B input-charset string 第 1
+パラメータ {field_name} と第 2 パラメータ {field_value}
+の文字セットを指定します。
+指定されなかった場合は、|iconv_mime_encode| は ini 設定
+iconv.internal_encoding であると仮定します。 iconv.internal_encoding
+ISO-8859-1 output-charset string MIME
+ヘッダを作成する文字セットを指定します。
+指定されなかった場合は、input-charset
+と同じ値が用いられます。 iconv.internal_encoding UTF-8 line-length
+integer
+ヘッダ行の長さの最大値を指定します。もし結果がこの値より
+長くなった場合は、 RFC2822 - Internet Message Format
+に基づいてヘッダを "折りたたんで"
+複数行に分割します。 指定されなかった場合は、長さは
+76 文字に限定されます。 76 996 line-break-chars string
+長いヘッダフィールドに対して "折りたたみ"
+処理が行われる場合に
+個々の行の後ろに付加される文字列を指定します。
+指定されなかった場合は、"\r\n" （CR LF）が用いられます。
+このパラメータは、input-charset の値にかかわらず 常に ASCII
+文字列として扱われることに注意してください。 \r\n \n
+
+成功した場合はエンコードした MIME フィールド、
+エンコード時にエラーが発生した場合は FALSE
+を返します。
+
+|iconv_mime_encode| の例:
+
+<?php >
+  $preferences = array(
+      "input-charset" => "ISO-8859-1",
+      "output-charset" => "UTF-8",
+      "line-length" => 76,
+      "line-break-chars" => "\n"
+  );
+  $preferences["scheme"] = "Q";
+  // この結果は "Subject: =?UTF-8?Q?Pr=C3=BCfung_Pr=C3=BCfung?=" となります。
+  echo iconv_mime_encode("Subject", "Prüfung Prüfung", $preferences);
+  
+  $preferences["scheme"] = "B";
+  // この結果は "Subject: =?UTF-8?B?UHLDvGZ1bmcgUHLDvGZ1bmc=?=" となります。
+  echo iconv_mime_encode("Subject", "Prüfung Prüfung", $preferences);
+?>
+
+
+
+
+
+|imap_binary| |mb_encode_mimeheader| |imap_8bit|
+
+vim:ft=help:

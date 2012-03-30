@@ -1,0 +1,33 @@
+socket_accept -- ソケットへの接続を許可する
+
+  resource socket_accept(resource socket)~
+
+|socket_create| を使用してソケット {socket} を作成した後、
+|socket_bind| で名前に関連付け、 |socket_listen|
+で接続をモニタします。この関数は、
+このソケットへの接続を許可します。接続に成功すると、新規の
+ソケット記述子が返されます。この記述子は通信の際に使用されます。
+ソケット上に複数の接続がキューで待っている場合、最初の接続が使用
+されます。接続待ちがない場合、|socket_accept|
+は接続が存在するまでブロックされます。 {socket} が
+|socket_set_blocking| または |socket_set_nonblock|
+により非ブロックモードで 作成された場合、FALSE
+が返されます。
+
+|socket_accept| により返されたソケットリソースは、
+新規接続を許可するために使用することはできません。この場合でも
+元の接続待ちのソケット {socket} は
+オープンされたままであり、再使用可能です。
+
+{socket} |socket_create| で作成したソケットリソース。
+
+成功した場合に新規ソケットリソースを、エラー時に FALSE
+を返します。 実際のエラーコードは、|socket_last_error| を
+コールすることで取得可能です。このコードを
+|socket_strerror| に渡すことで、
+エラーの内容を文字列で取得することが可能です。
+
+|socket_connect| |socket_listen| |socket_create| |socket_bind|
+|socket_strerror|
+
+vim:ft=help:

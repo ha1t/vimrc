@@ -1,0 +1,13 @@
+ircg_msg --
+サーバ上のチャンネルまたはユーザにメッセージを送信する
+
+  bool ircg_msg(resource connection, string recipient, string message [, bool suppress])~
+
+|ircg_msg| は、
+サーバ上のチャンネルあるいはユーザにメッセージを送信します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{recipient}
+
+vim:ft=help:

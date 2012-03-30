@@ -1,0 +1,223 @@
+COM -- COM クラス
+
+COM クラスにより、OLE 互換の COM
+オブジェクトのインスタンスを作成し、
+そのメソッドをコールしたりそのプロパティにアクセスしたりすることが
+可能となります。
+
+  com COM::COM(string module_name [, mixed server_name [, int codepage [, string typelib]]])~
+
+COM クラスのコンストラクタ。
+パラメータには以下のような意味があります。 module_name
+ロードするコンポーネントを指定する プログラム
+ID、クラス ID またはモニカです。
+
+プログラムID は、通常、アプリケーションまたは DLL
+の名前の後に、 Word.Application のようにピリオドと
+オブジェクト名を付けたものです。
+
+クラス ID は、指定されたクラスがユニークに定義する UUID
+です。
+
+モニカは、URL
+スキームの考え方に似た特別な命名形式です。リソースと、
+それがどのように読み込まれるかを指定します。例として、モジュール名に
+Word ドキュメントのフルパスを指定すると、Word
+を読み込んで
+ドキュメントに対応するオブジェクトを取得することができます。
+あるいは、LDAP への ADSI
+インターフェースを指すモニカとして LDAP:
+を使用することが可能です。
+
+server_name コンポーネントが読み込んで実行される DCOM
+サーバの名前です。 NULL
+の場合、オブジェクトはアプリケーションのデフォルトを
+指定して実行されます。典型的なデフォルトは、ローカルマシン上で
+実行させることでが、管理者によってはアプリケーションを別の
+マシン上で実行させるように設定しているかもしれません。
+
+非 NULL 値をサーバに指定した場合、 設定オプションが TRUE
+に設定されていない限り PHP はオブジェクトの読み込みを
+拒否します。
+
+{server_name} が配列の場合、以下の要素
+(大文字小文字を区別します!)を含まなければなりません。
+これらはすべて省略可能であることに注意しましょう
+(とはいえ、Username および Password
+は両方指定する必要があります)。
+もしサーバ設定を省略した場合は(上で説明した)デフォルトのサーバが
+使用され、オブジェクトの生成は
+ディレクティブの影響を受けません。 DCOM サーバ名
+{server_name} のキー 型 説明 Server string サーバの名前。
+Username string 接続するユーザ名。 Password string {Username}
+に対するパスワード。 Flags integer
+以下の定数のうちのひとつまたは複数の論理和。
+CLSCTX_INPROC_SERVER、 CLSCTX_INPROC_HANDLER、 CLSCTX_LOCAL_SERVER、
+CLSCTX_REMOTE_SERVER、 CLSCTX_SERVER および
+CLSCTX_ALL。指定されていない場合の
+デフォルト値は、{Server} を省略した場合が CLSCTX_SERVER
+でサーバ名を指定した場合は CLSCTX_REMOTE_SERVER です。
+これらの定数の意味についての詳細な情報を得るには、Microsoft
+のドキュメントで CoCreateInstance について調べましょう。
+通常はこれらを使用する必要はないはずです。
+
+codepage 文字列と Unicode
+文字列との相互変換に使用するコードページを指定します。
+PHP の文字列と COM
+オブジェクトのメソッドとの受け渡しの際には、いつも
+変換が行われます。PHP 5
+では、コードページの扱いは面倒です。というのは、
+オブジェクトだけではなくオブジェクトから返される
+variant にもそれが 影響するからです。
+
+とりうる値は CP_ACP (システムのデフォルト ANSI
+コードページを使用する -
+このパラメータが指定されなかった場合の デフォルト)、
+CP_MACCP、 CP_OEMCP、CP_SYMBOL、 CP_THREAD_ACP
+(現在実行中のスレッドの
+コードページ/ロケールを使用する)、CP_UTF7 および CP_UTF8
+です。コードページに対応する
+数値を指定することも可能です。コードページとそれに対応する数値に
+ついての詳細は、Microsoft
+のドキュメントを参照ください。
+
+返されるオブジェクトは、オーバーロードされたものです。つまり、
+PHP
+側では通常のクラスのメソッドは見えないということです。
+その代わりに、プロパティやメソッドへのアクセスは COM
+を通じて行います。
+
+PHP 5
+以降では、参照渡しのパラメータを受け付けるメソッドを
+PHP が
+自動検出するようになりました。それらのメソッドについては、PHP
+が自動的に
+変数を参照渡し形式に変換します。つまり、メソッドのコールをより自然に
+行えるということです。コードの中で特別な処理をする必要はありません。
+
+PHP 4
+では、パラメータを参照渡しする場合には、そのパラメータをラップする
+ために クラスのインスタンスを生成する
+必要があります。
+
+PHP 5 より前のバージョンでは、以下のようなメソッド名を
+COM に渡すことが できず、直接 PHP
+で扱うことができないというあまりうれしくない出来事が
+ありました。PHP 5
+ではこれらを解決します。スクリプトの修正方法に
+ついては以下の詳細を参照ください。これらのマジックメソッドの名前は
+大文字小文字を区別しません。
+
+  void COM::AddRef(string module_name [, mixed server_name [, int codepage [, string typelib]]])~
+
+COM オブジェクトの参照カウントを作為的に追加します。
+
+このメソッドを使用することはまずないはずです。
+これは、以下で説明する Release()
+メソッドを論理的に補完するものとして
+存在するものです。
+
+  void COM::Release(string module_name [, mixed server_name [, int codepage [, string typelib]]])~
+
+COM オブジェクトの参照カウントを作為的に削除します。
+
+このメソッドを使用することはまずないはずです。
+これは、COM
+オブジェクトが必要以上に動作を続けてしまうというバグに
+対応する方法として PHP に存在するものです。
+
+以下の疑似メソッドは、 |com_isenum| が TRUE
+を返す場合のみ利用可能で、この場合、これらのメソッドは、
+通常は COM
+オブジェクトにより提供される同じ名前を有する全ての
+メソッドを隠蔽します。これらのメソッドは PHP 5
+では完全に廃止されています。 代わりに
+を使用してください。
+
+  variant COM::All(string module_name [, mixed server_name [, int codepage [, string typelib]]])~
+
+10 の要素を保持する SafeArray を表す variant を返します。
+個々の要素は empty/null の variant となります。この関数は
+イテレータからの全ての要素を含む配列を返すことを想定していますが、
+決して完了しません。使用しないでください。
+
+  variant COM::Next(string module_name [, mixed server_name [, int codepage [, string typelib]]])~
+
+イテレータの次の要素を表す variant を返します。要素が
+もうない場合には FALSE を返します。
+
+  variant COM::Prev(string module_name [, mixed server_name [, int codepage [, string typelib]]])~
+
+イテレータの前の要素を現す variant を返します。要素が
+もうない場合には FALSE を返します。
+
+  void COM::Reset(string module_name [, mixed server_name [, int codepage [, string typelib]]])~
+
+イテレータを最初の場所まで巻き戻します。
+
+COM の例 (1)
+
+<?php >
+  // word を起動します
+  $word = new COM("word.application") or die("Unable to instantiate Word");
+  echo "Loaded Word, version {$word->Version}\n";
+  
+  // 前面に移動させます
+  $word->Visible = 1;
+  
+  // 空のドキュメントを開きます
+  $word->Documents->Add();
+  
+  // 何か複雑なことを行います
+  $word->Selection->TypeText("This is a test...");
+  $word->Documents[1]->SaveAs("Useless test.doc");
+  
+  // word を閉じます
+  $word->Quit();
+  
+  // オブジェクトを開放します
+  $word = null;
+?>
+
+
+
+
+
+COM の例 (2)
+
+<?php >
+  $conn = new COM("ADODB.Connection") or die("Cannot start ADO");
+  $conn->Open("Provider=SQLOLEDB; Data Source=localhost;
+  Initial Catalog=database; User ID=user; Password=password");
+  
+  $rs = $conn->Execute("SELECT * FROM sometable");    // レコードセット
+  
+  $num_columns = $rs->Fields->Count();
+  echo $num_columns . "\n";
+  
+  for ($i=0; $i < $num_columns; $i++) {
+      $fld[$i] = $rs->Fields($i);
+  }
+  
+  $rowcount = 0;
+  while (!$rs->EOF) {
+      for ($i=0; $i < $num_columns; $i++) {
+          echo $fld[$i]->value . "\t";
+      }
+      echo "\n";
+      $rowcount++;            // 行カウントの加算
+      $rs->MoveNext();
+  }
+  
+  $rs->Close();
+  $conn->Close();
+  
+  $rs = null;
+  $conn = null;
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+swf_removeobject -- オブジェクトを削除する
+
+  void swf_removeobject(int depth)~
+
+{depth} で指定した深さのオブジェクトを削除します。
+
+{depth} 深さを表す整数値。
+
+値を返しません。
+
+vim:ft=help:

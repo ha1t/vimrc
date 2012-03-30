@@ -1,0 +1,53 @@
+socket_sendto --
+接続しているかどうかによらずソケットにメッセージを送信する
+
+  int socket_sendto(resource socket, string buf, int len, int flags, string addr [, int port])~
+
+関数 |socket_sendto| は、 アドレス {addr} の {port} を使用し、
+{buf} からソケット {socket} に {len}
+バイトのデータを送信します。
+
+{socket} |socket_create| で作成したソケットリソース。
+
+{buf} 送信するデータが、{buf} から取り出されます。
+
+{len} {buf} から {len} バイト分のデータが送信されます。
+
+{flags} {flags} の値は、以下のフラグの任意の組み合わせを
+論理 OR 演算子 (|) で連結したものとなります。 {flags}
+がとりうる値 MSG_OOB OOB（out-of-band:
+帯域外）データを送信します。 MSG_EOR
+レコードにマークをつけます。
+レコードでデータがそろいます。 MSG_EOF
+ソケットの送信側を閉じ、そのことを知らせる通知を送信データの最後に付加します。
+トランザクションでデータがそろいます。 MSG_DONTROUTE
+ルータを使用せず、直接つながっているインターフェースのみを使用します。
+
+{addr} リモートホストの IP アドレス。
+
+{port} {port} は、
+データの送信先となるリモートホストのポート番号です。
+
+|socket_sendto|
+は、リモートホストに送信したバイト数を返します。
+エラーが発生した場合は -1 を返します。
+
+|socket_sendto| の例
+
+<?php >
+      $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+  
+      $msg = "Ping !";
+      $len = strlen($msg);
+  
+      socket_sendto($sock, $msg, $len, 0, '127.0.0.1', 1223);
+      socket_close($sock);
+?>
+
+
+
+
+
+|socket_send|
+
+vim:ft=help:

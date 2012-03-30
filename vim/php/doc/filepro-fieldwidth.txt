@@ -1,0 +1,12 @@
+filepro_fieldwidth -- フィールド幅を取得する
+
+  int filepro_fieldwidth(int field_number)~
+
+{field_number} に対応するフィールドの幅を返します。
+
+{field_number} フィールド番号。
+
+フィールドの幅を表す整数値、あるいはエラーの場合に
+FALSE を返します。
+
+vim:ft=help:

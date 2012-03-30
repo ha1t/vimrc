@@ -1,0 +1,49 @@
+fbsql_field_type -- 結果の中で指定したフィールドの型を得る
+
+  string fbsql_field_type(resource result [, int field_offset])~
+
+|fbsql_field_type| は |fbsql_field_name| 関数と同じですが、
+返される内容がフィールドの型となります。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+{field_offset}
+フィールドの数値オフセット。フィールドのインデックスは
+0 からはじまります。
+
+フィールドの型を文字列で返します。
+
+これは int、real、 string、blob あるいは FrontBase
+のドキュメント
+で詳細が説明されている型のいずれかです。
+
+|fbsql_field_type| の例
+
+<?php >
+  fbsql_connect("localhost", "_SYSTEM", "");
+  fbsql_select_db("wisconsin");
+  $result = fbsql_query("SELECT * FROM onek;");
+  $fields = fbsql_num_fields($result);
+  $rows   = fbsql_num_rows($result);
+  $i = 0;
+  $table = fbsql_field_table($result, $i);
+  echo "テーブル '" . $table . "' には、フィールドが " . $fields . " そしてレコードが " . $rows . " 件あります <br />";
+  echo "テーブルのフィールドは以下のとおりです <br />"; 
+  while ($i < $fields) {
+      $type  = fbsql_field_type($result, $i);
+      $name  = fbsql_field_name($result, $i);
+      $len   = fbsql_field_len($result, $i);
+      $flags = fbsql_field_flags($result, $i);
+      echo $type . " " . $name . " " . $len . " " . $flags . "<br />";
+      $i++;
+  }
+  fbsql_close();
+?>
+
+
+
+
+
+|fbsql_field_name|
+
+vim:ft=help:

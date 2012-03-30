@@ -1,0 +1,53 @@
+pg_result_error_field -- エラー報告の各フィールドを返す
+
+  string pg_result_error_field(resource result, int fieldcode)~
+
+|pg_result_error_field| は、{result}
+リソースに関するエラーメッセージの特定のフィールドを返します。
+PostgreSQL 7.4
+以降のサーバでのみ有効です。エラーフィールドは
+{fieldcode} で定義します。
+
+|pg_query| や |pg_query_params| はクエリが失敗した場合に FALSE
+を返すので、結果のハンドルを得るには |pg_send_query|
+および |pg_get_result| を使用する必要があります。
+
+失敗した |pg_query| クエリから詳細なエラー情報を
+取得する必要がある場合は、|pg_set_error_verbosity| および
+|pg_last_error| を使用してその結果をパース します。
+
+{result} 実行したステートメントのクエリ結果リソース。
+
+{fieldcode} 以下の {fieldcode} が使用可能です。
+PGSQL_DIAG_SEVERITY、 PGSQL_DIAG_SQLSTATE、PGSQL_DIAG_MESSAGE_PRIMARY、
+PGSQL_DIAG_MESSAGE_DETAIL、
+PGSQL_DIAG_MESSAGE_HINT、PGSQL_DIAG_STATEMENT_POSITION、
+PGSQL_DIAG_INTERNAL_POSITION（PostgreSQL 8.0+ のみ）、
+PGSQL_DIAG_INTERNAL_QUERY（PostgreSQL 8.0+ のみ）、
+PGSQL_DIAG_CONTEXT、PGSQL_DIAG_SOURCE_FILE、 PGSQL_DIAG_SOURCE_LINE
+あるいは PGSQL_DIAG_SOURCE_FUNCTION 。
+
+エラーフィールドの内容を文字列で返します。
+フィールドが存在しない場合に NULL 、失敗した場合に FALSE
+を返します。
+
+|pg_result_error_field| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+  
+    if (!pg_connection_busy($dbconn)) {
+        pg_send_query($dbconn, "select * from doesnotexist;");
+    }
+    
+    $res1 = pg_get_result($dbconn);
+    echo pg_result_error_field($res1, PGSQL_DIAG_SQLSTATE);
+?>
+
+
+
+
+
+|pg_result_error|
+
+vim:ft=help:

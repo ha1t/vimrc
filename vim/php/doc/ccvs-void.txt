@@ -1,0 +1,9 @@
+ccvs_void -- 完了したトランザクションを完全に破棄する
+
+  string ccvs_void(string session, string invoice)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

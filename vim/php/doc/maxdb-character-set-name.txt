@@ -1,0 +1,68 @@
+maxdb->character_set_name --
+データベース接続のデフォルトの文字セットを返す
+
+手続き型
+
+  string maxdb_character_set_name(resource link)~
+
+オブジェクト指向型 (メソッド)
+
+  string character_set_name(resource link)~
+
+{link} パラメータで指定したデータベース接続の、
+現在の文字セットを返します。
+
+現在の接続のデフォルトの文字セットを、ascii あるいは
+unicode で返します。
+
+オブジェクト指向型
+
+<?php >
+  /* 接続をオープンします */
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* 現在の文字セットを表示します */
+  $charset = $maxdb->character_set_name();
+  printf ("現在の文字セットは %s です\n", $charset);
+  
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (!$link) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* 現在の文字セットを表示します */
+  $charset = maxdb_character_set_name($link);
+  printf ("現在の文字セットは %s です\n", $charset);
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  現在の文字セットは ascii です
+
+|maxdb_client_encoding| |maxdb_real_escape_string|
+
+vim:ft=help:

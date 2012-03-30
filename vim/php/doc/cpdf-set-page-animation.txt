@@ -1,0 +1,32 @@
+cpdf_set_page_animation -- ページ間の移行時間を設定する
+
+  bool cpdf_set_page_animation(int pdf_document, int transition, float duration, float direction, int orientation, int inout)~
+
+ページ間の移行に要する時間を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{transition} {transition}
+の値は次のようにすることができます。 0 は何もしない。
+1 は、ページを表示する際に2行ずつスクロールする。 2
+はページを表示する際に複数行ずつスクロールする。 3
+はページの周りに箱を描く。 4
+はページを表示する際に1行ずつスクロールする。 5
+はページを描画する際に古いページを消去する。 6
+は画面の一つの隅から他の隅に移動するように消すといった効果を用いる。
+7 は古いページを新しいページで単純に置換する
+(デフォルト)。
+
+{duration} {duration} の値はページ間の切り替えに要する
+秒数です。
+
+{direction}
+
+{orientation}
+
+{inout}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,8 @@
+imagedashedline -- 破線を描画する
+
+  bool imagedashedline(resource image, int x1, int y1, int x2, int y2, int color)~
+
+これは古い関数です。代わりに |imagesetstyle| と |imageline|
+の組み合せを使用してください。
+
+vim:ft=help:

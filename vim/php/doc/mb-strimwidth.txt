@@ -1,0 +1,37 @@
+mb_strimwidth -- 指定した幅で文字列を丸める
+
+  string mb_strimwidth(string str, int start, int width [, string trimmarker [, string encoding]])~
+
+文字列 {str} を指定した幅 {width} で丸めます。
+
+{str} 丸めたい文字列。
+
+{start} 開始位置のオフセット。文字列の始めからの文字数
+(最初の文字は 0) です。
+
+{width} 丸める幅。
+
+{trimmarker}
+丸めた後にその文字列の最後に追加される文字列。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+丸められた文字列を返します。 {trimmarker}
+が設定された場合、 {trimmarker}
+が丸められた文字列に追加されます。
+
+|mb_strimwidth| の例
+
+<?php >
+  $str = mb_strimwidth($str, 0, 40, "..>");
+?>
+
+
+
+
+
+|mb_strwidth| |mb_internal_encoding|
+
+vim:ft=help:

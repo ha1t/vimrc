@@ -1,0 +1,16 @@
+hw_Unlock -- オブジェクトをアンロックする
+
+  bool hw_unlock(int connection, int objectID)~
+
+ドキュメントをアンロックし、他のユーザーが再びアクセスできるようにします。
+
+{connection} 接続 ID。
+
+{objectID} ドキュメントオブジェクト ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|hw_getandlock|
+
+vim:ft=help:

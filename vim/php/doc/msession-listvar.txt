@@ -1,0 +1,13 @@
+msession_listvar --
+セッションの一覧を変数を使用して取得する
+
+  array msession_listvar(string name)~
+
+共通の属性を有するセッションを検索する際に使用します。
+
+{name} 検索する名前。
+
+{name} という名前の変数を有する全ての
+セッションを値とする連想配列を返します。
+
+vim:ft=help:

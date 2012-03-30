@@ -1,0 +1,13 @@
+ibase_errcode -- エラーコードを返す
+
+  int ibase_errcode()~
+
+直近の InterBase
+関数のコールによって得られたエラーコードを返します。
+
+エラーコードを表す整数、あるいはエラーが発生しなかった場合は
+FALSE を返します。
+
+|ibase_errmsg|
+
+vim:ft=help:

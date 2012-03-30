@@ -1,0 +1,9 @@
+hw_api_content->mimetype -- mimetype を返す
+
+  string mimetype()~
+
+コンテンツの mimetype を返します。
+
+mimetype を表す文字列を返します。
+
+vim:ft=help:

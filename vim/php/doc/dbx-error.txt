@@ -1,0 +1,42 @@
+dbx_error --
+使用するモジュールの最新の関数コールにおけるエラーメッセージを出力する
+
+  string dbx_error(object link_identifier)~
+
+|dbx_error| は、直近のエラーメッセージを返します。
+
+{link_identifier} |dbx_connect| が返す DBX リンクオブジェクト。
+
+抽象化されたモジュール（例えば mysql
+モジュール）の直近の関数コールからエラーメッセージを有する文字列を返します。
+同じモジュールに複数の接続がある場合、
+最後のエラーのみが取得されます。別のモジュールに接続がある場合、
+（{link_identifier} パラメータで）指定した
+モジュールに関する直近のエラーのみが返されます。
+
+|dbx_error| の例
+
+<?php >
+  $link   = dbx_connect(DBX_MYSQL, "localhost", "db", "username", "password")
+      or die("接続に失敗しました");
+  
+  $result = dbx_query($link, "select id from non_existing_table");
+  if ($result == 0) {
+      echo dbx_error($link);
+  }
+  dbx_close($link);
+?>
+
+
+
+
+
+モジュール固有のドキュメントも参照ください。
+
+Microsoft SQL Server に関するエラーメッセージは、実際には
+|mssql_get_last_message| 関数の結果となります。
+
+Oracle (oci8)
+に関するエラーメッセージは、（まだ）実装されていません。
+
+vim:ft=help:

@@ -1,0 +1,18 @@
+hw_GetChildColl -- 子のコレクションのオブジェクト ID
+
+  array hw_getchildcoll(int connection, int objectID)~
+
+オブジェクト ID の配列を返します。各オブジェクト ID
+は、 ID {objectID} を有するコレクションの
+子コレクションに属しています。
+この関数は、子ドキュメントを返しません。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+オブジェクト ID の配列を返します。
+
+|hw_children| |hw_getchilddoccoll|
+
+vim:ft=help:

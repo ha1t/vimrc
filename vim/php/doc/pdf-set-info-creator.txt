@@ -1,0 +1,8 @@
+PDF_set_info_creator -- ドキュメントの creator
+フィールドを設定する [古い関数]
+
+この関数は PDFlib バージョン 3
+で廃止されました。かわりに |PDF_set_info|
+を使用してください。
+
+vim:ft=help:

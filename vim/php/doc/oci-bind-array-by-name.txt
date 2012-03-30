@@ -1,0 +1,111 @@
+oci_bind_array_by_name -- PHP の配列を Oracle PL/SQL
+の配列に名前でバインドする
+
+  bool oci_bind_array_by_name(resource statement, string name, array var_array, int max_table_length [, int max_item_length [, int type]])~
+
+|oci_bind_array_by_name| は、PHP の配列 {var_array} を Oracle
+のプレースホルダ {name} にバインドします。
+このプレースホルダは Oracle PL/SQL の配列を指しています。
+入力変数あるいは出力変数のどちらとして使用されるのかは、
+実行時に決められます。
+
+{statement} 有効な OCI ステートメント識別子
+
+{name} Oracle のプレースホルダ
+
+{var_array} 配列
+
+{max_table_length}
+入力配列および結果の配列の両方の最大長を設定する
+
+{max_item_length}
+配列要素の最大長を設定する。もし指定されない、もしくは
+-1 が指定された場合、|oci_bind_array_by_name|
+は入力の配列の中で最も長い要素を探し、その長さを項目の最大長とする。
+
+{type} PL/SQL 配列の項目の型を指定するために利用される。
+指定可能な型については以下を参照のこと。
+
+SQLT_NUM - NUMBER の配列
+
+SQLT_INT - INTEGER の配列 (注意: INTEGER は、実際には NUMBER(38)
+のシノニムだが、 SQLT_NUM
+ではこの場合うまく動作しない)。
+
+SQLT_FLT - FLOAT の配列
+
+SQLT_AFC - CHAR の配列
+
+SQLT_CHR - VARCHAR2 の配列
+
+SQLT_VCS - VARCHAR の配列
+
+SQLT_AVC - CHARZ の配列
+
+SQLT_STR - STRING の配列
+
+SQLT_LVC - LONG VARCHAR の配列
+
+SQLT_ODT - DATE の配列
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|oci_bind_array_by_name| の例
+
+<?php >
+  $c = oci_connect("scott", "tiger");
+  
+  $create = "CREATE TABLE bind_example(name VARCHAR(20))";
+  $statement = oci_parse($c, $create);
+  oci_execute($statement);
+  
+  $create_pkg = "
+  CREATE OR REPLACE PACKAGE ARRAYBINDPKG1 AS
+    TYPE ARRTYPE IS TABLE OF VARCHAR(20) INDEX BY BINARY_INTEGER;
+    PROCEDURE iobind(c1 IN OUT ARRTYPE);
+  END ARRAYBINDPKG1;";
+  $statement = oci_parse($c, $create_pkg);
+  oci_execute($statement);
+  
+  $create_pkg_body = "
+  CREATE OR REPLACE PACKAGE BODY ARRAYBINDPKG1 AS
+    CURSOR CUR IS SELECT name FROM bind_example;
+    PROCEDURE iobind(c1 IN OUT ARRTYPE) IS
+      BEGIN
+      FOR i IN 1..5 LOOP
+        INSERT INTO bind_example VALUES (c1(i));
+      END LOOP;
+      IF NOT CUR%ISOPEN THEN
+        OPEN CUR;
+      END IF;
+      FOR i IN REVERSE 1..5 LOOP
+        FETCH CUR INTO c1(i);
+        IF CUR%NOTFOUND THEN
+          CLOSE CUR;
+          EXIT;
+        END IF;
+      END LOOP;
+    END iobind;
+  END ARRAYBINDPKG1;";
+  $statement = oci_parse($c, $create_pkg_body);
+  oci_execute($statement);
+  
+  $statement = oci_parse($c, "BEGIN ARRAYBINDPKG1.iobind(:c1); END;");
+  
+  $array = array("one", "two", "three", "four", "five");
+  
+  oci_bind_array_by_name($statement, ":c1", $array, 5, -1, SQLT_CHR);
+  
+  oci_execute($statement);
+  
+  var_dump($array);
+?>
+
+
+
+
+
+この関数は、OCI8 リリース 1.2 から利用可能です。
+
+vim:ft=help:

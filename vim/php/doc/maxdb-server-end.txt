@@ -1,0 +1,9 @@
+maxdb_server_end -- 埋め込みサーバをシャットダウンする
+
+  void maxdb_server_end()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

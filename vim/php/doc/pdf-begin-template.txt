@@ -1,0 +1,10 @@
+PDF_begin_template -- テンプレート定義を開始する [古い関数]
+
+  int PDF_begin_template(resource pdfdoc, float width, float height)~
+
+新規テンプレートの定義を開始します。
+
+この関数は PDFlib バージョン 7 で廃止されました。
+かわりに |PDF_begin_template_ext| を使用してください。
+
+vim:ft=help:

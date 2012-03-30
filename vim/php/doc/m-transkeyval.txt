@@ -1,0 +1,21 @@
+m_transkeyval --
+トランザクションにキー/値のペアを追加する。transparam()
+の代替関数
+
+  int m_transkeyval(resource conn, int identifier, string key, string value)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{identifier}
+
+{key}
+
+{value}
+
+
+
+vim:ft=help:

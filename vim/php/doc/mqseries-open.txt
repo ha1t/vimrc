@@ -1,0 +1,49 @@
+mqseries_open -- MQSeries MQOPEN
+
+   mqseries_open(resource hconn, array objDesc, int option, resourceref hobj, resourceref compCode, resourceref reason)~
+
+|mqseries_open| (MQOPEN)
+は、オブジェクトへのアクセスを確立します。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{objDesc} オブジェクト記述子 (MQOD)。
+
+{options} 関数の動作を制御するオプション。
+
+{hObj} オブジェクトハンドル。
+
+このハンドルは、使用するオブジェクトを表します。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_open| の例
+
+<?php >
+      mqods = array('ObjectName' => 'TESTQ');
+      mqseries_open(
+                  $conn,
+                  $mqods,
+                  MQSERIES_MQOO_INPUT_AS_Q_DEF | MQSERIES_MQOO_FAIL_IF_QUIESCING | MQSERIES_MQOO_OUTPUT,
+                  $obj,
+                  $comp_code,
+                  $reason);
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("open CompCode:%d Reason:%d Text:%s<br>\n", $comp_code, $reason, mqseries_strerror($reason));
+          exit;
+      }
+?>
+
+
+
+
+
+|mqseries_close|
+
+vim:ft=help:

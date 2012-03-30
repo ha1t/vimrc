@@ -1,0 +1,14 @@
+oci_free_statement --
+文やカーソルに関連付けられた全てのリソースを解放する
+
+  bool oci_free_statement(resource statement)~
+
+|oci_parse| の結果や Oracle から取得した、 Oracle
+のカーソルおよび文に関連付けられた全てのリソースを解放します。
+
+{statement} 有効な OCI ステートメント ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

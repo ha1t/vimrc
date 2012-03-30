@@ -1,0 +1,101 @@
+result->field_seek --
+結果ポインタを、指定したフィールドオフセットに移動する
+
+手続き型
+
+  bool maxdb_field_seek(resource result, int fieldnr)~
+
+オブジェクト指向型 (メソッド)
+
+  bool field_seek(resource result, int fieldnr, int fieldnr)~
+
+フィールドカーソルを、指定したオフセットに移動します。
+次に |maxdb_fetch_field| をコールすると、
+そのオフセットに関連付けられたカラムのフィールド定義が取得されます。
+
+行の最初に移動するには、オフセットの値にゼロを指定します。
+
+|maxdb_field_seek| は、
+フィールドカーソルの変更前の値を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query = "SELECT name, cno from hotel.customer ORDER BY cno";
+  
+  if ($result = $maxdb->query($query)) {
+  
+     /* 2 番目のカラムのフィールド情報を取得します */
+     $result->field_seek(1);
+     $finfo = $result->fetch_field();
+   
+     printf("Name:     %s\n", $finfo->name);
+     printf("Table:    %s\n", $finfo->table);
+     printf("max. Len: %d\n", $finfo->max_length);
+     printf("Flags:    %d\n", $finfo->flags);
+     printf("Type:     %d\n\n", $finfo->type);
+     
+     $result->close();
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query = "SELECT name, cno from hotel.customer ORDER BY cno";
+  
+  if ($result = maxdb_query($link, $query)) {
+  
+     /* 2 番目のカラムのフィールド情報を取得します */
+     maxdb_field_seek($result, 1);
+     $finfo = maxdb_fetch_field($result);
+   
+     printf("Name:     %s\n", $finfo->name);
+     printf("Table:    %s\n", $finfo->table);
+     printf("max. Len: %d\n", $finfo->max_length);
+     printf("Flags:    %d\n", $finfo->flags);
+     printf("Type:     %d\n\n", $finfo->type);
+  
+     maxdb_free_result($result);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  Name:     NAME
+  Table:
+  max. Len: 10
+  Flags:    -1
+  Type:     2
+
+|maxdb_fetch_field|
+
+vim:ft=help:

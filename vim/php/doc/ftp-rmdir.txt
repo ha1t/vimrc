@@ -1,0 +1,43 @@
+ftp_rmdir -- ディレクトリを削除する
+
+  bool ftp_rmdir(resource ftp_stream, string directory)~
+
+FTP サーバ上の、指定した {directory} を削除します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{directory}
+削除するディレクトリ。空のディレクトリへの絶対パス
+または相対パスでなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ftp_rmdir| の例
+
+<?php >
+  $dir = 'www/';
+  
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // $dir ディレクトリの削除を試みる
+  if (ftp_rmdir($conn_id, $dir)) {
+      echo "Successfully deleted $dir\n";
+  } else {
+      echo "There was a problem while deleting $dir\n";
+  }
+  
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_mkdir|
+
+vim:ft=help:

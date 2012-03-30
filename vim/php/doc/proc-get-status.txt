@@ -1,0 +1,33 @@
+proc_get_status -- proc_open
+で開かれたプロセスに関する情報を取得する
+
+  array proc_get_status(resource process)~
+
+|proc_get_status| は、|proc_open|
+で開かれたプロセスに関する情報を取得します。
+
+{process} 評価される |proc_open| リソース
+
+成功時は集められた情報の配列、失敗時は FALSE 。
+返される配列は次のような要素を持ちます:
+
+要素型説明 command string |proc_open|
+に指定されたコマンド文字列。 pid int プロセス ID running
+bool もしプロセスがまだ動いている場合は、TRUE
+、すでに終了している場合は FALSE。 signaled bool
+子プロセスが、キャッチされていないシグナルにより終了した場合に
+TRUE となります。Windows では常に FALSE にセットされます。
+stopped bool 子プロセスが、シグナルにより停止した時に TRUE
+となります。 Windows では常に FALSE にセットされます。
+exitcode int プロセスが返した終了コード (running が FALSE
+の時のみ意味を持ちます)。
+正しい値を返すのは関数を最初にコールした時のみで、次に
+コールした際には -1 を返します。 termsig int
+プロセスを終了させたシグナルの番号です (signaled が TRUE
+の時のみ意味を持ちます)。 stopsig int
+プロセスを停止させたシグナルの番号です (stopped が TRUE
+の時のみ意味を持ちます)。
+
+|proc_open|
+
+vim:ft=help:

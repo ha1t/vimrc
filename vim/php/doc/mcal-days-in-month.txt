@@ -1,0 +1,15 @@
+mcal_days_in_month -- 月の日数を返す
+
+  int mcal_days_in_month(int month, int leap_year)~
+
+|mcal_days_in_month| は、
+指定した年が閏年であるかどうかを考慮しつつ {month}
+月の日数を返します。
+
+{month}
+
+{leap_year}
+
+{month} 月の日数を返します。
+
+vim:ft=help:

@@ -1,0 +1,82 @@
+mqseries_get -- MQSeries MQGET
+
+   mqseries_get(resource hConn, resource hObj, array md, array gmo, int bufferLength, stringref msg, intref data_length, resourceref compCode, resourceref reason)~
+
+|mqseries_get| (MQGET) は、 |mqseries_open| (MQOPEN)
+を使用してオープンしたローカルキューからメッセージを取得します。
+
+{hConn} 接続ハンドル。
+
+このハンドルは、キューマネージャへの接続を表します。
+
+{hObj} オブジェクトハンドル。
+
+このハンドルは、使用するオブジェクトを表します。
+
+{md} メッセージ記述子 (MQMD)。
+
+{gmo} Get メッセージのオプション (MQGMO)。
+
+{bufferLength} 想定する結果バッファの長さ。
+
+{msg}
+オブジェクトから取得したメッセージを保持するバッファ。
+
+{data_length} 実際のバッファの長さ。
+
+{compCode} 完了コード。
+
+{reason} compCode の原因を表すコード。
+
+値を返しません。
+
+|mqseries_get| の例
+
+<?php >
+  // キューマネージャへの接続をオープンします
+      mqseries_conn('WMQ1', $conn, $comp_code, $reason);
+  // これで、$conn がキューマネージャへの接続を指すようになります
+  
+  // testq キューへの接続をオープンします
+      mqseries_open(
+                  $conn,
+                  array('ObjectName' => 'TESTQ'),
+                  MQSERIES_MQOO_INPUT_AS_Q_DEF | MQSERIES_MQOO_FAIL_IF_QUIESCING | MQSERIES_MQOO_OUTPUT,
+                  $obj,
+                  $comp_code,
+                  $reason);
+  // これで、$obj はオブジェクト (TESTQ) を指すようになります
+  
+  // 空のメッセージ記述子を用意します
+      mdg = array();
+  // Get メッセージのオプションを設定します
+      $gmo = array('Options' => MQSERIES_MQGMO_FAIL_IF_QUIESCING | MQSERIES_MQGMO_WAIT, 'WaitInterval' => 3000);
+  
+  // メッセージをキューから取得します
+      mqseries_get($conn, $obj, $mdg, $gmo, 255, $msg, $data_length, $comp_code, $reason);
+      if ($comp_code !== MQSERIES_MQCC_OK) {
+          printf("GET CompCode:%d Reason:%d Text:%s<br>", $comp_code, $reason, mqseries_strerror($reason));
+      }
+      
+   // キューマネージャへの接続をオープンします
+      mqseries_conn('WMQ1', $conn, $comp_code, $reason);
+  // これで、$conn がキューマネージャへの接続を指すようになります
+  
+  // testq キューへの接続をオープンします
+      mqseries_open(
+                  $conn,
+                  array('ObjectName' => 'TESTQ'),
+                  MQSERIES_MQOO_INPUT_AS_Q_DEF | MQSERIES_MQOO_FAIL_IF_QUIESCING | MQSERIES_MQOO_OUTPUT,
+                  $obj,
+                  $comp_code,
+                  $reason);
+  // これで、$obj はオブジェクト (TESTQ) を指すようになります
+?>
+
+
+
+
+
+|mqseries_conn| |mqseries_connx| |mqseries_open| |mqseries_put|
+
+vim:ft=help:

@@ -1,0 +1,53 @@
+px_date2string -- 日付を文字列に変換する
+
+  string px_date2string(resource pxdoc, int value, string format)~
+
+paradox
+ファイルに保存されている日付を、人間が理解しやすい形式に変換します。
+paradox の日付は、0000 年 1 月 1
+日からの経過日数で保存されています。
+この関数は利便性を高めるためだけのもので、
+以下の例のように数学関数やカレンダー関数で同等のことを実現できます。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+{value} PX_FIELD_DATE 型の paradox
+データベースフィールドに格納される値。
+
+{format} |date|
+で使用するのと同じ形式の文字列フォーマット。
+この関数がサポートするプレースホルダは、|date|
+でサポートしているもの (Y, y, m, n, d, j, L)
+のサブセットです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+paradox の日付を人間が理解しやすい形式に変換する
+
+<?php >
+  $px = px_new();
+  
+  /* paradox db 形式の日付データを再現します。*/
+  /* 0000 年 1 月 1 日から 700000 日後です。*/
+  $days = 700000;
+  
+  /* カレンダー関数を使用して、人間が理解しやすい形式で */
+  /* 日付を表示します。                                 */
+  echo jdtogregorian($days+1721425)."\n";
+  /* px_date2string() で同じように出力します。*/
+  echo px_date2string($px, $days, "n/d/Y")."\n";
+  
+  px_delete($px);
+?>
+
+上の例の出力は以下となります。
+
+  7/15/1917
+  7/15/1917
+
+
+
+|px_timestamp2string| |jdtogregorian|
+
+vim:ft=help:

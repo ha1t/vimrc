@@ -1,0 +1,38 @@
+db2_close -- データベース接続を閉じる
+
+  bool db2_close(resource connection)~
+
+この関数は、|db2_connect| で作成した DB2
+クライアント接続を閉じ、データベースサーバへのリソースを返します。
+
+|db2_pconnect| で作成した持続的 DB2
+クライアント接続を閉じようとするとその要求は無視され、
+次にコールされるときまで持続的 DB2
+クライアント接続はそのまま残ります。
+
+{connection} アクティブな DB2
+クライアント接続を指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+接続を閉じる 以下では IBM DB2、Cloudscape あるいは Apache Derby
+データベースとの接続が正常に閉じられた場合の例を示します。
+
+<?php >
+  $conn = db2_connect('SAMPLE', 'db2inst1', 'ibmdb2');
+  $rc = db2_close($conn);
+  if ($rc) {
+      echo "接続が正しく閉じられました。";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  接続が正しく閉じられました。
+
+
+
+|db2_connect| |db2_pconnect|
+
+vim:ft=help:

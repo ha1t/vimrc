@@ -1,0 +1,23 @@
+mysql_field_seek --
+結果ポインタを指定したフィールドオフセットにセットする
+
+  bool mysql_field_seek(resource result, int field_offset)~
+
+指定したフィールドオフセットに移動します。
+|mysql_field_seek| をコールした後、 |mysql_fetch_field|
+をフィールドオフセットを付けずに
+コールした場合、このフィールドが返されます。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{ field_offset}数値フィールドオフセット。 {field_offset} は 0
+から始まります。 {field_offset} が存在しない場合、 E_WARNING
+レベルのエラーが発行されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|mysql_fetch_field|
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+swf_endbutton -- 現在のボタンの定義を終了する
+
+  void swf_endbutton()~
+
+関数 |swf_endbutton| は、 現在のボタンの定義を終了します。
+
+値を返しません。
+
+|swf_startbutton|
+
+vim:ft=help:

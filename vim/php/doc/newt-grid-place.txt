@@ -1,0 +1,17 @@
+newt_grid_place --
+
+  void newt_grid_place(resource grid, int left, int top)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{grid}
+
+{left}
+
+{top}
+
+値を返しません。
+
+vim:ft=help:

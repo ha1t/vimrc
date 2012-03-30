@@ -1,0 +1,5 @@
+ocisetprefetch -- oci_set_prefetch のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_set_prefetch|.
+
+vim:ft=help:

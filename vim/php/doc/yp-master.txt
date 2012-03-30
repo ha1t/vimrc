@@ -1,0 +1,28 @@
+yp_master -- 指定したマップのマスタ NIS
+サーバのマシン名を返す
+
+  string yp_master(string domain, string map)~
+
+|yp_master| は、指定したマップ {map} のマスタ NIS
+サーバのマシン名を返します。
+
+{domain} NIS ドメイン名。
+
+{map} NIS マップ。
+
+
+
+NIS マスタの例
+
+<?php >
+  $number = yp_master($domain, $mapname);
+  echo "このマップのマスタは、" . $master;
+?>
+
+
+
+
+
+|yp_get_default_domain|
+
+vim:ft=help:

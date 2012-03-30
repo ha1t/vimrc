@@ -1,0 +1,33 @@
+ssh2_sftp_symlink -- シンボリックリンクを作成する
+
+  bool ssh2_sftp_symlink(resource sftp, string target, string link)~
+
+リモートファイルシステム上に {target} を指す {link}
+という名称のシンボリックリンクを作成します。
+
+{sftp} |ssh2_sftp| でオープンした SSH2 SFTP リソース。
+
+{target} シンボリックリンクのリンク対象。
+
+{link}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+シンボリックリンクの作成
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  $sftp = ssh2_sftp($connection);
+  
+  ssh2_sftp_symlink($sftp, '/var/run/mysql.sock', '/tmp/mysql.sock');
+?>
+
+
+
+
+
+|ssh2_sftp_readlink| |symlink|
+
+vim:ft=help:

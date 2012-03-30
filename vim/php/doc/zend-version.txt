@@ -1,0 +1,24 @@
+zend_version -- 現在の Zend Engine のバージョンを取得する
+
+  string zend_version()~
+
+現在実行中の Zend Engine
+のバージョンを含む文字列を返します。
+
+Zend Engine のバージョン番号を文字列で返します。
+
+|zend_version| の例
+
+<?php >
+  echo "Zend engine version: " . zend_version();
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Zend engine version: 2.2.0
+
+
+
+|phpinfo| |phpcredits| |php_logo_guid| |phpversion|
+
+vim:ft=help:

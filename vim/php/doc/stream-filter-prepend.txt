@@ -1,0 +1,44 @@
+stream_filter_prepend -- フィルタをストリームに付加する
+
+  resource stream_filter_prepend(resource stream, string filtername [, int read_write [, mixed params]])~
+
+{filtername} で指定されたフィルタを、 {stream}
+に付加されているフィルタのリストに加えます。
+このフィルタは、指定された {params} と共に、
+リストの先頭に追加され、ストリームに対する操作の中で最初に呼び出されます。
+フィルタをリストの末尾に加えたいときは、|stream_filter_append|
+を使ってください。
+
+デフォルトでは、 |stream_filter_prepend| は
+ストリームが読み込み用に開かれている場合は
+(つまり、オープンモードが r あるいは + を伴う場合は)、
+フィルタを リードフィルタチェイン に追加し、
+ストリームが書き出し用に開かれている場合は(つまり、オープンモードが
+w か aか、あるいは+ を伴う場合は)、
+ライトフィルターチェィンにも追加します。
+STREAM_FILTER_READ・ STREAM_FILTER_WRITE・ STREAM_FILTER_ALL を
+{read_write}パラメータに渡すことで、この挙動を変えることができます。
+このパラメータを使った例については、 |stream_filter_append|
+を参照ください。
+
+PHP 5.1.0
+以降、この関数はリソースを返します。このリソースは
+|stream_filter_remove| のコール時にこの
+フィルタのインスタンスを指定するために使用可能です。
+PHP 5.1.0 より前のバージョンでは、この関数は
+成功した場合に TRUE、失敗した場合に FALSE を返します。
+
+カスタムフィルタを {filtername} に指定するためには、 まず
+|stream_filter_register| 関数でそれを登録しておく
+必要があります。
+
+ストリームデータは（ローカルおよびリモートの）リソースからチャンク単位で
+読み込まれ、内部バッファに保持されます。新しいフィルタがストリームに
+追加されても、内部バッファにあるデータのうち既に他のフィルタの処理が
+終わっているものは新しいフィルタでは処理されません。
+これは |stream_filter_apppend| の挙動とは違います。
+
+|stream_filter_register| および |stream_filter_append|
+も参照ください。
+
+vim:ft=help:

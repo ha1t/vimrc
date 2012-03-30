@@ -1,0 +1,55 @@
+ftp_alloc --
+アップロードされるファイルのためのスペースを確保する
+
+  bool ftp_alloc(resource ftp_stream, int filesize [, string result])~
+
+ALLO コマンドを FTP サーバに送信し、
+アップロードされるファイルのためのスペースを確保します。
+
+多くの FTP
+サーバはこのコマンドをサポートしていません。これらのサーバの中には、
+「そのコマンドをサポートしていない」という意味で失敗コード（FALSE）
+を返すものもあれば
+「事前に確保する必要はない」という意味で成功コード（TRUE）
+を返すものもあります。このような理由から、事前のスペース確保が明示的に
+要求されているサーバに対してのみこの関数を使用するようにするとよいでしょう。
+
+
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{filezise} 確保したいバイト数。
+
+{return}
+もし変数が指定されていた場合、サーバからの応答テキストの内容の
+参照が格納されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ftp_alloc| の例
+
+<?php >
+  $file = "/home/user/myfile";
+  
+  /* サーバに接続する */
+  $conn_id = ftp_connect('ftp.example.com');
+  $login_result = ftp_login($conn_id, 'anonymous', 'user@example.com');
+  
+  if (ftp_alloc($conn_id, filesize($file), $result)) {
+    echo "Space successfully allocated on server.  Sending $file.\n";
+    ftp_put($conn_id, '/incomming/myfile', $file, FTP_BINARY);
+  } else {
+    echo "Unable to allocate space on server.  Server said: $result\n";
+  }
+  
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_put| |ftp_fput|
+
+vim:ft=help:

@@ -1,0 +1,33 @@
+SQLiteUnbuffered->column --
+カレントの結果セットのレコードからカラムを1列取得する
+
+  mixed sqlite_column(resource result, mixed index_or_name [, bool decode_binary])~
+
+  mixed column(resource result, mixed index_or_name [, bool decode_binary, mixed index_or_name [, bool decode_binary]])~
+
+  mixed column(resource result, mixed index_or_name [, bool decode_binary, mixed index_or_name [, bool decode_binary, mixed index_or_name [, bool decode_binary]]])~
+
+クエリ結果ハンドル{result} の現在のレコードから
+{index_or_name} (文字列の場合) というカラム名、
+または、カラム番号 {index_or_name} (整数の場合)
+の値を取得します。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{index_or_name} 取得するカラムインデックス、もしくは名前
+
+{decode_binary} {decode_binary} パラメータが TRUE (デフォルト)に
+設定された場合、PHP
+はバイナリエンコーディングをデコードします。
+これは、|sqlite_escape_string|
+によりエンコードされたデータに 適用されます。sqlite
+をサポートする他のアプリケーションにより
+作成されたデータベースを処理する時以外は、この値をデフォルトのままにしておくべきです。
+
+多くのカラムもしくは膨大なデータを含んでいるカラムを含むような
+大量の結果セットの反復処理を行う場合にこの関数を使用してください。
+
+|sqlite_fetch_string|
+
+vim:ft=help:

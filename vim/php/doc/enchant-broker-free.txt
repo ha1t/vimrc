@@ -1,0 +1,15 @@
+enchant_broker_free --
+ブローカーリソースおよびその辞書を開放する
+
+  bool enchant_broker_free(resource broker)~
+
+ブローカーリソースを、その辞書とともに開放します。
+
+{broker} ブローカーリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|enchant_broker_init|
+
+vim:ft=help:

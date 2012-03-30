@@ -1,0 +1,25 @@
+yp_err_string --
+指定したエラーコードに対応するエラー文字列を返す
+
+  string yp_err_string(int errorcode)~
+
+指定されたエラーコードに対応する
+エラーメッセージを返します。何が悪かったのかを正確に調べる際に便利です。
+
+{errorcode} エラーコード。
+
+エラーメッセージを表す文字列を返します。
+
+NIS エラーの例
+
+<?php >
+  echo "Error: " . yp_err_string(yp_errno());
+?>
+
+
+
+
+
+|yp_errno|
+
+vim:ft=help:

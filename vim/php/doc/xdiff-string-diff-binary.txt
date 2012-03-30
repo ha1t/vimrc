@@ -1,0 +1,17 @@
+xdiff_string_diff_binary -- 2 つの文字列のバイナリ diff
+を作成する
+
+  string xdiff_string_diff_binary(string str1, string str2)~
+
+ふたつの文字列のバイナリ diff を作成します。
+
+{str1}
+
+{str2}
+
+成功した場合に結果の文字列、内部エラーが発生した場合に
+FALSE を返します。
+
+|xdiff_file_diff_binary|
+
+vim:ft=help:

@@ -1,0 +1,36 @@
+maxdb_get_client_version -- MaxDB クライアントの情報を取得する
+
+  int maxdb_get_client_version()~
+
+クライアントのバージョン番号を整数値で返します。
+
+MaxDB クライアントライブラリのバージョンを表す数値を、
+以下のフォーマットで返します。 main_version*10000 +
+minor_version *100 + sub_version 例えば、7.5.0 の場合は 70500
+となります。
+
+これは、何らかの機能が存在するかどうかを知るために
+クライアントライブラリのバージョンを手早く取得するなどの際に有用です。
+
+maxdb_get_client_version
+
+<?php >
+  /* MaxDB クライアントライブラリのバージョンを
+     知るには、接続する必要はありません。 */
+  
+  printf("クライアントライブラリのバージョン: %d\n", maxdb_get_client_version());
+?>
+
+
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  クライアントライブラリのバージョン: 7.<...>
+
+|maxdb_get_client_info| |maxdb_get_server_info| |maxdb_get_server_version|
+
+vim:ft=help:

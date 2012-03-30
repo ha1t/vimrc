@@ -1,0 +1,5 @@
+socket_get_status -- stream_get_meta_data のエイリアス
+
+この関数は次の関数のエイリアスです。 |stream_get_meta_data|.
+
+vim:ft=help:

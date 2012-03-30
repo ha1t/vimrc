@@ -1,0 +1,78 @@
+html_entity_decode -- HTML エンティティを適切な文字に変換する
+
+  string html_entity_decode(string string [, int quote_style [, string charset]])~
+
+|html_entity_decode| は |htmlentities| の反対で、{string}
+にあるすべての HTML
+エンティティを適切な文字に変換します。
+
+{string} 入力文字列。
+
+{quote_style} オプションの 2 番目のパラメータ {quote_style} は
+'シングルクォート' および "ダブルクォート"
+をどのように扱うかを 指定します。以下の 3
+つの定数のうちのひとつを指定でき、デフォルトは
+ENT_COMPAT です。 使用可能な {quote_style} 定数 定数名 説明
+ENT_COMPAT
+ダブルクォートを変換し、シングルクォートはそのままにします。
+ENT_QUOTES
+ダブルクォート、シングルクォートの両方を変換します。
+ENT_NOQUOTES
+ダブルクォート、シングルクォートの両方とも変換しません。
+
+{charset} オプションの 3 番目のパラメータ {charset} の
+デフォルトは ISO-8859-1
+です。これは変換に使用する文字セットを指定します。
+
+&reference.strings.charsets;
+
+デコードされた文字列を返します。
+
+バージョン 説明 5.0.0
+マルチバイト文字セットをサポートするようになりました。
+
+HTML エンティティのデコード
+
+<?php >
+  $orig = "I'll \"walk\" the <b>dog</b> now";
+  
+  $a = htmlentities($orig);
+  
+  $b = html_entity_decode($a);
+  
+  echo $a; // I'll "walk" the <b>dog</b> now
+  
+  echo $b; // I'll "walk" the <b>dog</b> now
+  
+  
+  // PHP 4.3.0 より前のバージョンでは、このようにします
+  function unhtmlentities($string)
+  {
+      // 数値エンティティの置換
+      $string = preg_replace('~&amp;#x([0-9a-f]+);~ei', 'chr(hexdec("\\1"))', $string);
+      $string = preg_replace('~&amp;#([0-9]+);~e', 'chr("\\1")', $string);
+      // 文字エンティティの置換
+      $trans_tbl = get_html_translation_table(HTML_ENTITIES);
+      $trans_tbl = array_flip($trans_tbl);
+      return strtr($string, $trans_tbl);
+  }
+  
+  $c = unhtmlentities($a);
+  
+  echo $c; // I'll "walk" the <b>dog</b> now
+?>
+
+
+
+
+
+trim(html_entity_decode('&nbsp;')); の結果が空の文字列に
+ならないことを疑問に思う人もいるでしょう。なぜそうなるのかというと、
+デフォルトの文字セット ISO-8859-1 では '&nbsp;'
+エンティティが ASCII コード 32 (これは |trim|
+で取り除かれる) ではなく ASCII コード 160 (0xa0)
+に変換されるからです。
+
+|htmlentities| |htmlspecialchars| |get_html_translation_table| |urldecode|
+
+vim:ft=help:

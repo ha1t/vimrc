@@ -1,0 +1,122 @@
+crypt -- 文字列の一方向の暗号化 (ハッシュ化) を行う
+
+  string crypt(string str [, string salt])~
+
+|crypt| は暗号化した文字列を返します。 Unix 標準の DES
+ベースの暗号化方式か、
+あるいはそのシステム上で使用できるその他のアルゴリズムを使用します。
+
+複数の暗号化方式をサポートしているオペレーティングシステムもあります。
+実際、標準の DES ベースの暗号化方式を MD5
+ベースのものに置き換えることもあります。
+暗号化方式は、salt 引数によって決まります。 PHP
+のインストール時に、そのシステムで使用できる暗号化関数を判別します。
+salt を省略した場合は、デフォルトで 2 文字の salt
+を自動生成します。
+ただし、そのシステムのデフォルトの暗号化方式が MD5
+の場合は、MD5 互換のランダムな salt を生成します。 PHP
+の定数 CRYPT_SALT_LENGTH
+を確認すると、そのシステムで使用できる salt が通常の 2
+文字のものなのか 12
+文字のものが使用できるのかがわかります。
+
+標準の DES ベースの暗号化の場合、|crypt| は出力の最初の 2
+文字を salt として使用します。また、 {str} の最初の 8
+文字しか使用しません。 つまり、最初の 8
+文字が同じである長い文字列は、 同じ salt
+を使う限り同じ結果となります。
+
+crypt()
+が複数の暗号化方式をサポートしているシステムでは、
+その方式が使用可能かどうかによって次の定数群が 0 か 1
+に設定されます。
+
+CRYPT_STD_DES - 標準の DES ベースの暗号化方式で、2 文字の
+salt を使用するもの
+
+CRYPT_EXT_DES - 拡張した DES ベースの暗号化方式で、9 文字の
+salt を使用するもの
+
+CRYPT_MD5 - $1$ ではじまる 12 文字の salt を使用する MD5
+暗号化方式
+
+CRYPT_BLOWFISH - $2$ あるいは $2a$ ではじまる 16 文字の salt
+を使用する Blowfish 暗号化方式
+
+{str} 暗号化したい文字列。
+
+{salt} 暗号化のもととなる salt 文字列。省略した場合は、
+この関数がコールされるたびに PHP
+がランダムな値を生成します。
+
+自動生成される salt を使用する場合は、 salt
+が生成されるのが一度だけであることに注意しましょう。
+この関数を繰り返しコールすると、
+出力だけでなくセキュリティにも影響を与えます。
+
+暗号化した文字列を返します。
+
+|crypt| の例
+
+<?php >
+  $password = crypt('mypassword'); // saltを自動的に生成させます
+  
+  /* 異なったハッシュアルゴリズムが使用された際の問題を避けるために
+     crypt()の結果全体をパスワード比較用のsaltとして渡す必要があります。
+     (上記のように標準DESに基づくパスワードハッシュは2文字のsaltを使用します
+     が、MD5に基づくハッシュは12文字のsaltを使用します) */
+  if (crypt($user_input, $password) == $password) {
+     echo "Password verified!";
+  }
+?>
+
+
+
+|crypt| を htpasswd で使用する例
+
+<?php >
+  // パスワードを設定します
+  $password = 'mypassword';
+  
+  // ハッシュを取得します。salt は自動生成させます
+  $hash = crypt($password);
+?>
+
+
+
+異なる暗号化手法を用いた |crypt| の例
+
+<?php >
+  if (CRYPT_STD_DES == 1) {
+      echo 'Standard DES: ' . crypt('rasmuslerdorf', 'rl') . "\n";
+  }
+  
+  if (CRYPT_EXT_DES == 1) {
+      echo 'Extended DES: ' . crypt('rasmuslerdorf', '_J9..rasm') . "\n";
+  }
+  
+  if (CRYPT_MD5 == 1) {
+      echo 'MD5:          ' . crypt('rasmuslerdorf', '$1$rasmusle$') . "\n";
+  }
+  
+  if (CRYPT_BLOWFISH == 1) {
+      echo 'Blowfish:     ' . crypt('rasmuslerdorf', '$2a$07$rasmuslerd...........$') . "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Standard DES: rl.3StKT.4T8M
+  Extended DES: _J9..rasmBYk8r9AiWNc
+  MD5:          $1$rasmusle$rISCgZzpwk3UhDidwXvin0
+  Blowfish:     $2a$07$rasmuslerd............nIdrcHdxcUxWomQX9j6kvERCFjTg7Ra
+
+
+
+復号するための関数はありません。 |crypt|
+が使用しているのは単方向アルゴリズムだからです。
+
+|md5| mcrypt 拡張モジュール 暗号化関数についての Unix man
+ページ
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+iis_set_server_rights -- サーバの権限を設定する
+
+  int iis_set_server_rights(int server_instance, string virtual_path, int directory_flags)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

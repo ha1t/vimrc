@@ -1,0 +1,36 @@
+hw_api->replace -- オブジェクトを置き換える
+
+  hw_api_object replace(array parameter)~
+
+オブジェクトの属性および内容を置き換えます。
+
+{parameter} パラメータの配列には、必須要素 'objectIdentifier'
+および 'object'、 そしてオプションの要素
+'content'、'parameters'、'mode' および 'attributeSelector'
+が含まれます。 'objectIdentifier'
+には置換元のオブジェクトを指定します。 'object'
+には新しいオブジェクトを指定します。 'content'
+には新しいオブジェクトの内容を指定します。 'parameters'
+には HTML 文書の追加情報を指定します。 HTML_Language
+は、タイトルの言語の短縮形です。 HTML_Base は、HTML
+文書の base 属性です。
+
+'mode' は以下のフラグの組み合わせを指定します。
+HW_API_REPLACE_NORMAL
+サーバ上のオブジェクトを渡したオブジェクトに置き換えます。
+
+HW_API_REPLACE_FORCE_VERSION_CONTROL
+
+HW_API_REPLACE_AUTOMATIC_CHECKOUT
+
+HW_API_REPLACE_AUTOMATIC_CHECKIN
+
+HW_API_REPLACE_PLAIN
+
+HW_API_REPLACE_REVERT_IF_NOT_CHANGED
+
+HW_API_REPLACE_KEEP_TIME_MODIFIED
+
+
+
+vim:ft=help:

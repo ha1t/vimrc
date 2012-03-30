@@ -1,0 +1,22 @@
+xmlrpc_decode -- XML をネイティブな PHP 型にデコードする
+
+  mixed xmlrpc_decode(string xml [, string encoding])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{xml} XMLRPC メソッドが返す XML レスポンス。
+
+{encoding} iconv がサポートする入力エンコーディング
+(デフォルトは "iso-8859-1")。
+
+XMLRPC メソッドのレスポンスをもとに作成した、
+配列あるいは整数、文字列、boolean 値を返します。
+
+|xmlrpc_encode_request| の例を参照ください。
+
+|xmlrpc_encode_request| |xmlrpc_is_fault|
+
+vim:ft=help:

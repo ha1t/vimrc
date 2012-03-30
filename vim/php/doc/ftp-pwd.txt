@@ -1,0 +1,37 @@
+ftp_pwd -- カレントのディレクトリ名を返す
+
+  string ftp_pwd(resource ftp_stream)~
+
+
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+カレントのディレクトリ名、またはエラー時には FALSE
+を返します。
+
+|ftp_pwd| の例
+
+<?php >
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // public_html ディレクトリに移動する
+  ftp_chdir($conn_id, 'public_html');
+  
+  // カレントのディレクトリ名を表示する
+  echo ftp_pwd($conn_id); // /public_html
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|ftp_chdir| |ftp_cdup|
+
+vim:ft=help:

@@ -1,0 +1,51 @@
+ssh2_publickey_add -- 認証済み公開鍵を追加する
+
+  bool ssh2_publickey_add(resource pkey, string algoname, string blob [, bool overwrite [, array attributes]])~
+
+この公開鍵サブシステムは、クライアントが認証 済 の
+公開鍵をサーバ上で管理するために使用されます。
+公開鍵認証によりリモートシステムで認証を行うには、かわりに
+|ssh2_auth_pubkey_file| 関数を使用してください。
+
+{pkey} |ssh2_publickey_init| が作成した、
+公開鍵サブシステムのリソース。
+
+{algoname} 公開鍵のアルゴリズム。例: ssh-dss、ssh-rsa
+
+{blob} 生のバイナリデータとしての blob 形式の公開鍵。
+
+{overwrite}
+指定したキーがすでに存在する場合に、それを上書きしますか?
+
+{attributes}
+この公開鍵に代入する属性の連想配列。サポートされる属性の一覧は、
+ietf-secsh-publickey-subsystem を参照ください。
+必須属性を設定するには、属性名の先頭にアスタリスクをつけてください。
+サーバが必須属性をサポートしていない場合、追加処理は異常終了します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ssh2_publickey_add| で公開鍵を追加する
+
+<?php >
+  $ssh2 = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($ssh2, 'jdoe', 'password');
+  $pkey = ssh2_publickey_init($ssh2);
+  
+  $keyblob = base64_decode('
+  AAAAB3NzaC1yc2EAAAABIwAAAIEA5HVt6VqSGd5PTrLRdjNONxXH1tVFGn0
+  Bd26BF0aCP9qyJRlvdJ3j4WBeX4ZmrveGrjMgkseSYc4xZ26sDHwfL351xj
+  zaLpipu\BGRrw17mWVBhuCExo476ri5tQFzbTc54VEHYckxQ16CjSTibI5X
+  69GmnYC9PNqEYq/1TP+HF10=');
+  
+  ssh2_publickey_add($ssh2, 'ssh-rsa', $keyblob, false, array('comment'=>"John's Key"));
+?>
+
+
+
+
+
+|ssh2_publickey_init| |ssh2_publickey_remove| |ssh2_publickey_list|
+
+vim:ft=help:

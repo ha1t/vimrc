@@ -1,0 +1,18 @@
+readline_callback_handler_remove --
+インストールされたハンドラを削除し、端末の設定をもとに戻す
+
+  bool readline_callback_handler_remove()~
+
+インストールされたハンドラを削除し、端末の設定をもとに戻します。
+
+インストールされたコールバックが削除できた場合に
+TRUE、 削除するハンドラが見つからなかった場合に FALSE
+を返します。
+
+readline
+コールバックインターフェースの使用方法についての例は
+|readline_callback_handler_install| を参照ください。
+
+|readline_callback_handler_install| |readline_callback_read_char|
+
+vim:ft=help:

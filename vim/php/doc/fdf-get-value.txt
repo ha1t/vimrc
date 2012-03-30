@@ -1,0 +1,25 @@
+fdf_get_value -- フィールドの値を得る
+
+  mixed fdf_get_value(resource fdf_document, string fieldname [, int which])~
+
+指定したフィールドの値を取得します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{fieldname} FDF フィールドの名前を表す文字列。
+
+{which}
+このオプションパラメータを渡すことで、配列フィールドの
+要素が取得可能です。番号はゼロから始まります。配列以外のフィールドでは、
+このオプションは無視されます。
+
+フィールドの値を返します。
+
+バージョン 説明 4.3.0
+配列のサポート、およびオプションのパラメータ {which}
+が追加されました。
+
+|fdf_set_value|
+
+vim:ft=help:

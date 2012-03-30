@@ -1,0 +1,14 @@
+ldap_get_dn -- 結果エントリから DN を得る
+
+  string ldap_get_dn(resource link_identifier, resource result_entry_identifier)~
+
+結果における、あるエントリの DN を見つけます。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{result_entry_identifier}
+
+結果エントリの DN
+を返します。エラーの場合、FALSEを返します。
+
+vim:ft=help:

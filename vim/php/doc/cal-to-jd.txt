@@ -1,0 +1,27 @@
+cal_to_jd --
+サポートされるカレンダーからユリウス積算日に変換する
+
+  int cal_to_jd(int calendar, int month, int day, int year)~
+
+|cal_to_jd| は、指定した {calendar}
+の日付からユリウス積算日を計算します。
+サポートされる {calendar} は CAL_GREGORIAN、 CAL_JULIAN、 CAL_JEWISH
+および CAL_FRENCH です。
+
+{calendar} 変換元のカレンダー。 CAL_GREGORIAN、 CAL_JULIAN、
+CAL_JEWISH あるいは CAL_FRENCH のいずれか。
+
+{month} 月を表す数値。有効な範囲は {calendar}
+に依存します。
+
+{day} 日を表す数値。有効な範囲は {calendar} に依存します。
+
+{year} 年を表す数値。有効な範囲は {calendar}
+に依存します。
+
+ユリウス積算日を返します。
+
+|cal_from_jd| |frenchtojd| |gregoriantojd| |jewishtojd| |juliantojd|
+|unixtojd|
+
+vim:ft=help:

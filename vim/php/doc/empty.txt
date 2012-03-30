@@ -1,0 +1,52 @@
+empty -- 変数が空であるかどうかを検査する
+
+  bool empty(mixed var)~
+
+変数が空であるかどうかを検査する
+
+{var} チェックする変数
+
+|empty| は、変数のみをチェックし、それ以外の値を
+チェックすると文法エラーを生成します。つまり、次の例は動作しません:
+empty(trim($name)).
+
+|empty|は、変数が設定されていないときに警告が生成
+されないことを除けば、(boolean) var の逆です。
+
+{var}が空でないか、0でない値であれば FALSE を返します。
+
+次のような値は空であると考えられます。: "" (空文字列) 0
+(0 は整数) "0" (0は文字列) NULL FALSE array() (空の配列) var
+$var;(変数が宣言されているが、クラスの中で値が設定されていない)
+
+バージョン 説明 PHP 5
+PHP5では、プロパティがないオブジェクトは空でないと見なされます。
+
+PHP 4 PHP 4では、文字列 "0"は空であると見なされます。
+
+簡単な |empty| / |isset| の比較
+
+<?php >
+  $var = 0;
+  
+  // $var が空なのでtrueと評価されます
+  if (empty($var)) {
+      echo '$var is either 0, empty, or not set at all';
+  }
+  
+  // $var が設定されているのでtrueと評価されます
+  if (isset($var)) {
+      echo '$var is set even though it is empty';
+  }
+?>
+
+
+
+
+
+これは、関数ではなく 言語構造のため、可変関数
+を用いて コールすることはできません。
+
+|isset| |unset| |array_key_exists| |count| |strlen| PHP 型の比較表
+
+vim:ft=help:

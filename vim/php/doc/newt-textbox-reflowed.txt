@@ -1,0 +1,25 @@
+newt_textbox_reflowed --
+
+  resource newt_textbox_reflowed(int left, int top, char *text, int width, int flex_down, int flex_up [, int flags])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{left}
+
+{top}
+
+{*text}
+
+{width}
+
+{flex_down}
+
+{flex_up}
+
+{flags}
+
+
+
+vim:ft=help:

@@ -1,0 +1,41 @@
+mcrypt_get_iv_size --
+指定した暗号/モードの組み合わせに属する IV
+の大きさを返す
+
+  int mcrypt_get_iv_size(string cipher, string mode)~
+
+|mcrypt_get_iv_size| は初期化ベクトル(IV)の
+大きさをバイト数で返します。エラーの際には FALSE
+を返します。IV
+が指定した暗号/モードで無視される場合には、ゼロが返されます。
+
+{cipher} には、アルゴリズム名を表す定数
+MCRYPT_暗号名の一つを文字列で指定します。
+
+{mode} は "ecb"、"cbc"、"cfb"、"ofb"、 "nofb"、"stream"
+のどれか、あるいは定数 MCRYPT_MODE_モード名です。 ECB
+モードでは IV は要求されないため、IV は無視されます。
+暗号化と復号の際には、同じ
+IV(開始位置)を必要とします。さもないと
+暗号化処理は失敗します。
+
+|mcrypt_enc_get_iv_size| 関数を使用するほうが
+より有用です。これは |mcrypt_module_open|
+が返すリソースを使用します。
+
+|mcrypt_get_iv_size| の例
+
+<?php >
+      echo mcrypt_get_iv_size(MCRYPT_CAST_256, MCRYPT_MODE_CFB) . "\n";
+  
+      echo mcrypt_get_iv_size('des', 'ecb') . "\n";
+?>
+
+
+
+
+
+|mcrypt_get_block_size|、 |mcrypt_enc_get_iv_size| および
+|mcrypt_create_iv| も参照ください。
+
+vim:ft=help:

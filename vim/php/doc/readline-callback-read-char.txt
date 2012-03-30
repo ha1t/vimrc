@@ -1,0 +1,20 @@
+readline_callback_read_char --
+文字を読み込み、改行を受け取ると readline
+コールバックインターフェースに通知する
+
+  void readline_callback_read_char()~
+
+ユーザが入力した文字を読み込みます。改行を受け取ると、この関数は
+|readline_callback_handler_install| で インストールされた readline
+コールバックインターフェースに対して
+入力待ちを通知します。
+
+値を返しません。
+
+readline
+コールバックインターフェースの使用方法についての例は
+|readline_callback_handler_install| を参照ください。
+
+|readline_callback_handler_install| |readline_callback_handler_remove|
+
+vim:ft=help:

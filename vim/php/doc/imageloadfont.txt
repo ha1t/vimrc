@@ -1,0 +1,46 @@
+imageloadfont -- 新しいフォントを読み込む
+
+  int imageloadfont(string file)~
+
+|imageloadfont|
+はユーザが定義したビットマップを読み込み、 その ID
+を返します。
+
+{file}
+フォントファイル形式は現在はバイナリで、アーキクチャに依存します。
+このため、PHP を実行するマシーンと同一の型の CPU
+上でフォントファイルを 生成する必要があります。
+
+フォントファイルのフォーマット バイト位置 C
+言語のデータ型 説明 0-3 バイト目 int
+フォント中の文字の数 4-7 バイト目 int
+フォント中の最初の文字の値(しばしば 空白を表す 32
+となります) 8-11 バイト目 int 各文字のピクセル幅 12-15
+バイト目 int 各文字のピクセル高さ 16 バイト目から char
+文字データの配列、各文字のピクセルにつき1バイトで、
+総数は(文字数*幅*高さ)バイトです。
+
+フォント ID を返します。これは常に 5 より大きくなり、
+組み込みのフォントと衝突することはありません。
+エラー時には FALSE を返します。
+
+imageloadfont の使用法
+
+<?php >
+  header("Content-type: image/png");
+  $im = imagecreatetruecolor(50, 20);
+  $black = imagecolorallocate($im, 0, 0, 0);
+  $white = imagecolorallocate($im, 255, 255, 255);
+  imagefilledrectangle($im, 0, 0, 49, 19, $white);
+  $font = imageloadfont("04b.gdf");
+  imagestring($im, $font, 0, 0, "Hello", $black);
+  imagepng($im);
+?>
+
+
+
+
+
+|imagefontwidth| |imagefontheight|
+
+vim:ft=help:

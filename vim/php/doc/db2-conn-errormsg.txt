@@ -1,0 +1,50 @@
+db2_conn_errormsg -- 直近の接続エラーメッセージおよび SQLCODE
+を返す
+
+  string db2_conn_errormsg([resource connection])~
+
+|db2_conn_errormsg| は、データベースへの直近の接続が
+失敗した原因を表す SQLCODE
+およびエラーメッセージを返します。
+接続が失敗した場合には、|db2_connect| は FALSE を返します。
+この場合、エラーメッセージおよび SQLSTATE
+の値を取得するために |db2_conn_errormsg|
+に何もパラメータを渡す必要はありません。
+
+しかし、接続は成功したもののその後に無効になった場合は、
+パラメータ {connection} を指定することで
+特定の接続についてのエラーメッセージおよび SQLSTATE
+を取得することができます。
+
+{connection}
+当初は成功したものの、その後に無効になった接続に
+関連付けられた接続リソース。
+
+失敗した接続試行の結果を表すエラーメッセージおよび
+SQLSTATE を返します。
+直近の接続試行に関連するエラーがない場合には、
+|db2_conn_errormsg| はn空の文字列を返します。
+
+失敗した接続試行からのエラーメッセージの取得
+以下の例では、|db2_connect| に
+わざと無効なパラメータを渡し、エラーメッセージおよび
+SQLSTATE を取得しています。
+
+<?php >
+  $conn = db2_connect('badname', 'baduser', 'badpassword');
+  if (!$conn) {
+      print db2_conn_errormsg();
+  }
+?>
+
+上の例の出力は以下となります。
+
+  [IBM][CLI Driver] SQL1013N  The database alias name
+  or database name "BADNAME" could not be found.  SQLSTATE=42705
+   SQLCODE=-1013
+
+
+
+|db2_conn_error| |db2_connect| |db2_stmt_error| |db2_stmt_errormsg|
+
+vim:ft=help:

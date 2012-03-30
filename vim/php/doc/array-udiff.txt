@@ -1,0 +1,74 @@
+array_udiff --
+データの比較にコールバック関数を用い、配列の差を計算する
+
+  array array_udiff(array array1, array array2 [, array ..., callback data_compare_func])~
+
+データの比較にコールバック関数を用い、配列の差を計算します。
+この関数は |array_diff| と異なり、
+データの比較に内部関数を利用します。
+
+{array1} 最初の配列。
+
+{array2} 2 番目の配列。
+
+{data_compare_func} 比較用のコールバック関数。
+
+ユーザが指定したコールバック関数を用いてデータの比較を行います。
+この関数は、1 つめの引数が 2 つめより小さい / 等しい /
+大きい 場合にそれぞれ 負の数 / ゼロ / 正の数
+を返す必要があります。
+
+他の引数のいずれにも存在しない {array1}
+の値の全てを有する配列を返します。
+
+|array_udiff| の例
+
+<?php >
+  class cr {
+      private $priv_member;
+      function cr($val)
+      {
+          $this->priv_member = $val;
+      }
+  
+      static function comp_func_cr($a, $b)
+      {
+          if ($a->priv_member === $b->priv_member) return 0;
+          return ($a->priv_member > $b->priv_member)? 1:-1;
+      }
+  }
+  $a = array("0.1" => new cr(9), "0.5" => new cr(12), 0 => new cr(23), 1=> new cr(4), 2 => new cr(-15),);
+  $b = array("0.2" => new cr(9), "0.5" => new cr(22), 0 => new cr(3), 1=> new cr(4), 2 => new cr(-15),);
+  
+  $result = array_udiff($a, $b, array("cr", "comp_func_cr"));
+  print_r($result);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0.5] => cr Object
+          (
+              [priv_member:private] => 12
+          )
+  
+      [0] => cr Object
+          (
+              [priv_member:private] => 23
+          )
+  
+  )
+
+
+
+この関数は n
+次元配列の一つの次元しかチェックしないことに注意してください。
+もちろん、array_udiff($array1[0], $array2[0], "data_compare_func");
+のようにすることでより深い次元でのチェックもできます。
+
+|array_diff| |array_diff_assoc| |array_diff_uassoc| |array_udiff_assoc|
+|array_udiff_uassoc| |array_intersect| |array_intersect_assoc|
+|array_uintersect| |array_uintersect_assoc| |array_uintersect_uassoc|
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+sybase_num_rows -- 結果における行の数を取得する
+
+  int sybase_num_rows(resource result)~
+
+|sybase_num_rows| は、結果セットの行数を返します。
+
+{result}
+
+結果セットの行の数を返します。
+
+|sybase_num_fields| |sybase_query| |sybase_fetch_row|
+
+vim:ft=help:

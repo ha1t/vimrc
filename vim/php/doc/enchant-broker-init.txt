@@ -1,0 +1,13 @@
+enchant_broker_init --
+要求を満たすブローカーオブジェクトを作成する
+
+  resource enchant_broker_init()~
+
+
+
+成功した場合にブローカーリソース、それ以外の場合に
+FALSE を返します。
+
+|enchant_broker_free|
+
+vim:ft=help:

@@ -1,0 +1,25 @@
+imagefilltoborder -- 特定色で塗りつぶす
+
+  bool imagefilltoborder(resource image, int x, int y, int border, int color)~
+
+|imagefilltoborder|は、
+{border}で指定した色を境界色として塗りつぶし
+を行います。({x},{y})が 塗りつぶしの始点(左上が0,
+0)で、領域内を {color}色で塗りつぶします。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{x} 開始位置の x 座標。
+
+{y} 開始位置の y 座標。
+
+{border} 境界色。 |imagecolorallocate| で作成した色 ID です。
+
+{color} 塗りつぶし色。 |imagecolorallocate| で作成した色 ID
+です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

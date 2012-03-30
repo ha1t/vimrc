@@ -1,0 +1,23 @@
+SDO_DataObject::getSequence --
+データオブジェクトのシーケンスを取得する
+
+  SDO_Sequence SDO_DataObject::getSequence()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+この SDO_DataObject に対応する SDO_Sequence を取得します。
+SDO_Sequence インターフェイスを使用したアクセスの場合も
+同じ SDO_DataObject
+インスタンスのデータに対して操作を行いますが、
+複数プロパティにまたがった並び順を管理することができます。
+
+なし。
+
+この SDO_DataObject に対応する SDO_Sequence、 あるいは
+SDO_DataObject がシーケンスを保持できない型であった場合に
+NULL を返します。
+
+vim:ft=help:

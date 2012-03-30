@@ -1,0 +1,32 @@
+bcompiler_load_exe -- bcompiler の exe
+ファイルを読み込み、クラスを生成する
+
+  bool bcompiler_load_exe(string filename)~
+
+bcompiler の exe
+ファイルからデータを読み込み、バイトコードからクラスを生成します。
+
+{filename} exe ファイルのパスを表す文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|bcompiler_load| の例
+
+<?php >
+  bcompiler_load_exe("/tmp/example.exe");
+  print_r(get_defined_classes());
+?>
+
+
+
+
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|bcompiler_load|
+
+vim:ft=help:

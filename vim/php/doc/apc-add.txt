@@ -1,0 +1,54 @@
+apc_add -- 変数をデータ領域にキャッシュする
+
+  bool apc_add(string key, mixed var [, int ttl])~
+
+まだ保存されていない場合にのみ、変数をデータ領域にキャッシュします。
+
+PHP の他の多くの仕組みと異なり、|apc_add|
+を用いて格納された変数はリクエストを超えて
+（その値がキャッシュから取り除かれるまで）持続します。
+
+{key} この名前を用いて変数を格納します。{key} は
+キャッシュ内で一意です。そのため、|apc_add|
+を使用して同一の {key}
+で新しい値を格納しようとしても、それは保存されません。
+かわりに FALSE が返されます (これが、|apc_add| と |apc_store|
+の唯一の相違点です)。
+
+{var} 格納する変数。
+
+{ttl} 有効期間。{var} は、キャッシュに {ttl}
+秒間だけ格納されます。 {ttl}
+が経過すると、格納されている変数は
+（次のリクエスト時に）キャッシュから削除されます。
+{ttl} が指定されていない（あるいは {ttl} が 0
+の場合）は、
+キャッシュから手動で削除される・あるいはキャッシュに存在できなくなる
+（clear, restart など）まで値が持続します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|apc_add| の例
+
+<?php >
+  $bar = 'BAR';
+  apc_add('foo', $bar);
+  var_dump(apc_fetch('foo'));
+  echo "\n";
+  $bar = 'NEVER GETS SET';
+  apc_add('foo', $bar);
+  var_dump(apc_fetch('foo'));
+  echo "\n";
+?>
+
+上の例の出力は以下となります。
+
+  string(3) "BAR"
+  string(3) "BAR"
+
+
+
+|apc_store| |apc_fetch| |apc_delete|
+
+vim:ft=help:

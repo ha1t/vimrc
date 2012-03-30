@@ -1,0 +1,111 @@
+trim --
+文字列の先頭および末尾にあるホワイトスペースを取り除く
+
+  string trim(string str [, string charlist])~
+
+この関数は {str}
+の最初および最後から空白文字を取り除き、
+取り除かれた文字列を返します。2番目のパラメータを指定しない場合、
+|trim|は以下の文字を削除します。 " " (ASCII 32 (0x20)),
+通常の空白。
+
+"\t" (ASCII 9 (0x09)), タブ。
+
+"\n" (ASCII 10 (0x0A)), リターン。
+
+"\r" (ASCII 13 (0x0D)), 改行。
+
+"\0" (ASCII 0 (0x00)), NULバイト
+
+"\x0B" (ASCII 11 (0x0B)), 垂直タブ
+
+{str} ホワイトスペースを取り除く string
+
+{charlist} {charlist}パラメータにより、削除する
+文字を指定することも可能です。削除したい全ての文字をリストに
+してください。..を文字の範囲を指定する際に
+使用可能です。
+
+ホワイトスペースを取り除いた文字列
+
+バージョン 説明 4.1.0 {charlist}
+オプションパラメータが追加されました
+
+|trim|の使用例
+
+<?php >
+  $text   = "\t\tThese are a few words :) ...  ";
+  $binary = "\x09Example string\x0A";
+  $hello  = "Hello World";
+  var_dump($text, $binary, $hello);
+  
+  print "\n";
+  
+  $trimmed = trim($text);
+  var_dump($trimmed);
+  
+  $trimmed = trim($text, " \t.");
+  var_dump($trimmed);
+  
+  $trimmed = trim($hello, "Hdle");
+  var_dump($trimmed);
+  
+  // ASCII 制御文字 (0 から 31 まで) を
+  // $binary の先頭および末尾から取り除きます
+  $clean = trim($binary, "\x00..\x1F");
+  var_dump($clean);
+?>
+
+上の例の出力は以下となります。
+
+  string(32) "        These are a few words :) ...  "
+  string(16) "    Example string
+  "
+  string(11) "Hello World"
+  
+  string(28) "These are a few words :) ..."
+  string(24) "These are a few words :)"
+  string(5) "o Wor"
+  string(14) "Example string"
+
+
+
+|trim| を用いて配列の値をトリミングする
+
+<?php >
+  function trim_value(&amp;$value)
+  {
+      $value = trim($value); 
+  }
+  
+  $fruit = array('apple','banana ', ' cranberry ');
+  var_dump($fruit);
+  
+  array_walk($fruit, 'trim_value');
+  var_dump($fruit);
+?>
+
+上の例の出力は以下となります。
+
+  array(3) {
+    [0]=>
+    string(5) "apple"
+    [1]=>
+    string(7) "banana "
+    [2]=>
+    string(11) " cranberry "
+  }
+  array(3) {
+    [0]=>
+    string(5) "apple"
+    [1]=>
+    string(6) "banana"
+    [2]=>
+    string(9) "cranberry"
+  }
+
+
+
+|ltrim| |rtrim|
+
+vim:ft=help:

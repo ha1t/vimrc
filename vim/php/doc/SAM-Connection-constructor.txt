@@ -1,0 +1,17 @@
+SAMConnection->__construct() --
+メッセージングサーバへの新しい接続を作成する
+
+新しい SAMConnection オブジェクトを作成します。
+
+接続オブジェクトの作成およびメッセージングサーバへの接続
+
+<?php >
+  $conn = new SAMConnection();
+  $conn->connect(SAM_WMQ, array(SAM_HOST => localhost, SAM_PORT => 1414, SAM_BROKER => 'bull'));
+?>
+
+
+
+
+
+vim:ft=help:

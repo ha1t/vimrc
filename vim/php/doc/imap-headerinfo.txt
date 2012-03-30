@@ -1,0 +1,113 @@
+imap_headerinfo -- メッセージヘッダを読み込む
+
+  object imap_headerinfo(resource imap_stream, int msg_number [, int fromlength [, int subjectlength [, string defaulthost]]])~
+
+指定したメッセージ番号についての情報を、そのヘッダを読み込んで取得します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+{fromlength} fetchfrom プロパティの文字数。
+ゼロ以上でなければなりません。
+
+{subjectlength} fetchsubject プロパティの文字数。
+ゼロ以上でなければなりません。
+
+{defaulthost}
+
+以下のプロパティをもつオブジェクトを返します。
+toaddress - 完全な to: 行。最大 1024 文字。
+
+to - To:
+行から、次のプロパティを含むオブジェクトの配列を返します。
+personal、adl、 mailbox および host
+
+fromaddress - 完全な from: 行。最大 1024 文字。
+
+from - From:
+行から、次のプロパティを含むオブジェクトの配列を返します。
+personal、adl、 mailbox および host
+
+ccaddress - 完全な cc: 行。最大 1024 文字。
+
+cc - Cc:
+行から、次のプロパティを含むオブジェクトの配列を返します。
+personal、adl、 mailbox および host
+
+bccaddress - 完全な bcc: 行。最大 1024 文字。
+
+bcc - Bcc:
+行から、次のプロパティを含むオブジェクトの配列を返します。
+personal、adl、 mailbox および host
+
+reply_toaddress - 完全な Reply-To: 行。最大 1024 文字。
+
+reply_to - Reply-To:
+行から、次のプロパティを含むオブジェクトの配列を返します。
+personal、adl、 mailbox および host
+
+senderaddress - 完全な sender: 行。最大 1024 文字。
+
+sender - Sender:
+行から、次のプロパティを含むオブジェクトの配列を返します。
+personal、adl、 mailbox および host
+
+return_pathaddress - 完全な Return-Path: 行。最大 1024 文字。
+
+return_path - Return-Path:
+行から、次のプロパティを含むオブジェクトの配列を返します。
+personal、 adl、mailbox および host
+
+remail -
+
+date - ヘッダにあるメッセージの日付。
+
+Date - date と同じ。
+
+subject - メッセージの件名。
+
+Subject - subject と同じ。
+
+in_reply_to -
+
+message_id -
+
+newsgroups -
+
+followup_to -
+
+references -
+
+Recent - 最近の既読メッセージは R、
+最新の未読メッセージは N、 最新でないメッセージは '
+'。
+
+Unseen - 最新でない未読メッセージは U、
+既読、あるいは最新の未読メッセージは ' '。
+
+Flagged - フラグがたっている場合は F、 そうでない場合は '
+'。
+
+Answered - 返信した場合は A、 していない場合は ' '。
+
+Deleted - 削除された場合は D、 されていない場合は ' '。
+
+Draft - 草稿である場合は X、 そうでない場合は ' '。
+
+Msgno - メッセージ番号。
+
+MailDate -
+
+Size - メッセージのサイズ。
+
+udate - メールメッセージの日付を Unix time で表したもの。
+
+fetchfrom - from 行を {fromlength} 文字に適合させたもの。
+
+fetchsubject - subject 行を {subjectlength}
+文字に適合させたもの。
+
+|imap_fetch_overview|
+
+vim:ft=help:

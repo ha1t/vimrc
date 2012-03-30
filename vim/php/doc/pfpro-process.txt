@@ -1,0 +1,81 @@
+pfpro_process -- Payflow Pro でトランザクションを処理する
+
+  array pfpro_process(array parameters [, string address [, int port [, int timeout [, string proxy_address [, int proxy_port [, string proxy_logon [, string proxy_password]]]]]]])~
+
+|pfpro_process| は、Payflow Pro
+でトランザクションを処理します。
+
+必要なパラメータの詳細については、Payflow Pro Developers
+Guide を参照ください。
+
+{parameters}
+エンコードされてプロセッサに渡されたキーおよび値を有する連想配列です。
+
+{address} 接続するホストを指定します。
+デフォルトでは、この値は "test.signio.com" になっており、
+実際のトランザクションを処理するためには
+"connect.signio.com" に変更したいと思うことでしょう。
+
+{port} 接続するポートを指定します。デフォルトは
+443、つまり標準 SSL ポートです。
+
+{timeout} 使用されるタイムアウトを秒数で指定します。
+この値のデフォルトは 30
+秒です。タイムアウトは、プロセッサへの
+リンクが確立されてから計測が開始されるので、DNS
+またはネットワークの
+問題によりスクリプトが非常に長い時間実行されたままになる
+可能性があることに注意してください。
+
+{proxy_address} 必要に応じて、SSL
+プロキシのホスト名を指定します。
+
+{proxy_port} 必要に応じて、SSL
+プロキシのポート番号を指定します。
+
+{proxy_logon} 必要に応じて、SSL プロキシにログオンする際の
+ID を指定します。
+
+{proxy_password} 必要に応じて、SSL
+プロキシにログオンする際のパスワードを指定します。
+
+レスポンスのキーおよび値を含む連想配列を返します。
+
+Payflow Pro の例
+
+<?php >
+  pfpro_init();
+  
+  $transaction = array('USER'    => 'mylogin',
+                       'PWD'     => 'mypassword',
+                       'PARTNER' => 'VeriSign',
+                       'TRXTYPE' => 'S',
+                       'TENDER'  => 'C',
+                       'AMT'     => 1.50,
+                       'ACCT'    => '4111111111111111',
+                       'EXPDATE' => '0909'
+                      );
+  
+  $response = pfpro_process($transaction);
+  
+  if (!$response) {
+    die("Couldn't establish link to Verisign.\n");
+  }
+  
+  echo "Verisign response code was " . $response['RESULT'];
+  echo ", which means: " . $response['RESPMSG'] . "\n";
+  
+  echo "\nThe transaction request: ";
+  print_r($transaction);
+  
+  echo "\nThe response: ";
+  print_r($response);
+  
+  pfpro_cleanup();
+?>
+
+
+
+
+
+vim:ft=help:

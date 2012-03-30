@@ -1,0 +1,21 @@
+newt_radiobutton --
+
+  resource newt_radiobutton(int left, int top, string text, bool is_default [, resource prev_button])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{left}
+
+{top}
+
+{text}
+
+{is_default}
+
+{prev_button}
+
+
+
+vim:ft=help:

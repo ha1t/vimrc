@@ -1,0 +1,60 @@
+exif_thumbnail -- TIFF あるいは JPEG
+形式の画像に埋め込まれたサムネイルを取得する
+
+  string exif_thumbnail(string filename [, int width [, int height [, int imagetype]]])~
+
+|exif_thumbnail| は、 TIFF あるいは JPEG 画像に
+埋め込まれたサムネイルを読み込みます。
+
+この関数を使用してサムネイルを出力したい場合は、
+|header| 関数を使用して mimetype 情報を送信する
+必要があります。
+
+|exif_thumbnail| が画像を作成することはできないが、
+そのサイズだけはわかるという可能性があります。そのような場合、返り値は
+FALSE となりますが {width} および {height}
+を設定されています。
+
+{filename}
+読み込む画像ファイルの名前。サムネイルが埋め込まれています。
+
+{width} 返されるサムネイルの幅が格納されます。
+
+{height} 返されるサムネイルの高さが格納されます。
+
+{imagetype}
+返されるサムネイルの画像タイプが格納されます。 TIFF
+あるいは JPEG のどちらかです。
+
+埋め込まれたサムネイルを返します。画像がサムネイルを含まない場合は
+FALSE を返します。
+
+バージョン 説明 4.3.0 オプションで {width}、 {height} および
+{imagetype} が使用可能になりました。 4.3.0 サムネイルを TIFF
+フォーマットで返すことがあります。
+
+|exif_thumbnail| の例
+
+<?php >
+  if (array_key_exists('file', $_REQUEST)) {
+      $image = exif_thumbnail($_REQUEST['file'], $width, $height, $type);
+  } else {
+      $image = false;
+  }
+  if ($image!==false) {
+      header('Content-type: ' .image_type_to_mime_type($type));
+      echo $image;
+      exit;
+  } else {
+      // no thumbnail available, handle the error here
+      echo 'No thumbnail available';
+  }
+?>
+
+
+
+
+
+|exif_read_data| |image_type_to_mime_type|
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+bbcode_parse -- 文字列を、指定した規則のもとでパースする
+
+  string bbcode_parse(resource bbcode_container, string to_parse)~
+
+この関数は、|bbcode_create| で作成した bbcode_container
+の規則にもとづいて文字列 to_parse をパースします。
+
+{bbcode_container} |bbcode_create| が返す BBCode_Container。
+
+{to_parse} パースしたい文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

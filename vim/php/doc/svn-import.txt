@@ -1,0 +1,44 @@
+svn_import --
+バージョン管理されていないパスをリポジトリにインポートする
+
+  bool svn_import(string path, string url, bool nonrecursive)~
+
+バージョン管理されていないパス {path} を、 {url}
+で指定したリポジトリにコミットします。 {path}
+がディレクトリで {nonrecursive} が FALSE の場合は、
+再帰的にインポートします。
+
+{path}
+インポートするファイルあるいはディレクトリのパス。
+
+相対パスは、PHP
+バイナリが存在するディレクトリを基準として解決されます。呼び出しもとのスクリプトの作業ディレクトリを基準とするには、|realpath|
+あるいは dirname(__FILE__) を使用してください。
+
+{url} インポート先のリポジトリの URL。
+
+{nonrecursive} ディレクトリを再帰処理するかどうか。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+基本的な例
+この例は、関数の基本的な使用法を示すものです。
+new-files というディレクトリを
+http://www.example.com/svnroot/incoming/abc
+にインポートするには、次のようにします。
+
+<?php >
+  svn_import(realpath('new-files'), 'http://www.example.com/svnroot/incoming/abc', false);
+?>
+
+
+
+|svn_add| SVN ドキュメントの svn import
+
+vim:ft=help:

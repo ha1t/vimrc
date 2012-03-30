@@ -1,0 +1,27 @@
+imagesy -- 画像の高さを取得する
+
+  int imagesy(resource image)~
+
+指定した画像リソース {image} の高さを返します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{image} の高さ、あるいはエラー時に FALSE を返します。
+
+|imagesy| の使用法
+
+<?php >
+  // 300*200 の画像を作成します
+  $img = imagecreatetruecolor(300, 200);
+  
+  echo imagesy($img); // 200
+?>
+
+
+
+
+
+|imagecreatetruecolor| |getimagesize| |imagesx|
+
+vim:ft=help:

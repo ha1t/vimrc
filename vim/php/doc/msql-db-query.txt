@@ -1,0 +1,22 @@
+msql_db_query -- mSQL クエリを送信する
+
+  resource msql_db_query(string database, string query [, resource link_identifier])~
+
+|msql_db_query| はデータベースを選択し、
+そこに対してクエリを実行します。
+
+{database} mSQL データベースの名前。
+
+{query} SQL クエリ。
+
+{ link_identifier}mSQL 接続。 指定されない場合、|msql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、この関数は、
+|msql_connect|をコールした時と同様にリンクを確立し、使用します。
+
+成功した場合には正の mSQL リンク IDを、エラー時には FALSE
+を返します。
+
+|msql_query|
+
+vim:ft=help:

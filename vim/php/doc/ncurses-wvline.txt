@@ -1,0 +1,16 @@
+ncurses_wvline -- 指定した属性文字を用いて、最大 n
+文字分の長さの垂直線を ウィンドウに描画する
+
+  int ncurses_wvline(resource window, int charattr, int n)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{charattr}
+
+{n}
+
+vim:ft=help:

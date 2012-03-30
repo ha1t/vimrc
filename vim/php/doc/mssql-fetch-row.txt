@@ -1,0 +1,25 @@
+mssql_fetch_row -- 配列として行を取得する
+
+  array mssql_fetch_row(resource result)~
+
+|mssql_fetch_row| は指定した結果 ID に関連する結果から 1
+行分のデータを取得します。行は配列として返されます。
+配列オフセットに保存された各結果カラムは、オブセット
+0 から始まります。
+
+|mssql_fetch_rows| を続けてコールした場合、
+結果セットの次の行が返され、行がもうない場合は FALSE
+が返されます。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+取得された行に対応する配列、または行がもうない場合に
+FALSE を返します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|mssql_fetch_array| |mssql_fetch_object| |mssql_data_seek| |mssql_result|
+
+vim:ft=help:

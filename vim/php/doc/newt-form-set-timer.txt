@@ -1,0 +1,15 @@
+newt_form_set_timer --
+
+  void newt_form_set_timer(resource form, int milliseconds)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{form}
+
+{milliseconds}
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+m_initconn -- MCVE_CONN 構造体を作成し、初期化する
+
+  resource m_initconn()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+MCVE_CONN リソースを返します。
+
+|m_destroyconn|
+
+vim:ft=help:

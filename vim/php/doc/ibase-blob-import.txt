@@ -1,0 +1,51 @@
+ibase_blob_import -- blob
+を生成し、ファイルをコピーし、閉じる
+
+  string ibase_blob_import(resource link_identifier, resource file_handle)~
+
+  string ibase_blob_import(resource link_identifier, resource file_handle, resource file_handle)~
+
+この関数は BLOB
+を作成し、その中にファイルのすべての内容を読み込み、
+それを閉じ、関連付けられた BLOB ID を返します。
+
+{link_identifier} InterBase リンク ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+{file_handle} |fopen| が返すファイルハンドル。
+
+成功した場合に BLOB の ID、エラー時に FALSE を返します。
+
+|ibase_blob_import| の例
+
+<?php >
+  $dbh = ibase_connect($host, $username, $password);
+  $filename = '/tmp/bar';
+  
+  $fd = fopen($filename, 'r');
+  if ($fd) {
+  
+      $blob = ibase_blob_import($dbh, $fd);
+      fclose($fd);
+  
+      if (!is_string($blob)) {
+          // インポートに失敗しました
+      } else {
+          $query = "INSERT INTO foo (name, data) VALUES ('$filename', ?)";
+          $prepared = ibase_prepare($dbh, $query);
+          if (!ibase_execute($prepared, $blob)) {
+              // レコードの挿入に失敗しました
+          }
+      }
+  } else {
+      // データファイルをオープンできませんでした
+  }
+?>
+
+
+
+
+
+|ibase_blob_add| |ibase_blob_cancel| |ibase_blob_close| |ibase_blob_create|
+
+vim:ft=help:

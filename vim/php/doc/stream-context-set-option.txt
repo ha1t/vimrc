@@ -1,0 +1,12 @@
+stream_context_set_option -- ストリーム / ラッパ /
+コンテキストのオプションを設定する
+
+  bool stream_context_set_option(resource stream_or_context, string wrapper, string option, mixed value)~
+
+  bool stream_context_set_option(resource stream_or_context, string wrapper, string option, mixed value, resource stream_or_context, array options)~
+
+指定されたストリームまたはコンテキストのオプションを設定します。
+{value} の内容が {wrapper} に対する {option}
+として設定されます。
+
+vim:ft=help:

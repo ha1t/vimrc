@@ -1,0 +1,33 @@
+ssh2_scp_recv -- SCP 経由でファイルを要求する
+
+  bool ssh2_scp_recv(resource session, string remote_file, string local_file)~
+
+リモートサーバからローカルファイルシステムに SCP
+プロトコルを使用してコピーします。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{remote_file} リモートファイルへのパス。
+
+{local_file} ローカルファイルへのパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+SCP 経由でのファイルのダウンロード
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  
+  ssh2_scp_recv($connection, '/remote/filename', '/local/filename');
+?>
+
+
+
+
+
+|ssh2_scp_send| |copy|
+
+vim:ft=help:

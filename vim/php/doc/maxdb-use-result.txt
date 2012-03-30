@@ -1,0 +1,95 @@
+maxdb->use_result -- 結果セットの取得を開始する
+
+手続き型
+
+  resource maxdb_use_result(resource link)~
+
+オブジェクト指向型 (メソッド)
+
+  resource use_result(resource link)~
+
+|maxdb_use_result| は何の動作もしません。
+
+結果、あるいはエラー時に FALSE を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query  = "SELECT * FROM DUAL";
+  
+  /* 複数クエリを実行します */
+  if ($maxdb->multi_query($query)) {
+     do {
+         /* 最初の結果セットを保存します */
+         if ($result = $maxdb->use_result()) {
+             while ($row = $result->fetch_row()) {
+                 printf("%s\n", $row[0]);
+             }
+             $result->close();
+         }
+         /* 区切りを表示します */
+         if ($maxdb->more_results()) {
+             printf("-----------------\n");
+         }
+     } while ($maxdb->next_result());
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  $query  = "SELECT * FROM DUAL";
+  
+  /* 複数クエリを実行します */
+  if (maxdb_multi_query($link, $query)) {
+     do {
+         /* 最初の結果セットを保存します */
+         if ($result = maxdb_use_result($link)) {
+             while ($row = maxdb_fetch_row($result)) {
+                 printf("%s\n", $row[0]);
+             }
+             maxdb_free_result($result);
+         }
+         /* 区切りを表示します */
+         if (maxdb_more_results($link)) {
+             printf("-----------------\n");
+         }
+     } while (maxdb_next_result($link));
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  a
+
+|maxdb_real_query| |maxdb_store_result|
+
+vim:ft=help:

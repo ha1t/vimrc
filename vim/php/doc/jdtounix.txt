@@ -1,0 +1,5 @@
+jdtounix -- ユリウス歴を Unix タイムスタンプに変換する
+
+  int jdtounix(int jday)~
+
+vim:ft=help:

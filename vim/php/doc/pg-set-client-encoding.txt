@@ -1,0 +1,68 @@
+pg_set_client_encoding --
+クライアントのエンコーディングを設定する
+
+  int pg_set_client_encoding(string encoding)~
+
+  int pg_set_client_encoding(string encoding, resource connection, string encoding)~
+
+|pg_set_client_encoding| はクライアントの
+エンコーディングを設定し、成功した場合に
+0、エラー時に -1 を 返します。
+
+PostgreSQL
+は、バックエンドのデータベースエンコーディングを自動的に
+フロントエンドのエンコーディングに変換します。
+
+この関数は、以前は |pg_setclientencoding|
+と呼ばれていました。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{encoding}
+クライアントエンコーディング。以下のうちのひとつです。SQL_ASCII、EUC_JP、
+EUC_CN、EUC_KR、EUC_TW、 UNICODE、MULE_INTERNAL、LATINX (X=1...9)、
+KOI8、WIN、ALT、SJIS、 BIG5 あるいは WIN1250 。
+
+利用可能なエンコーディングの完全なリストは、使用している
+PostgreSQL
+のバージョンに依存します。詳細な情報については
+PostgreSQL のマニュアルを 参照ください。
+
+成功した場合に 0 、エラー時に -1 を返します。
+
+|pg_set_client_encoding| の例
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  // クライアントのエンコーディングを UNICODE にする。
+  // データは、バックエンドのエンコーディングから自動的に変換される。
+  pg_set_client_encoding($conn, UNICODE);
+  
+  $result = pg_query($conn, "SELECT author, email FROM authors");
+  if (!$result) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  // UTF-8 データを書き出す。
+  while ($row = pg_fetch_row($result)) {
+    echo "Author: $row[0]  E-mail: $row[1]";
+    echo "<br />\n";
+  }
+?>
+
+
+
+
+
+|pg_client_encoding|
+
+vim:ft=help:

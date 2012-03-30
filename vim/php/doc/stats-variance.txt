@@ -1,0 +1,15 @@
+stats_variance -- 母分散を返す
+
+  float stats_variance(array a [, bool sample])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{a}
+
+{sample}
+
+
+
+vim:ft=help:

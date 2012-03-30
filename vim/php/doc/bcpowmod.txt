@@ -1,0 +1,40 @@
+bcpowmod --
+任意精度数値のべき乗の、指定した数値による剰余
+
+  string bcpowmod(string left_operand, string right_operand, string modulus [, int scale])~
+
+{modulus} で割った余りを求めることを考慮して、
+{left_operand} の {right_operand} 乗を高速に計算します。
+
+{left_operand} 左オペランドを表す文字列。
+
+{right_operand} 右オペランドを表す文字列。
+
+{modulus} 法を表す文字列。
+
+{ scale}このオプションパラメータを使用して、
+結果の小数点以下の桁数を指定します。すべての関数で使用するデフォルトのスケールを定義するには
+|bcscale| を使用します。
+
+結果を文字列で返します。{modulus} が 0 の場合は NULL
+を返します。
+
+このメソッドでは剰余計算を行っているので、自然数ではない数を
+指定すると予期せぬ結果となります。自然数とは 0
+以外の正の整数です。
+
+以下の 2 つの文は機能的に同じです。しかし |bcpowmod|
+バージョンのほうが実行時間が早いうえ、
+より大きな値の計算が可能です。
+
+<?php >
+  $a = bcpowmod($x, $y, $mod);
+  
+  $b = bcmod(bcpow($x, $y), $mod);
+  
+  // $a と $b は同じ値になります
+?>
+
+|bcpow| |bcmod|
+
+vim:ft=help:

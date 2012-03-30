@@ -1,0 +1,90 @@
+in_array -- 配列に値があるかチェックする
+
+  bool in_array(mixed needle, array haystack [, bool strict])~
+
+{needle} で {haystack} を検索します。
+
+{needle} 探す値。
+
+{needle} が文字列の場合、
+比較の際に大文字小文字は区別されます。
+
+{haystack} 配列。
+
+{strict} 三番目のパラメータ {strict} が TRUE
+に設定された場合、 |in_array| は、{haystack} の中の {needle} の
+型も確認します。
+
+配列で {needle} が見つかった場合に
+TRUE、それ以外の場合は、FALSE を返します。
+
+バージョン 説明 4.2.0 {needle}
+に配列を使用できるようになりました。
+
+|in_array| の例
+
+<?php >
+  $os = array("Mac", "NT", "Irix", "Linux");
+  if (in_array("Irix", $os)) {
+      echo "Got Irix";
+  }
+  if (in_array("mac", $os)) {
+      echo "Got mac";
+  }
+?>
+
+二番目の条件式は失敗します。|in_array|
+は大文字小文字を区別するからです。したがって次のような出力になります。
+
+  Got Irix
+
+
+
+strict を指定した |in_array| の例
+
+<?php >
+  $a = array('1.10', 12.4, 1.13);
+  
+  if (in_array('12.4', $a, true)) {
+      echo "'12.4' found with strict check\n";
+  }
+  
+  if (in_array(1.13, $a, true)) {
+      echo "1.13 found with strict check\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  1.13 found with strict check
+
+
+
+needleが配列の場合の |in_array|
+
+<?php >
+  $a = array(array('p', 'h'), array('p', 'r'), 'o');
+  
+  if (in_array(array('p', 'h'), $a)) {
+      echo "'ph' was found\n";
+  }
+  
+  if (in_array(array('f', 'i'), $a)) {
+      echo "'fi' was found\n";
+  }
+  
+  if (in_array('o', $a)) {
+      echo "'o' was found\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  'ph' was found
+    'o' was found
+
+
+
+|array_search| |isset| |array_key_exists|
+
+vim:ft=help:

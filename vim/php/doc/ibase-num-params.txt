@@ -1,0 +1,16 @@
+ibase_num_params -- プリペアドクエリのパラメータ数を返す
+
+  int ibase_num_params(resource query)~
+
+この関数は、{query} で指定した
+プリペアドクエリのパラメータの数を返します。
+|ibase_execute| をコールする際に、
+この数と同じだけのバインド引数が割り当てられている必要があります。
+
+{query} プリペアドクエリのハンドル。
+
+パラメータの数を整数値で返します。
+
+|ibase_prepare| |ibase_param_info|
+
+vim:ft=help:

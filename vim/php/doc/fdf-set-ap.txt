@@ -1,0 +1,23 @@
+fdf_set_ap -- フィールドの外観を設定する
+
+  bool fdf_set_ap(resource fdf_document, string field_name, int face, string filename, int page_number)~
+
+フィールドの外観 (すなわち、/AP キーの値)
+を設定します。
+
+{fdf_document} |fdf_create|、 |fdf_open| あるいは |fdf_open_string|
+が返す FDF ドキュメントハンドル。
+
+{field_name}
+
+{face} FDFNormalAP、FDFRolloverAP および FDFDownAP
+のいずれかが使用可能です。
+
+{filename}
+
+{page_number}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,38 @@
+mb_decode_numericentity -- HTML
+数値エンティティを文字にデコードする
+
+  string mb_decode_numericentity(string str, array convmap [, string encoding])~
+
+文字列 {str}
+において指定した文字領域にある数値エンティティを変換し、
+変換後の文字列を返します。
+
+{str} デコードする文字列。
+
+{convmap} {convmap}
+は変換するコード領域を指定する配列です。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+変換された文字列を返します。
+
+{convmap} の例
+
+  $convmap = array (
+     int start_code1, int end_code1, int offset1, int mask1,
+     int start_code2, int end_code2, int offset2, int mask2,
+     ........
+     int start_codeN, int end_codeN, int offsetN, int maskN );
+  // start_codeN および end_codeN に Unicode値を指定
+  // 値にoffsetNを追加、マスクmaskNを指定してビット毎の'AND'をとり、
+  // 数値エンティティに値を変換します。
+
+
+
+
+
+|mb_encode_numericentity|
+
+vim:ft=help:

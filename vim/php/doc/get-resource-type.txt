@@ -1,0 +1,36 @@
+get_resource_type -- リソース型を返す
+
+  string get_resource_type(resource handle)~
+
+この関数は、指定したリソースの型を取得します。
+
+{handle} 評価されるリソースハンドル。
+
+指定された {handle} がリソースであった場合、
+この関数はその型を表す文字列を返します。この関数で型が判別できなかった
+場合は、返り値は文字列 Unknown となります。
+
+もし {handle} がリソースでない場合、 この関数は FALSE
+を返し、エラーを発生させます。
+
+|get_resource_type| の例
+
+<?php >
+  // mysql link を出力
+  $c = mysql_connect();
+  echo get_resource_type($c) . "\n";
+  
+  // file を出力
+  $fp = fopen("foo", "w");
+  echo get_resource_type($fp) . "\n";
+  
+  // domxml document を出力
+  $doc = new_xmldoc("1.0");
+  echo get_resource_type($doc->doc) . "\n";
+?>
+
+
+
+
+
+vim:ft=help:

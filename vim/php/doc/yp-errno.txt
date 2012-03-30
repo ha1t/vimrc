@@ -1,0 +1,11 @@
+yp_errno -- 前の操作のエラーコードを返す
+
+  int yp_errno()~
+
+前に行った操作のエラーコードを返します。
+
+エラー定数 YPERR_XXX のいずれかを返します。
+
+|yp_err_string|
+
+vim:ft=help:

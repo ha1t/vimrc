@@ -1,0 +1,13 @@
+OCI-Collection->append -- コレクションに要素を追加する
+
+  bool append(mixed value)~
+
+コレクションの最後に要素を追加します。
+
+{value}
+コレクションに追加する値を指定します。文字列か数値です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

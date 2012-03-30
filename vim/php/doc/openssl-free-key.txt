@@ -1,0 +1,12 @@
+openssl_free_key -- キーリソースを開放する
+
+  void openssl_free_key(resource key_identifier)~
+
+|openssl_free_key| は、指定した {key_identifier}
+が指すキーをメモリから開放します。
+
+{key_identifier}
+
+値を返しません。
+
+vim:ft=help:

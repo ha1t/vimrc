@@ -1,0 +1,49 @@
+db2_foreign_keys --
+テーブルの外部キーを含む結果セットを返す
+
+  resource db2_foreign_keys(resource connection, string qualifier, string schema, string table-name)~
+
+テーブルの外部キーを含む結果セットを返します。
+
+{connection} IBM DB2、Cloudscape あるいは Apache Derby
+データベースへの有効な接続。
+
+{qualifier} OS/390 あるいは z/OS サーバ上で稼動している DB2
+データベースの修飾子。
+その他のデータベースの場合には NULL
+あるいは空の文字列を渡します。
+
+{schema} テーブルを含むスキーマ。{schema} が NULL
+の場合は、|db2_foreign_keys|
+現在の接続のスキーマに一致します。
+
+{table-name} テーブルの名前。
+
+指定したテーブルの外部キーを含む結果セットのステートメントリソースを返します。
+結果セットは、以下のカラムで構成されています。
+カラム名 説明 PKTABLE_CAT
+主キーを含むテーブルのカタログの名前。
+テーブルがカタログを保持していない場合は NULL。
+PKTABLE_SCHEM 主キーを含むテーブルのスキーマの名前。
+PKTABLE_NAME 主キーを含むテーブルの名前。 PKCOLUMN_NAME
+主キーを含むカラムの名前。 FKTABLE_CAT
+外部キーを含むテーブルのカタログの名前。
+テーブルがカタログを保持していない場合は NULL。
+FKTABLE_SCHEM 外部キーを含むテーブルのスキーマの名前。
+FKTABLE_NAME 外部キーを含むテーブルの名前。 FKCOLUMN_NAME
+外部キーを含むカラムの名前。 KEY_SEQ 1
+から始まる数字で表した、キー内のカラムの位置。
+UPDATE_RULE SQL で UPDATE
+操作を行った際に外部キーに適用される動作を表す整数値。
+DELETE_RULE SQL で DELETE
+操作を行った際に外部キーに適用される動作を表す整数値。
+FK_NAME 外部キーの名前。 PK_NAME 主キーの名前。 DEFERRABILITY
+外部キーの遅延度を表す整数値。
+SQL_INITIALLY_DEFERRED、SQL_INITIALLY_IMMEDIATE あるいは
+SQL_NOT_DEFERRABLE のいずれか。
+
+|db2_column_privileges| |db2_columns| |db2_primary_keys|
+|db2_procedure_columns| |db2_procedures| |db2_special_columns|
+|db2_statistics| |db2_table_privileges| |db2_tables|
+
+vim:ft=help:

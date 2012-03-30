@@ -1,0 +1,69 @@
+db2_fetch_object --
+結果セット内の行を表す、カラムをプロパティとするオブジェクトを返す
+
+  object db2_fetch_object(resource stmt [, int row_number])~
+
+結果セット内の行を表す、カラムをプロパティとするオブジェクトを返します。
+
+{stmt} 結果セットを含む有効な stmt リソース。
+
+{row_number} 結果セット内の 1
+から始まる行番号を指定します。
+結果セットで前進のみのカーソルを使用している場合にこのパラメータを渡すと、
+PHP の警告が発生します。
+
+結果セット内の行を表すオブジェクトを返します。
+オブジェクトのプロパティが、結果セット内のカラム名に対応します。
+
+IBM DB2、Cloudscape および Apache Derby データベースサーバは、
+通常はカラム名を大文字として扱います。そのため、
+オブジェクトのプロパティも同じようになります。
+
+SELECT
+文の中でスカラ関数をコールすることでカラムの値を変更している場合、
+データベースサーバは、そのカラムの名前としてカラム番号を返します。
+もし何らかの意味のある名前をオブジェクトのプロパティとして使用したいのなら、
+AS
+句を使用して結果セット内のカラムに名前を割り当てる必要があります。
+
+行が取得されなかった場合は FALSE を返します。
+
+|db2_fetch_object| の例 次の例では、スカラ関数 RTRIM
+を使用した SELECT 文を発行します。
+この関数は、カラムの最後の空白を取り除きます。プロパティ
+"BREED" および "2"
+を持つオブジェクトを作成するのではなく、 SELECT 文で AS
+句を使用し、変更したカラムに "name"
+という名前をつけます。
+データベースサーバはカラム名を大文字に変換するので、
+返されるオブジェクトのプロパティは "BREED" および "NAME"
+となります。
+
+<?php >
+  $conn = db2_connect($database, $user, $password);
+  
+  $sql = "SELECT breed, RTRIM(name) AS name
+      FROM animals
+      WHERE id = ?";
+  
+  if ($conn) {
+      $stmt = db2_prepare($conn, $sql);
+      db2_execute($stmt, array(0));
+  
+      while ($pet = db2_fetch_object($stmt)) {
+          echo "Come here, {$pet->NAME}, my little {$pet->BREED}!";
+      }
+      db2_close($conn);
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Come here, Pook, my little cat!
+
+
+
+|db2_fetch_array| |db2_fetch_assoc| |db2_fetch_both| |db2_fetch_row|
+|db2_result|
+
+vim:ft=help:

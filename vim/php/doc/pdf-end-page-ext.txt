@@ -1,0 +1,8 @@
+PDF_end_page_ext -- ページを終了する
+
+  bool PDF_end_page_ext(resource pdfdoc, string optlist)~
+
+ページを終了し、さまざまなオプションを適用します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

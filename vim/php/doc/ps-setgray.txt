@@ -1,0 +1,17 @@
+ps_setgray -- グレー値を設定する
+
+  bool ps_setgray(resource psdoc, float gray)~
+
+以降の描画処理で使われるグレー値を設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{gray} 値は 0（白）から
+1（黒）までの間でなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_setcolor|
+
+vim:ft=help:

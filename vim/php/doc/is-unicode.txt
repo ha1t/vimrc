@@ -1,0 +1,14 @@
+is_unicode -- 変数が unicode 文字列かどうかを調べる
+
+  bool is_unicode(mixed var)~
+
+指定した変数が、unicode 文字列かどうかを調べます。
+
+{var} 調べる変数。
+
+{var} が unicode 文字列である場合に TRUE、それ以外の場合に
+FALSE を返します。
+
+|is_binary| |is_buffer| |is_string| |unicode_encode|
+
+vim:ft=help:

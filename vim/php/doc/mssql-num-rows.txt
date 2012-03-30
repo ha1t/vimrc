@@ -1,0 +1,14 @@
+mssql_num_rows -- 結果の行数を得る
+
+  int mssql_num_rows(resource result)~
+
+|mssql_num_rows| は結果の行数を返します。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+行の数を整数値で返します。
+
+|mssql_query| |mssql_fetch_row|
+
+vim:ft=help:

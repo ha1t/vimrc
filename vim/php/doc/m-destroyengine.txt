@@ -1,0 +1,14 @@
+m_destroyengine -- IP/SSL
+接続に関連付けられたメモリを開放する
+
+  void m_destroyengine()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+mcal_week_of_year -- 指定した日付の週番号を返す
+
+  int mcal_week_of_year(int day, int month, int year)~
+
+|mcal_week_of_year| は、指定した日付の 週番号を返します。
+
+{day} 日。
+
+{month} 月。
+
+{year} 年。
+
+週番号を返します。
+
+vim:ft=help:

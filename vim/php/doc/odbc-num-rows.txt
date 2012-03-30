@@ -1,0 +1,19 @@
+odbc_num_rows -- 結果における行数を返す
+
+  int odbc_num_rows(resource result_id)~
+
+ODBC 結果における行の数を取得します。 INSERT、UPDATE
+および DELETE 命令に関しては、 |odbc_num_rows|
+は、変更された行の数を返します。 SELECT
+文の場合、この関数は利用可能な行の数を返します。
+
+{result_id} |odbc_exec| が返す結果 ID。
+
+ODBC 結果における行の数を返します。
+この関数は、エラー時に-1を返します。
+
+SELECT の後に利用可能な行の数を定義するために
+|odbc_num_rows| を使用した場合、
+多くのドライバにおいて、-1 が返されます。
+
+vim:ft=help:

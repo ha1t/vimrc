@@ -1,0 +1,35 @@
+pg_ping -- データベース接続を調べる
+
+  bool pg_ping([resource connection])~
+
+|pg_ping| はデータベース接続を調べ、その接続が
+壊れている場合には再度接続を試みます。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_ping| の例
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "エラーが発生しました。\n";
+    exit;
+  }
+  
+  if (!pg_ping($conn))
+    die("接続は壊れています。\n");
+?>
+
+
+
+
+
+|pg_connection_status| |pg_connection_reset|
+
+vim:ft=help:

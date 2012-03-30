@@ -1,0 +1,31 @@
+oci_server_version -- サーバのバージョンを返す
+
+  string oci_server_version(resource connection)~
+
+Oracle サーバのバージョン情報を文字列で返します。
+その際、指定した接続 {connection} を使用します。
+
+{connection}
+
+バージョン情報を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+|oci_server_version| の例
+
+<?php >
+      $conn = oci_connect("scott", "tiger");
+      echo "サーバのバージョン: " . oci_server_version($conn);
+      oci_close($conn);
+?>
+
+
+
+
+
+PHP バージョン 5.0.0 以前では、代わりに |ociserverversion|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_server_version| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

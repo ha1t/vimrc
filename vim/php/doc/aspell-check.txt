@@ -1,0 +1,32 @@
+aspell_check -- 単語をチェックする [非推奨]
+
+  bool aspell_check(int dictionary_link, string word)~
+
+|aspell_check| は単語のスペルをチェックします。
+
+{dictionary_link} |aspell_new| が返す辞書リンク識別子。
+
+{word} 調べる単語。
+
+スペルが正しい場合に TRUE、正しくない場合に FALSE
+を返します。
+
+|aspell_check| の例
+
+<?php >
+  $aspell_link = aspell_new("english");
+  
+  if (aspell_check($aspell_link, "testt")) {
+      echo "正しいスペルです";
+  } else {
+      echo "スペルが間違っています";
+  }
+?>
+
+
+
+
+
+|aspell_check_raw|
+
+vim:ft=help:

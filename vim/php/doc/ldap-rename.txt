@@ -1,0 +1,31 @@
+ldap_rename -- エントリ名を修正する
+
+  bool ldap_rename(resource link_identifier, string dn, string newrdn, string newparent, bool deleteoldrdn)~
+
+{dn} で指定したエントリについて、
+名前の変更または移動を行います。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{dn} LDAP エンティティの識別名。
+
+{newrdn} 新しい RDN。
+
+{newparent} 新しい親エントリ。
+
+{deleteoldrdn} TRUE の場合は古い RDN
+値を削除します。それ以外の場合は古い RDN
+値がそのエントリの non-distinguished 値として残されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、現在、LDAPv3 でのみ動作します。LDAPv3
+でバインドする前に |ldap_set_option()|
+を使用する必要があるかもしれません。
+この関数は、OpenLDAP 2.x.x または Netscape Directory SDK x.x
+を使用している場合にのみ使用可能です。
+
+|ldap_modify|
+
+vim:ft=help:

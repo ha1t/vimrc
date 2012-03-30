@@ -1,0 +1,8 @@
+PDF_end_page -- ページを終了する
+
+  bool PDF_end_page(resource p)~
+
+ページを終了します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

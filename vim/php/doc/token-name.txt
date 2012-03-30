@@ -1,0 +1,28 @@
+token_name -- 指定した PHP トークンのシンボル名を取得する
+
+  string token_name(int token)~
+
+|token_name|は、PHP {token} 値のシンボル名を返します。
+
+{token} トークンの値。
+
+{token} に対応するシンボル名を返します。
+返される名前は、検索用に指定したトークン定数の名前に一致します。
+
+|token_name| の例
+
+<?php >
+  // 260は T_REQUIRE トークンのトークン値
+  echo token_name(260);        // -> "T_REQUIRE"
+  
+  // 自身の名前にマップするトークン定数
+  echo token_name(T_FUNCTION); // -> "T_FUNCTION"
+?>
+
+
+
+
+
+パーサトークンの一覧
+
+vim:ft=help:

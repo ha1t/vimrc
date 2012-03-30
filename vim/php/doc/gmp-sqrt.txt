@@ -1,0 +1,32 @@
+gmp_sqrt -- 平方根を計算する
+
+  resource gmp_sqrt(resource a)~
+
+{a} の平方根を計算します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+平方根の整数部分を GMP 数で返します。
+
+|gmp_sqrt| の例
+
+<?php >
+  $sqrt1 = gmp_sqrt("9");
+  $sqrt2 = gmp_sqrt("7");
+  $sqrt3 = gmp_sqrt("1524157875019052100");
+  
+  echo gmp_strval($sqrt1) . "\n";
+  echo gmp_strval($sqrt2) . "\n";
+  echo gmp_strval($sqrt3) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  3
+  2
+  1234567890
+
+
+
+vim:ft=help:

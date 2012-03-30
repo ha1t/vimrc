@@ -1,0 +1,14 @@
+cpdf_rotate -- 回転を設定する
+
+  bool cpdf_rotate(int pdf_document, float angle)~
+
+回転角を {angle} 度に設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{angle} 角度。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

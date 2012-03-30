@@ -1,0 +1,41 @@
+imagepng -- PNG
+イメージをブラウザまたはファイルに出力する
+
+  bool imagepng(resource image [, string filename [, int quality [, int filters]]])~
+
+指定した {image} から、PNG
+画像を出力あるいは保存します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{filename} 保存するファイルへのパス。省略したり NULL
+を設定したりした場合は、
+生の画像ストリームを直接出力します。
+
+{quality} および {filters} を使用しない場合は、 NULL
+を指定することはできません。
+
+{quality} 圧縮レベル。0 (圧縮しない) から 9 までの値です。
+
+{filters} PNG ファイルの大きさを小さくします。
+これはビットマスクフィールドで、定数 PNG_FILTER_XXX
+の組み合わせを指定します。 PNG_NO_FILTER や PNG_ALL_FILTERS
+を使用すると、
+全フィルタを一括で無効にしたり有効にしたりできます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.1.3 {filters}
+パラメータが追加されました。 5.1.2 {quality}
+パラメータが追加されました。
+
+<?php >
+  $im = imagecreatefrompng("test.png");
+  imagepng($im);
+?>
+
+|imagegif| |imagewbmp| |imagejpeg| |imagetypes|
+
+vim:ft=help:

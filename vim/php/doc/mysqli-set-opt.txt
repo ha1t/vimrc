@@ -1,0 +1,5 @@
+mysqli_set_opt -- mysqli_options のエイリアス
+
+この関数は |mysqli_options| のエイリアスです。
+
+vim:ft=help:

@@ -1,0 +1,5 @@
+msql_regcase -- sql_regcase のエイリアス
+
+この関数は次の関数のエイリアスです。 |sql_regcase|
+
+vim:ft=help:

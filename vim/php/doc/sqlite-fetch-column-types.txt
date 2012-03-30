@@ -1,0 +1,73 @@
+SQLiteDatabase->fetchColumnTypes --
+特定のテーブルからカラム型の配列を返す
+
+  array sqlite_fetch_column_types(string table_name, resource dbhandle [, int result_type])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  array fetchColumnTypes(string table_name, resource dbhandle [, int result_type, string table_name [, int result_type]])~
+
+|sqlite_fetch_column_types| は、 指定されたテーブル {table_name}
+からカラムのデータ型の配列を返します。
+
+{table_name} 問い合わせるテーブル名
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{result_type} オプションパラメータ {result_type}
+は定数を受け付け、
+返される配列をどの様にインデックス付けするかを決定します。
+SQLITE_ASSOC を使用すると連想インデックス
+(名前付けられたフィールド) のみを返し、 SQLITE_NUM
+の場合は数値インデックス (順序を表すフィールド番号)
+のみを返します。 SQLITE_BOTH は、連想、
+数値の両インデックスを返します。 SQLITE_ASSOC
+がこの関数のデフォルトです。
+
+カラムのデータ型の配列を返します。エラー時は FALSE
+を返します。
+
+SQLITE_ASSOC および SQLITE_BOTH で
+返されるカラム名は、設定オプション sqlite.assoc_case
+の値に基づき、 大文字小文字が変換されます。
+
+バージョン 説明 5.1.0 {result_type} が追加されました。
+
+手続き型言語スタイルでの例
+
+<?php >
+  $db = sqlite_open('mysqlitedb');
+  sqlite_query($db, 'CREATE TABLE foo (bar varchar(10), arf text)');
+  $cols = sqlite_fetch_column_types('foo', $db, SQLITE_ASSOC);
+  
+  foreach ($cols as $column => $type) {
+      echo "Column: $column  Type: $type";
+  }
+?>
+
+
+
+
+
+オブジェクト指向言語型スタイルでの例
+
+<?php >
+  $db = new SQLiteDatabase('mysqlitedb');
+  $db->query('CREATE TABLE foo (bar varchar(10), arf text)');
+  $cols = $db->fetchColumnTypes('foo', SQLITE_ASSOC);
+  
+  foreach ($cols as $column => $type) {
+      echo "Column: $column  Type: $type";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  Column: bar  Type: VARCHAR
+  Column: arf  Type: TEXT
+
+
+
+vim:ft=help:

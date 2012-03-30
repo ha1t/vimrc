@@ -1,0 +1,19 @@
+ircg_set_current -- 出力用に現在の接続を設定する
+
+  bool ircg_set_current(resource connection)~
+
+この実行コンテキストを出力するための HTTP
+接続を選択します。 {connection}
+で接続したサーバから送信されたすべての出力は、
+デフォルトのフォーマットあるいは
+|ircg_register_format_messages|
+で指定したフォーマットメッセージセットを使用して標準出力に送られます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ircg_register_format_messages|
+
+vim:ft=help:

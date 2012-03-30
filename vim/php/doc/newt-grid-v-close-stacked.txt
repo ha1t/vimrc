@@ -1,0 +1,15 @@
+newt_grid_v_close_stacked --
+
+  resource newt_grid_v_close_stacked(int element1_type, resource element1 [, int ... [, resource ...]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{element1_type}
+
+{element1}
+
+
+
+vim:ft=help:

@@ -1,0 +1,32 @@
+imap_fetchbody --
+メッセージ本文中の特定のセクションを取り出す
+
+  string imap_fetchbody(resource imap_stream, int msg_number, string part_number [, int options])~
+
+指定されたメッセージ本文中の特定のセクションを取得します。
+本文パートは、この関数ではデコードされません。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+{part_number}
+パート番号。ピリオドで区切られた整数文字列を指定します。
+これは、IMAP4
+仕様における本文パートのリストへのインデックスとなります。
+
+{options}
+ビットマスクであり、以下の組合わせとなります。 FT_UID -
+{msg_number}は UID である
+
+FT_PEEK - 既に設定されていない場合、 \Seen
+フラグを設定しない
+
+FT_INTERNAL - 内部フォーマットで文字列を返す。CRLF
+は正規化しない。
+
+指定されたメッセージ本文中の特定のセクションをテキスト文字列で返します。
+
+|imap_savebody| |imap_fetchstructure|
+
+vim:ft=help:

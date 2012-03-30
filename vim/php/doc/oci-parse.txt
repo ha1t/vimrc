@@ -1,0 +1,27 @@
+oci_parse -- 実行のために Oracle の文をパースする
+
+  resource oci_parse(resource connection, string query)~
+
+{connection} を使って {query} をパースし、ステートメント ID
+を返します。この ID は、|oci_bind_by_name|, |oci_execute|
+や他の関数で使用されます。
+
+{connection} |oci_connect| あるいは |oci_pconnect| が返す Oracle 接続
+ID。
+
+{query} SQL クエリ。
+
+成功した場合にステートメントハンドル、あるいはエラー時に
+or FALSE を返します。
+
+この関数は {query} を検証 しません。 {query} が有効な SQL
+あるいは PL/SQL 文かどうかを検証する唯一の方法 -
+それは実行することです。
+
+PHP バージョン 5.0.0 以前では、代わりに |ociparse|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_parse| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

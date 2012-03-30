@@ -1,0 +1,36 @@
+radius_cvt_int -- 生データを整数に変換する
+
+  int radius_cvt_int(string data)~
+
+
+
+|radius_cvt_int| の例
+
+<?php >
+  while ($resa = radius_get_attr($res)) {
+  
+      if (!is_array($resa)) {
+          printf ("属性取得時のエラー: %s\n",  radius_strerror($res));
+          exit;
+      }
+  
+      $attr = $resa['attr'];
+      $data = $resa['data'];
+      
+      switch ($attr) {
+  
+      case RADIUS_FRAMED_MTU:
+          $mtu = radius_cvt_int($data);
+          echo "MTU: $mtu<br>\n";
+          break;
+      }
+  }
+?>
+
+
+
+
+
+|radius_cvt_addr| |radius_cvt_string|
+
+vim:ft=help:

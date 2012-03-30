@@ -1,0 +1,64 @@
+str_split -- 文字列を配列に変換する
+
+  array str_split(string string [, int split_length])~
+
+文字列を配列に変換します。
+
+{string} 入力文字列。
+
+{split_length} 分割した部分の最大長。
+
+オプションのパラメータ {split_length}
+が指定されている場合、
+返される配列の各要素は、{split_length}
+の長さとなります。それ以外の場合、1
+文字ずつ分割された配列となります。
+
+{split_length} が 1 より小さい場合に FALSE
+を返します。{split_length} が {string}
+の長さより大きい場合、文字列全体が
+最初の(そして唯一の)要素となる配列を返します。
+
+|str_split| の使用例
+
+<?php >
+  $str = "Hello Friend";
+  
+  $arr1 = str_split($str);
+  $arr2 = str_split($str, 3);
+  
+  print_r($arr1);
+  print_r($arr2);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => H
+      [1] => e
+      [2] => l
+      [3] => l
+      [4] => o
+      [5] =>
+      [6] => F
+      [7] => r
+      [8] => i
+      [9] => e
+      [10] => n
+      [11] => d
+  )
+  
+  Array
+  (
+      [0] => Hel
+      [1] => lo
+      [2] => Fri
+      [3] => end
+  )
+
+
+
+|chunk_split| |preg_split| |explode| |count_chars| |str_word_count| for
+
+vim:ft=help:

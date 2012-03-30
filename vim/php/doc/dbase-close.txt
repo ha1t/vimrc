@@ -1,0 +1,32 @@
+dbase_close -- データベースを閉じる
+
+  bool dbase_close(int dbase_identifier)~
+
+指定されたデータベースリンク ID を閉じます。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+dBase データベースファイルを閉じる
+
+<?php >
+  // read-only モードでオープンする
+  $db = dbase_open('/tmp/test.dbf', 0);
+  
+  if ($db) {
+    // データを読む ..
+    
+    dbase_close($db);
+  }
+?>
+
+
+
+
+
+|dbase_open| |dbase_create|
+
+vim:ft=help:

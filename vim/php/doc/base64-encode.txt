@@ -1,0 +1,34 @@
+base64_encode -- MIME base64 方式でデータをエンコードする
+
+  string base64_encode(string data)~
+
+指定した {data} を base64 でエンコードします。
+
+このエンコードは、メールの本体のように 8
+ビットクリーンではないトランスポート層を通じても、
+バイナリデータが生き残れるように設計されています。
+
+Base64
+でエンコードされたデータは、エンコード前のデータにくらべて
+33% 余計に容量が必要です。
+
+{data} エンコードするデータ。
+
+エンコードされたデータを文字列で返します。
+
+|base64_encode| の例
+
+<?php >
+  $str = 'This is an encoded string';
+  echo base64_encode($str);
+?>
+
+上の例の出力は以下となります。
+
+  VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw==
+
+
+
+|base64_decode| |chunk_split| |convert_uuencode| RFC 2045 6.8 節
+
+vim:ft=help:

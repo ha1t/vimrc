@@ -1,0 +1,74 @@
+pg_prepare --
+指定したパラメータでプリペアドステートメントを作成するリクエストを
+送信し、その完了を待つ
+
+  resource pg_prepare(resource connection, string stmtname, string query)~
+
+  resource pg_prepare(resource connection, string stmtname, string query, string stmtname, string query)~
+
+|pg_prepare| は、 |pg_execute| あるいは |pg_send_execute|
+で後に実行するためのプリペアドステートメントを作成します。これにより、
+繰り返し使用されるコマンドについての構文解析や実行計画作成が最初の
+一度だけですみます。|pg_prepare| は PostgreSQL 7.4
+以降の接続でのみ使用可能です。それ以前のバージョンでは失敗します。
+
+この関数は {stmtname} という名前の
+プリペアドステートメントを {query}
+文字列から作成します。 この文字列には 1 つの SQL
+コマンドが含まれている必要があります。 {stmtname} を ""
+にすることで無名ステートメントを
+作成することが可能で、既存の無名ステートメントは自動的に上書きされます。
+それ以外の場合、もしカレントのセッションで既に定義済みのステートメント名を
+使用した場合にはエラーとなります。パラメータを使用する際は、
+{query} 内で $1、$2 のような形式で参照されます。
+
+|pg_prepare| で使用するプリペアドステートメントは、 SQLの
+PREPARE 文を実行することでも作成可能です
+（しかし、パラメータの型を事前に指定する必要がないという点で
+|pg_prepare| のほうがより柔軟です）。 また、PHP
+にはプリペアドステートメントを削除する関数がありませんが、
+この目的のためには SQLの DEALLOCATE 文が使用可能です。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+{stmtname}
+プリペアドステートメントにつける名前。接続内で一意である必要があります。
+""
+が指定された場合は無名ステートメントが作成され、以前に定義された
+無名ステートメントを上書きします。
+
+{query} パラメータ化した SQL
+文。ひとつの文のみである必要があります
+（複数の文をセミコロンで区切る形式は使用できません）。パラメータを
+使用する際は $1、$2 などの形式で参照されます。
+
+成功した場合にクエリ結果リソース、失敗した場合に FALSE
+を返します。
+
+|pg_prepare| の使用法
+
+<?php >
+  // "mary"という名前のデータベースに接続
+  $dbconn = pg_connect("dbname=mary");
+  
+  // 実行するクエリの準備
+  $result = pg_prepare($dbconn, "my_query", 'SELECT * FROM shops WHERE name = $1');
+  
+  // プリペアドクエリを実行する。文字列 "Joe's Widgets" は
+  // エスケープの必要がないことに注意
+  $result = pg_execute($dbconn, "my_query", array("Joe's Widgets"));
+  
+  // 同一プリペアドクエリを別のパラメータで実行する
+  $result = pg_execute($dbconn, "my_query", array("Clothes Clothes Clothes"));
+?>
+
+
+
+
+
+|pg_execute| |pg_send_execute|
+
+vim:ft=help:

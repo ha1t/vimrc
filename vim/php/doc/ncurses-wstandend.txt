@@ -1,0 +1,11 @@
+ncurses_wstandend -- ウィンドウの standout モードを終了する
+
+  int ncurses_wstandend(resource window)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+vim:ft=help:

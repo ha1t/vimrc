@@ -1,0 +1,37 @@
+pg_end_copy -- PostgreSQL バックエンドと同期する
+
+  bool pg_end_copy([resource connection])~
+
+|pg_end_copy| は、|pg_put_line| によるコピー操作の後で PostgreSQL
+フロントエンド（通常は Web サーバ プロセス）と PostgreSQL
+サーバを同期させます。 |pg_end_copy|
+を実行しなければ、PostgreSQL サーバが
+フロントエンドとの同期を失ってしまい、エラーが発生します。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pg_end_copy| の例
+
+<?php >
+    $conn = pg_pconnect("dbname=foo");
+    pg_query($conn, "create table bar (a int4, b char(16), d float8)");
+    pg_query($conn, "copy bar from stdin");
+    pg_put_line($conn, "3\thello world\t4.5\n");
+    pg_put_line($conn, "4\tgoodbye world\t7.11\n");
+    pg_put_line($conn, "\\.\n");
+    pg_end_copy($conn);
+?>
+
+
+
+
+
+|pg_put_line|
+
+vim:ft=help:

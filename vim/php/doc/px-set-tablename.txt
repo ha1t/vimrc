@@ -1,0 +1,19 @@
+px_set_tablename -- テーブルの名前を設定する (非推奨)
+
+  void px_set_tablename(resource pxdoc, string name)~
+
+|px_create_fp| で作成した、paradox
+データベースのテーブル名を設定します。この関数は非推奨です。代わりに
+|px_set_parameter| を使用してください。
+
+{pxdoc} |px_new| が返す paradox データベースのリソース ID。
+
+{tablename}
+テーブルの名前。明示的に設定されなかった場合は
+データベースファイルの名前が設定されます。
+
+成功した場合に NULL、失敗した場合に FALSE を返します。
+
+|px_set_parameter|
+
+vim:ft=help:

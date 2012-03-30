@@ -1,0 +1,44 @@
+filter_input -- PHP
+の外部から変数を受け取り、オプションでそれをフィルタリングする
+
+  mixed filter_input(int type, string variable_name [, int filter [, mixed options]])~
+
+{type} INPUT_GET、INPUT_POST、 INPUT_COOKIE、INPUT_SERVER、
+INPUT_ENV、INPUT_SESSION (まだ実装されていません) および
+INPUT_REQUEST (まだ実装されていません) のいずれか。
+
+{variable_name} 取得する変数の名前。
+
+{filter} 適用するフィルタ。デフォルトは FILTER_DEFAULT
+です。
+
+{options} オプションあるいはフラグの論理和の連想配列。
+オプションを指定可能なフィルタの場合、この配列の
+"flags" フィールドにフラグを指定します。
+
+成功した場合は要求された変数の値、フィルタリングに失敗した場合に
+FALSE、 あるいは変数 {variable_name}
+が設定されていない場合に NULL を返します。フラグ
+FILTER_NULL_ON_FAILURE
+が指定されている場合は、変数が設定されていなければ
+FALSE、 フィルタリングに失敗したら NULL を返します。
+
+|filter_input| の例
+
+<?php >
+  $search_html = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
+  $search_url = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_ENCODED);
+  echo "You have searched for $search_html.\n";
+  echo "<a href='?search=$search_url'>Search again.</a>";
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  You have searched for Me &amp;#38; son.
+  <a href='?search=Me%20%26%20son'>Search again.</a>
+
+
+
+|filter_var| |filter_input_array| |filter_var_array|
+
+vim:ft=help:

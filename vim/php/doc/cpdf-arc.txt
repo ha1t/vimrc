@@ -1,0 +1,30 @@
+cpdf_arc -- 円弧を描く
+
+  bool cpdf_arc(int pdf_document, float x_coor, float y_coor, float radius, float start, float end [, int mode])~
+
+円弧を描きます。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{x} 中心の x 座標。
+
+{y} 中心の y 座標。
+
+{radius} 円弧の半径。
+
+{start} 開始位置の角度。
+
+{end} 終了位置の角度。
+
+{ mode}オプションのパラメータ {mode}
+は単位長さを定義します。この値が 0
+または値が省略された場合、
+このページで指定されたデフォルト値が使用されます。それ以外の場合、
+現在の単位を無視してポストスクリプトのポイントで座標が計測されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_circle|
+
+vim:ft=help:

@@ -1,0 +1,39 @@
+date_sun_info -- 日の出/日の入り時刻と薄明かり (twilight)
+の開始/終了時刻の情報を含む配列を返す
+
+  array date_sun_info(int time, float latitude, float longitude)~
+
+{time} タイムスタンプ。
+
+{latitude} 緯度を表す度数。
+
+{longitude} 経度を表す度数。
+
+成功した場合に配列、失敗した場合に FALSE を返します。
+
+|date_sun_info| の例
+
+<?php >
+  $sun_info = date_sun_info(strtotime("2006-12-12"), 31.7667, 35.2333);
+  foreach ($sun_info as $key => $val) {
+      echo "$key: " . date("H:i:s", $val) . "\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  sunrise: 05:52:11
+  sunset: 15:41:21
+  transit: 10:46:46
+  civil_twilight_begin: 05:24:08
+  civil_twilight_end: 16:09:24
+  nautical_twilight_begin: 04:52:25
+  nautical_twilight_end: 16:41:06
+  astronomical_twilight_begin: 04:21:32
+  astronomical_twilight_end: 17:12:00
+
+
+
+|date_sunrise| |date_sunset|
+
+vim:ft=help:

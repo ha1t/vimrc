@@ -1,0 +1,38 @@
+get_html_translation_table -- htmlspecialchars および htmlentities
+で使用される変換テーブルを返す
+
+  array get_html_translation_table([int table [, int quote_style]])~
+
+|get_html_translation_table| は、 |htmlspecialchars| および
+|htmlentities|
+で内部的に使用される変換テーブルを返します。
+
+特殊文字はいくつかの方法でエンコードすることができます。
+例えば、" は ", &#34; もしくは &#x22
+としてエンコードすることができます。
+|get_html_translation_table| はこれらに対して
+最も一般的な形式を返します。
+
+{table} テーブルを指定できるように新規に定義が2つ
+({HTML_ENTITIES}, {HTML_SPECIALCHARS})追加されました。 {table}
+のデフォルト値は HTML_SPECIALCHARS です。
+
+{quote_style} |htmlspecialchars| および |htmlentities|
+関数と同様にオプションで 処理する {quote_style}
+を指定することが可能です。デフォルトは、 ENT_COMPAT
+モードです。これらのモードに関する説明は、
+|htmlspecialchars|を参照ください。
+
+変換テーブルを配列で返します。
+
+変換テーブルの例
+
+<?php >
+  $trans = get_html_translation_table(HTML_ENTITIES);
+  $str = "Hallo &amp; <Frau> & Krämer";
+  $encoded = strtr($str, $trans);
+?>
+
+
+
+vim:ft=help:

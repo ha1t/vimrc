@@ -1,0 +1,14 @@
+connection_status -- 接続ステータスのビットフィールドを返す
+
+  int connection_status()~
+
+接続ステータスのビットフィールドを取得します。
+
+接続ステータスのビットフィールドを返します。これを定数
+CONNECTION_XXX
+と比較することで、接続の状態を判断できます。
+
+|connection_aborted| |ignore_user_abort| PHP
+における接続処理についての説明は 接続処理
+
+vim:ft=help:

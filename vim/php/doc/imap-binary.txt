@@ -1,0 +1,14 @@
+imap_binary -- 8 ビット文字列を base64 文字列に変換する
+
+  string imap_binary(string string)~
+
+（RFC2045, Section 6.8 に基づき）8 ビット文字列を base64
+文字列に変換します。
+
+{string} 8 ビット文字列。
+
+base64 エンコードされた文字列を返します。
+
+|imap_base64|
+
+vim:ft=help:

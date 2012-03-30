@@ -1,0 +1,44 @@
+mysql_unbuffered_query -- MySQL に SQL
+クエリを送信するが、結果に対してのフェッチやバッファリングは行わない
+
+  resource mysql_unbuffered_query(string query [, resource link_identifier])~
+
+|mysql_unbuffered_query| は SQL クエリ {query} を MySQL
+に送信します。その際、 |mysql_query|
+が行っているような自動バッファリングを
+行いません。一方、この挙動により SQL
+クエリが消費するメモリの量を
+おさえられます。また、最初の 1
+行目が取得されたらすぐに処理を
+はじめることができます。SQL
+の処理が完全に終わるまで待つ必要がありません。
+複数の DB
+接続を利用する場合には、オプションのパラメータ
+{link_identifier} を指定する必要があります。
+
+{query} SQL クエリ。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+SELECT, SHOW, DESCRIBE あるいは EXPLAIN では、 |mysql_unbuffered_query|
+は 成功した場合に resource 、エラー時に FALSE を返します。
+
+UPDATE, DELETE, DROP, などその他の SQL 文では、
+|mysql_unbuffered_query| は 成功した場合に TRUE 、エラー時に
+FALSE を返します。
+
+|mysql_unbuffered_query| の利点には、以下のような
+代償があります: |mysql_unbuffered_query|
+から返される結果セットには |mysql_num_rows| や |mysql_data_seek|
+が使用できません。また、結果の行をすべてフェッチするまで、MySQL
+に 新しいクエリを送信することができません。
+
+|mysql_query|
+
+vim:ft=help:

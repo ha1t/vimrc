@@ -1,0 +1,9 @@
+mysqli_execute -- mysqli_stmt_execute のエイリアス
+
+この関数は |mysqli_stmt_execute| のエイリアスです。
+
+|mysqli_execute| は非推奨で、廃止予定です。
+
+|mysqli_stmt_execute|
+
+vim:ft=help:

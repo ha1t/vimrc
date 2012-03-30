@@ -1,0 +1,45 @@
+yaz_set_option --
+接続に関するひとつあるいは複数のオプションを設定する
+
+  void yaz_set_option(resource id, string name, string value)~
+
+  void yaz_set_option(resource id, string name, string value, resource id, array options)~
+
+指定した接続について、ひとつあるいは複数のオプションを設定します。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{name} あるいは {options} 文字列あるいは配列です。
+
+文字列を指定すると、指定するオプションの名前として扱われます。
+その {value} を指定する必要があります。
+
+配列を指定すると、連想配列（オプション名 ->
+オプションの値）として 扱われます。
+
+PHP/YAZ 接続オプション 名前 説明 implementationName
+サーバの実装名。 implementationVersion
+サーバの実装バージョン。 implementationId サーバの実装 ID
+。 schema
+取得するスキーマ。デフォルトではスキーマを使用しません。
+このオプションを設定することは、|yaz_schema|
+を使用することと等価です。 preferredRecordSyntax
+取得するレコードの構文。 デフォルトでは構文を
+使用しません。このオプションを設定することは、
+|yaz_syntax| を使用することと等価です。 start |yaz_search|
+あるいは |yaz_present|
+で取得する最初のレコードのオフセット。最初のレコードの
+番号は 0 で、2 番目のレコードは 1 です。
+このオプションを count とともに設定する
+ことは、|yaz_range| をコールすることと
+同じですが、|yaz_range| ではレコードの 番号が 1
+から始まる点が違います。 count |yaz_search| あるいは
+|yaz_present| で取得するレコードの最大数。 elementSetName
+取得するエレメントセットの名前。このオプションを設定することは、
+|yaz_element| を使用することと等価です。 {value}
+オプションの新しい値。変更前の値が文字列である場合にのみ
+これを使用します。
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,40 @@
+getallheaders -- 全てのHTTPリクエストヘッダを取得する
+
+  array getallheaders()~
+
+すべての HTTP ヘッダを現在のリクエストから取得します。
+
+この関数は、 |apache_request_headers|のエイリアスです。
+この関数は、カレントのリクエストにおける全てのHTTPヘッダーを有する
+連想配列を返します。この関数の動作に関する詳細については、
+|apache_request_headers|のドキュメントを参照して ください。
+
+この関数は、 PHP が apache
+モジュールとしてインストールされた場合のみサポートされます。
+
+全てのHTTPリクエストヘッダの連想配列、もしくは失敗時に
+FALSE を返します。
+
+バージョン 説明 4.3.0
+|apache_request_headers|のエイリアスとなりました。
+これは、基本的に関数名の変更にあたります。この関数は、
+Apache モジュールの場合のみ動作します。
+
+|getallheadres| の例
+
+<?php >
+  foreach (getallheaders() as $name => $value) {
+      echo "$name: $value\n";
+  }
+?>
+
+
+
+
+
+PHP 4.3.3 以降、 Netscape/iPlanet/SunONE Web サーバの NSAPI
+サーバモジュール でもこの関数を使用できます。
+
+|apache_response_headers|
+
+vim:ft=help:

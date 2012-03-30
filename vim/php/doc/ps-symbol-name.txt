@@ -1,0 +1,21 @@
+ps_symbol_name -- グリフ名を取得する
+
+  string ps_symbol_name(resource psdoc, int ord [, int fontid])~
+
+この関数は、有効なグリフ名を取得するために Adobe
+のフォントメトリックファイルを必要とします。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{ord} {ord} は、フォントエンコーディングベクタ
+の中でのグリフの位置です。
+
+{fontid} 使用するフォントの
+ID。フォントが指定されていない場合は、
+現在のフォントが使用されます。
+
+指定されたフォントのグリフ名を返します。
+
+|ps_symbol| |ps_symbol_width|
+
+vim:ft=help:

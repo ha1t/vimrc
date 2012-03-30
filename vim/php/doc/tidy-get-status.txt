@@ -1,0 +1,35 @@
+tidy_get_status --
+指定したドキュメントのステータスを取得する
+
+手続き型:
+
+  int tidy_get_status(tidy object)~
+
+オブジェクト指向型:
+
+  int tidy->getStatus(tidy object)~
+
+|tidy_get_status| は、 指定した Tidy オブジェクト {object}
+のステータスを返します。エラー/警告が発生しなかった場合は
+0、 警告やアクセイシビリティエラーの場合は 1、
+エラーの場合は 2 を返します。
+
+|tidy_get_status| の例
+
+<?php >
+  $html = '<p>paragraph</i>';
+  $tidy = tidy_parse_string($html);
+  
+  $html2 = '<bogus>test</bogus>';
+  $tidy2 = tidy_parse_string($html2);
+  
+  echo tidy_get_status($tidy); //1
+  
+  echo tidy_get_status($tidy2); //2
+?>
+
+
+
+
+
+vim:ft=help:

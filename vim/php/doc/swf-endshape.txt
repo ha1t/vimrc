@@ -1,0 +1,11 @@
+swf_endshape -- 現在の形状の定義を完結する
+
+  void swf_endshape()~
+
+|swf_endshape| は、 現在の形状の定義を完結します。
+
+値を返しません。
+
+|swf_startshape|
+
+vim:ft=help:

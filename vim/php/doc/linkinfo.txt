@@ -1,0 +1,32 @@
+linkinfo -- リンクに関する情報を取得する
+
+  int linkinfo(string path)~
+
+リンクに関する情報を取得します。
+
+この関数を使用して ({path}が指している)
+リンクが実際に存在するかどうかを、 (stat.h
+で定義されている S_ISLNK マクロと同じ方法で)
+チェックします。
+
+{path} リンクへのパス。
+
+|linkinfo|は、lstat システムコールで返された Unix C 言語の
+stat 構造体の st_dev フィールドを返します。 0
+を返し、エラーの場合に FALSE を返します。
+
+|linkinfo| の例
+
+<?php >
+  echo linkinfo('/vmlinuz'); // 835
+?>
+
+
+
+
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|symlink| |link| |readlink|
+
+vim:ft=help:

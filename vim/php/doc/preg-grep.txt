@@ -1,0 +1,36 @@
+preg_grep -- パターンにマッチする配列の要素を返す
+
+  array preg_grep(string pattern, array input [, int flags])~
+
+{input} 配列の要素のうち、 指定した {pattern}
+にマッチするものを要素とする配列を返します。
+
+{pattern} 検索するパターンを表す文字列。
+
+{input} 入力の配列。
+
+{flags} PREG_GREP_INVERT を設定すると、この関数は 与えた
+{pattern} にマッチ しない 要素を返します。
+
+{input} 配列のキーを使用した配列を返します。
+
+バージョン 説明 4.2.0 パラメータ {flags}
+が追加されました。 4.0.4
+このバージョンより前は、返される配列の添字は {input}
+配列のキーにかかわらず設定されていました。
+
+以前のこの挙動がお好みの場合は、返される配列に
+|array_values| を適用し、添字を再設定してください。
+
+|preg_grep| の例
+
+<?php >
+  // すべての浮動小数点数を含む配列要素を返す
+  $fl_array = preg_grep("/^(\d+)?\.\d+$/", $array);
+?>
+
+
+
+
+
+vim:ft=help:

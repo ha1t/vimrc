@@ -1,0 +1,48 @@
+SoapServer->addFunction() -- SOAP
+リクエストによって処理される単一もしくはいくつかの関数を追加する
+
+  void addFunction(mixed functions)~
+
+リモートクライアント用に単一もしくは複数の関数をエクスポートします。
+
+{functions} 単一の関数をエクスポートするには、
+このパラメータに文字列として関数名を渡してください。
+
+いくつかの関数をエクスポートするには、関数名の配列を渡してください。
+
+全ての関数をエクスポートする場合、特別な定数
+SOAP_FUNCTIONS_ALL を渡してください。
+
+{functions} は、全ての入力引数を WSDL
+ファイルで定義されている順序と同じ順序で受け取る必要があり
+(これらの関数は出力パラメータを引数として受け取ることはありません)
+、一つまたは複数の値を返す必要があります。
+複数の値を返すには、名前付き出力パラメータの配列を返す必要があります。
+
+値を返しません。
+
+いくつかの例
+
+<?php >
+  function echoString($inputString)
+  {
+      return $inputString;
+  }
+  
+  $server->addFunction("echoString");
+  
+  function echoTwoStrings($inputString1, $inputString2)
+  {
+      return array("outputString1" => $inputString1,
+                   "outputString2" => $inputString2);
+  }
+  $server->addFunction(array("echoString", "echoTwoStrings"));
+  
+  $server->addFunction(SOAP_FUNCTIONS_ALL);
+?>
+
+
+
+
+
+vim:ft=help:

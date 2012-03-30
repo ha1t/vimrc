@@ -1,0 +1,31 @@
+mcrypt_enc_get_supported_key_sizes --
+オープンされたアルゴリズムでサポートされるキー長を配列にして返す
+
+  array mcrypt_enc_get_supported_key_sizes(resource td)~
+
+暗号化記述子で指定したアルゴリズムでサポートされるキー長を配列と
+して返します。返された配列が空の場合、1 と
+|mcrypt_enc_get_key_size| の値の間のすべての
+キー長がアルゴリズムでサポートされます。
+
+|mcrypt_enc_get_supported_key_sizes| の例
+
+<?php >
+      $td = mcrypt_module_open('rijndael-256', '', 'ecb', '');
+      var_dump(mcrypt_enc_get_supported_key_sizes($td));
+?>
+
+This will print:
+
+  array(3) {
+    [0]=>
+    int(16)
+    [1]=>
+    int(24)
+    [2]=>
+    int(32)
+  }
+
+
+
+vim:ft=help:

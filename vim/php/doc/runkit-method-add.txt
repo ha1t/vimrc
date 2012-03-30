@@ -1,0 +1,63 @@
+runkit_method_add --
+指定したクラスに、新しいメソッドを動的に追加する
+
+  bool runkit_method_add(string classname, string methodname, string args, string code [, int flags])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{classname} メソッドを追加するクラスの名前。
+
+{methodname} 追加するメソッドの名前。
+
+{args} カンマで区切った、新しいメソッドの引数。
+
+{code} {methodname} がコールされた際に 評価されるコード。
+
+{flags} 作成するメソッドの型。 RUNKIT_ACC_PUBLIC、
+RUNKIT_ACC_PROTECTED あるいは RUNKIT_ACC_PRIVATE のいずれか。
+
+このパラメータは PHP 5
+以降でのみ使用されます。なぜなら、それ以前の
+バージョンでは全てのメソッドが public だからです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_method_add| の例
+
+<?php >
+  class Example {
+      function foo() {
+          echo "foo!\n";
+      }
+  }
+  
+  // Example のオブジェクトを作成
+  $e = new Example();
+  
+  // 新しい public メソッドの追加
+  runkit_method_add(
+      'Example',
+      'add',
+      '$num1, $num2',
+      'return $num1 + $num2;',
+      RUNKIT_ACC_PUBLIC
+  );
+  
+  // 12 + 4 を計算する
+  echo $e->add(12, 4);
+?>
+
+上の例の出力は以下となります。
+
+  16
+
+
+
+|runkit_method_copy| |runkit_method_redefine| |runkit_method_remove|
+|runkit_method_rename| |runkit_function_add|
+
+vim:ft=help:

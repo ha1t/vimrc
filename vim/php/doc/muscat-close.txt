@@ -1,0 +1,20 @@
+muscat_close -- muscat セッションをシャットダウンする
+
+  void muscat_close(resource muscat_handle)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+muscat セッションをシャットダウンし、メモリを PHP
+に解放します。
+
+{muscat_handle} |muscat_setup| あるいは |muscat_setup_net| が返す
+muscat セッションハンドラ。
+
+値を返しません。
+
+|muscat_setup| |muscat_setup_net|
+
+vim:ft=help:

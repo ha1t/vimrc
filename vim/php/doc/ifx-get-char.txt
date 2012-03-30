@@ -1,0 +1,14 @@
+ifx_get_char -- 文字オブジェクトの内容を返す
+
+  string ifx_get_char(int bid)~
+
+文字オブジェクトの内容を返します。
+
+{bid} 文字オブジェクト ID。
+
+文字の内容を表す文字列、あるいはエラー時に FALSE
+を返します。
+
+|ifx_get_blob|
+
+vim:ft=help:

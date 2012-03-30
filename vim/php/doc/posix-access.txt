@@ -1,0 +1,47 @@
+posix_access -- ファイルのアクセス権限を判断する
+
+  bool posix_access(string file [, int mode])~
+
+|posix_access| は、ファイルに対するユーザの
+アクセス権限を調べます。
+
+{file} 調べるファイルの名前。
+
+{mode} POSIX_F_OK、POSIX_R_OK、 POSIX_W_OK および POSIX_X_OK
+のうちのひとつあるいは複数からなるマスク。
+デフォルトは POSIX_F_OK です。
+
+POSIX_R_OK、POSIX_W_OK および POSIX_X_OK
+は、ファイルが存在して読み込み/書き込み/
+実行の権限があるかどうかを調べます。 POSIX_F_OK
+は単にファイルが存在するかどうか だけを調べます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|posix_access| の例 この例は $file
+が読み書き可能であるかどうかを調べ、
+そうでない場合にエラーメッセージを表示します。
+
+<?php >
+  $file = 'some_file';
+  
+  if (posix_access($file, POSIX_R_OK | POSIX_W_OK)) {
+      echo 'このファイルの読み込みと書き込みが可能です!';
+  
+  } else {
+      $error = posix_get_last_error();
+  
+      echo "エラー $error: " . posix_strerror($error);
+  }
+?>
+
+
+
+セーフモード が有効の場合、PHP
+は操作を行うファイル／ディレクトリが実行するスクリプトと
+同じ UID (所有者)を有しているかどうかを確認します。
+
+|posix_get_last_error| |posix_strerror|
+
+vim:ft=help:

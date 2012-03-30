@@ -1,0 +1,34 @@
+apd_set_session_trace -- セッションのデバッグを開始する
+
+  void apd_set_session_trace(int debug_level [, string dump_directory])~
+
+ダンプディレクトリの apd_dump_{process_id}
+へのデバッグを開始します。
+
+{ debug_level} XXX_TRACE 定数の組み合わせによる整数値。
+
+MEMORY_TRACE を用いることは推奨しません。
+これは非常に低速で、またあまり正確ではないようだからです。
+ASSIGNMENT_TRACE は、まだ実装されていません。
+
+すべての機能 (TIMING, FUNCTIONS, ARGS SUMMARY (strace -c
+のようなもの)) のトレースを有効にするには、値 99
+を指定します。
+
+{dump_directory}
+プロファイルのダンプファイルを書き込むディレクトリ。
+指定しない場合は、php.ini の設定 apd.dumpdir を使用します。
+
+値を返しません。
+
+|apd_set_session_trace| の例
+
+<?php >
+  apd_set_session_trace(99);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,36 @@
+gmp_sqrtrem -- 余りつきの平方根
+
+  array gmp_sqrtrem(resource a)~
+
+ある数の平方根を余りつきで計算します。
+
+{a} 平方根を計算したい数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+最初の要素が {a} の整数平方根
+(|gmp_sqrt|も参照ください)、2 番目の要素が余り
+(すなわち、{a} と最初の要素の 2 乗の差)
+であるような配列を返します。
+
+|gmp_sqrtrem| の例
+
+<?php >
+  list($sqrt1, $sqrt1rem) = gmp_sqrtrem("9");
+  list($sqrt2, $sqrt2rem) = gmp_sqrtrem("7");
+  list($sqrt3, $sqrt3rem) = gmp_sqrtrem("1048576");
+  
+  echo gmp_strval($sqrt1) . ", " . gmp_strval($sqrt1rem) . "\n";
+  echo gmp_strval($sqrt2) . ", " . gmp_strval($sqrt2rem) . "\n";
+  echo gmp_strval($sqrt3) . ", " . gmp_strval($sqrt3rem) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  3, 0
+  2, 3
+  1024, 0
+
+
+
+vim:ft=help:

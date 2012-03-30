@@ -1,0 +1,24 @@
+imap_uid -- 指定したメッセージシーケンス番号の UID を返す
+
+  int imap_uid(resource imap_stream, int msg_number)~
+
+この関数は、指定したメッセージシーケンス番号の UID
+を返します。
+メッセージ番号はメールボックスの内容を変更する度に変わる可能性が
+ありますが、UID はユニークな ID
+であり時間が経過しても変わりません。
+
+この関数は、|imap_msgno| の逆関数です。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{msg_number} メッセージ番号。
+
+指定したメッセージの UID を返します。
+
+この関数は、POP3
+メールボックスではサポートされません。
+
+|imap_msgno|
+
+vim:ft=help:

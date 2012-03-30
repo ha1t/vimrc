@@ -1,0 +1,13 @@
+session_encode --
+現在のセッションデータを文字列としてエンコードする
+
+  string session_encode()~
+
+|session_encode| は、
+現在のセッションの内容をエンコードした文字列を返します．
+
+現在のセッションの内容をエンコードしたものを返します。
+
+|session_decode|
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+fdf_header -- FDF 固有の出力ヘッダをセットする
+
+  void fdf_header()~
+
+この関数は、簡便に FDF の出力に適当な HTTP
+ヘッダを付加できるよう 用意されており、Content-type: を
+application/vnd.fdf に設定します。
+
+値を返しません。
+
+vim:ft=help:

@@ -1,0 +1,50 @@
+SimpleXMLElement->__construct() -- 新しい SimpleXMLElement
+オブジェクトを作成する
+
+新しい SimpleXMLElement オブジェクトを作成します。
+
+{data} 整形式 XML 文字列。 もし {data_is_url} が TRUE
+の場合には、XML ドキュメントへのパスあるいは URL。
+
+{options} オプションで、追加の Libxml
+パラメータを指定するために使用します。
+
+{data_is_url} デフォルトでは {data_is_url} は FALSE です。 {data}
+が、文字列データではなく XML
+ドキュメントへのパスあるいは URL である場合に TRUE
+を使用します。
+
+{ns}
+
+{is_prefix}
+
+{data} を表す SimpleXMLElement オブジェクトを返します。
+
+XML データ内でエラーが見つかるたびに E_WARNING
+エラーメッセージが発生します。そしてエラーが見つかった場合は例外をスローします。
+
+SimpleXMLElement オブジェクトの作成
+
+<?php >
+  include 'example.php';
+  
+  $sxe = new SimpleXMLElement($xmlstr);
+  echo $sxe->movie[0]->title;
+?>
+
+
+
+
+
+URL からの SimpleXMLElement オブジェクトの作成
+
+<?php >
+  $sxe = new SimpleXMLElement('http://example.org/document.xml', NULL, TRUE);
+  echo $sxe->asXML();
+?>
+
+
+
+
+
+vim:ft=help:

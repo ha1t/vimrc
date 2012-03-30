@@ -1,0 +1,23 @@
+ldap_next_entry -- 次の結果エントリを得る
+
+  resource ldap_next_entry(resource link_identifier, resource result_entry_identifier)~
+
+結果に保持されたエントリを取得します。 連続的に
+|ldap_next_entry| をコールした場合、
+エントリがなくなるまでエントリを一つずつ返します。
+|ldap_next_entry| への最初のコールは、 |ldap_first_entry| に
+{result_entry_identifier}
+を指定してコールした後に、その結果を用いて行います。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{result_entry_identifier}
+
+|ldap_first_entry| によりエントリが読み始められた
+結果において次のエントリに関するエントリID
+を返します。
+これ以上結果のエントリがない場合は、FALSEを返します。
+
+|ldap_get_entries|
+
+vim:ft=help:

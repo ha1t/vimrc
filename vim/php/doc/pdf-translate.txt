@@ -1,0 +1,7 @@
+PDF_translate -- 座標系の原点を設定する
+
+  bool PDF_translate(resource p, float tx, float ty)~
+
+座標系の原点を変更します。
+
+vim:ft=help:

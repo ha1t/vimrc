@@ -1,0 +1,49 @@
+oci_num_rows -- 文の実行で作用された行数を取得する
+
+  int oci_num_rows(resource statement)~
+
+文の実行で作用された行数を取得します。
+
+{statement} 有効な OCI ステートメント ID。
+
+作用された行の数を表す整数値、あるいはエラー時に FALSE
+を返します。
+
+|oci_num_rows| の例
+
+<?php >
+  $conn = oci_connect("scott", "tiger");
+  
+  $stmt = oci_parse($conn, "create table emp2 as select * from emp");
+  oci_execute($stmt);
+  echo oci_num_rows($stmt) . " rows inserted.<br />";
+  oci_free_statement($stmt);
+  
+  $stmt = oci_parse($conn, "delete from emp2");
+  oci_execute($stmt, OCI_DEFAULT);
+  echo oci_num_rows($stmt) . " rows deleted.<br />";
+  oci_commit($conn);
+  oci_free_statement($stmt);
+  
+  $stmt = oci_parse($conn, "drop table emp2");
+  oci_execute($stmt);
+  oci_free_statement($stmt);
+  
+  oci_close($conn);
+?>
+
+
+
+
+
+この関数は、select が返す行の数は 返しません ! SELECT
+文の場合、この関数は |oci_fetch*|
+関数によってバッファに取得された行数を返します。
+
+PHP バージョン 5.0.0 以前では、代わりに |ocirowcount|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_num_rows| への別名として残されていますが、
+推奨されません。
+
+vim:ft=help:

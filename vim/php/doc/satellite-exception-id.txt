@@ -1,0 +1,14 @@
+satellite_exception_id --
+直近の例外に関するレポジトリIDを取得する
+
+  string satellite_exception_id()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+レポジトリID文字列を返します。(例:"IDL:MyException:1.0")例として
+は、|satellite_caught_exception|の使用例を参照 ください。
+
+vim:ft=help:

@@ -1,0 +1,27 @@
+ceil -- 端数の切り上げ
+
+  float ceil(float value)~
+
+{value} の次に大きい整数値を返します。
+
+{value} 丸める値。
+
+{value} の次に大きい整数値を返します。 |ceil| の返り値は
+float 型と なります。これは、float 値の範囲は通常 int
+よりも広いためです。
+
+|ceil| の例
+
+<?php >
+  echo ceil(4.3);    // 5
+  echo ceil(9.999);  // 10
+  echo ceil(-3.14);  // -3
+?>
+
+
+
+
+
+|floor| |round|
+
+vim:ft=help:

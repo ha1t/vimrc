@@ -1,0 +1,13 @@
+get_magic_quotes_runtime -- magic_quotes_runtime
+の現在アクティブな設定値を取得する
+
+  int get_magic_quotes_runtime()~
+
+magic_quotes_runtime の現在アクティブな値を返します。
+
+magic quotes runtime がオフの場合に 0、そうでない場合に 1
+を返します。
+
+|get_magic_quotes_gpc| |set_magic_quotes_runtime|
+
+vim:ft=help:

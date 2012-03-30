@@ -1,0 +1,56 @@
+opendir -- ディレクトリハンドルをオープンする
+
+  resource opendir(string path [, resource context])~
+
+ディレクトリハンドルをオープンします。このハンドルは、この後
+|closedir|, |readdir|, |rewinddir| 関数コールで使用されます。
+
+{path} オープンするディレクトリのパス。
+
+{context} {context} パラメータの詳細については
+マニュアルのストリーム を参照ください。
+
+成功した場合にディレクトリハンドルの resource 、
+失敗した場合に FALSE を返します。
+
+{path} が有効なディレクトリでないかまたは権限が
+制限されているかファイルシステムのエラーによりディレクトリが
+オープンできない場合、|opendir| は FALSE を返し、 E_WARNING
+エラーが発行されます。 |opendir| のこのエラー出力は、
+関数名の前に '@' を付けることにより抑制できます。
+
+バージョン 説明 5.0.0 {path} が ftp:// URL
+ラッパをサポートします。 4.3.0 {path}
+に、ディレクトリの一覧表示をサポートする URL
+を指定することが可能です。しかし、PHP 4 では file:// URL
+ラッパのみをサポートしています。
+
+|opendir| の例
+
+<?php >
+  $dir = "/etc/php5/";
+  
+  // 既知のディレクトリをオープンし、その内容を読み込みます。
+  if (is_dir($dir)) {
+      if ($dh = opendir($dir)) {
+          while (($file = readdir($dh)) !== false) {
+              echo "filename: $file : filetype: " . filetype($dir . $file) . "\n";
+          }
+          closedir($dh);
+      }
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  filename: . : filetype: dir
+  filename: .. : filetype: dir
+  filename: apache : filetype: dir
+  filename: cgi : filetype: dir
+  filename: cli : filetype: dir
+
+
+
+|is_dir| |readdir| Dir
+
+vim:ft=help:

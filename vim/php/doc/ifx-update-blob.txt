@@ -1,0 +1,17 @@
+ifx_update_blob -- BLOB オブジェクトの内容を更新する
+
+  bool ifx_update_blob(int bid, string content)~
+
+指定したBLOB オブジェクト ID {bid} に関する BLOB
+オブジェクトの内容を更新します。
+
+{bid} BLOB オブジェクト ID。
+
+{content} 新規データの文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ifx_update_char|
+
+vim:ft=help:

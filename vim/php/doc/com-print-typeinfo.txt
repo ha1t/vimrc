@@ -1,0 +1,27 @@
+com_print_typeinfo --
+ディスパッチインターフェースのために、PHP
+のクラス定義を出力する
+
+  bool com_print_typeinfo(object comobject [, string dispinterface [, bool wantsink]])~
+
+この関数の目的は、イベントシンクに使用するスケルトンクラスの作成を支援することです。
+You may also use it to generate a dump of any COM object, provided that it
+supports enough of the introspection interfaces, and that you know the name of
+the interface you want to display.
+
+{comobject} {comobject} は、COM オブジェクトのインスタンスか
+あるいはタイプライブラリの名前 (|com_load_typelib|
+の規則にしたがって名前解決されます) のいずれかです。
+
+{dispinterface} 結果を表示したいインターフェースで、
+このインターフェースは IDispatch を継承したものです。
+
+{wantsink} TRUE
+の場合、対応するシンクインターフェースが代わりに表示されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|com_event_sink| |com_load_typelib|
+
+vim:ft=help:

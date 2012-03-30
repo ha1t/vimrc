@@ -1,0 +1,76 @@
+sqlite_query --
+指定したデータベースに対してクエリを実行し、結果ハンドル
+を返す
+
+  resource sqlite_query(resource dbhandle, string query [, int result_type [, string error_msg]])~
+
+  resource sqlite_query(resource dbhandle, string query [, int result_type [, string error_msg, string query, resource dbhandle [, int result_type [, string error_msg]]]])~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  SQLiteResult query(resource dbhandle, string query [, int result_type [, string error_msg, string query, resource dbhandle [, int result_type [, string error_msg, string query [, int result_type [, string error_msg]]]]]])~
+
+指定したデータベースにより {query} で指定した SQL
+ステートメントを実行します。
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+{query} 実行するクエリ
+
+{result_type} オプションの {result_type}
+パラメータには定数を指定でき、返される配列の添字を定義します。
+SQLITE_ASSOC
+を用いると、連想配列の添字(名前フィールド)のみが
+返されます。一方、SQLITE_NUM は、
+数値の添字(フィールド番号)のみを返します。SQLITE_BOTH
+は、 連想配列の添字と数値の添字の両方を返します。
+SQLITE_BOTH がこの関数のデフォルトです。
+
+{error_msg}
+もしエラーが発生した場合、ここに保存されます。SQL
+構文のエラーは |sqlite_last_error| 関数で取得することが
+できないため、このパラメータが特に重要となります。
+
+(MySQL
+のような)他のデータベースエクステンションとの互換性のため、
+2 種類の構文がサポートされています。
+推奨されるのは最初の構文で、{dbhandle} パラメータを
+関数の最初のパラメータとするものです。
+
+この関数は結果ハンドル、もしくは失敗時に FALSE
+を返します。
+レコードを返すクエリの場合、結果ハンドルは
+|sqlite_fetch_array| や |sqlite_seek|
+のような関数で使用することができます。
+
+クエリの型によらず、この関数はクエリが失敗した場合にFALSE
+を返し ます。
+
+|sqlite_query| は、バッファリングされ、シーク可
+能な結果ハンドルを返します。これは、レコードにランダムにアクセスす
+る必要がある小さなクエリの場合に有用です。バッファリングされた結果
+ハンドルは、結果全体を保持するためのメモリを確保し、結果が取得され
+るまでは値を返しません。
+データに連続的にアクセスしたい場合、かわりにより高性能な
+|sqlite_unbuffered_query| を使用することが 推奨されます。
+
+バージョン 説明 5.1.0 {error_msg}
+パラメータが追加されました。
+
+SQLiteは、セミコロンで区切られた複数のクエリを実行します。
+これにより、ファイルからロードするかスクリプトに埋め込んだ
+SQL をバッチ実行することができます。
+しかしながら、これは関数の結果が使用されない場合のみ動作します。
+使用されない場合、最初の SQL
+ステートメントのみ実行されます。 関数 |sqlite_exec|
+は常に複数の SQL ステートメントを実行します。
+
+複数のクエリを実行する際、この関数の返り値は、エラーの場合に
+FALSEとなります。しかし、それ以外の場合は不定となります。
+(成功した場合にTRUEとなるか、結果ハンドルを返す可能性があります)
+
+|sqlite_unbuffered_query| |sqlite_array_query|
+
+vim:ft=help:

@@ -1,0 +1,12 @@
+ncurses_wgetch -- キーボート (ウィンドウ)
+から文字を読み込む
+
+  int ncurses_wgetch(resource window)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+vim:ft=help:

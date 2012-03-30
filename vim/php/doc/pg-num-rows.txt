@@ -1,0 +1,33 @@
+pg_num_rows -- 行数を返す
+
+  int pg_num_rows(resource result)~
+
+|pg_num_rows| は、PostgreSQL の結果リソースの
+行数を返します。
+
+この関数は、以前は |pg_numrows| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+結果の行数を返します。エラー時には -1 を返します。
+
+|pg_num_rows| の例
+
+<?php >
+  $result = pg_query($conn, "SELECT 1");
+  
+  $rows = pg_num_rows($result);
+  
+  echo $rows . " row(s) returned.\n";
+?>
+
+上の例の出力は以下となります。
+
+  1 row(s) returned.
+
+
+
+|pg_num_fields| |pg_affected_rows|
+
+vim:ft=help:

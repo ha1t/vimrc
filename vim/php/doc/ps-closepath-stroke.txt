@@ -1,0 +1,14 @@
+ps_closepath_stroke -- パスを閉じ、描画する
+
+  bool ps_closepath_stroke(resource psdoc)~
+
+パスの終了点を開始点とつなげ、出来上がった線を描画します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_closepath|
+
+vim:ft=help:

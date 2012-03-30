@@ -1,0 +1,48 @@
+mcrypt_create_iv --
+乱数ソースから初期化ベクトル(IV)を生成する
+
+  string mcrypt_create_iv(int size [, int source])~
+
+|mcrypt_create_iv| は、IV を生成するために 使用されます。
+
+パラメータ {size} で IV のサイズを、また パラメータ
+{source} (デフォルトはランダムな値) で IV
+のソースを指定します。
+
+source には、MCRYPT_RAND (システムの乱数生成器)、
+MCRYPT_DEV_RANDOM (/dev/random からデータを読む)および
+MCRYPT_DEV_URANDOM (/dev/urandom からデータを読む)
+を指定できます。 Windows でサポートされているのは
+MCRYPT_RAND のみです。なぜなら、Windows には(当然) /dev/random
+あるいは /dev/urandom が存在しないからです。
+
+MCRYPT_RAND
+を使用する場合、乱数生成器を初期化するために、 必ず
+|mcrypt_create_iv| の前に |srand| をコールしてください。|rand|
+のように、自動的に 初期化されるわけではありません。
+
+|mcrypt_create_iv| の例
+
+<?php >
+      $size = mcrypt_get_iv_size(MCRYPT_CAST_256, MCRYPT_MODE_CFB);
+      $iv = mcrypt_create_iv($size, MCRYPT_DEV_RANDOM);
+?>
+
+
+
+
+
+IV
+は、単に暗号化ルーチンに異なる初期値を与えるためだけのものです。
+この IV
+は、たとえ要求されていたとしても秘密にしておく必要はありません。
+暗号化したデータとともに IV
+を送信したとしても、セキュリティを損ねる
+ことはありません。
+
+このトピックについてのより詳細な情報は
+http://www.ciphersbyritter.com/GLOSSARY.HTM#IV、http://fn2.freenet.edmonton.ab.ca/~jsavard/crypto/co0409.htm
+および Applied Cryptography by Schneier (ISBN 0-471-11709-9) の 9.3
+節にあります。
+
+vim:ft=help:

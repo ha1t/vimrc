@@ -1,0 +1,55 @@
+imagecreatefromgif -- ファイルまたは URL
+から新規画像を作成する
+
+  resource imagecreatefromgif(string filename)~
+
+|imagecreatefromgif| は、
+指定したファイル名の画像を表す画像 ID を返します。
+
+デバッグを簡単にするために、次の例ではエラー表示用
+GIF を生成しています。 作成時のエラーを処理する例
+
+<?php >
+  function LoadGif ($imgname)
+  {
+      $im = @imagecreatefromgif ($imgname); /* オープンします */
+      if (!$im) { /* 失敗したかどうかを調べます */
+          $im = imagecreatetruecolor (150, 30); /* 空の画像を作成します */
+          $bgc = imagecolorallocate ($im, 255, 255, 255);
+          $tc = imagecolorallocate ($im, 0, 0, 0);
+          imagefilledrectangle ($im, 0, 0, 150, 30, $bgc);
+          /* エラーメッセージを出力します */
+          imagestring ($im, 1, 5, 5, "Error loading $imgname", $tc);
+      }
+      return $im;
+  }
+  header("Content-Type: image/gif");
+  $img = LoadGif("bogus.image");
+  imagegif($img);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+fopen wrappers が有効の場合、この関数のファイル名として
+URL
+を使用することができます。ファイル名の指定方法に関する詳細は
+|fopen|、サポートされる URL プロトコルの種類
+については、(例えば) を参照してください。
+
+{filename} GIF 画像へのパス。
+
+成功した場合に画像リソース ID、エラー時に FALSE
+を返します。
+
+GIF サポートは GD ライブラリのバーション 1.6
+以降で削除され、 バージョン 2.0.28 で復活しました。
+その間のバージョンでは、この関数を使用できません。
+
+PHP 4.3.0 より前のバージョンの Windows 版 PHP
+は、現在この関数に関してリモートファイルアクセス機能を
+サポートしていません。これは、allow_url_fopen を
+有効にした場合でも同様です。
+
+vim:ft=help:

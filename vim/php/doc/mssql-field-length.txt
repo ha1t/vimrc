@@ -1,0 +1,24 @@
+mssql_field_length -- フィールド長を得る
+
+  int mssql_field_length(resource result [, int offset])~
+
+結果 {result} のフィールド番号 {offset}
+のフィールド長を返します。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+{offset} フィールドオフセット。0 から始まります。
+省略した場合は現在のフィールドを使用します。
+
+成功した場合は指定したフィールドの長さ、
+失敗した場合は FALSE を返します。
+
+PHP が使用している API（MS DbLib C API）の制限により、VARCHAR
+フィールドの長さは 255 までに限定されます。
+それ以上のデータを保存したい場合は、かわりに TEXT
+フィールドを 使用します。
+
+|mssql_field_name| |mssql_field_type|
+
+vim:ft=help:

@@ -1,0 +1,31 @@
+chunk_split -- 文字列をより小さな部分に分割する
+
+  string chunk_split(string body [, int chunklen [, string end]])~
+
+文字列をより小さな部分に分割する際に使用され、
+|base64_encode| の出力を RFC
+2045の規約に基づいた出力に変換するといった用途に適しています。
+この関数は、{chunklen} 文字毎に文字列 {end} を挿入します。
+
+{body} 分割したい文字列。
+
+{chunklen} 各部分の長さ。デフォルトは 76 です。
+
+{end} 行末の区切り。デフォルトは "\r\n" です。
+
+分割した文字列を返します。
+
+|chunk_split| の例
+
+<?php >
+  // RFC 2045 に基づき $data をフォーマットします
+  $new_string = chunk_split(base64_encode($data));
+?>
+
+
+
+
+
+|str_split| |explode| |split| |wordwrap| RFC 2045
+
+vim:ft=help:

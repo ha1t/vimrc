@@ -1,0 +1,15 @@
+OCI-Collection->getElem -- 要素の値を返す
+
+  mixed getElem(int index)~
+
+インデックス {index} (1 から始まる)
+を持つ要素の値を返します。
+
+{index} 要素のインデックス。最初のインデックスは 1
+です。
+
+もし要素が存在しない場合 FALSE 、要素が NULL 文字列なら
+NULL 、要素が文字データ型なら文字列、
+要素が数値フィールドなら数値を返します。
+
+vim:ft=help:

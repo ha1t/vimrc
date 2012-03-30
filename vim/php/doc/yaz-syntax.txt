@@ -1,0 +1,19 @@
+yaz_syntax -- 取得用に適当なレコード構文を指定する
+
+  void yaz_syntax(resource id, string syntax)~
+
+|yaz_syntax| は、取得するレコードの構文を指定します。
+
+この関数は |yaz_search| あるいは |yaz_present|
+より前にコールしなければなりません。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{syntax} ドット記法の（1.2.840.10003.5.10 のような） OID
+あるいは登録されている構文のひとつ（たとえば sutrs、
+usmarc、grs1、xml
+など）のいずれかで指定する必要があります。
+
+値を返しません。
+
+vim:ft=help:

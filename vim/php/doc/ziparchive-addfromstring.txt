@@ -1,0 +1,49 @@
+ZipArchive::addFromString -- その内容を指定して、ファイルを ZIP
+アーカイブに追加する
+
+  bool ZipArchive::addFromString(string localname, string contents)~
+
+その内容を指定して、ファイルを ZIP
+アーカイブに追加します。
+
+{localname} 作成するエントリの名前。
+
+{contents}
+エントリを作成するために使用するデータの内容。
+バイナリセーフな形式で使用されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+新しいアーカイブへのエントリの追加
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip', ZipArchive::CREATE);
+  if ($res === TRUE) {
+      $zip->addFromString('test.txt', 'ここにファイルの内容を書きます');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+アーカイブ内のディレクトリへのファイルの追加
+
+<?php >
+  $zip = new ZipArchive;
+  if ($zip->open('test.zip') === TRUE) {
+      $zip->addFromString('dir/test.txt', 'ここにファイルの内容を書きます');
+      $zip->close();
+      echo '成功';
+  } else {
+      echo '失敗';
+  }
+?>
+
+
+
+vim:ft=help:

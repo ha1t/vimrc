@@ -1,0 +1,18 @@
+ps_setdash -- 破線の形状を設定する
+
+  bool ps_setdash(resource psdoc, float on, float off)~
+
+破線の「線」の部分と「空白」の部分の長さを設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{on} 破線の長さ。
+
+{off} 破線と破線の間隔の長さ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_setpolydash|
+
+vim:ft=help:

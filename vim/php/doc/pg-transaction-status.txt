@@ -1,0 +1,43 @@
+pg_transaction_status --
+サーバ上で実行中のトランザクションの状態を返す
+
+  int pg_transaction_status(resource connection)~
+
+サーバ上で実行中のトランザクションの状態を返します。
+
+PostgreSQL 7.3 サーバで autocommit を off に
+設定している場合、|pg_transaction_status| は
+不正確な値を返します。サーバ側での自動コミット機能は非推奨と
+されており、最近のバージョンのサーバでは存在しません。
+
+{connection} PostgreSQL データベースの接続リソース。
+
+PGSQL_TRANSACTION_IDLE（アイドル状態）、
+PGSQL_TRANSACTION_ACTIVE（コマンドの実行中）、
+PGSQL_TRANSACTION_INTRANS（正常なトランザクション内でアイドル状態）、
+あるいは
+PGSQL_TRANSACTION_INERROR（失敗したトランザクション内でアイドル状態）
+のいずれかを返します。 接続が異常な場合は
+PGSQL_TRANSACTION_UNKNOWN を返します。 PGSQL_TRANSACTION_ACTIVE
+が返されるのは、クエリを
+サーバに送信した後まだそれが完了していない場合のみです。
+
+|pg_transaction_status| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("Could not connect");
+    $stat = pg_transaction_status($dbconn);
+    if ($stat === PGSQL_TRANSACTION_UNKNOWN) {
+        echo 'Connection is bad';
+    } else if ($stat === PGSQL_TRANSACTION_IDLE) {
+        echo 'Connection is currently idle';
+    } else {
+        echo 'Connection is in a transaction state';
+    }    
+?>
+
+
+
+
+
+vim:ft=help:

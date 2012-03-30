@@ -1,0 +1,15 @@
+hw_GetParents -- 親のオブジェクト ID
+
+  array hw_getparents(int connection, int objectID)~
+
+オブジェクトの親のオブジェクト ID を返します。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+オブジェクト ID の添字配列を返します。各オブジェクト
+ID は、 ID {objectID} を有するオブジェクトの
+親に属しています。
+
+vim:ft=help:

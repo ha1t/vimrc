@@ -1,0 +1,33 @@
+gmp_pow -- べき乗を計算する
+
+  resource gmp_pow(resource base, int exp)~
+
+{base} の {exp} 乗を計算します。
+
+{base} もととなる数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{exp} 正の数で、{base} を何乗するかを指定します。
+
+べき乗の結果を GMP 数で返します。 0^0 は 1 となります。
+
+|gmp_pow| の例
+
+<?php >
+  $pow1 = gmp_pow("2", 31);
+  echo gmp_strval($pow1) . "\n";
+  $pow2 = gmp_pow("0", 0);
+  echo gmp_strval($pow2) . "\n";
+  $pow3 = gmp_pow("2", -1); // 負のべき乗を指定したため、警告を発生します
+  echo gmp_strval($pow3) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  2147483648
+  1
+
+
+
+vim:ft=help:

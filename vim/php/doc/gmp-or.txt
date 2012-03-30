@@ -1,0 +1,31 @@
+gmp_or -- 論理和を計算する
+
+  resource gmp_or(resource a, resource b)~
+
+2 つの GMP 数の論理和を計算します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{b} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+GMP 数リソースを返します。
+
+|gmp_or| の例
+
+<?php >
+  $or1 = gmp_or("0xfffffff2", "4");
+  echo gmp_strval($or1, 16) . "\n";
+  $or2 = gmp_or("0xfffffff2", "2");
+  echo gmp_strval($or2, 16) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  fffffff6
+  fffffff2
+
+
+
+vim:ft=help:

@@ -1,0 +1,51 @@
+printer_select_brush -- ブラシを選択する
+
+  void printer_select_brush(resource printer_handle, resource brush_handle)~
+
+この関数は、実際のデバイスコンテキストのアクティブな描画オブジェクトと
+してブラシを選択します。矩形を描画する場合、図形の描画には
+ブラシが使用され、輪郭の描画にはペンが使用されます。
+
+図形を描く前にブラシが選択されていない場合、その図形は塗りつぶされません。
+
+{printer_handle} {printer_handle}
+には、プリンタへの有効なハンドルを指定する必要があります。
+
+{brush_handle} {brush_handle} は、
+ブラシの有効なハンドルである必要があります。
+
+値を返しません。
+
+|printer_select_brush| の例
+
+<?php >
+  $handle = printer_open();
+  printer_start_doc($handle, "My Document");
+  printer_start_page($handle);
+  
+  $pen = printer_create_pen(PRINTER_PEN_SOLID, 2, "000000");
+  printer_select_pen($handle, $pen);
+  $brush = printer_create_brush(PRINTER_BRUSH_CUSTOM, "c:\\brush.bmp");
+  printer_select_brush($handle, $brush);
+  
+  printer_draw_rectangle($handle, 1, 1, 500, 500);
+  
+  printer_delete_brush($brush);
+  
+  $brush = printer_create_brush(PRINTER_BRUSH_SOLID, "000000");
+  printer_select_brush($handle, $brush);
+  printer_draw_rectangle($handle, 1, 501, 500, 1001);
+  printer_delete_brush($brush);
+  
+  printer_delete_pen($pen);
+  
+  printer_end_page($handle);
+  printer_end_doc($handle);
+  printer_close($handle);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,7 @@
+PDF_info_table -- テーブルの情報を取得する
+
+  float PDF_info_table(resource pdfdoc, int table, string keyword)~
+
+直近に配置されたテーブルインスタンスについてのテーブルの情報を取得します。
+
+vim:ft=help:

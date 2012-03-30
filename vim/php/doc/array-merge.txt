@@ -1,0 +1,106 @@
+array_merge -- ひとつまたは複数の配列をマージする
+
+  array array_merge(array array1 [, array array2 [, array ...]])~
+
+前の配列の後ろに配列を追加することにより、
+ひとつまたは複数の配列の要素をマージし、得られた配列を返します。
+
+入力配列が同じキー文字列を有していた場合、そのキーに関する後に指定された値が、
+前の値を上書きします。しかし、配列が同じ添字番号を有していても
+値は追記されるため、このようなことは起きません。
+
+配列が一つだけ指定され、その配列が数字で添字指定されていた場合、
+キーの添字が連続となるように振り直されます。
+
+{array1} 最初の配列。
+
+{array} 再帰的にマージしていく任意の数の配列のリスト。
+
+結果の配列を返します。
+
+|array_merge| の例
+
+<?php >
+  $array1 = array("color" => "red", 2, 4);
+  $array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
+  $result = array_merge($array1, $array2);
+  print_r($result);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [color] => green
+      [0] => 2
+      [1] => 4
+      [2] => a
+      [3] => b
+      [shape] => trapezoid
+      [4] => 4
+  )
+
+
+
+簡単な |array_merge| の例
+
+<?php >
+  $array1 = array();
+  $array2 = array(1 => "data");
+  $result = array_merge($array1, $array2);
+?>
+
+数値添字が振りなおされることに注意!
+
+  Array
+  (
+      [0] => data
+  )
+
+配列を完全に維持し、単に追加だけしたい場合
+(つまり、既存のキーを上書きしたくはない場合) には、+
+演算子を使用してください:
+
+<?php >
+  $array1 = array();
+  $array2 = array(1 => "data");
+  $result = $array1 + $array2;
+?>
+
+数値添字は維持され、関連が保持されます。
+
+  Array
+  (
+      [1] => data
+  )
+
+
+
+|array_merge| の動作は PHP 5 で変更されました。PHP 4
+とは異なり、 |array_merge| は、array
+型のパラメータのみを受け取るようになりました。しかし、
+他の型をマージするために型キャストを使用することも可能です。
+詳細は以下の例を参照してください。
+
+|array_merge| PHP 5 の例
+
+<?php >
+  $beginning = 'foo';
+  $end = array(1 => 'bar');
+  $result = array_merge((array)$beginning, (array)$end);
+  print_r($result);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => foo
+      [1] => bar
+  )
+
+
+
+|array_merge_recursive| |array_combine| 配列演算子
+
+vim:ft=help:

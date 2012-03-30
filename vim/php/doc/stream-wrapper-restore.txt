@@ -1,0 +1,14 @@
+stream_wrapper_restore --
+事前に登録を解除された組み込みラッパを復元する
+
+  bool stream_wrapper_restore(string protocol)~
+
+|stream_wrapper_unregister| で事前に登録を解除した
+組み込みラッパを復元します。
+
+{protocol}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

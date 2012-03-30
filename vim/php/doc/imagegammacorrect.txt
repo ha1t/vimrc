@@ -1,0 +1,18 @@
+imagegammacorrect -- GD イメージにガンマ補正を適用する
+
+  bool imagegammacorrect(resource image, float inputgamma, float outputgamma)~
+
+指定した GD 画像 {image} に
+入力ガンマ値、出力ガンマ値を指定してガンマ補正を適用します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{inputgamma} 入力ガンマ値。
+
+{outputgamma} 出力ガンマ値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

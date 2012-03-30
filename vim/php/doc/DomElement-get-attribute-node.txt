@@ -1,0 +1,37 @@
+DomElement->get_attribute_node() -- 与えられた属性のノードを返す
+
+  DomAttribute get_attribute_node(string name)~
+
+現在の要素中の与えられた属性のノードを返す Returns the
+node of the given attribute in the current element.
+
+{name}
+検索する属性の名前。このパラメータは大文字小文字を区別します。
+
+属性のノードを DomAttribute として返す、
+もしくは与えられた名前 {name}
+を持つ属性がない場合、FALSE が返されます。
+
+属性ノードを取得する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+      echo "Error while parsing the document\n";
+      exit;
+  }
+  
+  $root = $dom->document_element();
+  if ($attribute = $root->get_attribute_node('language')) {
+      echo 'Language is: ' . $attribute->value() . "\n";
+  }
+?>
+
+
+
+
+
+を使用してください。
+
+vim:ft=help:

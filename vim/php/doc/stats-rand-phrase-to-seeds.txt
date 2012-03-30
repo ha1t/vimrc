@@ -1,0 +1,14 @@
+stats_rand_phrase_to_seeds --
+乱数ジェネレータ用のふたつのシードを生成する
+
+  array stats_rand_phrase_to_seeds(string phrase)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{phrase}
+
+
+
+vim:ft=help:

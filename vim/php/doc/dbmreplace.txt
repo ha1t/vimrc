@@ -1,0 +1,20 @@
+dbmreplace -- DBM データベース中の値を置き換える
+
+  int dbmreplace(resource dbm_identifier, string key, string value)~
+
+データベース中の、指定されたキーに対応する値を置き換えます。
+
+データベース中にキーが存在しない場合は、この関数はキーも追加します。
+
+{ dbm_identifier}|dbmopen| が返す DBM リンク識別子。
+
+{key} 置き換えるキー。
+
+{value} 新しい値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|dbminsert|
+
+vim:ft=help:

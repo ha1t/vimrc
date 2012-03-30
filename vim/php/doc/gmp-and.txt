@@ -1,0 +1,29 @@
+gmp_and -- 論理積を計算する
+
+  resource gmp_and(resource a, resource b)~
+
+2 つの GMP 数の論理積を計算します。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{b} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+論理 AND 演算の結果を GMP 数で返します。
+
+|gmp_and| の例
+
+<?php >
+  $and1 = gmp_and("0xfffffffff4", "0x4");
+  $and2 = gmp_and("0xfffffffff4", "0x8");
+  echo gmp_strval($and1) . "\n";
+  echo gmp_strval($and2) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  4
+  0
+
+vim:ft=help:

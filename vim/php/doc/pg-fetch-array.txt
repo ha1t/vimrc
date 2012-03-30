@@ -1,0 +1,85 @@
+pg_fetch_array -- 行を配列として取得する
+
+  array pg_fetch_array(resource result [, int row [, int result_type]])~
+
+|pg_fetch_array| は、取得した行（レコード）を
+配列で返します。
+
+|pg_fetch_array| は拡張版の |pg_fetch_row|
+です。結果配列のフィールド番号に
+対応する要素にデータを格納し、それに加えてフィールド名をキーとした
+連想配列にも格納します。デフォルトで、両方ともが有効になっています。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|pg_fetch_array| は、 |pg_fetch_row|
+に比べてきわめて遅いというわけでは
+「ありません」。そして、きわめて簡単に使用できます。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+{row} 取得する行番号。最初の行は 0
+です。指定されなかった場合、 次の行が取得されます。
+
+{result_type} {result_type} は、返り値の形式を制御する
+オプションのパラメータです。{result_type}
+は定数であり、次の値のどれかとすることが可能です。
+PGSQL_ASSOC、PGSQL_NUM および PGSQL_BOTH。 PGSQL_NUM
+を使用すると、|pg_fetch_array|
+は数値添字の配列を返します。また、PGSQL_ASSOC
+を使用すると連想配列形式で返します。PGSQL_BOTH
+がデフォルト設定で、これは数値添字の配列と連想配列の両方を返します。
+
+0
+から始まる数値添字の配列か連想配列（フィールド名をキーとする）、
+あるいはその両方を返します。配列の各要素の値は文字列です。
+データベースの NULL 値は、NULL として返します。
+
+{row} が結果の行数より大きい場合や行が存在しない場合、
+そしてそれ以外のエラーが発生した場合は FALSE
+を返します。
+
+バージョン 説明 4.1.0 {row}
+パラメータがオプションとなりました。 4.0.0 {result_type}
+パラメータが追加されました。
+
+|pg_fetch_array| の例
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  $result = pg_query($conn, "SELECT author, email FROM authors");
+  if (!$result) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  $arr = pg_fetch_array($result, 0, PGSQL_NUM);
+  echo $arr[0] . " <- Row 1 Author\n";
+  echo $arr[1] . " <- Row 1 E-mail\n";
+  
+  // PHP 4.1.0 以降、row パラメータはオプションです。result_type を指定
+  // したい場合は NULL を渡しておきます。pg_fetch_array を続けてコール
+  // すると、次の行を取得します。
+  $arr = pg_fetch_array($result, NULL, PGSQL_ASSOC);
+  echo $arr["author"] . " <- Row 2 Author\n";
+  echo $arr["email"] . " <- Row 2 E-mail\n";
+  
+  $arr = pg_fetch_array($result);
+  echo $arr["author"] . " <- Row 3 Author\n";
+  echo $arr[1] . " <- Row 3 E-mail\n";
+?>
+
+
+
+
+
+|pg_fetch_row| |pg_fetch_object| |pg_fetch_result|
+
+vim:ft=help:

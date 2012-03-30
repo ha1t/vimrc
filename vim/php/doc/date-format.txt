@@ -1,0 +1,16 @@
+date_format -- 指定した書式でフォーマットした日付を返す
+
+  string date_format(DateTime object, string format)~
+
+  string DateTime::format(DateTime object, string format, string format)~
+
+{object} DateTime オブジェクト。
+
+{format} |date| が理解できる書式指定文字列。
+
+成功した場合にフォーマット済みの日付、失敗した場合に
+FALSE を返します。
+
+|date|
+
+vim:ft=help:

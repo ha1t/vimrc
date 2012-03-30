@@ -1,0 +1,12 @@
+getrandmax -- 乱数の最大値を取得する
+
+  int getrandmax()~
+
+|rand|
+をコールすることにより得られる最大の値を返します。
+
+|rand| が返す乱数の最大値を返します。
+
+|rand| |srand| |mt_getrandmax|
+
+vim:ft=help:

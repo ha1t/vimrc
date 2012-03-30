@@ -1,0 +1,196 @@
+stream_filter_register -- php_user_filter
+に由来するクラスとして実装されたストリームフィルタを登録する
+
+  bool stream_filter_register(string filtername, string classname)~
+
+|stream_filter_register| は、|fopen| や |fread|
+などのファイルシステムの関数で利用可能な
+登録されているどの種類のストリームとも一緒に使うことのできる
+カスタムフィルタを登録します。
+
+フィルタを実装するには、まず、php_user_fitler
+を継承したクラスの下記に示されたメンバ関数を実装しなくてはなりません。
+PHP は、書き込みまたは読み出し操作を
+カスタムフィルタの付加されたストリームに対して行う際に、まず
+データをそのフィルタに(そして、付加されている他のすべてのフィルタにも)
+渡し、指示どおりストリームのデータが変更されるようにします。
+下記のメソッドは、説明の通り実装されなくてはなりません。
+さもないと、定義されていない動作をします。
+
+|stream_filter_register| は、 指定された {filtername}
+がすでに定義されている場合、 FALSE を返します。
+
+  int filter(string filtername, string classname, resource in, resource out, int consumed, bool closing)~
+
+このメソッドは、|fread| や |fwrite|
+等の関数で、付加されたストリームからデータを読み出す時や、
+データを書き込む度に呼ばれます。 {in} は、bucket brigade
+(バケツリレー隊) を指すポインタです。
+これは、フィルタの対象になるデータを含む複数の bucket
+オブジェクトから成っています。 {out}
+は、変更されたバケットが渡される bucket brigade
+を示しています。 {consumed}
+は、参照渡しされるパラメータで、
+ここには、フィルタが実際に処理した元のデータ長を加算します。
+ほとんどの場合、それぞれのバケットについて、そのデータ長
+$bucket->datalen を、そこに足すだけでいいはずです。
+もし、ストリームが閉じようとしている時
+(すなわちフィルタ連鎖の中の
+最後の呼び出しだった時)、{closing} パラメータは、 TRUE
+となります。filter パラメータは、さらに、
+次の値のいずれかを終了時に返さなくてはなりません。
+返り値 意味 PSFS_PASS_ON フィルタの処理に成功し、 {out} の
+バケツ隊 に データが渡されました。 PSFS_FEED_ME
+フィルタの処理に成功しましたが、データは返されませんでした。
+ストリームあるいは前段階のフィルタに対してさらにデータが必要です。
+PSFS_ERR_FATAL (default)
+フィルタにおいて復旧不可能なエラーが発生し、処理を継続できません。
+
+  bool onCreate(string filtername, string classname, resource in, resource out, int consumed, bool closing)~
+
+このメソッドは、フィルタクラスのオブジェクトが実体化されるときに
+呼び出されます。もし、フィルタがバッファなど他のリソースを
+確保したり初期化しなくてはならない場合、この時点で行ってください。
+このメソッドを実装する際には、失敗した場合に
+FALSE、成功した場合に TRUE
+を返すようにする必要があります。
+
+最初にフィルタのインスタンスが作成され
+yourfilter->onCreate() がコールされた際に、
+以下の表に示す多くのプロパティが使用可能となります。
+
+プロパティ 内容 FilterClass->filtername
+インスタンス化されたフィルタの名前を含む文字列。
+フィルタは複数の名前で登録されりワイルドカードで登録されたり
+することもありえます。どのような名前が使われたのか、
+このプロパティで調べます。 FilterClass->params
+|stream_filter_append| あるいは |stream_filter_prepend|
+に渡すパラメータの内容。
+
+  void onClose(string filtername, string classname, resource in, resource out, int consumed, bool closing)~
+
+このメソッドは、フィルタが遮断される時(通常、ストリームが遮断
+される時)に呼ばれます。また、同様に、flush メソッドが
+呼ばれた後に呼び出されます。
+もし、何らかのリソースが、oncreate メソッドの
+呼び出し時に確保されていた場合は、それらをここで廃棄するのが
+いいでしょう。
+
+下記の例は、読み込まれたり書き出されたりするデータに含まれるすべての英文字を
+大文字化する strtoupper ストリームを実装し、foo-bar.txt
+ストリームに適用するものです。 foo-bar.txt
+ストリームの文字を大文字化するフィルタ
+
+<?php >
+  /* フィルタクラスを定義する */
+  class strtoupper_filter extends php_user_filter {
+    function filter($in, $out, &amp;$consumed, $closing)
+    {
+      while ($bucket = stream_bucket_make_writeable($in)) {
+        $bucket->data = strtoupper($bucket->data);
+        $consumed += $bucket->datalen;
+        stream_bucket_append($out, $bucket);
+      }
+      return PSFS_PASS_ON;
+    }
+  }
+  
+  /* PHP にフィルタを登録する */
+  stream_filter_register("strtoupper", "strtoupper_filter")
+      or die("Failed to register filter");
+  
+  $fp = fopen("foo-bar.txt", "w");
+  
+  /* フィルタを開いたストリームに付加する */
+  stream_filter_append($fp, "strtoupper");
+  
+  fwrite($fp, "Line1\n");
+  fwrite($fp, "Word - 2\n");
+  fwrite($fp, "Easy As 123\n");
+  
+  fclose($fp);
+  
+  /* ファイルを読み出し出力する。 
+   */
+  readfile("foo-bar.txt");
+?>
+
+上の例の出力は以下となります。
+
+  LINE1
+  WORD - 2
+  EASY AS 123
+
+
+
+複数のフィルタ名に対応する一般的なフィルタクラスを登録する
+
+<?php >
+  /* フィルタクラスを定義する */
+  class string_filter extends php_user_filter {
+    var $mode;
+  
+    function filter($in, $out, &amp;$consumed, $closing)
+    {
+      while ($bucket = stream_bucket_make_writeable($in)) {
+        if ($this->mode == 1) {
+          $bucket->data = strtoupper($bucket->data);
+        } elseif ($this->mode == 0) {
+          $bucket->data = strtolower($bucket->data);
+        }
+  
+        $consumed += $bucket->datalen;
+        stream_bucket_append($out, $bucket);
+      }
+      return PSFS_PASS_ON;
+    }
+  
+    function onCreate()
+    {
+      if ($this->filtername == 'str.toupper') {
+        $this->mode = 1;
+      } elseif ($this->filtername == 'str.tolower') {
+        $this->mode = 0;
+      } else {
+        /* その他の str.* フィルタが問い合わせられた場合は
+           失敗を報告し、PHP が検索を続けられるようにする */
+        return false;
+      }
+  
+      return true;
+    }
+  }
+  
+  /* PHP にフィルタを登録する */
+  stream_filter_register("str.*", "string_filter")
+      or die("Failed to register filter");
+  
+  $fp = fopen("foo-bar.txt", "w");
+  
+  /* フィルタを開いたストリームに付加する
+     ここで str.tolower をバインドすることも可能 */
+  stream_filter_append($fp, "str.toupper");
+  
+  fwrite($fp, "Line1\n");
+  fwrite($fp, "Word - 2\n");
+  fwrite($fp, "Easy As 123\n");
+  
+  fclose($fp);
+  
+  /* ファイルを読み出し出力する。 
+   */
+  readfile("foo-bar.txt");
+?>
+
+上の例の出力は以下となります。
+
+  LINE1
+  WORD - 2
+  EASY AS 123
+
+
+
+|stream_wrapper_register|、 |stream_filter_prepend| および
+|stream_filter_append| も参照ください。
+
+vim:ft=help:

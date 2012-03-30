@@ -1,0 +1,29 @@
+dbase_get_record --
+データベースからレコードを配列形式で得る
+
+  array dbase_get_record(int dbase_identifier, int record_number)~
+
+データベースから、レコードを配列形式で取得します。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+{record_number} レコードのインデックス。
+
+レコードの連想配列を返します。これには deleted
+という名前のキーも含まれており、もしレコードに削除マークがつけられている
+場合にはその値が 1 となります （|dbase_delete_record|
+を参照ください）。
+
+各フィールドは、適切な PHP
+の型に変換されます。ただし以下の例外を除きます。
+日付は文字列のままとなります。
+
+オーバーフローを発生するような整数（> 32 ビット）は、
+文字列として返されます。
+
+エラー時には |dbase_get_record| は FALSE を返します。
+
+|dbase_get_record_with_names|
+
+vim:ft=help:

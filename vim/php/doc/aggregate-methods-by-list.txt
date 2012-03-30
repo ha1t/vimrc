@@ -1,0 +1,30 @@
+aggregate_methods_by_list --
+選択したクラスメソッドを、動的にオブジェクトに集約する
+
+  void aggregate_methods_by_list(object object, string class_name, array methods_list [, bool exclude])~
+
+メソッド名のリストを使用して、クラスのメソッドを既存のオブジェクトに集約します。
+
+クラスのコンストラクタ、およびアンダースコア文字 (_)
+で始まる名前のメソッド (プライベートとみなされます)
+は、常に対象となりません。
+
+{object}
+
+{class_name}
+
+{methods_list}
+
+{exclude} オプションのパラメータ {exclude}
+で、リストに含まれているメソッドを集約する ({exclude} が
+FALSE の場合。これがデフォルトです)
+のか含まれていないメソッドを集約する ({exclude} が TRUE)
+のかを指定します。
+
+値を返しません。
+
+|aggregate| |aggregate_info| |aggregate_methods| |aggregate_methods_by_regexp|
+|aggregate_properties| |aggregate_properties_by_list|
+|aggregate_properties_by_regexp| |deaggregate|
+
+vim:ft=help:

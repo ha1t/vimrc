@@ -1,0 +1,16 @@
+swf_definebitmap -- ビットマップを定義する
+
+  void swf_definebitmap(int objid, string image_name)~
+
+関数 |swf_definebitmap| は、
+指定したイメージのビットマップを定義します。
+
+{objid} SWF オブジェクト ID。
+
+{image_name} GIF、JPEG、RGB あるいは FI 形式のイメージ。
+このイメージは Flash JPEG または Flash
+カラーマップフォーマットに変換されます。
+
+値を返しません。
+
+vim:ft=help:

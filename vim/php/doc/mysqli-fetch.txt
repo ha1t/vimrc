@@ -1,0 +1,9 @@
+mysqli_fetch -- mysqli_stmt_fetch のエイリアス
+
+この関数は |mysqli_stmt_fetch| のエイリアスです。
+
+|mysqli_fetch| は非推奨で、廃止予定です。
+
+|mysqli_stmt_fetch|
+
+vim:ft=help:

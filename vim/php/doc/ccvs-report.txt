@@ -1,0 +1,9 @@
+ccvs_report -- バックグラウンドの通信プロセスの状態を返す
+
+  string ccvs_report(string session, string type)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

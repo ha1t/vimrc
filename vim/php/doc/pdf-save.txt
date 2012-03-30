@@ -1,0 +1,8 @@
+PDF_save -- 描画状態を保存する
+
+  bool PDF_save(resource p)~
+
+現在の描画状態を保存します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

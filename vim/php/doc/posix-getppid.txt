@@ -1,0 +1,19 @@
+posix_getppid -- 親プロセスの ID を返す
+
+  int posix_getppid()~
+
+現在のプロセスの親プロセスの ID を返します。
+
+ID を表す整数値を返します。
+
+|posix_getppid| の使用例
+
+<?php >
+  echo posix_getppid(); //8259
+?>
+
+
+
+
+
+vim:ft=help:

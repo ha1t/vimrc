@@ -1,0 +1,34 @@
+ssh2_fetch_stream -- 拡張データストリームを取得する
+
+  resource ssh2_fetch_stream(resource channel, int streamid)~
+
+SSH2
+チャネルストリームと関連付けられたサブストリームを取得します。
+SSH2 プロトコルは現在ただ 1 つのサブストリーム STDERR
+を定義しています。これはサブストリーム ID として
+SSH2_STREAM_STDERR (1 として定義) を持ちます。
+
+{channel}
+
+{streamid} SSH2 チャネルストリーム。
+
+ストリームリソースを返します。
+
+シェルをオープンし、それと関連付けられた stderr
+ストリームを処理する
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  
+  $stdio_stream = ssh2_shell($connection);
+  $stderr_stream = ssh2_fetch_stream($stdio_stream, SSH2_STREAM_STDERR);
+?>
+
+
+
+
+
+|ssh2_shell| |ssh2_exec| |ssh2_connect|
+
+vim:ft=help:

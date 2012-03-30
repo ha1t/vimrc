@@ -1,0 +1,24 @@
+DomDocument->add_root -- ルートノードを追加する
+[推奨されません]
+
+  domelement DomDocument->add_root(string name)~
+
+DOM
+文章にルート要素ノードを追加し、新しいノードを返します。
+この要素名はパラメータで渡します。
+
+単純な HTML 文章のヘッダを生成する
+
+<?php >
+  $doc = domxml_new_doc("1.0");
+  $root = $doc->add_root("html");
+  $head = $root->new_child("head", "");
+  $head->new_child("title", "Hier der Titel");
+  echo htmlentities($doc->dump_mem());
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+mcrypt_module_is_block_algorithm_mode --
+指定したモジュールがブロックアルゴリズムであるかどうかを返す
+
+  bool mcrypt_module_is_block_algorithm_mode(string mode [, string lib_dir])~
+
+この関数は、mode
+がブロックアルゴリズムを使用する場合に TRUE、
+その他の場合に FALSE を返します。(例: stream の場合に
+FALSE、 cbc、cfb、ofb の場合に TRUE) オプションのパラメータ
+{lib_dir} により、 システム上での mode
+モジュールの位置を指定することが可能です。
+
+vim:ft=help:

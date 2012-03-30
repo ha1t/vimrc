@@ -1,0 +1,12 @@
+udm_check_charset -- 指定した charset が mnogosearch
+で認識されるかどうか調べる
+
+  bool udm_check_charset(resource agent, string charset)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

@@ -1,0 +1,53 @@
+mysql_fetch_lengths -- 結果における各出力の長さを得る
+
+  array mysql_fetch_lengths(resource result)~
+
+MySQL
+により一番最近に取得された行における各フィールドの長さを
+格納した配列を返します。
+
+|mysql_fetch_lengths|は、 |mysql_fetch_row|, |mysql_fetch_assoc|,
+|mysql_fetch_array|, そして |mysql_fetch_object|
+により一番最近に返された
+各結果カラムの長さを格納した配列を返します。この配列のオフセットは
+0 から始まります。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+成功した場合に長さの配列（array）を、 失敗した場合に
+FALSE を返します。
+
+|mysql_fetch_lengths| の例
+
+<?php >
+  $result = mysql_query("SELECT id,email FROM people WHERE id = '42'");
+  if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
+      exit;
+  }
+  $row     = mysql_fetch_assoc($result);
+  $lengths = mysql_fetch_lengths($result);
+  
+  print_r($row);
+  print_r($lengths);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [id] => 42
+      [email] => user@example.com
+  )
+  Array
+  (
+      [0] => 2
+      [1] => 16
+  )
+
+
+
+|mysql_field_len| |mysql_fetch_row| |strlen|
+
+vim:ft=help:

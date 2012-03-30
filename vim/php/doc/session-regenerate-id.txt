@@ -1,0 +1,46 @@
+session_regenerate_id --
+現在のセッションIDを新しく生成したものと置き換える
+
+  bool session_regenerate_id([bool delete_old_session])~
+
+|session_regenerate_id| は現在のセッションIDを
+新しいものと置き換えます。その際、現在のセッション情報は維持されます。
+
+{delete_old_session}
+関連付けられた古いセッションを削除するかどうか。
+デフォルトは FALSE です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.3.3
+これ以降、セッション保持にクッキーを使用している場合、
+|session_regenerate_id| を使用することにより
+新しいセッション ID
+を持つセッションクッキーも発行します。 5.1.0
+{delete_old_session} パラメータが追加されました。
+
+A |session_regenerate_id| の使用例
+
+<?php >
+  session_start();
+  
+  $old_sessionid = session_id();
+  
+  session_regenerate_id();
+  
+  $new_sessionid = session_id();
+  
+  echo "古いセッション: $old_sessionid<br />";
+  echo "新しいセッション: $new_sessionid<br />";
+  
+  print_r($_SESSION);
+?>
+
+
+
+
+
+|session_id| |session_start| |session_name|
+
+vim:ft=help:

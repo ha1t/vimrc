@@ -1,0 +1,11 @@
+DomNode->is_blank_node -- ノードが空かどうかを調べる
+
+  bool DomNode->is_blank_node()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+
+
+vim:ft=help:

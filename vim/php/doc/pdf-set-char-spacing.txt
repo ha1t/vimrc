@@ -1,0 +1,7 @@
+PDF_set_char_spacing -- 文字間隔を設定する [古い関数]
+
+この関数は PDFlib バージョン 3
+で廃止されました。かわりに |PDF_set_value| でパラメータ
+{charspacing} を使用してください。
+
+vim:ft=help:

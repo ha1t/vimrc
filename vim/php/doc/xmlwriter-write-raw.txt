@@ -1,0 +1,23 @@
+XMLWriter::writeRaw -- 生の XML テキストを書き込む
+
+オブジェクト指向型
+
+  bool writeRaw(string content)~
+
+手続き型
+
+  bool xmlwriter_write_raw(string content, resource xmlwriter, string content)~
+
+生の xml テキストを書き込みます。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{content} 書き込むテキスト文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

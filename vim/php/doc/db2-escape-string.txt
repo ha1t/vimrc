@@ -1,0 +1,48 @@
+db2_escape_string -- 特定の文字をエスケープする
+
+  string db2_escape_string(string string_literal)~
+
+引数で指定した文字列中の特殊文字の前にバックスラッシュを追加します。
+
+{string_literal} 変更すべき特殊文字を含む文字列。 \x00、
+\n、\r、\、 '、" および \x1a
+について、その前にバックスラッシュを追加します。
+
+{string_literal} の中の上で挙げた文字について、
+その前にバックスラッシュを追加した文字列を返します。
+
+|db2_escape_string| の例 |db2_escape_string| 関数を使用した結果
+
+<?php >
+  $conn = db2_connect($database, $user, $password);
+  
+  if ($conn) {
+      $str[0] = "All characters: \x00 , \n , \r , \ , ' , \" , \x1a .";
+      $str[1] = "Backslash (\). Single quote ('). Double quote (\")";
+      $str[2] = "The NULL character \0 must be quoted as well";
+      $str[3] = "Intersting characters: \x1a , \x00 .";
+      $str[4] = "Nothing to quote";
+      $str[5] = 200676;
+      $str[6] = "";
+  
+      foreach( $str as $string ) {
+          echo "db2_escape_string: " . db2_escape_string($string). "\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  db2_escape_string: All characters: \0 , \n , \r , \\ , \' , \" , \Z .
+  db2_escape_string: Backslash (\\). Single quote (\'). Double quote (\")
+  db2_escape_string: The NULL character \0 must be quoted as well
+  db2_escape_string: Intersting characters: \Z , \0 .
+  db2_escape_string: Nothing to quote
+  db2_escape_string: 200676
+  db2_escape_string:
+
+
+
+|db2_prepare|
+
+vim:ft=help:

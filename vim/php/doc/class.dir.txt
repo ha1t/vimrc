@@ -1,0 +1,54 @@
+dir -- ディレクトリクラスのインスタンスを返す
+
+  string Directory::read()~
+
+  void Directory::rewind()~
+
+  void Directory::close()~
+
+ディレクトリを読むための疑似オブジェクト指向の機構です。
+指定した {directory} がオープンされます。
+いったんディレクトリがオープンされると、2
+つのプロパティを使用 できるようになります。handle
+プロパティは、|readdir |, |rewinddir|, | closedir|
+のような他のディレクトリ関数と組み合わせて
+使用可能です。path
+プロパティには、オープンするディレクトリのパス
+がセットされます。read, rewind, close の 3 種類のメソッドが
+使用できます。
+
+|dir| の例 以下の例で、|dir::read|
+の返り値をどのように調べているかに
+注目してください。返り値が FALSE
+と一致することを、明示的に
+（値が等しく、かつ型も等しい - 詳細は 比較演算子
+を参照ください）調べています。なぜなら、そうしないと
+FALSE
+と評価されてしまうディレクトリエントリがあった場合にループが
+とまってしまうからです。
+
+<?php >
+  $d = dir("/etc/php5");
+  echo "Handle: " . $d->handle . "\n";
+  echo "Path: " . $d->path . "\n";
+  while (false !== ($entry = $d->read())) {
+     echo $entry."\n";
+  }
+  $d->close();
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Handle: Resource id #2
+  Path: /etc/php5
+  .
+  ..
+  apache
+  cgi
+  cli
+
+
+
+読み込みにより返されるディレクトリエントリの順番は、システムに依存します。
+
+vim:ft=help:

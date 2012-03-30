@@ -1,0 +1,25 @@
+SQLiteUnbuffered->valid --
+まだレコードが残っているかどうかを返す
+
+  bool sqlite_valid(resource result)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  bool valid(resource result)~
+
+  bool valid(resource result)~
+
+与えられた結果ハンドルにまだレコードが残っているかを検査します。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+この関数は、
+バッファなしの結果ハンドルで使用することはできません。
+
+結果ハンドル {result} にレコードが残っている場合
+TRUE、そうでない場合は FALSE を返します。
+
+|sqlite_num_rows| |sqlite_changes|
+
+vim:ft=help:

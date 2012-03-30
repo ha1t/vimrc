@@ -1,0 +1,70 @@
+call_user_func_array --
+パラメータの配列を指定してユーザ関数をコールする
+
+  mixed call_user_func_array(callback function, array param_arr)~
+
+{param_arr} にパラメータを指定して、 {function}
+で指定したユーザ定義関数をコールします。
+
+{function} コールする関数。
+
+{param_arr} 関数に渡すパラメータを指定する配列。
+
+関数の結果、あるいはエラー時に FALSE を返します。
+
+|call_user_func_array| の例
+
+<?php >
+  function debug($var, $val)
+  {
+      echo "***DEBUGGING\nVARIABLE: $var\nVALUE:";
+      if (is_array($val) || is_object($val) || is_resource($val)) {
+          print_r($val);
+      } else {
+          echo "\n$val\n";
+      }
+      echo "***\n";
+  }
+  
+  $c = mysql_connect();
+  $host = $_SERVER["SERVER_NAME"];
+  
+  call_user_func_array('debug', array("host", $host));
+  call_user_func_array('debug', array("c", $c));
+  call_user_func_array('debug', array("_POST", $_POST));
+?>
+
+
+
+|call_user_func_array| での名前空間の使用法
+
+<?php >
+  namespace Foobar;
+  
+  class Foo {
+      static public function test($name) {
+          print "Hello {$name}!\n";
+      }
+  }
+  
+  // PHP 5.3.0 以降
+  call_user_func_array(__NAMESPACE__ .'::Foo::test', array('Hannes'));
+  // Hello Hannes!
+  
+  // PHP 5.3.0 以降
+  call_user_func_array(array(__NAMESPACE__ .'::Foo', 'test'), array('Philip'));
+  // Hello Philip!
+?>
+
+
+
+
+
+{param_arr} 内で参照される変数は、
+関数に参照渡しされます。それ以外は値渡しとなります。
+つまり、パラメータが値渡しとなるか参照渡しとなるのかは、
+関数のシグネチャには依存しないということです。
+
+|call_user_func| callback 型に関する情報
+
+vim:ft=help:

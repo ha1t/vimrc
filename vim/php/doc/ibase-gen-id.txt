@@ -1,0 +1,12 @@
+ibase_gen_id --
+指定した名前のジェネレータをひとつ加算し、その新しい値を返す
+
+  mixed ibase_gen_id(string generator [, int increment [, resource link_identifier]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+新しいジェネレータの値を整数で返します。値が大きくなりすぎた場合は文字列で返します。
+
+vim:ft=help:

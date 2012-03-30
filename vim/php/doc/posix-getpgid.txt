@@ -1,0 +1,31 @@
+posix_getpgid -- ジョブ制御のプロセスグループ ID を得る
+
+  int posix_getpgid(int pid)~
+
+プロセス {pid} のプロセスグループ ID を返します。
+
+{pid} プロセス ID。
+
+ID を表す整数値を返します。
+
+|posix_getpgid| の使用例
+
+<?php >
+  $pid = posix_getppid();
+  echo posix_getpgid($pid); //35
+?>
+
+
+
+
+
+この関数は POSIX 関数ではなく、BSD および System V
+のシステムで共通な関数です。
+使用するシステムがこの関数をサポートしていない場合は、
+PHP のコンパイル時にこの関数は組み込まれません。
+この関数が使用可能かどうかを調べるには、|function_exists|
+を使用します。
+
+|posix_getppid| man ページ SETPGID(2)
+
+vim:ft=help:

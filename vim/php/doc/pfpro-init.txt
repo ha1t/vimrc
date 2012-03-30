@@ -1,0 +1,16 @@
+pfpro_init -- Payflow Pro ライブラリを初期化する
+
+  bool pfpro_init()~
+
+Payflow Pro ライブラリを初期化するために使用します。
+
+この関数のコールは省略することができます。
+その場合、この拡張モジュールは最初のトランザクションの前に
+|pfpro_init| を自動的にコールします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|pfpro_cleanup|
+
+vim:ft=help:

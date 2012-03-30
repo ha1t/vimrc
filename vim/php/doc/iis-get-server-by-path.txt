@@ -1,0 +1,15 @@
+iis_get_server_by_path --
+指定したパスのインスタンス番号を返す
+
+  int iis_get_server_by_path(string path)~
+
+IIS
+の各仮想サーバには、インスタンス番号が付けられています。
+|iis_get_server_by_path| は、ルートディレクトリへの
+実際のパスからインスタンス番号を検索します。
+
+{path} ルートディレクトリへのパス。
+
+サーバのインスタンス番号を返します。
+
+vim:ft=help:

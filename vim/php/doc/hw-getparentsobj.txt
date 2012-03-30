@@ -1,0 +1,17 @@
+hw_GetParentsObj -- 親のオブジェクトレコード
+
+  array hw_getparentsobj(int connection, int objectID)~
+
+オブジェクトレコードの添字配列に加えてオブジェクトでコードに関する
+統計情報を含む連想配列を返します。各オブジェクトレコードは、
+ID {objectID} を有するオブジェクトの 親に属しています。
+
+{connection} 接続 ID。
+
+{objectID} オブジェクト ID。
+
+オブジェクトレコードの添字配列に加えてオブジェクトでコードに関する
+統計情報を含む連想配列を返します。連想配列は、
+配列の最後のエントリとなります。
+
+vim:ft=help:

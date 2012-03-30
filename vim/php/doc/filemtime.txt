@@ -1,0 +1,41 @@
+filemtime -- ファイルの更新時刻を取得する
+
+  int filemtime(string filename)~
+
+この関数は、ファイルのブロックデータが書き込まれた時間を返します。
+これは、ファイルの内容が変更された際の時間です。
+
+{filename} ファイルへのパス。
+
+ファイルの最終更新時刻を返し、エラーの場合は FALSE
+を返します。時間は Unix
+タイムスタンプとして返されます。 この関数の結果は
+|date| 等で使用できます。
+
+|filemtime| の例
+
+<?php >
+  // 出力例 somefile.txt was last modified: December 29 2002 22:16:23.
+  
+  $filename = 'somefile.txt';
+  if (file_exists($filename)) {
+      echo "$filename was last modified: " . date ("F d Y H:i:s.", filemtime($filename));
+  }
+?>
+
+
+
+
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|filectime| |stat| |touch| |getlastmod|
+
+vim:ft=help:

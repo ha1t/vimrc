@@ -1,0 +1,41 @@
+imagefill -- 塗り潰す
+
+  bool imagefill(resource image, int x, int y, int color)~
+
+指定した座標 (左上が 0, 0 です) から、指定した色 {color}
+で {image} を塗りつぶします。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{x} 開始位置の x 座標。
+
+{y} 開始位置の y 座標。
+
+{color} 塗りつぶし色。 |imagecolorallocate| で作成した色 ID
+です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imagefill| の例
+
+<?php >
+  $im = imagecreatetruecolor(100, 100);
+  
+  // 背景色を赤に設定します
+  $red = imagecolorallocate($im, 255, 0, 0);
+  imagefill($im, 0, 0, $red);
+  
+  header('Content-type: image/png');
+  imagepng($im);
+  imagedestroy($im);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+|imagecolorallocate|
+
+vim:ft=help:

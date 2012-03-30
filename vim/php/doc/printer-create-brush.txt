@@ -1,0 +1,41 @@
+printer_create_brush -- 新規ブラシを作成する
+
+  resource printer_create_brush(int style, string color)~
+
+この関数は、新しいブラシを作成してブラシへのハンドルを返します。
+ブラシは、図形を塗りつぶすために使用されます。使用例は
+|printer_select_brush| を参照ください。
+
+{style} {style} は、以下の定数のうちのいずれかで
+ある必要があります。 PRINTER_BRUSH_SOLID:
+実線のブラシを作成します。
+
+PRINTER_BRUSH_DIAGONAL: 45 度右上がりハッチ( /
+)のブラシを作成します。
+
+PRINTER_BRUSH_CROSS: クロスハッチ( + )のブラシを作成します。
+
+PRINTER_BRUSH_DIAGCROSS: 45 度回転したクロスハッチ( x
+)のブラシを作成します。
+
+PRINTER_BRUSH_FDIAGONAL: 45 度右下がりハッチ( \
+)のブラシを作成します。
+
+PRINTER_BRUSH_HORIZONTAL: 水平ハッチ( -
+)のブラシを作成します。
+
+PRINTER_BRUSH_VERTICAL: 垂直ハッチ( | )のブラシを作成します。
+
+PRINTER_BRUSH_CUSTOM: BMP
+ファイルからカスタムブラシを作成します。2
+番目のパラメータには RGB 色コードのかわりに BMP
+を指定します。
+
+{color} {color} は RGB 16
+進フォーマットである必要があります。 たとえば黒は
+"000000" となります。
+
+ブラシのハンドル、あるいはエラー時に FALSE
+を返します。
+
+vim:ft=help:

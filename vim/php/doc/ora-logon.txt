@@ -1,0 +1,36 @@
+ora_logon -- Oracle 接続をオープンする
+
+  resource ora_logon(string user, string password)~
+
+指定したユーザ名とパスワードにより PHP と Oracle
+データベースの接続を確立します。
+
+次のように TNS 名を {user} に与えることにより、接続は
+SQL*Net を用いて作成されます。
+
+<?php >
+  $conn = Ora_Logon("user@TNSNAME", "pass");
+?>
+
+非アスキー文字を含む文字データがある場合、環境変数
+NLS_LANG
+を設定する必要があります。サーバモジュールの場合、
+サーバの起動前にサーバの環境変数として設定する必要があります。
+
+{user} ユーザ名。
+
+{password} {user} に対応するパスワード。
+
+成功した場合に接続 ID、失敗した場合に FALSE
+を返します。 エラーについての詳細は、|ora_error| および
+|ora_errorcode| 関数を用いて調べられます。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_connect| |oci_new_connect|
+
+vim:ft=help:

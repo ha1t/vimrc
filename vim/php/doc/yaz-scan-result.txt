@@ -1,0 +1,26 @@
+yaz_scan_result -- スキャンリクエストの結果を返す
+
+  array yaz_scan_result(resource id [, array result])~
+
+|yaz_scan_result| は、直近の |yaz_scan|
+の実行時にサーバから受信した
+項目と関連情報を返します。
+
+{id} |yaz_connect| が返す接続リソース。
+
+{result}
+指定された場合、この配列にスキャン時の応答から得られた追加情報が
+代入されます。 number - 返されたエントリの数。
+
+stepsize - ステップサイズ。
+
+position - 項目の位置。
+
+status - スキャンステータス。
+
+配列 (0..n-1) を返します。n
+は返された項目の数です。個々の値は
+ペアになっており、最初の値が項目名、2
+つめの値が結果の数となります。
+
+vim:ft=help:

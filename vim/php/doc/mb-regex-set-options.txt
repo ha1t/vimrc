@@ -1,0 +1,17 @@
+mb_regex_set_options --
+マルチバイト正規表現関数のデフォルトオプションを取得または設定する
+
+  string mb_regex_set_options([string options])~
+
+{options} で表されるオプションを、
+マルチバイト対応の正規表現関数のデフォルトに設定します。
+
+{options} 設定するオプション。
+
+以前設定されていたオプション文字列を返します。もし
+{options} が省略されていた場合、
+現在のデフォルトのオプションを返します。
+
+|mb_split| |mb_ereg| |mb_eregi|
+
+vim:ft=help:

@@ -1,0 +1,5 @@
+socket_set_blocking -- stream_set_blocking のエイリアス
+
+この関数は次の関数のエイリアスです。 |stream_set_blocking|.
+
+vim:ft=help:

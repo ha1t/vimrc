@@ -1,0 +1,5 @@
+odbc_do -- odbc_exec のエイリアス
+
+この関数は次の関数のエイリアスです。 |odbc_exec|.
+
+vim:ft=help:

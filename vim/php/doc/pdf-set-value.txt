@@ -1,0 +1,9 @@
+PDF_set_value -- 数値パラメータを設定する
+
+  bool PDF_set_value(resource p, string key, float value)~
+
+PDFlib
+パラメータの値を数値型で設定します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

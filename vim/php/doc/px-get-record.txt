@@ -1,0 +1,35 @@
+px_get_record -- paradox データベースのレコードを返す
+
+  array px_get_record(resource pxdoc, int num [, int mode])~
+
+{pxdoc} |px_new| が返す、 paradox データベースのリソース ID。
+
+{num}
+レコード番号は人為的な番号で、レコードがデータベースに格納された順番を表します。
+最初のレコードの番号は 0 です。
+
+{mode}
+返される配列のキーを小文字または大文字に変換するために、
+オプションの {mode} に PX_KEYTOLOWER あるいは PX_KEYTOUPPER
+を指定することができます。{mode}
+が渡されなかったりあるいは 0 であった場合は、
+キーはフィールド名そのものとなります。
+要素の値にはフィールドの値が含まれます。 NULL
+値もそのまま残ります。NULL は 0.0、0 あるいは
+空の文字列とはことなる値です。PX_FIELD_TIME
+型のフィールドは、深夜 0
+時から数えたミリ秒数を整数で返します。 timestamp
+は浮動小数点値で、ユリウス暦の開始時からの経過ミリ秒数を返します。
+timestamp (PX_FIELD_TIMESTAMP) および date (PX_FIELD_DATE)
+は浮動小数点値で、
+それぞれユリウス暦の開始時からの経過ミリ秒数、日数を返します。
+これらの値を文字列表現に変換するには |px-timestamp2string|
+および |px-date2string| を使用します。
+
+paradox データベースから、{num}
+番目のレコードを返します。
+レコードは連想配列形式で返され、フィールド名がキーとなります。
+
+|px_retrieve_record|
+
+vim:ft=help:

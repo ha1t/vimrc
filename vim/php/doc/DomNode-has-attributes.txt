@@ -1,0 +1,9 @@
+DomNode->has_attributes -- ノードが属性を有しているかを調べる
+
+  bool DomNode->has_attributes()~
+
+この関数は、ノードが属性を有しているかを調べます。
+
+|domnode_has_child_nodes| も参照ください。
+
+vim:ft=help:

@@ -1,0 +1,49 @@
+dio_open -- 指定したパーミッション flags と作成許可 mode
+を指定して 新しいファイルをオープンする
+
+  resource dio_open(string filename, int flags [, int mode])~
+
+|dio_open| は、ファイルをオープンして
+そのファイル記述子を返します。
+
+{filename} オープンするファイル名。
+
+{flags} {flags} パラメータには、
+以下のフラグの組み合わせを指定します。 O_CREAT -
+ファイルが存在しなければ
+新しいファイルを作成します。
+
+O_EXCL - O_CREAT および O_EXCL をともに指定すると、
+すでにファイルが存在する場合に |dio_open| が失敗します。
+
+O_TRUNC - すでにファイルが存在し、書き込み
+アクセス用にオープンされている場合、ファイルの長さをゼロに切り詰めます。
+
+O_APPEND - 書き込み時は、ファイルの終端に 追記します。
+
+O_NONBLOCK - 非ブロッキングモードを指定します。
+
+{mode} {flags} が O_CREAT の場合に、{mode} でファイルのモード
+（作成許可）を指定します。 O_RDONLY -
+読み込み専用でファイルをオープンします。
+
+O_WRONLY - 書き込み専用でファイルをオープンします。
+
+O_RDWR - 読み書き両用でファイルをオープンします。
+
+ファイル記述子を返します。エラー時には FALSE
+を返します。
+
+ファイル記述子をオープンする
+
+<?php >
+  $fd = dio_open('/dev/ttyS0', O_RDWR | O_NOCTTY | O_NONBLOCK);
+  
+  dio_close($fd);
+?>
+
+
+
+|dio_close|
+
+vim:ft=help:

@@ -1,0 +1,28 @@
+XMLWriter::writeElement -- 要素タグ全体を書き込む
+
+オブジェクト指向型
+
+  bool writeElement(string name [, string content])~
+
+手続き型
+
+  bool xmlwriter_write_element(string name [, string content, resource xmlwriter, string name [, string content]])~
+
+要素タグ全体を書き込みます。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{name} 要素名。
+
+{content} 要素の内容。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 PHP 5.2.3 {content}
+パラメータがオプションとなりました。
+
+vim:ft=help:

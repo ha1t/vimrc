@@ -1,0 +1,21 @@
+sesam_field_name -- 結果集合のカラム名を返す
+
+  int sesam_field_name(string result_id, int index)~
+
+フィールド名を取得します。
+
+{result_id} |sesam_query| が返す結果 ID。
+
+{index} カラムの添字。SESAM のように 1 から始まらず、0
+から始まります。
+
+結果集合の中のフィールド名(すなわち、カラム名)またはエラーの際に
+FALSE を返します。
+
+"即時型"クエリまたは動的なカラムの場合、空の文字列が返されます。
+
+|sesam_field_array| も参照ください。この関数は、
+カラム名および型により簡単にアクセスするインターフェースを提供し、
+"複数フィールド"の検出が可能になります。
+
+vim:ft=help:

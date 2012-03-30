@@ -1,0 +1,18 @@
+bcompiler_write_included_filename --
+インクルードされたファイルをバイトコードとして書き込む
+
+  bool bcompiler_write_included_filename(resource filehandle, string filename)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+vim:ft=help:

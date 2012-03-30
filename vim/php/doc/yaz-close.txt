@@ -1,0 +1,18 @@
+yaz_close -- YAZ 接続をクローズする
+
+  bool yaz_close(resource id)~
+
+{id} で指定した接続をクローズします。
+
+この関数は、persistent オプションを FALSE にして |yaz_connect|
+でオープンした
+持続的でない接続のみをクローズします。
+
+{id} |yaz_connect| が返す接続リソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|yaz_connect|
+
+vim:ft=help:

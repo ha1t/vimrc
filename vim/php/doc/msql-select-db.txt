@@ -1,0 +1,24 @@
+msql_select_db -- mSQL データベースを選択する
+
+  bool msql_select_db(string database_name [, resource link_identifier])~
+
+|msql_select_db| は、指定した {link_identifier}
+に関連付けられたサーバ上の
+アクティブなデータベースを設定します。
+
+これ以降の |msql_query| のコールは、アクティブな
+データベースに対して行われます。
+
+{database_name} データベース名。
+
+{ link_identifier}mSQL 接続。 指定されない場合、|msql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、この関数は、
+|msql_connect|をコールした時と同様にリンクを確立し、使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|msql_connect| |msql_pconnect| |msql_query|
+
+vim:ft=help:

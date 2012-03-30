@@ -1,0 +1,13 @@
+newt_checkbox_set_value -- チェックボックスの値を設定する
+
+  void newt_checkbox_set_value(resource checkbox, string value)~
+
+この関数は、チェックボックスリソースの現在の値を設定します。
+
+{checkbox}
+
+{value}
+
+値を返しません。
+
+vim:ft=help:

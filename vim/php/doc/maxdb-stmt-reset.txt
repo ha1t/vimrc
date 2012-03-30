@@ -1,0 +1,15 @@
+stmt->reset -- プリペアドステートメントをリセットする
+
+手続き型
+
+  bool maxdb_stmt_reset(resource stmt)~
+
+オブジェクト指向型 (メソッド)
+
+  bool reset(resource stmt)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

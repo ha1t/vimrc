@@ -1,0 +1,15 @@
+hw_api->children -- オブジェクトの子を返す
+
+  array children(array parameter)~
+
+コレクションの子、あるいは文書の属性を取得します。
+オブジェクトクエリによって、取得する内容をさらに絞り込むことが可能です。
+
+{parameter} パラメータ配列の中には、必須要素
+'objectIdentifier' およびオプションの要素
+'attributeSelector'、'objectQuery' が含まれます。
+
+HW_API_Object あるいは HW_API_Error
+型のオブジェクトの配列が返されます。
+
+vim:ft=help:

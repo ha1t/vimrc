@@ -1,0 +1,21 @@
+maxdb_stmt->close -- プリペアドステートメントを閉じる
+
+手続き型
+
+  bool maxdb_stmt_close(resource stmt)~
+
+オブジェクト指向型 (メソッド)
+
+  bool maxdb_stmt->close(resource stmt)~
+
+プリペアドステートメントを閉じます。 |maxdb_stmt_close|
+は、 {stmt} が指すステートメントハンドルを開放します。
+現在のステートメントに処理中あるいはまだ読み込まれていない結果がある場合、
+この関数はそれらをキャンセルし、次のクエリを実行できるようにします。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|maxdb_prepare|
+
+vim:ft=help:

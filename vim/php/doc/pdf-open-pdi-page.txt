@@ -1,0 +1,8 @@
+PDF_open_pdi_page -- ページを準備する
+
+  int PDF_open_pdi_page(resource p, int doc, int pagenumber, string optlist)~
+
+|PDF_fit_pdi_image|
+で後で使用するようにページを準備します。
+
+vim:ft=help:

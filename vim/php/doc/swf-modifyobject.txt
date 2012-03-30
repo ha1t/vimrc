@@ -1,0 +1,21 @@
+swf_modifyobject -- オブジェクトを修正する
+
+  void swf_modifyobject(int depth, int how)~
+
+オブジェクトの位置または/および色を指定した深さ {depth}
+に更新します。
+
+{depth} 深さを表す整数値。
+
+{how} 更新するものを定義します。{how} は、定数 MOD_MATRIX
+あるいは MOD_COLOR のいずれか、
+またはその両方の組み合わせです。
+
+MOD_COLOR は (関数 |swf_mulcolor| で指定した)
+現在の乗算色および(関数 |swf_addcolor| で
+指定した)現在の加算色をオブジェクトを塗る際に使用します。MOD_MATRIX
+はオブジェクトを配置する際に現在の行列を使用します。
+
+値を返しません。
+
+vim:ft=help:

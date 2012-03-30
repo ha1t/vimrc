@@ -1,0 +1,29 @@
+session_get_cookie_params --
+セッションクッキーのパラメータを得る
+
+  array session_get_cookie_params()~
+
+セッションクッキーのパラメータを取得します。
+
+現在のセッションクッキーの情報を配列として返します。
+この配列には次のような項目が含まれています。 "lifetime"
+- クッキーの生存期間(lifetime)
+
+"path" - 情報が保存されている場所のパス
+
+"domain" - クッキーのドメイン
+
+"secure" - クッキーはセキュアな接続でのみ送信されます。
+
+"httponly" - クッキーは HTTP
+を通してのみアクセス可能となります。
+
+バージョン 説明 5.2.0 返される配列に、"httponly"
+エントリが追加されました。 4.0.4 返される配列に、"secure"
+エントリが追加されました。
+
+session.cookie_lifetime session.cookie_path session.cookie_domain
+session.cookie_secure session.cookie_httponly session.cookie_lifetime
+|session_set_cookie_params|
+
+vim:ft=help:

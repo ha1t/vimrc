@@ -1,0 +1,42 @@
+ibase_fetch_object -- InterBase
+データベースからオブジェクトを得る
+
+  object ibase_fetch_object(resource result_id [, int fetch_flag])~
+
+指定した結果 ID
+から、行を疑似オブジェクトとして取得します。
+
+|ibase_fetch_object| を続けてコールすると、
+結果セットの次の行を返します。
+
+{result_id} |ibase_query| あるいは |ibase_execute| で取得した
+InterBase 結果 ID。
+
+{fetch_flag} {fetch_flag} は、定数 IBASE_TEXT および IBASE_UNIXTIME
+を論理和で指定します。IBASE_TEXT を渡すと、BLOB ID
+のかわりに BLOB の内容自体を返します。IBASE_UNIXTIME
+を渡すと、日付/時刻の値を文字列ではなく Unix
+タイムスタンプで返します。
+
+次の行の情報を含むオブジェクト、
+あるいは行がもうない場合には FALSE を返します。
+
+|ibase_fetch_object| の例
+
+<?php >
+  $dbh = ibase_connect($host, $username, $password);
+  $stmt = 'SELECT * FROM tblname';
+  $sth = ibase_query($dbh, $stmt);
+  while ($row = ibase_fetch_object($sth)) {
+      echo $row->email . "\n";
+  }
+  ibase_close($dbh);
+?>
+
+
+
+
+
+|ibase_fetch_row| |ibase_fetch_assoc|
+
+vim:ft=help:

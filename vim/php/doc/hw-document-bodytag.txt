@@ -1,0 +1,20 @@
+hw_Document_BodyTag -- hw_document の BODY タグ
+
+  string hw_document_bodytag(int hw_document [, string prefix])~
+
+ドキュメントの BODY タグを返します。そのドキュメントが
+HTML ドキュメントの場合、BODY タグがドキュメントの前に
+出力されます。
+
+下位互換性のため |hw_DocumentBodyTag|
+も使用可能です。しかし、推奨されません。
+
+{hw_document} ドキュメント ID。
+
+{prefix}
+
+BODY タグを文字列で返します。
+
+|hw_document_attributes| |hw_document_size|
+
+vim:ft=help:

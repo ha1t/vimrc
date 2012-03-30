@@ -1,0 +1,41 @@
+iconv_strpos -- 文字列が最初に現れる場所を見つける
+
+  int iconv_strpos(string haystack, string needle [, int offset [, string charset]])~
+
+needle が haystack の中で最初に現れる位置を探します。
+
+|strpos| の返り値は needle が見つかった位置の
+先頭からのバイト数でしたが、それとは異なり |iconv_strpos|
+の返り値は needle が見つかった
+位置の先頭からの文字数となります。文字数は {charset}
+で指定された文字セットに基づいて 数えられます。
+
+{haystack} 文字列全体。
+
+{needle} 検索する文字列。
+
+{offset} オプションの {offset} パラメータは
+検索を開始する位置を指定します。
+
+{charset} {charset} パラメータが指定されなかった場合、
+{string} のエンコードは iconv.internal_encoding
+であると判断されます。
+
+{haystack} や {needle}
+が文字列でない場合、文字列に変換され、文字が並んだ値として適用されます。
+
+{needle} が {haystack} の中で最初に現れる位置を探します。
+
+もし {needle} が見つからなかった場合、 |iconv_strpos| は FALSE
+を返します。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|strpos| |iconv_strrpos| |mb_strpos|
+
+vim:ft=help:

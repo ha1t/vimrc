@@ -1,0 +1,49 @@
+dbx_fetch_row -- DBX_RESULT_UNBUFFERED フラグを指定した
+クエリ結果から、行を取得する
+
+  mixed dbx_fetch_row(object result_identifier)~
+
+|dbx_fetch_row| は、 DBX_RESULT_UNBUFFERED
+フラグを指定したクエリ結果から、行を取得します。
+
+クエリで DBX_RESULT_UNBUFFERED が指定されていない場合、
+|dbx_fetch_row| は失敗します。なぜなら、すでにすべての
+行は取得されて data
+プロパティに格納されているからです。
+
+副作用として、|dbx_fetch_row| のコールのたびに
+クエリ結果オブジェクトの rows プロパティの
+値が加算されます。
+
+{result_identifier} |dbx_query| が返す結果セット。
+
+成功した場合にオブジェクトを返します。このオブジェクトには、
+|dbx_query| の結果における data
+プロパティの内容と同じ情報が含まれ、|dbx_query|
+で設定した内容に応じてインデックスあるいはフィールド名でアクセスが可能です。
+
+失敗した場合 (例: 行がもうない場合) には 0 を返します。
+
+返り値を処理する方法
+
+<?php >
+  $result = dbx_query($link, 'SELECT id, parentid, description FROM table', DBX_RESULT_UNBUFFERED);
+  
+  echo "<table>\n";
+  while ($row = dbx_fetch_row($result)) {
+      echo "<tr>\n";
+      foreach ($row as $field) {
+          echo "<td>$field</td>";
+      }
+      echo "</tr>\n";
+  }
+  echo "</table>\n";
+?>
+
+
+
+
+
+|dbx_query|
+
+vim:ft=help:

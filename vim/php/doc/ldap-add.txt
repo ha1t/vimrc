@@ -1,0 +1,57 @@
+ldap_add -- LDAP ディレクトリにエントリを付加する
+
+  bool ldap_add(resource link_identifier, string dn, array entry)~
+
+エントリを LDAP ディレクトリに追加します。
+
+{link_identifier} |ldap_connect| が返す LDAP リンク ID。
+
+{dn} LDAP エンティティの識別名。
+
+{entry} そのエントリに関する情報を表す配列。
+エントリの値は、個々の属性によりインデックスが作成されています。
+ある属性に関して複数の値がある場合は、0
+から始まる整数で 添字が作成されます。
+
+<?php >
+  $entree["attribut1"] = "value";
+  $entree["attribut2"][0] = "value1";
+  $entree["attribut2"][1] = "value2";
+?>
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+認証型バインドの例
+
+<?php >
+  $ds = ldap_connect("localhost");  // LDAP サーバーはこのホストであると仮定
+  
+  if ($ds) {
+      // 更新アクセスを行うために適当な dn でバインドする
+      $r = ldap_bind($ds, "cn=root, o=My Company, c=US", "secret");
+  
+      // データを準備する
+      $info["cn"] = "John Jones";
+      $info["sn"] = "Jones";
+      $info["mail"] = "jonj@example.com";
+      $info["objectclass"] = "person";
+  
+      // データをディレクトリに追加
+      $r = ldap_add($ds, "cn=John Jones, o=My Company, c=US", $info);
+  
+      ldap_close($ds);
+  } else {
+      echo "LDAP サーバーに接続できません"; 
+  }
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|ldap_delete|
+
+vim:ft=help:

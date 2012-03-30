@@ -1,0 +1,9 @@
+xpath_new_context -- 新規 xpath コンテキストを作成する
+
+  XPathContext xpath_new_context(domdocument dom_document)~
+
+新規 xpath コンテキストを作成します。
+
+|xpath_eval|
+
+vim:ft=help:

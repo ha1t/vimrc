@@ -1,0 +1,53 @@
+OrbitStruct -- CORBA 構造体を使用する
+
+  new OrbitStruct(string id)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+このクラスは、パラメータ {id} で指定した
+構造体を表します。
+
+{id} 構造体の名前（例: "MyStruct"）または完全なレポジトリ
+ID （例: "IDL:MyStruct:1.0"）のどちらかです。
+
+IDL ファイルの例
+
+  struct MyStruct {
+      short shortvalue;
+      string stringvalue;
+  };
+  
+  interface SomeInterface {
+    void SetValues (MyStruct values);
+    MyStruct GetValues();
+  }
+
+
+
+
+
+MyStruct にアクセスする PHP コード
+
+<?php >
+  $obj = new OrbitObject ($ior);
+  
+  $initial_values = new OrbitStruct ("IDL:MyStruct:1.0");
+  $initial_values->shortvalue = 42;
+  $initial_values->stringvalue = "HGTTG";
+  
+  $obj->SetValues ($initial_values);
+  
+  $values = $obj->GetValues();
+  
+  echo $values->shortvalue;
+  echo $values->stringvalue;
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+sybase_deadlock_retry_count --
+デッドロックの再試行回数を設定する
+
+  void sybase_deadlock_retry_count(int retry_count)~
+
+|sybase_deadlock_retry_count| を使用して、デッドロックの
+際の再試行回数を定義することが可能です。デフォルトでは、デッドロックが
+発生した際は Sybase
+によってプロセスが停止されたり実行中のスクリプトが
+停止したり（例えば |set_time_limit|）、あるいは
+クエリが成功するまでずっと再試行を繰り返します。
+
+{retry_count} retry_count の値 -1
+永遠に再試行します（デフォルト）。 0 再試行しません。
+n n 回再試行します。
+
+値を返しません。
+
+この関数は、Sybase の CT
+ライブラリインターフェイスでのみ使用可能で、DB
+ライブラリでは使用できません。
+
+vim:ft=help:

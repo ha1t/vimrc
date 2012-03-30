@@ -1,0 +1,33 @@
+mailparse_msg_extract_part_file --
+メッセージセクションを展開/デコードする
+
+  string mailparse_msg_extract_part_file(resource mimemail, mixed filename [, callback callbackfunc])~
+
+指定したファイル名のメッセージセクションを展開/デコードします。
+
+セクションの内容は、transfer encoding
+に応じて適切にデコードされます。 base64、quoted-printable
+および uuencode 形式をサポートしています。
+
+{mimemail} |mailparse_msg_create| で作成した MIME リソース。
+
+{filename} ファイル名あるいは有効なストリームリソース。
+
+{callbackfunc}
+展開されたセクションに渡されるコールバック関数、あるいは
+NULL
+を指定すると、この関数は展開したセクションを返します。
+
+省略した場合は標準出力に出力されます。
+
+{callbackfunc} が NULL でない場合は、 成功時に TRUE
+を返します。
+
+{callbackfunc} が NULL の場合は、
+展開したセクションを文字列で返します。
+
+エラー時には FALSE を返します。
+
+|mailparse_msg_extract_part| |mailparse_msg_extract_whole_part_file|
+
+vim:ft=help:

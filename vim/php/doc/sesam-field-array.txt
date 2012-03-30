@@ -1,0 +1,94 @@
+sesam_field_array --
+結果の個々のカラムに関するメタ情報を返す
+
+  array sesam_field_array(string result_id)~
+
+{result_id} に関連したクエリの後で、結果の
+個々のカラムに関するメタ情報(カラム名、型、精度、...)を有する
+連想/添字配列を返します。
+
+{result_id} |sesam_query| が返す結果 ID。
+
+|sesam_field_array| が返す結果セット 配列要素 内容 int
+$arr["count"] 結果集合におけるカラム数の合計
+(または"即時型"クエリの場合に 0)。SESAM "複数フィールド"
+はインライン化されており、対応する
+カラム番号と同様に処理されます。 string $arr[col]["name"]
+カラム (col) のカラム名、ただし、 col は、0 から
+$arr["count"]-1 の間です。返される値は、
+(動的に計算されるカラムの場合)
+空の文字列となる可能性があります。 SESAM
+"複数フィールド"
+は"インライン化"されており、カラム番号と
+同様に同じカラム名で処理されます。 string $arr[col]["count"]
+属性 "count"
+は、カラムが"複数フィールド"として宣言された
+場合の繰り返し数を記述します。通常、"count"属性は 1
+です。 しかし、"複数フィールド"
+カラムの最初のカラムは繰返し数を 有します
+("複数フィールド" の 2 番目以降のカラムは 1 という
+"count"属性を有します)。この属性は、結果集合の中で
+"複数 フィールド" を検出するために使用可能です。"count"
+属性の 使用例については、|sesam_query| の説明に
+示されている例を参照ください。 string $arr[col]["type"]
+カラム (col) に関するデータの PHP 変数型、 ただし、col は
+0 と $arr["count"]-1 の間です。値は、結果の SQL
+型に基づき以下のどれかとなります。 integer
+
+float
+
+string
+
+SESAM "複数フィールド" は "インライン化" されており、
+同じカラム数を有し、同じ PHP
+型の場合と同様に処理されます。 string $arr[col]["sqltype"]
+カラム (col) に関するカラムデータの SQL
+変数型。ただし、col は 0 から $arr["count"]-1
+の間になります。返される 値は、結果の SQL
+型を記述する次のどれかとなります。 "CHARACTER"
+
+"VARCHAR"
+
+"NUMERIC"
+
+"DECIMAL"
+
+"INTEGER"
+
+"SMALLINT"
+
+"FLOAT"
+
+"REAL"
+
+"DOUBLE"
+
+"DATE"
+
+"TIME"
+
+"TIMESTAMP"
+
+SESAM "複数フィールド" は "インライン化" されており、
+同じカラム数、同じ PHP 型の場合と同様に処理されます。
+string $arr[col]["length"] カラム (col) のSQL 変数の SQL "length"
+属性。 ただし、col は、0 から $arr["count"]-1
+の間です。"length" 属性は、 文字列変数の (最大)
+長さを指定するために "CHARACTER" および "VARCHAR" SQL
+型を指定して使用されます。 SESAM "複数フィールド" は
+"インライン化" されており、 同じカラム数、同じ PHP
+型の場合と同様に処理されます。 string $arr[col]["precision"]
+カラム (col) にある SQL 変数の "precision" 属性。ただし、col
+は、0 から $arr["count"]-1 の間です。"precision"
+属性は、数値および時間データ型で使用されます。 SESAM
+"複数フィールド" は "インライン化" されており、
+同じカラム数、同じ PHP 型の場合と同様に処理されます。
+string $arr[col]["scale"] カラム (col) にある SQL 変数の "scale"
+属性。 ただし、col は、0 から $arr["count"]-1
+の間です。"scale" 属性は、 数値データ型で使用されます。
+SESAM "複数フィールド" は "インライン化" されており、
+同じカラム数、同じ PHP 型の場合と同様に処理されます。
+
+|sesam_query|
+
+vim:ft=help:

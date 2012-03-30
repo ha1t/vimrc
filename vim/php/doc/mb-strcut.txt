@@ -1,0 +1,29 @@
+mb_strcut -- 文字列の一部を得る
+
+  string mb_strcut(string str, int start [, int length [, string encoding]])~
+
+|mb_strcut| は、|mb_substr|
+と同じ処理を異なった方法で行います。位置 {start}
+がマルチバイト文字の 2 バイト目以降で
+ある場合、マルチバイト文字の最初のバイトから開始されます。
+
+この関数は、{length} より短く、
+かつマルチバイト文字列の一部でないかシフトシーケンスの中にない文字を
+取りだします。
+
+{str} 取り出しの対象となる文字列。
+
+{start} 取り出しの開始位置。
+
+{length} 取り出す長さ。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+|mb_strcut| は、 {start} および {length} パラメータで指定した
+{str} の一部を返します。
+
+|mb_substr| |mb_internal_encoding|
+
+vim:ft=help:

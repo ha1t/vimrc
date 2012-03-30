@@ -1,0 +1,46 @@
+mb_convert_encoding -- 文字エンコーディングを変換する
+
+  string mb_convert_encoding(string str, string to_encoding [, mixed from_encoding])~
+
+文字列 {str}の文字エンコーディングを、
+オプションで指定した {from_encoding} から {to_encoding}
+に変換します。
+
+{str} 変換する文字列。
+
+{to_encoding} {str} の変換後の文字エンコーディング。
+
+{from_encoding}
+変換前の文字エンコーディング名を指定します。
+これは、配列またはカンマ区切りの文字列とすることが可能です。
+{from_encoding}
+を指定しなかった場合は、内部文字エンコーディングを使用します。
+
+"auto" を指定すると、 "ASCII,JIS,UTF-8,EUC-JP,SJIS"
+に展開されます。
+
+変換後の文字列を返します。
+
+|mb_convert_encoding| の例
+
+<?php >
+  /* 内部文字エンコーディングからSJISに変換 */
+  $str = mb_convert_encoding($str, "SJIS");
+  
+  /* EUC-JPからUTF-7に変換 */
+  $str = mb_convert_encoding($str, "UTF-7", "EUC-JP");
+  
+  /* JIS, eucjp-win, sjis-winの順番で自動検出し、UCS-2LEに変換 */
+  $str = mb_convert_encoding($str, "UCS-2LE", "JIS, eucjp-win, sjis-win");
+  
+  /* "auto" は、"ASCII,JIS,UTF-8,EUC-JP,SJIS" に展開される */
+  $str = mb_convert_encoding($str, "EUC-JP", "auto");
+?>
+
+
+
+
+
+|mb_detect_order|
+
+vim:ft=help:

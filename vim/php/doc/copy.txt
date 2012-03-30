@@ -1,0 +1,47 @@
+copy -- ファイルをコピーする
+
+  bool copy(string source, string dest [, resource context])~
+
+ファイル {source} を {dest} にコピーします。
+
+ファイルを移動したいならは、|rename|
+関数を使用してください。
+
+{source} コピー元ファイルへのパス。
+
+{dest} コピー先のパス。{dest} が URL の場合、
+既存ファイルへの上書きをラッパーがサポートしていない場合にはコピーが失敗します。
+
+コピー先のファイルが既に存在する場合、上書きされます。
+
+{context} |stream_context_create|
+で作成した有効なコンテキストリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 5.3.0
+コンテキストのサポートが追加されました。 4.3.0 "fopen
+wrappers" が有効の場合は {source} と {dest} のどちらにも URL
+を指定することができます。 詳細は |fopen|
+を参照ください。
+
+|copy| の例
+
+<?php >
+  $file = 'example.txt';
+  $newfile = 'example.txt.bak';
+  
+  if (!copy($file, $newfile)) {
+      echo "failed to copy $file...\n";
+  }
+?>
+
+
+
+
+
+|move_uploaded_file| |rename| マニュアルの
+ファイルアップロード処理
+
+vim:ft=help:

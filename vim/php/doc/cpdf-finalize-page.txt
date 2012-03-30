@@ -1,0 +1,20 @@
+cpdf_finalize_page -- ページを終了する
+
+  bool cpdf_finalize_page(int pdf_document, int page_number)~
+
+ページ番号 {page number} のページを終了します。
+
+この関数は、メモリに節約する意味しかありません。
+ページを終了することにより、消費メモリは少なくなりますが、
+修正することはできなくなります。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{page_number} ページ番号。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_page_init|
+
+vim:ft=help:

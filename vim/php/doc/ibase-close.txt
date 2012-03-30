@@ -1,0 +1,20 @@
+ibase_close -- InterBase データベースへの接続を閉じる
+
+  bool ibase_close([resource connection_id])~
+
+|ibase_connect| から返された接続 ID が指す InterBase
+データベースへのリンクを閉じます。 接続 ID
+が省略された場合、最後にオープンされたリンクが仮定されます。
+リンクにおけるデフォルトのトランザクションがコミットされ、
+他のトランザクションはロールバックされます。
+
+{connection_id} |ibase_connect| が返す InterBase リンク
+ID。省略した場合は、
+最後にオープンしたリンクを使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_connect| |ibase_pconnect|
+
+vim:ft=help:

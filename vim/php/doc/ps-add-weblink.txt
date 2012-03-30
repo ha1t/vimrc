@@ -1,0 +1,36 @@
+ps_add_weblink -- Web 上の場所へのリンクを追加する
+
+  bool ps_add_weblink(resource psdoc, float llx, float lly, float urx, float ury, string url)~
+
+指定した位置に、Web
+ページを指すハイパーリンクを設定します。
+ハイパーリンクのリンク元はは矩形で表され、その左下の座標は
+({llx}, {lly})、 そして右上の座標が ({urx}, {ury})
+となります。
+この矩形はデフォルトでは細い青線で表されます。
+
+ドキュメントを印刷したり表示したりする場合には、ハイパーリンクは
+見えません。ハイパーリンクが現れるのは、Acrobat
+Distiller&trade; や Ghostview を用いてドキュメントを PDF
+に変換した場合です。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{llx} 左下角の x 座標。
+
+{lly} 左下角の y 座標。
+
+{urx} 右上角の x 座標。
+
+{ury} 右上角の y 座標。
+
+{url}
+リンクがクリックされた際に開かれるハイパーリンクの
+URL。 例えば http://www.php.net
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_add_launchlink| |ps_add_locallink| |ps_add_pdflink|
+
+vim:ft=help:

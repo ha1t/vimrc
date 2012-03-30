@@ -1,0 +1,31 @@
+oci_rollback --
+未解決のトランザクションをロールバックする
+
+  bool oci_rollback(resource connection)~
+
+Oracle 接続 {connection} に関する
+全ての未解決の文をロールバックします。
+
+{connection} |oci_connect| あるいは |oci_pconnect| が返す Oracle 接続
+ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+トランザクションは接続を閉じたとき、
+もしくはスクリプトの終了時のいずれの場合でも
+すぐに自動的にロールバックされます。
+トランザクションをコミットするには |oci_commit|
+をコールする、
+もしくはトランザクションを破棄する場合は |oci_rollback|
+を明示的にコールする必要があります。
+
+PHP バージョン 5.0.0 以前では、代わりに |ocirollback|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_rollback| への別名として残されていますが、
+推奨されません。
+
+|oci_commit|
+
+vim:ft=help:

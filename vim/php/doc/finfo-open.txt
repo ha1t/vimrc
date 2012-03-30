@@ -1,0 +1,73 @@
+finfo->__construct() -- 新しい fileinfo リソースを作成する
+
+手続き型
+
+  resource finfo_open([int options [, string arg]])~
+
+オブジェクト指向型 (コンストラクタ)
+
+この関数は、magic
+データベースをオープンしてそのリソースを返します。
+
+{options} ひとつあるいは複数のFileinfo 定数の組み合わせ。
+
+{magic_file} magic データベースファイルの名前。通常は
+/path/to/magic.mime のようになります。
+指定されなかった場合は、環境変数 MAGIC
+の値が使用されます。この環境変数も設定されていない場合、
+/usr/share/misc/magic をデフォルトで使用します。
+必要に応じて、.mime や .mgc が追加されます。
+
+成功した場合に magic
+データベースリソース、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  $finfo = new finfo(FILEINFO_MIME, "/usr/share/misc/magic"); // return mime type ala mimetype extension
+  
+  if (!$finfo) {
+      echo "fileinfo データベースのオープンに失敗しました";
+      exit();
+  }
+  
+  /* 指定したファイルの mime タイプを取得します */
+  $filename = "/usr/local/something.txt";
+  echo $finfo->file($filename);
+  
+  /* 接続を閉じます */
+  $finfo->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $finfo = finfo_open(FILEINFO_MIME, "/usr/share/misc/magic"); // return mime type ala mimetype extension
+  
+  if (!$finfo) {
+      echo "fileinfo データベースのオープンに失敗しました";
+      exit();
+  }
+  
+  /* 指定したファイルの mime タイプを取得します */
+  $filename = "/usr/local/something.txt";
+  echo finfo_file($finfo, $filename);
+  
+  /* 接続を閉じます */
+  finfo_close($finfo);
+?>
+
+
+
+上の例の出力は以下となります。
+
+
+
+  text/plain
+
+|finfo_close|
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+oci_lob_is_equal -- 2 つの LOB/FILE ロケータの等価性を比較する
+
+  bool oci_lob_is_equal(OCI-Lob lob1, OCI-Lob lob2)~
+
+2 つの LOB/FILE ロケータを比較します。
+
+{lob1} LOB の ID。
+
+{lob2} LOB の ID。
+
+これらのオブジェクトが等しい場合 TRUE を返し、
+そうでなければ FALSE を返します。
+
+vim:ft=help:

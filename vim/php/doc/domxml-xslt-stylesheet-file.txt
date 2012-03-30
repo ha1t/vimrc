@@ -1,0 +1,18 @@
+domxml_xslt_stylesheet_file -- ファイル中の XSL 文章から
+DomXsltStylesheet オブジェクトを作成する
+
+  DomXsltStylesheet domxml_xslt_stylesheet_file(string xsl_file)~
+
+与えられた XSL ファイルから DomXsltStylesheet
+オブジェクトを作成します。
+
+{xsl_file} 文字列としての XSL 文章へのパス
+
+DomXsltStylesheet の新規インスタンスを返します。
+
+パラメータとして DOMDocument::load($xsl_file) を渡して
+|XSLTProcessor::importStylesheet| をコールしてください。
+
+|domxml_xslt_stylesheet| |domxml_xslt_stylesheet_doc|
+
+vim:ft=help:

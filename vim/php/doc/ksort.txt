@@ -1,0 +1,41 @@
+ksort -- 配列をキーでソートする
+
+  bool ksort(array array [, int sort_flags])~
+
+キーとデータの関係を維持しつつ、配列をキーでソートします。
+この関数は、主として連想配列において有用です。
+
+{array} 入力の配列。
+
+{sort_flags} オプションのパラメータ {sort_flags}
+によりソートの動作を修正可能です。詳細については、
+|sort| を参照ください。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.0.0 オプションのパラメータ {sort_flags}
+が追加されました。
+
+|ksort| の例
+
+<?php >
+  $fruits = array("d"=>"lemon", "a"=>"orange", "b"=>"banana", "c"=>"apple");
+  ksort($fruits);
+  foreach ($fruits as $key => $val) {
+      echo "$key = $val\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  a = orange
+  b = banana
+  c = apple
+  d = lemon
+
+
+
+|asort| |arsort| |krsort| |uksort| |sort| |natsort| |rsort|
+
+vim:ft=help:

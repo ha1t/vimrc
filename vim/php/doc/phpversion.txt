@@ -1,0 +1,36 @@
+phpversion -- 現在の PHP バージョンを取得する
+
+  string phpversion([string extension])~
+
+現在動作中の PHP
+パーサあるいは拡張モジュールのバージョンを表す文字列を返します。
+
+{extension} オプションで指定する拡張モジュール名。
+
+オプションの {extension}
+パラメータが指定されている場合、|phpversion|
+はその拡張モジュールのバージョンを返します。
+関連するバージョン情報が存在しない場合、
+あるいは拡張モジュールが有効でない場合は FALSE
+を返します。
+
+|phpversion| の例
+
+<?php >
+  // たとえば 'Current PHP version: 4.1.1' などと表示します
+  echo 'Current PHP version: ' . phpversion();
+  
+  // たとえば '2.0' などと表示します。拡張モジュールが有効でない場合は何も表示しません
+  echo phpversion('tidy');
+?>
+
+
+
+
+
+この情報は、定義済みの定数 PHP_VERSION
+でも取得可能です。
+
+|version_compare| |phpinfo| |phpcredits| |php_logo_guid| |zend_version|
+
+vim:ft=help:

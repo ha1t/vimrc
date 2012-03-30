@@ -1,0 +1,22 @@
+mhash_get_hash_name -- 指定したハッシュの名前を得る
+
+  string mhash_get_hash_name(int hash)~
+
+指定した {hash} の名前を取得します。
+
+{hash} ハッシュ ID。MHASH_XXX 定数のいずれかを指定します。
+
+ハッシュの名前を返します。そのハッシュが存在しない場合は、FALSE
+を返します。
+
+|mhash_get_hash_name| の例
+
+<?php >
+  echo mhash_get_hash_name(MHASH_MD5); // MD5
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+ncurses_wnoutrefresh -- ウィンドウを仮想画面にコピーする
+
+  int ncurses_wnoutrefresh(resource window)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+vim:ft=help:

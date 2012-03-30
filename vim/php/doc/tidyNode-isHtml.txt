@@ -1,0 +1,13 @@
+tidyNode->isHtml -- このノードが HTML ドキュメントの場合 true
+を返す
+
+  bool tidyNode->isHtml()~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+この関数は、PHP 4/Tidy 1 では |tidy_node->is_html|
+という名前でした。
+
+vim:ft=help:

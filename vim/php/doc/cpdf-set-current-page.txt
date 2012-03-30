@@ -1,0 +1,17 @@
+cpdf_set_current_page -- 現在のページを設定する
+
+  bool cpdf_set_current_page(int pdf_document, int page_number)~
+
+全ての操作を行うページを設定します。|cpdf_finalize_page|
+によりページを終了するまでページ間を移動することができます。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{page_number} ページ番号。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_finalize_page|
+
+vim:ft=help:

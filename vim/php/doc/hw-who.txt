@@ -1,0 +1,17 @@
+hw_Who -- 現在ログイン中のユーザのリスト
+
+  array hw_who(int connection)~
+
+現在ログイン中のユーザの一覧を取得します。
+
+{connection} 接続 ID。
+
+Hyperwave
+サーバに現在ログイン中のユーザの配列を返します。
+この配列の各エントリは、要素
+ID、名前、システム、onSinceDate, onSinceTime, TotalTime , self
+を有する配列です。
+このエントリがリクエストを初期化したユーザに属している場合、
+'self' は 1 となります。
+
+vim:ft=help:

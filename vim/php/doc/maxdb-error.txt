@@ -1,0 +1,70 @@
+maxdb_error -- 直近のエラーについて説明する文字列を返す
+
+手続き型
+
+  string maxdb_error(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_error| 関数は、対応する |maxdb_errno|
+関数とあらゆる点で同じです。 ただ |maxdb_error| は、
+整数のエラーコードは返しません。代わりに、 {link}
+で表されるデータベース接続で、
+直近に発生したエラーを説明する文字列を返します。
+エラーが発生しなかった場合は、この関数は空の文字列を返します。
+
+エラーを表す文字列を返します。
+エラーが発生しなかった場合は空の文字列を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if (!$maxdb->query("SELECT xxx FROM hotel.city")) {
+     printf("エラーメッセージ: %s\n", $maxdb->error);
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if (!maxdb_query($link, "SELECT xxx FROM hotel.city")) {
+     printf("エラーメッセージ: %s\n", $maxdb->error);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  PHP Warning:  maxdb_query(): -4005 POS(8) Unknown column name:XXX [42000]
+  エラーメッセージ: POS(8) Unknown column name:XXX
+
+|maxdb_connect_errno| |maxdb_connect_error| |maxdb_errno| |maxdb_sqlstate|
+
+vim:ft=help:

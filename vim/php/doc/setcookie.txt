@@ -1,0 +1,5 @@
+setcookie -- クッキーを送信する
+
+  bool setcookie(string name [, string value [, int expire [, string path [, string domain [, bool secure [, bool httponly]]]]]])~
+
+vim:ft=help:

@@ -1,0 +1,64 @@
+ZipArchive::getStream --
+名前を使用して、エントリのファイルハンドラ
+(読み込み専用) を取得する
+
+  resource ZipArchive::getStream(string name)~
+
+名前を使用して、エントリのファイルハンドラを取得します。
+現時点では読み込み操作のみに対応しています。
+
+{name} 使用するエントリの名前。
+
+成功した場合にファイルポインタ (リソース)、
+失敗した場合に FALSE を返します。
+
+エントリの内容を fread で取得し、それを保存する
+
+<?php >
+  $content = '';
+  $z = new ZipArchive();
+  if ($z->open('test.zip')) {
+      $fp = $z->getStream('test');
+      if(!$fp) exit("失敗\n");
+  
+      while (!feof($fp)) {
+          $contents .= fread($fp, 2);
+      }
+  
+      fclose($fp);
+      file_put_contents('t',$contents);
+      echo "終了\n";
+  }
+?>
+
+
+
+先ほどの例と同じことを、fopen および zip
+ストリームラッパーで行う
+
+<?php >
+  $fp = fopen('zip://' . dirname(__FILE__) . '/test.zip#test', 'r');
+  if (!$fp) {
+      exit("オープンできません\n");
+  }
+  while (!feof($fp)) {
+      $contents .= fread($fp, 2);
+      echo "$contents\n";
+  }
+  fclose($fp);
+  echo "終了\n";
+?>
+
+
+
+ストリームラッパーと画像の組み合わせ。xml
+関数とでも使用可能
+
+<?php >
+  $im = imagecreatefromgif('zip://' . dirname(__FILE__) . '/test_im.zip#pear_item.gif');
+  imagepng($im, 'a.png');
+?>
+
+
+
+vim:ft=help:

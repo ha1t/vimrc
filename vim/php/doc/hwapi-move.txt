@@ -1,0 +1,14 @@
+hw_api->move -- コレクション間でオブジェクトを移動する
+
+  bool move(array parameter)~
+
+コレクション間でオブジェクトを移動します。
+
+{parameter}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|hw_objrec2array|
+
+vim:ft=help:

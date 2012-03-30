@@ -1,0 +1,23 @@
+ps_set_border_style -- 注記の枠線の形式を設定する
+
+  bool ps_set_border_style(resource psdoc, string style, float width)~
+
+|ps_add_weblink| や |ps_add_pdflink|
+などの関数で追加されたリンクは、 pdf に変換して pdf
+ビューアで見た際には矩形で囲まれて表示されます。
+この矩形は、postscript ドキュメントでは表示されません。
+この関数は、その線の形式と幅を設定します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{style} {style} は、 solid（実線） または
+dashed（破線）のいずれかを設定できます。
+
+{width} 枠線の幅。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_set_border_color| |ps_set_border_dash|
+
+vim:ft=help:

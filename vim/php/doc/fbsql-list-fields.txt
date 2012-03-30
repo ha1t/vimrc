@@ -1,0 +1,50 @@
+fbsql_list_fields -- FrontBase 結果フィールドの一覧を得る
+
+  resource fbsql_list_fields(string database_name, string table_name [, resource link_identifier])~
+
+指定したテーブルについての情報を取得します。
+
+{database_name} データベース名。
+
+{table_name} テーブル名。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+結果ポインタを返します。これは、 fbsql_field_xxx
+で使用できます。 エラー時には FALSE を返します。
+
+エラーの内容は $phperrmsg に書き込まれ、関数が @fbsql()
+のようにコールされていない限り
+このエラー内容が出力されます。
+
+|fbsql_list_fields| の例
+
+<?php >
+  $link = fbsql_connect('localhost', 'myname', 'secret');
+  
+  $fields = fbsql_list_fields("database1", "table1", $link);
+  $columns = fbsql_num_fields($fields);
+  
+  for ($i = 0; $i < $columns; $i++) {
+      echo fbsql_field_name($fields, $i) . "\n";;
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  field1
+  field2
+  field3
+  ...
+
+
+
+|fbsql_field_len| |fbsql_field_name| |fbsql_field_type| |fbsql_field_flags|
+
+vim:ft=help:

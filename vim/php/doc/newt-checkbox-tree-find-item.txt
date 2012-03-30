@@ -1,0 +1,15 @@
+newt_checkbox_tree_find_item --
+チェックボックスツリーのアイテムを探す
+
+  array newt_checkbox_tree_find_item(resource checkboxtree, mixed data)~
+
+データを指定して、チェックボックスツリーのアイテムを探します。
+
+{checkboxtree}
+
+{data}
+
+チェックボックスツリーアイテムリソースを返します。
+見つからなかった場合は NULL を返します。
+
+vim:ft=help:

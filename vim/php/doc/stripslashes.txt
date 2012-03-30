@@ -1,0 +1,79 @@
+stripslashes -- addslashes
+でクォートされた文字列のクォート部分を取り除く
+
+  string stripslashes(string str)~
+
+クォートされた文字列を元に戻します。
+
+magic_quotes_sybase が on
+の場合はバックスラッシュは取り除かれず、そのかわりに
+2 つの アポストロフィが 1 つに置き換えられます。
+
+|stripslashes| の使用例は、PHP ディレクティブ magic_quotes_gpc
+が on (デフォルトでオン) かつ、 データをエスケープして
+(データベースのような)
+ある場所に挿入していない場合です。 例えば、単純に HTML
+フォームからのデータを直接出力するような場合です。
+
+{str} 入力文字列。
+
+バックスラッシュが取り除かれた文字列を返します(\' が '
+になるなど)。 2 つ並んだバックスラッシュ (\\) は 1
+つのバックスラッシュ (\) になります。
+
+|stripslashes| の例
+
+<?php >
+  $str = "Is your name O\'reilly?";
+  
+  // 出力: Is your name O'reilly?
+  echo stripslashes($str);
+?>
+
+
+
+
+
+|stripslashes| は再帰的な処理を行いません。
+この関数を多次元配列に適用する場合は、
+再帰的な関数を使用する必要があります。
+
+配列に対する |stripslashes| の使用
+
+<?php >
+  function stripslashes_deep($value)
+  {
+      $value = is_array($value) ?
+                  array_map('stripslashes_deep', $value) :
+                  stripslashes($value);
+  
+      return $value;
+  }
+  
+  // 例
+  $array = array("f\\'oo", "b\\'ar", array("fo\\'o", "b\\'ar"));
+  $array = stripslashes_deep($array);
+  
+  // 出力
+  print_r($array);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => f'oo
+      [1] => b'ar
+      [2] => Array
+          (
+              [0] => fo'o
+              [1] => b'ar
+          )
+  
+  )
+
+
+
+|addslashes| |get_magic_quotes_gpc|
+
+vim:ft=help:

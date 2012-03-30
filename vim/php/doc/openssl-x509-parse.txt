@@ -1,0 +1,21 @@
+openssl_x509_parse -- X509
+証明書をパースし、配列として情報を返す
+
+  array openssl_x509_parse(mixed x509cert [, bool shortnames])~
+
+|openssl_x509_parse| は、指定した {x509cert}
+に関する情報を返します。この情報には
+題名、発行者名、目的、発効日および有効期限等が含まれます。
+
+{x509cert}
+
+{shortnames} {shortnames} は、配列中でのデータの添字付けの
+方法を設定します。{shortnames} が TRUE の場合
+(デフォルト)、フィールドは短縮型で添字が付けられます。そうでない場合、
+長い名前が使用されます。例えば、CN は commonName
+の短縮型です。
+
+返されるデータの構造については（わざと）まだ文書化していません。
+これは、今後もデータの構造が変更される可能性があるためです。
+
+vim:ft=help:

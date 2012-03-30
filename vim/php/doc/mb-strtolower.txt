@@ -1,0 +1,38 @@
+mb_strtolower -- 文字列を小文字にする
+
+  string mb_strtolower(string str [, string encoding])~
+
+{str} のすべてのアルファベットを小文字にして返します。
+
+{str} 小文字にしたい文字列。
+
+{encoding} {encoding}
+パラメータには文字エンコーディングを指定します。省略した場合は、
+内部文字エンコーディングを使用します。
+
+{str}
+のすべてのアルファベットを小文字にしたものを返します。
+
+Unicode 文字属性についての詳細は
+http://www.unicode.org/unicode/reports/tr21/ を参照してください。
+
+|strtolower| と違い、アルファベットであるかどうかは Unicode
+文字属性をもとに決定されます。したがって、この関数の挙動は
+ロケールの設定に影響されず、すべてのアルファベット、
+例えば A ウムラウト (&Auml;) を変換することができます。
+
+|mb_strtolower| の例
+
+<?php >
+  $str = "Mary Had A Little Lamb and She LOVED It So";
+  $str = mb_strtolower($str);
+  echo $str; // 結果は mary had a little lamb and she loved it so となります
+?>
+
+
+
+
+
+|mb_strtoupper| |mb_convert_case| |strtolower|
+
+vim:ft=help:

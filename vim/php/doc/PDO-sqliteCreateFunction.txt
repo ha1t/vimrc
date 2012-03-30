@@ -1,0 +1,67 @@
+PDO->sqliteCreateFunction() -- SQL 文で使用するユーザ定義関数
+(UDF) を登録する
+
+  bool sqliteCreateFunction(string function_name, callback callback [, int num_args])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+このメソッドを使用すると、 PHP の関数を、UDF (User Defined
+Function: ユーザ定義関数) として SQLite
+に登録できるようになります。 登録した関数は、SQL
+文の中で使用することが可能です。
+
+UDF は、関数をコールできるあらゆる SQL 文 (SELECT および
+UPDATE 文、そしてトリガなど) で使用することが可能です。
+
+{function_name} SQL 文で使用する関数の名前。
+
+{callback} 定義した SQL 関数を処理するコールバック関数。
+
+コールバック関数の返す値は、SQLite が理解できる形式
+(すなわち スカラー型) でなければなりません。
+
+{num_args}
+コールバック関数があらかじめ定義済みの引数を受け取る場合に、
+SQLite のパーサに渡すヒント。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|PDO::sqliteCreateFunction| の例
+
+<?php >
+  function md5_and_reverse($string) 
+  {
+      return strrev(md5($string));
+  }
+  
+  $db = new PDO('sqlite:sqlitedb');
+  $db->sqliteCreateFunction('md5rev', 'md5_and_reverse', 1);
+  $rows = $db->query('SELECT md5rev(filename) FROM files')->fetchAll();
+?>
+
+
+
+
+
+この例では、文字列の md5
+を計算してそれを反転させる関数を定義しています。 SQL
+文が実行されると、filename
+をこの関数で変換した値が返されます。 {$rows}
+に返されるデータの中に、処理結果が含まれます。
+
+この方法を使用すると、データを取得した後に foreach()
+で結果をひとつひとつ処理していく必要がなくなり、美しいコードが記述できます。
+
+および を使用して、 SQLite のネイティブ SQL
+関数を上書きすることができます。
+
+このメソッドは、SQLite2 ドライバでは使用できません。
+代わりに、古い形式の sqlite API を使用してください。
+
+|sqlite_create_function| |sqlite_create_aggregate|
+
+vim:ft=help:

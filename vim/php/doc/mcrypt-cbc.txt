@@ -1,0 +1,14 @@
+mcrypt_cbc -- CBC モードでデータを暗号化/復号する
+
+  string mcrypt_cbc(int cipher, string key, string data, int mode [, string iv])~
+
+  string mcrypt_cbc(int cipher, string key, string data, int mode [, string iv, string cipher, string key, string data, int mode [, string iv]])~
+
+最初のプロトタイプは libmcrypt 2.2.x とリンクした場合、2
+番目は、 libmcrypt 2.4.x とリンクした場合のものです。 {mode}
+は MCRYPT_ENCRYPT あるいは MCRYPT_DECRYPT のいずれかです。
+
+この関数は使用すべきではありません。代替となる関数については
+|mcrypt_generic| および |mdecrypt_generic| を参照ください。
+
+vim:ft=help:

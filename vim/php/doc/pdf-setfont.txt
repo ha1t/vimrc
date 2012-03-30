@@ -1,0 +1,10 @@
+PDF_setfont -- フォントを設定する
+
+  bool PDF_setfont(resource pdfdoc, int font, float fontsize)~
+
+|PDF_findfont| から返された {font}
+ハンドルを使用し、指定した {size}
+で現在のフォントを設定します。 成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

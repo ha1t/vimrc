@@ -1,0 +1,43 @@
+bzread -- バイナリ対応の bzip2 ファイル読み込み
+
+  string bzread(resource bz [, int length])~
+
+|bzread| は、与えられた bzip2
+ファイルポインタから読み込みます。
+
+読み込みは、(圧縮前の状態で) {length}
+バイトが読み込まれたか、EOF
+に達したかのどちらか最初に来た方で終了します。
+
+{bz} ファイルポインタ。これは有効である必要があり、
+|bzopen| によりオープンされたファイルを指してい
+る必要があります。
+
+{length} 指定されない場合、|bzread| は一度に
+(圧縮前の状態で) 1024バイト読み込みます。
+
+非圧縮データ、もしくはエラー時に FALSE を返します。
+
+|bzread| の例
+
+<?php >
+  $file = "/tmp/foo.bz2";
+  $bz = bzopen($file, "r") or die("Couldn't open $file");
+  
+  $decompressed_file = '';
+  while (!feof($bz)) {
+    $decompressed_file .= bzread($bz, 4096);
+  }
+  bzclose($bz);
+  
+  echo "The contents of $file are: <br />\n";
+  echo $decompressed_file;
+?>
+
+
+
+
+
+|bzwrite| |feof| |bzopen|
+
+vim:ft=help:

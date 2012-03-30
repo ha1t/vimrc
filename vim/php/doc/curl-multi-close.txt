@@ -1,0 +1,47 @@
+curl_multi_close -- cURL ハンドルのセットを閉じる
+
+  void curl_multi_close(resource mh)~
+
+cURL ハンドルのセットを閉じます。
+
+{mh} |curl_multi_init| が返す cURL マルチハンドル。
+
+値を返しません。
+
+|curl_multi_close| の例 この例は、ふたつの cURL
+ハンドルを作成し、それをマルチハンドルに追加して並列実行します。
+
+<?php >
+  // cURL リソースを作成します
+  $ch1 = curl_init();
+  $ch2 = curl_init();
+  
+  // URL およびその他適切なオプションを設定します。
+  curl_setopt($ch1, CURLOPT_URL, "http://www.example.com/");
+  curl_setopt($ch1, CURLOPT_HEADER, 0);
+  curl_setopt($ch2, CURLOPT_URL, "http://www.php.net/");
+  curl_setopt($ch2, CURLOPT_HEADER, 0);
+  
+  // マルチ cURL ハンドルを作成します
+  $mh = curl_multi_init();
+  
+  // ふたつのハンドルを追加します
+  curl_multi_add_handle($mh,$ch1);
+  curl_multi_add_handle($mh,$ch2);
+  
+  $running=null;
+  // ハンドルを実行します
+  do {
+      curl_multi_exec($mh,$running);
+  } while ($running > 0)
+  // ハンドルを閉じます
+  curl_multi_remove_handle($ch1);
+  curl_multi_remove_handle($ch2);
+  curl_multi_close($mh);
+?>
+
+
+
+|curl_multi_init| |curl_close|
+
+vim:ft=help:

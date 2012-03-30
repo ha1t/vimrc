@@ -1,0 +1,50 @@
+variant_cmp -- 2 つの variant を比較する
+
+  int variant_cmp(mixed left, mixed right [, int lcid [, int flags]])~
+
+{left} と {right} を比較します。
+
+この関数はスカラー値のみを比較します。配列や variant
+レコードは比較しません。
+
+{left} 左オペランド。
+
+{right} 右オペランド。
+
+{lcid} 文字列の比較に使用する有効なロケール識別子です
+(これは文字列の比較に影響します)。
+
+{flags} {flags} は、以下のひとつあるいは複数の値を OR
+で組み合わせたもので、文字列の比較に影響します。
+Variant の比較フラグ 値 意味 NORM_IGNORECASE
+大文字小文字を区別せずに比較する NORM_IGNORENONSPACE
+非スペーシング文字を無視する NORM_IGNORESYMBOLS
+記号を無視する NORM_IGNOREWIDTH 全角半角を区別しない
+NORM_IGNOREKANATYPE ひらがなカタカナを区別しない
+NORM_IGNOREKASHIDA アラビア語の kashida 文字を無視する
+
+variant
+に関するすべての計算用関数と同様、この関数のパラメータには
+PHP のネイティブ型 (整数、文字列、浮動小数点数、boolean
+あるいは NULL) あるいは COM、VARIANT、DOTNET
+クラスのインスタンスが使用できます。 PHP
+のネイティブ型は、
+クラスのコンストラクタと同じ方法で variant
+に変換されます。 COM オブジェクトおよび DOTNET
+オブジェクトはデフォルトプロパティの値を持っており、
+これを variant の値として使用します。
+
+variant に関する計算関数は、COM
+ライブラリの同名の関数のラッパーです。
+これらの関数についての詳細な情報は、MSDN
+ライブラリでご確認ください。 PHP
+での関数名は微妙に異なります。たとえば、PHP での関数
+|variant_add| に対応する関数は、MSDN のドキュメントでは
+VarAdd() となります。
+
+以下のいずれかを返します。 Variant の比較結果 値 意味
+VARCMP_LT {left} は {right} より小さい VARCMP_EQ {left} は {right}
+と等しい VARCMP_GT {left} は {right} より大きい VARCMP_NULL {left}
+と {right} のいずれか、あるいは両方が NULL
+
+vim:ft=help:

@@ -1,0 +1,78 @@
+maxdb->ping --
+サーバとの接続を確認し、接続が確立されていない場合は再接続を試みる
+
+手続き型
+
+  bool maxdb_ping(resource link)~
+
+オブジェクト指向型 (メソッド)
+
+  bool ping(resource link)~
+
+サーバとの接続が正常に動作しているかどうかを調べます。
+もし接続が確立できていない場合、グローバルオプション
+maxdb.reconnect が有効になっていれば、
+自動的に再接続が試みられます。
+
+この関数は、クライアント側で長時間アイドル状態が続いた場合などに、
+サーバが接続を閉じてしまったかどうかを調べ、
+必要なら再度接続するために使用されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* サーバが動作中かどうかを調べます */
+  if ($maxdb->ping()) {
+     printf ("接続は有効です!\n");
+  } else {
+     printf ("エラー: %s\n", $maxdb->error);
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  /* サーバが動作中かどうかを調べます */
+  if (maxdb_ping($link)) {
+     printf ("接続は有効です!\n");
+  } else {
+     printf ("エラー: %s\n", $maxdb->error);
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  接続は有効です!
+
+vim:ft=help:

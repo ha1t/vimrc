@@ -1,0 +1,36 @@
+ctype_alnum -- 英数字かどうかを調べる
+
+  bool ctype_alnum(string text)~
+
+与えられた文字列 {text} のすべての文字が英字または
+数字であるかどうかを調べます。標準の C
+ロケールの場合、 文字は [A-Za-z] となります。
+
+{text} 調べる文字列。
+
+{text} のすべての文字が英字または数字だった場合に TRUE
+、そうでない場合に FALSE を返します。
+
+A |ctype_alnum| の例 (デフォルトのロケールを使用)
+
+<?php >
+  $strings = array('AbCd1zyZ9', 'foo!#$bar');
+  foreach ($strings as $testcase) {
+      if (ctype_alnum($testcase)) {
+          echo "The string $testcase consists of all letters or digits.\n";
+      } else {
+          echo "The string $testcase does not consist of all letters or digits.\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  The string AbCd1zyZ9 consists of all letters or digits.
+  The string foo!#$bar does not consist of all letters or digits.
+
+
+
+|ctype_alpha| |ctype_digit| |setlocale|
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+restore_exception_handler -- 以前の例外ハンドラ関数を回復する
+
+  bool restore_exception_handler()~
+
+|set_exception_handler| を使用して例外ハンドラ関数を
+変更した後、元の例外ハンドラ(組込またはユーザ定義関数)に戻すために
+使用されます。
+
+この関数は常に TRUE を返します。
+
+|set_exception_handler| |set_error_handler| |restore_error_handler|
+|error_reporting|
+
+vim:ft=help:

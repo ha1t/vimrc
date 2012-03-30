@@ -1,0 +1,22 @@
+SQLiteDatabase->lastInsertRowid --
+直近に挿入されたレコードのrowidを返す
+
+  int sqlite_last_insert_rowid(resource dbhandle)~
+
+Object oriented style (method):
+
+  int lastInsertRowid(resource dbhandle)~
+
+データベース{dbhandle}に直近に挿入されたレコードの rowid
+を返します。ただし、この rowid が auto-increment
+フィールドとして作成されている場合に限ります。
+
+テーブルスキーマで INTEGER PRIMARY
+KEYと宣言することにより、
+SQLiteでauto-incrementフィールドを作成することができます。
+
+{dbhandle} SQLite データベースリソース。手続きに従って、
+|sqlite_open| から返されます。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+vim:ft=help:

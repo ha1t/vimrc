@@ -1,0 +1,12 @@
+enchant_broker_get_error -- ブローカーの直近のエラーを返す
+
+  string enchant_broker_get_error(resource broker)~
+
+このブローカーで発生した直近のエラーを返します。
+
+{broker} ブローカーリソース。
+
+エラーが見つかった場合にメッセージ文字列、それ以外の場合に
+FALSE を返します。
+
+vim:ft=help:

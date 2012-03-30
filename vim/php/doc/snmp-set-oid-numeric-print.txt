@@ -1,0 +1,17 @@
+snmp_set_oid_numeric_print --
+指定したオブジェクト内の全てのオブジェクトを、対応するオブジェクト
+ID を含めて返す
+
+  void snmp_set_oid_numeric_print(int oid_numeric_print)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+バージョン 説明 5.2.0 PHP 5.2.0 以降では、
+この関数は次の関数のエイリアスです。
+|snmp_set_oid_output_format|
+
+|snmp_set_oid_output_format|
+
+vim:ft=help:

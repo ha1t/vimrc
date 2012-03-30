@@ -1,0 +1,34 @@
+shmop_write -- 共有メモリブロックにデータを書き込む
+
+  int shmop_write(int shmid, string data, int offset)~
+
+|shmop_write| は共有メモリブロックに文字列を
+書き込みます。
+
+{shmid} |shmop_open| が作成した共有メモリブロックの識別子。
+
+{data} 共有メモリブロックに書き込む文字列。
+
+{offset}
+共有メモリセグメント内でデータを書き込み始める位置。
+
+書き込んだ {data} の大きさ、あるいは失敗した場合に FALSE
+を返します。
+
+共有メモリブロックに書き込む
+
+<?php >
+  $shm_bytes_written = shmop_write($shm_id, $my_string, 0);
+?>
+
+
+
+
+
+この例は、共有メモリブロックに $my_string 内の
+データを書き込みます。$shm_bytes_written には、
+書き込んだバイト数が代入されます。
+
+|shmop_read|
+
+vim:ft=help:

@@ -1,0 +1,34 @@
+locale_get_default -- デフォルトのロケールを取得する
+
+  string locale_get_default()~
+
+この関数は、デフォルトのロケールを返します。これは、
+PHP が何らかの機能をローカライズする際に使用します。
+このロケールは、|setlocale|
+やシステム設定の影響を受けないことに注意しましょう。
+
+現在のロケールを表す文字列を返します。
+
+|locale_get_default| の例
+
+<?php >
+  // デフォルトのロケールを取得します
+  echo locale_get_default();
+  
+  // 新しいロケールを設定し……
+  locale_set_default('pt_PT');
+  
+  // ……それを表示します。
+  echo locale_get_default();
+?>
+
+上の例の出力は以下となります。
+
+  en_US_POSIX
+  pt_PT
+
+
+
+|locale_set_default|
+
+vim:ft=help:

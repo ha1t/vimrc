@@ -1,0 +1,42 @@
+socket_read -- ソケットから最大バイト長まで読みこむ
+
+  string socket_read(resource socket, int length [, int type])~
+
+関数 |socket_read| は、関数 |socket_create| または |socket_accept|
+により作成されたソケット リソース {socket}
+から読み込みます。
+
+{socket} |socket_create| あるいは |socket_accept|
+で作成したソケットリソース。
+
+{length} 読み込まれる最大バイト長は、{length} パラメータで
+指定します。 読み込みを終了するために \r、\n、\0
+を使用することが可能です (これは、以下に示す {type}
+に依存します)。
+
+{type} オプションのパラメータ {type}
+は、名前のある定数です。 PHP_BINARY_READ (デフォルト) -
+システムの recv() 関数を
+使用します。バイナリデータ読み込みに関して安全です。
+
+PHP_NORMAL_READ - 読み込みは、\n あるいは \r
+で中断されます。
+
+|socket_read| は、成功時に文字列としてデータを返し、
+エラー時
+(リモートホストが接続をクローズした場合を含みます) に
+FALSE を返します。 エラーコードは |socket_last_error|
+で取得可能であり、
+このコードは、エラー文字列を取得するために
+|socket_strerror| に渡すことができます。
+
+|socket_read| は、読み込むデータがもう存在しない
+場合に長さゼロの文字列("")を返します。
+
+バージョン 説明 4.1.0 {type} のデフォルト値が PHP_NORMAL_READ
+から PHP_BINARY_READ に変わりました。
+
+|socket_accept| |socket_bind| |socket_connect| |socket_listen|
+|socket_last_error| |socket_strerror| |socket_write|
+
+vim:ft=help:

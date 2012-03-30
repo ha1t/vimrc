@@ -1,0 +1,5 @@
+read_exif_data -- exif_read_data のエイリアス
+
+この関数は次の関数のエイリアスです。 |exif_read_data|
+
+vim:ft=help:

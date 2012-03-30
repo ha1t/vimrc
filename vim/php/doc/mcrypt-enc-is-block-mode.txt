@@ -1,0 +1,14 @@
+mcrypt_enc_is_block_mode --
+オープンされたモードがブロック出力を行うかどうかを調べる
+
+  bool mcrypt_enc_is_block_mode(resource td)~
+
+オープンされたモードがブロック出力を行うかどうかを調べます
+(例: cbc と ecb の場合に TRUE、cfb と stream の場合に FALSE)。
+
+{td} 暗号化記述子。
+
+バイトブロックを出力するモードの場合に TRUE、
+バイト出力を行うモードの場合に FALSE を返します。
+
+vim:ft=help:

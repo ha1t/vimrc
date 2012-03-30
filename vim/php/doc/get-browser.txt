@@ -1,0 +1,95 @@
+get_browser -- ユーザのブラウザの機能を取得する
+
+  mixed get_browser([string user_agent [, bool return_array]])~
+
+ユーザのブラウザの機能を調べます。これは、browscap.ini
+ファイルのブラウザ情報を調べることにより行います。
+
+{user_agent}
+処理するユーザエージェント。デフォルトでは、HTTP の
+User-Agent
+ヘッダの内容を使用します。しかし、このパラメータを渡すことでこれを変更する
+(別のブラウザの情報を取得する) ことが可能です。
+
+このパラメータを処理しないようにするには NULL
+値を渡します。
+
+{return_array} TRUE
+を指定すると、この関数はオブジェクトでなく配列を返します。
+
+情報は、オブジェクトあるいは配列形式で返されます。
+たとえばブラウザのメジャーバージョン番号、マイナーバージョン番号や
+ID
+文字列といったさまざまなデータが含まれています。また、
+フレームや JavaScript、クッキーといった機能についての
+TRUE/FALSE 値も含んでいます。
+
+cookies の値は、単にそのブラウザがクッキーを扱う機能を
+有していることを示すだけであり、ユーザがクッキーを受け入れる設定に
+しているかどうかを表すものではありません。それをチェックする唯一の方法は、
+いったん |setcookie|
+でクッキーを設定してからリロードし、
+その値を調べることです。
+
+バージョン 説明 4.3.2 オプションのパラメータ {return_array}
+が追加されました。
+
+ユーザのブラウザについての全情報の一覧
+
+<?php >
+  echo $_SERVER['HTTP_USER_AGENT'] . "\n\n";
+  
+  $browser = get_browser(null, true);
+  print_r($browser);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7) Gecko/20040803 Firefox/0.9.3
+  
+  Array
+  (
+      [browser_name_regex] => ^mozilla/5\.0 (windows; .; windows nt 5\.1; .*rv:.*) gecko/.* firefox/0\.9.*$
+      [browser_name_pattern] => Mozilla/5.0 (Windows; ?; Windows NT 5.1; *rv:*) Gecko/* Firefox/0.9*
+      [parent] => Firefox 0.9
+      [platform] => WinXP
+      [browser] => Firefox
+      [version] => 0.9
+      [majorver] => 0
+      [minorver] => 9
+      [css] => 2
+      [frames] => 1
+      [iframes] => 1
+      [tables] => 1
+      [cookies] => 1
+      [backgroundsounds] =>
+      [vbscript] =>
+      [javascript] => 1
+      [javaapplets] => 1
+      [activexcontrols] =>
+      [cdf] =>
+      [aol] =>
+      [beta] => 1
+      [win16] =>
+      [crawler] =>
+      [stripper] =>
+      [wap] =>
+      [netclr] =>
+  )
+
+
+
+この関数が正常に機能するためには、php.ini の browscap
+設定が、システム上の browscap.ini の正確な位置を
+指している必要があります。
+
+browscap.ini は PHP にはバンドルされていません。
+しかし、ここで最新の php_browscap.ini
+を入手することができます。
+
+browscap.ini
+は多くのブラウザに関する情報をもっていますが、
+データベースを最新に保つのはユーザーによる更新に依存しています。
+ファイルのフォーマット自体を見ればおおよそのことがわかります。
+
+vim:ft=help:

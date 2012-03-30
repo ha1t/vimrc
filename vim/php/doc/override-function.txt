@@ -1,0 +1,34 @@
+override_function -- 組み込みの関数を上書きする
+
+  bool override_function(string function_name, string function_args, string function_code)~
+
+シンボルテーブルを書き換えることで、組み込みの関数を上書きします
+
+{function_name} 上書きする関数。
+
+{function_args}
+関数への引数をカンマ区切りの文字列で指定します。
+
+通常は、このパラメータだけでなく {function_code}
+パラメータも (シングルクォート区切りの文字列で)
+指定することでしょう。シングルクォートで囲んだ文字列を使用する理由は、
+変数名がパースされないようにするためです。
+ダブルクォートを使用するなら、変数名をエスケープして
+\$your_var のようにしなければなりません。
+
+{function_code} 関数の新しいコード。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|override_function| の例
+
+<?php >
+  override_function('test', '$a,$b', 'echo "DOING TEST"; return $a * $b;');
+?>
+
+
+
+
+
+vim:ft=help:

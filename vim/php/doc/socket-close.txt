@@ -1,0 +1,16 @@
+socket_close -- ソケットリソースを閉じる
+
+  void socket_close(resource socket)~
+
+|socket_close| は、 {socket}
+で指定したソケットリソースを閉じます。
+この関数はソケット専用であり、その他のリソースに対しては用いることができません。
+
+{socket} |socket_create| あるいは |socket_accept|
+で作成したソケットリソース。
+
+値を返しません。
+
+|socket_bind| |socket_listen| |socket_create| |socket_strerror|
+
+vim:ft=help:

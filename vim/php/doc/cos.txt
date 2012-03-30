@@ -1,0 +1,24 @@
+cos -- 余弦（コサイン）
+
+  float cos(float arg)~
+
+|cos| は、{arg} のコサインを 返します。{arg}
+はラジアンです。
+
+{arg} ラジアンで表した角度。
+
+{arg} のコサインを返します。
+
+|cos| の例
+
+<?php >
+  echo cos(M_PI); // -1
+?>
+
+
+
+
+
+|acos| |sin| |tan| |deg2rad|
+
+vim:ft=help:

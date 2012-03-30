@@ -1,0 +1,16 @@
+OCI-Collection->assignElem --
+コレクションの要素に値を割り当てる
+
+  bool assignElem(int index, mixed value)~
+
+インデックス {index} の要素に値を割り当てます。
+
+{index} 要素のインデックス。最初のインデックスは 1
+です。
+
+{value} 文字列あるいは数値です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+mssql_fetch_assoc -- 結果の現在行を連想配列として返す
+
+  array mssql_fetch_assoc(resource result_id)~
+
+取得した行に対応する連想配列を返し、内部データポインタをひとつ進めます。
+|mssql_fetch_assoc| は、 |mssql_fetch_array|
+の二番目のオプションパラメータに MSSQL_ASSOC
+を指定してコールするのと同等です。
+
+{result_id} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+取得した行に対応する連想配列を返します。もう行がない場合には
+FALSE を返します。
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+ifx_num_rows -- クエリから既に取得された行の数を数える
+
+  int ifx_num_rows(resource result_id)~
+
+|ifx_query| または |ifx_do| クエリの後、{result_id} を有する
+クエリに関してこれまで取得された行の数を返します。
+
+{result_id} {result_id} は、 |ifx_query| または |ifx_prepare| (select
+型のクエリのみ!) により返された有効な結果 ID です。
+
+取得した行の数、あるいはエラー時に FALSE を返します。
+
+|ifx_num_fields|
+
+vim:ft=help:

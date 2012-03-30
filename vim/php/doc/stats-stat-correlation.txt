@@ -1,0 +1,15 @@
+stats_stat_correlation -- 未ドキュメント化
+
+  float stats_stat_correlation(array arr1, array arr2)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{arr1}
+
+{arr2}
+
+
+
+vim:ft=help:

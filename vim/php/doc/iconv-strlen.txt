@@ -1,0 +1,20 @@
+iconv_strlen -- 文字列の文字数を返す
+
+  int iconv_strlen(string str [, string charset])~
+
+|strlen| とは違い、|iconv_strlen| は与えられたバイト列 {str}
+中に現れる文字の数を
+指定された文字セットに基づいて数えます。この結果は、必ずしも文字列の
+バイト数と一致するとは限りません。
+
+{str} 文字列。
+
+{charset} {charset} パラメータが指定されなかった場合、 {str}
+のエンコードは iconv.internal_encoding
+であると判断されます。
+
+{str} の文字数を返します。
+
+|strlen| |mb_strlen|
+
+vim:ft=help:

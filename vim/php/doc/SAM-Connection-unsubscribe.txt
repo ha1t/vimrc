@@ -1,0 +1,28 @@
+SAMConnection->unsubscribe() --
+指定したトピックの購読を解除する
+
+  bool unsubscribe(string subscriptionId [, string targetTopic])~
+
+"unsubscribe"
+メソッドを使用して、指定したトピックの購読を解除します。
+
+{subscriptionId} subscribe
+メソッドによって返された、既存の購読の識別子。
+
+このメソッドは、エラーが発生した場合に FALSE
+を返します。
+
+購読の削除
+
+<?php >
+  if (!$conn->unsubscribe($subid)) {
+      // 購読解除に失敗しました!
+      echo "Unsubscribe failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

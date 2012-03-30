@@ -1,0 +1,64 @@
+SwishSearch->setSort -- 並び順を設定する
+
+  void SwishSearch->setSort(string sort)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{sort} 結果の並び順は、プロパティ名とソート方向 ("asc"
+あるいは "desc") を組み合わせた文字列で指定します。
+たとえば "swishrank desc"、"swishdocpath asc"、"swishtitle asc"、
+"swishdocsize desc"、"swishlastmodified desc" などです。
+
+値を返しません。
+
+基本的な |SwishSearch->setSort| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $search = $swish->prepare();
+  
+      $results = $search->execute("time");
+      echo "First query found: ", $results->hits, " hits\n";
+  
+      $i = 0;
+      while($result = $results->nextResult()) {
+          echo "Hit #", ++$i, " - ", $result->swishdocsize, " bytes\n";
+      }
+  
+      $search->setSort("swishdocsize desc"); // ドキュメントのサイズで並べ替えます
+      $results = $search->execute("time");
+      echo "Second query found: ", $results->hits, " hits\n";
+  
+      $i = 0;
+      while($result = $results->nextResult()) {
+          echo "Hit #", ++$i, " - ", $result->swishdocsize, " bytes\n";
+      }
+  
+  } catch (SwishException $e) {
+      echo $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  First query found: 5 hits
+  Hit #1 - 4261 bytes
+  Hit #2 - 37937 bytes
+  Hit #3 - 7126 bytes
+  Hit #4 - 15427 bytes
+  Hit #5 - 4768 bytes
+  Second query found: 5 hits
+  Hit #1 - 37937 bytes
+  Hit #2 - 15427 bytes
+  Hit #3 - 7126 bytes
+  Hit #4 - 4768 bytes
+  Hit #5 - 4261 bytes
+
+
+
+vim:ft=help:

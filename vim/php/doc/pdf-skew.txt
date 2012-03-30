@@ -1,0 +1,9 @@
+PDF_skew -- 座標系を歪ませる
+
+  bool PDF_skew(resource p, float alpha, float beta)~
+
+座標系を x 方向および y 方向に それぞれ {alpha} 度、{beta}
+度歪ませます。成功した場合に TRUE を、失敗した場合に
+FALSE を返します。
+
+vim:ft=help:

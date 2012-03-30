@@ -1,0 +1,34 @@
+xslt_process -- XSLT による変換を行う
+
+  mixed xslt_process(resource xh, string xmlcontainer, string xslcontainer [, string resultcontainer [, array arguments [, array parameters]]])~
+
+|xslt_process|関数は、XSLT
+拡張モジュールの中心となる関数です。
+ほとんど全ての型の入力ソース (コンテナ) を用いて XSLT
+変換を実行可能です。
+これを実現しているのが、引数バッファです。
+引数バッファとは、Sablotron XSLTプロセッサ
+(現在、この拡張モジュールがサポートする惟一の XSLT
+プロセッサ) から得た概念です。
+入力コンテナは処理する文章を '含んでいる'
+ファイル名がデフォルトです。
+
+{xh} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+{xmlcontainer} XML ファイルへのパス、あるいは XML
+引数用のプレースホルダ。
+
+{xslcontainer} XSL ファイルへのパス、あるいは XML
+引数用のプレースホルダ。
+
+{resultcontainer}
+結果コンテナは、変換された文章のためのファイル名が
+デフォルトです。もし結果コンテナが指定されていない場合
+- 例えば NULL - 、結果が返されます。
+
+{arguments} XML や XSLT のファイル名を |xslt_process|
+関数に指定するかわりに、"引数プレースホルダ"
+を使用することもできます。これは、配列 {arguments}
+に指定した内容で置き換えられます。
+
+vim:ft=help:

@@ -1,0 +1,11 @@
+swf_pushmatrix -- 現在の変換行列をスタックに入れる
+
+  void swf_pushmatrix()~
+
+現在の変換行列をスタックに入れます。
+
+値を返しません。
+
+|swf_popmatrix|
+
+vim:ft=help:

@@ -1,0 +1,37 @@
+tidy_get_output -- パースされた Tidy
+マークアップを表す文字列を返す
+
+  string tidy_get_output(tidy object)~
+
+修正された HTML を文字列で返します。
+
+{object} tidy オブジェクト。
+
+修正された HTML を文字列で返します。
+
+|tidy_get_output| の例
+
+<?php >
+  $html = '<p>paragraph</i>';
+  $tidy = tidy_parse_string($html);
+  
+  $tidy->CleanRepair();
+  
+  echo tidy_get_output($tidy);
+?>
+
+上の例の出力は以下となります。
+
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <html>
+  <head>
+  <title></title>
+  </head>
+  <body>
+  <p>paragraph</p>
+  </body>
+  </html>
+
+
+
+vim:ft=help:

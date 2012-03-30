@@ -1,0 +1,61 @@
+maxdb->stat -- 現在のシステム状態を取得する
+
+手続き型
+
+  string maxdb_stat(resource link)~
+
+オブジェクト指向型 (メソッド)
+
+  string maxdb->stat(resource link)~
+
+|maxdb_stat| は、稼動中の MaxDB
+サーバに関する情報を含む文字列を返します。
+
+サーバの状態を説明する文字列、あるいはエラーが発生した場合に
+FALSE を返します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  printf ("システムの状態: %s\n", $maxdb->stat());
+  
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  printf("システムの状態: %s\n", maxdb_stat($link));
+  
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  システムの状態: Kernel    7<...>
+
+|maxdb_get_server_info|
+
+vim:ft=help:

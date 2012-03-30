@@ -1,0 +1,8 @@
+PDF_rotate -- 座標系を回転する
+
+  bool PDF_rotate(resource p, float phi)~
+
+座標系を回転します。成功した場合に TRUE
+を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

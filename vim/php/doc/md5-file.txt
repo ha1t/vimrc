@@ -1,0 +1,27 @@
+md5_file -- 指定したファイルのMD5ハッシュ値を計算する
+
+  string md5_file(string filename [, bool raw_output])~
+
+RSA Data Security, Inc. MD5
+メッセージダイジェストアルゴリズムを用いて
+{filename}パラメータで指定したファイルの
+MD5ハッシュを計算し、そのハッシュを返します。
+ハッシュは、32 文字の 16 進数です。
+
+{filename} ファイル名
+
+{raw_output} TRUE の場合、長さ 16
+の生のバイナリフォーマットで
+ダイジェストを返します。デフォルトは FALSE です。
+
+成功時は文字列、そうでなければ FALSE
+
+バージョン 説明 5.0.0 {raw_output}
+パラメータが追加されました 5.1.0 ストリーム API
+を使用した関数に変更されました。 これは
+md5_file('http://example.com/..')
+のようなラッパーで利用可能であることを意味します。
+
+|md5| |sha1_file| |crc32|
+
+vim:ft=help:

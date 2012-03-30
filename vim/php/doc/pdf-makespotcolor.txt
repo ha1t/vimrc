@@ -1,0 +1,10 @@
+PDF_makespotcolor -- スポット色を作成する
+
+  int PDF_makespotcolor(resource p, string spotname)~
+
+組み込みのスポット色名を検索するか、
+現在の塗りつぶし色から名前付きのスポット色を作成します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,76 @@
+db2_autocommit -- データベース接続の AUTOCOMMIT
+の状態を取得または設定する
+
+  mixed db2_autocommit(resource connection [, bool value])~
+
+指定した接続リソースについての AUTOCOMMIT
+の状態を設定あるいは取得します。
+
+{connection} |db2_connect| あるいは |db2_pconnect|
+が返した有効なデータベース接続リソース。
+
+{value} 以下の定数のいずれか。 DB2_AUTOCOMMIT_OFF AUTOCOMMIT
+を無効にします。
+
+DB2_AUTOCOMMIT_ON AUTOCOMMIT を有効にします。
+
+|db2_autocommit| に {connection} パラメータのみを渡した場合、
+指定した接続の AUTOCOMMIT の状態を整数値で返します。 0
+の場合は無効、1 の場合は有効です。
+
+|db2_autocommit| に {connection} および {autocommit}
+の両方のパラメータを渡した場合、 指定した接続の
+AUTOCOMMIT を対応する状態に設定します。 成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+接続の AUTOCOMMIT 値の取得 以下の例では、AUTOCOMMIT
+を無効にした接続について |db2_autocommit| 関数で調べます。
+
+<?php >
+  $options = array('autocommit' => DB2_AUTOCOMMIT_OFF);
+  $conn = db2_connect($database, $user, $password, $options);
+  $ac = db2_autocommit($conn);
+  if ($ac == 0) {
+      print "$ac -- AUTOCOMMIT は無効です。";
+  } else {
+      print "$ac -- AUTOCOMMIT が有効です。";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  0 -- AUTOCOMMIT は無効です。
+
+接続の AUTOCOMMIT 値の設定 以下の例では、AUTOCOMMIT
+を無効にして作成した接続の AUTOCOMMIT
+を変更し、有効にします。
+
+<?php >
+  $options = array('autocommit' => DB2_AUTOCOMMIT_OFF);
+  $conn = db2_connect($database, $user, $password, $options);
+  
+  // AUTOCOMMIT を有効にします
+  $rc = db2_autocommit($conn, DB2_AUTOCOMMIT_ON);
+  if ($rc) {
+      print "AUTOCOMMIT を有効にしました。\n";
+  }
+  
+  // AUTOCOMMIT の状態を調べます
+  $ac = db2_autocommit($conn);
+  if ($ac == 0) {
+      print "$ac -- AUTOCOMMIT は無効です。";
+  } else {
+      print "$ac -- AUTOCOMMIT が有効です。";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  AUTOCOMMIT を有効にしました。
+  1 -- AUTOCOMMIT が有効です。
+
+
+
+|db2_connect| |db2_pconnect|
+
+vim:ft=help:

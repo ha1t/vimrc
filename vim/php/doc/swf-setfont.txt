@@ -1,0 +1,12 @@
+swf_setfont -- 現在のフォントを変更する
+
+  void swf_setfont(int fontid)~
+
+|swf_setfont| は、現在のフォントをパラメータ {fontid}
+で指定した値に設定します。
+
+{fontid} フォント ID。
+
+値を返しません。
+
+vim:ft=help:

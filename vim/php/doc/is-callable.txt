@@ -1,0 +1,80 @@
+is_callable --
+引数が、関数としてコール可能な構造であるかどうかを調べる
+
+  bool is_callable(mixed var [, bool syntax_only [, string callable_name]])~
+
+引数の内容が、関数としてコール可能かどうかを調べます。
+変数が有効な関数名かどうかを調べたり、配列の中に適切に
+エンコードされたオブジェクトと関数名が格納されているかどうかを
+調べたりすることが可能です。
+
+{var} 関数名を格納した文字列か、あるいは
+以下のようにオブジェクトとメソッド名を格納したオブジェクトとすることが可能です。
+
+  array($SomeObject, 'MethodName')
+
+
+
+{syntax_only} TRUE の場合、この関数は単に {var}
+が関数またはメソッドであるかどうかだけを調べます。
+文字列以外の型の変数や不正な形式の配列は、
+引数として受け付けられません。有効な配列の形式は、
+最初のエントリがオブジェクトあるいは文字列で、2
+番目のエントリが文字列である 2
+つのエントリからなるものです。
+
+{callable_name} "呼び出し名" を受け取ります。下の例では
+"someClass::someMethod" です。これは someClass::SomeMethod() が static
+メソッドであるかのようにみえますが、
+そうではないことに注意しましょう。
+
+{var} がコール可能な場合に TRUE、 それ以外の場合に FALSE
+を返します。
+
+|is_callable| の例
+
+<?php >
+  //  変数が、関数としてコール可能かどうかを確かめます。
+  
+  //
+  //  関数名を含む単純な配列
+  //
+  
+  function someFunction() 
+  {
+  }
+  
+  $functionVariable = 'someFunction';
+  
+  var_dump(is_callable($functionVariable, false, $callable_name));  // bool(true)
+  
+  echo $callable_name, "\n";  // someFunction
+  
+  //
+  //  メソッドを含む配列
+  //
+  
+  class someClass {
+  
+    function someMethod() 
+    {
+    }
+  
+  }
+  
+  $anObject = new someClass();
+  
+  $methodVariable = array($anObject, 'someMethod');
+  
+  var_dump(is_callable($methodVariable, true, $callable_name));  //  bool(true)
+  
+  echo $callable_name, "\n";  //  someClass::someMethod
+?>
+
+
+
+
+
+|function_exists| |method_exists|
+
+vim:ft=help:

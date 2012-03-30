@@ -1,0 +1,31 @@
+posix_geteuid -- 現在のプロセスの有効なユーザ ID を返す
+
+  int posix_geteuid()~
+
+現在のプロセスの有効なユーザ ID を返します。
+使用可能なユーザ名に変換する方法に関する情報については、
+|posix_getpwuid| も参照ください。
+
+ユーザ ID を表す整数値を返します。
+
+|posix_geteuid| の例 この例は、まず現在のユーザ ID
+を表示し、 それから |posix_seteuid| で実効ユーザ ID
+を設定します。その後、改めて実ユーザ ID と実効ユーザ
+ID を表示します。
+
+<?php >
+  echo posix_getuid()."\n"; //10001
+  echo posix_geteuid()."\n"; //10001
+  posix_seteuid(10000);
+  echo posix_getuid()."\n"; //10001
+  echo posix_geteuid()."\n"; //10000
+?>
+
+
+
+|posix_getpwuid|
+は、ユーザについての詳細な情報を取得します |posix_getuid|
+は、実ユーザ ID を取得します |posix_setuid| は、実効ユーザ
+ID を変更します POSIX man ページ GETEUID(2)
+
+vim:ft=help:

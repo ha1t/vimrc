@@ -1,0 +1,33 @@
+geoip_country_code_by_name -- 二文字の国コードを取得する
+
+  string geoip_country_code_by_name(string hostname)~
+
+|geoip_country_code_by_name| 関数は、 ホスト名あるいは IP
+アドレスに対応する二文字の国コードを返します。
+
+{hostname} 場所を探す対象となるホスト名あるいは IP
+アドレス。
+
+成功した場合には二文字の ISO 国コード、
+アドレスがデータベースで見つからない場合には FALSE
+を返します。
+
+|geoip_country_code_by_name| の例 これは、ホスト example.com
+がどこにあるのかを表示します。
+
+<?php >
+  $country = geoip_country_code_by_name('www.example.com');
+  if ($country) {
+      echo 'This host is located in: ' . $country;
+  }
+?>
+
+上の例の出力は以下となります。
+
+  This host is located in: US
+
+
+
+|geoip_country_code3_by_name| |geoip_country_name_by_name|
+
+vim:ft=help:

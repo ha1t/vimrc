@@ -1,0 +1,15 @@
+swf_shapefillbitmaptile --
+現在の塗りつぶしモードをタイル状のビットマップに設定する
+
+  void swf_shapefillbitmaptile(int bitmapid)~
+
+タイル状タイルでの塗りつぶしを設定します。空いた部分は、
+ビットマップで埋められます。
+
+{bitmapid} ビットマップ ID。
+
+値を返しません。
+
+|swf_shapefillbitmapclip|
+
+vim:ft=help:

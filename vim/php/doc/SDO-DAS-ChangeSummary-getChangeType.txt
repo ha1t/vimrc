@@ -1,0 +1,25 @@
+SDO_DAS_ChangeSummary::getChangeType -- SDO_DataObject
+への変更の型を取得する
+
+  int SDO_DAS_ChangeSummary::getChangeType(SDO_DataObject dataObject)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+指定した SDO_DataObject に対する変更の型を取得します。
+
+{dataObject} 変更された SDO_DataObject。
+
+行われた変更の型を返します。変更の型は列挙型で表され、
+以下の 4 つの値のうちいずれかです。
+SDO_DAS_ChangeSummary::NONE
+
+SDO_DAS_ChangeSummary::MODIFICATION
+
+SDO_DAS_ChangeSummary::ADDITION
+
+SDO_DAS_ChangeSummary::DELETION
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+ifx_textasvarchar -- デフォルトのテキストモードを設定する
+
+  bool ifx_textasvarchar(int mode)~
+
+全ての select
+クエリに関するデフォルトのテキストモードを設定します。
+
+{mode} モード "0" は、BLOB を返し、"1"
+は、テキストの内容を有する varchar を 返します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ifx_bytesasvarchar|
+
+vim:ft=help:

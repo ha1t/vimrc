@@ -1,0 +1,14 @@
+ircg_whois -- ユーザ情報をサーバに問い合わせる
+
+  bool ircg_whois(resource connection, string nick)~
+
+指定したユーザの情報を問い合わせるクエリを送信します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{nick} ユーザのニックネーム。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

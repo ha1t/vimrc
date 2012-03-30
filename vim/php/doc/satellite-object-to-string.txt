@@ -1,0 +1,8 @@
+satellite_object_to_string --
+オブジェクトを文字列表現に変換する
+
+  string satellite_object_to_string(object obj)~
+
+オブジェクトを、その文字列表現（IOR）に変換します。
+
+vim:ft=help:

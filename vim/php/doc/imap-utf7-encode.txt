@@ -1,0 +1,21 @@
+imap_utf7_encode -- ISO-8859-1 文字列を修正版 UTF-7
+テキストに変換する
+
+  string imap_utf7_encode(string data)~
+
+{data} を修正版 UTF-7 テキストに変換します。
+
+この関数は、ある種の非 ASCII
+文字を含むメールボックス名をエンコード
+する際に必要となります。
+
+{data} ISO-8859-1 文字列。
+
+{data} を修正版 UTF-7 でエンコードした文字列を返します。
+このエンコーディングについては RFC 2060, section 5.1.3
+で定義されています (元の UTF-7 は RFC1642
+で定義されています)。
+
+|imap_utf7_decode|
+
+vim:ft=help:

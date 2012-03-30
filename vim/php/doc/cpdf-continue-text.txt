@@ -1,0 +1,16 @@
+cpdf_continue_text -- 次の行にテキストを出力する
+
+  bool cpdf_continue_text(int pdf_document, string text)~
+
+文字列 {text} を次の行に出力します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{text} 出力する文字列。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_show_xy| |cpdf_text| |cpdf_set_leading| |cpdf_set_text_pos|
+
+vim:ft=help:

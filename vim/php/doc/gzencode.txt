@@ -1,0 +1,52 @@
+gzencode -- gzip 圧縮された文字列を作成する
+
+  string gzencode(string data [, int level [, int encoding_mode]])~
+
+この関数は、入力 {data}を gzip
+プログラムの出力と互換性のある形式で圧縮
+して返します。
+
+GZIPファイルフォーマットに関する詳細な情報については、次のドキュ
+メントを参照ください。 GZIP file format specification version 4.3
+(RFC 1952)
+
+{data} エンコードするデータを指定します
+
+{level} 圧縮レベルを指定します。 圧縮をしない場合に
+0、最大限の圧縮を行う場合に9を指定可能です。
+指定されない場合のデフォルト圧縮レベルは、 zlib
+ライブラリのデフォルト圧縮レベルになります。
+
+{encoding_mode} エンコーディングモードを指定します。
+FORCE_GZIP (デフォルト) もしくは FORCE_DEFLATE
+を指定可能です。
+
+もし FORCE_DEFLATE を使用した場合、 crc32
+チェックサムが付加されていない gzip
+ファイルヘッダに続いて標準的な zlib 収縮文字列 (zlib
+ヘッダを含む) を受け取るでしょう。
+
+エンコードされた文字列、もしくはエラー発生時に FALSE
+
+バージョン 説明 4.2.0 パラメータ {encoding_mode}
+が追加されました。
+
+結果データは標準的な .gz
+ファイルを構成するための適当なヘッダとデータ構造を含みます。
+gzip ファイルの生成
+
+<?php >
+  $data = implode("", file("bigfile.txt"));
+  $gzdata = gzencode($data, 9);
+  $fp = fopen("bigfile.txt.gz", "w");
+  fwrite($fp, $gzdata);
+  fclose($fp);
+?>
+
+
+
+
+
+|gzdecode| |gzdeflate| |gzinflate| |gzuncompress| |gzcompress|
+
+vim:ft=help:

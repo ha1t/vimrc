@@ -1,0 +1,29 @@
+ps_arcn -- 時計回りに円弧を描く
+
+  bool ps_arcn(resource psdoc, float x, float y, float radius, float alpha, float beta)~
+
+({x}, {y}) を中心とした円の一部を描きます。円弧は {alpha}
+で指定された角度からはじまり {beta}
+で指定された角度で終わります。 時計回りに描かれます
+(反時計回りに描くには |ps_arc| を使用します)。
+また、{beta} で指定された角度からはじまって {alpha}
+で指定された角度で終わるサブパスが、カレントパスに追加されます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{x} 円の中心の x 座標。
+
+{y} 円の中心の y 座標。
+
+{radius} 円の半径。
+
+{alpha} 開始位置の角度を度単位で指定。
+
+{beta} 終了位置の角度を度単位で指定。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_arc|
+
+vim:ft=help:

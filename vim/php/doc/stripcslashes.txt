@@ -1,0 +1,15 @@
+stripcslashes -- addcslashes
+でクォートされた文字列をアンクォートする
+
+  string stripcslashes(string str)~
+
+バックスラッシュを取り除いた文字列を返します。C言語と同様に
+\n, \r ..., 8進表現, 16進表現を認識します。
+
+{str} 元に戻したい文字列。
+
+元に戻した文字列を返します。
+
+|addcslashes|
+
+vim:ft=help:

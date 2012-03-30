@@ -1,0 +1,41 @@
+umask -- 現在の umask を変更する
+
+  int umask([int mask])~
+
+|umask| は PHP の umask を {mask} & 0777 にセットし、 元の umask
+値を返します。 PHP
+がサーバ・モジュールとして動作中の場合、
+各リクエストが終了するたびに umask
+は元の値に戻されます。
+
+{mask} 新しい umask。
+
+|umask|を引数無しで実行すると、単に現在の
+umask値を返します。
+
+|umask| の例
+
+<?php >
+  $old = umask(0);
+  chmod("/path/some_dir/some_file.txt", 0755);
+  umask($old);
+  
+  // チェック
+  if ($old != umask()) {
+      die('An error occured while changing back the umask');
+  }
+?>
+
+
+
+
+
+マルチスレッドな Web
+サーバでこの関数を使用することは避けてください。
+ファイルを生成後、|chmod| を使用してファイル権限を
+変更するのがより良い方法です。全て同じ umask
+が使用されるので、 |umask|
+の使用は、スクリプトを同時に実行する場合や Web
+サーバ自身の予期しない動作を引き起こす原因になる可能性があります。
+
+vim:ft=help:

@@ -1,0 +1,15 @@
+hw_Output_Document -- hw_document を出力する
+
+  bool hw_output_document(int hw_document)~
+
+BODY タグを除きドキュメントを出力します。
+
+下位互換性のため、|hw_OutputDocument|
+も使用可能です。しかし、この関数の使用は推奨されません。
+
+{hw_document} ドキュメント ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

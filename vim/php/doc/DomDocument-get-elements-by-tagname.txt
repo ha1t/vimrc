@@ -1,0 +1,11 @@
+DomDocument->get_elements_by_tagname --
+文章中に与えられたタグ名を持つノードの配列を返す。
+もしくは、見つからない場合は空の配列を返す
+
+  array DomDocument->get_elements_by_tagname(string name)~
+
+
+
+|domdocument_add_root| も参照ください。
+
+vim:ft=help:

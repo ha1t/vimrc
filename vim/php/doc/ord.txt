@@ -1,0 +1,28 @@
+ord -- 文字の ASCII 値を返す
+
+  int ord(string string)~
+
+{string} の先頭文字の ASCII 値を返します。
+
+この関数は |chr| と逆の動作をします。
+
+{string} 文字。
+
+ASCII 値を返します。
+
+|ord| の例
+
+<?php >
+  $str = "\n";
+  if (ord($str) == 10) {
+      echo "\$str の先頭は改行文字です。\n";
+  }
+?>
+
+
+
+
+
+|chr| ASCII 値の表
+
+vim:ft=help:

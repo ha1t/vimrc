@@ -1,0 +1,25 @@
+runkit_lint_file -- 指定したファイルの PHP
+文法をチェックする
+
+  bool runkit_lint_file(string filename)~
+
+|runkit_lint_file| 関数は、指定したファイルの
+文法チェック（lint）を行い、スクリプトのエラーをチェックします。
+これは、コマンドラインから php -l
+を実行するのと同じです。
+
+サンドボックスのサポート (|runkit_lint|, |runkit_lint_file|,
+および Runkit_Sandbox クラスで使用)は、 PHP 5.1.0
+以降または特別なパッチを適用した PHP 5.0
+でのみ利用可能であり、スレッドセーフを有効にしておく必要があります。
+詳細については、runkit パッケージに含まれる README
+ファイルを参照してください。
+
+{filename} PHP コードを含む、チェック対象のファイル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_lint|
+
+vim:ft=help:

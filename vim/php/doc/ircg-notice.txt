@@ -1,0 +1,19 @@
+ircg_notice -- サーバ上のユーザに通知を送信する
+
+  bool ircg_notice(resource connection, string nick, string message)~
+
+この関数は、{connection} で接続したサーバ上のユーザ {nick}
+に {message} を送信します。他のメッセージ型と異なり、 IRC
+サーバやその他のソフトウェアは NOTICE
+については返信を自動生成しません。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{nick} 対象となるユーザ。
+
+{message} メッセージの内容。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

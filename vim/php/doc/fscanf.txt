@@ -1,0 +1,62 @@
+fscanf --
+フォーマットに基づきファイルからの入力を処理する
+
+  mixed fscanf(resource handle, string format [, mixed ...])~
+
+関数|fscanf| は |sscanf| に似ていますが、{handle}
+が指すファイルから入力を取得し、
+指定したフォーマット {format} に基づき解釈を行います。
+フォーマットについては |sprintf| に解説されています。
+
+フォーマット文字列におけるあらゆる空白は
+入力ストリームのあらゆる空白にマッチします。
+これはつまりフォーマット文字列の\t（タブ）すらも
+入力ストリームの空白1個にマッチしてしまうことを意味します。
+
+{handle} |fopen|
+を使用して作成したファイルシステムポインタリソース。
+
+{format} |sprintf|
+のドキュメントに説明されているフォーマット。
+
+{...} オプションで代入する値。
+
+この関数のパラメータが二つだけの場合、処理された値は配列として返されます。
+他方、オプションのパラメータが指定された場合、
+この関数は、代入された値の数を返します。
+オプション引数は参照渡しとする必要があります。
+
+バージョン 説明 4.3.0
+このバージョンまでは、ファイルから読み込む文字の最大数は512
+（または最初に\nが現れるまで）でした。
+これ以降では任意の長い行を読みスキャンすることができます。
+
+|fscanf| の例
+
+<?php >
+  $handle = fopen("users.txt", "r");
+  while ($userinfo = fscanf($handle, "%s\t%s\t%s\n")) {
+      list ($name, $profession, $countrycode) = $userinfo;
+      //... これらの値を使用して何か行う
+  }
+  fclose($handle);
+?>
+
+
+
+
+
+users.txt の内容
+
+  javier  argonaut        pe
+  hiroshi sculptor        jp
+  robert  slacker us
+  luigi   florist it
+
+
+
+
+
+|fread| |fgets| |fgetss| |sscanf| |printf| |sprintf|
+
+vim:ft=help:

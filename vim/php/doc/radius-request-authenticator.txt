@@ -1,0 +1,13 @@
+radius_request_authenticator -- リクエスト認証子を返す
+
+  string radius_request_authenticator(resource radius_handle)~
+
+パスワードや暗号化キーのような加工されたデータを復元する際には
+リクエスト認証子が必要となります。
+
+リクエスト認証子を文字列で返します。エラー時には FALSE
+を返します。
+
+|radius_demangle|
+
+vim:ft=help:

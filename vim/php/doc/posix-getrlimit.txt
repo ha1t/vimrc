@@ -1,0 +1,81 @@
+posix_getrlimit -- システムリソース制限に関する情報を返す
+
+  array posix_getrlimit()~
+
+|posix_getrlimit| は、
+現在のリソースにおけるソフトリミットおよびハードリミットを配列で返します。
+
+各リソースには、それぞれソフトリミットとハードリミットがあります。
+ソフトリミットとは、そのリソースに対してカーネルが課す制限値のことです。
+ハードリミットとは、ソフトリミットの上限値のことです。
+特権を持たないプロセスは、ソフトリミットの値を 0
+からハードリミット値の間で設定することが可能です。
+また、ハードリミットの値を下げることができますが、
+いったん下げた値を再び上げることはできません。
+
+各リソースに関する制限値を含む連想配列を返します。
+個々のリミット値には、ソフトリミットとハードリミットがあります。
+返される制限の一覧 制限の名前 制限についての説明 core
+コアファイルの最大サイズ。0
+の場合はコアファイルを作成しません。
+コアファイルのサイズがこの値を超えると、
+このサイズまで切り詰められます。 totalmem
+プロセスのメモリの最大サイズを表すバイト数。 virtualmem
+プロセスの仮想メモリの最大サイズを表すバイト数。 data
+プロセスのデータセグメントの最大サイズを表すバイト数。
+stack プロセスのスタックの最大サイズを表すバイト数。
+rss RAM 上の仮想ページの最大数。 maxproc
+呼び出し元のプロセスの実ユーザ ID
+で作成できるプロセスの最大数。 memlock RAM
+内にロックできるメモリの最大バイト数。 cpu
+そのプロセスが使用できる CPU 時間。 filesize
+そのプロセスが使用できるデータセグメントの最大サイズを表すバイト数。
+openfiles
+オープンできるファイル記述子の最大値よりひとつ大きい値。
+
+|posix_getrlimit| の使用例
+
+<?php >
+  $limits = posix_getrlimit();
+  
+  print_r($limits);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [soft core] => 0
+      [hard core] => unlimited
+      [soft data] => unlimited
+      [hard data] => unlimited
+      [soft stack] => 8388608
+      [hard stack] => unlimited
+      [soft totalmem] => unlimited
+      [hard totalmem] => unlimited
+      [soft rss] => unlimited
+      [hard rss] => unlimited
+      [soft maxproc] => unlimited
+      [hard maxproc] => unlimited
+      [soft memlock] => unlimited
+      [hard memlock] => unlimited
+      [soft cpu] => unlimited
+      [hard cpu] => unlimited
+      [soft filesize] => unlimited
+      [hard filesize] => unlimited
+      [soft openfiles] => 1024
+      [hard openfiles] => 1024
+  )
+
+
+
+この関数は POSIX 関数ではなく、BSD および System V
+のシステムで共通な関数です。
+使用するシステムがこの関数をサポートしていない場合は、
+PHP のコンパイル時にこの関数は組み込まれません。
+この関数が使用可能かどうかを調べるには、|function_exists|
+を使用します。
+
+man ページ GETRLIMIT(2)
+
+vim:ft=help:

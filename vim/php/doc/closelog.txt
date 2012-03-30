@@ -1,0 +1,14 @@
+closelog -- システムログへの接続を閉じる
+
+  bool closelog()~
+
+|closelog|
+はシステムログへの書きこみに使用されているデスクプリタを閉じます。
+|closelog| の使用はオプションです。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|define_syslog_variables| |syslog| |openlog|
+
+vim:ft=help:

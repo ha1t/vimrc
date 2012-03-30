@@ -1,0 +1,14 @@
+mcrypt_enc_self_test --
+オープンしたモジュールのセルフテストを実行する
+
+  int mcrypt_enc_self_test(resource td)~
+
+この関数は、記述子 {td} で指定したアルゴリズムの
+セルフテストを実行します。
+
+{td} 暗号化記述子。
+
+セルフテストが成功した場合は FALSE
+を返します。エラーの場合は TRUE を返します。
+
+vim:ft=help:

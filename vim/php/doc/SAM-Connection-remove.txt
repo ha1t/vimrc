@@ -1,0 +1,33 @@
+SAMConnection->remove() -- メッセージをキューから削除する
+
+  SAMMessage remove(string target [, array properties])~
+
+メッセージをキューから削除します。
+
+{target} メッセージを削除するキューの識別子。
+
+{properties}
+オプションの連想配列で、削除操作を制御するパラメータを指定します。
+プロパティ名 とりうる値 SAM_CORRELID
+メッセージの、対象相関 ID 文字列。 典型的な例は、"send"
+リクエストが返す相関 ID 文字列となります。 SAM_MESSAGEID
+削除されるメッセージのメッセージ ID 文字列。
+
+このメソッドは、エラーが発生した場合に FALSE
+を返します。
+
+メッセージ ID
+を指定して、メッセージをキューから削除する
+
+<?php >
+  if (!$conn->remove('queue://receive/test', array(SAM_MESSAGEID => $messageId))) {
+    // 削除に失敗しました!
+    echo "Remove failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+vim:ft=help:

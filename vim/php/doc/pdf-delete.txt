@@ -1,0 +1,9 @@
+PDF_delete -- PDFlib オブジェクトを削除する
+
+  bool PDF_delete(resource pdfdoc)~
+
+PDFlib
+オブジェクトを削除し、内部リソースを全て開放します。成功した場合に
+TRUE を、失敗した場合に FALSE を返します。
+
+vim:ft=help:

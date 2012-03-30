@@ -1,0 +1,15 @@
+ps_fill_stroke -- 現在のパスを塗りつぶし、線を引く
+
+  bool ps_fill_stroke(resource psdoc)~
+
+|ps_lineto|
+のような描画関数によって事前に作成されたパスを塗りつぶし、描画します。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_fill| |ps_stroke|
+
+vim:ft=help:

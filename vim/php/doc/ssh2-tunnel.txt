@@ -1,0 +1,33 @@
+ssh2_tunnel --
+リモートサーバを経由するトンネルをオープンする
+
+  resource ssh2_tunnel(resource session, string host, int port)~
+
+現在接続している SSH サーバを経由して、
+任意のホスト/ポートへのソケットストリームをオープンします。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+{host}
+
+{port}
+
+
+
+任意のホストへのトンネルのオープン
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_pubkey_file($connection, 'username', 'id_dsa.pub', 'id_dsa');
+  
+  $tunnel = ssh2_tunnel($connection, '10.0.0.101', 12345);
+?>
+
+
+
+
+
+|ssh2_connect| |fsockopen|
+
+vim:ft=help:

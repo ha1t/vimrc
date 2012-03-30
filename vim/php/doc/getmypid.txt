@@ -1,0 +1,17 @@
+getmypid -- PHP のプロセス ID を取得する
+
+  int getmypid()~
+
+現在の PHP プロセスの ID を取得します。
+
+現在の PHP のプロセス ID を返し、エラーの場合は FALSE
+を返します。
+
+プロセス ID
+は一意ではなく、エントロピ源として優れたものではありません。
+セキュリティが問題となる状況では、PID
+に頼らないようにしましょう。
+
+|getmygid| |getmyuid| |get_current_user| |getmyinode| |getlastmod|
+
+vim:ft=help:

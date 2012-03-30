@@ -1,0 +1,19 @@
+tidy_load_config -- 指定したエンコーディングで ASCII コードの
+Tidy 設定ファイルをロードする
+
+  void tidy_load_config(string filename, string encoding)~
+
+この関数は、指定したエンコーディング {encoding} で Tidy
+設定ファイルをロードします。
+
+{filename}
+
+{encoding}
+
+値を返しません。
+
+この関数は、Tidy 1.0 でのみ利用可能です。
+この関数は、Tidy 2.0
+では古い関数として削除されているためです。
+
+vim:ft=help:

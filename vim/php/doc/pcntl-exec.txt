@@ -1,0 +1,23 @@
+pcntl_exec --
+現在のプロセス空間で指定したプログラムを実行する
+
+  void pcntl_exec(string path [, array args [, array envs]])~
+
+指定した引数でプログラムを実行します。
+
+{path} {path} は、バイナリ実行ファイルへのパスか、
+あるいは有効な実行ファイルを指す shebang (例:
+#!/usr/local/bin/perl)
+が一行目に存在するスクリプトへのパスである必要があります。
+詳細な情報については、システムの man ページで execve(2)
+を参照ください。
+
+{args} {args} は、プログラムに渡す引数文字列の配列です。
+
+{envs} {envs} は、プログラムに渡す環境変数の配列です。
+この配列は name => value のような形式で、key
+が環境変数名・value が その値となります。
+
+エラー時に FALSE を返し、成功時には何も返しません。
+
+vim:ft=help:

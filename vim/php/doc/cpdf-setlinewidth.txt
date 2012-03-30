@@ -1,0 +1,14 @@
+cpdf_setlinewidth -- 線幅を設定する
+
+  bool cpdf_setlinewidth(int pdf_document, float width)~
+
+線幅を設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{width} 線幅を表す float 値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

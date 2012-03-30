@@ -1,0 +1,27 @@
+radius_put_int -- 整数属性を設定する
+
+  bool radius_put_int(resource radius_handle, int type, int value)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|radius_put_int| の例
+
+<?php >
+  if (!radius_put_int($res, RAD_FRAMED_PROTOCOL, RAD_PPP)) {
+     echo 'RadiusError:' . radius_strerror($res). "\n<br />";
+     exit;
+  }
+?>
+
+
+
+
+
+|radius_put_string| |radius_put_vendor_int| |radius_put_vendor_string|
+
+vim:ft=help:

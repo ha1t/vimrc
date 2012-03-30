@@ -1,0 +1,41 @@
+Memcache::delete -- サーバから項目を削除する
+
+  bool Memcache::delete(string key [, int timeout])~
+
+|Memcache::delete| は、 {key} に対応する項目を削除します。
+パラメータ {timeout} が指定されている場合は、 その項目は
+{timeout} 秒が経過した後に 期限切れとなります。
+|memcache_delete| 関数を使用することも可能です。
+
+{key} 削除したい項目のキー。
+
+{timeout} その項目の実行時間。
+ゼロの場合は即時に削除されます。 たとえば 30
+を設定すると、 その項目は 30 秒後に削除されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Memcache::delete| の例
+
+<?php >
+  /* 手続き型の API */
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  
+  /* 10 秒後に、項目がサーバから削除されます */
+  memcache_delete($memcache_obj, 'key_to_delete', 10);
+  
+  /* オブジェクト指向の API */
+  $memcache_obj = new Memcache;
+  $memcache_obj->connect('memcache_host', 11211);
+  
+  $memcache_obj->delete('key_to_delete', 10);
+?>
+
+
+
+
+
+|Memcache::set| |Memcache::replace|
+
+vim:ft=help:

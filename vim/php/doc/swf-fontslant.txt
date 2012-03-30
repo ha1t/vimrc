@@ -1,0 +1,13 @@
+swf_fontslant -- フォントの傾きを設定する
+
+  void swf_fontslant(float slant)~
+
+現在のフォントの傾きを、パラメータ {slant}
+で指定した角度に設定します。
+
+{slant}
+正の値は前向きの傾きを生成し、負の値は負の傾きを生成します。
+
+値を返しません。
+
+vim:ft=help:

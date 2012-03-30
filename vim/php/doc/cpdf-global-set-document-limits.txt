@@ -1,0 +1,25 @@
+cpdf_global_set_document_limits -- PDF
+ドキュメントの制限を設定する
+
+  bool cpdf_global_set_document_limits(int maxpages, int maxfonts, int maximages, int maxannotations, int maxobjects)~
+
+ドキュメントのいくつかの制限を設定します。この関数を使用する際には、
+|cpdf_open| の前にコールする必要があります。
+この関数は、この後オープンする全てのドキュメントに制限を設定します。
+
+{maxPages} ページ数の最大値。
+
+{maxFonts} フォント数の最大値。
+
+{maxImages} 画像数の最大値。
+
+{maxAnnots} 注記数の最大値。
+
+{maxObjects} オブジェクト数の最大値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_open|
+
+vim:ft=help:

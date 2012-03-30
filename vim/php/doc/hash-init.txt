@@ -1,0 +1,39 @@
+hash_init -- 段階的なハッシュコンテキストを初期化する
+
+  resource hash_init(string algo [, int options, string key])~
+
+{algo} 選択したアルゴリズムの名前 (すなわち
+"md5"、"sha256"、"haval160,4" など…)。
+
+{options}
+ハッシュ生成の際に使用するオプションで、現在は、ただひとつ
+HASH_HMAC のみをサポートしています。これが
+指定された場合、{key} を
+必ず指定しなければなりません。
+
+{key} {options} に HASH_HMAC が指定された場合に、HMAC
+形式のハッシュで使用される共有の秘密鍵を
+設定する必要があります。
+
+|hash_update|、 |hash_update_stream|、|hash_update_file| および
+|hash_final| で使用するハッシュコンテキストリソースを
+返します。
+
+段階的なハッシュの例
+
+<?php >
+  $ctx = hash_init('md5');
+  hash_update($ctx, 'The quick brown fox ');
+  hash_update($ctx, 'jumped over the lazy dog.');
+  echo hash_final($ctx);
+?>
+
+上の例の出力は以下となります。
+
+  5c6ffbdd40d9556b73a21e63c3e0e904
+
+
+
+|hash| |hash_file| |hash_hmac| |hash_hmac_file|
+
+vim:ft=help:

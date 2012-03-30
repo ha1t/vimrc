@@ -1,0 +1,28 @@
+ps_set_value -- 値を設定する
+
+  bool ps_set_value(resource psdoc, string name, float value)~
+
+多くの関数で利用される値を設定します。
+パラメータは浮動小数点数値として定義されます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{name} {name} は以下のうちのひとつです。 textrendering
+テキストをどのように見せるか。
+
+textx 出力テキストの x 座標。
+
+texty 出力テキストの y 座標。
+
+wordspacing 単語の間隔を空白文字に対する比率で設定する。
+
+leading 行間をピクセルで指定する。
+
+{value} パラメータの値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_get_value| |ps_set_parameter|
+
+vim:ft=help:

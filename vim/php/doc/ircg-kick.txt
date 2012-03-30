@@ -1,0 +1,20 @@
+ircg_kick -- サーバ上のチャンネルからユーザを排除する
+
+  bool ircg_kick(resource connection, string channel, string nick, string reason)~
+
+{connection} で接続したサーバ上のチャンネル {channel}
+から、ユーザ {nick} を追い出します。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{channel} #name 形式のチャンネル名。
+
+{nick} 追い出したいユーザ。
+
+{reason} なぜこの操作を実行したのか、簡単なメッセージを
+{reason} で指定しなければなりません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

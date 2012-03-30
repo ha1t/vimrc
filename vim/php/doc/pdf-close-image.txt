@@ -1,0 +1,7 @@
+PDF_close_image -- 画像を閉じる
+
+  bool PDF_close_image(resource p, int image)~
+
+|PDF_open_image| 関数から取得された {image} を閉じます。
+
+vim:ft=help:

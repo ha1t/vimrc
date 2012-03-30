@@ -1,0 +1,16 @@
+image_type_to_extension --
+画像形式からファイルの拡張子を取得する
+
+  string image_type_to_extension(int imagetype [, bool include_dot])~
+
+指定した定数 IMAGETYPE_XXX に対応する拡張子を返します。
+
+{imagetype} IMAGETYPE_XXX 定数のいずれかひとつ。
+
+{include_dot}
+拡張子の前にドットをつけるかどうか。デフォルトは
+TRUE。
+
+指定した型に対応する拡張子を文字列で返します。
+
+vim:ft=help:

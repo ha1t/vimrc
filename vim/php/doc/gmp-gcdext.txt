@@ -1,0 +1,52 @@
+gmp_gcdext -- 最大公約数と乗数を計算する
+
+  array gmp_gcdext(resource a, resource b)~
+
+a*s + b*t = g = gcd(a,b) となるような g, s, t
+を計算します。ただし、gcd は最大公約数です。g, s, t
+を要素とする配列を返します。
+
+この関数は、2 変数の線形不定方程式 (linear Diophantine
+equations) を解く際に使用することが可能です。
+この方程式は、a*x + b*y = c のような形式で、
+整数のみを解とするものです。 詳細な情報は、MathWorld の
+"Diophantine Equation" についてのページを参照ください。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+{b} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+GMP 数の配列を返します。
+
+線形不定方程式を解く
+
+<?php >
+  // 方程式 a*s + b*t = g を解きます。
+  // a = 12, b = 21, g = gcd(12, 21) = 3 とします。
+  $a = gmp_init(12);
+  $b = gmp_init(21);
+  $g = gmp_gcd($a, $b);
+  $r = gmp_gcdext($a, $b);
+  
+  $check_gcd = (gmp_strval($g) == gmp_strval($r['g']));
+  $eq_res = gmp_add(gmp_mul($a, $r['s']), gmp_mul($b, $r['t']));
+  $check_res = (gmp_strval($g) == gmp_strval($eq_res));
+  
+  if ($check_gcd &amp;& $check_res) {
+      $fmt = "Solution: %d*%d + %d*%d = %d\n";
+      printf($fmt, gmp_strval($a), gmp_strval($r['s']), gmp_strval($b),
+      gmp_strval($r['t']), gmp_strval($r['g']));
+  } else {
+      echo "方程式を解く際にエラーが発生しました\n";
+  }
+  
+  // 出力は、解: 12*2 + 21*-1 = 3 のようになります。
+?>
+
+
+
+
+
+vim:ft=help:

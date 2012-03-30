@@ -1,0 +1,24 @@
+SAMConnection::disconnect() --
+メッセージングサーバからの接続を解除する
+
+  bool disconnect()~
+
+SAMConnection オブジェクトに対して "disconnect"
+メソッドをコールすると、 PHP
+スクリプトとメッセージングサーバとの接続を解除します。
+接続が解除された後は、メッセージの送受信はできません。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+メッセージングサーバからの接続の解除
+
+<?php >
+  $conn->disconnect();
+?>
+
+
+
+
+
+vim:ft=help:

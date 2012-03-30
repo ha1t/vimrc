@@ -1,0 +1,66 @@
+popen -- プロセスへのファイルポインタをオープンする
+
+  resource popen(string command, string mode)~
+
+command
+で指定したコマンドのフォークによってできたプロセスへのパイプをオープンします。
+
+{command} コマンド。
+
+{mode} モード。
+
+|fopen|
+により返されたファイルポインタと同様のものを返しますが、
+それは(読み書きのいずれか一方でのみ使われる)片方向ストリームであり、
+|pclose|
+によりクローズされなければならないところが異なります。
+このポインタは、|fgets|、|fgetss| および |fwrite|
+のいずれかで使うことができます。
+
+エラーが発生した場合は FALSE を返します。
+
+|popen| の例
+
+<?php >
+  $handle = popen("/bin/ls", "r");
+?>
+
+
+
+
+
+実行すべきコマンドが見つからない場合には、正常なリソースが返されます。
+おかしなことと思われるかもしれませんが、これには意味があります。
+これによってシェルから返されたエラーメッセージにアクセスすることができるのです。
+|popen| の例
+
+<?php >
+  error_reporting(E_ALL);
+  
+  /* リダイレクトにより、標準エラー出力を取得します */
+  $handle = popen('/path/to/spooge 2>&amp;1', 'r');
+  echo "'$handle'; " . gettype($handle) . "\n";
+  $read = fread($handle, 2096);
+  echo $read;
+  pclose($handle);
+?>
+
+
+
+
+
+双方向(two-way)のサポートを求めているのなら、 |proc_open|
+を使用してください。
+
+セーフモード が有効な場合、
+safe_mode_exec_dirの中にある実行プログラムのみ実行可能です。
+実際的な理由により、現在、実行プログラムへのパスに
+..を 含めることはできません。
+
+セーフモードが有効な場合、コマンド文字列は
+|escapeshellcmd| でエスケープされます。 つまり、echo y | echo x
+は、echo y \| echo x となります。
+
+|pclose| |fopen| |proc_open|
+
+vim:ft=help:

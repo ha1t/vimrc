@@ -1,0 +1,17 @@
+newt_label --
+
+  resource newt_label(int left, int top, string text)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{left}
+
+{top}
+
+{text}
+
+
+
+vim:ft=help:

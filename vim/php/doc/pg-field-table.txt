@@ -1,0 +1,53 @@
+pg_field_table -- tables フィールドの名前あるいは oid を返す
+
+  mixed pg_field_table(resource result, int field_number [, bool oid_only])~
+
+|pg_field_table| は、フィールドが属するテーブルの名前か
+あるいは {oid_only} が TRUE の場合にテーブルの oid
+を返します。
+
+{result} |pg_query|、|pg_query_params| あるいは |pg_execute|
+(その他も含む) から返された、PostgreSQL
+クエリ結果リソース。
+
+{field_number} 0 から始まるフィールド番号。
+
+{oid_only}
+デフォルトでは、フィールドが属するテーブルの名前が返されます。
+しかし {oid_only} をTRUE に設定すると、 その代わりに oid
+が返されます。
+
+成功した場合にフィールドのテーブル名あるいは oid、
+あるいは失敗した場合に FALSE を返します。
+
+フィールドについてのテーブル情報の取得
+
+<?php >
+  $dbconn = pg_connect("dbname=publisher") or die("接続できません");
+  
+  $res = pg_query($dbconn, "SELECT bar FROM foo");
+  
+  echo pg_field_table($res, 0);
+  echo pg_field_table($res, 0, true);
+  
+  $res = pg_query($dbconn, "SELECT version()");
+  var_dump(pg_field_table($res, 0));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  foo
+  14379580
+  
+  bool(false)
+
+
+
+テーブル名を返すよりも oid
+を返すほうがずっと高速です。
+なぜなら、テーブル名を取得するには、
+データベースのシステムテーブルにクエリを発行しなければならないからです。
+
+|pg_field_name| |pg_field_type|
+
+vim:ft=help:

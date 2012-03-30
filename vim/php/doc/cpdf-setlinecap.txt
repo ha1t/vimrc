@@ -1,0 +1,14 @@
+cpdf_setlinecap -- linecap パラメータを設定する
+
+  bool cpdf_setlinecap(int pdf_document, int value)~
+
+linecap パラメータを設定します。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{value} 0 = butt end, 1 = round, 2 = projecting square。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

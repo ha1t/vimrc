@@ -1,0 +1,38 @@
+swf_addbuttonrecord --
+現在のボタンの位置、外観、アクティブエリアを制御する
+
+  void swf_addbuttonrecord(int states, int shapeid, int depth)~
+
+ボタンを使用する際の仕様を定義します。
+
+{states}
+ボタンが持つことのできる状態を定義します。以下の定数
+BSHitTest、 BSDown、BSOver あるいは BSUp
+のいずれか、あるいは全てとなります。
+
+{shapeid} 2 番目のパラメータ {shapeid}
+はボタンの形状であり、
+通常はボタンの形状のオブジェクト ID です。
+
+{depth}
+このパラメータは、現在のフレームにおけるボタンの位置です。
+
+値を返しません。
+
+|swf_addbuttonrecord| の例
+
+<?php >
+  swf_startButton($objid, TYPE_MENUBUTTON);
+  swf_addButtonRecord(BSDown|BSOver, $buttonImageId, 340);
+  swf_onCondition(MenuEnter);
+  swf_actionGetUrl("http://www.example.com", "_level1");
+  swf_onCondition(MenuExit);
+  swf_actionGetUrl("", "_level1");
+  swf_endButton();
+?>
+
+
+
+
+
+vim:ft=help:

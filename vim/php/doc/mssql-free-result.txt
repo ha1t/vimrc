@@ -1,0 +1,18 @@
+mssql_free_result -- 結果保持用メモリを解放する
+
+  bool mssql_free_result(resource result)~
+
+スクリプト実行時のメモリ使用量が過大であると懸念される場合のみ
+|mssql_free_result| はコールするべきです。
+全ての結果保持用メモリはスクリプト実行終了時に自動的に解放されます。
+引数に結果 ID を指定して |mssql_free_result| を
+コールすることが可能です。
+この場合、関連する結果保持用メモリが解放されます。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

@@ -1,0 +1,27 @@
+oci_field_scale -- フィールドの桁数を問い合わせる
+
+  int oci_field_scale(resource statement, int field)~
+
+{field} に対応するカラムの桁数を返します。
+
+FLOAT 型カラムの精度は 0 でなく桁数は -127 となります。
+もし精度が 0 の場合、カラムは NUMBER 型、そうでなければ
+NUMBER(精度, 桁数) となります。
+
+{statement} 有効な OCI ステートメント ID。
+
+{field} フィールド番号 (1 から始まる)
+あるいは名前のいずれか。
+
+桁数を表す整数値、あるいはエラー時に FALSE
+を返します。
+
+PHP バージョン 5.0.0 以前では、代わりに |ocicolumnscale|
+を使用しなければなりません。
+まだこの名前を使用することができ、下位互換性のため
+|oci_field_scale| への別名として残されていますが、
+推奨されません。
+
+|oci_field_precision| |oci_field_type|
+
+vim:ft=help:

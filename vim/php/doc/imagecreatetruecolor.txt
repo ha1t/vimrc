@@ -1,0 +1,52 @@
+imagecreatetruecolor -- TrueColor イメージを新規に作成する
+
+  resource imagecreatetruecolor(int width, int height)~
+
+|imagecreatetruecolor|
+は、指定した大きさの黒い画像を表す画像 ID
+を返します。
+
+この関数が定義されているかどうかは、PHP および GD
+のバージョンによって 変わります。PHP 4.0.6 から 4.1.x
+の場合、GD モジュールが読み込まれていれば
+この関数は常に存在しますが、GD2
+がインストールされていない環境では PHP
+が致命的なエラーを発生して終了してしまいます。PHP 4.2.x
+では、
+このような場合にエラーではなく警告を発生させます。他のバージョンの
+PHP では、 適切なバージョンの GD
+がインストールされている場合にのみ
+この関数が定義されます。
+
+{width} 画像の幅。
+
+{height} 画像の高さ。
+
+成功した場合に画像リソース ID、エラー時に FALSE
+を返します。
+
+新規 GD イメージストリームの作成およびイメージの出力
+
+<?php >
+  header ("Content-type: image/png");
+  $im = @imagecreatetruecolor(120, 20)
+        or die("Cannot Initialize new GD image stream");
+  $text_color = imagecolorallocate($im, 233, 14, 91);
+  imagestring($im, 1, 5, 5,  "A Simple Text String", $text_color);
+  imagepng($im);
+  imagedestroy($im);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+この関数は、GD 2.0.1 以降を必要とします (2.0.28
+以降を推奨します)。
+
+この関数では GIF
+ファイルフォーマットは使用できません。
+
+|imagedestroy| |imagecreate|
+
+vim:ft=help:

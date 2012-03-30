@@ -1,0 +1,40 @@
+gmp_hamdist -- ハミング距離
+
+  int gmp_hamdist(resource a, resource b)~
+
+{a} と {b}
+の間のハミング距離を返します。オペランドは共に非負とする必要があります。
+
+{a} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+正の数である必要があります。
+
+{b} GMP 数リソース、
+あるいは数値に変換可能な数値文字列。
+
+正の数である必要があります。
+
+GMP 数リソースを返します。
+
+|gmp_hamdist| の例
+
+<?php >
+  $ham1 = gmp_init("1001010011", 2);
+  $ham2 = gmp_init("1011111100", 2);
+  echo gmp_hamdist($ham1, $ham2) . "\n";
+  
+  /* ハミング距離は、以下と等しくなります */
+  echo gmp_popcount(gmp_xor($ham1, $ham2)) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  6
+  6
+
+
+
+|gmp_popcount| |gmp_xor|
+
+vim:ft=help:

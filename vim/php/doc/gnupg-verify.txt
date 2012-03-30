@@ -1,0 +1,46 @@
+gnupg_verify -- 署名済みテキストを検証する
+
+  array gnupg_verify(resource identifier, string signed_text, string signature [, string plaintext])~
+
+指定した {signed_text} を検証し、署名についての
+情報を返します。clearsign
+で署名されたテキストを検証するには、 signature に FALSE
+を設定します。 オプションのパラメータ {plaintext}
+を渡すと、 復号されたテキストがそこに保存されます。
+
+成功した場合、この関数は署名についての情報を返します。
+失敗した場合、この関数は FALSE を返します。
+
+手続き型の |gnupg_verify| の例
+
+<?php >
+  $plaintext = "";
+  $res = gnupg_init();
+  // clearsigned
+  $info = gnupg_verify($res,$signed_text,false,$plaintext);
+  print_r($info);
+  // detached signature
+  $info = gnupg_verify($res,$signed_text,$signature);
+  print_r($info);
+?>
+
+
+
+オブジェクト指向の |gnupg_verify| の例
+
+<?php >
+  $plaintext = "";
+  $gpg = new gnupg();
+  // clearsigned
+  $info = $gpg -> verify($signed_text,false,$plaintext);
+  print_r($info);
+  // detached signature
+  $info = $gpg -> verify($signed_text,$signature);
+  print_r($info);
+?>
+
+
+
+
+
+vim:ft=help:

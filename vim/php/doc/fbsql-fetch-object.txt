@@ -1,0 +1,40 @@
+fbsql_fetch_object --
+オブジェクトとして結果レコードを取得する
+
+  object fbsql_fetch_object(resource result)~
+
+|fbsql_fetch_object| は |fbsql_fetch_array| と似ていますが 1
+点だけ違いが
+あります。それは、返されるのが配列ではなくオブジェクトであるという点です。
+つまり、データへのアクセスはフィールド名によってのみ可能で、
+そのオフセットではアクセスできない(数値はプロパティ名として使用できません)
+ということです。
+
+速度面では、この関数は |fbsql_fetch_array|
+とまったく同等で、|fbsql_fetch_row| と比べても
+ほぼ同じです (その差はごくわずかです)。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+取得した行に対応するプロパティをもつオブジェクトを返します。
+行がもうない場合には FALSE を返します。
+
+|fbsql_fetch_object| の例
+
+<?php >
+  fbsql_connect($host, $user, $password);
+  $result = fbsql_db_query("database", "select * from table");
+  while ($row = fbsql_fetch_object($result)) {
+      echo $row->user_id;
+      echo $row->fullname;
+  }
+  fbsql_free_result($result);
+?>
+
+
+
+
+
+|fbsql_fetch_array| |fbsql_fetch_row| |fbsql_fetch_assoc|
+
+vim:ft=help:

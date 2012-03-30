@@ -1,0 +1,62 @@
+xml_set_object -- オブジェクト内部で XML パーサを使用する
+
+  bool xml_set_object(resource parser, object object)~
+
+この関数は、{object} の内部から {parser}
+を使用可能にします。 |xml_set_element_handler|
+等により設定される 全てのコールバック関数は、{object}
+のメソッドであると仮定されます。
+
+{parser}
+
+{object}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|xml_set_object| の例
+
+<?php >
+  class xml  {
+      var $parser;
+  
+      function xml() 
+      {
+          $this->parser = xml_parser_create();
+  
+          xml_set_object($this->parser, $this);
+          xml_set_element_handler($this->parser, "tag_open", "tag_close");
+          xml_set_character_data_handler($this->parser, "cdata");
+      }
+  
+      function parse($data) 
+      {
+          xml_parse($this->parser, $data);
+      }
+  
+      function tag_open($parser, $tag, $attributes) 
+      {
+          var_dump($parser, $tag, $attributes); 
+      }
+  
+      function cdata($parser, $cdata) 
+      {
+          var_dump($parser, $cdata);
+      }
+  
+      function tag_close($parser, $tag) 
+      {
+          var_dump($parser, $tag);
+      }
+  
+  } // class xml ここまで
+  
+  $xml_parser = new xml();
+  $xml_parser->parse("<A ID='hallo'>PHP</A>");
+?>
+
+
+
+
+
+vim:ft=help:

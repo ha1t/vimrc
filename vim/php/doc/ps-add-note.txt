@@ -1,0 +1,42 @@
+ps_add_note -- 現在のページに注釈を追加する
+
+  bool ps_add_note(resource psdoc, float llx, float lly, float urx, float ury, string contents, string title, string icon, int open)~
+
+ページの特定の位置に注釈を追加します。注釈は、
+テキストが記入された小さな矩形で、ページ上のどこにでも配置できます。
+折りたたんで保持することもでき、折りたたまれていない場合は、
+指定したアイコンがプレースホルダとして使用されます。
+
+ドキュメントを印刷したり表示したりする場合には、
+注釈は見えません。注釈が現れるのは、Acrobat Distiller&trade;
+や Ghostview を用いてドキュメントを PDF
+に変換した場合です。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{llx} 左下角の x 座標。
+
+{lly} 左下角の y 座標。
+
+{urx} 右上角の x 座標。
+
+{ury} 右上角の y 座標。
+
+{contents} 注釈のテキスト。
+
+{title} 注釈のヘッダに表示される、タイトル。
+
+{icon} 注釈が折りたたまれた際に表示されるアイコン。
+comment、insert、 note、paragraph、 newparagraph、key あるいは help
+のいずれかが設定できます。
+
+{open} {open} がゼロでない場合、 PDF
+ビューア上でドキュメントをオープンすると、
+注釈は折りたたまれずに表示されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_add_pdflink| |ps_add_launchlink| |ps_add_locallink| |ps_add_weblink|
+
+vim:ft=help:

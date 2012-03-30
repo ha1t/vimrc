@@ -1,0 +1,16 @@
+ncurses_move_panel -- 左上が [startx, starty]
+となるようにパネルを移動する
+
+  int ncurses_move_panel(resource panel, int startx, int starty)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{panel}
+
+{startx}
+
+{starty}
+
+vim:ft=help:

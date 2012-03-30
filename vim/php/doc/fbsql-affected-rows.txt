@@ -1,0 +1,38 @@
+fbsql_affected_rows -- 直近の FrontBase
+操作により変更されたレコードの数を得る
+
+  int fbsql_affected_rows([resource link_identifier])~
+
+|fbsql_affected_rows| は、 {link_identifier} が指す接続において
+直近の INSERT、UPDATE、DELETE
+クエリで変更されたレコードの数を返します。
+
+トランザクションを使用している場合、コミットの後ではなくINSERT、
+UPDATE、DELETE クエリの後で |fbsql_affected_rows|
+をコールする必要があります。
+
+直近のクエリが WHERE 句のない DELETE
+クエリの場合、全てのレコードが
+テーブルから削除されますが、この関数はゼロを返します。
+
+UPDATE を使用する場合、FrontBase
+は新しい値が古い値と同じ場合には
+カラムを更新しません。このため、 |fbsql_affected_rows|
+は、実際にはマッチした
+行の数と一致しない可能性があり、クエリにより実際に変更された行の
+数だけとなります。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+直近のクエリが失敗した場合、この関数は -1
+を返します。
+
+|fbsql_num_rows|
+
+vim:ft=help:

@@ -1,0 +1,45 @@
+ftp_chmod -- FTP 経由でファイルのパーミッションを設定する
+
+  int ftp_chmod(resource ftp_stream, int mode, string filename)~
+
+指定したリモートファイルのパーミッションを {mode}
+に設定します。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{mode} 新しいパーミッション。8 進数 で指定します。
+
+{filename} リモートファイル。
+
+成功した場合に新しいパーミッションを、エラー時に FALSE
+を返します。
+
+|ftp_chmod| の例
+
+<?php >
+  $file = 'public_html/index.php';
+  
+  // 接続を確立する
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードでログインする
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // $file のパーミッションを 644 に変更する
+  if (ftp_chmod($conn_id, 0644, $file) !== false) {
+   echo "$file chmoded successfully to 644\n";
+  } else {
+   echo "could not chmod $file\n";
+  }
+  
+  // 接続を閉じる
+  ftp_close($conn_id);
+?>
+
+
+
+
+
+|chmod|
+
+vim:ft=help:

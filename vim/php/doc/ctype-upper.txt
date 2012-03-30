@@ -1,0 +1,37 @@
+ctype_upper -- 大文字かどうか調べる
+
+  bool ctype_upper(string text)~
+
+与えられた文字列 {text} のすべての文字が
+大文字であるかどうかを調べます。
+
+{text} 調べる文字列。
+
+{text} のすべての文字がカレントのロケールで
+大文字だった場合に TRUE 、そうでない場合に FALSE
+を返します。
+
+|ctype_upper| の例（デフォルトのロケールを利用）
+
+<?php >
+  $strings = array('AKLWC139', 'LMNSDO', 'akwSKWsm');
+  foreach ($strings as $testcase) {
+      if (ctype_upper($testcase)) {
+          echo "The string $testcase consists of all uppercase letters.\n";
+      } else {
+          echo "The string $testcase does not consist of all uppercase letters.\n";
+      }
+  }
+?>
+
+上の例の出力は以下となります。
+
+  The string AKLWC139 does not consist of all uppercase letters.
+  The string LMNSDO consists of all uppercase letters.
+  The string akwSKWsm does not consist of all uppercase letters.
+
+
+
+|ctype_alpha| |ctype_lower| |setlocale|
+
+vim:ft=help:

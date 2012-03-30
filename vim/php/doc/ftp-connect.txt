@@ -1,0 +1,43 @@
+ftp_connect -- FTP 接続をオープンする
+
+  resource ftp_connect(string host [, int port [, int timeout]])~
+
+|ftp_connect| は、指定した {host} への FTP
+接続をオープンします。
+
+{host} FTP
+サーバのアドレス。このパラメータには、最後のスラッシュや最初の
+ftp:// をつけてはいけません。
+
+{port}
+このパラメータは接続先のポートを指定します。もし指定しなかったり
+ゼロを指定したりした場合は、デフォルトの FTP
+ポートである 21 が用いられます。
+
+{timeout}
+このパラメータは、以降のネットワーク操作時のタイムアウトを指定します。
+指定されなかった場合のデフォルト値は 90
+秒です。タイムアウトの変更や 参照は、|ftp_set_option| や
+|ftp_get_option| を用いていつでも可能です。
+
+成功した場合に FTP ストリームを、エラー時に FALSE
+を返します。
+
+|ftp_connect| の例
+
+<?php >
+  $ftp_server = "ftp.example.com";
+  
+  // 接続を確立します。できなければ終了します。
+  $conn_id = ftp_connect($ftp_server) or die("Couldn't connect to $ftp_server"); 
+?>
+
+
+
+
+
+バージョン 説明 4.2.0 {timeout} が追加されました。
+
+|ftp_close| |ftp_ssl_connect|
+
+vim:ft=help:

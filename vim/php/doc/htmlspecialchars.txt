@@ -1,0 +1,18 @@
+htmlspecialchars -- 特殊文字を HTML エンティティに変換する
+
+  string htmlspecialchars(string string [, int quote_style [, string charset [, bool double_encode]]])~
+
+文字の中には HTML において特殊な意味を持つものがあり、
+それらの本来の値を表示したければ HTML
+の表現形式に変換してやらなければなりません。
+この関数は、これらの変換を行った結果の文字列を返します。
+これは、日常的な Web
+プログラミングにおいて最も有用な変換を行います。
+全ての HTML
+文字エンティティを変換する必要がある場合には、代わりに
+|htmlentities| を使用してください。
+
+この関数は、掲示板やゲストブックなどでユーザが書きこんだテキストから
+HTML のマークアップ用文字を取り除く場合に有用です。
+
+vim:ft=help:

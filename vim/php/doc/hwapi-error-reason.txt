@@ -1,0 +1,9 @@
+hw_api_error->reason -- エラーの原因を返す
+
+  HW_API_Reason reason()~
+
+最初のエラーの原因を返します。
+
+
+
+vim:ft=help:

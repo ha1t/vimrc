@@ -1,0 +1,67 @@
+SwishSearch->setStructure --
+検索オブジェクトの構造フラグを設定する
+
+  void SwishSearch->setStructure(int structure)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{structure} 構造フラグはビットマスクで表され、HTML
+ドキュメントの特定の部分 (title、meta、body など)
+に検索対象を絞り込みます。
+指定できる値の一覧を以下に示します。複数の値を組み合わせるには、
+論理 OR 演算子を使用します。以下に例を示します。
+
+Swish::IN_FILE
+
+Swish::IN_TITLE
+
+Swish::IN_HEAD
+
+Swish::IN_BODY
+
+Swish::IN_COMMENTS
+
+Swish::IN_HEADER
+
+Swish::IN_EMPHASIZED
+
+Swish::IN_META
+
+値を返しません。
+
+基本的な |SwishSearch->setStructure| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $search = $swish->prepare();
+  
+      $results = $search->execute("time");
+      echo "First query found: ", $results->hits, " hits\n";
+  
+      $search->setStructure(Swish::IN_TITLE|Swish::IN_HEAD); // title および head を検索します
+      $results = $search->execute("time");
+      echo "Second query found: ", $results->hits, " hits\n";
+  
+      $search->setStructure(Swish::IN_ALL); // ドキュメント全体を検索します。デフォルト値です
+      $results = $search->execute("time");
+      echo "Third query found: ", $results->hits, " hits\n";
+  
+  } catch (SwishException $e) {
+      echo $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  First query found: 5 hits
+  Second query found: 0 hits
+  Third query found: 5 hits
+
+
+
+vim:ft=help:

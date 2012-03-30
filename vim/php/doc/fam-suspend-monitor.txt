@@ -1,0 +1,21 @@
+fam_suspend_monitor -- 監視を一時的に中断する
+
+  bool fam_suspend_monitor(resource fam, resource fam_monitor)~
+
+|fam_suspend_monitor|
+は、リソースへの監視を一時的に中断します。
+
+監視は、|fam_resume_monitor| により後で再開することができ、
+その際、全く新たに監視を指示する必要はありません。
+
+{fam} |fam_open| が返す、 FAM
+サービスへの接続を表すリソース。
+
+{fam_monitor} fam_monitor_XXX 関数のいずれかが返すリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fam_cancel_monitor| |fam_resume_monitor|
+
+vim:ft=help:

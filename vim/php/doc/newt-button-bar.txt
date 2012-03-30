@@ -1,0 +1,11 @@
+newt_button_bar -- 作成したボタンを含むグリッドを返す
+
+  resource newt_button_bar(array buttons)~
+
+この関数は、作成したボタンを含むグリッドを返します。
+
+{buttons}
+
+作成したボタンを含むグリッドを返します。
+
+vim:ft=help:

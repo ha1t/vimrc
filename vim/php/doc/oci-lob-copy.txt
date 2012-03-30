@@ -1,0 +1,23 @@
+oci_lob_copy -- ラージオブジェクトをコピーする
+
+  bool oci_lob_copy(OCI-Lob lob_to, OCI-Lob lob_from [, int length])~
+
+ラージオブジェクトあるいはラージオブジェクトの一部を
+他のラージオブジェクトにコピーします。 受け取り側の
+LOB の古いデータは上書きされます。
+
+もし LOB の特定部分を LOB
+の特定の位置にコピーする必要がある場合、 |oci_lob_seek|
+を使用して LOB
+の内部ポインタを移動させることができます。
+
+{lob_to} コピー先の LOB。
+
+{lob_from} コピー元の LOB。
+
+{length} コピーされるデータの長さ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

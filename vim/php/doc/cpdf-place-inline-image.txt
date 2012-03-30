@@ -1,0 +1,41 @@
+cpdf_place_inline_image -- 画像をページに置く
+
+  bool cpdf_place_inline_image(int pdf_document, int image, float x_coor, float y_coor, float angle, float width, float height, int gsave [, int mode])~
+
+PHP のイメージ関数で作成された画像を配置します。
+同時に画像の縮小・拡大を行うことができます。
+
+この関数は、PHP が GD グラフィックスライブラリ 1.3
+とともに
+コンパイルされている場合にのみ使用可能です。詳細な情報は
+GD 拡張モジュール のインストール手順を参照ください。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{image} PHP の画像関数で作成した画像。
+
+{x_coor} 画像の x 座標。
+
+{y_coor} 画像の y 座標。
+
+{angle} 画像の回転角。
+
+{width} 画像の幅。
+
+{height} 画像の高さ。
+
+{gsave}
+この関数を正常に動作させるには、非ゼロでなければなりません。
+
+{ mode}オプションのパラメータ {mode}
+は単位長さを定義します。この値が 0
+または値が省略された場合、
+このページで指定されたデフォルト値が使用されます。それ以外の場合、
+現在の単位を無視してポストスクリプトのポイントで座標が計測されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_import_jpeg|
+
+vim:ft=help:

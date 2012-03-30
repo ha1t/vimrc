@@ -1,0 +1,31 @@
+ssh2_sftp -- SFTP サブシステムを初期化する
+
+  resource ssh2_sftp(resource session)~
+
+すでに接続された SSH2 サーバから SFTP
+サブシステムを要求します。
+
+{session} |ssh2_connect| のコールによって取得した SSH
+接続リンク ID。
+
+このメソッドは全ての他の ssh2_sftp_*() や ssh2.sftp:// fopen
+ラッパーで使用する SSH2 SFTP リソースを返します。
+
+SFTP 経由でのファイルのオープン
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  
+  $sftp = ssh2_sftp($connection);
+  
+  $stream = fopen("ssh2.sftp://$sftp/path/to/file", 'r');
+?>
+
+
+
+
+
+|ssh2_scp_recv| |ssh2_scp_send|
+
+vim:ft=help:

@@ -1,0 +1,28 @@
+gnupg_adddecryptkey -- 復号のためのキーを追加する
+
+  bool gnupg_adddecryptkey(resource identifier, string fingerprint, string passphrase)~
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+手続き型の |gnupg_adddecryptkey| の例
+
+<?php >
+  $res = gnupg_init();
+  gnupg_adddecryptkey($res,"8660281B6051D071D94B5B230549F9DC851566DC","test");
+?>
+
+
+
+オブジェクト指向の |gnupg_adddecryptkey| の例
+
+<?php >
+  $gpg = new gnupg();
+  $gpg -> adddecryptkey("8660281B6051D071D94B5B230549F9DC851566DC","test");
+?>
+
+
+
+
+
+vim:ft=help:

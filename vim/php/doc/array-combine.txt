@@ -1,0 +1,46 @@
+array_combine --
+一方の配列をキーとして、もう一方の配列を値として、ひとつの配列を生成する
+
+  array array_combine(array keys, array values)~
+
+{keys} 配列の値をキーとして、また {values}
+配列の値を対応する値として生成した 配列
+を作成します。
+
+{keys}
+キーとして使用する配列。無効な値を渡すと文字列に変換されます。
+
+{values} 値として使用する配列。
+
+作成した配列を返します。
+互いの配列の要素の数が合致しない場合や空の配列である場合に
+FALSE を返します。
+
+{keys} および {values}
+のいずれかが空であったり要素数が一致しなかったりした場合は
+E_WARNING が発生します。
+
+|array_combine|の簡単な例
+
+<?php >
+  $a = array('green', 'red', 'yellow');
+  $b = array('avocado', 'apple', 'banana');
+  $c = array_combine($a, $b);
+  
+  print_r($c);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [green]  => avocado
+      [red]    => apple
+      [yellow] => banana
+  )
+
+
+
+|array_merge| |array_walk| |array_values|
+
+vim:ft=help:

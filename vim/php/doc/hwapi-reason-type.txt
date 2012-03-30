@@ -1,0 +1,9 @@
+hw_api_reason->type -- 原因の型を返す
+
+  HW_API_Reason type()~
+
+原因の型を返します。
+
+HW_API_Reason のインスタンスを返します。
+
+vim:ft=help:

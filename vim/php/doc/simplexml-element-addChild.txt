@@ -1,0 +1,45 @@
+SimpleXMLElement->addChild() -- XML ノードに子要素を追加する
+
+  SimpleXMLElement addChild(string name [, string value [, string namespace]])~
+
+ノードに子要素を追加し、子要素の SimpleXMLElement
+を返します。
+
+{name} 追加する子要素の名前。
+
+{value} 指定されている場合は、子要素の値。
+
+{namespace}
+指定されている場合は、その子要素が所属する名前空間。
+
+addChild メソッドは、 XML ノードに追加した子要素を表す
+SimpleXMLElement オブジェクトを返します。
+
+SimpleXML 要素への属性と子要素の追加
+
+<?php >
+  include 'example.php';
+   
+  $sxe = new SimpleXMLElement($xmlstr);
+  $sxe->addAttribute('type', 'documentary');
+  
+  $movie = $sxe->addChild('movie');
+  $movie->addChild('title', 'PHP2: More Parser Stories');
+  $movie->addChild('plot', 'This is all about the people who make it work.');
+  
+  $characters = $movie->addChild('characters');
+  $character  = $characters->addChild('character');
+  $character->addChild('name', 'Mr. Parser');
+  $character->addChild('actor', 'John Doe');
+  
+  $rating = $movie->addChild('rating', '5');
+  $rating->addAttribute('type', 'stars');
+   
+  echo $sxe->asXML();
+?>
+
+
+
+
+
+vim:ft=help:

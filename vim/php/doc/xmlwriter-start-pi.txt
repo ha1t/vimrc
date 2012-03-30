@@ -1,0 +1,23 @@
+XMLWriter::startPI -- PI (処理命令) の開始タグを作成する
+
+オブジェクト指向型
+
+  bool startPI(string target)~
+
+手続き型
+
+  bool xmlwriter_start_pi(string target, resource xmlwriter, string target)~
+
+処理命令の開始タグを作成します。
+
+{xmlwriter} 手続き型のコールでのみ使用します。
+変更される XMLWriter resource です。
+このリソースは、|xmlwriter_open_uri| あるいは
+|xmlwriter_open_memory| のコールによって取得したものです。
+
+{target} 処理命令の対象。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

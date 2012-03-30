@@ -1,0 +1,15 @@
+ncurses_getyx -- ウィンドウ内の現在のカーソル位置を返す
+
+  void ncurses_getyx(resource window, int y, int x)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{window}
+
+{y}
+
+{x}
+
+vim:ft=help:

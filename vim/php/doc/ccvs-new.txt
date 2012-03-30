@@ -1,0 +1,9 @@
+ccvs_new -- 新規に空のトランザクションを生成する
+
+  string ccvs_new(string session, string invoice)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

@@ -1,0 +1,26 @@
+sin -- 正弦（サイン）
+
+  float sin(float arg)~
+
+|sin| は、{arg} のサインを 返します。{arg}
+はラジアンです。
+
+{arg} ラジアンで表した値。
+
+{arg} のサインを返します。
+
+|sin| の例
+
+<?php >
+  // 結果の精度は、指定によります。
+  echo sin(deg2rad(60));  //  0.866025403 ...
+  echo sin(60);           // -0.304810621 ...
+?>
+
+
+
+
+
+|asin| |sinh| |cos| |tan| |deg2rad|
+
+vim:ft=help:

@@ -1,0 +1,52 @@
+Rar::extract -- アーカイブのエントリを展開する
+
+  bool extract(string dir [, string filepath])~
+
+|Rar::extract| は、エントリのデータを {dir}
+に展開します。指定した {dir}
+に、エントリの名前と同名の新しいファイルを作成します。
+
+{dir} ファイルを展開するディレクトリへのパス。
+
+{filepath} {dir} の代わりに {filepath}
+が指定されている場合は、 |Rar::extract|
+は指定したファイルに エントリのデータを展開します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|Rar::extract| の例
+
+<?php >
+  $rar_file = rar_open('example.rar') or die("Rar アーカイブのオープンに失敗しました");
+  
+  $entry = rar_entry_get($rar_file, 'Dir/file.txt') or die("そのようなエントリは見つかりません");
+  
+  $entry->extract('/dir/to'); // /dir/to/Dir/file.txt を作成します
+  $entry->extract(false, '/dir/to/new_name.txt'); // /dir/to/new_name.txt を作成します
+?>
+
+
+
+アーカイブ内のすべてのファイルを展開する方法
+
+<?php >
+  /* erix こと Erik Jenssen によるサンプルです */
+  
+  $filename = "foobar.rar";
+  $filepath = "/home/foo/bar/";
+  
+  $rar_file = rar_open($filepath.$filename);
+  $list = rar_list($rar_file);
+  foreach($list as $file) {
+      $entry = rar_entry_get($rar_file, $file);
+      $entry->extract("."); // カレントディレクトリに展開します
+  }
+  rar_close($rar_file);
+?>
+
+
+
+
+
+vim:ft=help:

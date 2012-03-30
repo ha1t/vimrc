@@ -1,0 +1,15 @@
+stats_dens_pmf_poisson -- 未ドキュメント化
+
+  float stats_dens_pmf_poisson(float x, float lb)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{x}
+
+{lb}
+
+
+
+vim:ft=help:

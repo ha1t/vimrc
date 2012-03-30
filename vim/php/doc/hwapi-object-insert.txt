@@ -1,0 +1,12 @@
+hw_api_object->insert -- 新しい属性を挿入する
+
+  bool insert(HW_API_Attribute attribute)~
+
+オブジェクトに新しい属性を追加します。
+
+{attribute}
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

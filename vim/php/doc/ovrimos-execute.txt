@@ -1,0 +1,19 @@
+ovrimos_execute -- 準備された SQL 命令を実行する
+
+  bool ovrimos_execute(int result_id [, array parameters_array])~
+
+プリペアドステートメントを実行します。
+
+{result_id} |ovrimos_prepare| が返す Ovrimos 結果 ID。
+
+{parameters_array}
+プリペアドステートメントにパラメータが含まれる
+(文の中に クエスチョンマークがある) 場合に、
+正しい数のパラメータを配列で渡します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ovrimos_prepare|
+
+vim:ft=help:

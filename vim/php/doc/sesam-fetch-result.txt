@@ -1,0 +1,42 @@
+sesam_fetch_result -- クエリ結果の全てあるいは一部を返す
+
+  mixed sesam_fetch_result(string result_id [, int max_rows])~
+
+結果を取得します。オプションで、行数を {max_rows}
+に制限します。
+
+{result_id} |sesam_query| が返す結果 ID。
+
+{max_rows}
+大きなクエリで使用されるメモリの最大値は、巨大なものになる可能性が
+あることに注意してください。結果が利用可能な全メモリを消費しない
+ことが確実である場合以外は、返されるレコード数の最大値を制限する
+ために {max_rows} パラメータを使用してください。
+
+クエリ結果のエントリを種々の型の配列として返します。オプションで
+最大レコード数を {max_rows} に制限することが
+可能です。レコード番号およびカラム番号は共に 0
+から始まることに 注意してください。 |sesam_fetch_result|
+により返された種々の結果集合 配列要素 定数 int
+$arr["count"] 結果集合のカラム数 ("即時型"クエリの場合に 0)
+int $arr["rows"] 結果集合のレコード数 (0 と {max_rows} の間) bool
+$arr["truncated"] レコード数が {max_rows} 以上の場合に
+TRUE、そうでない場合に FALSE。これが TRUE
+の場合でも、結果エントリがもうないために次の
+|sesam_fetch_result| はレコードを返さない
+可能性があります。 mixed $arr[col][row] レコード (row) および
+カラム (col) にある全てのフィールドの 結果データ
+(整数のレコード番号 row は 0 から $arr["rows"]-1
+の間であり、 col は 0 から $arr["count"]-1
+の間です)。フィールドは
+空である可能性があり、このため、PHP の |isset|
+関数を使用してフィールドが
+存在するかどうか確認する必要があります。返されるフィールドの型は、
+そのカラムの SQL 型宣言 (適用される変換については SESAM
+概要参照) に依存します。 SESAM "複数フィールド" は
+"インライン" であり、カラムの番号と
+同様に処理されます。
+
+|sesam_fetch_array| |sesam_fetch_row| |sesam_query|
+
+vim:ft=help:

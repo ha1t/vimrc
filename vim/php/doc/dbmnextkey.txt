@@ -1,0 +1,32 @@
+dbmnextkey --
+
+  string dbmnextkey(resource dbm_identifier, string key)~
+
+{key} の次のキーを返します。
+
+{ dbm_identifier}|dbmopen| が返す DBM リンク識別子。
+
+{key} 前のキー。
+
+次のキーが存在すれば、それを返します。
+
+|dbmfirstkey| をコールし、引き続き |dbmnextkey|
+をコールすれば、 dbm データベース上のすべてのキー/値
+の組み合わせを取り出すことができます。たとえば、以下のようにします。
+DBM データベース上のすべての キー/値 ペアの取得
+
+<?php >
+  $key = dbmfirstkey($dbm_id);
+  while ($key) {
+      echo "$key = " . dbmfetch($dbm_id, $key) . "\n";
+      $key = dbmnextkey($dbm_id, $key);
+  }
+?>
+
+
+
+
+
+|dbmfirstkey|
+
+vim:ft=help:

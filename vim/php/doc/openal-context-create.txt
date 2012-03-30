@@ -1,0 +1,13 @@
+openal_context_create -- 音声処理コンテキストを作成する
+
+  resource openal_context_create(resource device)~
+
+Open AL (デバイス) リソース (事前に |openal_device_open|
+で作成したもの)。
+
+成功した場合に Open AL (コンテキスト) リソース、
+失敗した場合に FALSE を返します。
+
+|openal_device_open| |openal_context_destroy|
+
+vim:ft=help:

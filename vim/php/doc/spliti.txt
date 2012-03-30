@@ -1,0 +1,61 @@
+spliti --
+大文字小文字を区別しない正規表現により文字列を分割し、配列に格納する
+
+  array spliti(string pattern, string string [, int limit])~
+
+{string} を、正規表現によって配列に分割します。
+
+この関数は、アルファベット文字にマッチさせる際に大文字小文字を
+区別しないこと以外は、|split| と同じです。
+
+{pattern} 大文字小文字を区別しない正規表現。
+
+正規表現で特殊文字とみなされる文字を分割したい場合、それらを
+まずエスケープする必要があります。|spliti|
+(または他の正規表現関数に関して)の動作が何か変であると感じたならば、
+PHP 配布ファイルの regex/ サブディレクトリにあるファイル
+regex.7 を読んでください。このファイルは man
+ページ形式となっており、読むには man
+/usr/local/src/regex/regex.7 のようにします。
+
+{string} 入力文字列。
+
+{limit} {limit} が指定された場合、返される配列には 最大
+{limit} の要素が含まれます。この場合、 最後の要素には
+{string} の残りの部分が全て 入っています。
+
+文字列の配列を返します。配列の各要素は、大文字小文字を区別する正規表現
+{pattern} により区切られた {string} 中の部分文字列です。
+
+{pattern} が n 回 現れる場合、返される配列には、 n+1
+個のアイテムが 含まれます。例えば、{pattern}
+が現れない場合、 1
+個の要素のみを有する配列が返されます。もちろん、これは
+{string} が空の場合でも有効です。
+エラーを生じた場合、|spliti| は FALSE を返します。
+
+この例では 'a' を区切り文字として文字列を分割します。
+|spliti| の例
+
+<?php >
+  $string = "aBBBaCCCADDDaEEEaGGGA";
+  $chunks = spliti ("a", $string, 5);
+  print_r($chunks);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+    [0] =>
+    [1] => BBB
+    [2] => CCC
+    [3] => DDD
+    [4] => EEEaGGGA
+  )
+
+
+
+|preg_split| |split| |explode| |implode|
+
+vim:ft=help:

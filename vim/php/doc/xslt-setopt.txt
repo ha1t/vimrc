@@ -1,0 +1,49 @@
+xslt_setopt -- 与えられた xsl
+プロセッサにオプションを設定する
+
+  mixed xslt_setopt(resource processor, int newmask)~
+
+|xslt_setopt| は、与えられた {processor} に {newmask}
+で指定されるオプションを設定します。
+
+{processor} |xslt_create| で作成した XSLT プロセッサリンク ID。
+
+{newmask} {newmask}
+は次の定数で定義されたビットマスクです。
+XSLT_SABOPT_PARSE_PUBLIC_ENTITIES -
+プロセッサにパブリックなエンティティをパースするよう伝える。
+デフォルトはオフ。
+
+XSLT_SABOPT_DISABLE_ADDING_META - HTML 出力にメタタグ "Content-Type"
+を出力しない。
+デフォルトはプロセッサのコンパイル時に設定される。
+
+XSLT_SABOPT_DISABLE_STRIPPING - Suppress the whitespace stripping (on data
+files only).
+
+XSLT_SABOPT_IGNORE_DOC_NOT_FOUND - 空白の除去を抑制する
+(データファイルの場合のみ) 。
+
+以前の設定値が取得できた場合はその値、それ以外の場合は
+TRUE を返します。エラーが発生した場合は FALSE
+を返します。
+
+|xslt_setopt| の例
+
+<?php >
+  $xh = xslt_create();
+  
+  // Sablotron にパブリックなエンティティを処理するよう伝える
+  xslt_setopt($xh, XSLT_SABOPT_PARSE_PUBLIC_ENTITIES);
+  
+  // 空白の除去もしてくれるよう問い合わせてみる
+  xslt_setopt($xh, xslt_getopt($xh) | XSLT_SABOPT_DISABLE_STRIPPING);
+?>
+
+
+
+
+
+|xslt_getopt|
+
+vim:ft=help:

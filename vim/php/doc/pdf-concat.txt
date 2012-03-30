@@ -1,0 +1,9 @@
+PDF_concat -- 行列を CTM に追加する
+
+  bool PDF_concat(resource p, float a, float b, float c, float d, float e, float f)~
+
+行列を現在の変換行列 (Current Transformation Matrix: CTM)
+に追加します。成功した場合に TRUE を、失敗した場合に
+FALSE を返します。
+
+vim:ft=help:

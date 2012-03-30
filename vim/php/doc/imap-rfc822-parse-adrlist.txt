@@ -1,0 +1,61 @@
+imap_rfc822_parse_adrlist -- アドレス文字列を解釈します
+
+  array imap_rfc822_parse_adrlist(string address, string default_host)~
+
+RFC2822 の定義に基づき、アドレス文字列をパースします。
+
+{address} アドレスを含む文字列。
+
+{default_host} デフォルトのホスト名。
+
+オブジェクトの配列を返します。オブジェクトのプロパティは以下のとおりです。
+
+mailbox - メールボックス名（ユーザ名）。
+
+host - ホスト名。
+
+personal - 個人名。
+
+adl - ドメインソースルート。
+
+|imap_rfc822_parse_adrlist| の例
+
+<?php >
+  $address_string = "Joe Doe <doe@example.com>, postmaster@example.com, root";
+  $address_array  = imap_rfc822_parse_adrlist($address_string, "example.com");
+  if (!is_array($address_array) || count($address_array) < 1) {
+      die("something is wrong\n");
+  }
+  
+  foreach ($address_array as $id => $val) {
+      echo "# $id\n";
+      echo "  mailbox : " . $val->mailbox . "\n";
+      echo "  host    : " . $val->host . "\n";
+      echo "  personal: " . $val->personal . "\n";
+      echo "  adl     : " . $val->adl . "\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  # 0
+    mailbox : doe
+    host    : example.com
+    personal: Joe Doe
+    adl     : 
+  # 1
+    mailbox : postmaster
+    host    : example.com
+    personal: 
+    adl     : 
+  # 2
+    mailbox : root
+    host    : example.com
+    personal: 
+    adl     :
+
+
+
+|imap_rfc822_parse_headers|
+
+vim:ft=help:

@@ -1,0 +1,21 @@
+newt_entry --
+
+  resource newt_entry(int left, int top, int width [, string init_value [, int flags]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{left}
+
+{top}
+
+{width}
+
+{init_value}
+
+{flags}
+
+
+
+vim:ft=help:

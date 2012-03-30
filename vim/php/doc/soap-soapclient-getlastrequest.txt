@@ -1,0 +1,22 @@
+SoapClient->__getLastRequest() -- 直近の SOAP リクエストを返す
+
+  string __getLastRequest()~
+
+このメソッドは、オプション trace を指定して SoapClient
+が作成されている場合のみ使用可能です。
+
+直近の SOAP リクエスト
+
+SoapClient->__getLastRequest() の例
+
+<?php >
+  $client = SoapClient("some.wsdl", array('trace' => 1));
+  $result = $client->SomeFunction();
+  echo "REQUEST:\n" . $client->__getLastRequest() . "\n";
+?>
+
+
+
+
+
+vim:ft=help:

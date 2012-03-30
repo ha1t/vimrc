@@ -1,0 +1,47 @@
+is_uploaded_file -- HTTP POST
+でアップロードされたファイルかどうかを調べる
+
+  bool is_uploaded_file(string filename)~
+
+filename という名前のファイルが HTTP POST
+によりアップロードされたものである場合に TRUE
+を返します。
+悪意のあるユーザがスクリプトをだまして、
+本来見られてはいけないはずのファイル (/etc/passwd など)
+にアクセスすることを防止したい場合に、この関数は有用です。
+
+この種の確認は、アップロードされたファイルに関して何でもできる場合には、
+その内容をユーザ、または同じシステム上の他のユーザにさえ
+暴かれる可能性があるため、特に重要です。
+
+適切に動作させるため、関数 |is_uploaded_file| は
+$_FILES['userfile']['tmp_name'] のような引数を必要とします。
+アップロードされたファイルのクライアントマシン上での名前
+$_FILES['userfile']['name'] では動作しません。
+
+{filename} 調べたいファイル名。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|is_uploaded_file| の例
+
+<?php >
+  if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
+     echo "ファイル ". $_FILES['userfile']['name'] ." のアップロードに成功しました。\n";
+     echo "その中身を表示します\n";
+     readfile($_FILES['userfile']['tmp_name']);
+  } else {
+     echo "おそらく何らかの攻撃を受けました。";
+     echo "ファイル名 '". $_FILES['userfile']['tmp_name'] . "'.";
+  }
+?>
+
+
+
+
+
+|move_uploaded_file| 簡単な使用例については
+ファイルアップロードの処理
+
+vim:ft=help:

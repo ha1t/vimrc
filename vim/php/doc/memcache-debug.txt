@@ -1,0 +1,21 @@
+memcache_debug -- デバッグ出力のオン/オフを切り替える
+
+  bool memcache_debug(bool on_off)~
+
+|memcache_debug| は、パラメータ {on_off} が TRUE
+の場合にデバッグ出力を有効にし、 FALSE
+の場合には無効にします。 |memcache_debug| は、PHP が
+--enable-debug
+オプションをつけてビルドされている場合にのみ使用可能で、
+この場合は常に TRUE
+を返します。そうでない場合は、この関数は
+何も行わずに常に FALSE を返します。
+
+{on_off} TRUE にすると、デバッグ出力をオンにします。 FALSE
+にすると、デバッグ出力をオフにします。
+
+PHP が --enable-debug
+オプションをつけてビルドされている場合に
+TRUE、それ以外の場合に FALSE を返します。
+
+vim:ft=help:

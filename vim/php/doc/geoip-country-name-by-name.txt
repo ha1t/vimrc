@@ -1,0 +1,33 @@
+geoip_country_name_by_name -- 完全な国名を取得する
+
+  string geoip_country_name_by_name(string hostname)~
+
+|geoip_country_name_by_name| 関数は、 ホスト名あるいは IP
+アドレスに対応する完全な国名を返します。
+
+{hostname} 場所を探す対象となるホスト名あるいは IP
+アドレス。
+
+成功した場合には国名、
+アドレスがデータベースで見つからない場合には FALSE
+を返します。
+
+|geoip_country_name_by_name| の例 これは、ホスト example.com
+がどこにあるのかを表示します。
+
+<?php >
+  $country = geoip_country_name_by_name('www.example.com');
+  if ($country) {
+      echo 'This host is located in: ' . $country;
+  }
+?>
+
+上の例の出力は以下となります。
+
+  This host is located in: United States
+
+
+
+|geoip_country_code_by_name| |geoip_country_code3_by_name|
+
+vim:ft=help:

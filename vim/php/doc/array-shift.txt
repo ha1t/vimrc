@@ -1,0 +1,44 @@
+array_shift -- 配列の先頭から要素を一つ取り出す
+
+  mixed array_shift(array array)~
+
+|array_shift| は、{array}
+の最初の値を取り出して返します。配列 {array}
+は、要素一つ分だけ短くなり、全ての要素は前にずれます。
+数値添字の配列のキーはゼロから順に新たに振りなおされますが、
+リテラルのキーはそのままになります。
+
+この関数は、 配列 (array)
+ポインタを使用した後にリセット (|reset|) します。
+
+{array} 入力の配列。
+
+取り出した値を返します。{array}
+が空の場合や配列でない場合は NULL を返します。
+
+|array_shift| の例
+
+<?php >
+  $stack = array("orange", "banana", "apple", "raspberry");
+  $fruit = array_shift($stack);
+  print_r($stack);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => banana
+      [1] => apple
+      [2] => raspberry
+  )
+
+そして、$fruit には orange が代入されます。
+
+
+
+
+
+|array_unshift| |array_push| |array_pop|
+
+vim:ft=help:

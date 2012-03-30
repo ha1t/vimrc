@@ -1,0 +1,21 @@
+dbplus_getlock -- タプルの書き込みロックを取得する
+
+  int dbplus_getlock(resource relation, string tuple)~
+
+指定した {tuple} へ書き込みロックを要求します。
+
+{relation} |dbplus_open| でオープンしたリレーション。
+
+{tuple}
+
+成功時にゼロ、失敗時にゼロでないコード、特に
+DBPLUS_ERR_WLOCKED を返します。
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+|dbplus_freelock| |dbplus_freerlocks| |dbplus_freealllocks|
+
+vim:ft=help:

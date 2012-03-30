@@ -1,0 +1,9 @@
+PDF_clip -- 現在のパスに切り取る
+
+  bool PDF_clip(resource p)~
+
+現在のパスをクリッピングパスとして使用し、パスを終了します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

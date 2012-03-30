@@ -1,0 +1,45 @@
+imap_setflag_full -- メッセージにフラグをセットする
+
+  bool imap_setflag_full(resource imap_stream, string sequence, string flag [, int options])~
+
+この関数は、指定した {sequence} のメッセージの
+フラグに指定した {flag} を設定し、保存します。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+{sequence} メッセージ番号のシーケンス。 X,Y
+形式でメッセージを列挙したり、 X:Y
+形式で範囲内のすべてのメッセージを指定したりすることができます。
+
+{flag} 設定可能なフラグは、(RFC2060 で定義された) \\Seen、
+\\Answered、\\Flagged、 \\Deleted および \\Draft です。
+
+{options} {options}
+はビットマスクであり、以下の組み合わせとなります。
+ST_UID - シーケンス引数はシーケンス番号の代わりに UID
+を含みます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imap_setflag_full| の例
+
+<?php >
+  $mbox = imap_open("{imap.example.org:143}", "username", "password")
+       or die("接続できません: " . imap_last_error());
+  
+  $status = imap_setflag_full($mbox, "2,5", "\\Seen \\Flagged");
+  
+  echo gettype($status) . "\n";
+  echo $status . "\n";
+  
+  imap_close($mbox);
+?>
+
+
+
+
+
+|imap_clearflag_full|
+
+vim:ft=help:

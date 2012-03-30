@@ -1,0 +1,27 @@
+mhash_count -- 利用可能なハッシュ ID の最大値を得る
+
+  int mhash_count()~
+
+利用可能なハッシュ ID の最大値を取得します。
+
+利用可能なハッシュ ID の最大値を返します。
+ハッシュは、0 からこのハッシュ ID
+までの数字となります。
+
+全ハッシュをループする
+
+<?php >
+  $nr = mhash_count();
+  
+  for ($i = 0; $i <= $nr; $i++) {
+      echo sprintf("The blocksize of %s is %d\n",
+          mhash_get_hash_name($i),
+          mhash_get_block_size($i));
+  }
+?>
+
+
+
+
+
+vim:ft=help:

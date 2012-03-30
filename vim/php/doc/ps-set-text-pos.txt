@@ -1,0 +1,56 @@
+ps_set_text_pos -- テキストの出力位置を設定する
+
+  bool ps_set_text_pos(resource psdoc, float x, float y)~
+
+テキストを出力する位置を設定します。別の方法として、x
+と y の値を別々に |ps_set_value|
+で設定することもできます。
+この場合の設定項目は、それぞれ textx と texty
+となります。
+
+テキストを所定の位置に出力したいのなら、テキストの位置を指定してから
+|ps_show| をコールするよりも、 |ps_show_xy|
+を使用するほうが便利です。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{x} 新しいテキスト位置の x 座標。
+
+{y} 新しいテキスト位置の y 座標。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+指定した位置にテキストを配置する
+
+<?php >
+  $ps = ps_new();
+  if (!ps_open_file($ps, "text.ps")) {
+    print "PostScript ファイルをオープンできません\n";
+    exit;
+  }
+  
+  ps_set_info($ps, "Creator", "rectangle.php");
+  ps_set_info($ps, "Author", "Uwe Steinmann");
+  ps_set_info($ps, "Title", "Text placement example");
+  
+  ps_begin_page($ps, 596, 842);
+  $psfont = ps_findfont($ps, "Helvetica", "", 0);
+  ps_setfont($ps, $psfont, 8.0);
+  ps_show_xy($ps, "Some text at (100, 100)", 100, 100);
+  
+  ps_set_value($ps, "textx", 100);
+  ps_set_value($ps, "texty", 120);
+  ps_show($ps, "Some text at (100, 120)");
+  ps_end_page($ps);
+  
+  ps_delete($ps);
+?>
+
+
+
+
+
+|ps_set_value| |ps_show|
+
+vim:ft=help:

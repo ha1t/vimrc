@@ -1,0 +1,16 @@
+shm_detach -- 共有メモリセグメントへの接続を閉じる
+
+  bool shm_detach(int shm_identifier)~
+
+|shm_detach| は、 |shm_attach| で作成され、 指定した
+{shm_identifier} を有する共有メモリへの接続を閉じます。
+共有メモリは、まだ Unix システム上に存在しており、
+データはまだ存在するということを覚えておいてください。
+
+{shm_identifier}
+
+|shm_detach| は、常に TRUE を返します。
+
+|shm_attach| |shm_remove| |shm_remove_var|
+
+vim:ft=help:

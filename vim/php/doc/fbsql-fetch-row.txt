@@ -1,0 +1,22 @@
+fbsql_fetch_row -- 数値配列として結果レコードを得る
+
+  array fbsql_fetch_row(resource result)~
+
+|fbsql_fetch_row| は、指定した結果 ID に
+関連付けられた結果から、1 行分のデータを取得します。
+
+|fbsql_fetch_row| を続けてコールすると、
+結果セットの次の行を返します。行がもうない場合には
+FALSE を返します。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+取得した行は配列として返されます。各カラムは、配列の
+0 からはじまる
+オフセットに格納されます。行がもうない場合には FALSE
+を返します。
+
+|fbsql_fetch_array| |fbsql_fetch_assoc| |fbsql_fetch_object| |fbsql_data_seek|
+|fbsql_fetch_lengths| |fbsql_result|
+
+vim:ft=help:

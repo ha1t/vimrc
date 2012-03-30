@@ -1,0 +1,62 @@
+ftp_fget -- FTP
+サーバからファイルをダウンロードし、オープン中のファイルに保存する
+
+  bool ftp_fget(resource ftp_stream, resource handle, string remote_file, int mode [, int resumepos])~
+
+|ftp_fget| は、FTP サーバから {remote_file}
+を取得し、指定したファイルポインタ {fp}
+に書きこみます。
+
+{ftp_stream} FTP 接続のリンク ID 。
+
+{handle}
+オープンされているファイルのポインタ。ここにデータが保存されます。
+
+{remote_file} リモートファイルのパス。
+
+{mode} 転送モード。FTP_ASCII または FTP_BINARY
+のどちらかを指定する必要があります。
+
+{resumepos}
+リモートファイル中で、ダウンロードを開始する位置。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ftp_fget| の例
+
+<?php >
+  // リモートファイルへのパス。
+  $remote_file = 'somefile.txt';
+  $local_file = 'localfile.txt';
+  
+  // 書き込み用のファイルをオープンします。
+  $handle = fopen($local_file, 'w');
+  
+  // 接続を確立します。
+  $conn_id = ftp_connect($ftp_server);
+  
+  // ユーザ名とパスワードを指定してログインします。
+  $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+  
+  // $remote_file をダウンロードし、$handle に保存しようとします。
+  if (ftp_fget($conn_id, $handle, $remote_file, FTP_ASCII, 0)) {
+   echo "$local_file への書き込みに成功しました\n";
+  } else {
+   echo "$remote_file を $local_file にダウンロードする際に問題が発生しました\n";
+  }
+  
+  // 接続およびファイルハンドラを閉じます。
+  ftp_close($conn_id);
+  fclose($handle);
+?>
+
+
+
+
+
+バージョン 説明 4.3.0 {resumepos} が追加されました。
+
+|ftp_get| |ftp_nb_get| |ftp_nb_fget|
+
+vim:ft=help:

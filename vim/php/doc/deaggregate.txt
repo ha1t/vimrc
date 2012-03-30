@@ -1,0 +1,21 @@
+deaggregate --
+集約されたメソッドやプロパティをオブジェクトから取り除く
+
+  void deaggregate(object object [, string class_name])~
+
+オブジェクトに集約されたクラスのメソッドやプロパティを取り除きます。
+
+{object}
+
+{class_name} オプションのパラメータ {class_name}
+が指定された場合は
+そのクラスで定義されているメソッドやプロパティのみが削除され、
+それ以外の場合は集約されたすべてのメソッドやプロパティが削除されます。
+
+値を返しません。
+
+|aggregate| |aggregate_methods| |aggregate_methods_by_list|
+|aggregate_methods_by_regexp| |aggregate_properties|
+|aggregate_properties_by_list| |aggregate_properties_by_regexp| |deaggregate|
+
+vim:ft=help:

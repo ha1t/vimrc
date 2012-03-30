@@ -1,0 +1,20 @@
+tidy_save_config --
+現在の設定を名前が付けられたファイルに保存する
+
+  bool tidy_save_config(string filename)~
+
+現在の設定を指定したファイルに保存します。
+デフォルトではない値だけが書き込まれます。
+
+{filename} 設定ファイルへのパス。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、Tidy 1.0 でのみ利用可能です。
+この関数は、Tidy 2.0
+では古い関数として削除されているためです。
+
+|tidy_get_config| |tidy_getopt| |tidy_reset_config| |tidy_setopt|
+
+vim:ft=help:

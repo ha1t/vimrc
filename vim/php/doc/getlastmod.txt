@@ -1,0 +1,28 @@
+getlastmod -- 最終更新時刻を取得する
+
+  int getlastmod()~
+
+現在のページの最終更新時刻を取得します。
+
+別のファイルの最終更新時刻が知りたい場合は、 |filemtime|
+を使用してください。
+
+現在のページの最終更新時刻を返します。 この値は Unix
+のタイムスタンプで、そのまま |date
+|に渡す事ができます。エラーの場合は FALSE を返します。
+
+|getlastmod| の例
+
+<?php >
+  // たとえば、'最終更新時刻：March 04 1998 20:43:59.' を出力します
+  echo "最終更新時刻: " . date ("F d Y H:i:s.", getlastmod());
+?>
+
+
+
+
+
+|date| |getmyuid| |getmygid| |get_current_user| |getmyinode| |getmypid|
+|filemtime|
+
+vim:ft=help:

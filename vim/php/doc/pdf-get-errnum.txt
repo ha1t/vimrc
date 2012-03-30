@@ -1,0 +1,7 @@
+PDF_get_errnum -- エラー番号を取得する
+
+  int PDF_get_errnum(resource pdfdoc)~
+
+直近で発生した例外の番号や、失敗した関数コールの理由を表す番号を取得します。
+
+vim:ft=help:

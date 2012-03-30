@@ -1,0 +1,34 @@
+gethostbynamel --
+指定したインターネットホスト名に対応するIPアドレスのリストを取得する
+
+  array gethostbynamel(string hostname)~
+
+{hostname}
+で指定したインターネットホストを検索して得られた IP
+アドレスのリストを返します。
+
+{hostname} ホスト名。
+
+IP アドレスの配列を返します。 もし {hostname}
+が解決できなかった場合は FALSE を返します。
+
+|gethostbynamel| の例
+
+<?php >
+  $hosts = gethostbynamel('www.example.com');
+  print_r($hosts);
+?>
+
+上の例の出力は以下となります。
+
+  Array
+  (
+      [0] => 192.0.34.166
+  )
+
+
+
+|gethostbyname| |gethostbyaddr| |checkdnsrr| |getmxrr| the named(8) manual
+page
+
+vim:ft=help:

@@ -1,0 +1,13 @@
+hw_api->dstofsrcanchor -- ソースアンカーの対象を返す
+
+  hw_api_object dstofsrcanchor(array parameter)~
+
+指定したソースアンカーが指す対象オブジェクトを取得します。
+対象オブジェクトは、対象アンカーあるいは文書全体となります。
+
+{parameter} パラメータ配列には、必須要素 'objectIdentifier'
+およびオプションの要素 'attributeSelector' が含まれます。
+
+
+
+vim:ft=help:

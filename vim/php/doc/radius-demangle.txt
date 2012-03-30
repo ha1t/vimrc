@@ -1,0 +1,13 @@
+radius_demangle -- データを復元する
+
+  string radius_demangle(resource radius_handle, string mangled)~
+
+セキュリティ上の理由により、(パスワード、MS-CHAPv1 MPPE
+キーなど)
+いくつかのデータは変形されます。それを使用する際には事前に復元する
+必要があります。
+
+復元した文字列、あるいはエラー時には FALSE
+を返します。
+
+vim:ft=help:

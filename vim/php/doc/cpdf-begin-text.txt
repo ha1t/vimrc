@@ -1,0 +1,30 @@
+cpdf_begin_text -- テキストセクションを開始する
+
+  bool cpdf_begin_text(int pdf_document)~
+
+テキストセクションを開始します。
+
+テキストセクションは、|cpdf_end_text|
+で終了する必要があります。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+テキスト出力
+
+<?php >
+  cpdf_begin_text($pdf);
+  cpdf_set_font($pdf, 16, "Helvetica", "WinAnsiEncoding");
+  cpdf_text($pdf, 100, 100, "Some text");
+  cpdf_end_text($pdf)
+?>
+
+
+
+
+
+|cpdf_end_text|
+
+vim:ft=help:

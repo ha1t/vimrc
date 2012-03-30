@@ -1,0 +1,68 @@
+maxdb->errno -- 直近の関数コールのエラーコードを返す
+
+手続き型
+
+  int maxdb_errno(resource link)~
+
+オブジェクト指向型 (プロパティ)
+
+|maxdb_errno| 関数は、{link}
+で指定したデータベースリンクに関して、直近の MaxDB
+関数コールのエラーコードを返します。
+エラーが発生しなかった場合は、この関数はゼロを返します。
+
+直近のコールのエラーコードの値を返します。
+ゼロの場合は、エラーが発生しなかったことを意味します。
+
+オブジェクト指向型
+
+<?php >
+  $maxdb = new maxdb("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if (!$maxdb->query("SELECT xxx FROM hotel.city")) {
+     printf("エラーコード: %d\n", $maxdb->errno);
+  }
+  
+  /* 接続を閉じます */
+  $maxdb->close();
+?>
+
+
+
+手続き型
+
+<?php >
+  $link = maxdb_connect("localhost", "MONA", "RED", "DEMODB");
+  
+  /* 接続を調べます */
+  if (maxdb_connect_errno()) {
+     printf("接続に失敗しました: %s\n", maxdb_connect_error());
+     exit();
+  }
+  
+  if (!maxdb_query($link, "SELECT xxx FROM hotel.city")) {
+     printf("エラーコード: %d\n", maxdb_errno($link));
+  }
+  
+  /* 接続を閉じます */
+  maxdb_close($link);
+?>
+
+
+
+上の例の出力は、たとえば以下のようになります。
+
+
+
+  PHP Warning:  maxdb_query(): -4005 POS(8) Unknown column name:XXX [42000] <...>
+  エラーコード: -4005
+
+|maxdb_connect_errno| |maxdb_connect_error| |maxdb_error| |maxdb_sqlstate|
+
+vim:ft=help:

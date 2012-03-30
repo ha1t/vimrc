@@ -1,0 +1,143 @@
+mysql_connect -- MySQL サーバへの接続をオープンする
+
+  resource mysql_connect([string server [, string username [, string password [, bool new_link [, int client_flags]]]]])~
+
+MySQL サーバへの接続をオープンあるいは再利用します。
+
+{server} MySQL サーバ。"hostname:port" のようにポート番号を
+指定することが可能で、localhost では ":/path/to/socket"
+のようにソケットへのパスを指定することも可能です。
+
+PHP ディレクティブ mysql.default_host
+が指定されない場合（デフォルト）、 'localhost:3306'
+が使用されます。 SQL セーフモード
+の場合はこのパラメータは無視され、常に 'localhost:3306'
+が用いられます。
+
+{username} ユーザ名。デフォルト値は mysql.default_user
+で定義されている値です。SQL セーフモード
+の場合はこのパラメータは無視され、
+サーバプロセスの所有ユーザ名が用いられます。
+
+{password} パスワード。デフォルト値は mysql.default_password
+で定義されている値です。SQL セーフモード
+の場合はこのパラメータは無視され、
+空のパスワードが用いられます。
+
+{new_link} 同じ引数で 2 回 |mysql_connect| をコールした場合、 2
+回目は新規のリンクが確立されるのではなく、代わりにすでにオープンされた
+リンクのリンク ID が返されます。 パラメータ {new_link}
+はこの動作を変更し、既に |mysql_connect|
+が同じパラメータでコールされて
+いる場合でも常に新規のリンクがオープンされるようにします。
+SQL セーフモード
+の場合はこのパラメータは無視されます。
+
+{client_flags} パラメータ {client_flags} は、
+以下の定数の組み合わせです： 128 (LOAD DATA LOCAL
+の処理を有効にする)、 MYSQL_CLIENT_SSL、 MYSQL_CLIENT_COMPRESS、
+MYSQL_CLIENT_IGNORE_SPACE または MYSQL_CLIENT_INTERACTIVE。
+詳細な情報については を参照ください。 SQL セーフモード
+の場合はこのパラメータは無視されます。
+
+成功した場合に MySQL リンク ID を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.3.0 パラメータ {client_flags}
+が追加されました。 4.2.0 パラメータ {new_link}
+が追加されました。 3.0.10 {server} に、":/path/to/socket"
+のサポートが追加されました。 3.0.0 {server} に、":port"
+のサポートが追加されました。
+
+|mysql_connect| の例
+
+<?php >
+  $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('接続できませんでした: ' . mysql_error());
+  }
+  echo '接続に成功しました';
+  mysql_close($link);
+?>
+
+
+
+
+
+|mysql_connect| で hostname:port 構文を使用する例
+
+<?php >
+  // example.com のポート 3307 に接続します
+  $link = mysql_connect('example.com:3307', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('接続できませんでした: ' . mysql_error());
+  }
+  echo '接続に成功しました';
+  mysql_close($link);
+  
+  // localhost のポート 3307 に接続します
+  $link = mysql_connect('127.0.0.1:3307', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('接続できませんでした: ' . mysql_error());
+  }
+  echo '接続に成功しました';
+  mysql_close($link);
+?>
+
+
+
+
+
+|mysql_connect| で ":/path/to/socket" 構文を使用する例
+
+<?php >
+  // localhost のソケット（例: /tmp/mysql.sock）に接続します
+  
+  // 方法 1: localhost を省略する
+  $link = mysql_connect('/tmp/mysql', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('接続できませんでした: ' . mysql_error());
+  }
+  echo '接続に成功しました';
+  mysql_close($link);
+  
+  
+  // 方法 2: localhost を指定する
+  $link = mysql_connect('localhost:/tmp/mysql.sock', 'mysql_user', 'mysql_password');
+  if (!$link) {
+      die('接続できませんでした: ' . mysql_error());
+  }
+  echo '接続に成功しました';
+  mysql_close($link);
+?>
+
+
+
+
+
+サーバ名に "localhost" や "localhost:port" を指定した場合、MySQL
+クライアントライブラリはそれをオーバーライドし、
+ローカルソケット（Windows
+では名前つきパイプ）に接続しようとします。 TCP/IP
+を用いたい場合は、"localhost" のかわりに "127.0.0.1"
+を用いてください。もし MySQL クライアントライブラリが
+間違ったローカルソケットへ接続しようとしている場合、これを修正するには
+PHP 設定の に正しいパスを
+指定したうえでサーバ名を空白にしておくべきです。
+
+サーバへのリンクは、|mysql_close| のコールにより
+明示的に閉じられない限り、スクリプトの実行終了と同時に閉じられます。
+
+関数名の前に @ を付けることで
+接続に失敗した場合のエラーメッセージを出力しないようにできます。
+
+エラー "Can't create TCP/IP socket (10106)"
+が発生するのは、たいていは variables_order
+設定ディレクティブに E が含まれていない場合です。
+Windows では、これが含まれていなければ SYSTEMROOT
+環境変数が使用できず、PHP が Winsock
+の読み込みに失敗します。
+
+|mysql_pconnect| |mysql_close|
+
+vim:ft=help:

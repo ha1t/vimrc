@@ -1,0 +1,15 @@
+ps_clip -- 現在のパスを描画範囲として指定する
+
+  bool ps_clip(resource psdoc)~
+
+現在のパスを、描画範囲の境界として定義します。
+この領域の外に描画された内容は、見えなくなります。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_closepath|
+
+vim:ft=help:

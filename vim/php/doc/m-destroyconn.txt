@@ -1,0 +1,13 @@
+m_destroyconn -- 接続および MCVE_CONN 構造体を破壊する
+
+  bool m_destroyconn(resource conn)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+TRUE を返します。
+
+vim:ft=help:

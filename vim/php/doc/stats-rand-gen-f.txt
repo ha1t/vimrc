@@ -1,0 +1,14 @@
+stats_rand_gen_f -- 無作為な値を返す
+
+  float stats_rand_gen_f(float dfn, float dfd)~
+
+分子の自由度が "dfn"、分母の自由度が "dfd" の F (分散比)
+分布から、無作為な値を返します。カイ二乗の変量の比を直接生成します。
+
+{dfn}
+
+{dfd}
+
+
+
+vim:ft=help:

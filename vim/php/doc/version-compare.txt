@@ -1,0 +1,11 @@
+version_compare -- ふたつの "PHP 標準"
+バージョン番号文字列を比較する
+
+  mixed version_compare(string version1, string version2 [, string operator])~
+
+|version_compare|は、ふたつの "PHP 標準" バージョン
+番号文字列を比較します。この関数は、いくつかのバージョンの
+PHP でのみ
+動作するプログラムを書きたい場合に有用です。
+
+vim:ft=help:

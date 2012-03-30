@@ -1,0 +1,5 @@
+msql_createdb -- msql_create_db のエイリアス
+
+この関数は次の関数のエイリアスです。 |msql_create_db|
+
+vim:ft=help:

@@ -1,0 +1,79 @@
+mysql_fetch_object -- 結果の行をオブジェクトとして取得する
+
+  object mysql_fetch_object(resource result [, string class_name [, array params]])~
+
+取得された行を表すプロパティを有するオブジェクトを返し、
+内部のデータポインタを前に進めます。
+
+{ result}評価された結果 リソース。 この結果は、|mysql_query|
+のコールにより得られたものです。
+
+{class_name}
+インスタンス化し、プロパティを設定して返すクラスの名前。
+指定しなかった場合は stdClass
+オブジェクトが返されます。
+
+{params} {class_name} オブジェクトのコンストラクタに渡す
+オプションのパラメータの配列。
+
+取得された行を表す文字列プロパティを有するオブジェクト(object)を返します。
+もう行が残っていない場合は、FALSE を返します。
+
+バージョン 説明 5.0.0
+さまざまな型のオブジェクトで結果を返せるようになりました。
+
+|mysql_fetch_object| の例
+
+<?php >
+  mysql_connect("hostname", "user", "password");
+  mysql_select_db("mydb");
+  $result = mysql_query("select * from mytable");
+  while ($row = mysql_fetch_object($result)) {
+      echo $row->user_id;
+      echo $row->fullname;
+  }
+  mysql_free_result($result);
+?>
+
+
+
+
+
+|mysql_fetch_object| の例
+
+<?php >
+  class foo {
+      public $name;
+  }
+  
+  mysql_connect("hostname", "user", "password");
+  mysql_select_db("mydb");
+  
+  $result = mysql_query("select name from mytable limit 1");
+  $obj = mysql_fetch_object($result, 'foo');
+  var_dump($obj);
+
+
+
+
+
+速度面では、この関数は |mysql_fetch_array| と同等で、
+|mysql_fetch_row| とほぼ同等です(違いはわずかです)。
+
+|mysql_fetch_object|は、配列の代わりに
+オブジェクトが返されるという一つの違いを除いて
+|mysql_fetch_array|と類似しています。
+つまり、オフセットによってではなく、フィールド名によってのみ
+データにアクセスすることができます
+(数字は、プロパティ名として使用できません)。
+
+この関数により返されるフィー ルド名は
+大文字小文字を区別 します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+|mysql_fetch_array| |mysql_fetch_assoc| |mysql_fetch_row| |mysql_data_seek|
+|mysql_query|
+
+vim:ft=help:

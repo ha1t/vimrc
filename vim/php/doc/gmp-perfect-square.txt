@@ -1,0 +1,37 @@
+gmp_perfect_square -- 平方数かどうかを調べる
+
+  bool gmp_perfect_square(resource a)~
+
+その数が平方数であるかどうかを調べます。
+
+{a} 平方数かどうかを調べたい数。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+{a} が平方数の場合に TRUE、その他の場合に FALSE
+を返します。
+
+|gmp_perfect_square| の例
+
+<?php >
+  // 3 * 3、平方数です
+  var_dump(gmp_perfect_square("9"));
+  
+  // 平方数ではありません
+  var_dump(gmp_perfect_square("7"));
+  
+  // 1234567890 * 1234567890、平方数です
+  var_dump(gmp_perfect_square("1524157875019052100"));
+?>
+
+上の例の出力は以下となります。
+
+  bool(true)
+  bool(false)
+  bool(true)
+
+
+
+|gmp_sqrt| |gmp_sqrtrem|
+
+vim:ft=help:

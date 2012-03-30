@@ -1,0 +1,61 @@
+get_class_vars -- クラスのデフォルトプロパティを取得する
+
+  array get_class_vars(string class_name)~
+
+指定したクラスのデフォルトプロパティを取得します。
+
+{class_name} クラス名。
+
+クラスのデフォルト public
+プロパティを有する連想配列を返します。
+返される配列要素は、{変数名 => 値} の形式となります。
+
+バージョン 説明 4.2.0 より前
+初期化されていないクラス変数は、 |get_class_vars|
+で返されません。
+
+|get_class_vars| の例
+
+<?php >
+  class myclass {
+  
+      var $var1; // この変数にはデフォルト値がありません...
+      var $var2 = "xyz";
+      var $var3 = 100;
+      private $var4; // PHP 5
+  
+      // コンストラクタ
+      function myclass() {
+          // いくつかのプロパティを変更する
+          $this->var1 = "foo";
+          $this->var2 = "bar";
+          return true;
+      }
+  
+  }
+  
+  $my_class = new myclass();
+  
+  $class_vars = get_class_vars(get_class($my_class));
+  
+  foreach ($class_vars as $name => $value) {
+      echo "$name : $value\n";
+  }
+?>
+
+上の例の出力は以下となります。
+
+  // PHP 4.2.0 未満
+  var2 : xyz
+  var3 : 100
+  
+  // PHP 4.2.0 以降
+  var1 :
+  var2 : xyz
+  var3 : 100
+
+
+
+|get_class_methods| |get_object_vars|
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+maxdb_server_init -- 埋め込みサーバを初期化する
+
+  bool maxdb_server_init([array server [, array groups]])~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+vim:ft=help:

@@ -1,0 +1,41 @@
+bzdecompress -- bzip2 形式のデータを解凍する
+
+  mixed bzdecompress(string source [, int small])~
+
+|bzdecompress| は、bzip2
+形式のデータを含む文字列を解凍します。
+
+{source} 解凍する文字列
+
+{small} TRUE の場合、よりメモリの消 費量が少ない
+(所要メモリは最大2300K程度まで少なくなります)
+別の圧縮アルゴリズムが使用されますが、速度は約半分になってしまいます。
+
+この機能に関する詳細については、bzip2 ドキュメント
+を参照ください。
+
+解凍された文字列列、もしくはエラー時はエラー数
+
+文字列を解凍する
+
+<?php >
+  $start_str = "This is not an honest face?";
+  $bzstr = bzcompress($start_str);
+  
+  echo "Compressed String: ";
+  echo $bzstr;
+  echo "\n<br />\n";
+  
+  $str = bzdecompress($bzstr);
+  echo "Decompressed String: ";
+  echo $str;
+  echo "\n<br />\n";
+?>
+
+
+
+
+
+|bzcompress|
+
+vim:ft=help:

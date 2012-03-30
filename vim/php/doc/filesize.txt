@@ -1,0 +1,44 @@
+filesize -- ファイルのサイズを取得する
+
+  int filesize(string filename)~
+
+指定したファイルのサイズを取得します。
+
+{filename} ファイルへのパス。
+
+ファイルのサイズを返し、エラーの場合は FALSE
+を返します (また E_WARNING レベルのエラーを発生させます)
+。
+
+PHP の数値型は符号付整数であり、
+多くのプラットフォームでは 32
+ビットの整数を取るため、 |filesize| は 2GB
+より大きなファイルについては期待とは違う値を返すことがあります。
+2GB から 4GB のサイズのファイルについては sprintf("%u",
+filesize($file)) を使うことで打開されます。
+
+|filesize| の例
+
+<?php >
+  // 出力例 somefile.txt: 1024 bytes
+  
+  $filename = 'somefile.txt';
+  echo $filename . ': ' . filesize($filename) . ' bytes';
+?>
+
+
+
+
+
+この関数の結果は
+キャッシュされます。詳細は、|clearstatcache|
+を参照してください。
+
+PHP 5.0.0 以降、この関数は、 何らかの URL
+ラッパーと組合せて使用することができます。
+どのラッパーが |stat| ファミリーをサポートしているか
+のリストについては、 を参照してください。
+
+|file_exists|
+
+vim:ft=help:

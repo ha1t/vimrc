@@ -1,0 +1,16 @@
+tidy_get_release -- Tidy ライブラリのリリース日 (バージョン)
+を取得する
+
+手続き言語型スタイル:
+
+  string tidy_get_release()~
+
+オブジェクト指向言語型スタイル:
+
+  string tidy->getRelease()~
+
+Tidy ライブラリのリリース日を取得します。
+
+Tidy ライブラリのリリース日を文字列で返します。
+
+vim:ft=help:

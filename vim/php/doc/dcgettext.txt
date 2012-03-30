@@ -1,0 +1,17 @@
+dcgettext -- 単一の参照に関するドメインを上書きする
+
+  string dcgettext(string domain, string message, int category)~
+
+この関数により単一の参照についてカレントのドメインを上書きすることができます。
+
+{domain} ドメイン。
+
+{message} メッセージ。
+
+{category} カテゴリ。
+
+成功した場合に文字列を返します。
+
+|gettext|
+
+vim:ft=help:

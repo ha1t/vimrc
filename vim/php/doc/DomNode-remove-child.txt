@@ -1,0 +1,38 @@
+DomNode->remove_child --
+子ノードのリストから子ノードを削除する
+
+  domtext DomNode->remove_child(domtext oldchild)~
+
+この関数は、子ノードのリストから子ノードを削除します。
+もし子ノードが削除できなかった、もしくは子ノードではない場合、この関数は
+FALSE を返します。子ノードが削除できた場合、
+この関数は古い子ノードを返します。
+
+子ノードを削除する
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+    echo "Error while parsing the document\n";
+    exit;
+  }
+  
+  $elements = $dom->get_elements_by_tagname("tbody");
+  $element = $elements[0];
+  $children = $element->child_nodes();
+  $child = $element->remove_child($children[0]);
+  
+  echo "<PRE>";
+  $xmlfile = $dom->dump_mem(true);
+  echo htmlentities($xmlfile);
+  echo "</PRE>";
+?>
+
+
+
+
+
+|domnode_append_child| も参照ください。
+
+vim:ft=help:

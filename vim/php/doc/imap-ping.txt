@@ -1,0 +1,30 @@
+imap_ping -- IMAP ストリームがアクティブかどうかを調べる
+
+  bool imap_ping(resource imap_stream)~
+
+|imap_ping| はストリームに ping を行い、
+まだアクティブであるかどうかを調べます。これにより新しいメールの到着を知ることもあります。
+これは、定期的に「メールのチェック」を行い、サーバとの
+「接続を保持し続ける」ためのお勧めの方法です。
+
+{ imap_stream}|imap_open| が返す IMAP ストリーム。
+
+ストリームがまだ有効であれば TRUE を、そうでなければ
+FALSE を返します。
+
+|imap_ping| の例
+
+<?php >
+  $imap = imap_open("{imap.example.org}", "mailadmin", "password");
+  
+  // しばらく休んだ後
+  if (!imap_ping($imap)) {
+      // 再接続の処理
+  }
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,42 @@
+stream_copy_to_stream --
+データをあるストリームから別のストリームにコピーする
+
+  int stream_copy_to_stream(resource source, resource dest [, int maxlength [, int offset]])~
+
+現在の位置（あるいはもし指定されていれば {offset}
+の位置）から最大 {maxlength} バイトのデータを {source} から
+{dest} にコピーします。もし {maxlength} が指定されていない
+場合は、{source} にある残りすべてのデータが
+コピーされます。
+
+{source} コピー元のストリーム。
+
+{dest} コピー先のストリーム。
+
+{maxlength} コピーする最大バイト数。
+
+{offset} コピーを開始する位置。
+
+コピーされたバイト数を返します。
+
+バージョン 説明 5.1.0 {offset}
+パラメータが追加されました。
+
+|stream_copy_to_stream| の例
+
+<?php >
+  $src = fopen('http://www.example.com', 'r');
+  $dest1 = fopen('first1k.txt', 'w');
+  $dest2 = fopen('remainder.txt', 'w');
+  
+  echo stream_copy_to_stream($src, $dest1, 1024) . " バイトが first1k.txt にコピーされました\n";
+  echo stream_copy_to_stream($src, $dest2) . " バイトが remainder.txt にコピーされました\n";
+?>
+
+
+
+
+
+|copy|
+
+vim:ft=help:

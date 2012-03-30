@@ -1,0 +1,12 @@
+newt_clear_key_buffer --
+追加の入力を待たずに、端末の入力バッファの内容をクリアする
+
+  void newt_clear_key_buffer()~
+
+追加の入力を待たずに、端末の入力バッファの内容をクリアします。
+
+値を返しません。
+
+|newt_wait_for_key|
+
+vim:ft=help:

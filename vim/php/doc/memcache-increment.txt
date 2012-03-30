@@ -1,0 +1,44 @@
+Memcache::increment -- 項目の値を増やす
+
+  int Memcache::increment(string key [, int value])~
+
+|Memcache::increment| は、項目の値を {value} だけ増やします。
+もし {key} に対応する値が数値ではなく、かつ
+数値に変換できなかった場合は、その新しい値は {value}
+となります。 |Memcache::increment| は、指定した項目が
+存在しない場合に項目を作成することは ありません。
+圧縮して格納されている項目に対して |Memcache::increment|
+を使用しないでください。 なぜなら、それ以降の
+|Memcache::get| のコールが 失敗してしまうからです。
+
+|memcache_increment| 関数を使用することも可能です。
+
+{key} 値を増やす項目のキー。
+
+{value} 項目の値を {value} だけ増やします。
+オプションのパラメータで、デフォルト値は 1 です。
+
+項目の新しい値か、失敗した場合には FALSE を返します。
+
+|Memcache::increment| の例
+
+<?php >
+  /* 手続き型の API */
+  $memcache_obj = memcache_connect('memcache_host', 11211);
+  /* カウンタを 2 増やします */
+  $current_value = memcache_increment($memcache_obj, 'counter', 2);
+  
+  /* オブジェクト指向の API */
+  $memcache_obj = new Memcache;
+  $memcache_obj->connect('memcache_host', 11211);
+  /* カウンタを 3 増やします */
+  $current_value = $memcache_obj->increment('counter', 3);
+?>
+
+
+
+
+
+|Memcache::decrement| |Memcache::replace|
+
+vim:ft=help:

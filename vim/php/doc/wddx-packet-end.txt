@@ -1,0 +1,12 @@
+wddx_packet_end -- 指定した ID の WDDX パケットを終了する
+
+  string wddx_packet_end(resource packet_id)~
+
+指定した WDDX パケットを終了し、
+パケットを含む文字列を返します。
+
+{packet_id} |wddx_packet_start| が返す WDDX パケット。
+
+WDDX パケットを含む文字列を返します。
+
+vim:ft=help:

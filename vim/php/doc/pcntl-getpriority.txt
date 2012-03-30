@@ -1,0 +1,29 @@
+pcntl_getpriority -- プロセスの優先度を取得する
+
+  int pcntl_getpriority([int pid [, int process_identifier]])~
+
+|pcntl_getpriority| は、{pid}
+の優先度を設定します。システムの型やカーネルの
+バージョンによって優先度の扱いは違うので、詳細についてはシステムの
+getpriority(2) の man ページを参照ください。
+
+{pid} 指定しなかった場合は、現在のプロセスの PID
+を使用します。
+
+{process_identifier} PRIO_PGRP、PRIO_USER あるいは PRIO_PROCESS
+のいずれか。
+
+|pcntl_getpriority| はプロセスの優先度を返します。
+エラー時には FALSE
+を返します。数字が小さいほど、優先順位は上となります。
+
+この関数は論理値 FALSE を返す可能性がありますが、FALSE
+として評価される 0 や ""
+といった値を返す可能性もあります。 詳細については
+論理値の
+セクションを参照してください。この関数の返り値を調べるには
+===演算子 を 使用してください。
+
+|pcntl_setpriority|
+
+vim:ft=help:

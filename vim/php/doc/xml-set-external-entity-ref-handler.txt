@@ -1,0 +1,52 @@
+xml_set_external_entity_ref_handler --
+外部エンティティリファレンスハンドラを設定する
+
+  bool xml_set_external_entity_ref_handler(resource parser, callback handler)~
+
+XML パーサ {parser}
+の外部エンティティ参照用ハンドラ関数を設定します。
+
+{parser}
+
+{handler} {handler} は、 {parser} に関して |xml_parse|
+がコールされた際に必要な関数の名前を有する文字列です。
+
+  bool (resource parser, callback handler, resource parser, string open_entity_names, string base, string system_id, string public_id)~
+
+{handler} という名前の関数は 5 つのパラメータをとり、
+整数値を返す必要があります。ハンドラから返された値が
+FALSE の場合 (これは値が返されない場合に相当します)、XML
+パーサは処理を中断し、 |xml_get_error_code| は
+XML_ERROR_EXTERNAL_ENTITY_HANDLING を返します。 {parser}
+最初のパラメータ、parser は ハンドラをコールする XML
+パーサへのリファレンスです。
+
+{open_entity_names} 2 番目のパラメータ、{open_entity_names} は、
+エンティティの処理を行うためにオープンされたエンティティの
+名前のスペース区切りのリストです
+(参照されるエンティティの名前を含みます)。
+
+{base} これは外部エンティティのシステム ID ({systemid})
+を有しています。
+現在このパラメータは常に空の文字列に設定されています。
+
+{system_id} 4 番目のパラメータ、{systemId} は
+エンティティ宣言で指定されたシステム ID です。
+
+{public_id} 5 番目のパラメータ {publicId}
+は、エンティティ宣言で 指定されたパブリック ID
+または指定されない場合は空の 文字列です。パブリック
+ID の中の空白文字は、XML 仕様で規定された
+正規化を行っています。
+
+ハンドラ関数が空の文字列あるいは FALSE
+に設定されている場合、
+そのハンドラは無効となります。
+
+関数名の代わりに、オブジェクトへの
+リファレンスを格納した配列とメソッド名を指定することもできます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

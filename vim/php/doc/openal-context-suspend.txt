@@ -1,0 +1,14 @@
+openal_context_suspend --
+指定したコンテキストをサスペンドする
+
+  bool openal_context_suspend(resource context)~
+
+Open AL (コンテキスト) リソース (事前に |openal_context_create|
+で作成したもの)。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|openal_context_create| |openal_context_current| |openal_context_process|
+
+vim:ft=help:

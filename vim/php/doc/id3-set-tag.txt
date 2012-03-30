@@ -1,0 +1,56 @@
+id3_set_tag -- ID3 タグに格納されている情報を更新する
+
+  bool id3_set_tag(string filename, array tag [, int version])~
+
+|id3_set_tag| は、ID3 タグに格納されている情報を
+変更するために使用されます。タグが存在しない場合は、新たに追加されます。
+
+{filename} MP3 ファイルへのパス。
+
+ファイル名のかわりに、ストリームリソースを渡すことも可能です。
+
+{tag} タグのキーと値を含む連想配列。
+
+連想配列の中で使用できるキーは以下のようになります。
+
+連想配列内のキー キー とりうる値 使用可能なバージョン
+title 最大 30 文字までの文字列 v1.0, v1.1 artist 最大 30
+文字までの文字列 v1.0, v1.1 album 最大 30 文字までの文字列
+v1.0, v1.1 year 4 桁の数値 v1.0, v1.1 genre 0 から 147
+までの整数値 v1.0, v1.1 comment 最大 30 文字 (v1.1 では 28 文字)
+までの文字列 v1.0, v1.1 track 0 から 255 までの整数値 v1.1
+
+{version} MP3 ファイルにはバージョン 1.x および 2.x
+のタグを両方含められるので、
+ここでタグのバージョンを指定します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|id3_set_tag| の例
+
+<?php >
+  $data = array(
+                "title" => "Re:Start",
+                "artist" => "Re:\Legion",
+                "comment" => "A nice track"
+               );
+  $result = id3_set_tag( "path/to/example.mp3", $data, ID3_V1_0 );
+  if ($result === true) {
+      echo "タグが正常に更新されました\n";
+  }
+?>
+
+ファイルが書き込み可能な場合、
+この例の出力は次のようになります。
+
+  タグが正常に更新されました
+
+
+
+現時点では |id3_set_tag| がサポートしているのは
+バージョン 1.0 および 1.1 のみです。
+
+|id3_remove_tag| |id3_get_tag| |id3_get_version|
+
+vim:ft=help:

@@ -1,0 +1,9 @@
+PDF_add_nameddest -- 移動先を作成する
+
+  bool PDF_add_nameddest(resource pdfdoc, string name, string optlist)~
+
+現在のドキュメントの任意のページに移動先を作成します。
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

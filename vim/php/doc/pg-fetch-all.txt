@@ -1,0 +1,47 @@
+pg_fetch_all -- 取得されたすべての行を配列として取得する
+
+  array pg_fetch_all(resource result)~
+
+|pg_fetch_all|は、結果リソースのすべての行
+（レコード）を保持する配列を返します。
+
+この関数は、 NULL フィールドに PHPの NULL
+値を設定します。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+結果のすべての行を含む配列を返します。それぞれの行は、フィールド名を
+添字とするフィールド値の配列です。
+
+結果の行数が 0
+だった場合、あるいはその他のエラーが発生した場合に
+FALSE を返します。
+
+PostgreSQL fetch all
+
+<?php >
+  $conn = pg_pconnect("dbname=publisher");
+  if (!$conn) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  $result = pg_query($conn, "SELECT * FROM authors");
+  if (!$result) {
+    echo "An error occured.\n";
+    exit;
+  }
+  
+  $arr = pg_fetch_all($result);
+  
+  var_dump($arr);
+?>
+
+
+
+
+
+|pg_fetch_row| |pg_fetch_array| |pg_fetch_object| |pg_fetch_result|
+
+vim:ft=help:

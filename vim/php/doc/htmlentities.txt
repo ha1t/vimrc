@@ -1,0 +1,62 @@
+htmlentities -- 適用可能な文字を全て HTML
+エンティティに変換する
+
+  string htmlentities(string string [, int quote_style [, string charset [, bool double_encode]]])~
+
+この関数は|htmlspecialchars|と同じですが、 HTML
+エンティティと等価な意味を有する文字をHTMLエンティティに変換します。
+
+もしデコード (逆の処理) をしたい場合、 |html_entity_decode|
+を使用することができます。
+
+{string} 入力文字列。
+
+{quote_style} |htmlspecialchars| と同様に、シングルまたは
+ダブルクオートに関する動作を示すオプションの第2の引数をとります。
+これは 3 つの定数のうちの一つとなり、 デフォルトは
+ENT_COMPAT です。 利用可能な {quote_style} 定数 定数名 説明
+ENT_COMPAT ダブルクオートのみを変換し、
+シングルクオートをそのままにします ENT_QUOTES
+ダブルおよびシングルクオートを共に変換します
+ENT_NOQUOTES
+ダブルクオートおよびシングルクオートを共に変換しません
+
+{charset}
+|htmlspecialchars|と同様に、この関数はオプションの3番目の引数
+{charset}
+をとり、変換に使用される文字セットを指定可能です。
+現在のところ、ISO-8859-1
+文字セットがデフォルトの文字エンコーディングとして使用されます。
+
+&reference.strings.charsets; {double_encode} {double_encode}
+をオフにすると、PHP は既存の html
+エンティティをエンコードしません。
+デフォルトでは、既存のエンティティも含めてすべてを変換します。
+
+エンコードした文字列を返します。
+
+バージョン 説明 5.2.3 {double_encode}
+パラメータが追加されました。 4.1.0 {charset}
+パラメータが追加されました。 4.0.3 {quote_style}
+パラメータが追加されました。
+
+|htmlentities| の例
+
+<?php >
+  $str = "A 'quote' is <b>bold</b>";
+  
+  // 出力: A 'quote' is <b>bold</b>
+  echo htmlentities($str);
+  
+  // 出力: A &amp;#039;quote&amp;#039; is <b>bold</b>
+  echo htmlentities($str, ENT_QUOTES);
+?>
+
+
+
+
+
+|html_entity_decode| |get_html_translation_table| |htmlspecialchars| |nl2br|
+|urlencode|
+
+vim:ft=help:

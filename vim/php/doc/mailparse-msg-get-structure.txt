@@ -1,0 +1,12 @@
+mailparse_msg_get_structure -- 指定したメッセージ内の MIME
+セクション名の配列を返す
+
+  array mailparse_msg_get_structure(resource mimemail)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{mimemail} 有効な MIME リソース。
+
+vim:ft=help:

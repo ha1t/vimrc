@@ -1,0 +1,17 @@
+m_getheader -- カンマ区切りの応答から、カラム名を取得する
+
+  string m_getheader(resource conn, int identifier, int column_num)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{identifier}
+
+{column_num}
+
+
+
+vim:ft=help:

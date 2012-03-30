@@ -1,0 +1,19 @@
+openal_stream -- ソースのストリーム再生を開始する
+
+  resource openal_stream(resource source, int format, int rate)~
+
+Open AL (ソース) リソース (事前に |openal_source_create|
+で作成したもの)。
+
+{data} のフォーマット。 AL_FORMAT_MONO8、 AL_FORMAT_MONO16、
+AL_FORMAT_STEREO8 そして AL_FORMAT_STEREO16 のいずれか。
+
+データをストリームに流す際の周波数を Hz
+単位で指定します。
+
+成功した場合にストリームリソース、失敗した場合に FALSE
+を返します。
+
+|openal_source_create| |fwrite|
+
+vim:ft=help:

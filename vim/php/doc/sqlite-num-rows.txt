@@ -1,0 +1,48 @@
+sqlite_num_rows -- 結果セットのレコード数を返す
+
+  int sqlite_num_rows(resource result)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  int numRows(resource result)~
+
+バッファされた結果セット {result}
+のレコード数を返します。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+この関数は、
+バッファなしの結果ハンドルで使用することはできません。
+
+手続き型言語スタイルでの例
+
+<?php >
+  $db = sqlite_open('mysqlitedb');
+  $result = sqlite_query($db, "SELECT * FROM mytable WHERE name='John Doe'");
+  $rows = sqlite_num_rows($result);
+  
+  echo "Number of rows: $rows";
+?>
+
+
+
+
+
+オブジェクト指向言語型スタイルでの例
+
+<?php >
+  $db = new SQLiteDatabase('mysqlitedb');
+  $result = $db->query("SELECT * FROM mytable WHERE name='John Doe'");
+  $rows = $result->numRows();
+  
+  echo "Number of rows: $rows";
+?>
+
+
+
+
+
+|sqlite_changes| |sqlite_query| |sqlite_num_fields|
+
+vim:ft=help:

@@ -1,0 +1,50 @@
+imagesetpixel -- 点を生成する
+
+  bool imagesetpixel(resource image, int x, int y, int color)~
+
+|imagesetpixel| は、指定した座標にピクセルを描画します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{x} x 座標。
+
+{y} y 座標。
+
+{color} |imagecolorallocate| で作成した色 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|imagesetpixel| の例 A random drawing that ends with a regular picture.
+
+<?php >
+  $x = 200;
+  $y = 200;
+  
+  $gd = imagecreatetruecolor($x, $y);
+   
+  $corners[0] = array('x' => 100, 'y' =>  10);
+  $corners[1] = array('x' =>   0, 'y' => 190);
+  $corners[2] = array('x' => 200, 'y' => 190);
+  
+  $red = imagecolorallocate($gd, 255, 0, 0); 
+  
+  for ($i = 0; $i < 100000; $i++) {
+    imagesetpixel($gd, round($x),round($y), $red);
+    $a = rand(0, 2);
+    $x = ($x + $corners[$a]['x']) / 2;
+    $y = ($y + $corners[$a]['y']) / 2;
+  }
+   
+  header('Content-Type: image/png');
+  imagepng($gd);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+
+
+|imagecreatetruecolor| |imagecolorallocate|
+
+vim:ft=help:

@@ -1,0 +1,36 @@
+dbase_pack -- データベースを圧縮する
+
+  bool dbase_pack(int dbase_identifier)~
+
+|dbase_delete_record| を使用して削除マークがつけられた
+レコードを完全に削除することで、指定したデータベースを圧縮します。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+dBase データベースを空にする
+
+<?php >
+  // read-write モードでオープンする
+  $db = dbase_open('/tmp/test.dbf', 2);
+  
+  if ($db) {
+    $record_numbers = dbase_numrecords($db);
+    for ($i = 1; $i <= $record_numbers; $i++) {
+        dbase_delete_record($db, $i);
+    }
+    // データベースを消す
+    dbase_pack($db);
+  }
+?>
+
+
+
+
+
+|dbase_delete_record|
+
+vim:ft=help:

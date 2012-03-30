@@ -1,0 +1,28 @@
+str_shuffle -- 文字列をランダムにシャッフルする
+
+  string str_shuffle(string str)~
+
+|str_shuffle| は文字列をシャッフルします。
+考えられるすべての順列のうちのひとつを作成します。
+
+{str} 入力文字列。
+
+Returns the shuffled string.
+
+|str_shuffle| の例
+
+<?php >
+  $str = 'abcdef';
+  $shuffled = str_shuffle($str);
+  
+  // bfdaec のような文字列を返します
+  echo $shuffled;
+?>
+
+
+
+
+
+|shuffle| |rand|
+
+vim:ft=help:

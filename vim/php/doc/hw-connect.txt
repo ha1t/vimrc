@@ -1,0 +1,24 @@
+hw_Connect -- 接続をオープンする
+
+  int hw_connect(string host, int port [, string username, string password])~
+
+Hyperwave サーバへの接続をオープンします。
+複数の接続を一度にオープンすることができます。
+
+{host} サーバのホスト名。
+
+{port} サーバのポート番号。
+
+{username} Hyperwave
+のユーザ名。省略した場合はサーバによるユーザ識別を行いません。
+これは、匿名ユーザとして識別されるのと同じことです。
+
+{password} {username} のパスワード。
+パスワードは暗号化されないことを覚えておきましょう。
+
+成功した場合に接続インデックス、
+接続できなかった場合に FALSE を返します。
+
+|hw_pconnect|
+
+vim:ft=help:

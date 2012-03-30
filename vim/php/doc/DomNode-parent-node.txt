@@ -1,0 +1,29 @@
+DomNode->parent_node -- 親ノードを返す
+
+  domnode DomNode->parent_node()~
+
+この関数は親ノードを返します。
+
+(PHP >= 4.3 のみ) 親ノードが存在しない場合、NULL
+が返されます。
+
+以下の例は 2 つの等しい子ノードリストを作成します。
+ノードの文章を検出する
+
+<?php >
+  $doc = domxml_new_doc("1.0");
+  $node = $doc->create_element("para");
+  $node = $doc->append_child($node);
+  $children = $doc->children();
+  print_r($children);
+  
+  $doc2 = $node->parent_node();
+  $children = $doc2->children();
+  print_r($children);
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+ps_save -- 現在のコンテキストを保存する
+
+  bool ps_save(resource psdoc)~
+
+現在の描画コンテキストを保存します。
+そこには色や変換・回転その他の情報が含まれています。保存されたコンテキストは
+|ps_restore| で復元できます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_restore|
+
+vim:ft=help:

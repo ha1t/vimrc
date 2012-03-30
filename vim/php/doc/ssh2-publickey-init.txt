@@ -1,0 +1,28 @@
+ssh2_publickey_init -- 公開鍵サブシステムを初期化する
+
+  resource ssh2_publickey_init(resource session)~
+
+すでに接続している SSH2
+サーバから、公開鍵サブシステムを要求します。
+
+公開鍵サブシステムを使用すると、
+すでに接続・認証済みのクライアントが、
+対象のサーバに保存されている認証済み公開鍵の一覧を管理できるようになります。
+管理方法は、サーバの実装に依存しません。
+リモートサーバが公開鍵サブシステムをサポートしていない場合、
+|ssh2_publickey_init| 関数は FALSE を返します。
+
+{session}
+
+他のすべての ssh2_publickey_*() メソッドで使用する、 SSH2
+公開鍵サブシステムリソースを返します。
+失敗した場合は FALSE を返します。
+
+この公開鍵サブシステムは、クライアントが認証 済 の
+公開鍵をサーバ上で管理するために使用されます。
+公開鍵認証によりリモートシステムで認証を行うには、かわりに
+|ssh2_auth_pubkey_file| 関数を使用してください。
+
+|ssh2_publickey_add| |ssh2_publickey_remove| |ssh2_publickey_list|
+
+vim:ft=help:

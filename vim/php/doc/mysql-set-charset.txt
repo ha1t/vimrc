@@ -1,0 +1,22 @@
+mysql_set_charset -- クライアントの文字セットを設定する
+
+  bool mysql_set_charset(string charset [, resource link_identifier])~
+
+現在の接続における、デフォルトの文字セットを設定します。
+
+{charset} 有効な文字セット名。
+
+{ link_identifier}MySQL 接続。 指定されない場合、|mysql_connect|
+により直近にオープンされたリンクが
+指定されたと仮定されます。そのようなリンクがない場合、引数を指定せずに
+|mysql_connect|
+がコールした時と同様にリンクを確立します。
+リンクが見付からない、または、確立できない場合、
+E_WARNING レベルのエラーが生成されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、MySQL 5.0.7 以降でないと使用できません。
+
+vim:ft=help:

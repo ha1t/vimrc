@@ -1,0 +1,17 @@
+m_setssl -- SSL での接続方法を設定する
+
+  int m_setssl(resource conn, string host, int port)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{ conn}|m_initengine| が返す MCVE_CONN リソース。
+
+{host}
+
+{port}
+
+
+
+vim:ft=help:

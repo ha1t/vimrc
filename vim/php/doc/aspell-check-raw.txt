@@ -1,0 +1,35 @@
+aspell_check_raw --
+大文字小文字の変更や削除を行うことなく、単語のチェックを行う
+[非推奨]
+
+  bool aspell_check_raw(int dictionary_link, string word)~
+
+|aspell_check_raw| は単語のスペルをチェックします。
+大文字小文字変換や空白の削除は行いません。
+
+{dictionary_link} |aspell_new| が返す辞書リンク識別子。
+
+{word} 調べる単語。
+
+スペルが正しい場合に TRUE、正しくない場合に FALSE
+を返します。
+
+|aspell_check_raw| の例
+
+<?php >
+  $aspell_link = aspell_new("english");
+  
+  if (aspell_check_raw($aspell_link, "test")) {
+      echo "正しいスペルです";
+  } else {
+      echo "スペルが間違っています";
+  }
+?>
+
+
+
+
+
+|aspell_check|
+
+vim:ft=help:

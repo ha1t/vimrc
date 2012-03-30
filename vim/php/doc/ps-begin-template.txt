@@ -1,0 +1,62 @@
+ps_begin_template -- 新しいテンプレートを開始する
+
+  int ps_begin_template(resource psdoc, float width, float height)~
+
+新しいテンプレートを開始します。テンプレートは、postscript
+言語からコールされます。パターンと似ていますが、画像のように使用されます。
+テンプレートは、ドキュメント内で何回も使用される描画内容、
+例えば会社のロゴなどに対して使用されることが多いでしょう。
+テンプレート内では、すべての描画関数が使用されます。
+テンプレートは、|ps_place_image|
+によって配置されるまでは描画されません。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{width} ピクセル単位のテンプレートの幅。
+
+{height} ピクセル単位のテンプレートの高さ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+テンプレートの作成および使用
+
+<?php >
+  $ps = ps_new();
+  
+  if (!ps_open_file($ps, "template.ps")) {
+    print "PostScript ファイルをオープンできません\n";
+    exit;
+  }
+  
+  ps_set_parameter($ps, "warning", "true");
+  ps_set_info($ps, "Creator", "template.php");
+  ps_set_info($ps, "Author", "Uwe Steinmann");
+  ps_set_info($ps, "Title", "Template example");
+  
+  $pstemplate = ps_begin_template($ps, 30.0, 30.0);
+  ps_moveto($ps, 0, 0);
+  ps_lineto($ps, 30, 30);
+  ps_moveto($ps, 0, 30);
+  ps_lineto($ps, 30, 0);
+  ps_stroke($ps);
+  ps_end_template($ps);
+  
+  ps_begin_page($ps, 596, 842);
+  ps_place_image($ps, $pstemplate, 20.0, 20.0, 1.0);
+  ps_place_image($ps, $pstemplate, 50.0, 30.0, 0.5);
+  ps_place_image($ps, $pstemplate, 70.0, 70.0, 0.6);
+  ps_place_image($ps, $pstemplate, 30.0, 50.0, 1.3);
+  ps_end_page($ps);
+  
+  ps_close($ps);
+  ps_delete($ps);
+?>
+
+
+
+
+
+|ps_end_template|
+
+vim:ft=help:

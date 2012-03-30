@@ -1,0 +1,42 @@
+tidy_clean_repair --
+パースされたマークアップに設定に基く誤りの修正を行う
+
+手続き型:
+
+  bool tidy_clean_repair(tidy object)~
+
+オブジェクト指向型:
+
+  bool tidy->cleanRepair(tidy object)~
+
+この関数は、与えられた Tidy オブジェクト {object}
+を修正します。
+
+|tidy_clean_repair| の例
+
+<?php >
+  $html = '<p>test</I>';
+  
+  $tidy = tidy_parse_string($html);
+  tidy_clean_repair($tidy);
+  
+  echo $tidy;
+?>
+
+上の例の出力は以下となります。
+
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <html>
+  <head>
+  <title></title>
+  </head>
+  <body>
+  <p>test</p>
+  </body>
+  </html>
+
+
+
+|tidy_repair_file|, |tidy_repair_string| も参照ください。
+
+vim:ft=help:

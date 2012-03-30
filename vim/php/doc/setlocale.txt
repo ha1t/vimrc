@@ -1,0 +1,116 @@
+setlocale -- ロケール情報を設定する
+
+  string setlocale(int category, string locale [, string ...])~
+
+  string setlocale(int category, string locale [, string ..., int category, array locale])~
+
+ロケール情報を設定します。
+
+{category}
+{category}は、名前付きの定数(または文字列)であり、
+ロケール設定により影響を受ける関数のカテゴリを指定します。
+LC_ALL 以下のものすべて
+
+LC_COLLATE 文字列の比較用。|strcoll| 参照
+
+LC_CTYPE 文字の分類と変換。たとえば |strtoupper|
+
+LC_MONETARY |localeconv| 用
+
+LC_NUMERIC 数字の区切り文字用(|localeconv| も参照ください)
+
+LC_TIME 日時。|strftime|でフォーマットに使用
+
+LC_MESSAGES システムの応答用(PHP が libintl
+とともにコンパイルされている場合のみ使用可能)
+
+{locale} {locale}が NULL もしくは空の文字列 ""
+の場合、ロケール名は上記のカテゴリと同じ名前の環境変数の値、
+または環境変数 "LANG" からセットされます。
+
+{locale} が "0" の場合、
+ロケール設定は適用されず、単に現在の設定が返されます。
+
+{locale} が配列もしくは追加のパラメータが続く場合、
+それぞれの配列要素もしくはパラメータは成功するまで新規ロケールとしてセットされます。
+これは、ロケールが異なるシステムで異なる名前を持っている、
+もしくはロケールが利用できない場合のフォールバックを提供するといった場合に有用です。
+
+{...}
+
+現在の新しいロケールを返します。ロケール機能が未実装、
+指定されたロケールが存在しない、カテゴリ名が無効などの場合は
+FALSE を返します。
+
+また、カテゴリ名が無効の場合は警告メッセージが発生します。
+カテゴリやロケール名は、 RFC 1766 や ISO 639 にあります。
+ロケールの命名方式は、システムによって異なります。
+
+|setlocale| の戻り値は、 PHP
+が実行されているシステムに依存します。 システムの
+setlocale 関数が返す値を返すためです。
+
+バージョン 説明 4.3.0
+複数のロケールを渡せるようになりました。 4.2.0 {category}
+に文字列を指定することが非推奨となりました。
+代わりに上記の定数を使用してください。これらを文字列として
+(クオートして) 渡すと、警告メッセージが表示されます。
+
+|setlocale| の例
+
+<?php >
+  /* ロケールをオランダ語に設定 */
+  setlocale(LC_ALL, 'nl_NL');
+  
+  /* 出力: vrijdag 22 december 1978 */
+  echo strftime("%A %e %B %Y", mktime(0, 0, 0, 12, 22, 1978));
+  
+  /* PHP 4.3.0 以降、ドイツに対して利用可能な異なるロケール名を使用する */
+  $loc_de = setlocale(LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
+  echo "Preferred locale for german on this system is '$loc_de'";
+?>
+
+
+
+
+
+Windows での |setlocale| の例
+
+<?php >
+  /* ロケールをオランダ語に設定 */
+  setlocale(LC_ALL, 'nld_nld');
+  
+  /* 出力: vrijdag 22 december 1978 */
+  echo strftime("%A %d %B %Y", mktime(0, 0, 0, 12, 22, 1978));
+  
+  /* PHP 4.3.0 以降、ドイツに対して利用可能な異なるロケール名を使用する */
+  $loc_de = setlocale(LC_ALL, 'de_DE@euro', 'de_DE', 'deu_deu');
+  echo "Preferred locale for german on this system is '$loc_de'";
+?>
+
+
+
+
+
+ロケール情報は、スレッド毎ではなくプロセス毎に維持されます。
+もし PHP を IIS や Windows 用 Apache
+のようなマルチスレッドサーバ API
+上で動作させている場合、
+スクリプトを実行している間にロケールの設定が突然変わるのを
+経験するかも知れませんが、スクリプト自身は決して
+|setlocale| 自身をコールしていません。
+これは同時に同一プロセスの異なるスレッドで実行されている他のスクリプトが
+|setlocale|
+を使用してプロセスワイドなロケールを変更する事により発生します。
+
+Windows ユーザは Microsoft の MSDN の Web サイトに {locale}
+文字列に関する有用な情報を見つけることができるでしょう。
+サポートしている言語文字列は、http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vclib/html/_crt_language_strings.asp
+、 サポートしている国/地域文字列は
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vclib/html/_crt_country_strings.asp
+にあります。Windows システムは、ISO 3166-Alpha-3
+によって定められた国/地域文字列の 3
+文字コードをサポートしています。 これは Unicode website
+にあります。
+
+vim:ft=help:

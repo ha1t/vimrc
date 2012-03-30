@@ -1,0 +1,45 @@
+mysql_tablename -- フィールドのテーブル名を得る
+
+  string mysql_tablename(resource result, int i)~
+
+{result} からテーブル名を取得します。
+
+この関数は非推奨です。かわりに |mysql_query| を利用して
+SHOW TABLES [FROM db_name] [LIKE 'pattern']
+文を発行することを推奨します。
+
+{result} |mysql_list_tables| から返される 結果ポインタ resource
+。
+
+{i} 整数のインデックス（行/テーブル 番号）。
+
+成功した場合にテーブル名、失敗した場合に FALSE
+を返します。
+
+結果ポインタの中身を調べるために |mysql_tablename|
+関数を利用し、取得したテーブルを 利用するには
+|mysql_fetch_array| などの関数を 利用してください。
+
+|mysql_tablename| の例
+
+<?php >
+  mysql_connect("localhost", "mysql_user", "mysql_password");
+  $result = mysql_list_tables("mydb");
+  $num_rows = mysql_num_rows($result);
+  for ($i = 0; $i < $num_rows; $i++) {
+      echo "Table: ", mysql_tablename($result, $i), "\n";
+  }
+  
+  mysql_free_result($result);
+?>
+
+
+
+
+
+結果ポインタに含まれるテーブル数を調べるには
+|mysql_num_rows| 関数を利用します。
+
+|mysql_list_tables| |mysql_field_table| |mysql_db_name|
+
+vim:ft=help:

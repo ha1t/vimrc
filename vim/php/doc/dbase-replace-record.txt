@@ -1,0 +1,53 @@
+dbase_replace_record -- データベースのレコードを置換する
+
+  bool dbase_replace_record(int dbase_identifier, array record, int record_number)~
+
+データベースの指定したレコードを、指定した値で置換します。
+
+{dbase_identifier} データベースのリンク ID 。|dbase_open|
+あるいは |dbase_create| によって返されます。
+
+{record}
+データの配列。要素の数がデータベースのフィールド数と一致している
+必要があります。それ以外の場合は|dbase_replace_record|
+は失敗します。
+
+|dbase_get_record| が返す値をこのパラメータに
+使用する際は、deleted という名前のキーを
+リセットすることを忘れないでください。
+
+{record_number} 1 からデータベース内のレコード数
+（|dbase_numrecords| が返す） までの範囲の整数値。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+データベースのレコードの更新
+
+<?php >
+  // read-write モードでオープンする
+  $db = dbase_open('/tmp/test.dbf', 2);
+  
+  if ($db) {
+    // 変更前の行を取得する
+    $row = dbase_get_record_with_names($db, 1);
+    
+    // 'deleted' エントリを削除する
+    unset($row['deleted']);
+    
+    // 現在のタイムスタンプでフィールドを更新する
+    $row['date'] = date('Ymd');
+    
+    // レコードを置換する
+    dbase_replace_record($db, $row, 1);
+    dbase_close($db);
+  }
+?>
+
+
+
+
+
+|dbase_add_record| |dbase_delete_record|
+
+vim:ft=help:

@@ -1,0 +1,16 @@
+px_get_value -- 値を取得する
+
+  float px_get_value(resource pxdoc, string name)~
+
+さまざまな値を取得します。
+
+{pxdoc} |px_new| が返す、 paradox データベースのリソース ID。
+
+{name} {name} は以下のいずれかです。 numprimkeys
+プライマリキーの数。paradox データベースは、 常に最初の
+numprimkeys フィールドを プライマリキーとして扱います。
+
+パラメータの値、あるいは失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

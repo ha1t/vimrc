@@ -1,0 +1,46 @@
+SwishSearch->resetLimit -- 検索の制限をリセットする
+
+  void SwishSearch->resetLimit()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+で設定した検索の制限をリセットします。
+
+値を返しません。
+
+基本的な |SwishSearch->resetLimit| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $search = $swish->prepare();
+  
+      $results = $search->execute("time");
+      echo "First query found: ", $results->hits, " hits\n";
+  
+      $search->setLimit("swishdocsize", "3000", "6000"); // ドキュメントの大きさを 3000 バイトから 6000 バイトまでに制限します
+      $results = $search->execute("time");
+      echo "Second query found: ", $results->hits, " hits\n";
+  
+      $search->resetLimit();
+      $results = $search->execute("time");
+      echo "Third query found: ", $results->hits, " hits\n";
+  
+  } catch (SwishException $e) {
+      echo $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  First query found: 5 hits
+  Second query found: 2 hits
+  Third query found: 5 hits
+
+
+
+vim:ft=help:

@@ -1,0 +1,23 @@
+imagecolortransparent -- 透明色を定義する
+
+  int imagecolortransparent(resource image [, int color])~
+
+指定した画像 {image} 上の透明色を設定します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{color} |imagecolorallocate| で指定した画像 ID。
+
+新しい (あるいは指定されなかった場合は現在の)
+透明色の ID を返します。
+
+透過性は |imagecopymerge| かつ True
+カラーの場合のみコピーされます。|imagecopy|
+もしくはパレットイメージの場合はコピーされません。
+
+透明色は画像のプロパティであり、色のプロパティではありません。
+ある色を透明色と定義したら、画像上で既にその色で着色されてる領域も
+透明になります。
+
+vim:ft=help:

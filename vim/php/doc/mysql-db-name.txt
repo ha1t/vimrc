@@ -1,0 +1,44 @@
+mysql_db_name -- データベース名を得る
+
+  string mysql_db_name(resource result, int row [, mixed field])~
+
+|mysql_list_dbs|
+をコールした結果からデータベース名を取得します。
+
+{result} |mysql_list_dbs| をコールして 得られた結果ポインタ。
+
+{row} 結果セット内のインデックス。
+
+{field} フィールド名。
+
+成功した場合にデータベース名を、失敗した場合に FALSE
+を返します。 FALSE
+が返された場合、エラーの発生源を特定するには
+|mysql_error| を使用してください。
+
+|mysql_db_name| の例
+
+<?php >
+  error_reporting(E_ALL);
+  
+  $link = mysql_connect('dbhost', 'username', 'password');
+  $db_list = mysql_list_dbs($link);
+  
+  $i = 0;
+  $cnt = mysql_num_rows($db_list);
+  while ($i < $cnt) {
+      echo mysql_db_name($db_list, $i) . "\n";
+      $i++;
+  }
+?>
+
+
+
+
+
+下位互換のために、次の非推奨別名を使用してもいいでしょう。
+|mysql_dbname|
+
+|mysql_list_dbs| |mysql_tablename|
+
+vim:ft=help:

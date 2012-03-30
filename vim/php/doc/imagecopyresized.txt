@@ -1,0 +1,95 @@
+imagecopyresized -- 画像の一部をコピーしサイズを変更する
+
+  bool imagecopyresized(resource dst_image, resource src_image, int dst_x, int dst_y, int src_x, int src_y, int dst_w, int dst_h, int src_w, int src_h)~
+
+|imagecopyresized| は指定した画像の矩形部分を
+別の画像へコピーします。{dst_image} はコピー先の
+イメージ ID、{src_image} はコピー元のイメージ ID です。
+
+言い換えると、|imagecopyresized| は {src_image} の座標
+({src_x},{src_y}) にある 幅 {src_w}、高さ {src_h}
+の矩形領域を受け取って、それを {dst_image} の座標
+({dst_x},{dst_y}) にある幅 {dst_w}、高さ {dst_h}
+の矩形領域に配置します。
+
+コピー先とコピー元の座標、幅、高さが異なった場合、画像の一部が
+適当に伸縮されます。座標の原点は左上です。(仮に、
+{dst_image} と {src_image} が
+同一であれば)関数は領域のコピーに使うことができますが、領域が
+重なったときの結果は予測できません。
+
+{dst_im} コピー先の画像リンクリソース。
+
+{src_im} コピー元の画像リンクリソース。
+
+{dst_x} コピー先の x 座標。
+
+{dst_y} コピー先の y 座標。
+
+{src_x} コピー元の x 座標。
+
+{src_y} コピー元の y 座標。
+
+{dst_w} コピー先の幅。
+
+{dst_h} コピー先の高さ。
+
+{src_w} コピー元の幅。
+
+{src_h} コピー元の高さ。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+イメージをリサイズする
+この例はイメージを半分のサイズで表示します。
+
+<?php >
+  // ファイルと新規サイズ
+  $filename = 'test.jpg';
+  $percent = 0.5;
+  
+  // コンテントタイプ
+  header('Content-type: image/jpeg');
+  
+  // 新規サイズを取得します
+  list($width, $height) = getimagesize($filename);
+  $newwidth = $width * $percent;
+  $newheight = $height * $percent;
+  
+  // 読み込み
+  $thumb = imagecreatetruecolor($newwidth, $newheight);
+  $source = imagecreatefromjpeg($filename);
+  
+  // リサイズ
+  imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+  
+  // 出力
+  imagejpeg($thumb);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+イメージは半分サイズで出力されますが、 |imagecopyresampled|
+を使用するとより良い品質になります。
+
+
+
+
+
+パレットイメージの制限(255+1 色)による問題があります。
+カラーの再サンプリングやフィルタリングには通常は 255
+色以上の色が
+必要となります。再サンプルするピクセルとその色を計算するために
+ある種の近似計算が使用されます。パレットに新しい色を割り当てよう
+として失敗すると、(理論的に)最も近い色が選択されます。
+それは必ずしも常に可視色とは限りません。そのため、
+空白(あるいは不可視な)といった不可思議な結果がもたらされます。
+この問題を回避するには、|imagecreatetruecolor| で
+生成されるような True
+カラーイメージを目的のイメージとして
+使用してください。
+
+|imagecopyresampled|
+
+vim:ft=help:

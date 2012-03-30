@@ -1,0 +1,18 @@
+mssql_field_type -- フィールド型を得る
+
+  string mssql_field_type(resource result [, int offset])~
+
+{result} のフィールド番号 {offset} の型を返します。
+
+{result} 処理対象となる結果リソース。これは |mssql_query|
+のコールによって取得します。
+
+{offset} フィールドオフセット。0
+から始まります。省略した場合は現在のフィールドを使用します。
+
+成功した場合は指定したフィールドインデックスの型、
+失敗した場合は FALSE を返します。
+
+|mssql_field_length| |mssql_field_name|
+
+vim:ft=help:

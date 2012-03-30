@@ -1,0 +1,17 @@
+SDO_Model_Property::getContainingType -- このプロパティを含む
+SDO_Model_Type を取得する
+
+  SDO_Model_Type SDO_Model_Property::getContainingType()~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+このプロパティを含む SDO_Model_Type を返します。
+
+なし。
+
+このプロパティを含む SDO_Model_Type を返します。
+
+vim:ft=help:

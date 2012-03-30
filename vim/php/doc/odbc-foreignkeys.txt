@@ -1,0 +1,51 @@
+odbc_foreignkeys --
+指定したテーブルの外部キーのリストまたは指定したテーブルの主キーを
+参照する他のテーブルの外部キーのリストを返す
+
+  resource odbc_foreignkeys(resource connection_id, string pk_qualifier, string pk_owner, string pk_table, string fk_qualifier, string fk_owner, string fk_table)~
+
+|odbc_foreignkeys| は外部キーに関する情報を取得します。 ODBC
+結果 ID または失敗した場合に FALSE を返します。
+
+結果は以下のカラムを有します。 PKTABLE_QUALIFIER
+
+PKTABLE_OWNER
+
+PKTABLE_NAME
+
+PKCOLUMN_NAME
+
+FKTABLE_QUALIFIER
+
+FKTABLE_OWNER
+
+FKTABLE_NAME
+
+FKCOLUMN_NAME
+
+KEY_SEQ
+
+UPDATE_RULE
+
+DELETE_RULE
+
+FK_NAME
+
+PK_NAME
+
+{pk_table} がテーブル名を有している場合、 |odbc_foreignkeys|
+は指定したテーブルの主キー
+およびそのキーを参照する全ての外部キーのリストを結果として返します。
+
+{fk_table} がテーブル名を有している場合、 |odbc_foreignkeys|
+は指定したテーブルにある全ての
+外部キーおよびそのキーが参照する(他のテーブルの)主キーのリストを
+結果として返します。
+
+{pk_table} および {fk_table}
+が共にテーブル名を有している場合、 |odbc_foreignkeys| は
+{pk_table} で指定されたテーブルの主キーを参照する
+{fk_table} で指定されたテーブルの外部キーを返します。
+返されるキーは最大でも一つだけです。
+
+vim:ft=help:

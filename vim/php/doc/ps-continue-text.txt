@@ -1,0 +1,21 @@
+ps_continue_text -- 次の行にテキストを続ける
+
+  bool ps_continue_text(resource psdoc, string text)~
+
+最終行の次の行からテキストを出力します。行間隔は
+"leading" の値が用いられます。この値は |ps_set_value|
+を用いて指定する必要があります。
+実際のテキストの出力位置は、"textx" と "texty"
+の値によって決まります。 この値は |ps_get_value|
+を用いて取得することができます。
+
+{psdoc} |ps_new| が返す、postscript ファイルのリソース ID。
+
+{text} 出力するテキスト。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ps_show| |ps_show_xy| |ps_show_boxed|
+
+vim:ft=help:

@@ -1,0 +1,28 @@
+bcmul -- 2つの任意精度数値の乗算を行う
+
+  string bcmul(string left_operand, string right_operand [, int scale])~
+
+{left_operand} に {right_operand} を掛けます。
+
+{left_operand} 左オペランドを表す文字列。
+
+{right_operand} 右オペランドを表す文字列。
+
+{ scale}このオプションパラメータを使用して、
+結果の小数点以下の桁数を指定します。すべての関数で使用するデフォルトのスケールを定義するには
+|bcscale| を使用します。
+
+結果を文字列で返します。
+
+|bcmul| の例
+
+<?php >
+  echo bcmul('1.34747474747', '35', 3); // 47.161
+  echo bcmul('2', '4'); // 8
+?>
+
+
+
+|bcdiv|
+
+vim:ft=help:

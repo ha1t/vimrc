@@ -1,0 +1,13 @@
+DomNode->last_child -- 最後の子ノードを返す
+
+  domelement DomNode->last_child()~
+
+最後の子ノードを返します。
+
+(PHP >= 4.3 のみ) 最後の子ノードが存在しない場合、NULL
+が返されます。
+
+|domnode_first_child|, |domnode_next_sibling|, |domnode_previous_sibling|
+も参照ください。
+
+vim:ft=help:

@@ -1,0 +1,14 @@
+sqlite_has_more -- まだレコードがあるかないかを返す
+
+  bool sqlite_has_more(resource result)~
+
+与えられた結果セット中にまだレコードがあるかどうかを見つけます。
+
+{result} SQLite 結果リソース
+
+{result} ハンドルにまだレコードがある場合 TRUE
+を返します。そうでない場合 FALSE を返します。
+
+|sqlite_num_rows| |sqlite_changes|
+
+vim:ft=help:

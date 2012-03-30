@@ -1,0 +1,74 @@
+db2_fetch_array --
+結果セット内の行を表す、カラム位置をインデックスとする配列を返す
+
+  array db2_fetch_array(resource stmt [, int row_number])~
+
+結果セット内の行を表す、カラム位置をインデックスとする配列を返します。
+インデックスは 0 から始まります。
+
+{stmt} 結果セットを含む有効な stmt リソース。
+
+{row_number} 結果セット内の 1
+から始まる行番号を指定します。
+結果セットで前進のみのカーソルを使用している場合にこのパラメータを渡すと、
+PHP の警告が発生します。
+
+結果セットの次の行あるいは要求した行のデータを表す配列を返します。
+配列の 0
+から始まるインデックスが、カラムの位置を表します。
+結果セットに行がもうない場合、あるいは {row_number}
+で指定された行が結果セットに存在しない場合に FALSE
+を返します。
+
+前進のみのカーソルを使用して順に処理する
+行番号を指定せずに |db2_fetch_array| をコールすると、
+自動的に結果セットの次の行を取得します。
+
+<?php >
+  $sql = "SELECT id, name, breed, weight FROM animals ORDER BY breed";
+  $stmt = db2_prepare($conn, $sql);
+  $result = db2_execute($stmt);
+  
+  while ($row = db2_fetch_array($stmt)) {
+      printf ("%-5d %-16s %-32s %10s\n", 
+          $row[0], $row[1], $row[2], $row[3]);
+  }
+?>
+
+上の例の出力は以下となります。
+
+  0     Pook             cat                                    3.20
+  5     Rickety Ride     goat                                   9.70
+  2     Smarty           horse                                350.00
+
+スクロール可能なカーソルから、指定した行を
+|db2_fetch_array| で取得する
+スクロール可能なカーソルを使用している場合は、行番号を指定して
+|db2_fetch_array| をコールすることができます。
+次の例は、結果セットの 2 行目から始めて 1
+行おきにデータを取得します。
+
+<?php >
+  $sql = "SELECT id, name, breed, weight FROM animals ORDER BY breed";
+  $result = db2_exec($stmt, $sql, array('cursor' => DB2_SCROLLABLE));
+  
+  $i=2;
+  while ($row = db2_fetch_array($result, $i)) {
+      printf ("%-5d %-16s %-32s %10s\n", 
+          $row[0], $row[1], $row[2], $row[3]);
+      $i = $i + 2;
+  }
+?>
+
+上の例の出力は以下となります。
+
+  0     Pook             cat                                    3.20
+  5     Rickety Ride     goat                                   9.70
+  2     Smarty           horse                                350.00
+
+
+
+|db2_fetch_assoc| |db2_fetch_both| |db2_fetch_object| |db2_fetch_row|
+|db2_result|
+
+vim:ft=help:

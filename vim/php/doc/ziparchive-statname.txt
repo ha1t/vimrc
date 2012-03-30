@@ -1,0 +1,48 @@
+ZipArchive::statName --
+名前を使用してエントリの詳細を取得する
+
+  mixed ZipArchive::statName(name name [, int flags])~
+
+この関数は、名前を使用してエントリの詳細情報を取得します。
+
+{name} エントリの名前。
+
+{flags} 名前をどのように探すのかを設定します。 また
+ZIPARCHIVE::FL_UNCHANGED を OR で連結すると、
+アーカイブ内に最初に記録された際の情報を取得します。
+変更内容は無視されます。 ZIPARCHIVE::FL_NOCASE
+
+ZIPARCHIVE::FL_NODIR
+
+ZIPARCHIVE::FL_UNCHANGED
+
+エントリの詳細を含む配列、あるいは失敗した場合に FALSE
+を返します。
+
+エントリの情報の出力
+
+<?php >
+  $zip = new ZipArchive;
+  $res = $zip->open('test.zip')
+  if ($res === TRUE) {
+      print_r($zip->statName('foobar/baz'));
+      $zip->close();
+  } else {
+      echo '失敗、コード:' . $res;
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [name] => foobar/baz
+      [index] => 3
+      [crc] => 499465816
+      [size] => 27
+      [mtime] => 1123164748
+      [comp_size] => 24
+      [comp_method] => 8
+  )
+
+vim:ft=help:

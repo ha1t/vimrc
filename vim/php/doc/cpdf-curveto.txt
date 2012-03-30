@@ -1,0 +1,34 @@
+cpdf_curveto -- 曲線を描く
+
+  bool cpdf_curveto(int pdf_document, float x1, float y1, float x2, float y2, float x3, float y3 [, int mode])~
+
+|cpdf_curveto| 関数は、 ({x1}, {y1}) および ({x2}, {y2})
+を制御点として 現在の点から ({x3}, {y3}) にベジエ曲線を
+描きます。
+
+{ pdf_document} |cpdf_open| が返す、ドキュメントのハンドル。
+
+{x1} 最初の制御点の x 座標。
+
+{y1} 最初の制御点の y 座標。
+
+{x2} 二番目の制御点の x 座標。
+
+{y2} 二番目の制御点の y 座標。
+
+{x3} 対象の x 座標。
+
+{y3} 対象の y 座標。
+
+{ mode}オプションのパラメータ {mode}
+は単位長さを定義します。この値が 0
+または値が省略された場合、
+このページで指定されたデフォルト値が使用されます。それ以外の場合、
+現在の単位を無視してポストスクリプトのポイントで座標が計測されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|cpdf_moveto| |cpdf_rmoveto| |cpdf_rlineto| |cpdf_lineto|
+
+vim:ft=help:

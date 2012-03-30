@@ -1,0 +1,43 @@
+fbsql_db_status -- 指定したデータベースの状態を取得する
+
+  int fbsql_db_status(string database_name [, resource link_identifier])~
+
+指定したデータベースの現在の状態を取得します。
+
+{database_name} データベース名。
+
+{ link_identifier} |fbsql_connect| あるいは |fbsql_pconnect| が返す
+FrontBase リンク ID。
+
+指定しなかった場合は、この関数は FrontBase
+サーバでオープンしているリンクを探します。見つからないときは
+|fbsql_connect|
+に引数を指定せずにコールしたときと同様にして作成します。
+
+現在の状態を表す整数値を返します。これは、以下の定数のいずれかです。
+FALSE - host の exec ハンドラが無効です。このエラーは、
+{link_identifier}
+がポート番号を用いてデータベースへ直接接続する場合に発生します。
+FBExec
+はサーバで利用可能ですが、接続が行われていません。
+
+FBSQL_UNKNOWN - 状態は不明です。
+
+FBSQL_STOPPED - FBSQL_STOPPED -
+データベースは実行されていません。
+データベースを開始するには、|fbsql_start_db|
+を使用してください。
+
+FBSQL_STARTING - データベースは起動中です。
+
+FBSQL_RUNNING - データベースは実行中で、SQL
+処理を実行可能です。
+
+FBSQL_STOPPING - データベースは停止中です。
+
+FBSQL_NOEXEC - FBExec がサーバで実行されておらず、
+データベースの状態を取得することはできません。
+
+|fbsql_start_db| |fbsql_stop_db|
+
+vim:ft=help:

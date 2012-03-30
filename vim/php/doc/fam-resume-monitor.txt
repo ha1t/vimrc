@@ -1,0 +1,18 @@
+fam_resume_monitor -- 中断された監視処理を再開する
+
+  bool fam_resume_monitor(resource fam, resource fam_monitor)~
+
+|fam_suspend_monitor| により中断された
+指定したリソースへの監視を再開します。
+
+{fam} |fam_open| が返す、 FAM
+サービスへの接続を表すリソース。
+
+{fam_monitor} fam_monitor_XXX 関数のいずれかが返すリソース。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|fam_suspend_monitor|
+
+vim:ft=help:

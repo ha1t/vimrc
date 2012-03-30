@@ -1,0 +1,99 @@
+parse_ini_file -- 設定ファイルをパースする
+
+  array parse_ini_file(string filename [, bool process_sections])~
+
+|parse_ini_file| は、 {filename} で指定した ini
+ファイルをロードし、
+連想配列としてその設定値を返します。
+
+初期ファイルの構造は、php.ini の構造と同じです。
+
+{filename} パースしたい ini ファイルのファイル名。
+
+{process_sections} 直近の {process_sections} パラメータに TRUE
+を設定することにより、セクション名と設定が含まれた多次元の配列を
+得ることができます。デフォルトでは、 {process_sections} は
+FALSE です。
+
+設定を連装配列形式で返します。
+
+バージョン 説明 5.2.4
+数字から始まるキーおよびセクション名は、PHP では 整数
+として評価されます。 よって、0 で始まる数字は 8
+進数として評価され、0x で始まる数字は 16
+進数として評価されます。 5.0.0
+値をダブルクォートで囲めばその中で改行を使用することもできます。
+4.2.1 この関数は セーフモード と open_basedir
+の影響を受けます。
+
+sample.ini の内容
+
+  ; これは設定ファイルのサンプルです。
+  ; php.ini と同様、';' で始まる行はコメントです。
+  
+  [first_section]
+  one = 1
+  five = 5
+  animal = BIRD
+  
+  [second_section]
+  path = "/usr/local/bin"
+  URL = "http://www.example.com/~username"
+
+
+
+|parse_ini_file| の例 定数も ini
+ファイル上でパースされます。 そのため、|parse_ini_file|
+をコールする前に ini
+ファイル上の値として定数を定義した場合、返り値に統合されます。
+ini ファイル上の値だけが評価されます。以下は例です：
+
+<?php >
+  define('BIRD', 'Dodo bird');
+  
+  // セクションを無視してパースします。
+  $ini_array = parse_ini_file("sample.ini");
+  print_r($ini_array);
+  
+  // セクションを意識してパースします。
+  $ini_array = parse_ini_file("sample.ini", true);
+  print_r($ini_array);
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [one] => 1
+      [five] => 5
+      [animal] => Dodo bird
+      [path] => /usr/local/bin
+      [URL] => http://www.example.com/~username
+  )
+  Array
+  (
+      [first_section] => Array
+          (
+              [one] => 1
+              [five] => 5
+              [animal] = Dodo bird
+          )
+  
+      [second_section] => Array
+          (
+              [path] => /usr/local/bin
+              [URL] => http://www.example.com/~username
+          )
+  
+  )
+
+
+
+この関数は、php.ini ファイルには何もしません。
+このファイルはスクリプトを実行している時には既に処理されています。
+この関数は、アプリケーション個有の設定ファイルを読み込む際に使用可能です。
+
+ini ファイル上の値に英数字ではないものがある場合、
+ダブルクォート(")で囲う必要があります。
+
+vim:ft=help:

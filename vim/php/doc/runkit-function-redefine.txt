@@ -1,0 +1,41 @@
+runkit_function_redefine --
+関数の定義を新しい実装で置き換える
+
+  bool runkit_function_redefine(string funcname, string arglist, string code)~
+
+デフォルトでは、
+削除・リネーム・変更が可能なのはユーザ定義関数だけです。組み込み関数を
+オーバーライドするには、php.ini で runkit.internal_override
+を有効にする必要があります。
+
+{funcname} 再定義する関数の名前。
+
+{arglist} 再定義後の関数が受け取る引数のリスト。
+
+{code} 新しい実装コード。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|runkit_function_redefine| の例
+
+<?php >
+  function testme() {
+    echo "Original Testme Implementation\n";
+  }
+  testme();
+  runkit_function_redefine('testme','','echo "New Testme Implementation\n";');
+  testme();
+?>
+
+上の例の出力は以下となります。
+
+  Original Testme Implementation
+  New Testme Implementation
+
+
+
+|runkit_function_add| |runkit_function_copy| |runkit_function_rename|
+|runkit_function_remove|
+
+vim:ft=help:

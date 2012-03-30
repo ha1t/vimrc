@@ -1,0 +1,10 @@
+swf_nextid -- 次の未使用のオブジェクト ID を返す
+
+  int swf_nextid()~
+
+関数 |swf_nextid| は、次に利用可能なオブジェクト ID
+を返します。
+
+ID を表す整数値を返します。
+
+vim:ft=help:

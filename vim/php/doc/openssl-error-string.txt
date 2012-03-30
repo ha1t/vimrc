@@ -1,0 +1,25 @@
+openssl_error_string -- OpenSSL エラーメッセージを返す
+
+  string openssl_error_string()~
+
+|openssl_error_string| は、 OpenSSL
+ライブラリから直近のエラーを返します。
+エラーメッセージはスタックにつまれており、
+全ての情報を集めるにはこの関数を複数回コールする必要があります。
+
+エラーメッセージ文字列を返します。
+エラーメッセージがもうない場合は、FALSE を返します。
+
+|openssl_error_string| の例
+
+<?php >
+  // ここで、処理に失敗する OpenSSL 関数をコールしたと仮定します
+  while ($msg = openssl_error_string())
+      echo $msg . "<br />\n";
+?>
+
+
+
+
+
+vim:ft=help:

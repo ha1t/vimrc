@@ -1,0 +1,110 @@
+SAMConnection->send() --
+メッセージをキューに送信、あるいは項目をトピックに投稿する
+
+  string send(string target, SAMMessage msg [, array properties])~
+
+"send"
+メソッドを使用して、メッセージを指定したキューに送信したり
+指定したトピックに投稿したりします。このメソッドは、
+メッセージに返信したり応答したりする際に使用する ID
+を返します。
+
+{target} メッセージを送信する場合はキューの ID
+(queue://queuename)、 トピックを投稿する場合はトピックの ID
+(topic://topicname) で、メッセージの配送先を指定します。
+
+{msg} 送信あるいは投稿するメッセージ。
+
+{properties}
+オプションの連想配列で、受信時の動作を制御するプロパティを指定します。
+プロパティ名 とりうる値 SAM_DELIVERYMODE
+メッセージングサーバが配送を保障するかどうか、
+システム障害時にメッセージが失われることを許可するかどうかを指定します。
+SAM_PERSISTENT
+の場合はメッセージを失うことを許可しません。
+SAM_NON_PERSISTENT
+の場合はメッセージを失うことを許可します。
+送信結果の挙動は、PHP
+スクリプトが接続しているメッセージングサーバの機能によって変わります。
+メッセージの永続化をサポートしていないサーバで
+SAM_PERSISTENT
+を指定した場合は、その機能が存在しないというエラーを発生させて処理が失敗します。
+SAM_PRIORITY 0 から 9
+までの数値で、メッセージの配送の優先度を指定します。
+0 は優先度が最低であること、9
+は優先度が最高であることを表します。
+優先度を指定しなかった場合はデフォルト値が割り当てられます。
+デフォルト値は、使用するメッセージングサーバによって異なります。
+SAM_CORRELID このメッセージの相関 ID
+として割り当てる文字列。
+指定しなかった場合は、メッセージングサーバが値を自動的に割り当てます。
+SAM_TIMETOLIVE
+メッセージングサーバがキューにメッセージを残し続ける期間をミリ秒で指定します。
+デフォルト値は 0
+で、これはメッセージをずっと残し続けることを意味します。
+SAM_WMQ_TARGET_CLIENT このプロパティは WebSphere MQ
+を使用する場合にのみ有効で、 RFH2
+ヘッダをメッセージに含めるかどうかを指定します。
+設定できる値は 'jms' あるいは 'mq' のいずれかです。
+デフォルトは 'jms' で、これは RFH2
+ヘッダを含めることを意味します。 'mq'
+を指定すると、メッセージに RFH2
+が含まれないようになります。
+
+ID
+を文字列で返します。返信や応答を取得する際にこの文字列を使用します。
+エラーが発生した場合には FALSE を返します。
+
+ID が返されるのは、メッセージが送信先キュー (queue://xxxx)
+に正常に送信できた場合のみで、キュー上のメッセージの
+ID となります。 トピックにメッセージを投稿するために
+send を使用した場合の返り値は TRUE となり、ID
+は返されません。
+
+キューへのメッセージの送信
+
+<?php >
+  $msg = new SAMMessage('This is a simple text message');
+  $correlId = $conn->send('queue://send/test', $msg);
+  if (!$correlId) {
+      // 送信に失敗しました!
+      echo "Send failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+
+
+トピックへのメッセージの投稿
+
+<?php >
+  $msg = new SAMMessage('This is a simple text item');
+  if (!$conn->send('topic://test', $msg)) {
+      // 送信に失敗しました!
+      echo "Send failed ($conn->errno) $conn->error";
+  }
+?>
+
+
+
+リクエストの送信と応答の受信
+
+<?php >
+  $msg = new SAMMessage('This is a simple text message');
+  $msg->header->SAM_REPLY_TO = 'queue://receive/test';
+  $correlid = $conn->send('queue://send/test', $msg);
+  
+  if (!$correlid) {
+      // 送信に失敗しました!
+      echo "Send failed ($conn->errno) $conn->error";
+  } else {
+      $resp = $conn->receive('queue://receive/test', array(SAM_CORRELID => $correlid));
+  }
+?>
+
+
+
+
+
+vim:ft=help:

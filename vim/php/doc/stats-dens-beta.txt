@@ -1,0 +1,17 @@
+stats_dens_beta -- 未ドキュメント化
+
+  float stats_dens_beta(float x, float a, float b)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+{x}
+
+{a}
+
+{b}
+
+
+
+vim:ft=help:

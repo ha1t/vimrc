@@ -1,0 +1,5 @@
+ocifetch -- oci_fetch のエイリアス
+
+この関数は次の関数のエイリアスです。 |oci_fetch|.
+
+vim:ft=help:

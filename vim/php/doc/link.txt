@@ -1,0 +1,22 @@
+link -- ハードリンクを作成する
+
+  bool link(string target, string link)~
+
+|link| はハードリンクを作成します。
+
+{target} リンクの対象。
+
+{link} リンクの名前。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数では、 リモートファイル を
+使用することはできません。これは、処理されるファイルがサーバの
+ファイルシステムによりアクセスできる必要があるためです。
+
+この関数は Windows 環境にはまだ実装されていません。
+
+|symlink| |readlink| |linkinfo|
+
+vim:ft=help:

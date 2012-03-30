@@ -1,0 +1,63 @@
+fbsql_fetch_field --
+結果からカラム情報を得て、オブジェクトとして返す
+
+  object fbsql_fetch_field(resource result [, int field_offset])~
+
+クエリ結果のフィールドについての情報を取得するために使用されます。
+
+{ result} |fbsql_query| あるいは |fbsql_db_query| が返す結果 ID。
+
+{field_offset}
+フィールドの数値オフセット。フィールドのインデックスは
+0 からはじまります。 省略した場合は、まだ
+|fbsql_fetch_field| で取得されていない
+フィールドのうちで最小のものが取得されます。
+
+フィールド情報を含むオブジェクト、あるいはエラー時に
+FALSE を返します。
+
+オブジェクトのプロパティは以下のとおりです。 name -
+カラム名。
+
+table - カラムが属するテーブルの名前。
+
+max_length - カラムの最大長。
+
+not_null - カラムが NULL にならない場合に 1。
+
+type - カラムの型。
+
+|fbsql_fetch_field| の例
+
+<?php >
+  fbsql_connect($host, $user, $password)
+      or die("接続できません");
+  $result = fbsql_db_query("database", "select * from table")
+      or die("クエリに失敗");
+  # get column metadata
+  $i = 0;
+  while ($i < fbsql_num_fields($result)) {
+      echo "カラム $i の情報:<br />\n";
+      $meta = fbsql_fetch_field($result);
+      if (!$meta) {
+          echo "使用可能な情報がありません<br />\n";
+      }
+      echo "<pre>
+  max_length:   $meta->max_length
+  name:         $meta->name
+  not_null:     $meta->not_null
+  table:        $meta->table
+  type:         $meta->type
+  </pre>";
+      $i++;
+  }
+  fbsql_free_result($result);
+?>
+
+
+
+
+
+|fbsql_field_seek|
+
+vim:ft=help:

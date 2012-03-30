@@ -1,0 +1,88 @@
+pcntl_signal -- シグナルハンドラを設定する
+
+  bool pcntl_signal(int signo, callback handler [, bool restart_syscalls])~
+
+|pcntl_signal| 関数は、{signo}
+が指すシグナルに関するハンドラを設定します。
+
+{signo} シグナル番号。
+
+{handler}
+ユーザ定義関数の名前、あるいは次のふたつのグローバル定数
+SIG_IGN または SIG_DFL のうちのいずれかとなります。
+
+オブジェクトのメソッドをハンドラとして指定した場合には、
+そのハンドラを別のものに変えたりスクリプトが終了したりするまでは
+オブジェクトの参照カウントが増加しないことに注意しましょう。
+
+{restart_syscalls}
+再起動のシステムコールに対応するかどうかを設定します。デフォルトは
+TRUE です。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+バージョン 説明 4.3.0 パラメータ {restart_syscalls}
+が追加されました。 4.3.0
+オブジェクトのメソッドをコールバックとして使用できるようになりました。
+4.3.0 PHP 4.3.0 以降、PCNTL
+はシグナルハンドルコールバックの仕組みとして ticks
+を使用しており、これは以前の仕組みよりずっと高速です。この変更は
+"user ticks"
+を使用するのと同じことです。上の例で示したように、
+declare() を使用して
+プログラム中でコールバックの発生を許可する場所を指定し、シグナルハンドラが
+正しく動作するようにする必要があります。
+
+|pcntl_signal| の例
+
+<?php >
+  // PHP 4.3.0 以降では tick を使用しなければなりません
+  declare(ticks = 1);
+  
+  // シグナルハンドラ関数
+  function sig_handler($signo)
+  {
+  
+       switch ($signo) {
+           case SIGTERM:
+               // シャットダウンの処理
+               exit;
+               break;
+           case SIGHUP:
+               // 再起動の処理
+               break;
+           case SIGUSR1:
+               echo "SIGUSR1 を受け取りました...\n";
+               break;
+           default:
+               // それ以外のシグナルの処理
+       }
+  
+  }
+  
+  echo "シグナルハンドラを設定します...\n";
+  
+  // シグナルハンドラを設定します
+  pcntl_signal(SIGTERM, "sig_handler");
+  pcntl_signal(SIGHUP,  "sig_handler");
+  pcntl_signal(SIGUSR1, "sig_handler");
+  
+  // あるいは PHP 4.3.0 以降ならオブジェクトも指定できます
+  // pcntl_signal(SIGUSR1, array($obj, "do_something");
+  
+  echo"自分自身に SIGTERM シグナルを送信します...\n";
+  
+  // SIGUSR1 をカレントのプロセス ID に送信します
+  posix_kill(posix_getpid(), SIGUSR1);
+  
+  echo "終了\n"
+?>
+
+
+
+
+
+|pcntl_fork| |pcntl_waitpid|
+
+vim:ft=help:

@@ -1,0 +1,32 @@
+timezone_transitions_get -- タイムゾーンの変遷を返す
+
+  array timezone_transitions_get(DateTimeZone object)~
+
+  array DateTimeZone::getTransitions(DateTimeZone object)~
+
+{object} DateTimeZone オブジェクト。
+
+成功した場合にタイムゾーンの遷移を表す連想配列の配列、
+失敗した場合に FALSE を返します。
+
+|timezone_transitions_get| の例
+
+<?php >
+  $timezone = new DateTimeZone("CET");
+  print_r(reset($timezone->getTransitions()));
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  Array
+  (
+      [ts] => -1693706400
+      [time] => 1916-04-30T22:00:00+0000
+      [offset] => 7200
+      [isdst] => 1
+      [abbr] => CEST
+  )
+
+
+
+vim:ft=help:

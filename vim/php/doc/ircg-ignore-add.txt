@@ -1,0 +1,17 @@
+ircg_ignore_add -- サーバ上の除外リストにユーザを追加する
+
+  void ircg_ignore_add(resource connection, string nick)~
+
+この関数は、接続 {connection} の除外リストにユーザ {nick}
+を追加します。
+接続中にこのユーザから送信されたあらゆるメッセージは抑制されます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{nick} 除外するユーザ。
+
+値を返しません。
+
+|ircg_ignore_del|
+
+vim:ft=help:

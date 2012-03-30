@@ -1,0 +1,11 @@
+snmp_set_valueretrieval -- SNMP の値が返される方法を設定する
+
+  void snmp_set_valueretrieval(int method)~
+
+この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。
+
+|snmp_get_valueretrieval|
+
+vim:ft=help:

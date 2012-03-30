@@ -1,0 +1,34 @@
+pg_num_fields -- フィールド数を返す
+
+  int pg_num_fields(resource result)~
+
+|pg_num_fields| は、PostgreSQL 結果リソースから
+フィールド（カラム）の数を返します。
+
+この関数は、以前は |pg_numfields| と呼ばれていました。
+
+{result} |pg_query|, |pg_query_params| あるいは |pg_execute|
+から返される PostgreSQL の クエリ結果リソース。
+
+結果のフィールド（カラム）数を返します。エラー時には
+-1 を返します。
+
+|pg_num_fields| の例
+
+<?php >
+  $result = pg_query($conn, "SELECT 1, 2");
+  
+  $num = pg_num_fields($result);
+  
+  echo $num . " field(s) returned.\n";
+?>
+
+上の例の出力は以下となります。
+
+  2 field(s) returned.
+
+
+
+|pg_num_rows| |pg_affected_rows|
+
+vim:ft=help:

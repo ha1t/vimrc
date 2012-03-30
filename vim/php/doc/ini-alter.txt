@@ -1,0 +1,5 @@
+ini_alter -- ini_set のエイリアス
+
+この関数は次の関数のエイリアスです。 |ini_set|.
+
+vim:ft=help:

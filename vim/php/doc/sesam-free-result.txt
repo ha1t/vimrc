@@ -1,0 +1,12 @@
+sesam_free_result -- クエリに関するリソースを開放する
+
+  bool sesam_free_result(string result_id)~
+
+クエリのリソースを開放します。
+
+{result_id} |sesam_query| が返す結果 ID。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+vim:ft=help:

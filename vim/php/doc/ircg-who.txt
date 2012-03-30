@@ -1,0 +1,24 @@
+ircg_who -- サーバに WHO 情報を問い合わせる
+
+  bool ircg_who(resource connection, string mask [, bool ops_only])~
+
+|ircg_who| は、接続しているネットワーク {connection}
+上でニックネームが {mask}
+に一致するユーザの一覧を要求します。
+
+結果は、 |ircg_set_file| あるいは |ircg_set_current|
+で定義した出力に返されます。
+
+{connection} |ircg_pconnect| が返す接続リソースハンドル。
+
+{mask} ニックネームのマスク。
+
+{ops_only} オプションのパラメータ {ops_only} は、
+一覧をサーバオペレータのみに絞り込みます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ircg_set_file| |ircg_set_current|
+
+vim:ft=help:

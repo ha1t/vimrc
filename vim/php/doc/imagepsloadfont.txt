@@ -1,0 +1,39 @@
+imagepsloadfont -- ファイルから PostScript Type 1
+フォントをロードする
+
+  resource imagepsloadfont(string filename)~
+
+指定した {filename} から PostScript Type 1
+フォントを読み込みます。
+
+{filename}
+
+全て正常に処理された場合、有効なフォント ID
+が返され、後で使用することができます。
+それ以外の場合、この関数は FALSE を返します。
+
+|imagepsloadfont| の例
+
+<?php >
+  header("Content-type: image/png");
+  $im = imagecreatetruecolor(350, 45);
+  $black = imagecolorallocate($im, 0, 0, 0);
+  $white = imagecolorallocate($im, 255, 255, 255);
+  imagefilledrectangle($im, 0, 0, 349, 44, $white);
+  $font = imagepsloadfont("bchbi.pfb"); // もしくはあなたのマシンにある独自の .pfb ファイルを指定する
+  imagepstext($im, "Testing... It worked!", $font, 32, $white, $black, 32, 32);
+  imagepsfreefont($font);
+  imagepng($im);
+  imagedestroy($im);
+?>
+
+
+
+
+
+この関数は、PHP が --with-t1lib
+を指定してコンパイルされている場合のみ使用可能です。
+
+|imagepsfreefont|
+
+vim:ft=help:

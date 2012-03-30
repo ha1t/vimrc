@@ -1,0 +1,32 @@
+strtoupper -- 文字列を大文字にする
+
+  string strtoupper(string string)~
+
+{string}
+のアルファベット部分をすべて大文字にして返します｡
+
+「アルファベット部分」は現在のロケールにより決定されます。
+つまり、たとえばデフォルトの「C」ロケールである場合は、
+a ウムラウト (&auml;) のような文字は変換されません。
+
+{string} 入力文字列。
+
+大文字にした文字列を返します。
+
+|strtoupper| の例
+
+<?php >
+  $str = "Mary Had A Little Lamb and She LOVED It So";
+  $str = strtoupper($str);
+  echo $str; // 「MARY HAD A LITTLE LAMB AND SHE LOVED IT SO」を出力します。
+?>
+
+
+
+
+
+この関数はバイナリデータに対応しています。
+
+|strtolower| |ucfirst| |ucwords| |mb_strtoupper|
+
+vim:ft=help:

@@ -1,0 +1,38 @@
+sha1 -- 文字列の sha1 ハッシュを計算する
+
+  string sha1(string str [, bool raw_output])~
+
+US Secure Hash Algorithm 1 を使用して {str} の sha1
+ハッシュを計算します。
+
+{str} 入力文字列。
+
+{raw_output} オプションの {raw_output} に TRUE
+が指定された場合、sha1 ダイジェストは 20
+バイト長のバイナリ形式で返されます。
+それ以外の場合は、返り値は 40 文字の 16
+進数となります。 デフォルトは FALSE です。
+
+sha1 ハッシュを文字列で返します。
+
+バージョン 説明 5.0.0 {raw_output}
+パラメータが追加されました。
+
+|sha1| の例
+
+<?php >
+  $str = 'apple';
+  
+  if (sha1($str) === 'd0be2dc421be4fcd0172e5afceea3970e2f3d940') {
+      echo "Would you like a green or red apple?";
+      exit;
+  }
+?>
+
+
+
+
+
+|sha1_file| |crc32| |md5|
+
+vim:ft=help:

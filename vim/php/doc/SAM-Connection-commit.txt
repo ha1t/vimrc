@@ -1,0 +1,25 @@
+SAMConnection->commit() -- 現在作業中の内容をコミット
+(正常に完了) する
+
+  bool commit()~
+
+接続オブジェクトに対して "commit"
+メソッドをコールすると、
+現在処理中のトランザクションのすべての内容をコミットします。
+
+エラーが発生した場合に FALSE を返します。
+
+現在処理中の内容のコミット
+
+<?php >
+    if (!$conn->commit()) {
+      // コミットに失敗しました!
+      echo "Commit failed ($conn->errno) $conn->error";
+    }
+?>
+
+
+
+
+
+vim:ft=help:

@@ -1,0 +1,49 @@
+xpath_eval_expression -- 与えられた文字列で XPath
+のロケーションパスを評価する
+
+  XPathObject xpath_eval_expression(string expression [, domnode contextnode])~
+
+  XPathObject xpath_eval_expression(string expression [, domnode contextnode, XPathContext xpath_context, string expression [, domnode contextnode]])~
+
+|xpath_eval_expression| の例
+
+<?php >
+  include("example.inc");
+  
+  if (!$dom = domxml_open_mem($xmlstr)) {
+      echo "Error while parsing the document\n";
+      exit;
+  }
+  
+  $xpath = xpath_new_context($dom);
+  var_dump(xpath_eval_expression($xpath, '/chapter/@language'));
+?>
+
+上の例の出力は以下となります。
+
+  object(XPathObject)(2) {
+     ["type"]=>
+     int(1)
+     ["nodeset"]=>
+     array(1) {
+       [0]=>
+       object(domattribute)(5) {
+         ["type"]=>
+         int(2)
+         ["name"]=>
+         string(8) "language"
+         ["value"]=>
+         string(2) "en"
+         [0]=>
+         int(7)
+         [1]=>
+         int(138004256)
+       }
+    }
+  }
+
+
+
+|xpath_eval| も参照ください。
+
+vim:ft=help:

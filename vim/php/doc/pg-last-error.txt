@@ -1,0 +1,47 @@
+pg_last_error --
+特定の接続から直近のエラーメッセージ文字列を取得する
+
+  string pg_last_error([resource connection])~
+
+|pg_last_error| は、指定した {connection}
+から直近のエラーメッセージを返します。
+
+エラーメッセージは、内部的な PostgreSQL(libpq)
+関数コールにより
+上書きされる可能性があります。PostgreSQL
+モジュール関数の中で複数の
+エラーが発生した場合には、この関数は適切なエラーメッセージを返さない
+可能性があります。
+
+エラー処理を改善するために
+|pg_result_error|、|pg_result_error_field|、 |pg_result_status| および
+|pg_connection_status| を使用ください。
+
+この関数は、以前は |pg_errormessage| と呼ばれていました。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+指定した {connection} の直近のエラーメッセージを
+含む文字列を返します。エラー時には FALSE を返します。
+
+|pg_last_error| の例
+
+<?php >
+    $dbconn = pg_connect("dbname=publisher") or die("接続できませんでした");
+  
+    // 失敗するクエリ
+    $res = pg_query($dbconn, "select * from doesnotexist");
+    
+    echo pg_last_error($dbconn);
+?>
+
+
+
+
+
+|pg_result_error| |pg_result_error_field|
+
+vim:ft=help:

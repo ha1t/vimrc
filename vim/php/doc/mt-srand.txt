@@ -1,0 +1,42 @@
+mt_srand -- 改良型乱数生成器にシードを指定する
+
+  void mt_srand([int seed])~
+
+{seed} により乱数生成器にシードを指定します。 {seed}
+を指定しなかった場合は、 ランダムな値を設定します。
+
+PHP 4.2.0 以降、 |srand| または |mt_srand|
+によりランダム数生成器にシードを与える必要はありません。
+これは、この処理が自動的に行われるためです。
+
+{seed} オプションで指定するシード値。
+
+バージョン 説明 4.2.0 以降 {seed} がオプションとなり、
+省略した場合はデフォルトでランダムな値が設定されるようになりました。
+5.2.1 以降 PHP の Mersenne Twister 実装は、Richard Wagner
+による新たなシード生成アルゴリズムを使用するようになりました。
+これまでのバージョンのように、
+同じ値のシーケンスで同じシードが生成されることはなくなりました。
+この振る舞いが今後変わることはないでしょうが、
+この振る舞いに頼ってしまってはいけません。
+
+|mt_srand| の例
+
+<?php >
+  // マイクロ秒でシードを指定します
+  function make_seed()
+  {
+    list($usec, $sec) = explode(' ', microtime());
+    return (float) $sec + ((float) $usec * 100000);
+  }
+  mt_srand(make_seed());
+  $randval = mt_rand();
+?>
+
+
+
+
+
+|mt_rand| |mt_getrandmax| |srand|
+
+vim:ft=help:

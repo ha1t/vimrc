@@ -1,0 +1,83 @@
+ereg_replace -- 正規表現による置換を行う
+
+  string ereg_replace(string pattern, string replacement, string string)~
+
+この関数は、{string} をスキャンして {pattern}
+にマッチするものを探し、 マッチしたテキストを
+{replacement} で置換します。
+
+{pattern} POSIX 拡張正規表現。
+
+{replacement} {pattern} の中に括弧でくくられた部分
+文字列が含まれている場合、{replacement} の中に \\数字
+のような部分文字列を埋め込むこともできます。この部分は、
+「数字」番目の括弧でくくられた部分文字列にマッチする文字列に
+置き換えられます。また、\\0 は文字列全体を 指します。9
+個までの部分文字列を使うことができます。括弧は
+入れ子になっていても構いません。この場合は開き括弧
+'(' が 最大 9 個まで使用可能です。
+
+{string} 入力文字列。
+
+置換後の文字列を返します。
+マッチしなかった場合は、元の文字列をそのまま返します。
+
+たとえば、以下のサンプルコードは "This was a test" と 3
+回表示します。
+
+|ereg_replace| の例
+
+<?php >
+  $string = "This is a test";
+  echo str_replace(" is", " was", $string);
+  echo ereg_replace("( )is", "\\1was", $string);
+  echo ereg_replace("(( )is)", "\\2was", $string);
+?>
+
+
+
+
+
+注意しなければならないのは、パラメータ {replacement}
+として整数値を使用する場合、
+期待する結果が得られない可能性があるということです。これは、
+|ereg_replace| がその数値を文字コードとして
+解釈し使用するためです。例えば、次のようになります。
+
+|ereg_replace| の例
+
+<?php >
+  /* これは期待した通りに動作しません。 */
+  $num = 4;
+  $string = "This string has four words.";
+  $string = ereg_replace('four', $num, $string);
+  echo $string;   /* 出力: 'This string has   words.' */
+  
+  /* これは動作します。 */
+  $num = '4';
+  $string = "This string has four words.";
+  $string = ereg_replace('four', $num, $string);
+  echo $string;   /* 出力: 'This string has 4 words.' */
+?>
+
+
+
+
+
+URL をリンクで置換する
+
+<?php >
+  $text = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]",
+                       "<a href=\"\\0\">\\0</a>", $text);
+?>
+
+
+
+
+
+Perl 互換の正規表現構文を使用する |preg_replace| のほうが、
+|ereg_replace| より高速に動作することがよくあります。
+
+|ereg| |eregi| |eregi_replace| |str_replace| |preg_match|
+
+vim:ft=help:

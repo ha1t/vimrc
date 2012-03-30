@@ -1,0 +1,24 @@
+rad2deg -- ラジアン単位の数値を度単位に変換する
+
+  float rad2deg(float number)~
+
+この関数は、{number}
+の単位をラジアンから度に変換します。
+
+{number} ラジアン値。
+
+{number} と同等な値を度で表したものを返します。
+
+|rad2deg| の例
+
+<?php >
+  echo rad2deg(M_PI_4); // 45
+?>
+
+
+
+
+
+|deg2rad|
+
+vim:ft=help:

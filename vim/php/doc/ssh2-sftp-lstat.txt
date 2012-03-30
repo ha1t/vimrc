@@ -1,0 +1,42 @@
+ssh2_sftp_lstat -- シンボリックリンクの情報を取得する
+
+  array ssh2_sftp_lstat(resource sftp, string path)~
+
+リンクを辿らないで
+リモートファイルシステムのシンボリックリンクの情報を取得します。
+
+PHP 5 では、この関数は ssh2.sftp://
+ラッパーを使用した場合の |lstat| 関数と同様です。
+返り値も同じです。
+
+{sftp}
+
+{path} リモートのシンボリックリンクへのパス。
+
+返り値の詳細については |stat|
+のドキュメントを参照ください。
+
+SFTP 経由でのシンボリックリンクの情報の取得
+
+<?php >
+  $connection = ssh2_connect('shell.example.com', 22);
+  ssh2_auth_password($connection, 'username', 'password');
+  
+  $sftp = ssh2_sftp($connection);
+  $statinfo = ssh2_sftp_lstat($sftp, '/path/to/symlink');
+  
+  $filesize = $statinfo['size'];
+  $group = $statinfo['gid'];
+  $owner = $statinfo['uid'];
+  $atime = $statinfo['atime'];
+  $mtime = $statinfo['mtime'];
+  $mode = $statinfo['mode'];
+?>
+
+
+
+
+
+|ssh2_sftp_stat| |lstat| |stat|
+
+vim:ft=help:

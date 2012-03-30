@@ -1,0 +1,24 @@
+SDO_Model_ReflectionDataObject::export -- SDO_DataObject
+を表す文字列を取得する
+
+  mixed SDO_Model_ReflectionDataObject::export(SDO_Model_ReflectionDataObject rdo [, bool return])~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+SDO_DataObject を表す文字列を取得します。
+デフォルトでは標準出力に出力されますが、パラメータ
+return に TRUE を指定すると、結果を文字列で返します。
+
+{rdo} SDO_Model_ReflectionDataObject。
+
+{return} TRUE の場合は結果を文字列で返します。
+それ以外の場合は標準出力に出力します。
+
+return パラメータに TRUE
+が設定されている場合は出力内容、 それ以外の場合は NULL
+を返します。
+
+vim:ft=help:

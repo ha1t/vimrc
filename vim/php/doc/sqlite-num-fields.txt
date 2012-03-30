@@ -1,0 +1,18 @@
+SQLiteUnbuffered->numFields -- 結果セットのフィールド数を返す
+
+  int sqlite_num_fields(resource result)~
+
+オブジェクト指向言語型スタイル (メソッド):
+
+  int numFields(resource result)~
+
+  int numFields(resource result)~
+
+結果セット {result} のフィールド数を返します。
+
+{result} SQLite 結果リソース。 このパラメータは、
+オブジェクト指向言語型メソッドを使用する場合は不要です。
+
+|sqlite_changes| |sqlite_num_rows|
+
+vim:ft=help:

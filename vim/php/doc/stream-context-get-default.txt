@@ -1,0 +1,56 @@
+stream_context_get_default --
+デフォルトのストリームコンテキストを取得する
+
+  resource stream_context_get_default([array options])~
+
+（|fopen|、|file_get_contents| のような）
+ファイル操作関数がコンテキストパラメータなしでコールされた場合に使用される
+デフォルトのストリームコンテキストを返します。デフォルトコンテキストに
+関するオプションは、|stream_context_create| と同じ
+構文で任意に指定することが可能です。
+
+{options} は、 $arr['wrapper']['option'] = $value
+のような形式の、連想配列の連想配列である必要があります。
+
+|stream_context_get_default| の使用
+
+<?php >
+  $default_opts = array(
+    'http'=>array(
+      'method'=>"GET",
+      'header'=>"Accept-language: en\r\n" .
+                "Cookie: foo=bar",
+      'proxy'=>"tcp://10.54.1.39:8000"
+    )
+  );
+  
+  
+  $alternate_opts = array(
+    'http'=>array(
+      'method'=>"POST",
+      'header'=>"Content-type: application/x-www-form-urlencoded\r\n" .
+                "Content-length: " . strlen("baz=bomb"),
+      'content'=>"baz=bomb"
+    )
+  );
+  
+  $default = stream_context_get_default($default_opts);
+  $alternate = stream_context_create($alternate_opts);
+  
+  /* www.example.com に対する通常の GET リクエストを、プロキシサーバ 10.54.1.39
+   * に対して送信します。コンテキストオプション $default_opts を使用します。
+   */
+  readfile('http://www.example.com');
+  
+  /* POST リクエストを、直接 www.example.com に送信します。
+   * コンテキストオプション $alternate_opts を使用します。
+   */
+  readfile('http://www.example.com', false, $alternate);
+?>
+
+
+
+|stream_context_create| および サポートされるラッパ（）
+も参照ください。
+
+vim:ft=help:

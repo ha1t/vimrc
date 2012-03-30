@@ -1,0 +1,41 @@
+ibase_timefmt -- クエリから返される timestamp、data、time
+型カラムのフォーマットを設定する
+
+  bool ibase_timefmt(string format [, int columntype])~
+
+クエリから返される timestamp、data、time
+型カラムのフォーマットを設定します。
+
+PHP 設定ディレクティブ ibase.timestampformat、 ibase.dateformat
+および ibase.timeformat
+によりこれらのフォーマットのデフォルト値を設定することが可能です。
+
+この関数は PHP 5 で削除されました。かわりに |ini_set|
+を使用してください。
+
+{format} 内部的にこれらのカラムは C 言語の関数 strftime()
+により
+フォーマットされます。このため、文字列のフォーマットについては
+この C 言語の関数ドキュメントを参照ください。
+
+{columntype} {columntype} は IBASE_TIMESTAMP、IBASE_DATE および
+IBASE_TIME のいずれかとなります。
+省略した場合は、下位互換性を保つために IBASE_TIMESTAMP
+を使用します。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|ibase_timefmt| の例
+
+<?php >
+  /* InterBase 6 TIME型カラムが
+   * '05 hours 37 minutes'の形式で返されます */
+  ibase_timefmt("%H hours %M minutes", IBASE_TIME);
+?>
+
+
+
+
+
+vim:ft=help:

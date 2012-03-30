@@ -1,0 +1,21 @@
+dbminsert -- DBM データベースへ値を挿入する
+
+  int dbminsert(resource dbm_identifier, string key, string value)~
+
+データベースに、指定したキー(key)に対応する値を追加します。
+
+{ dbm_identifier}|dbmopen| が返す DBM リンク識別子。
+
+{key} 追加するキー。
+
+{value} 追加するキーの値。
+
+データベースがリードオンリーでオープンされていた場合は
+-1 を返し、 挿入が成功すれば 0
+を返します。指定されたキーが存在する場合は 1 を
+返します（値を置き換えるには |dbmreplace| を
+使ってください）。
+
+|dbmreplace| |dbmdelete|
+
+vim:ft=help:

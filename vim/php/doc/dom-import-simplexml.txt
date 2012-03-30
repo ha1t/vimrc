@@ -1,0 +1,43 @@
+dom_import_simplexml -- SimpleXMLElement オブジェクトから DOMElement
+オブジェクトを取得する
+
+  DOMElement dom_import_simplexml(SimpleXMLElement node)~
+
+この関数は、SimpleXML クラスの ノード {node}
+を受け取り、それを DOMElement
+ノードに変換します。新しいオブジェクトは、 DOMElement
+ノードとして使用可能です。
+
+{node} SimpleXMLElement ノード。
+
+追加された DOMElement ノード、あるいは
+何らかのエラーが発生した場合は FALSE を返します。
+
+|dom_import_simplexml| を用いて SimpleXML を DOM にインポートする
+
+<?php >
+  $sxe = simplexml_load_string('<books><book><title>blah</title></book></books>');
+  
+  if ($sxe === false) {
+      echo 'ドキュメントのパース中にエラー';
+      exit;
+  }
+  
+  $dom_sxe = dom_import_simplexml($sxe);
+  if (!$dom_sxe) {
+      echo 'XML の変換中にエラー';
+      exit;
+  }
+  
+  $dom = new DOMDocument('1.0');
+  $dom_sxe = $dom->importNode($dom_sxe, true);
+  $dom_sxe = $dom->appendChild($dom_sxe);
+  
+  echo $dom->saveXML();
+?>
+
+
+
+|simplexml_import_dom|
+
+vim:ft=help:

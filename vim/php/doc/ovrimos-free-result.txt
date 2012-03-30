@@ -1,0 +1,12 @@
+ovrimos_free_result -- 指定した result_id を開放する
+
+  bool ovrimos_free_result(int result_id)~
+
+指定した結果 ID を開放します。
+
+{result_id} |ovrimos_execute| あるいは |ovrimos_exec| が返す結果
+ID。
+
+TRUE を返します。
+
+vim:ft=help:

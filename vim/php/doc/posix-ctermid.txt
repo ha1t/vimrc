@@ -1,0 +1,25 @@
+posix_ctermid -- 制御する端末のパス名を得る
+
+  string posix_ctermid()~
+
+そのプロセスで現在制御している端末のパス名を表す文字列を作成します。
+エラーが発生した場合は errno
+を設定します。この値を調べるには |posix_get_last_error|
+を使用します。
+
+処理に成功した場合は、現在制御している端末のパス名を表す文字列を返します。
+それ以外の場合は FALSE を返し、errno を設定します。
+この値を調べるには |posix_get_last_error| を使用します。
+
+|posix_ctermid| の例 この例は、現在の TTY
+へのパスを表示します。
+
+<?php >
+  echo "I am running from ".posix_ctermid();
+?>
+
+
+
+|posix_ttyname| |posix_get_last_error|
+
+vim:ft=help:

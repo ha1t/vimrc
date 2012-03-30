@@ -1,0 +1,38 @@
+gmp_random -- 乱数を生成する
+
+  resource gmp_random(int limiter)~
+
+乱数を生成します。乱数の範囲は、ゼロから {limiter} * limb
+のビット数となります。 {limiter} が負の場合、
+負の数が生成されます。
+
+limb は GMP の内部機構です。limb
+のビット数は固定ではなく、
+システムによって変化します。一般的には limb は 16
+あるいは 32
+ビットですが、それが保証されているわけではありません。
+
+{limiter} リミッタ。
+
+GMP 数リソース、 あるいは数値に変換可能な数値文字列。
+
+ランダムな GMP 数を返します。
+
+|gmp_random| の例
+
+<?php >
+  $rand1 = gmp_random(1); // 0 から 1 * limb のビット数までの間の乱数
+  $rand2 = gmp_random(2); // 0 から 2 * limb のビット数までの間の乱数
+  
+  echo gmp_strval($rand1) . "\n";
+  echo gmp_strval($rand2) . "\n";
+?>
+
+上の例の出力は以下となります。
+
+  1915834968
+  8642564075890328087
+
+
+
+vim:ft=help:

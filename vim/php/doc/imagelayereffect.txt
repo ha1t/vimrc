@@ -1,0 +1,36 @@
+imagelayereffect -- アルファブレンディングフラグを設定し、
+libgd にバンドルされているレイヤ効果を使用する
+
+  bool imagelayereffect(resource image, int effect)~
+
+アルファブレンディングフラグを設定し、 libgd
+にバンドルされているレイヤ効果を使用します。
+
+{ image}|imagecreatetruecolor|
+のような画像作成関数が返す画像リソース。
+
+{effect} 以下の定数のいずれか。 IMG_EFFECT_REPLACE
+ピクセルの置換を使用します (|imagealphablending| に TRUE
+を渡すのと同じです)。
+
+IMG_EFFECT_ALPHABLEND
+通常のピクセルブレンディングを使用します
+(|imagealphablending| に FALSE を渡すのと同じです)。
+
+IMG_EFFECT_NORMAL IMG_EFFECT_ALPHABLEND と同じです。
+
+IMG_EFFECT_OVERLAY
+オーバーレイを使用すると、背景の黒い部分は黒のまま。
+一方背景の白い部分は白のままとなります。
+背景のグレーな部分は、前景のピクセルの色となります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+この関数は、PHP がバンドル版の GD ライブラリで
+コンパイルされている場合のみ使用可能です。
+
+この関数は、GD 2.0.1 以降を必要とします (2.0.28
+以降を推奨します)。
+
+vim:ft=help:

@@ -1,0 +1,43 @@
+SwishResults->seekResult --
+現在のシークポインタを指定した位置に設定する
+
+  int SwishResults->seekResult(int position)~
+
+この関数は、 実験的 なものです。この関数の動作・
+名前・その他ドキュメントに書かれている事項は、予告なく、将来的な
+PHP のリリースにおいて変更される可能性があります。
+この関数は自己責任で使用してください。
+
+{position}
+ゼロから始まる位置番号。ゼロより小さくすることはできません。
+
+成功した場合に新しい位置を返します。
+
+エラー時に SwishException をスローします。
+
+基本的な |SwishResults->seekResult| の例
+
+<?php >
+  try {
+  
+      $swish = new Swish("index.swish-e");
+      $search = $swish->prepare();
+  
+      $results = $search->execute("lost");
+  
+      var_dump($results->seekResult(0)); // これは成功します
+      var_dump($results->seekResult(100)); // これは失敗します
+  
+  } catch (SwishException $e) {
+      echo "Error: ", $e->getMessage(), "\n";
+  }
+?>
+
+上の例の出力は、たとえば 以下のようになります。
+
+  int(0)
+  Error: No more results
+
+
+
+vim:ft=help:

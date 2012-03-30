@@ -1,0 +1,18 @@
+xml_get_current_column_number -- XML
+パーサのカレントのカラム番号を取得する
+
+  int xml_get_current_column_number(resource parser)~
+
+指定した XML
+パーサのカレントのカラム番号を取得します。
+
+{parser} カラム番号を得る XML パーサへのリファレンス。
+
+この関数は、{parser} が有効なパーサでない場合に FALSE
+を返します。それ以外の場合は、現在のパーサの
+(|xml_get_current_line_number| で取得した)
+現在の行のカラムを返します。
+
+|xml_get_current_byte_index| |xml_get_current_line_index|
+
+vim:ft=help:

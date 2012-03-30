@@ -1,0 +1,38 @@
+ora_error -- Oracle エラーメッセージを取得する
+
+  string ora_error([resource cursor_or_connection])~
+
+指定したカーソルあるいは接続上で直近に実行された文のエラーメッセージを返します。
+
+{cursor_or_connection} Oracle カーソルあるいは接続 ID。
+
+XXX-NNNNN
+という形式のエラーメッセージが返されます。ここで、
+XXX は何処からエラーが発生したか、 NNNNN
+はエラーメッセージを識別します。
+
+バージョン 説明 5.1.0 oracle
+拡張モジュールは非推奨です。かわりに oci8
+を使用してください。
+
+3.0.4 接続 ID のサポートが追加されました。
+
+Unix 版の Oracle 上では、
+以下のようにエラーメッセージに関する詳細を得ることができます。
+
+  $> oerr ora 00001
+
+上の例の出力は、たとえば 以下のようになります。
+
+  00001, 00000,
+  "unique constraint (%s.%s) violated" // *Cause: An update or insert
+  statement attempted to insert a duplicate key //         For Trusted
+  ORACLE configured in DBMS MAC mode, you may see //         this message
+  if a duplicate entry exists at a different level.  // *Action: Either
+  remove the unique restriction or do not insert the key
+
+廃止予定の oracle のかわりに oci8
+拡張モジュールを用いる場合は、
+以下を使用してください。 |oci_error|
+
+vim:ft=help:

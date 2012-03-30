@@ -1,0 +1,36 @@
+pg_untrace -- PostgreSQL 接続のトレースを無効にする
+
+  bool pg_untrace([resource connection])~
+
+|pg_trace| で開始したトレースを停止します。
+
+{connection} PostgreSQL データベース接続リソース。{connection}
+が指定されていない場合はデフォルトの接続が使用されます。
+デフォルトの接続は、直近の |pg_connect| あるいは
+|pg_pconnect| によって作成されたものです。
+
+Always returns TRUE.
+
+|pg_untrace| の例
+
+<?php >
+  $pgsql_conn = pg_connect("dbname=mark host=localhost");
+  
+  if ($pgsql_conn) {
+     pg_trace('/tmp/trace.log', 'w', $pgsql_conn);
+     pg_query("SELECT 1");
+     pg_untrace($pgsql_conn);
+     // バックエンド通信のトレースを無効にする
+  } else {
+     print pg_last_error($pgsql_conn);
+     exit;
+  }
+?>
+
+
+
+
+
+|pg_trace|
+
+vim:ft=help:

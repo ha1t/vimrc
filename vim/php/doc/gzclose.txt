@@ -1,0 +1,29 @@
+gzclose -- 開かれたgzファイルへのポインタを閉じる
+
+  bool gzclose(resource zp)~
+
+与えられた gz ファイルへのポインタを閉じます。
+
+{zp}
+gzファイルポインタ。有効なファイルポインタであり、かつ、
+|gzopen|
+によりオープンできたファイルを指している必要があります。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|gzclose| の例
+
+<?php >
+  $gz = gzopen('somefile.gz','w9');
+  gzputs ($gz, 'I was added to somefile.gz');
+  gzclose($gz);
+?>
+
+
+
+
+
+|gzopen|
+
+vim:ft=help:

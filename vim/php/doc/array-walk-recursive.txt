@@ -1,0 +1,58 @@
+array_walk_recursive --
+配列の全ての要素に、ユーザー関数を再帰的に適用する
+
+  bool array_walk_recursive(array input, callback funcname [, mixed userdata])~
+
+{input} 配列の各要素にユーザ定義関数
+{funcname}を適用します。
+この関数は配列の要素内を再帰的にたどっていきます。
+
+{input} 入力の配列。
+
+{funcname} 通常、 {funcname} は引数を二つとります。 {input}
+パラメータの値が最初の引数、
+キー/添字は二番目の引数となります。
+
+{funcname}
+により配列の値そのものを変更する必要がある場合、
+{funcname} の最初の引数は 参照
+として渡す必要があります。この場合、配列の要素に加えた変更は、
+配列自体に対して行われます。
+
+{userdata} オプションの {userdata}
+パラメータが指定された場合、 コールバック関数 {funcname}
+への三番目の引数として渡されます。
+
+成功した場合に TRUE を、失敗した場合に FALSE
+を返します。
+
+|array_walk_recursive| の例
+
+<?php >
+  $sweet = array('a' => 'apple', 'b' => 'banana');
+  $fruits = array('sweet' => $sweet, 'sour' => 'lemon');
+  
+  function test_print($item, $key)
+  {
+      echo "$key holds $item\n";
+  }
+  
+  array_walk_recursive($fruits, 'test_print');
+?>
+
+上の例の出力は以下となります。
+
+  a holds apple
+  b holds banana
+  sour holds lemon
+
+キー 'sweet' が表示されないことにお気づきでしょう。array
+を要素として持つキーは関数に渡されません。
+
+
+
+
+
+|array_walk| callback 型に関する情報
+
+vim:ft=help:

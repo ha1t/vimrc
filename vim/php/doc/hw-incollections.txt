@@ -1,0 +1,33 @@
+hw_InCollections -- コレクションにオブジェクト ID
+があるかどうかを確認する
+
+  array hw_incollections(int connection, array object_id_array, array collection_id_array, int return_collections)~
+
+{object_id_array} により指定された オブジェクトの組
+(ドキュメントまたはコレクション）が、 コレクション
+{collection_id_array} により定義された
+コレクションの一部であるかどうかを調べます。
+
+{connection} 接続 ID。
+
+{object_id_array} オブジェクト ID の配列。
+
+{collection_id_array} コレクション ID の配列。
+
+{return_collections} 0
+である場合、コレクションの一部(すなわち、それぞれ一つ以上のコレクション
+ID の
+コレクションまたはサブコレクションの子ドキュメントまたはコレクション)
+であるオブジェクト ID
+のサブセットが配列として返されます。
+
+1 である場合、
+一つ以上のこのサブセットのオブジェクトを子として
+有するコレクションの組は、配列として返されます。
+このオプションにより、例えば、
+前のクエリで一致したものを含むコレクション階層の一部を
+クライアントが、グラフィックで概要を強調表示することが可能となります。
+
+オブジェクト ID の配列を返します。
+
+vim:ft=help:
