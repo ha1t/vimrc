@@ -111,16 +111,19 @@ endif
 let &directory = &backupdir
 let mapleader = ","
 
-"colorscheme rdark-terminal
-colorscheme h2u_black
-"colorscheme desert256
-"colorscheme vitamins
-
 let hostname = system('hostname')
 let hostname = strpart(hostname, 0, strlen(hostname)-1)
 
+"colorscheme rdark-terminal
+"colorscheme desert256
+"colorscheme vitamins
+
 if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
+elseif 'devel.kg-global' == hostname
+  colorscheme sweets
+else
+  colorscheme h2u_black
 endif
 
 syntax enable
@@ -134,11 +137,9 @@ filetype plugin on
 
 "highlight StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=grey
 "highlight StatusLineNC term=NONE cterm=bold ctermfg=black ctermbg=grey
-
-highlight LineNr       ctermfg=lightgreen
-
+"highlight LineNr       ctermfg=lightgreen
 "highlight CursorLine ctermfg=Blue
-highlight CursorColumn ctermfg=Green
+"highlight CursorColumn ctermfg=Green
 
 "highlight Pmenu       ctermfg=black ctermbg=gray
 "highlight PmenuSel    ctermfg=blue  ctermbg=white
@@ -582,6 +583,42 @@ endfunction
 
 " vim plugin setting " {{{
 
+" ctrlp.vim
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtBS()':              ['<bs>', '<c-]>'],
+  \ 'PrtDelete()':          ['<del>'],
+  \ 'PrtDeleteWord()':      ['<c-w>'],
+  \ 'PrtClear()':           ['<c-u>'],
+  \ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
+  \ 'PrtHistory(-1)':       ['<c-n>'],
+  \ 'PrtHistory(1)':        ['<c-p>'],
+  \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
+  \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+  \ 'AcceptSelection("t")': ['<c-t>', '<MiddleMouse>'],
+  \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+  \ 'ToggleFocus()':        ['<s-tab>'],
+  \ 'ToggleRegex()':        ['<c-r>'],
+  \ 'ToggleByFname()':      ['<c-d>'],
+  \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
+  \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
+  \ 'PrtExpandDir()':       ['<tab>'],
+  \ 'PrtInsert("w")':       ['<F2>', '<insert>'],
+  \ 'PrtInsert("s")':       ['<F3>'],
+  \ 'PrtInsert("v")':       ['<F4>'],
+  \ 'PrtInsert("+")':       ['<F6>'],
+  \ 'PrtCurStart()':        ['<c-a>'],
+  \ 'PrtCurEnd()':          ['<c-e>'],
+  \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
+  \ 'PrtCurRight()':        ['<c-l>', '<right>'],
+  \ 'PrtClearCache()':      ['<F5>'],
+  \ 'PrtDeleteMRU()':       ['<F7>'],
+  \ 'CreateNewFile()':      ['<c-y>'],
+  \ 'MarkToOpen()':         ['<c-z>'],
+  \ 'OpenMulti()':          ['<c-o>'],
+  \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
+  \ }
+
 ""
 " indent_guides
 "
@@ -668,5 +705,21 @@ if has("gui_running")
   " mouseなぞつかわんばい
   set mouse=
 endif
+
+" A,B,CをB,C,Aにする
+" TODO: vabの中身をとって処理する
+" TODO: 結果を置き換える
+"function! g:flip(word)
+"  let items = split(a:word, ',')
+"  let result = ''
+"  for item in items
+"    if result == ''
+"      let result = item
+"    else
+"      let result = item . ',' . result
+"    endif
+"  endfor
+"  echo result
+"endfunction
 
 set secure
