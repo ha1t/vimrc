@@ -706,4 +706,20 @@ if has("gui_running")
   set mouse=
 endif
 
+" A,B,CをB,C,Aにする
+" TODO: vabの中身をとって処理する
+" TODO: 結果を置き換える
+"function! g:flip(word)
+"  let items = split(a:word, ',')
+"  let result = ''
+"  for item in items
+"    if result == ''
+"      let result = item
+"    else
+"      let result = item . ',' . result
+"    endif
+"  endfor
+"  echo result
+"endfunction
+
 set secure
