@@ -503,10 +503,10 @@ function! s:on_FileType_php()
   let s:class = '\(abstract\s\+\|final\s\+\)*class'
   let s:interface = 'interface'
   let s:section = '\(.*\%#\)\@!\_^\s*\zs\('.s:function.'\|'.s:class.'\|'.s:interface.'\)'
-  exe 'nno <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
-  exe 'nno <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
-  exe 'ono <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
-  exe 'ono <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
+  execute 'nno <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
+  execute 'nno <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
+  execute 'ono <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
+  execute 'ono <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
 
   ""
   " 同一ファイル内にある定義元の関数やクラスに移動
@@ -626,8 +626,14 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 30
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd  ctermbg=234
-hi IndentGuidesEven ctermbg=233
+
+if &background == 'dark'
+  highlight IndentGuidesOdd  ctermbg=234
+  highlight IndentGuidesEven ctermbg=233
+else
+  highlight IndentGuidesOdd  ctermbg=134
+  highlight IndentGuidesEven ctermbg=133
+endif
 
 ""
 " unite.vim
