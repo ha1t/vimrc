@@ -12,6 +12,11 @@ function makelink_dir () {
   fi
 }
 
+if [ ! -d $basedir/vim/vundle ]; then
+  git submodule init
+  git submodule update
+fi
+
 if [ ! -d $HOME/bin ]; then
   echo "created: $HOME/bin"
   mkdir $HOME/bin
