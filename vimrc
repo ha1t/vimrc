@@ -706,6 +706,7 @@ if has("gui_running")
   set mouse=
 endif
 
+" http://vim-users.jp/2010/04/hack141/
 " A,B,CをB,C,Aにする
 " TODO: vabの中身をとって処理する
 " TODO: 結果を置き換える
