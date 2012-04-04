@@ -11,11 +11,12 @@
 set rtp+=~/.vim/vundle/
 call vundle#rc()
 
-Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'errormarker.vim'
 Bundle 'sudo.vim'
 Bundle 'php_localvarcheck.vim'
+Bundle 'Markdown'
 
+Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kana/vim-altr'
