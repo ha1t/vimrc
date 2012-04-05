@@ -121,7 +121,8 @@ let hostname = strpart(hostname, 0, strlen(hostname)-1)
 if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
 elseif 'devel.kg-global' == hostname
-  colorscheme sweets
+  colorscheme h2u_black
+  "colorscheme sweets
 else
   colorscheme h2u_black
 endif
@@ -585,14 +586,14 @@ endfunction
 
 " ctrlp.vim
 let g:ctrlp_prompt_mappings = {
-  \ 'PrtBS()':              ['<bs>', '<c-]>'],
+  \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
   \ 'PrtDelete()':          ['<del>'],
   \ 'PrtDeleteWord()':      ['<c-w>'],
   \ 'PrtClear()':           ['<c-u>'],
-  \ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
-  \ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
-  \ 'PrtHistory(-1)':       ['<c-n>'],
-  \ 'PrtHistory(1)':        ['<c-p>'],
+  \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
+  \ 'PrtHistory(-1)':       ['<c-k>'],
+  \ 'PrtHistory(1)':        ['<c-j>'],
   \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
   \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<c-t>', '<MiddleMouse>'],
@@ -609,7 +610,7 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtInsert("+")':       ['<F6>'],
   \ 'PrtCurStart()':        ['<c-a>'],
   \ 'PrtCurEnd()':          ['<c-e>'],
-  \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
+  \ 'PrtCurLeft()':         ['<left>', '<c-^>'],
   \ 'PrtCurRight()':        ['<c-l>', '<right>'],
   \ 'PrtClearCache()':      ['<F5>'],
   \ 'PrtDeleteMRU()':       ['<F7>'],
