@@ -18,8 +18,11 @@ Bundle 'Markdown'
 
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'h1mesuke/unite-outline'
+"Bundle 'kana/vim-altr'
+Bundle 'kana/vim-arpeggio'
 Bundle 'kana/vim-textobj-user'
-Bundle 'kana/vim-altr'
+Bundle 'kana/vim-smartinput'
+Bundle 'kana/vim-smartword'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
@@ -33,6 +36,7 @@ Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'Shougo/vimfiler'
 Bundle 'Shougo/unite.vim'
 Bundle 'sgur/unite-git_grep'
+Bundle 'taku-o/vim-toggle'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
@@ -42,6 +46,14 @@ Bundle 'vim-scripts/yanktmp.vim'
 Bundle 'vim-scripts/dbext.vim'
 Bundle 'vim-jp/vimdoc-ja'
 "Bundle 'yuratomo/w3m.vim'
+
+let g:toggle_pairs = {
+  \'and':'or', 'or':'and',
+  \'==':'!=','!=':'==',
+  \'=':'->', '->':'=',
+  \'<=':'>=','>=':'<=',
+  \'class':'extends', 'extends':'class',
+  \}
 
 ""
 " environment
@@ -198,12 +210,24 @@ nnoremap <Space>d :<C-u>bd<Enter>
 " http://vim-users.jp/2010/02/hack122/
 nnoremap Y y$
 
+" http://relaxedcolumn.blog8.fc2.com/blog-entry-146.html
+" http://vim.g.hatena.ne.(/tyru/20100106)
+let g:arpeggio_timeoutlen = 70
+call arpeggio#load()
+Arpeggio inoremap jf <Esc>
+Arpeggio inoremap jc class<Space>
+Arpeggio inoremap jf function<Space>
+Arpeggio inoremap jp ()<Left>
+Arpeggio inoremap jb {}<Left>
+Arpeggio inoremap jd <C-R>=strftime('%Y/%m/%d (%a)')<CR>
+
 ""
 " vimgrep list search
 "
 " @see http://subtech.g.hatena.ne.jp/secondlife/20070601/1180700503
 "
 nnoremap g/ :exec ':vimgrep /' . getreg('/') . '/j %\|cwin'<CR>
+
 
 ""
 " paste/nopaste
@@ -468,7 +492,7 @@ function! s:on_FileType_php()
   setlocal keywordprg="help"
   "setlocal tags+=tags;
 
-  inoremap <buffer> ( <Esc>:<C-u>call <SID>SmartBracket()<Return>a
+  "inoremap <buffer> ( <Esc>:<C-u>call <SID>SmartBracket()<Return>a
   inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
   inoremap <expr> <buffer> @ <SID>at()
   inoremap @@ @
@@ -483,6 +507,8 @@ function! s:on_FileType_php()
   "
   "inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
   "inoremap <buffer> <expr> . smartchr#one_of(' . ', '.')
+
+"  smartchrみたいな感じでキーを押すと AAA -> BBB -> CCCになるプラグインがほしい
 
   setlocal include=\\\(require\\\|include\\\)\\\(_once\\\)\\\?
   setlocal iskeyword+=$
@@ -538,9 +564,7 @@ function! s:on_FileType_php()
 
   autocmd BufWritePost <buffer> silent make
 
-  command! A call altr#forward()
-  nnoremap <buffer> ee <Plug>(altr-forward)
-  call altr#define('app/controllers/%_controller.php', 'app/models/%.php', 'app/views/%/*.php')
+"  call smartinput#clear_rules()
 
   call textobj#user#plugin('php', {
   \   'phptag': {
@@ -620,6 +644,9 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
   \ }
 
+" toggle.vim
+nnoremap <C-t> <Plug>(ToggleN)
+
 ""
 " indent_guides
 "
@@ -653,11 +680,11 @@ nnoremap <silent> <Leader>e :<C-u>QuickRun<CR>
 "
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
-nnoremap <silent> <Leader>w :call EasyMotionWBW(0, 0)<CR>
-vnoremap <silent> <Leader>w :<C-U>call EasyMotionWBW(1, 0)<CR>
+nnoremap <silent> <Leader>w :call EasyMotion#WBW(0, 0)<CR>
+vnoremap <silent> <Leader>w :<C-U>call EasyMotion#WBW(1, 0)<CR>
 
-nnoremap <silent> <Leader>W :call EasyMotionWBW(0, 1)<CR>
-vnoremap <silent> <Leader>W :<C-U>call EasyMotionWBW(0, 1)<CR>
+nnoremap <silent> <Leader>W :call EasyMotion#WBW(0, 1)<CR>
+vnoremap <silent> <Leader>W :<C-U>call EasyMotion#WBW(0, 1)<CR>
 
 ""
 " neocomplcache.vim
