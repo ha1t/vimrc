@@ -6,6 +6,37 @@
 " @author halt feits
 "
 
+""
+" ctags_load vimtagsに配置されたtagsファイルを状況に応じて開く
+"
+" @url http://d.hatena.ne.jp/thinca/20091009/1255059006
+" @url http://vim.1045645.n5.nabble.com/Vim-script-not-show-path-td1192891.html
+function! s:ctags_load()
+  let tags_dir = '~/.vimtags'
+  let tagfiles = split(glob(tags_dir . '/*'), "\n")
+  for tagfile in tagfiles
+    " tags_dirを削除
+    let tagfile_dir = substitute(tagfile, fnamemodify(expand(tagfile), ":h"), "", "")
+    let tagfile_dir = substitute(tagfile_dir, "_", "/", "g")
+    let tagfile_dir = fnamemodify(tagfile_dir, ":r")
+    let is_match = stridx(expand("%:p:h"), tagfile_dir)
+    "echo "DEBUG:" . is_match . ":" . expand("%:h") . " == " . tagfile_dir
+    if is_match == 0
+      "echo "LOADED:" . tagfile
+      let &tags = tagfile
+    endif
+  endfor
+endfunction
+
+" ctags_loadに対応したtagsファイルを作る
+"tagsのファイル名を、home_halt_lod.tagsにして、前方一致で見つかったら追加する
+"ctags -R --languages=PHP --tag-relative=yes --php-types=cifdr -f ~/.vimtags/lod.tags .
+function! s:ctags_create()
+  "system()
+endfunction
+
+call s:ctags_load()
+
 " http://shu-cream.blogspot.com/2011/04/2011vimvundle.html
 " https://github.com/gmarik/vundle/blob/master/README.md
 set rtp+=~/.vim/vundle/
@@ -134,7 +165,8 @@ let hostname = strpart(hostname, 0, strlen(hostname)-1)
 if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
 elseif 'devel.kg-global' == hostname
-  colorscheme sweets
+  colorscheme h2u_black
+  "colorscheme sweets
 else
   colorscheme h2u_black
 endif
@@ -486,11 +518,9 @@ function! s:on_FileType_php()
   setlocal softtabstop=4
   setlocal expandtab
   "setlocal dictionary=$HOME/.vim/dict/php.dict
-  "setlocal tags+=$HOME/.vim/tags/pear.tags
   setlocal omnifunc=phpcomplete#CompletePHP
   setlocal runtimepath+=$HOME/.vim/php
   setlocal keywordprg="help"
-  "setlocal tags+=tags;
 
   "inoremap <buffer> ( <Esc>:<C-u>call <SID>SmartBracket()<Return>a
   inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
@@ -530,10 +560,10 @@ function! s:on_FileType_php()
   let s:class = '\(abstract\s\+\|final\s\+\)*class'
   let s:interface = 'interface'
   let s:section = '\(.*\%#\)\@!\_^\s*\zs\('.s:function.'\|'.s:class.'\|'.s:interface.'\)'
-  exe 'nno <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
-  exe 'nno <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
-  exe 'ono <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
-  exe 'ono <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
+  execute 'nno <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
+  execute 'nno <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
+  execute 'ono <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
+  execute 'ono <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
 
   ""
   " 同一ファイル内にある定義元の関数やクラスに移動
@@ -564,8 +594,11 @@ function! s:on_FileType_php()
 
   autocmd BufWritePost <buffer> silent make
 
+<<<<<<< HEAD
 "  call smartinput#clear_rules()
 
+=======
+>>>>>>> b5bac9a11dfcef4ea4108bc768024ff9c6d64f34
   call textobj#user#plugin('php', {
   \   'phptag': {
   \       '*pattern*': ['<?\(=\|php\)\?[\r\n\s]*','[\r\n\s]*?>'],
@@ -610,14 +643,14 @@ endfunction
 
 " ctrlp.vim
 let g:ctrlp_prompt_mappings = {
-  \ 'PrtBS()':              ['<bs>', '<c-]>'],
+  \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
   \ 'PrtDelete()':          ['<del>'],
   \ 'PrtDeleteWord()':      ['<c-w>'],
   \ 'PrtClear()':           ['<c-u>'],
-  \ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
-  \ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
-  \ 'PrtHistory(-1)':       ['<c-n>'],
-  \ 'PrtHistory(1)':        ['<c-p>'],
+  \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
+  \ 'PrtHistory(-1)':       ['<c-k>'],
+  \ 'PrtHistory(1)':        ['<c-j>'],
   \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
   \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<c-t>', '<MiddleMouse>'],
@@ -634,7 +667,7 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtInsert("+")':       ['<F6>'],
   \ 'PrtCurStart()':        ['<c-a>'],
   \ 'PrtCurEnd()':          ['<c-e>'],
-  \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
+  \ 'PrtCurLeft()':         ['<left>', '<c-^>'],
   \ 'PrtCurRight()':        ['<c-l>', '<right>'],
   \ 'PrtClearCache()':      ['<F5>'],
   \ 'PrtDeleteMRU()':       ['<F7>'],
@@ -654,8 +687,14 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 30
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd  ctermbg=234
-hi IndentGuidesEven ctermbg=233
+
+if &background == 'dark'
+  highlight IndentGuidesOdd  ctermbg=234
+  highlight IndentGuidesEven ctermbg=233
+else
+  highlight IndentGuidesOdd  ctermbg=134
+  highlight IndentGuidesEven ctermbg=133
+endif
 
 ""
 " unite.vim
