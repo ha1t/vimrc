@@ -6,6 +6,37 @@
 " @author halt feits
 "
 
+""
+" ctags_load vimtagsに配置されたtagsファイルを状況に応じて開く
+"
+" @url http://d.hatena.ne.jp/thinca/20091009/1255059006
+" @url http://vim.1045645.n5.nabble.com/Vim-script-not-show-path-td1192891.html
+function! s:ctags_load()
+  let tags_dir = '~/.vimtags'
+  let tagfiles = split(glob(tags_dir . '/*'), "\n")
+  for tagfile in tagfiles
+    " tags_dirを削除
+    let tagfile_dir = substitute(tagfile, fnamemodify(expand(tagfile), ":h"), "", "")
+    let tagfile_dir = substitute(tagfile_dir, "_", "/", "g")
+    let tagfile_dir = fnamemodify(tagfile_dir, ":r")
+    let is_match = stridx(expand("%:p:h"), tagfile_dir)
+    "echo "DEBUG:" . is_match . ":" . expand("%:h") . " == " . tagfile_dir
+    if is_match == 0
+      "echo "LOADED:" . tagfile
+      let &tags = tagfile
+    endif
+  endfor
+endfunction
+
+" ctags_loadに対応したtagsファイルを作る
+"tagsのファイル名を、home_halt_lod.tagsにして、前方一致で見つかったら追加する
+"ctags -R --languages=PHP --tag-relative=yes --php-types=cifdr -f ~/.vimtags/lod.tags .
+function! s:ctags_create()
+  "system()
+endfunction
+
+call s:ctags_load()
+
 " http://shu-cream.blogspot.com/2011/04/2011vimvundle.html
 " https://github.com/gmarik/vundle/blob/master/README.md
 set rtp+=~/.vim/vundle/
@@ -462,11 +493,9 @@ function! s:on_FileType_php()
   setlocal softtabstop=4
   setlocal expandtab
   "setlocal dictionary=$HOME/.vim/dict/php.dict
-  "setlocal tags+=$HOME/.vim/tags/pear.tags
   setlocal omnifunc=phpcomplete#CompletePHP
   setlocal runtimepath+=$HOME/.vim/php
   setlocal keywordprg="help"
-  "setlocal tags+=tags;
 
   inoremap <buffer> ( <Esc>:<C-u>call <SID>SmartBracket()<Return>a
   inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
@@ -537,10 +566,6 @@ function! s:on_FileType_php()
   endif
 
   autocmd BufWritePost <buffer> silent make
-
-  command! A call altr#forward()
-  nnoremap <buffer> ee <Plug>(altr-forward)
-  call altr#define('app/controllers/%_controller.php', 'app/models/%.php', 'app/views/%/*.php')
 
   call textobj#user#plugin('php', {
   \   'phptag': {
