@@ -1,4 +1,4 @@
-" Maintainer: paddynewman@gmail.com
+" Maintainer: ha1t.github.com
 " License: BSD
 
 if &t_Co != 256 && !has("gui_running")
@@ -18,11 +18,13 @@ let g:colors_name = "sweets"
 let s:save_cpo = &cpo
 set cpo&vim
 
+"    \ ["LineNr",        "NONE", "238",  "255"   ],
+
 " http://d.hatena.ne.jp/blooo/20100121/1264058591
 " デフォルト背景:225
 " pink: 225, 213,207
 let s:colors256 = [
-    \ ["Normal",        "NONE", "238",  "207"   ],
+    \ ["Normal",        "NONE", "207",  "234"   ],
     \ ["Cursor",        "NONE", "NONE", "160"   ],
     \ ["CursorLine",    "NONE", "NONE", "222"   ],
     \ ["CursorColumn",  "NONE", "NONE", "223"   ],
@@ -47,12 +49,12 @@ let s:colors256 = [
     \ ["FoldedColumn",  "NONE", "238",  "255"   ],
     \ ["FoldColumn",    "NONE", "225",  "255"   ],
     \ ["Directory",     "NONE", "28",   "NONE"  ],
-    \ ["LineNr",        "NONE", "238",  "255"   ],
-    \ ["NonText",       "NONE", "238",  "225"   ],
+    \ ["LineNr",        "NONE", "207",  "238"   ],
+    \ ["NonText",       "NONE", "207",  "238"   ],
     \ ["SpecialKey",    "NONE", "9",    "NONE"  ],
     \ ["Title",         "BOLD", "18",   "NONE"  ],
     \ ["Visual",        "NONE", "NONE", "220"   ],
-    \ ["Comment",       "NONE", "238",  "255"   ],
+    \ ["Comment",       "NONE", "255",  "238"   ],
     \ ["Costant",       "NONE", "58",   "NONE"  ],
     \ ["String",        "NONE", "160",  "NONE"  ],
     \ ["Error",         "NONE", "130",  "NONE"  ],
