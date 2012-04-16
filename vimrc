@@ -595,11 +595,7 @@ function! s:on_FileType_php()
 
   autocmd BufWritePost <buffer> silent make
 
-<<<<<<< HEAD
 "  call smartinput#clear_rules()
-
-=======
->>>>>>> b5bac9a11dfcef4ea4108bc768024ff9c6d64f34
   call textobj#user#plugin('php', {
   \   'phptag': {
   \       '*pattern*': ['<?\(=\|php\)\?[\r\n\s]*','[\r\n\s]*?>'],
