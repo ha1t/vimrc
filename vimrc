@@ -582,18 +582,12 @@ function! s:on_FileType_php()
   " flyquickfixmake.vim
   "
   " @see http://subtech.g.hatena.ne.jp/secondlife/20080729/1217315593
-  let b:undo_ftplugin = "setlocal makeprg< errorformat< shellpipe<"
-    \ . "|silent execute 'augroup php'"
-    \ . "|silent execute 'autocmd!'"
-    \ . "|silent execute 'augroup END'"
-
   if executable($HOME . '/bin/vimparse.php')
     setlocal makeprg=$HOME/bin/vimparse.php\ %\ $*
     setlocal errorformat=%f:%l:%m
     setlocal shellpipe=2>&1\ >
+    autocmd BufWritePost <buffer> silent make
   endif
-
-  autocmd BufWritePost <buffer> silent make
 
 "  call smartinput#clear_rules()
   call textobj#user#plugin('php', {
