@@ -91,7 +91,7 @@ set foldmethod=marker
 
 set complete&
 set complete+=k
-set completeopt=menuone,preview
+set completeopt=menuone
 
 set matchpairs=(:),{:},[:],<:>
 "set matchtime=5
@@ -211,8 +211,11 @@ endfunction
 " tagsのファイル名を、home_halt_lod.tagsにして、前方一致で見つかったら追加する
 function! s:ctags_create()
   let command = "ctags -R --languages=PHP --tag-relative=yes --php-types=cifdr -f ~/.vimtags/lod.tags ."
-  "system()
+  "system(command)
 endfunction
+
+command! CtagsCreate :call s:ctags_create()
+command! CtagsLoad :call s:ctags_load()
 
 call s:ctags_load()
 
