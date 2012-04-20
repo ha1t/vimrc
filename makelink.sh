@@ -25,7 +25,7 @@ fi
 makelink_dir $basedir/vim $HOME/.vim
 
 if [ ! -f $HOME/bin/vimparse.php ]; then
-  ln -s $basedir/scripts/vimparse.php $HOME/bin/vimparse.php
+  ln $basedir/bin/vimparse.php $HOME/bin/vimparse.php
 fi
 
 if [ ! -f $HOME/.vimrc ]; then
