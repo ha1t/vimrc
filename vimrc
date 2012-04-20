@@ -11,6 +11,7 @@
 set rtp+=~/.vim/vundle/
 call vundle#rc()
 
+Bundle 'Align'
 Bundle 'errormarker.vim'
 Bundle 'sudo.vim'
 Bundle 'php_localvarcheck.vim'
@@ -91,7 +92,8 @@ set foldmethod=marker
 
 set complete&
 set complete+=k
-set completeopt=menuone,preview
+set completeopt=menuone
+set showfulltag
 
 set matchpairs=(:),{:},[:],<:>
 "set matchtime=5
@@ -118,6 +120,11 @@ if has("gui_running")
     autocmd GUIEnter * winpos 200 100
     autocmd GUIEnter * winsize 100 50
   endif
+endif
+
+if has('persistent_undo')
+  set undodir=~/.vimundo
+  set undofile
 endif
 
 "set swap file directory
@@ -211,8 +218,11 @@ endfunction
 " tagsのファイル名を、home_halt_lod.tagsにして、前方一致で見つかったら追加する
 function! s:ctags_create()
   let command = "ctags -R --languages=PHP --tag-relative=yes --php-types=cifdr -f ~/.vimtags/lod.tags ."
-  "system()
+  "system(command)
 endfunction
+
+command! CtagsCreate :call s:ctags_create()
+command! CtagsLoad :call s:ctags_load()
 
 call s:ctags_load()
 
@@ -486,6 +496,7 @@ function! s:on_FileType_ruby()
 endfunction
 autocmd MyAutoCmd FileType ruby call s:on_FileType_ruby()
 
+" on_FileType_maml " {{{
 function! s:on_FileType_maml()
   setlocal expandtab
   setlocal tabstop=4
@@ -499,6 +510,7 @@ function! s:on_FileType_maml()
   endif
 endfunction
 autocmd MyAutoCmd FileType maml call s:on_FileType_maml()
+" }}}
 
 " on_FileType_php " {{{
 autocmd MyAutoCmd FileType php call s:on_FileType_php()
@@ -527,6 +539,12 @@ function! s:on_FileType_php()
   inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
   inoremap <expr> <buffer> @ <SID>at()
   inoremap @@ @
+
+  ""
+  " Align.vim
+  " @TODO 本当はどっちも=にして自動で判別したい
+  vnoremap <buffer> = :<C-u>'<,'>Align =<Return>
+  vnoremap <buffer> a :<C-u>'<,'>Align =><Return>
 
   if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
