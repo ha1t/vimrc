@@ -122,6 +122,11 @@ if has("gui_running")
   endif
 endif
 
+if has('persistent_undo')
+  set undodir=~/.vimundo
+  set undofile
+endif
+
 "set swap file directory
 let &directory = &backupdir
 let mapleader = ","
@@ -491,6 +496,7 @@ function! s:on_FileType_ruby()
 endfunction
 autocmd MyAutoCmd FileType ruby call s:on_FileType_ruby()
 
+" on_FileType_maml " {{{
 function! s:on_FileType_maml()
   setlocal expandtab
   setlocal tabstop=4
@@ -504,6 +510,7 @@ function! s:on_FileType_maml()
   endif
 endfunction
 autocmd MyAutoCmd FileType maml call s:on_FileType_maml()
+" }}}
 
 " on_FileType_php " {{{
 autocmd MyAutoCmd FileType php call s:on_FileType_php()
