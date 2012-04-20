@@ -11,6 +11,7 @@
 set rtp+=~/.vim/vundle/
 call vundle#rc()
 
+Bundle 'Align'
 Bundle 'errormarker.vim'
 Bundle 'sudo.vim'
 Bundle 'php_localvarcheck.vim'
@@ -92,6 +93,7 @@ set foldmethod=marker
 set complete&
 set complete+=k
 set completeopt=menuone
+set showfulltag
 
 set matchpairs=(:),{:},[:],<:>
 "set matchtime=5
@@ -530,6 +532,12 @@ function! s:on_FileType_php()
   inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
   inoremap <expr> <buffer> @ <SID>at()
   inoremap @@ @
+
+  ""
+  " Align.vim
+  " @TODO 本当はどっちも=にして自動で判別したい
+  vnoremap <buffer> = :<C-u>'<,'>Align =<Return>
+  vnoremap <buffer> a :<C-u>'<,'>Align =><Return>
 
   if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
