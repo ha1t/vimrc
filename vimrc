@@ -20,10 +20,12 @@ Bundle 'Markdown'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'h1mesuke/unite-outline'
 "Bundle 'kana/vim-altr'
+Bundle 'jsoriano/vim-dbgp'
 Bundle 'kana/vim-arpeggio'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kana/vim-smartinput'
 Bundle 'kana/vim-smartword'
+Bundle 'karakaram/vim-quickrun-phpunit'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
@@ -717,11 +719,32 @@ nnoremap <silent> <C-u>r :<C-u>Unite file_mru<CR>
 nnoremap <silent> <C-u>g :<C-u>Unite vcs_grep<CR>
 nnoremap <silent> <C-u>o :<C-u>Unite outline<CR>
 
+""
+" quickrun
+"
 let g:quickrun_config = {}
+
 " http://d.hatena.ne.jp/mFumi/20100301/1267431727
 let g:quickrun_config.applescript = {'command' : 'osascript', 'output' : '_'}
 let g:quickrun_no_default_key_mappings = 1
 nnoremap <silent> <Leader>e :<C-u>QuickRun<CR>
+
+""
+" vim-quickrun-phpunit
+" @url http://www.karakaram.com/vim/phpunit-location-list/
+"
+augroup QuickRunPHPUnit
+  autocmd!
+  autocmd BufWinEnter,BufNewFile *Test.php set filetype=php.phpunit
+  autocmd BufWinEnter,BufNewFile *_test.php set filetype=php.phpunit
+augroup END
+let g:quickrun_config['php.phpunit'] = {}
+let g:quickrun_config['php.phpunit']['outputter'] = 'phpunit'
+let g:quickrun_config['php.phpunit']['command'] = 'phpunit'
+let g:quickrun_config['php.phpunit']['exec'] = '%c %o %s'
+let g:quickrun_config['php.phpunit']['outputter/phpunit/height'] = 3
+let g:quickrun_config['php.phpunit']['outputter/phpunit/running_mark'] = 'running...'
+let g:quickrun_config['php.phpunit']['outputter/phpunit/auto_open'] = 0
 
 ""
 " vim-easymotion
