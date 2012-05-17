@@ -258,14 +258,14 @@ nnoremap Y y$
 
 " http://relaxedcolumn.blog8.fc2.com/blog-entry-146.html
 " http://vim.g.hatena.ne.jp/tyru/20100106
-let g:arpeggio_timeoutlen = 50
-call arpeggio#load()
-Arpeggio inoremap jf <Esc>
-Arpeggio inoremap jc class<Space>
-Arpeggio inoremap jf function<Space>
-Arpeggio inoremap jp ()<Left>
-Arpeggio inoremap jb {}<Left>
-Arpeggio inoremap jd <C-R>=strftime('%Y/%m/%d (%a)')<CR>
+"let g:arpeggio_timeoutlen = 50
+"call arpeggio#load()
+"Arpeggio inoremap jf <Esc>
+"Arpeggio inoremap jc class<Space>
+"Arpeggio inoremap jf function<Space>
+"Arpeggio inoremap jp ()<Left>
+"Arpeggio inoremap jb {}<Left>
+"Arpeggio inoremap jd <C-R>=strftime('%Y/%m/%d (%a)')<CR>
 
 ""
 " vimgrep list search
