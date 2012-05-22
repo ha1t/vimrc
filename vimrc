@@ -274,6 +274,11 @@ nnoremap Y y$
 "
 nnoremap g/ :exec ':vimgrep /' . getreg('/') . '/j %\|cwin'<CR>
 
+""
+" 画面分割
+" TODO: 簡単に閉じれるように
+"
+nnoremap <silent> <Leader>d :vsplit<bar>wincmd l<bar>exe "norm! Ljz<c-v><cr>"<cr>:set scb<cr>:wincmd h<cr>:set scb<cr>
 
 ""
 " paste/nopaste
