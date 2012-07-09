@@ -283,8 +283,7 @@ nnoremap <silent> <Leader>d :vsplit<bar>wincmd l<bar>exe "norm! Ljz<c-v><cr>"<cr
 ""
 " paste/nopaste
 "
-nnoremap ep :<C-u>setlocal paste<CR>
-nnoremap enp :<C-u>setlocal nopaste<CR>
+nnoremap ep :<C-u>setlocal invpaste<CR>
 
 " http://nanasi.jp/articles/code/command/command.html
 command! EditVimrc :edit $MYVIMRC
@@ -810,6 +809,17 @@ if has("gui_running")
   " mouseなぞつかわんばい
   set mouse=
 endif
+
+function! Scouter(file, ...)
+  let pat = '^\s*$\|^\s*"'
+  let lines = readfile(a:file)
+  if !a:0 || !a:1
+    let lines = split(substitute(join(lines, "\n"), '\n\s*\\', '', 'g'), "\n")
+  endif
+  return len(filter(lines,'v:val !~ pat'))
+endfunction
+command! -bar -bang -nargs=? -complete=file Scouter
+\        echo Scouter(empty(<q-args>) ? $MYVIMRC : expand(<q-args>), <bang>0)
 
 " http://vim-users.jp/2010/04/hack141/
 " A,B,CをB,C,Aにする
