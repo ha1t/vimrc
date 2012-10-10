@@ -213,9 +213,8 @@ function! s:ctags_load()
     let tagfile_filename = substitute(tagfile_filename, "_", "/", "g")
     let tagfile_filename = substitute(tagfile_filename, "//", "/", "g")
     let tagfile_dir = fnamemodify(tagfile_filename, ":r")
-    let is_match = stridx(expand("%:p:h"), tagfile_dir)
-    " echo "DEBUG:" . is_match . ":" . expand("%:p:h") . " == " . tagfile_dir
-    if is_match == 0
+    " echo "DEBUG:" . expand("%:p:h") . " == " . tagfile_dir
+    if expand("%:p:h") == tagfile_dir
       echo "LOADED CTAGS:" . tagfile
       let &tags = tagfile
     endif
