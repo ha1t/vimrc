@@ -40,6 +40,7 @@ Bundle 'Shougo/neocomplcache-snippets-complete'
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
 Bundle 'Shougo/unite.vim'
+Bundle 'sickill/vim-monokai'
 Bundle 'sgur/unite-git_grep'
 Bundle 'taku-o/vim-toggle'
 Bundle 'thinca/vim-quickrun'
@@ -146,10 +147,12 @@ let hostname = strpart(hostname, 0, strlen(hostname)-1)
 if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
 elseif 'devel.kg-global' == hostname
-  colorscheme h2u_black
+  "colorscheme h2u_black
+  colorscheme Monokai
   "colorscheme sweets
 else
-  colorscheme h2u_black
+  "colorscheme h2u_black
+  colorscheme Monokai
 endif
 
 syntax enable
@@ -206,13 +209,14 @@ function! s:ctags_load()
   let tagfiles = split(glob(tags_dir . '/*'), "\n")
   for tagfile in tagfiles
     " tags_dirを削除
-    let tagfile_dir = substitute(tagfile, fnamemodify(expand(tagfile), ":h"), "", "")
-    let tagfile_dir = substitute(tagfile_dir, "_", "/", "g")
-    let tagfile_dir = fnamemodify(tagfile_dir, ":r")
+    let tagfile_filename = substitute(tagfile, fnamemodify(expand(tagfile), ":h"), "", "")
+    let tagfile_filename = substitute(tagfile_filename, "_", "/", "g")
+    let tagfile_filename = substitute(tagfile_filename, "//", "/", "g")
+    let tagfile_dir = fnamemodify(tagfile_filename, ":r")
     let is_match = stridx(expand("%:p:h"), tagfile_dir)
-    "echo "DEBUG:" . is_match . ":" . expand("%:h") . " == " . tagfile_dir
+    " echo "DEBUG:" . is_match . ":" . expand("%:p:h") . " == " . tagfile_dir
     if is_match == 0
-      "echo "LOADED:" . tagfile
+      echo "LOADED CTAGS:" . tagfile
       let &tags = tagfile
     endif
   endfor
@@ -220,10 +224,17 @@ endfunction
 
 ""
 " ctags_loadに対応したtagsファイルを作る
-" tagsのファイル名を、home_halt_lod.tagsにして、前方一致で見つかったら追加する
+" プロジェクトルートにいるときだけ実行できる。
+" tagsのファイル名を、home_halt_src_project.tagsにする
 function! s:ctags_create()
-  let command = "ctags -R --languages=PHP --tag-relative=yes --php-types=cifdr -f ~/.vimtags/lod.tags ."
-  "system(command)
+  let is_project_root = isdirectory(expand("%:p:h") . "/.git")
+  if is_project_root
+    let tags_filename = substitute(expand("%:p:h"), "/", "_", "g") . ".tags"
+    let command = "ctags -R --languages=PHP --tag-relative=yes --php-types=cifd -f ~/.vimtags/" . tags_filename . " " . expand("%:p:h")
+    echo command
+    let result = system(command)
+    echo result
+  endif
 endfunction
 
 command! CtagsCreate :call s:ctags_create()
