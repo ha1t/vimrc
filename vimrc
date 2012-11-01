@@ -35,7 +35,7 @@ Bundle 'Lokaltog/vim-powerline'
 "Bundle 'molok/css_color.vim' " 重すぎワロタ
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplcache-snippets-complete'
+Bundle 'Shougo/neosnippet'
 "Bundle 'Shougo/vimshell'
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
@@ -204,18 +204,17 @@ command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
 "
 " @url http://d.hatena.ne.jp/thinca/20091009/1255059006
 " @url http://vim.1045645.n5.nabble.com/Vim-script-not-show-path-td1192891.html
+"
 function! s:ctags_load()
   let tags_dir = '~/.vimtags'
   let tagfiles = split(glob(tags_dir . '/*'), "\n")
   for tagfile in tagfiles
-    " tags_dirを削除
     let tagfile_filename = substitute(tagfile, fnamemodify(expand(tagfile), ":h"), "", "")
     let tagfile_filename = substitute(tagfile_filename, "_", "/", "g")
     let tagfile_filename = substitute(tagfile_filename, "//", "/", "g")
     let tagfile_dir = fnamemodify(tagfile_filename, ":r")
-    " echo "DEBUG:" . expand("%:p:h") . " == " . tagfile_dir
     if expand("%:p:h") == tagfile_dir
-      echo "LOADED CTAGS:" . tagfile
+      " echo "LOADED CTAGS:" . tagfile
       let &tags = tagfile
     endif
   endfor
@@ -225,6 +224,7 @@ endfunction
 " ctags_loadに対応したtagsファイルを作る
 " プロジェクトルートにいるときだけ実行できる。
 " tagsのファイル名を、home_halt_src_project.tagsにする
+"
 function! s:ctags_create()
   let is_project_root = isdirectory(expand("%:p:h") . "/.git")
   if is_project_root
