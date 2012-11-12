@@ -140,6 +140,8 @@ let mapleader = ","
 let hostname = system('hostname')
 let hostname = strpart(hostname, 0, strlen(hostname)-1)
 
+let is_mac = (has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^darwin')
+
 "colorscheme rdark-terminal
 "colorscheme desert256
 "colorscheme vitamins
