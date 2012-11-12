@@ -803,7 +803,7 @@ let g:vimfiler_safe_mode_by_default = 0
 ""
 " yanktmp & pbcopy
 "
-if has('mac') && !has('gui')
+if is_mac && !has('gui')
   nnoremap <silent> sy :.w !pbcopy<CR><CR>
   vnoremap <silent> sy :w !pbcopy<CR><CR>
   nnoremap <silent> sp :r !pbpaste<CR>
