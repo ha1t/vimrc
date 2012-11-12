@@ -499,6 +499,14 @@ function! s:on_FileType_html()
 endfunction
 autocmd MyAutoCmd FileType html call s:on_FileType_html()
 
+function! s:on_FileType_css()
+  setlocal tabstop=4
+  setlocal shiftwidth=4
+  setlocal softtabstop=4
+  setlocal expandtab
+endfunction
+autocmd MyAutoCmd FileType css call s:on_FileType_css()
+
 function! s:on_FileType_python()
   setlocal tabstop=2
   setlocal shiftwidth=2
