@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -u
+
 # TODO:強制的にresetする仕組みを作る
 
 basedir=$HOME/src/vimrc
