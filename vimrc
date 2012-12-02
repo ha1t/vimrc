@@ -525,6 +525,14 @@ function! s:on_FileType_ruby()
 endfunction
 autocmd MyAutoCmd FileType ruby call s:on_FileType_ruby()
 
+function! s:on_FileType_javascript()
+  setlocal tabstop=2
+  setlocal shiftwidth=2
+  setlocal softtabstop=2
+  setlocal expandtab
+endfunction
+autocmd MyAutoCmd FileType javascript call s:on_FileType_javascript()
+
 " on_FileType_maml " {{{
 function! s:on_FileType_maml()
   setlocal expandtab
