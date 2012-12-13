@@ -511,9 +511,9 @@ endfunction
 autocmd MyAutoCmd FileType css call s:on_FileType_css()
 
 function! s:on_FileType_python()
-  setlocal tabstop=2
-  setlocal shiftwidth=2
-  setlocal softtabstop=2
+  setlocal tabstop=4
+  setlocal shiftwidth=4
+  setlocal softtabstop=4
   setlocal expandtab
 endfunction
 autocmd MyAutoCmd FileType python call s:on_FileType_python()
