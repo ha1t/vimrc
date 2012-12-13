@@ -339,6 +339,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.applescript setfiletype applescript
   autocmd BufNewFile,BufRead *.ctp setfiletype php
   autocmd BufNewFile,BufRead *.phpt setfiletype phpt
+  autocmd BufNewFile,BufRead *.maml setfiletype maml
 augroup END
 
 ""
@@ -717,6 +718,9 @@ let g:ctrlp_prompt_mappings = {
 
 " toggle.vim
 nnoremap <C-t> <Plug>(ToggleN)
+
+" git grep
+nnoremap <unique> gG :exec ':silent GitGrep ' . expand('<cword>')<CR>
 
 ""
 " indent_guides
