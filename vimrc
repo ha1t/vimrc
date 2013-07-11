@@ -21,6 +21,7 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'h1mesuke/unite-outline'
 "Bundle 'int3/vim-extradite'
 "Bundle 'kana/vim-altr'
+Bundle 'jnwhiteh/vim-golang'
 "Bundle 'jsoriano/vim-dbgp'
 Bundle 'kana/vim-arpeggio'
 Bundle 'kana/vim-textobj-user'
@@ -534,6 +535,16 @@ function! s:on_FileType_javascript()
 endfunction
 autocmd MyAutoCmd FileType javascript call s:on_FileType_javascript()
 
+" on_FileType_go " {{{
+function! s:on_FileType_go()
+  setlocal noexpandtab
+  setlocal tabstop=4
+  setlocal shiftwidth=4
+  setlocal softtabstop=0
+endfunction
+autocmd MyAutoCmd FileType go call s:on_FileType_go()
+" }}}
+
 " on_FileType_maml " {{{
 function! s:on_FileType_maml()
   setlocal expandtab
@@ -728,7 +739,8 @@ let g:ctrlp_prompt_mappings = {
 nnoremap <C-t> <Plug>(ToggleN)
 
 " git grep
-nnoremap <unique> gG :exec ':silent GitGrep ' . expand('<cword>')<CR>
+"nnoremap <unique> gG :exec ':silent GitGrep ' . expand('<cword>')<CR>
+
 
 ""
 " indent_guides
