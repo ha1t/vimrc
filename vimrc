@@ -31,7 +31,8 @@ Bundle 'karakaram/vim-quickrun-phpunit'
 Bundle 'kien/ctrlp.vim'
 "Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
+Bundle 'itchyny/lightline.vim'
 "Bundle 'mattn/gist-vim'
 "Bundle 'molok/css_color.vim' " 重すぎワロタ
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -698,6 +699,10 @@ endfunction
 " }}}
 
 " vim plugin setting " {{{
+
+let g:lightline = {
+  \ 'colorscheme': 'wombat'
+  \ }
 
 " ctrlp.vim
 let g:ctrlp_prompt_mappings = {
