@@ -21,7 +21,7 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'h1mesuke/unite-outline'
 "Bundle 'int3/vim-extradite'
 "Bundle 'kana/vim-altr'
-Bundle 'jnwhiteh/vim-golang'
+Bundle 'fatih/vim-go'
 "Bundle 'jsoriano/vim-dbgp'
 Bundle 'kana/vim-arpeggio'
 Bundle 'kana/vim-textobj-user'
@@ -37,7 +37,7 @@ Bundle 'itchyny/lightline.vim'
 "Bundle 'molok/css_color.vim' " 重すぎワロタ
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
+"Bundle 'Shougo/neosnippet'
 "Bundle 'Shougo/vimshell'
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
@@ -55,6 +55,9 @@ Bundle 'vim-scripts/yanktmp.vim'
 Bundle 'vim-scripts/dbext.vim'
 Bundle 'vim-jp/vimdoc-ja'
 "Bundle 'yuratomo/w3m.vim'
+
+" ftplugin
+Bundle 'moro/vim-review'
 
 let g:toggle_pairs = {
   \'and':'or', 'or':'and',
