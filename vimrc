@@ -156,11 +156,11 @@ if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
 elseif 'devel.kg-global' == hostname
   "colorscheme h2u_black
-  colorscheme Monokai
+  colorscheme monokai
   "colorscheme sweets
 else
   "colorscheme h2u_black
-  colorscheme Monokai
+  colorscheme monokai
 endif
 
 syntax enable
