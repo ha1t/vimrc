@@ -35,9 +35,10 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'itchyny/lightline.vim'
 "Bundle 'mattn/gist-vim'
 "Bundle 'molok/css_color.vim' " 重すぎワロタ
+Bundle 'majutsushi/tagbar'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Shougo/neocomplcache'
-"Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet'
 "Bundle 'Shougo/vimshell'
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
@@ -545,6 +546,34 @@ function! s:on_FileType_go()
   setlocal tabstop=4
   setlocal shiftwidth=4
   setlocal softtabstop=0
+
+  let g:tagbar_type_go = {
+      \ 'ctagstype' : 'go',
+      \ 'kinds'     : [
+          \ 'p:package',
+          \ 'i:imports:1',
+          \ 'c:constants',
+          \ 'v:variables',
+          \ 't:types',
+          \ 'n:interfaces',
+          \ 'w:fields',
+          \ 'e:embedded',
+          \ 'm:methods',
+          \ 'r:constructor',
+          \ 'f:functions'
+      \ ],
+      \ 'sro' : '.',
+      \ 'kind2scope' : {
+          \ 't' : 'ctype',
+          \ 'n' : 'ntype'
+      \ },
+      \ 'scope2kind' : {
+          \ 'ctype' : 't',
+          \ 'ntype' : 'n'
+      \ },
+      \ 'ctagsbin'  : 'gotags',
+      \ 'ctagsargs' : '-sort -silent'
+  \ }
 endfunction
 autocmd MyAutoCmd FileType go call s:on_FileType_go()
 " }}}
@@ -588,10 +617,10 @@ function! s:on_FileType_php()
   setlocal runtimepath+=$HOME/.vim/php
   setlocal keywordprg="help"
 
-  "inoremap <buffer> ( <Esc>:<C-u>call <SID>SmartBracket()<Return>a
-  inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
-  inoremap <expr> <buffer> @ <SID>at()
-  inoremap @@ @
+"  inoremap <buffer> ( <Esc>:<C-u>call <SID>SmartBracket()<Return>a
+"  inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
+"  inoremap <expr> <buffer> @ <SID>at()
+"  inoremap @@ @
 
   ""
   " Align.vim
@@ -821,16 +850,29 @@ vnoremap <silent> <Leader>W :<C-U>call EasyMotion#WBW(0, 1)<CR>
 "
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_auto_completion_start_length = 4
-let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
 
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
+" which disables all runtime snippets
+let g:neosnippet#disable_runtime_snippets = {'_' : 1,}
+let g:neosnippet#snippets_directory='~/.vim/snippets'
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: "\<TAB>"
 
 ""
 " vimfiler
 "
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
+
+""
+" tagbar
+"
+let g:tagbar_width = 60
 
 ""
 " yanktmp & pbcopy
