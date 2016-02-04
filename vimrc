@@ -22,6 +22,7 @@ Bundle 'h1mesuke/unite-outline'
 "Bundle 'int3/vim-extradite'
 "Bundle 'kana/vim-altr'
 Bundle 'fatih/vim-go'
+Bundle 'fatih/molokai'
 "Bundle 'jsoriano/vim-dbgp'
 Bundle 'kana/vim-arpeggio'
 Bundle 'kana/vim-textobj-user'
@@ -43,7 +44,6 @@ Bundle 'Shougo/neosnippet'
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
 Bundle 'Shougo/unite.vim'
-Bundle 'sickill/vim-monokai'
 Bundle 'sgur/unite-git_grep'
 Bundle 'taku-o/vim-toggle'
 Bundle 'thinca/vim-quickrun'
@@ -154,16 +154,9 @@ let is_mac = (has('mac') || has('macunix') || has('gui_macvim') || system('uname
 
 if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
-elseif 'devel.kg-global' == hostname
-  "colorscheme h2u_black
-  colorscheme monokai
-  "colorscheme sweets
 else
-  "colorscheme h2u_black
-  colorscheme monokai
+  colorscheme molokai
 endif
-
-syntax enable
 
 filetype indent on
 filetype plugin on
@@ -547,6 +540,14 @@ function! s:on_FileType_go()
   setlocal shiftwidth=4
   setlocal softtabstop=0
 
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
+  let g:gofmt_command = 'goimports'
+
   let g:tagbar_type_go = {
       \ 'ctagstype' : 'go',
       \ 'kinds'     : [
@@ -895,6 +896,8 @@ endif
 "function! SymbolUnderCursor(tran)
 "  return synIDattr(synID(line("."),col("."), a:tran),"name")
 "endfunction
+
+syntax on
 
 if has("gui_running")
   "gui
