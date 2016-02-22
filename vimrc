@@ -878,18 +878,11 @@ let g:tagbar_width = 60
 ""
 " yanktmp & pbcopy
 "
-if is_mac && !has('gui')
-  nnoremap <silent> sy :.w !pbcopy<CR><CR>
-  vnoremap <silent> sy :w !pbcopy<CR><CR>
-  nnoremap <silent> sp :r !pbpaste<CR>
-  vnoremap <silent> sp :r !pbpaste<CR>
-else
-  let g:yanktmp_file = $HOME . '/.vimyanktmp'
-  nnoremap <silent> sy :call YanktmpYank()<CR>
-  vnoremap <silent> sy :call YanktmpYank()<CR>
-  nnoremap <silent> sp :call YanktmpPaste_p()<CR>
-  nnoremap <silent> sP :call YanktmpPaste_P()<CR>
-endif
+let g:yanktmp_file = $HOME . '/.vimyanktmp'
+nnoremap <silent> sy :call YanktmpYank()<CR>
+vnoremap <silent> sy :call YanktmpYank()<CR>
+nnoremap <silent> sp :call YanktmpPaste_p()<CR>
+nnoremap <silent> sP :call YanktmpPaste_P()<CR>
 " }}}
 
 " for debug
