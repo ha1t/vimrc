@@ -40,6 +40,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
 "Bundle 'Shougo/vimshell'
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
@@ -353,8 +354,8 @@ autocmd MyAutoCmd WinEnter,BufRead * set cursorline
 "
 " @see http://d.hatena.ne.jp/lurker/20060524/1148477250
 "
-autocmd MyAutoCmd BufNewFile *.php 0r $HOME/.vim/template/php.txt | exe "normal G"
-autocmd MyAutoCmd BufNewFile *.rb 0r $HOME/.vim/template/ruby.txt | exe "normal G"
+"autocmd MyAutoCmd BufNewFile *.php 0r $HOME/.vim/template/php.txt | exe "normal G"
+"autocmd MyAutoCmd BufNewFile *.rb 0r $HOME/.vim/template/ruby.txt | exe "normal G"
 
 " 前回終了したカーソル行に移動
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
@@ -546,7 +547,7 @@ function! s:on_FileType_go()
   let g:go_highlight_interfaces = 1
   let g:go_highlight_operators = 1
   let g:go_highlight_build_constraints = 1
-  let g:gofmt_command = 'goimports'
+  let g:go_fmt_command = 'goimports'
 
   let g:tagbar_type_go = {
       \ 'ctagstype' : 'go',
@@ -852,17 +853,23 @@ vnoremap <silent> <Leader>W :<C-U>call EasyMotion#WBW(0, 1)<CR>
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_auto_completion_start_length = 4
 
-" which disables all runtime snippets
-let g:neosnippet#disable_runtime_snippets = {'_' : 1,}
-let g:neosnippet#snippets_directory='~/.vim/snippets'
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)"
-      \: pumvisible() ? "\<C-n>" : "\<TAB>"
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)"
-      \: "\<TAB>"
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 ""
 " vimfiler
