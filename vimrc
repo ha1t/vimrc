@@ -156,7 +156,7 @@ let is_mac = (has('mac') || has('macunix') || has('gui_macvim') || system('uname
 if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
 else
-  colorscheme molokai
+  colorscheme Tomorrow-Night-Bright
 endif
 
 filetype indent on
@@ -242,6 +242,13 @@ command! CtagsCreate :call s:ctags_create()
 command! CtagsLoad :call s:ctags_load()
 
 call s:ctags_load()
+
+""
+" NeoVim Config
+"
+if has('nvim')
+      tnoremap <Esc> <C-\><C-n>
+endif
 
 noremap ; :
 noremap : ;
