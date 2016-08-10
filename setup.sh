@@ -14,17 +14,17 @@ function makelink_dir () {
   fi
 }
 
-if [ ! -d $basedir/vim/vundle ]; then
-  git submodule init
-  git submodule update
-fi
-
 if [ ! -d $HOME/bin ]; then
   echo "created: $HOME/bin"
   mkdir $HOME/bin
 fi
 
 makelink_dir $basedir/vim $HOME/.vim
+
+if [ ! -d $basedir/vim/vundle ]; then
+  git submodule init
+  git submodule update
+fi
 
 if [ ! -f $HOME/bin/vimparse.php ]; then
   ln $basedir/bin/vimparse.php $HOME/bin/vimparse.php
