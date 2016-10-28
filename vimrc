@@ -17,6 +17,7 @@ Bundle 'sudo.vim'
 "Bundle 'php_localvarcheck.vim'
 Bundle 'Markdown'
 
+Bundle 'beanworks/vim-phpfmt'
 Bundle 'chriskempson/vim-tomorrow-theme'
 "Bundle 'int3/vim-extradite'
 "Bundle 'kana/vim-altr'
@@ -620,6 +621,13 @@ function! s:on_FileType_php()
 
   inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
   nnoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return><Right>
+
+  ""
+  " vim-phpfmt
+  "
+  " A standard type: PEAR, PHPCS, PSR1, PSR2, Squiz and Zend
+  let g:phpfmt_standard = 'PSR2'
+  let g:phpfmt_autosave = 1
 
   ""
   " Align.vim
