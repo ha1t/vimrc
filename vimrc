@@ -626,10 +626,7 @@ function! s:on_FileType_php()
   setlocal runtimepath+=$HOME/.vim/php
   setlocal keywordprg="help"
 
-"  inoremap <buffer> ( <Esc>:<C-u>call <SID>SmartBracket()<Return>a
-"  inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
-"  inoremap <expr> <buffer> @ <SID>at()
-"  inoremap @@ @
+  inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
 
   ""
   " Align.vim
@@ -709,24 +706,11 @@ function! s:on_FileType_php()
 endfunction
 
 " ()の中にいるときに<TAB>で抜ける
-" {の後にenterがくると、とじて間にのる
-" http://blog.netswitch.jp/2008/01/26/re-vim-ruby-micro-optimization
 function! s:SmartTab()
   if matchstr(getline(line(".")), ")", col(".")) == ")" 
     execute ":normal a\<Esc>f)"
   else
     execute ":normal a \<Esc>r\<Tab>"
-  endif
-endfunction
-
-function! s:SmartBracket()
-  let s = synIDattr(synID(line("."),col("."),0),"name")
-  if matchstr(s, "phpString") == "phpString"
-    execute ":normal a \<Esc>vr("
-  else
-    execute ":normal a \<Esc>vr("
-    execute ":normal a)"
-    execute ":normal a \<Esc>hi"
   endif
 endfunction
 
