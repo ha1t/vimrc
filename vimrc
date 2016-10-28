@@ -730,13 +730,6 @@ function! s:SmartBracket()
   endif
 endfunction
 
-" http://d.hatena.ne.jp/thinca/20120208/1328676033
-function! s:at()
-  let syntax = synstack(line('.'), col('.'))
-  let name = empty(syntax) ? '' : synIDattr(syntax[-1], "name")
-  return name =~# 'String\|Comment\|None' ? '@' : '$this->'
-endfunction
-
 " }}}
 
 " vim plugin setting " {{{
