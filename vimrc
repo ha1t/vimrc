@@ -628,6 +628,7 @@ function! s:on_FileType_php()
   setlocal keywordprg="help"
 
   inoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return>a
+  nnoremap <buffer> <Tab> <Esc>:<C-u>call <SID>SmartTab()<Return><Right>
 
   ""
   " Align.vim
@@ -708,10 +709,12 @@ endfunction
 
 " ()の中にいるときに<TAB>で抜ける
 function! s:SmartTab()
-  if matchstr(getline(line(".")), ")", col(".")) == ")" 
+  if matchstr(getline(line(".")), ")", col(".")) == ")"
     execute ":normal a\<Esc>f)"
   else
-    execute ":normal a \<Esc>r\<Tab>"
+    if (mode() == "i")
+      execute ":normal a \<Esc>r\<Tab>"
+    endif
   endif
 endfunction
 
