@@ -18,7 +18,6 @@ Bundle 'sudo.vim'
 Bundle 'Markdown'
 
 Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'h1mesuke/unite-outline'
 "Bundle 'int3/vim-extradite'
 "Bundle 'kana/vim-altr'
 Bundle 'fatih/vim-go'
@@ -45,8 +44,6 @@ Bundle 'Shougo/neosnippet-snippets'
 "Bundle 'Shougo/vimshell'
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
-Bundle 'Shougo/unite.vim'
-Bundle 'sgur/unite-git_grep'
 Bundle 'taku-o/vim-toggle'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tjennings/git-grep-vim'
@@ -376,12 +373,6 @@ function! s:on_FileType_vimfiler()
   call vimfiler#set_execute_file('md',  'vim')
 endfunction
 autocmd MyAutoCmd FileType vimfiler call s:on_FileType_vimfiler()
-
-function! s:on_FileType_unite()
-  inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-  inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-endfunction
-autocmd MyAutoCmd FileType unite call s:on_FileType_unite()
 
 function! s:on_FileType_vim()
   setlocal tabstop=2
@@ -784,18 +775,6 @@ else
   highlight IndentGuidesOdd  ctermbg=134
   highlight IndentGuidesEven ctermbg=133
 endif
-
-""
-" unite.vim
-"
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
-"nnoremap <silent> <C-u> :<C-u>Unite file_mru buffer file_rec<CR>
-nnoremap <silent> <C-u>b :<C-u>Unite buffer<CR>
-nnoremap <silent> <C-u>f :<C-u>Unite file_rec<CR>
-nnoremap <silent> <C-u>r :<C-u>Unite file_mru<CR>
-nnoremap <silent> <C-u>g :<C-u>Unite vcs_grep<CR>
-nnoremap <silent> <C-u>o :<C-u>Unite outline<CR>
 
 ""
 " quickrun
