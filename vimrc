@@ -57,6 +57,9 @@ Bundle 'vim-scripts/dbext.vim'
 Bundle 'vim-jp/vimdoc-ja'
 "Bundle 'yuratomo/w3m.vim'
 
+" theme
+Bundle 'mhartington/oceanic-next'
+
 " ftplugin
 Bundle 'moro/vim-review'
 
@@ -75,7 +78,14 @@ let g:toggle_pairs = {
 ""
 " set
 "
-set t_Co=256
+if has('nvim')
+  set termguicolors
+else
+  set t_Co=256
+  set nocompatible
+  set encoding=utf-8
+endif
+
 set autoindent
 set ambiwidth=double
 set backup
@@ -83,7 +93,6 @@ set backupdir=~/.vimbackup
 "set background=dark
 set backspace=indent,eol,start
 set helplang=ja,en
-set nocompatible
 set noruler
 set wildmenu
 set wildmode=longest,list
@@ -111,7 +120,6 @@ set matchpairs=(:),{:},[:],<:>
 "set matchtime=5
 "set tags+=$HOME/.vim/systags
 set history=10000
-set encoding=utf-8
 set cursorline
 set nocursorcolumn
 set splitbelow
@@ -155,7 +163,8 @@ let is_mac = (has('mac') || has('macunix') || has('gui_macvim') || system('uname
 if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
 else
-  colorscheme Tomorrow-Night-Bright
+  colorscheme OceanicNext
+  "colorscheme Tomorrow-Night-Bright
 endif
 
 filetype indent on
