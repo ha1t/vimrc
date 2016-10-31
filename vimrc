@@ -534,6 +534,11 @@ function! s:on_FileType_javascript()
 endfunction
 autocmd MyAutoCmd FileType javascript call s:on_FileType_javascript()
 
+function! s:on_FileType_json()
+  setlocal conceallevel=0
+endfunction
+autocmd MyAutoCmd FileType json call s:on_FileType_json()
+
 " on_FileType_go " {{{
 function! s:on_FileType_go()
   setlocal noexpandtab
