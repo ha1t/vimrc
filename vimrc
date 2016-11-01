@@ -18,11 +18,9 @@ Bundle 'sudo.vim'
 Bundle 'Markdown'
 
 Bundle 'beanworks/vim-phpfmt'
-Bundle 'chriskempson/vim-tomorrow-theme'
 "Bundle 'int3/vim-extradite'
 "Bundle 'kana/vim-altr'
 Bundle 'fatih/vim-go'
-Bundle 'fatih/molokai'
 Bundle 'flyinshadow/php_localvarcheck.vim'
 "Bundle 'jsoriano/vim-dbgp'
 Bundle 'kana/vim-arpeggio'
@@ -59,6 +57,8 @@ Bundle 'vim-jp/vimdoc-ja'
 
 " theme
 Bundle 'mhartington/oceanic-next'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'fatih/molokai'
 
 " ftplugin
 Bundle 'moro/vim-review'
@@ -164,6 +164,7 @@ if 'inhert' == hostname
   colorscheme Tomorrow-Night-Blue
 else
   colorscheme OceanicNext
+  set background=dark
   "colorscheme Tomorrow-Night-Bright
 endif
 
@@ -736,8 +737,27 @@ endfunction
 " vim plugin setting " {{{
 
 let g:lightline = {
-  \ 'colorscheme': 'wombat'
+  \ 'colorscheme': 'wombat',
+  \ 'active': {
+  \   'right': [ [ 'syntastic', 'lineinfo' ],
+  \              [ 'percent' ], [ 'winform' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'branch', 'filename' ] ]
+  \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightLineFugitive'
   \ }
+  \ }
+
+function! LightLineFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && winwidth(0) > 55
+      return fugitive#head()
+    endif
+  catch
+  endtry
+  return ''
+endfunction
 
 " ctrlp.vim
 let g:ctrlp_prompt_mappings = {
