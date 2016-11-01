@@ -286,6 +286,8 @@ nnoremap <Space>d :<C-u>bd<Enter>
 " http://vim-users.jp/2010/02/hack122/
 nnoremap Y y$
 
+nnoremap <C-r> :<C-u>TagbarToggle<Return>
+
 " http://relaxedcolumn.blog8.fc2.com/blog-entry-146.html
 " http://vim.g.hatena.ne.jp/tyru/20100106
 "let g:arpeggio_timeoutlen = 50
@@ -591,6 +593,9 @@ function! s:on_FileType_go()
       \ 'ctagsbin'  : 'gotags',
       \ 'ctagsargs' : '-sort -silent'
   \ }
+
+  execute ":TagbarOpen"
+
 endfunction
 autocmd MyAutoCmd FileType go call s:on_FileType_go()
 " }}}
@@ -687,6 +692,8 @@ function! s:on_FileType_php()
   execute 'nno <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
   execute 'ono <buffer> <silent> [[ ?' . escape(s:section, '|') . '?<CR>:nohls<CR>'
   execute 'ono <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
+
+  execute ":TagbarOpen"
 
   ""
   " 同一ファイル内にある定義元の関数やクラスに移動
