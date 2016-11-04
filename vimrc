@@ -16,6 +16,7 @@ Bundle 'errormarker.vim'
 Bundle 'sudo.vim'
 "Bundle 'php_localvarcheck.vim'
 Bundle 'Markdown'
+Bundle 'tagbar-phpctags'
 
 Bundle 'beanworks/vim-phpfmt'
 "Bundle 'int3/vim-extradite'
@@ -694,6 +695,7 @@ function! s:on_FileType_php()
   execute 'ono <buffer> <silent> ]] /' . escape(s:section, '|') . '/<CR>:nohls<CR>'
 
   execute ":TagbarOpen"
+  execute ":TagbarSetFoldlevel 2"
 
   ""
   " 同一ファイル内にある定義元の関数やクラスに移動
