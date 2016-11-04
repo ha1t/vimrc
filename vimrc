@@ -711,8 +711,8 @@ function! s:on_FileType_php()
   " flyquickfixmake.vim
   "
   " @see http://subtech.g.hatena.ne.jp/secondlife/20080729/1217315593
-  if executable($HOME . '/bin/vimparse.php')
-    setlocal makeprg=$HOME/bin/vimparse.php\ %\ $*
+  if executable('vimparse.php')
+    setlocal makeprg=vimparse.php\ %\ $*
     setlocal errorformat=%f:%l:%m
     setlocal shellpipe=2>&1\ >
     autocmd BufWritePost <buffer> silent make
