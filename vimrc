@@ -3,67 +3,110 @@
 "
 " vimrc
 "
-" @author halt feits
+" @author halt 
 "
+
+call plug#begin('~/.vim/plugged')
+Plug 'Align'
+Plug 'errormarker.vim'
+Plug 'sudo.vim'
+Plug 'Markdown'
+Plug 'tagbar-phpctags'
+
+Plug 'beanworks/vim-phpfmt'
+Plug 'fatih/vim-go'
+Plug 'flyinshadow/php_localvarcheck.vim'
+Plug 'kana/vim-arpeggio'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-smartinput'
+Plug 'kana/vim-smartword'
+Plug 'karakaram/vim-quickrun-phpunit'
+Plug 'kien/ctrlp.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'itchyny/lightline.vim'
+Plug 'majutsushi/tagbar'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Shougo/neocomplcache'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/vimfiler'
+Plug 'taku-o/vim-toggle'
+Plug 'thinca/vim-quickrun'
+Plug 'tjennings/git-grep-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-haml'
+Plug 'vim-scripts/yanktmp.vim'
+Plug 'vim-scripts/dbext.vim'
+Plug 'vim-jp/vimdoc-ja'
+
+" theme
+Plug 'mhartington/oceanic-next'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'fatih/molokai'
+
+" ftplugin
+Plug 'moro/vim-review'
+call plug#end()
 
 " http://shu-cream.blogspot.com/2011/04/2011vimvundle.html
 " https://github.com/gmarik/vundle/blob/master/README.md
-set rtp+=~/.vim/vundle/
-call vundle#rc()
+"set rtp+=~/.vim/vundle/
+"call vundle#rc()
 
-Bundle 'Align'
-Bundle 'errormarker.vim'
-Bundle 'sudo.vim'
-"Bundle 'php_localvarcheck.vim'
-Bundle 'Markdown'
-Bundle 'tagbar-phpctags'
-
-Bundle 'beanworks/vim-phpfmt'
-"Bundle 'int3/vim-extradite'
-"Bundle 'kana/vim-altr'
-Bundle 'fatih/vim-go'
-Bundle 'flyinshadow/php_localvarcheck.vim'
-"Bundle 'jsoriano/vim-dbgp'
-Bundle 'kana/vim-arpeggio'
-Bundle 'kana/vim-textobj-user'
-Bundle 'kana/vim-smartinput'
-Bundle 'kana/vim-smartword'
-Bundle 'karakaram/vim-quickrun-phpunit'
-Bundle 'kien/ctrlp.vim'
-"Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'Lokaltog/vim-powerline'
-Bundle 'itchyny/lightline.vim'
-"Bundle 'mattn/gist-vim'
-"Bundle 'molok/css_color.vim' " 重すぎワロタ
-Bundle 'majutsushi/tagbar'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-"Bundle 'Shougo/vimshell'
-"Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimfiler'
-Bundle 'taku-o/vim-toggle'
-Bundle 'thinca/vim-quickrun'
-Bundle 'tjennings/git-grep-vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-haml'
-"Bundle 'ujihisa/vimshell-ssh'
-Bundle 'vim-scripts/yanktmp.vim'
-Bundle 'vim-scripts/dbext.vim'
-Bundle 'vim-jp/vimdoc-ja'
-"Bundle 'yuratomo/w3m.vim'
-
-" theme
-Bundle 'mhartington/oceanic-next'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'fatih/molokai'
-
-" ftplugin
-Bundle 'moro/vim-review'
-
+"Bundle 'Align'
+"Bundle 'errormarker.vim'
+"Bundle 'sudo.vim'
+""Bundle 'php_localvarcheck.vim'
+"Bundle 'Markdown'
+"Bundle 'tagbar-phpctags'
+"
+"Bundle 'beanworks/vim-phpfmt'
+""Bundle 'int3/vim-extradite'
+""Bundle 'kana/vim-altr'
+"Bundle 'fatih/vim-go'
+"Bundle 'flyinshadow/php_localvarcheck.vim'
+""Bundle 'jsoriano/vim-dbgp'
+"Bundle 'kana/vim-arpeggio'
+"Bundle 'kana/vim-textobj-user'
+"Bundle 'kana/vim-smartinput'
+"Bundle 'kana/vim-smartword'
+"Bundle 'karakaram/vim-quickrun-phpunit'
+"Bundle 'kien/ctrlp.vim'
+""Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'Lokaltog/vim-easymotion'
+""Bundle 'Lokaltog/vim-powerline'
+"Bundle 'itchyny/lightline.vim'
+""Bundle 'mattn/gist-vim'
+""Bundle 'molok/css_color.vim' " 重すぎワロタ
+"Bundle 'majutsushi/tagbar'
+"Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neosnippet'
+"Bundle 'Shougo/neosnippet-snippets'
+""Bundle 'Shougo/vimshell'
+""Bundle 'Shougo/vimproc'
+"Bundle 'Shougo/vimfiler'
+"Bundle 'taku-o/vim-toggle'
+"Bundle 'thinca/vim-quickrun'
+"Bundle 'tjennings/git-grep-vim'
+"Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-haml'
+""Bundle 'ujihisa/vimshell-ssh'
+"Bundle 'vim-scripts/yanktmp.vim'
+"Bundle 'vim-scripts/dbext.vim'
+"Bundle 'vim-jp/vimdoc-ja'
+""Bundle 'yuratomo/w3m.vim'
+"
+"" theme
+"Bundle 'mhartington/oceanic-next'
+"Bundle 'chriskempson/vim-tomorrow-theme'
+"Bundle 'fatih/molokai'
+"
+"" ftplugin
+"Bundle 'moro/vim-review'
+"
 let g:toggle_pairs = {
   \'and':'or', 'or':'and',
   \'==':'!=','!=':'==',
@@ -710,7 +753,7 @@ function! s:on_FileType_php()
   nnoremap <buffer> ,l  :<C-u>execute '!' &l:filetype '-l' shellescape(expand('%'))<Return>
 
   ""
-  " flyquickfixmake.vim
+  " errormarker.vim
   "
   " @see http://subtech.g.hatena.ne.jp/secondlife/20080729/1217315593
   if executable('vimparse.php')
