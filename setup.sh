@@ -16,11 +16,6 @@ function makelink_dir () {
 
 makelink_dir $basedir/vim $HOME/.vim
 
-if [ ! -d $basedir/vim/vundle ]; then
-  git submodule init
-  git submodule update
-fi
-
 if [ ! -f $HOME/.vimrc ]; then
   ln -s $basedir/vimrc $HOME/.vimrc
 fi
