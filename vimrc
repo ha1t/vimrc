@@ -26,7 +26,6 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Shougo/neocomplcache'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/vimfiler'
@@ -643,11 +642,6 @@ function! s:on_FileType_php()
   vnoremap <buffer> = :<C-u>'<,'>Align =<Return>
   vnoremap <buffer> a :<C-u>'<,'>Align =><Return>
 
-  if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-  endif
-  let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-
   ""
   " smartchr
   "
@@ -852,24 +846,10 @@ vnoremap <silent> <Leader>w :<C-U>call EasyMotion#WBW(1, 0)<CR>
 nnoremap <silent> <Leader>W :call EasyMotion#WBW(0, 1)<CR>
 vnoremap <silent> <Leader>W :<C-U>call EasyMotion#WBW(0, 1)<CR>
 
-""
-" neocomplcache.vim
-"
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_auto_completion_start_length = 4
-
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
