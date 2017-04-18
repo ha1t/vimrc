@@ -51,64 +51,6 @@ Plug 'fatih/molokai'
 Plug 'moro/vim-review'
 call plug#end()
 
-" http://shu-cream.blogspot.com/2011/04/2011vimvundle.html
-" https://github.com/gmarik/vundle/blob/master/README.md
-"set rtp+=~/.vim/vundle/
-"call vundle#rc()
-
-"Bundle 'Align'
-"Bundle 'errormarker.vim'
-"Bundle 'sudo.vim'
-""Bundle 'php_localvarcheck.vim'
-"Bundle 'Markdown'
-"Bundle 'tagbar-phpctags'
-"
-"Bundle 'beanworks/vim-phpfmt'
-""Bundle 'int3/vim-extradite'
-""Bundle 'kana/vim-altr'
-"Bundle 'fatih/vim-go'
-"Bundle 'flyinshadow/php_localvarcheck.vim'
-""Bundle 'jsoriano/vim-dbgp'
-"Bundle 'kana/vim-arpeggio'
-"Bundle 'kana/vim-textobj-user'
-"Bundle 'kana/vim-smartinput'
-"Bundle 'kana/vim-smartword'
-"Bundle 'karakaram/vim-quickrun-phpunit'
-"Bundle 'kien/ctrlp.vim'
-""Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'Lokaltog/vim-easymotion'
-""Bundle 'Lokaltog/vim-powerline'
-"Bundle 'itchyny/lightline.vim'
-""Bundle 'mattn/gist-vim'
-""Bundle 'molok/css_color.vim' " 重すぎワロタ
-"Bundle 'majutsushi/tagbar'
-"Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'Shougo/neocomplcache'
-"Bundle 'Shougo/neosnippet'
-"Bundle 'Shougo/neosnippet-snippets'
-""Bundle 'Shougo/vimshell'
-""Bundle 'Shougo/vimproc'
-"Bundle 'Shougo/vimfiler'
-"Bundle 'taku-o/vim-toggle'
-"Bundle 'thinca/vim-quickrun'
-"Bundle 'tjennings/git-grep-vim'
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'tpope/vim-surround'
-"Bundle 'tpope/vim-haml'
-""Bundle 'ujihisa/vimshell-ssh'
-"Bundle 'vim-scripts/yanktmp.vim'
-"Bundle 'vim-scripts/dbext.vim'
-"Bundle 'vim-jp/vimdoc-ja'
-""Bundle 'yuratomo/w3m.vim'
-"
-"" theme
-"Bundle 'mhartington/oceanic-next'
-"Bundle 'chriskempson/vim-tomorrow-theme'
-"Bundle 'fatih/molokai'
-"
-"" ftplugin
-"Bundle 'moro/vim-review'
-"
 let g:toggle_pairs = {
   \'and':'or', 'or':'and',
   \'==':'!=','!=':'==',
