@@ -39,6 +39,8 @@ Plug 'tpope/vim-haml'
 Plug 'vim-scripts/yanktmp.vim'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vim-jp/vimdoc-ja'
+Plug 'w0rp/ale'
+
 
 " theme
 Plug 'mhartington/oceanic-next'
