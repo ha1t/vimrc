@@ -28,7 +28,6 @@ Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/vimfiler'
 Plug 'taku-o/vim-toggle'
 Plug 'thinca/vim-quickrun'
 Plug 'tjennings/git-grep-vim'
@@ -364,15 +363,6 @@ autocmd MyAutoCmd WinEnter,BufRead * set cursorline
 
 " 前回終了したカーソル行に移動
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
-
-function! s:on_FileType_vimfiler()
-  call vimfiler#set_execute_file('vim', 'vim')
-  call vimfiler#set_execute_file('php', 'vim')
-  call vimfiler#set_execute_file('txt', 'vim')
-  call vimfiler#set_execute_file('rb',  'vim')
-  call vimfiler#set_execute_file('md',  'vim')
-endfunction
-autocmd MyAutoCmd FileType vimfiler call s:on_FileType_vimfiler()
 
 function! s:on_FileType_vim()
   setlocal tabstop=2
@@ -739,16 +729,6 @@ let g:lightline = {
   \ }
   \ }
 
-function! LightLineFugitive()
-  try
-    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && winwidth(0) > 55
-      return fugitive#head()
-    endif
-  catch
-  endtry
-  return ''
-endfunction
-
 " ctrlp.vim
 let g:ctrlp_prompt_mappings = {
   \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
@@ -855,12 +835,6 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-
-""
-" vimfiler
-"
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default = 0
 
 ""
 " tagbar
