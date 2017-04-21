@@ -25,7 +25,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'taku-o/vim-toggle'
@@ -65,7 +64,7 @@ let g:toggle_pairs = {
 " set
 "
 if has('nvim')
-  set termguicolors
+  "set termguicolors
 else
   set t_Co=256
   set nocompatible
@@ -146,10 +145,10 @@ let is_mac = (has('mac') || has('macunix') || has('gui_macvim') || system('uname
 "colorscheme desert256
 "colorscheme vitamins
 
-if 'inhert' == hostname
+if 'anubis' == hostname
   colorscheme Tomorrow-Night-Blue
 else
-  colorscheme OceanicNext
+  "colorscheme OceanicNext
   set background=dark
   "colorscheme Tomorrow-Night-Bright
 endif
@@ -770,15 +769,6 @@ nnoremap <C-t> <Plug>(ToggleN)
 
 " git grep
 "nnoremap <unique> gG :exec ':silent GitGrep ' . expand('<cword>')<CR>
-
-
-""
-" indent_guides
-"
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 30
-let g:indent_guides_guide_size = 1
-let g:indent_guides_auto_colors = 0
 
 if &background == 'dark'
   highlight IndentGuidesOdd  ctermbg=234
