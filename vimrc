@@ -3,7 +3,7 @@
 "
 " vimrc
 "
-" @author halt 
+" @author halt
 "
 
 call plug#begin('~/.vim/plugged')
@@ -25,6 +25,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
+Plug 'othree/yajs.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'taku-o/vim-toggle'
