@@ -7,11 +7,11 @@
 "
 
 call plug#begin('~/.vim/plugged')
-Plug 'Align'
-Plug 'errormarker.vim'
-Plug 'sudo.vim'
-Plug 'Markdown'
-Plug 'tagbar-phpctags'
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/errormarker.vim'
+Plug 'vim-scripts/sudo.vim'
+Plug 'vim-scripts/Markdown'
+Plug 'vim-scripts/tagbar-phpctags'
 
 Plug 'beanworks/vim-phpfmt'
 Plug 'fatih/vim-go'
@@ -136,6 +136,7 @@ endif
 "set swap file directory
 let &directory = &backupdir
 let mapleader = ","
+let g:netrw_keepdir=0
 
 let hostname = system('hostname')
 let hostname = strpart(hostname, 0, strlen(hostname)-1)
@@ -625,6 +626,10 @@ function! s:on_FileType_php()
   " A standard type: PEAR, PHPCS, PSR1, PSR2, Squiz and Zend
   let g:phpfmt_standard = 'PSR2'
   let g:phpfmt_autosave = 1
+
+  ""
+  " ale
+  let g:ale_php_phpcs_standard = 'PSR2'
 
   ""
   " Align.vim
