@@ -14,6 +14,7 @@ Plug 'vim-scripts/Markdown'
 Plug 'vim-scripts/tagbar-phpctags'
 
 Plug 'beanworks/vim-phpfmt'
+Plug 'cocopon/vaffle.vim'
 Plug 'fatih/vim-go'
 Plug 'flyinshadow/php_localvarcheck.vim'
 Plug 'kana/vim-arpeggio'
