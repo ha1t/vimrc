@@ -329,6 +329,21 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+" http://saihoooooooo.hatenablog.com/entry/2013/05/24/130744
+function! s:GetBufByte()
+    let byte = line2byte(line('$') + 1)
+    if byte == -1
+        return 0
+    else
+        return byte - 1
+    endif
+endfunction
+
+augroup VimStartup
+  autocmd!
+  autocmd VimEnter * nested if @% == '' && s:GetBufByte() == 0 | Vaffle | endif
+augroup END
+
 if !has('gui_running') && !(has('win32') || has('win64'))
   " .vimrcの再読込時にも色が変化するようにする
   autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
