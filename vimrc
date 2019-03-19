@@ -7,11 +7,6 @@
 "
 
 call plug#begin('~/.vim/plugged')
-Plug 'Align'
-Plug 'errormarker.vim'
-Plug 'sudo.vim'
-Plug 'Markdown'
-Plug 'tagbar-phpctags'
 
 Plug 'beanworks/vim-phpfmt'
 Plug 'fatih/vim-go'
