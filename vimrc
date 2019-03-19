@@ -9,6 +9,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'beanworks/vim-phpfmt'
+Plug 'cocopon/vaffle.vim'
 Plug 'fatih/vim-go'
 Plug 'flyinshadow/php_localvarcheck.vim'
 Plug 'kana/vim-arpeggio'
@@ -131,6 +132,7 @@ endif
 "set swap file directory
 let &directory = &backupdir
 let mapleader = ","
+let g:netrw_keepdir=0
 
 let hostname = system('hostname')
 let hostname = strpart(hostname, 0, strlen(hostname)-1)
@@ -320,6 +322,21 @@ command! -bang -complete=file -nargs=? JIS
 "
 augroup MyAutoCmd
   autocmd!
+augroup END
+
+" http://saihoooooooo.hatenablog.com/entry/2013/05/24/130744
+function! s:GetBufByte()
+    let byte = line2byte(line('$') + 1)
+    if byte == -1
+        return 0
+    else
+        return byte - 1
+    endif
+endfunction
+
+augroup VimStartup
+  autocmd!
+  autocmd VimEnter * nested if @% == '' && s:GetBufByte() == 0 | Vaffle | endif
 augroup END
 
 if !has('gui_running') && !(has('win32') || has('win64'))
@@ -620,6 +637,10 @@ function! s:on_FileType_php()
   " A standard type: PEAR, PHPCS, PSR1, PSR2, Squiz and Zend
   let g:phpfmt_standard = 'PSR2'
   let g:phpfmt_autosave = 1
+
+  ""
+  " ale
+  let g:ale_php_phpcs_standard = 'PSR2'
 
   ""
   " Align.vim
