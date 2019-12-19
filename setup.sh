@@ -14,12 +14,24 @@ function makelink_dir () {
   fi
 }
 
+if [ ! -d $HOME/.config ]; then
+  echo "created: .config"
+  mkdir $HOME/.config
+fi
+
+if [ ! -d $HOME/.vimbackup ]; then
+  echo "created: .vimbackup"
+  mkdir $HOME/.vimbackup
+fi
+
 makelink_dir $basedir/vim $HOME/.vim
+makelink_dir $basedir/vim $HOME/.config/nvim
 
 if [ ! -f $HOME/.vimrc ]; then
   ln -s $basedir/vimrc $HOME/.vimrc
 fi
 
-if [ ! -d $HOME/.vimbackup ]; then
-  mkdir $HOME/.vimbackup
+if [ ! -f $HOME/.config/nvim/init.vim ]; then
+  ln -s $basedir/vimrc $HOME/.config/nvim/init.vim
 fi
+
