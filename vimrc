@@ -878,7 +878,6 @@ syntax on
 
 if has("gui_running")
   "gui
-  set transparency=200
   colorscheme relaxedgreen
   set backupdir=~/_vimbackup
 
