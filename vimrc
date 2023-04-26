@@ -879,7 +879,6 @@ syntax on
 if has("gui_running")
   "gui
   colorscheme relaxedgreen
-  set backupdir=~/_vimbackup
 
   " mouseなぞつかわんばい
   set mouse=
