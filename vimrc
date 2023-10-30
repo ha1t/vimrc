@@ -32,7 +32,7 @@ Plug 'tpope/vim-haml'
 Plug 'vim-scripts/yanktmp.vim'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vim-jp/vimdoc-ja'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 
 
 " theme
