@@ -872,8 +872,8 @@ if has("gui_running")
   "gui
   colorscheme relaxedgreen
 
-  " mouseなぞつかわんばい
-  set mouse=
+  set guifont=Cica:h12
+
 endif
 
 function! Scouter(file, ...)
