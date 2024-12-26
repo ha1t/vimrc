@@ -872,7 +872,7 @@ if has("gui_running")
   "gui
   colorscheme relaxedgreen
 
-  set guifont=Cica:h12
+  set guifont=Cica:h14
 
 endif
 
