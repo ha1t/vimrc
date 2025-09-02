@@ -6,6 +6,8 @@
 " @author halt
 "
 
+set runtimepath^=~/.vim
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'cocopon/vaffle.vim'
@@ -872,7 +874,7 @@ if has("gui_running")
   "gui
   colorscheme relaxedgreen
 
-  set guifont=Cica:h14
+"  set guifont=Cica:h14
 
 endif
 
