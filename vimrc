@@ -76,7 +76,6 @@ if has('nvim')
   endif
   "set termguicolors
 else
-  set t_Co=256
   set nocompatible
   set encoding=utf-8
 endif
@@ -124,7 +123,6 @@ let loaded_matchparen = 1
 "let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/proc.so'
 
 if has("gui_running")
-  set t_Co=256
   " フォント設定 from http://memo.xight.org/2007-11-01-2
   if has("gui_win32")
     " set guifont=ＭＳ_ゴシック:h9:cSHIFTJIS
