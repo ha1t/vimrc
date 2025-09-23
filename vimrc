@@ -34,6 +34,7 @@ Plug 'tpope/vim-haml'
 Plug 'vim-scripts/yanktmp.vim'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vim-jp/vimdoc-ja'
+Plug 'rhysd/vim-color-spring-night'
 "Plug 'dense-analysis/ale'
 
 
@@ -872,7 +873,7 @@ syntax on
 
 if has("gui_running")
   "gui
-  colorscheme relaxedgreen
+  colorscheme spring-night
 
 "  set guifont=Cica:h14
 
