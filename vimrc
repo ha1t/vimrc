@@ -127,7 +127,7 @@ if has("gui_running")
   if has("gui_win32")
     " set guifont=ＭＳ_ゴシック:h9:cSHIFTJIS
     "set guifont=meiryo:h12:cSHIFTJIS
-    "set guifont=メイリオ:h9:cSHIFTJIS
+    set guifont=Consolas:h12
     "set printfont=ＭＳ_ゴシック:h10:cSHIFTJIS
     " set printfont=メイリオ:h10:cSHIFTJIS
     autocmd GUIEnter * winpos 200 100
@@ -872,9 +872,6 @@ syntax on
 if has("gui_running")
   "gui
   colorscheme spring-night
-
-"  set guifont=Cica:h14
-
 endif
 
 function! Scouter(file, ...)
