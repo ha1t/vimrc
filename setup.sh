@@ -19,9 +19,9 @@ if [ ! -d $HOME/.config ]; then
   mkdir $HOME/.config
 fi
 
-if [ ! -d $HOME/.vimbackup ]; then
-  echo "created: .vimbackup"
-  mkdir $HOME/.vimbackup
+if [ ! -d $HOME/.vim/backup ]; then
+  echo "created: .vim/backup"
+  mkdir $HOME/.vim/backup
 fi
 
 makelink_dir $basedir/vim $HOME/.vim

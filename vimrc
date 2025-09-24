@@ -83,7 +83,7 @@ endif
 set autoindent
 set ambiwidth=double
 set backup
-set backupdir=~/.vimbackup
+set backupdir=~/.vim/backup
 "set background=dark
 set backspace=indent,eol,start
 set helplang=ja,en
