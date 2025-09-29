@@ -55,14 +55,6 @@ let g:toggle_pairs = {
   \'class':'extends', 'extends':'class',
   \}
 
-" 0.2.2 -> 022 を返す(けど最上位桁が0なので…)
-function! GetNVimVersion()
-       redir => s
-       silent! version
-       redir END
-       return substitute(matchstr(s, 'NVIM v\zs[^\n]*'), "\\.", "", "g")
-endfunction
-
 ""
 " environment
 "
@@ -70,15 +62,8 @@ endfunction
 ""
 " set
 "
-if has('nvim')
-  if GetNVimVersion() <= 022
-    let g:go_version_warning = 0
-  endif
-  "set termguicolors
-else
-  set nocompatible
-  set encoding=utf-8
-endif
+set nocompatible
+set encoding=utf-8
 
 set autoindent
 set ambiwidth=double
@@ -245,13 +230,6 @@ command! CtagsCreate :call s:ctags_create()
 command! CtagsLoad :call s:ctags_load()
 
 call s:ctags_load()
-
-""
-" NeoVim Config
-"
-if has('nvim')
-      tnoremap <Esc> <C-\><C-n>
-endif
 
 noremap ; :
 noremap : ;
