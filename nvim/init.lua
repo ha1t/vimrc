@@ -13,6 +13,13 @@ vim.opt.shellcmdflag =
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
 
+-- システムの背景設定を取得
+if vim.fn.system("defaults read -g AppleInterfaceStyle"):find("Dark") then
+  vim.cmd.colorscheme("tokyonight") -- ダークスキーム
+else
+  vim.cmd.colorscheme("tokyonight-day") -- ライトスキーム
+end
+
 -- 背景を透過させる
 vim.cmd([[
   highlight Normal guibg=NONE ctermbg=NONE
