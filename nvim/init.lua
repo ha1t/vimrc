@@ -12,6 +12,7 @@ vim.opt.shellcmdflag =
   "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
+vim.opt.clipboard = ""
 
 -- システムの背景設定を取得
 if vim.fn.system("defaults read -g AppleInterfaceStyle"):find("Dark") then
