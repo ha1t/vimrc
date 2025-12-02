@@ -9,25 +9,12 @@ vim.opt.winblend = 0 -- ウィンドウの不透明度
 vim.opt.pumblend = 0 -- ポップアップメニューの不透明度
 vim.opt.shell = "powershell.exe"
 vim.opt.shellcmdflag =
-  "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
 vim.opt.clipboard = ""
 
--- システムの背景設定を取得
-if vim.fn.system("defaults read -g AppleInterfaceStyle"):find("Dark") then
-  vim.cmd.colorscheme("tokyonight") -- ダークスキーム
-else
-  vim.cmd.colorscheme("tokyonight-day") -- ライトスキーム
-end
-
--- 背景を透過させる
-vim.cmd([[
-  highlight Normal guibg=NONE ctermbg=NONE
-  highlight NormalNC guibg=NONE ctermbg=NONE
-  highlight SignColumn guibg=NONE ctermbg=NONE
-  highlight EndOfBuffer guibg=NONE ctermbg=NONE
-]])
+vim.cmd.colorscheme("tokyonight") -- ダークスキーム
 
 vim.keymap.set({ "n", "v", "s", "o" }, ";", ":", { noremap = true })
 vim.keymap.set({ "n", "v", "s", "o" }, ":", ";", { noremap = true })
@@ -49,12 +36,12 @@ local function get_wsl_distro_list()
   for _, line in ipairs(output) do
     -- 💡 修正点: BOM(\239\187\191)、CR(\r)、LF(\n)、NULL文字(\0)を除去
     local distro_name = line
-      :gsub("\239\187\191", "") -- UTF-8 BOM
-      :gsub("\255\254", "") -- UTF-16 LE BOM
-      :gsub("\r", "") -- キャリッジリターン
-      :gsub("\n", "") -- ラインフィード
-      :gsub("\0", "") -- NULL文字
-      :match("^%s*(.-)%s*$") -- 前後の空白を削除
+        :gsub("\239\187\191", "") -- UTF-8 BOM
+        :gsub("\255\254", "")     -- UTF-16 LE BOM
+        :gsub("\r", "")           -- キャリッジリターン
+        :gsub("\n", "")           -- ラインフィード
+        :gsub("\0", "")           -- NULL文字
+        :match("^%s*(.-)%s*$")    -- 前後の空白を削除
 
     if distro_name and distro_name ~= "" then
       table.insert(distros, distro_name)
